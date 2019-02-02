@@ -1,0 +1,45 @@
+testConfig:
+  queriesDirectory: NOTUSEDYET
+  outputDirectory: test-output
+  plugins:
+    - json:test-output/reports/cucumber.json
+    - framework.core.reports.CucumberEventListener
+  returnScreenshotOnEveryAction: true
+  scriptTimeout: 120
+  pageLoadTimeout: 120
+#  screenshotHeight: 480
+#  screenshotWidth: 640
+
+driverConfig:
+  desiredCapabilities:
+    browserName: chrome
+    version: 60
+    platform: WINDOWS
+    javascriptEnabled: true
+    acceptSslCerts: true
+    handlesAlerts: true
+    cssSelectorsEnabled: true
+    unexpectedAlertBehaviour: accept
+    explicitTimeout: 60
+    pollingTime: 500
+  ie:
+    enablePersistantHovering: false
+  chrome:
+    args:
+      --disable-extensions
+      --disable-infobars
+  firefox:
+    browser.download.dir: System.getProperty('user.home') + '/Downloads'
+    browser.download.folderList: 2
+    browser.download.manager.showWhenStarting: false
+    browser.helperApps.alwaysAsk.force: false
+    browser.download.manager.closeWhenDone: true
+    browser.download.manager.focusWhenStarting: false
+    pdfjs.disabled: true
+  edge:
+  safari:
+  remote:
+
+environments:
+  oracle_fusion:
+    webUrl: https://hcczdev-test.login.em3.oraclecloud.com
