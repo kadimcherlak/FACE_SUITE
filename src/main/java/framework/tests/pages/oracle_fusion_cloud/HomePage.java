@@ -1,13 +1,12 @@
 package framework.tests.pages.oracle_fusion_cloud;
 
-import framework.core.exceptions.FrameworkException;
 import framework.tests.steps.oracle_fusion_cloud.Context;
 import framework.tests.steps.oracle_fusion_cloud.Data;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class HomePage extends OracleBasePage<HomePage> {
+public class HomePage extends BasePage<HomePage> {
 
     Context context;
     Data data;
@@ -28,7 +27,7 @@ public class HomePage extends OracleBasePage<HomePage> {
     // Home Page check available
     public boolean checkPageAvailable(){
         waitUntilPageLoad();
-        report("Checking if Home Page is Displayed");
+        reportWithScreenShot("Checking if Home Page is Displayed");
         return userName.isDisplayed();
     }
 

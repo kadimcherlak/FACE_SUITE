@@ -27,6 +27,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <forkCount>0</forkCount>
+        <reuseForks>false</reuseForks>
     </properties>
 
     <build>
@@ -64,7 +66,6 @@
                     <artifactId>maven-failsafe-plugin</artifactId>
                     <version>2.19.1</version>
                     <configuration>
-                        <debugForkedProcess>true</debugForkedProcess>
                         <suiteXmlFiles>
                             <suiteXmlFile>${project.basedir}/src/main/resources/run.yaml</suiteXmlFile>
                         </suiteXmlFiles>

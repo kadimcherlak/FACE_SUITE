@@ -6,9 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.List;
-
-public class LoginPage extends OracleBasePage<LoginPage> {
+public class LoginPage extends BasePage<LoginPage> {
 
     Context context;
     Data data;
@@ -36,7 +34,7 @@ public class LoginPage extends OracleBasePage<LoginPage> {
         driver.get(context.getEnvironment().getWebUrl());
         waitUntilPageLoad();
         waitShortTime();
-        report("Got to :"+context.getEnvironment().getWebUrl());
+        reportWithScreenShot("Got to :" + context.getEnvironment().getWebUrl());
     }
 
     // Login Page check available

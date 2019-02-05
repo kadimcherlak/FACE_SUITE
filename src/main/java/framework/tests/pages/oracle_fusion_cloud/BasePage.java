@@ -8,12 +8,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class OracleBasePage<T> extends WebPage {
+public class BasePage<T> extends WebPage {
 
     @FindBy(tagName = "html")
     private WebElement __document;
 
-    public OracleBasePage(Context context) {
+    public BasePage(Context context) {
         super(context);
         logger.debug("{} loaded", this.getClass().getName());
     }

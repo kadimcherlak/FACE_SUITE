@@ -4,11 +4,11 @@ testConfig:
   plugins:
     - json:test-output/reports/cucumber.json
     - framework.core.reports.CucumberEventListener
-  returnScreenshotOnEveryAction: true
+  returnScreenshotOnEveryAction: false
   scriptTimeout: 120
   pageLoadTimeout: 120
-#  screenshotHeight: 480
-#  screenshotWidth: 640
+  #screenshotWidth: 640
+  #screenshotHeight: 480
 
 driverConfig:
   desiredCapabilities:
@@ -25,17 +25,19 @@ driverConfig:
   ie:
     enablePersistantHovering: false
   chrome:
+    path: "C:\\Drivers\\chromedriver_win32\\chromedriver.exe"
     args:
       --disable-extensions
       --disable-infobars
   firefox:
-    browser.download.dir: System.getProperty('user.home') + '/Downloads'
-    browser.download.folderList: 2
-    browser.download.manager.showWhenStarting: false
-    browser.helperApps.alwaysAsk.force: false
-    browser.download.manager.closeWhenDone: true
-    browser.download.manager.focusWhenStarting: false
-    pdfjs.disabled: true
+  #    path: "C:\\Drivers\\geckodriver-v0.14.0-win64\\geckodriver.exe"
+  #    browser.download.dir: System.getProperty('user.home') + '/Downloads'
+  #    browser.download.folderList: 2
+  #    browser.download.manager.showWhenStarting: false
+  #    browser.helperApps.alwaysAsk.force: false
+  #    browser.download.manager.closeWhenDone: true
+  #    browser.download.manager.focusWhenStarting: false
+  #    pdfjs.disabled: true
   edge:
   safari:
   remote:
