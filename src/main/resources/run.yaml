@@ -1,4 +1,4 @@
-name: Example Template
+name: Runner File
 threadCount: 1
 verbose: 3
 tests:

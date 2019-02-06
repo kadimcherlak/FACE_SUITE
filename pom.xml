@@ -97,7 +97,8 @@
                     </executions>
                     <configuration>
                         <sourceJsonReportDirectory>${project.basedir}/test-output/reports</sourceJsonReportDirectory>
-                        <generatedHtmlReportDirectory>${project.basedir}/test-output/reports/html</generatedHtmlReportDirectory>
+                        <generatedHtmlReportDirectory>${project.basedir}/test-output/reports/html
+                        </generatedHtmlReportDirectory>
                     </configuration>
                 </plugin>
             </plugins>
