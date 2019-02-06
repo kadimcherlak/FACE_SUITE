@@ -2,110 +2,105 @@ package framework.tests.steps.oracle_fusion_cloud;
 
 import cucumber.api.PendingException;
 import cucumber.api.java8.En;
-import framework.tests.pages.oracle_fusion_cloud.BasePage;
+import framework.tests.pages.oracle_fusion_cloud.HireAnEmployeePage;
+import framework.tests.pages.oracle_fusion_cloud.LoginAndHomePage;
+import framework.tests.pages.oracle_fusion_cloud.NewPersonPage;
 import org.apache.logging.log4j.Logger;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class Talent_Acquisition_New_Hire implements En {
+public class TalentAcquisitionNewHireSteps implements En {
 
     private Logger logger;
     private Data data;
-    private BasePage basePage;
+    private LoginAndHomePage loginAndHomePage;
+    private NewPersonPage newPersonPage;
+    private HireAnEmployeePage hireAnEmployee;
 
-    public Talent_Acquisition_New_Hire(Context context) {
+    public TalentAcquisitionNewHireSteps(Context context) {
         logger = context.getLogger();
         logger.debug("{} loaded", this.getClass().getName());
 
         Given("^user runs (.*?)$", (String testCaseKey) -> {
             context.setData(testCaseKey);
             data = context.getData();
+            loginAndHomePage = new LoginAndHomePage(context);
         });
 
         And("^user is on the oracle fusion login page$", () -> {
-            basePage = new BasePage(context);
-            basePage.goTo();
-            assertThat(basePage.checkLoginPageAvailable()).isTrue();
+            loginAndHomePage.openUrl();
+            assertThat(loginAndHomePage.checkLoginPageAvailable()).isTrue();
         });
 
         And("^user provides credentials for login$", () -> {
-            basePage.enterCredentials();
+            loginAndHomePage.enterCredentials();
         });
 
         When("^the user click on Sign In$", () -> {
-            basePage.signIn();
+            loginAndHomePage.signIn();
         });
 
         Then("^the Oracle Fusion Home Page is displayed", () -> {
-            assertThat(basePage.checkHomePageAvailable()).isTrue();
+            assertThat(loginAndHomePage.checkHomePageAvailable()).isTrue();
         });
 
         Given("user login to Oracle Applications Cloud web page", () -> {
-            basePage.goTo();
-            assertThat(basePage.checkLoginPageAvailable()).isTrue();
-            basePage.enterCredentials();
-            basePage.signIn();
-            assertThat(basePage.checkHomePageAvailable()).isTrue();
+            loginAndHomePage.openUrl();
+            assertThat(loginAndHomePage.checkLoginPageAvailable()).isTrue();
+            loginAndHomePage.enterCredentials();
+            loginAndHomePage.signIn();
+            assertThat(loginAndHomePage.checkHomePageAvailable()).isTrue();
         });
 
         When("user clicks on Navigator icon", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+            loginAndHomePage.navigatorScreen();
         });
 
         When("user clicks on new person link under My Workforce section", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+            loginAndHomePage.navigatorScreenNewPersonSelect();
         });
 
         When("user clicks on Hire an employee on right side of the page under Tasks pane", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+            newPersonPage = new NewPersonPage(context);
+            newPersonPage.clickTaskButton();
+            newPersonPage.clickHireAnEmployee();
         });
 
         Then("new Hire an employee screen should be displayed", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+            hireAnEmployee = new HireAnEmployeePage(context);
+            assertThat(hireAnEmployee.checkHireAnEmployeePageAvailable()).isTrue();
         });
 
         When("user enter details in Identification tab", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+            hireAnEmployee.fillIdentificationTab();
         });
 
         When("user enter details in Person information tab", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+            hireAnEmployee.fillPersonInformationTab();
         });
 
         When("user enter details in Employment Information tab", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+            hireAnEmployee.fillEmploymentInformationTab();
         });
 
         When("user enter details in Compensation and Other Information tab", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+            hireAnEmployee.fillCompensationAndOtherInformationTab();
         });
 
         Then("Review page should be displayed in view only mode", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+            hireAnEmployee.checkReviewTabDisplayedWithInformation();
         });
 
         When("user clicks on submit button", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+            hireAnEmployee.clickSubmitButton();
         });
 
         When("clicks ok in the Warning and confirmation message displayed", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+            hireAnEmployee.clickOk();
         });
 
         Then("Page should be submitted successfully", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+            hireAnEmployee.checkSubmitSuccessful();
         });
 
         When("user clicks on Person Management link under My Workforce section", () -> {
@@ -190,16 +185,15 @@ public class Talent_Acquisition_New_Hire implements En {
 
         Then("user click on Sign Out option", () -> {
             // Write code here that turns the phrase above into concrete actions
-            basePage.signOut();
+            loginAndHomePage.signOut();
         });
 
         Then("Sign out should be successful", () -> {
             // Write code here that turns the phrase above into concrete actions
-            basePage.signOutConfirm();
-            assertThat(basePage.checkLoginPageAvailable()).isTrue();
+            loginAndHomePage.signOutConfirm();
+            assertThat(loginAndHomePage.checkLoginPageAvailable()).isTrue();
         });
 
     }
 
 }
-

@@ -22,8 +22,6 @@ driverConfig:
     unexpectedAlertBehaviour: accept
     explicitTimeout: 60
     pollingTime: 500
-  ie:
-    enablePersistantHovering: false
   chrome:
     path: "C:\\Drivers\\chromedriver_win32\\chromedriver.exe"
     args:
@@ -38,6 +36,8 @@ driverConfig:
   #    browser.download.manager.closeWhenDone: true
   #    browser.download.manager.focusWhenStarting: false
   #    pdfjs.disabled: true
+  ie:
+    enablePersistantHovering: false
   edge:
   safari:
   remote:

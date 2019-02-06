@@ -25,6 +25,9 @@ import java.util.Date;
 
 public class Fusion_USNH25 {
 
+    static int waitTime = 70;
+    DataFormatter dataFormatter = new DataFormatter();
+
     public static void main(String[] args) throws InterruptedException, IOException, AWTException {
         // TODO Auto-generated method stub
         System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\chromedriver_win32\\chromedriver.exe");
@@ -169,9 +172,6 @@ public class Fusion_USNH25 {
             System.out.println("Worker type is not Employee ");
         }
     }
-
-    static int waitTime = 70;
-    DataFormatter dataFormatter = new DataFormatter();
 
     private static void enterTextByName(WebDriver driver, String name, String value) {
         WebDriverWait wait = new WebDriverWait(driver, waitTime);
