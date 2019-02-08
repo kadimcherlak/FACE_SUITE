@@ -13,7 +13,7 @@ New Hire Scenario1:
   department: 'Finance Internal Audit - EMEA'
   email: 'uatnewhire44@abc.com'
   erProfitCenter: '31'
-  firstName: 'UATUShire44'
+  firstName: ''  # Kept blank as Randomly Generated as part of the execution
   gender: 'Male'
   grade: 'E'
   hireAction: 'Hire'
@@ -21,11 +21,11 @@ New Hire Scenario1:
   hireReason: 'Additional Hire'
   hourlyPaidOrSalaried: 'Salaried'
   job: 'Director Audit & Compliance'
-  lastName: 'UATNewhire44' #
+  lastName: '' #Kept blank as Randomly Generated as part of the execution
   legalEmployer: 'NCS Pearson, Inc'
   location: 'AR-Buenos Aires-Humboldt 1509/13'
   maritalStatus: 'Single'
-  nationalID: '123-81-3459' # Kept blank as Randomly Generated as part of the execution
+  nationalID: '' # Kept blank as Randomly Generated as part of the execution
   nationalIDType: 'Social Security Number'
   newlySeparatedVeteranDischargeDate: '12-Apr-2017'
   number: 2717522

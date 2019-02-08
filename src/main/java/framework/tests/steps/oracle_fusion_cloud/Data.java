@@ -1,4 +1,5 @@
 package framework.tests.steps.oracle_fusion_cloud;
+import java.util.Random;
 
 public class Data extends framework.core.models.Data {
 
@@ -106,7 +107,19 @@ public class Data extends framework.core.models.Data {
     }
 
     public String getFirstName() {
+    	int leftLimit = 97; // letter 'a'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 8;
+        Random random = new Random();
+        StringBuilder buffer = new StringBuilder(targetStringLength);
+        for (int i = 0; i < targetStringLength; i++) {
+            int randomLimitedInt = leftLimit + (int) 
+              (random.nextFloat() * (rightLimit - leftLimit + 1));
+            buffer.append((char) randomLimitedInt);
+        }
+        String firstName = "FAUTO"+buffer.toString().toUpperCase();
         return firstName;
+        
     }
 
     public String getGender() {
@@ -138,6 +151,17 @@ public class Data extends framework.core.models.Data {
     }
 
     public String getLastName() {
+    	int leftLimit = 97; // letter 'a'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 8;
+        Random random = new Random();
+        StringBuilder buffer = new StringBuilder(targetStringLength);
+        for (int i = 0; i < targetStringLength; i++) {
+            int randomLimitedInt = leftLimit + (int) 
+              (random.nextFloat() * (rightLimit - leftLimit + 1));
+            buffer.append((char) randomLimitedInt);
+        }
+        String lastName = "LAUTO"+buffer.toString().toUpperCase();
         return lastName;
     }
 
@@ -154,6 +178,9 @@ public class Data extends framework.core.models.Data {
     }
 
     public String getNationalID() {
+    	Random rnd = new Random();
+    	String ssn_temp= String.format("%09d", rnd.nextInt(1000000000));
+    	 String nationalID = String.valueOf(ssn_temp).replaceFirst("(\\d{3})(\\d{2})(\\d+)", "$1-$2-$3");
         return nationalID;
     }
 
