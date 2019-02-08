@@ -26,11 +26,13 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     @FindBy(id = "pt1:_UIScmil1u")
     private WebElement userName;
 
-    @FindBy(id = "pt1:_UIScmil1u::icon")
+    @FindBy(xpath = "//a[contains(@class,'AFBrandingLinkColor svg-glob menu')]//img")
     private WebElement dropDownButtonForSignOut;
+   
 
-    @FindBy(id = "pt1:_UISlg1")
+    @FindBy(xpath = "//a[text()='Sign Out']")
     private WebElement signOut;
+  
 
     @FindBy(id = "Confirm")
     private WebElement signOutConfirm;

@@ -31,6 +31,7 @@ public class Data extends framework.core.models.Data {
     private String maritalStatus;
     private String nationalID;
     private String nationalIDType;
+    private String newlySeparatedVeteranDischargeDate;
     private String number;
     private String password;
     private String payroll;
@@ -203,6 +204,12 @@ public class Data extends framework.core.models.Data {
     public String getVeteranSelfIdentificationStatus() {
         return veteranSelfIdentificationStatus;
     }
+    
+    public String getnewlySeparatedVeteranDischargeDate() {
+        return newlySeparatedVeteranDischargeDate;
+    }
+    
+    
 
     public String getWorkerType() {
         return workerType;
