@@ -5,6 +5,7 @@ import cucumber.api.java8.En;
 import framework.tests.pages.oracle_fusion_cloud.HireAnEmployeePage;
 import framework.tests.pages.oracle_fusion_cloud.LoginAndHomePage;
 import framework.tests.pages.oracle_fusion_cloud.NewPersonPage;
+
 import org.apache.logging.log4j.Logger;
 
 import static org.assertj.core.api.Assertions.assertThat;
