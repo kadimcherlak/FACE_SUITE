@@ -23,7 +23,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     private WebElement signIn;
 
     // Home Page Elements
-    @FindBy(id = "pt1:_UIScmil1u")
+    @FindBy(xpath = "//a[contains(@class,'AFBrandingLinkColor svg-glob menu')]")
     private WebElement userName;
 
     @FindBy(xpath = "//a[contains(@class,'AFBrandingLinkColor svg-glob menu')]//img")

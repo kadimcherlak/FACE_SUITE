@@ -13,10 +13,12 @@ public class NewPersonPage extends BasePage<NewPersonPage> {
     Data data;
 
     // Ner Person Page Elements
-    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:_FOTsdiAddCwkDefaultRegional::icon")
+    @FindBy(xpath="//img[@title='Tasks']")
+  //  @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:_FOTsdiAddCwkDefaultRegional::icon")
     private WebElement taskButton;
 
-    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:_FOTRaT:0:RAtl1")
+    @FindBy(xpath="//a[text()='Hire an Employee']")
+    //@FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:_FOTRaT:0:RAtl1")
     private WebElement hireAndEmployee;
 
     public NewPersonPage(Context context) {
