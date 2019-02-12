@@ -291,6 +291,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             // Check Worker Type
             actions.moveToElement(legalEmployer).click().sendKeys(data.getLegalEmployer()).sendKeys(Keys.ENTER).sendKeys(Keys.TAB).perform();
             assertThat(checkWorkerType.getText().equals(data.getWorkerType())).isTrue();
+            Thread.sleep(3000);
 
             // Enter Last Name
             waitFor(ExpectedConditions.elementToBeClickable(lastName), 5);
