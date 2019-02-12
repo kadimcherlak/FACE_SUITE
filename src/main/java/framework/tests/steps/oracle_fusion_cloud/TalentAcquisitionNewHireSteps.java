@@ -105,83 +105,59 @@ public class TalentAcquisitionNewHireSteps implements En {
         });
 
         When("user clicks on Person Management link under My Workforce section", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+            loginAndHomePage.navigatorPersonManagement();
         });
 
         Then("Person Management: Search screen should be displayed", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+        	 assertThat(hireAnEmployee.checkpersonManagementSearchAvailable()).isTrue();
         });
 
-        Then("user enter the <Target Employee>\\(Above hired employee number) in Person Number field", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+        Then("user enter the Person number generated from previous step in Person Number field", () -> {
+            hireAnEmployee.searchPerson();
         });
 
         Then("user click on Search button", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+            hireAnEmployee.clickSearch();
         });
 
         Then("Employee name should be listed in search results", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+            hireAnEmployee.validateSearchResult();
         });
 
         When("user click on employee name link", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
-        });
-
-        Then("<Target Employee>: Person Management page should be displayed", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+           hireAnEmployee.empNameLinkClick();
         });
 
         When("user clicks on Manage Element Entries link under Payroll section on right side of the page under Tasks pane", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+            hireAnEmployee.manageElementEntriesClick();
         });
 
         Then("manage element entries screen should be displayed", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+           hireAnEmployee.checkManageElementEntriesAvailable();
         });
 
         Then("user clicks on Add button", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
-        });
-
-        Then("Create Element Entry page should be displayed", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+            hireAnEmployee.createButtonClick();
         });
 
         Then("user enter Effective date : System Date and Element Name as Bilingual Indicator", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+            hireAnEmployee.fillElementEntryInfo();
         });
 
         Then("user click on continue button", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+            hireAnEmployee.clickContinue();
         });
 
         Then("General Information page should be displayed with Bilingual field populated with Yes", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+            hireAnEmployee.bilingualYesDisplay();
         });
 
         Then("user click on Submit button", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+            hireAnEmployee.bilingualSubmit();
         });
 
         Then("Manage Element entries page should be displayed with Bilingual Indicator row added", () -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+            hireAnEmployee.bilingualRowAdded();
         });
 
         Then("user click on Sign Out option", () -> {

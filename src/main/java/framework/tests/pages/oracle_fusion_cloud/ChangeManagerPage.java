@@ -14,7 +14,7 @@ import framework.tests.steps.oracle_fusion_cloud.Data;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
+public class ChangeManagerPage extends BasePage<ChangeManagerPage> {
 
     Context context;
     Data data;
@@ -25,58 +25,36 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//*[text()='Hire an Employee: Identification']")
     private WebElement hireAnEmployeePageCheck;
 
-    @FindBy(xpath = "//label[text()='Hire Date']/following::input[1]")
-   // @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:0:pt1:SP1:inputDate1::content")
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:0:pt1:SP1:inputDate1::content")
     private WebElement hireDate;
 
-    @FindBy(xpath = "//input[@title='Hire']")
-    //@FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:0:pt1:SP1:selectOneChoice1::content")
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:0:pt1:SP1:selectOneChoice1::content")
     private WebElement hireAction;
 
-    @FindBy(xpath = "//label[text()='Hire Reason']/following::input[1]")
-    //@FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:0:pt1:SP1:selectOneChoice2::content")
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:0:pt1:SP1:selectOneChoice2::content")
     private WebElement hireReason;
 
-    @FindBy(xpath = "//label[text()='Legal Employer']/following::input[1]")
-   // @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:0:pt1:SP1:selectOneChoice3::content")
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:0:pt1:SP1:selectOneChoice3::content")
     private WebElement legalEmployer;
-
 
     @FindBy(xpath = "//*[text()='Employee']")
     private WebElement checkWorkerType;
 
-    @FindBy(xpath = "//label[text()='Last Name']/following::input[1]")
-   // @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:0:pt1:SP1:NewPe1:0:pt_r1:0:r1:0:i1:4:it20::content")
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:0:pt1:SP1:NewPe1:0:pt_r1:0:r1:0:i1:4:it20::content")
     private WebElement lastName;
 
-    @FindBy(xpath = "//label[text()='First Name']/following::input[1]")
-    //@FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:0:pt1:SP1:NewPe1:0:pt_r1:0:r1:0:i1:5:it60::content")
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:0:pt1:SP1:NewPe1:0:pt_r1:0:r1:0:i1:5:it60::content")
     private WebElement firstName;
 
-    @FindBy(xpath = "//label[text()='Gender']/following::input[1]")
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:0:pt1:SP1:NewPe1:0:pt_r1:0:soc3::content")
     private WebElement gender;
     
-    @FindBy(xpath = "//label[text()='Date of Birth']/following::input[1]")
+    @FindBy(xpath = "(//input[@placeholder='dd-mmm-yyyy'])[2]")
     private WebElement dateOfBirth;
 
-    @FindBy(xpath = "//input[contains(@id,'EmailRequired')]")
-    //@FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:0:pt1:SP1:NewPe1:0:pt_r1:0:df1_PersonDFFIteratorpearsonEmailRequired__FLEX_EMPTY::content")
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:0:pt1:SP1:NewPe1:0:pt_r1:0:df1_PersonDFFIteratorpearsonEmailRequired__FLEX_EMPTY::content")
     private WebElement pearsonEmailRequired;
-    
-    private WebElement countryNationalId;
-    @FindBy(xpath = "//input[contains(@class,'x2h')  and contains(@id,'soc2:content')]")
-    //@FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:0:pt1:SP1:NewPe1:0:pt_r1:0:df1_PersonDFFIteratorpearsonEmailRequired__FLEX_EMPTY::content")
-   
-    private WebElement clickNationalIdType;
-    @FindBy(xpath = "//li[text()='Social Security Number']")
-    //@FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:0:pt1:SP1:NewPe1:0:pt_r1:0:df1_PersonDFFIteratorpearsonEmailRequired__FLEX_EMPTY::content")
-   
-    private WebElement selectNationalIdType;
-    @FindBy(xpath = "//input[contains(@class,'x25') and contains(@id,'it1:content')]")
-    //@FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:0:pt1:SP1:NewPe1:0:pt_r1:0:df1_PersonDFFIteratorpearsonEmailRequired__FLEX_EMPTY::content")
-    private WebElement nationalId;
-    
-    
+
     @FindBy(xpath = "//div[@title='Next']")
     private WebElement next;
     
@@ -84,134 +62,106 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     private WebElement personNo;
     
 
-    @FindBy(xpath = "//label[text()='Address Line 1']/following::input[1]")
-    // @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:Perso1:0:Maint1:0:i1:0:inputText17::content")
-     private WebElement addressLine1;
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:Perso1:0:Maint1:0:i1:0:inputText17::content")
+    private WebElement addressLine1;
 
-     @FindBy(xpath = "//label[text()='Address Line 2']/following::input[1]")
-     //@FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:Perso1:0:Maint1:0:i1:1:inputText18::content")
-     private WebElement addressLine2;
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:Perso1:0:Maint1:0:i1:1:inputText18::content")
+    private WebElement addressLine2;
 
-     @FindBy(xpath = "//label[text()='ZIP Code']/following::input[1]")
-     //@FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:Perso1:0:Maint1:0:i1:2:inputComboboxListOfValues28::content")
-     private WebElement zipCode;
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:Perso1:0:Maint1:0:i1:2:inputComboboxListOfValues28::content")
+    private WebElement zipCode;
 
-     @FindBy(xpath = "//label[text()='City']/following::input[1]")
-    // @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:Perso1:0:Maint1:0:i1:3:inputComboboxListOfValues27::content")
-     private WebElement city;
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:Perso1:0:Maint1:0:i1:3:inputComboboxListOfValues27::content")
+    private WebElement city;
 
-     @FindBy(xpath = "//label[text()='County']/following::input[1]")
-   //  @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:Perso1:0:Maint1:0:i1:4:inputComboboxListOfValues26::content")
-     private WebElement county;
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:Perso1:0:Maint1:0:i1:4:inputComboboxListOfValues26::content")
+    private WebElement county;
 
-     @FindBy(xpath = "//label[text()='State']/following::input[1]")
-     //@FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:Perso1:0:Maint1:0:i1:5:inputComboboxListOfValues25::content")
-     private WebElement state;
-     @FindBy(xpath = "//label[text()='Marital Status']/following::input[1]")
-     //@FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:pt_r3:0:soc2::content")
-     private WebElement maritalStatus;
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:Perso1:0:Maint1:0:i1:5:inputComboboxListOfValues25::content")
+    private WebElement state;
 
-     @FindBy(xpath = "//label[text()='Veteran Self-Identification Status']/following::input[1]")
-    // @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:pt_r3:0:df1_PersonLegislativeIteratorVeteranSelfIdentification_DisplayUS::content")
-     private WebElement veteranSelfIdentificationStatus;
-     
-     @FindBy(xpath = "//label[text()='Newly Separated Veteran Discharge Date']/following::input[1]")
-   //  @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:pt_r3:0:df1_PersonLegislativeIteratormilitaryDischargeDateUS::content")
-     private WebElement newlySeparatedVeteranDischargeDate;
-     
-     @FindBy(xpath = "//label[text()='Business Unit']/following::input[1]")
-     //@FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:NewPe1:0:businessUnitId::content")
-     private WebElement businessUnit;
-     
-     @FindBy(xpath = "//label[text()='Job']/following::input[1]")
-    // @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:jobId::content")
-     private WebElement job;
-     
-     @FindBy(xpath = "//label[text()='Grade']/following::input[1]")
-   //  @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:gradeId::content")
-     private WebElement grade;
-     
-     @FindBy(xpath = "//label[text()='Department']/following::input[1]")
-    // @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:departmentId::content")
-     private WebElement department;
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:pt_r3:0:soc2::content")
+    private WebElement maritalStatus;
+
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:pt_r3:0:df1_PersonLegislativeIteratorVeteranSelfIdentification_DisplayUS::content")
+    private WebElement veteranSelfIdentificationStatus;
     
-     @FindBy(xpath = "//label[text()='Location']/following::input[1]")
-     //  @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:locationId::content")
-       private WebElement location;
-       
-       @FindBy(xpath = "//label[text()='Assignment Category']/following::input[1]")
-       //@FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:selectOneChoice3::content")
-       private WebElement assignmentCategory;
-       
-       @FindBy(xpath = "//label[text()='Working as a Manager']/following::input[1]")
-      // @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:selectOneRadio2::drop")
-       private WebElement workingAsManager;
-       
-       @FindBy(xpath = "//label[text()='Hourly Paid or Salaried']/following::input[1]")
-       //@FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:selectOneChoice2::content")
-       private WebElement hourlyPaidOrSalaried;
-       
-       @FindBy(xpath = "//label[text()='Company/Entity']/following::input[1]")
-       //@FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:df2_BaseWorkerAsgDFFIteratorxxpsocompanyentity__FLEX_EMPTY::content")
-       private WebElement companyEntity;
-       
-       @FindBy(xpath = "//label[text()='Cost Center']/following::input[1]")
-       //@FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:df2_BaseWorkerAsgDFFIteratorcostCentre__FLEX_EMPTY::content")
-       private WebElement costCenter;
-       
-       @FindBy(xpath = "//label[text()='ER/Profit Center']/following::input[1]")
-       //@FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:df2_BaseWorkerAsgDFFIteratorxxpsoerprofitcenter__FLEX_EMPTY::content")
-       private WebElement erProfitCenter;
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:pt_r3:0:df1_PersonLegislativeIteratormilitaryDischargeDateUS::content")
+    private WebElement newlySeparatedVeteranDischargeDate;
     
-       @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:r1:0:AT1:_ATp:cil113::icon")
-       private WebElement addBtn;
-       
-       @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:r1:0:AT1:_ATp:table1:0:selectOneChoice1::content")
-       private WebElement payroll;
-         
-       @FindBy(xpath = "//label[text()='I-9 Status']/following::input[1]")
-      // @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:df2_WorkRelationshipLegDDFIterator_I9_STATUS_DisplayUS::content")
-       private WebElement i9Status;
-       
-       @FindBy(xpath = "//label[text()='Salary Basis']/following::input[1]")
-     //  @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:3:pt1:SP1:r1:0:r5:0:icAsgLov::content")
-       private WebElement salaryBasis;
-       
-       @FindBy(xpath = "//label[text()='Salary Amount']/following::input[1]")
-     //  @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:3:pt1:SP1:r1:0:r5:0:itSA::content")
-       private WebElement salaryAmount;
-       
-      @FindBy(xpath = "//*[@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:3:pt1:SP1:r1:0:r5:0:idUseComponents\"]/span/span/label")
-       private WebElement salarycmpnt;
-       
-      @FindBy(xpath = "//div[@title='Submit']")
-      // @FindBy(xpath = "//*[@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:4:pt1:AP1:tt1:submit\"]/a/span")
-       private WebElement submit;
-      
-      @FindBy(xpath = "//button[contains(@id,'okWarningDialog')]")
-      //@FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:4:pt1:AP1:tt1:okWarningDialog")
-      private WebElement warningBtn;
-      
-      @FindBy(xpath = "//button[contains(@id,'okConfirmationDialog')]")
-     // @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:4:pt1:AP1:tt1:okConfirmationDialog")
-      private WebElement confirmBtn;  
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:NewPe1:0:businessUnitId::content")
+    private WebElement businessUnit;
+    
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:jobId::content")
+    private WebElement job;
+    
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:gradeId::content")
+    private WebElement grade;
+    
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:departmentId::content")
+    private WebElement department;
+    
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:locationId::content")
+    private WebElement location;
+    
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:selectOneChoice3::content")
+    private WebElement assignmentCategory;
+    
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:selectOneRadio2::drop")
+    private WebElement workingAsManager;
+    
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:selectOneChoice2::content")
+    private WebElement hourlyPaidOrSalaried;
+    
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:df2_BaseWorkerAsgDFFIteratorxxpsocompanyentity__FLEX_EMPTY::content")
+    private WebElement companyEntity;
+    
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:df2_BaseWorkerAsgDFFIteratorcostCentre__FLEX_EMPTY::content")
+    private WebElement costCenter;
+    
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:df2_BaseWorkerAsgDFFIteratorxxpsoerprofitcenter__FLEX_EMPTY::content")
+    private WebElement erProfitCenter;
+    
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:r1:0:AT1:_ATp:cil113::icon")
+    private WebElement addBtn;
+    
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:r1:0:AT1:_ATp:table1:0:selectOneChoice1::content")
+    private WebElement payroll;
+        
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:df2_WorkRelationshipLegDDFIterator_I9_STATUS_DisplayUS::content")
+    private WebElement i9Status;
+    
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:3:pt1:SP1:r1:0:r5:0:icAsgLov::content")
+    private WebElement salaryBasis;
+    
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:3:pt1:SP1:r1:0:r5:0:itSA::content")
+    private WebElement salaryAmount;
+    
+    @FindBy(xpath = "//*[@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:3:pt1:SP1:r1:0:r5:0:idUseComponents\"]/span/span/label")
+    private WebElement salarycmpnt;
+    
+    @FindBy(xpath = "//*[@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:4:pt1:AP1:tt1:submit\"]/a/span")
+    private WebElement submit;
+    
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:4:pt1:AP1:tt1:okWarningDialog")
+    private WebElement warningBtn;
+    
+    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:4:pt1:AP1:tt1:okConfirmationDialog")
+    private WebElement confirmBtn;  
     
     @FindBy(xpath = "//*[text()='Person Management: Search']")
     private WebElement personManagementSearch;
     
-    @FindBy(xpath = "//label[text()='Keywords']/following::input[1]")
-    //@FindBy(xpath = "//*[@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:1:MAt1:0:pt1:Perso1:0:SP3:q1:value30::content\"]")
+    @FindBy(xpath = "//*[@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:1:MAt1:0:pt1:Perso1:0:SP3:q1:value30::content\"]")
     private WebElement keywords;
     
-    @FindBy(xpath = "//label[text()='Effective As-of Date']/following::input[1]")
-   // @FindBy(xpath = "//*[@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:1:MAt1:0:pt1:Perso1:0:SP3:q1:value50::content\"]")
+    @FindBy(xpath = "//*[@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:1:MAt1:0:pt1:Perso1:0:SP3:q1:value50::content\"]")
     private WebElement effectiveAsOfDate;
     
     @FindBy(xpath = "//button[text()='Search']")
     private WebElement searchBtn;
     
-    @FindBy(xpath = "(//span[@class='x2qb'])[2]")
-    //@FindBy(xpath = "//*[@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt1:0:pt1:Perso1:0:SP3:table1:_ATp:table2::db\"]/table/tbody/tr/td[2]/div/table/tbody/tr/td[2]/span")
+    @FindBy(xpath = "//*[@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt1:0:pt1:Perso1:0:SP3:table1:_ATp:table2::db\"]/table/tbody/tr/td[2]/div/table/tbody/tr/td[2]/span")
     private WebElement personListed;
     
     @FindBy(xpath = "//img[@title='Actions']")
@@ -226,8 +176,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//img[@title='Create']")
     private WebElement createBtn;
     
-    @FindBy(xpath = "//label[text()='Element Name']/following::input[1]")
-    //@FindBy(xpath = "//input[@id='_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt1:0:AT1:ElementTypeLOV::content']")
+    @FindBy(xpath = "//input[@id='_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt1:0:AT1:ElementTypeLOV::content']")
     private WebElement elementName;
     
     @FindBy(xpath = "//label[text()='Assignment']")
@@ -236,18 +185,16 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//button[@title='Continue']")
     private WebElement continueBtn;
     
-    @FindBy(xpath = "//label[text()='Bilingual']/following::input[1]")
-    //@FindBy(xpath = "//*[@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt1:1:evIter:0:lovScreenEntryValue::content\"]")
+    @FindBy(xpath = "//*[@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt1:1:evIter:0:lovScreenEntryValue::content\"]")
     private WebElement bilingualYes;
   
-    @FindBy(xpath = "//*[contains(@class,'x10t') and contains(text(),'m')]")
-    //@FindBy(xpath = "//*[@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt1:1:cb4\"]")
+    @FindBy(xpath = "//*[@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt1:1:cb4\"]")
     private WebElement bilingualSubmitBtn;
     
     @FindBy(xpath = "//a[text()='Bilingual Indicator']")
     private WebElement bilingualRowAdded;
   
-      public HireAnEmployeePage(Context context) {
+      public ChangeManagerPage(Context context) {
         super(context);
         this.context = context;
         this.data = context.getData();
