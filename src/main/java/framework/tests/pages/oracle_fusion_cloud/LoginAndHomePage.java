@@ -39,6 +39,9 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
 
     @FindBy(linkText = "New Person")
     private WebElement newPerson;
+    
+    @FindBy(linkText = "Person Management")
+    private WebElement personManagement;
 
     // Navigator Screen in Home Page
     @FindBy(className = "svg-icon03")
@@ -102,7 +105,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     // New Person selection in Navigator Screen
     public void navigatorScreen() {
         try {
-            waitFor(ExpectedConditions.elementToBeClickable(navigatorOpen), 5000);
+            waitFor(ExpectedConditions.elementToBeClickable(navigatorOpen), 5);
             navigatorOpen.click();
         } catch (Exception e) {
             reportWithScreenShot("Unable to open Navigator Screen");
@@ -112,19 +115,44 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     // New Person selection in Navigator Screen
     public void navigatorScreenNewPersonSelect() {
         try {
-            waitFor(ExpectedConditions.elementToBeClickable(newPerson), 5000);
+            waitFor(ExpectedConditions.elementToBeClickable(newPerson), 5);
             newPerson.click();
             waitUntilPageLoad();
         } catch (Exception e) {
             reportWithScreenShot("Unable to open New Person on Navigator Screen due to:" + e.getMessage());
         }
     }
+    
+ // Person Management selection in Navigator Screen
+    public void navigatorPersonManagement() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(personManagement), 5);
+            personManagement.click();
+            waitUntilPageLoad();
+            reportWithScreenShot("search screen");
+        } catch (Exception e) {
+            reportWithScreenShot("Unable to open Person Management on Navigator Screen due to:" + e.getMessage());
+        }
+    }
+    
+// // Search for Person created in Person Management Screen
+//    public void searchPerson() {
+//        try {
+//            waitFor(ExpectedConditions.elementToBeClickable(personManagement), 5);
+//            personManagement.click();
+//            waitUntilPageLoad();
+//        } catch (Exception e) {
+//            reportWithScreenShot("Unable to open Person Management on Navigator Screen due to:" + e.getMessage());
+//        }
+//    }
+//    
+    
 
     // Signout perform SignOut
     public void signOut() {
         try {
             dropDownButtonForSignOut.click();
-            waitFor(ExpectedConditions.elementToBeClickable(signOut), 5000);
+            waitFor(ExpectedConditions.elementToBeClickable(signOut), 5);
             signOut.click();
         } catch (Exception e) {
             reportWithScreenShot("Unable to Signout due to :" + e.getMessage());

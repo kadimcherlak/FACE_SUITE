@@ -47,8 +47,24 @@ public class Data extends framework.core.models.Data {
     private String workerType;
     private String workingAsManager;
     private String zipCode;
+    private String personNumber;
+    private String elementName;
+    private String effectiveAsOfDate;
+    private String employeeManagerChange;
+    private String changeManagerReason;
+    private String managerName;
 
-    // Alpha sorted list of getters
+   
+     
+    public String getPersonNumber() {
+		return personNumber;
+	}
+
+	public void setPersonNumber(String personNumber) {
+		this.personNumber = personNumber;
+	}
+
+	// Alpha sorted list of getters
     // most of these items get loaded via bean loader, so normally setters not needed.
     public String getAddressLine1() {
         return addressLine1;
@@ -97,6 +113,10 @@ public class Data extends framework.core.models.Data {
     public String getDepartment() {
         return department;
     }
+    
+    public String geteffectiveAsOfDate() {
+        return effectiveAsOfDate;
+    }
 
     public String getEmail() {
         return email;
@@ -104,6 +124,10 @@ public class Data extends framework.core.models.Data {
 
     public String getErProfitCenter() {
         return erProfitCenter;
+    }
+    
+    public String getelementName() {
+        return elementName;
     }
 
     public String getFirstName() {
@@ -164,6 +188,7 @@ public class Data extends framework.core.models.Data {
         String lastName = "LAUTO"+buffer.toString().toUpperCase();
         return lastName;
     }
+
 
     public String getLegalEmployer() {
         return legalEmployer;
@@ -249,6 +274,20 @@ public class Data extends framework.core.models.Data {
     public String getZipCode() {
         return zipCode;
     }
+    
+    public String employeeManagerChange() {
+        return employeeManagerChange;
+    }
+    
+    public String changeManagerReason() {
+        return changeManagerReason;
+    }
+    
+    public String managerName() {
+        return managerName;
+    }
+
+	
 }
 
 
