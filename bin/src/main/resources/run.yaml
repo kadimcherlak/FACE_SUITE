@@ -1,7 +1,0 @@
-name: Runner File
-threadCount: 1
-verbose: 3
-tests:
-  - name: Example
-    classes:
-      - name: framework.core.CucumberRunner

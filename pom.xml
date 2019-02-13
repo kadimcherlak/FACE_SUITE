@@ -77,8 +77,11 @@
                             </property>
                         </properties>
                         <systemPropertyVariables>
+                            <!--suppress UnresolvedMavenProperty -->
                             <featureDir>${featureDir}</featureDir>
+                            <!--suppress UnresolvedMavenProperty -->
                             <environment>${environment}</environment>
+                            <!--suppress UnresolvedMavenProperty -->
                             <tags>${tags}</tags>
                         </systemPropertyVariables>
                     </configuration>
