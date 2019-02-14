@@ -1,8 +1,10 @@
 New Hire Scenario1:
   addressLine1: '527 Johns Avenue'
   addressLine2: 'Suite 436'
+  actualAmount: '150'
   assignmentCategory: 'Full-time regular'
   elementName: 'Bilingual Indicator'
+  elementNameADP: 'ADP Auto & Home'
   businessUnit: 'Finance'
   city: 'Irving'
   companyEntity: '510'
@@ -13,7 +15,8 @@ New Hire Scenario1:
   dateOfBirth: '12-Apr-1988'
   department: 'Finance Internal Audit - EMEA'
   email: 'uatnewhire67@abc.com'
-  effectiveAsOfDate: '10-Feb-2019'
+  effectiveAsOfDate: '13-Feb-2019'
+  payCheckDate: '13-Feb-2019'
   erProfitCenter: '31'
   firstName: ''  # Kept blank as Randomly Generated as part of the execution
   gender: 'Male'

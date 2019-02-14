@@ -5,6 +5,7 @@ import java.util.Random;
 public class Data extends framework.core.models.Data {
 
 	// Alpha sorted list of models items (yes it will be long normally)
+	private String actualAmount;
 	private String addressLine1;
 	private String addressLine2;
 	private String assignmentCategory;
@@ -38,6 +39,7 @@ public class Data extends framework.core.models.Data {
 	private String password;
 	private String payroll;
 	private String pearsonEmailRequired;
+	private String payCheckDate;
 	private String salaryAmount;
 	private String salaryBasis;
 	private String state;
@@ -50,6 +52,7 @@ public class Data extends framework.core.models.Data {
 	private String zipCode;
 	private String personNumber;
 	private String elementName;
+	private String elementNameADP;
 	private String effectiveAsOfDate;
 	private String employeeManagerChange;
 	private String changeManagerReason;
@@ -66,6 +69,11 @@ public class Data extends framework.core.models.Data {
 	// Alpha sorted list of getters
 	// most of these items get loaded via bean loader, so normally setters not
 	// needed.
+	
+	public String getActualAmount() {
+		return actualAmount;
+	}
+
 	public String getAddressLine1() {
 		return addressLine1;
 	}
@@ -117,6 +125,10 @@ public class Data extends framework.core.models.Data {
 	public String geteffectiveAsOfDate() {
 		return effectiveAsOfDate;
 	}
+	
+	public String getpayCheckDate() {
+		return payCheckDate;
+	}
 
 	public String getEmail() {
 		return email;
@@ -128,6 +140,10 @@ public class Data extends framework.core.models.Data {
 
 	public String getelementName() {
 		return elementName;
+	}
+	
+	public String getelementNameADP() {
+		return elementNameADP;
 	}
 
 	public String getFirstName() {

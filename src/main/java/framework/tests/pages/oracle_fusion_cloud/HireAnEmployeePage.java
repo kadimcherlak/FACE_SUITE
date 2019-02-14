@@ -92,6 +92,9 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
 	@FindBy(xpath = "//div[@title='Next']")
 	private WebElement next;
+	
+	@FindBy(xpath = "(//span[@class='xwb'])[1]")
+	private WebElement done;
 
 	@FindBy(xpath = "//*[@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:pt_r1:0:panelLabelAndMessage4\"]/td[2]")
 	private WebElement personNo;
@@ -274,6 +277,9 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
 	@FindBy(xpath = "//label[text()='Assignment']")
 	private WebElement assignment;
+	
+	@FindBy(xpath = "//label[text()='Payroll Relationship']")
+	private WebElement payrollRelationship;
 
 	@FindBy(xpath = "//button[@title='Continue']")
 	private WebElement continueBtn;
@@ -282,14 +288,26 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 	// @FindBy(xpath =
 	// "//*[@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt1:1:evIter:0:lovScreenEntryValue::content\"]")
 	private WebElement bilingualYes;
+	
+	@FindBy(xpath = "//label[text()='Actual Amount']/following::input[1]")
+	private WebElement actualAmount;
+	
+	@FindBy(xpath = "//label[text()='Paycheck Date']/following::input[1]")
+	private WebElement payCheckDate;
 
 	@FindBy(xpath = "//*[contains(@class,'x10t') and contains(text(),'m')]")
 	// @FindBy(xpath =
 	// "//*[@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt1:1:cb4\"]")
 	private WebElement bilingualSubmitBtn;
+	
+	@FindBy(xpath = "//*[contains(@class,'x10t') and contains(text(),'m')]")
+	private WebElement adpSubmitBtn;
 
-	@FindBy(xpath = "//a[text()='Bilingual Indicator']")
+	@FindBy(xpath = "//*[contains(text(),'Bilingual Indicator')]")
 	private WebElement bilingualRowAdded;
+	
+	@FindBy(xpath = "//*[contains(text(),'ADP Auto & Home')]")
+	private WebElement adpRowAdded;
 
 	public HireAnEmployeePage(Context context) {
 		super(context);
@@ -732,9 +750,24 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 			waitFor(ExpectedConditions.visibilityOf(assignment), 15);
 
 		} catch (Exception e) {
-			reportWithScreenShot("Error While user enters Element Name:" + e.getMessage());
+			reportWithScreenShot("Error While user enters Element Name as Bilingual:" + e.getMessage());
 		}
 	}
+	
+	// User Enter Element Name details as ADP Auto & Home
+		public void fillADPElementEntryInfo() {
+			try {
+
+				// Enter Business Unit
+				waitFor(ExpectedConditions.elementToBeClickable(elementName), 15);
+				elementName.sendKeys(data.getelementNameADP());
+				actions.sendKeys(Keys.TAB);
+				waitFor(ExpectedConditions.visibilityOf(payrollRelationship), 15);
+
+			} catch (Exception e) {
+				reportWithScreenShot("Error While user enters Element Name as ADP:" + e.getMessage());
+			}
+		}
 
 	// Click on Continue Button
 	public void clickContinue() {
@@ -744,6 +777,36 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 			reportWithScreenShot("Error While User Click Continue Button:" + e.getMessage());
 		}
 	}
+	
+	// Actual Amount field check available
+		public boolean actualAmountDisplay() {
+			try {
+				reportWithScreenShot("Checking if actual amount Field is Displayed");
+				waitFor(ExpectedConditions.visibilityOf(actualAmount), 15);
+				return actualAmount.isDisplayed();
+			} catch (Exception e) {
+				reportWithScreenShot("Actual Amount field not Displayed");
+				return actualAmount.isDisplayed();
+			}
+		}
+		
+		// Enter Actual Amount and date
+				public void enteractualAmountAndDate() {
+					try {
+						// Enter Actual Amount
+						waitFor(ExpectedConditions.elementToBeClickable(actualAmount), 15);
+						actualAmount.sendKeys(data.getActualAmount());
+
+						// Enter effective as of date
+						waitFor(ExpectedConditions.elementToBeClickable(payCheckDate), 15);
+						payCheckDate.clear();
+						payCheckDate.sendKeys(data.getpayCheckDate());
+						Thread.sleep(2500);
+					} catch (Exception e) {
+						reportWithScreenShot("Error While User entering Amount and date:" + e.getMessage());
+						
+					}
+				}
 
 	// Hire an Employee Page check available
 	public boolean bilingualYesDisplay() {
@@ -776,13 +839,42 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 			return bilingualRowAdded.isDisplayed();
 		}
 	}
+	
+	// Click on Submit Button for ADP
+		public void adpSubmit() {
+			try {
+				adpSubmitBtn.click();
+			} catch (Exception e) {
+				reportWithScreenShot("Error While User Submit Button for ADP scenario:" + e.getMessage());
+			}
+		}
+
+		public boolean adpRowAdded() {
+			try {
+				reportWithScreenShot("Checking if ADP Auto & Home row is Displayed");
+				waitFor(ExpectedConditions.visibilityOf(adpRowAdded), 15);
+				return adpRowAdded.isDisplayed();
+			} catch (Exception e) {
+				reportWithScreenShot("ADP Auto & Home r row is not added");
+				return adpRowAdded.isDisplayed();
+			}
+		}
+		
+		// Click on Done button
+		public void clickDoneButton() {
+			try {
+				done.click();
+			} catch (Exception e) {
+				reportWithScreenShot("Error While user click Done Button due to:" + e.getMessage());
+			}
+		}
 
 // Click on Next to goto next tab
 	public void clickNextButton() {
 		try {
 			next.click();
 		} catch (Exception e) {
-			reportWithScreenShot("Error While Next Button due to:" + e.getMessage());
+			reportWithScreenShot("Error While use click on Next Button due to:" + e.getMessage());
 		}
 	}
 
