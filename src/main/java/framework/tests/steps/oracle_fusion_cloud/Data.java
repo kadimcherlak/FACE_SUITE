@@ -4,61 +4,63 @@ import java.util.Random;
 
 public class Data extends framework.core.models.Data {
 
-    // Alpha sorted list of models items (yes it will be long normally)
-    private String addressLine1;
-    private String addressLine2;
-    private String assignmentCategory;
-    private String businessUnit;
-    private String city;
-    private String companyEntity;
-    private String costCenter;
-    private String country;
-    private String countryCode;
-    private String county;
-    private String dateOfBirth;
-    private String department;
-    private String email;
-    private String erProfitCenter;
-    private String firstName;
-    private String gender;
-    private String grade;
-    private String hireAction;
-    private String hireDate;
-    private String hireReason;
-    private String hourlyPaidOrSalaried;
-    private String job;
-    private String lastName;
-    private String legalEmployer;
-    private String location;
-    private String maritalStatus;
-    private String nationalID;
-    private String nationalIDType;
-    private String newlySeparatedVeteranDischargeDate;
-    private String number;
-    private String password;
-    private String payroll;
-    private String pearsonEmailRequired;
-    private String salaryAmount;
-    private String salaryBasis;
-    private String state;
-    private String type1;
-    private String type2;
-    private String userName;
-    private String veteranSelfIdentificationStatus;
-    private String workerType;
-    private String workingAsManager;
-    private String zipCode;
-    private String personNumber;
-    private String elementName;
-    private String effectiveAsOfDate;
-    private String employeeManagerChange;
-    private String changeManagerReason;
-    private String managerName;
+	// Alpha sorted list of models items (yes it will be long normally)
+	private String actualAmount;
+	private String addressLine1;
+	private String addressLine2;
+	private String assignmentCategory;
+	private String businessUnit;
+	private String city;
+	private String companyEntity;
+	private String costCenter;
+	private String country;
+	private String countryCode;
+	private String county;
+	private String dateOfBirth;
+	private String department;
+	private String email;
+	private String erProfitCenter;
+	private String firstName;
+	private String gender;
+	private String grade;
+	private String hireAction;
+	private String hireDate;
+	private String hireReason;
+	private String hourlyPaidOrSalaried;
+	private String job;
+	private String lastName;
+	private String legalEmployer;
+	private String location;
+	private String maritalStatus;
+	private String nationalID;
+	private String nationalIDType;
+	private String newlySeparatedVeteranDischargeDate;
+	private String number;
+	private String password;
+	private String payroll;
+	private String pearsonEmailRequired;
+	private String payCheckDate;
+	private String salaryAmount;
+	private String salaryBasis;
+	private String state;
+	private String type1;
+	private String type2;
+	private String userName;
+	private String veteranSelfIdentificationStatus;
+	private String workerType;
+	private String workingAsManager;
+	private String zipCode;
+	private String personNumber;
+	private String elementName;
+	private String elementNameADP;
+	private String effectiveAsOfDate;
+	private String employeeManagerChange;
+	private String changeManagerReason;
+	private String managerName;
 
-
-    public String getPersonNumber() {
-        return personNumber;
-    }
+	public String getPersonNumber() {
+		return personNumber;
+	}
 
     public void setPersonNumber(String personNumber) {
         this.personNumber = personNumber;
@@ -289,4 +291,143 @@ public class Data extends framework.core.models.Data {
 
 }
 
+	}
 
+	public String getGender() {
+		return gender;
+	}
+
+	public String getGrade() {
+		return grade;
+	}
+
+	public String getHireAction() {
+		return hireAction;
+	}
+
+	public String getHireDate() {
+		return hireDate;
+	}
+
+	public String getHireReason() {
+		return hireReason;
+	}
+
+	public String getHourlyPaidOrSalaried() {
+		return hourlyPaidOrSalaried;
+	}
+
+	public String getJob() {
+		return job;
+	}
+
+	public String getLastName() {
+		int leftLimit = 97; // letter 'a'
+		int rightLimit = 122; // letter 'z'
+		int targetStringLength = 8;
+		Random random = new Random();
+		StringBuilder buffer = new StringBuilder(targetStringLength);
+		for (int i = 0; i < targetStringLength; i++) {
+			int randomLimitedInt = leftLimit + (int) (random.nextFloat() * (rightLimit - leftLimit + 1));
+			buffer.append((char) randomLimitedInt);
+		}
+		String lastName = "LAUTO" + buffer.toString().toUpperCase();
+		return lastName;
+	}
+
+	public String getLegalEmployer() {
+		return legalEmployer;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public String getMaritalStatus() {
+		return maritalStatus;
+	}
+
+	public String getNationalID() {
+		Random rnd = new Random();
+		String ssn_temp = String.format("%09d", rnd.nextInt(1000000000));
+		String nationalID = String.valueOf(ssn_temp).replaceFirst("(\\d{3})(\\d{2})(\\d+)", "$1-$2-$3");
+		return nationalID;
+	}
+
+	public String getNationalIDType() {
+		return nationalIDType;
+	}
+
+	public String getNumber() {
+		return number;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public String getPayroll() {
+		return payroll;
+	}
+
+	public String getPearsonEmailRequired() {
+		return pearsonEmailRequired;
+	}
+
+	public String getSalaryAmount() {
+		return salaryAmount;
+	}
+
+	public String getSalaryBasis() {
+		return salaryBasis;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public String getType1() {
+		return type1;
+	}
+
+	public String getType2() {
+		return type2;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public String getVeteranSelfIdentificationStatus() {
+		return veteranSelfIdentificationStatus;
+	}
+
+	public String getnewlySeparatedVeteranDischargeDate() {
+		return newlySeparatedVeteranDischargeDate;
+	}
+
+	public String getWorkerType() {
+		return workerType;
+	}
+
+	public String getWorkingAsManager() {
+		return workingAsManager;
+	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public String getEmployeeManagerChange() {
+		return employeeManagerChange;
+	}
+
+	public String getChangeManagerReason() {
+		return changeManagerReason;
+	}
+
+	public String getManagerName() {
+		return managerName;
+	}
+
+}
