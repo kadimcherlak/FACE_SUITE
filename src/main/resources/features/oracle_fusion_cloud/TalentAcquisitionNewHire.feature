@@ -76,7 +76,7 @@ Feature: Set up a New Hire
       #| Test Scenario      |
       #| New Hire Scenario1 |
 
-@UPDATE_ELEMENT_ENTRIES
+  @UPDATE_ELEMENT_ENTRIES
   Scenario Outline: : As an PPS Tier 2 Workforce and Assignment Administrator, is should be able to Update Element Entries for the employee
     Given user runs <Test Scenario>
     And user login to Oracle Applications Cloud web page

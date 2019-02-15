@@ -178,6 +178,9 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//label[text()='Assignment']")
     private WebElement assignment;
 
+    @FindBy(xpath = "//label[text()='Payroll Relationship']")
+    private WebElement payrollRelationship;
+
     @FindBy(xpath = "//button[@title='Continue']")
     private WebElement continueBtn;
 
@@ -186,6 +189,25 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
     @FindBy(xpath = "//a[text()='Bilingual Indicator']")
     private WebElement bilingualRowAdded;
+
+    @FindBy(xpath = "//label[text()='Actual Amount']/following::input[1]")
+    private WebElement actualAmount;
+
+    @FindBy(xpath = "//label[text()='Paycheck Date']/following::input[1]")
+    private WebElement payCheckDate;
+
+    @FindBy(xpath = "//*[contains(@class,'x10t') and contains(text(),'m')]")
+    private WebElement bilingualSubmitBtn;
+
+    @FindBy(xpath = "//*[contains(@class,'x10t') and contains(text(),'m')]")
+    private WebElement adpSubmitBtn;
+
+    @FindBy(xpath = "//*[contains(text(),'ADP Auto & Home')]")
+    private WebElement adpRowAdded;
+
+    @FindBy(xpath = "(//span[@class='xwb'])[1]")
+    private WebElement done;
+
 
     public HireAnEmployeePage(Context context) {
         super(context);
@@ -357,7 +379,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
             // Enter Newly Separated Veteran Discharge Date
             waitFor(ExpectedConditions.elementToBeClickable(newlySeparatedVeteranDischargeDate), 15);
-            newlySeparatedVeteranDischargeDate.sendKeys(data.getnewlySeparatedVeteranDischargeDate());
+            newlySeparatedVeteranDischargeDate.sendKeys(data.getNewlySeparatedVeteranDischargeDate());
             waitNormalTime();
             clickNextButton(); // Next Button to go to next page
             waitUntilPageLoad(); // wait until next tab loads
@@ -596,12 +618,27 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
             // Enter Business Unit
             waitFor(ExpectedConditions.elementToBeClickable(elementName), 15);
-            elementName.sendKeys(data.getelementName());
+            elementName.sendKeys(data.getElementName());
             actions.sendKeys(Keys.TAB);
             waitFor(ExpectedConditions.visibilityOf(assignment), 15);
 
         } catch (Exception e) {
             reportWithScreenShot("Error While user enters Element Name:" + e.getMessage());
+        }
+    }
+
+    // User Enter Element Name details as ADP Auto & Home
+    public void fillADPElementEntryInfo() {
+        try {
+
+            // Enter Business Unit
+            waitFor(ExpectedConditions.elementToBeClickable(elementName), 15);
+            elementName.sendKeys(data.getElementNameADP());
+            actions.sendKeys(Keys.TAB);
+            waitFor(ExpectedConditions.visibilityOf(payrollRelationship), 15);
+
+        } catch (Exception e) {
+            reportWithScreenShot("Error While user enters Element Name as ADP:" + e.getMessage());
         }
     }
 
@@ -611,6 +648,65 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             continueBtn.click();
         } catch (Exception e) {
             reportWithScreenShot("Error While User Click Continue Button:" + e.getMessage());
+        }
+    }
+
+    // Actual Amount field check available
+    public boolean actualAmountDisplay() {
+        try {
+            reportWithScreenShot("Checking if actual amount Field is Displayed");
+            waitFor(ExpectedConditions.visibilityOf(actualAmount), 15);
+            return actualAmount.isDisplayed();
+        } catch (Exception e) {
+            reportWithScreenShot("Actual Amount field not Displayed");
+            return actualAmount.isDisplayed();
+        }
+    }
+
+    // Enter Actual Amount and date
+    public void enteractualAmountAndDate() {
+        try {
+            // Enter Actual Amount
+            waitFor(ExpectedConditions.elementToBeClickable(actualAmount), 15);
+            actualAmount.sendKeys(data.getActualAmount());
+
+            // Enter effective as of date
+            waitFor(ExpectedConditions.elementToBeClickable(payCheckDate), 15);
+            payCheckDate.clear();
+            payCheckDate.sendKeys(data.getPayCheckDate());
+            Thread.sleep(2500);
+        } catch (Exception e) {
+            reportWithScreenShot("Error While User entering Amount and date:" + e.getMessage());
+
+        }
+    }
+
+    // Click on Submit Button for ADP
+    public void adpSubmit() {
+        try {
+            adpSubmitBtn.click();
+        } catch (Exception e) {
+            reportWithScreenShot("Error While User Submit Button for ADP scenario:" + e.getMessage());
+        }
+    }
+
+    public boolean adpRowAdded() {
+        try {
+            reportWithScreenShot("Checking if ADP Auto & Home row is Displayed");
+            waitFor(ExpectedConditions.visibilityOf(adpRowAdded), 15);
+            return adpRowAdded.isDisplayed();
+        } catch (Exception e) {
+            reportWithScreenShot("ADP Auto & Home r row is not added");
+            return adpRowAdded.isDisplayed();
+        }
+    }
+
+    // Click on Done button
+    public void clickDoneButton() {
+        try {
+            done.click();
+        } catch (Exception e) {
+            reportWithScreenShot("Error While user click Done Button due to:" + e.getMessage());
         }
     }
 
