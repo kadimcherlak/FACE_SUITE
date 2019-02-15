@@ -141,6 +141,10 @@ public class TalentAcquisitionNewHireSteps implements En {
         Then("user enter Effective date : System Date and Element Name as Bilingual Indicator", () -> {
             hireAnEmployee.fillElementEntryInfo();
         });
+        
+        Then("user enter Effective date : System Date and Element Name as ADP Auto & Home", () -> {
+            hireAnEmployee.fillADPElementEntryInfo();
+        });
 
         Then("user click on continue button", () -> {
             hireAnEmployee.clickContinue();
@@ -149,15 +153,37 @@ public class TalentAcquisitionNewHireSteps implements En {
         Then("General Information page should be displayed with Bilingual field populated with Yes", () -> {
             hireAnEmployee.bilingualYesDisplay();
         });
+        
+        Then("General Information page should be displayed with Actual Amount", () -> {
+            hireAnEmployee.actualAmountDisplay();
+        });
+        
+        Then("user enter Actual Amount and Paycheck Date", () -> {
+            hireAnEmployee.enteractualAmountAndDate();
+        });
+
 
         Then("user click on Submit button", () -> {
             hireAnEmployee.bilingualSubmit();
+        });
+        
+        Then("user click on Submit button in ADP", () -> {
+            hireAnEmployee.adpSubmit();
         });
 
         Then("Manage Element entries page should be displayed with Bilingual Indicator row added", () -> {
             hireAnEmployee.bilingualRowAdded();
         });
-
+        
+        Then("Manage Element entries page should be displayed with ADP Auto & Home row added", () -> {
+            hireAnEmployee.adpRowAdded();
+        });
+        
+        Then("user click on Done button at the top", () -> {
+            hireAnEmployee.clickDoneButton();
+        });
+        
+        
         Then("user click on Sign Out option", () -> {
             // Write code here that turns the phrase above into concrete actions
             loginAndHomePage.signOut();
