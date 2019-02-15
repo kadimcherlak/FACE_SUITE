@@ -1,5 +1,7 @@
 package framework.tests.pages.oracle_fusion_cloud;
 
+import framework.tests.steps.oracle_fusion_cloud.Context;
+import framework.tests.steps.oracle_fusion_cloud.Data;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -7,10 +9,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
-
-import framework.tests.steps.oracle_fusion_cloud.Context;
-import framework.tests.steps.oracle_fusion_cloud.Data;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

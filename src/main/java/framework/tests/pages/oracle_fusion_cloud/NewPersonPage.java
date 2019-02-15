@@ -1,4 +1,3 @@
-
 package framework.tests.pages.oracle_fusion_cloud;
 
 import framework.tests.steps.oracle_fusion_cloud.Context;
@@ -14,13 +13,13 @@ public class NewPersonPage extends BasePage<NewPersonPage> {
     Data data;
 
     // Ner Person Page Elements
-    @FindBy(xpath="//img[@title='Tasks']")
+    @FindBy(xpath = "//img[@title='Tasks']")
     private WebElement taskButton;
 
-    @FindBy(xpath="//a[text()='Hire an Employee']")
+    @FindBy(xpath = "//a[text()='Hire an Employee']")
 
     private WebElement hireAndEmployee;
-    
+
 
     public NewPersonPage(Context context) {
         super(context);

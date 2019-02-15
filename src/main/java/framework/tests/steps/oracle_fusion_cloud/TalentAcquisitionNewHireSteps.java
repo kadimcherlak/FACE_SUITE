@@ -1,11 +1,9 @@
 package framework.tests.steps.oracle_fusion_cloud;
 
-import cucumber.api.PendingException;
 import cucumber.api.java8.En;
 import framework.tests.pages.oracle_fusion_cloud.HireAnEmployeePage;
 import framework.tests.pages.oracle_fusion_cloud.LoginAndHomePage;
 import framework.tests.pages.oracle_fusion_cloud.NewPersonPage;
-
 import org.apache.logging.log4j.Logger;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -109,7 +107,7 @@ public class TalentAcquisitionNewHireSteps implements En {
         });
 
         Then("Person Management: Search screen should be displayed", () -> {
-        	 assertThat(hireAnEmployee.checkpersonManagementSearchAvailable()).isTrue();
+            assertThat(hireAnEmployee.checkpersonManagementSearchAvailable()).isTrue();
         });
 
         Then("user enter the Person number generated from previous step in Person Number field", () -> {
@@ -125,7 +123,7 @@ public class TalentAcquisitionNewHireSteps implements En {
         });
 
         When("user click on employee name link", () -> {
-           hireAnEmployee.empNameLinkClick();
+            hireAnEmployee.empNameLinkClick();
         });
 
         When("user clicks on Manage Element Entries link under Payroll section on right side of the page under Tasks pane", () -> {
@@ -133,7 +131,7 @@ public class TalentAcquisitionNewHireSteps implements En {
         });
 
         Then("manage element entries screen should be displayed", () -> {
-           hireAnEmployee.checkManageElementEntriesAvailable();
+            hireAnEmployee.checkManageElementEntriesAvailable();
         });
 
         Then("user clicks on Add button", () -> {
