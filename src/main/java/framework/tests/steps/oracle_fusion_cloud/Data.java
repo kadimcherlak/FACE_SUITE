@@ -1,4 +1,5 @@
 package framework.tests.steps.oracle_fusion_cloud;
+
 import java.util.Random;
 
 public class Data extends framework.core.models.Data {
@@ -54,17 +55,16 @@ public class Data extends framework.core.models.Data {
     private String changeManagerReason;
     private String managerName;
 
-   
-     
+
     public String getPersonNumber() {
-		return personNumber;
-	}
+        return personNumber;
+    }
 
-	public void setPersonNumber(String personNumber) {
-		this.personNumber = personNumber;
-	}
+    public void setPersonNumber(String personNumber) {
+        this.personNumber = personNumber;
+    }
 
-	// Alpha sorted list of getters
+    // Alpha sorted list of getters
     // most of these items get loaded via bean loader, so normally setters not needed.
     public String getAddressLine1() {
         return addressLine1;
@@ -113,7 +113,7 @@ public class Data extends framework.core.models.Data {
     public String getDepartment() {
         return department;
     }
-    
+
     public String geteffectiveAsOfDate() {
         return effectiveAsOfDate;
     }
@@ -125,25 +125,24 @@ public class Data extends framework.core.models.Data {
     public String getErProfitCenter() {
         return erProfitCenter;
     }
-    
+
     public String getelementName() {
         return elementName;
     }
 
     public String getFirstName() {
-    	int leftLimit = 97; // letter 'a'
+        int leftLimit = 97; // letter 'a'
         int rightLimit = 122; // letter 'z'
         int targetStringLength = 8;
         Random random = new Random();
         StringBuilder buffer = new StringBuilder(targetStringLength);
         for (int i = 0; i < targetStringLength; i++) {
-            int randomLimitedInt = leftLimit + (int) 
-              (random.nextFloat() * (rightLimit - leftLimit + 1));
+            int randomLimitedInt = leftLimit + (int)
+                    (random.nextFloat() * (rightLimit - leftLimit + 1));
             buffer.append((char) randomLimitedInt);
         }
-        String firstName = "FAUTO"+buffer.toString().toUpperCase();
-        return firstName;
-        
+        return "FAUTO" + buffer.toString().toUpperCase();
+
     }
 
     public String getGender() {
@@ -175,18 +174,17 @@ public class Data extends framework.core.models.Data {
     }
 
     public String getLastName() {
-    	int leftLimit = 97; // letter 'a'
+        int leftLimit = 97; // letter 'a'
         int rightLimit = 122; // letter 'z'
         int targetStringLength = 8;
         Random random = new Random();
         StringBuilder buffer = new StringBuilder(targetStringLength);
         for (int i = 0; i < targetStringLength; i++) {
-            int randomLimitedInt = leftLimit + (int) 
-              (random.nextFloat() * (rightLimit - leftLimit + 1));
+            int randomLimitedInt = leftLimit + (int)
+                    (random.nextFloat() * (rightLimit - leftLimit + 1));
             buffer.append((char) randomLimitedInt);
         }
-        String lastName = "LAUTO"+buffer.toString().toUpperCase();
-        return lastName;
+        return "LAUTO" + buffer.toString().toUpperCase();
     }
 
 
@@ -203,10 +201,12 @@ public class Data extends framework.core.models.Data {
     }
 
     public String getNationalID() {
-    	Random rnd = new Random();
-    	String ssn_temp= String.format("%09d", rnd.nextInt(1000000000));
-    	 String nationalID = String.valueOf(ssn_temp).replaceFirst("(\\d{3})(\\d{2})(\\d+)", "$1-$2-$3");
-        return nationalID;
+        Random rnd = new Random();
+        String ssn_temp = String.format("%09d", rnd.nextInt(1000000000));
+        while (ssn_temp.startsWith("9") || ssn_temp.startsWith("000") || ssn_temp.startsWith("666")){
+            ssn_temp = String.format("%09d", rnd.nextInt(1000000000));
+        }
+        return ssn_temp.replaceFirst("(\\d{3})(\\d{2})(\\d+)", "$1-$2-$3");
     }
 
     public String getNationalIDType() {
@@ -256,12 +256,11 @@ public class Data extends framework.core.models.Data {
     public String getVeteranSelfIdentificationStatus() {
         return veteranSelfIdentificationStatus;
     }
-    
+
     public String getnewlySeparatedVeteranDischargeDate() {
         return newlySeparatedVeteranDischargeDate;
     }
-    
-    
+
 
     public String getWorkerType() {
         return workerType;
@@ -274,20 +273,20 @@ public class Data extends framework.core.models.Data {
     public String getZipCode() {
         return zipCode;
     }
-    
+
     public String employeeManagerChange() {
         return employeeManagerChange;
     }
-    
+
     public String changeManagerReason() {
         return changeManagerReason;
     }
-    
+
     public String managerName() {
         return managerName;
     }
 
-	
+
 }
 
 

@@ -1,12 +1,9 @@
 package framework.tests.steps.oracle_fusion_cloud;
 
-import cucumber.api.PendingException;
 import cucumber.api.java8.En;
 import framework.tests.pages.oracle_fusion_cloud.ChangeManagerPage;
-import framework.tests.pages.oracle_fusion_cloud.HireAnEmployeePage;
 import framework.tests.pages.oracle_fusion_cloud.LoginAndHomePage;
 import framework.tests.pages.oracle_fusion_cloud.NewPersonPage;
-
 import org.apache.logging.log4j.Logger;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -69,24 +66,24 @@ public class ChangeManagerSteps implements En {
         });
 
         Then("user navigates to Personal and Employement", () -> {
-        	changeManager = new ChangeManagerPage(context);
+            changeManager = new ChangeManagerPage(context);
             assertThat(changeManager.checkHireAnEmployeePageAvailable()).isTrue();
         });
 
         When("user clicks on Change Manager option", () -> {
-        	changeManager.fillIdentificationTab();
+            changeManager.fillIdentificationTab();
         });
 
         When("user enter details in Change Manager tab", () -> {
-        	changeManager.fillPersonInformationTab();
+            changeManager.fillPersonInformationTab();
         });
 
         When("user clicks on Review button", () -> {
-        	changeManager.fillEmploymentInformationTab();
+            changeManager.fillEmploymentInformationTab();
         });
 
         When("the current value and proposed values are displayed correctly in Review Page", () -> {
-        	changeManager.fillCompensationAndOtherInformationTab();
+            changeManager.fillCompensationAndOtherInformationTab();
         });
 
         /*When("user clicks on submit button", () -> {
@@ -94,7 +91,7 @@ public class ChangeManagerSteps implements En {
         });*/
 
         When("The transaction should be saved properly and My Team page should be displayed", () -> {
-        	changeManager.clickOk();
+            changeManager.clickOk();
         });
 
        /*Then("user click on Sign Out option", () -> {

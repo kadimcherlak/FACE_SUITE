@@ -28,18 +28,18 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
 
     @FindBy(xpath = "//a[contains(@class,'AFBrandingLinkColor svg-glob menu')]//img")
     private WebElement dropDownButtonForSignOut;
-   
+
 
     @FindBy(xpath = "//a[text()='Sign Out']")
     private WebElement signOut;
-  
+
 
     @FindBy(id = "Confirm")
     private WebElement signOutConfirm;
 
     @FindBy(linkText = "New Person")
     private WebElement newPerson;
-    
+
     @FindBy(linkText = "Person Management")
     private WebElement personManagement;
 
@@ -122,8 +122,8 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             reportWithScreenShot("Unable to open New Person on Navigator Screen due to:" + e.getMessage());
         }
     }
-    
- // Person Management selection in Navigator Screen
+
+    // Person Management selection in Navigator Screen
     public void navigatorPersonManagement() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(personManagement), 5);
@@ -134,7 +134,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             reportWithScreenShot("Unable to open Person Management on Navigator Screen due to:" + e.getMessage());
         }
     }
-    
+
 // // Search for Person created in Person Management Screen
 //    public void searchPerson() {
 //        try {
@@ -146,7 +146,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
 //        }
 //    }
 //    
-    
+
 
     // Signout perform SignOut
     public void signOut() {
