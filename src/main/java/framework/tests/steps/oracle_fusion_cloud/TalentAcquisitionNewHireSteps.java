@@ -95,11 +95,11 @@ public class TalentAcquisitionNewHireSteps implements En {
         });
 
         When("clicks ok in the Warning and confirmation message displayed", () -> {
-            hireAnEmployee.clickOk();
+            hireAnEmployee.clickWarningOkButton();
         });
 
         Then("Page should be submitted successfully", () -> {
-            hireAnEmployee.checkSubmitSuccessful();
+            hireAnEmployee.clickConfirmButton();
         });
 
         When("user clicks on Person Management link under My Workforce section", () -> {
@@ -135,7 +135,7 @@ public class TalentAcquisitionNewHireSteps implements En {
         });
 
         Then("user clicks on Add button", () -> {
-            hireAnEmployee.createButtonClick();
+            hireAnEmployee.clickCreateButton();
         });
 
         Then("user enter Effective date : System Date and Element Name as Bilingual Indicator", () -> {

@@ -203,7 +203,7 @@ public class Data extends framework.core.models.Data {
     public String getNationalID() {
         Random rnd = new Random();
         String ssn_temp = String.format("%09d", rnd.nextInt(1000000000));
-        while (ssn_temp.startsWith("9") || ssn_temp.startsWith("000") || ssn_temp.startsWith("666")){
+        while (ssn_temp.startsWith("9") || ssn_temp.startsWith("000") || ssn_temp.startsWith("666")) {
             ssn_temp = String.format("%09d", rnd.nextInt(1000000000));
         }
         return ssn_temp.replaceFirst("(\\d{3})(\\d{2})(\\d+)", "$1-$2-$3");

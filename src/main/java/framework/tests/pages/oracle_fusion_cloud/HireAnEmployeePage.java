@@ -1,5 +1,7 @@
 package framework.tests.pages.oracle_fusion_cloud;
 
+import framework.tests.steps.oracle_fusion_cloud.Context;
+import framework.tests.steps.oracle_fusion_cloud.Data;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -7,10 +9,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
-
-import framework.tests.steps.oracle_fusion_cloud.Context;
-import framework.tests.steps.oracle_fusion_cloud.Data;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -63,123 +61,76 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//span[text()='United States']")
     private WebElement selectCountryFromPopUp;
 
-    @FindBy(xpath = "//button[text()='OK']")
-    private WebElement okButton;
-
     @FindBy(xpath = "(//input[contains(@class,'x2h')])[6]")
     private WebElement clickNationalIdType;
 
     @FindBy(xpath = "(//input[@class='x25'])[10]")
-    //@FindBy(name = "National ID")
     private WebElement nationalId;
 
-    @FindBy(xpath = "//div[@title='Next']")
-    private WebElement next;
-
-    @FindBy(xpath = "//*[@id='_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:pt_r1:0:panelLabelAndMessage4']/td[2]")
+    @FindBy(xpath = "//label[text()='Person Number']/following::td[1]")
     private WebElement personNo;
 
     @FindBy(xpath = "//label[text()='Address Line 1']/following::input[1]")
     private WebElement addressLine1;
 
     @FindBy(xpath = "//label[text()='Address Line 2']/following::input[1]")
-    // @FindBy(id =
-    // "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:Perso1:0:Maint1:0:i1:1:inputText18::content")
     private WebElement addressLine2;
 
     @FindBy(xpath = "//label[text()='ZIP Code']/following::input[1]")
-    // @FindBy(id =
-    // "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:Perso1:0:Maint1:0:i1:2:inputComboboxListOfValues28::content")
     private WebElement zipCode;
 
     @FindBy(xpath = "//label[text()='City']/following::input[1]")
-    // @FindBy(id =
-    // "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:Perso1:0:Maint1:0:i1:3:inputComboboxListOfValues27::content")
     private WebElement city;
 
     @FindBy(xpath = "//label[text()='County']/following::input[1]")
-    // @FindBy(id =
-    // "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:Perso1:0:Maint1:0:i1:4:inputComboboxListOfValues26::content")
     private WebElement county;
 
     @FindBy(xpath = "//label[text()='State']/following::input[1]")
-    // @FindBy(id =
-    // "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:Perso1:0:Maint1:0:i1:5:inputComboboxListOfValues25::content")
     private WebElement state;
+
     @FindBy(xpath = "//label[text()='Marital Status']/following::input[1]")
-    // @FindBy(id =
-    // "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:pt_r3:0:soc2::content")
     private WebElement maritalStatus;
 
     @FindBy(xpath = "//label[text()='Veteran Self-Identification Status']/following::input[1]")
-    // @FindBy(id =
-    // "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:pt_r3:0:df1_PersonLegislativeIteratorVeteranSelfIdentification_DisplayUS::content")
     private WebElement veteranSelfIdentificationStatus;
 
     @FindBy(xpath = "//label[text()='Newly Separated Veteran Discharge Date']/following::input[1]")
-    // @FindBy(id =
-    // "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:1:pt1:SP1:Perso2:0:pt_r3:0:df1_PersonLegislativeIteratormilitaryDischargeDateUS::content")
     private WebElement newlySeparatedVeteranDischargeDate;
 
     @FindBy(xpath = "//label[text()='Business Unit']/following::input[1]")
-    // @FindBy(id =
-    // "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:NewPe1:0:businessUnitId::content")
     private WebElement businessUnit;
 
     @FindBy(xpath = "//label[text()='Job']/following::input[1]")
-    // @FindBy(id =
-    // "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:jobId::content")
     private WebElement job;
 
     @FindBy(xpath = "//label[text()='Grade']/following::input[1]")
-    // @FindBy(id =
-    // "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:gradeId::content")
     private WebElement grade;
 
     @FindBy(xpath = "//label[text()='Department']/following::input[1]")
-    // @FindBy(id =
-    // "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:departmentId::content")
     private WebElement department;
 
     @FindBy(xpath = "//label[text()='Location']/following::input[1]")
-    // @FindBy(id =
-    // "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:locationId::content")
     private WebElement location;
 
     @FindBy(xpath = "//label[text()='Assignment Category']/following::input[1]")
-    // @FindBy(id =
-    // "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:selectOneChoice3::content")
     private WebElement assignmentCategory;
 
     @FindBy(xpath = "//label[text()='Working as a Manager']/following::input[1]")
-    // @FindBy(id =
-    // "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:selectOneRadio2::drop")
     private WebElement workingAsManager;
 
     @FindBy(xpath = "//label[text()='Hourly Paid or Salaried']/following::input[1]")
-    // @FindBy(id =
-    // "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:selectOneChoice2::content")
     private WebElement hourlyPaidOrSalaried;
 
     @FindBy(xpath = "//label[text()='Company/Entity']/following::input[1]")
-    // @FindBy(id =
-    // "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:df2_BaseWorkerAsgDFFIteratorxxpsocompanyentity__FLEX_EMPTY::content")
     private WebElement companyEntity;
 
     @FindBy(xpath = "//label[text()='Cost Center']/following::input[1]")
-    // @FindBy(id =
-    // "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:df2_BaseWorkerAsgDFFIteratorcostCentre__FLEX_EMPTY::content")
     private WebElement costCenter;
 
     @FindBy(xpath = "//label[text()='ER/Profit Center']/following::input[1]")
-    // @FindBy(id =
-    // "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:JobDe1:0:df2_BaseWorkerAsgDFFIteratorxxpsoerprofitcenter__FLEX_EMPTY::content")
     private WebElement erProfitCenter;
 
-    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:r1:0:AT1:_ATp:cil113::icon")
-    private WebElement addBtn;
-
-    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:2:pt1:sP2:NewPe3:0:r1:0:AT1:_ATp:table1:0:selectOneChoice1::content")
+    @FindBy(xpath = "(//input[@class='x109'])[16]")
     private WebElement payroll;
 
     @FindBy(xpath = "//label[text()='I-9 Status']/following::input[1]")
@@ -191,56 +142,37 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//label[text()='Salary Amount']/following::input[1]")
     private WebElement salaryAmount;
 
-    @FindBy(xpath = "//*[@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:3:pt1:SP1:r1:0:r5:0:idUseComponents\"]/span/span/label")
+    @FindBy(xpath = "//label[@class='x1cd']")
     private WebElement salarycmpnt;
-
-    @FindBy(xpath = "//div[@title='Submit']")
-    private WebElement submit;
-
-    @FindBy(xpath = "//button[contains(@id,'okWarningDialog')]")
-    private WebElement warningBtn;
-
-    @FindBy(xpath = "//button[contains(@id,'okConfirmationDialog')]")
-    // @FindBy(id =
-    // "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_new_person:0:MAnt2:1:pt1:pt_r1:4:pt1:AP1:tt1:okConfirmationDialog")
-    private WebElement confirmBtn;
 
     @FindBy(xpath = "//*[text()='Person Management: Search']")
     private WebElement personManagementSearch;
 
     @FindBy(xpath = "//label[text()='Keywords']/following::input[1]")
-    // @FindBy(xpath =
-    // "//*[@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:1:MAt1:0:pt1:Perso1:0:SP3:q1:value30::content\"]")
     private WebElement keywords;
 
     @FindBy(xpath = "//label[text()='Effective As-of Date']/following::input[1]")
-    // @FindBy(xpath =
-    // "//*[@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:1:MAt1:0:pt1:Perso1:0:SP3:q1:value50::content\"]")
     private WebElement effectiveAsOfDate;
 
     @FindBy(xpath = "//button[text()='Search']")
     private WebElement searchBtn;
 
     @FindBy(xpath = "(//span[@class='x2qb'])[2]")
-    // @FindBy(xpath =
-    // "//*[@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt1:0:pt1:Perso1:0:SP3:table1:_ATp:table2::db\"]/table/tbody/tr/td[2]/div/table/tbody/tr/td[2]/span")
     private WebElement personListed;
 
     @FindBy(xpath = "//img[@title='Actions']")
     private WebElement actionsBtn;
 
-    @FindBy(xpath = "/html/body/div[1]/form/div[2]/div[2]/div[1]/div/div/table/tbody/tr/td/table/tbody/tr[2]/td/div/table/tbody/tr[3]/td[2]")
+    @FindBy(xpath = "(//td[text()='Payroll'])[2]")
     private WebElement payrollOption;
 
     @FindBy(xpath = "/html/body/div[1]/form/div[2]/div[2]/div[2]/div/div/table/tbody/tr/td/table/tbody/tr[2]/td/div/table/tbody/tr[2]/td[2]")
     private WebElement manageElementEntries;
 
-    @FindBy(xpath = "//img[@title='Create']")
-    private WebElement createBtn;
+    @FindBy(xpath = "(//*[text()='Manage Element Entries'])[1]")
+    private WebElement manageElementEnteriesTextCheck;
 
     @FindBy(xpath = "//label[text()='Element Name']/following::input[1]")
-    // @FindBy(xpath =
-    // "//input[@id='_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt1:0:AT1:ElementTypeLOV::content']")
     private WebElement elementName;
 
     @FindBy(xpath = "//label[text()='Assignment']")
@@ -250,14 +182,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     private WebElement continueBtn;
 
     @FindBy(xpath = "//label[text()='Bilingual']/following::input[1]")
-    // @FindBy(xpath =
-    // "//*[@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt1:1:evIter:0:lovScreenEntryValue::content\"]")
     private WebElement bilingualYes;
-
-    @FindBy(xpath = "//*[contains(@class,'x10t') and contains(text(),'m')]")
-    // @FindBy(xpath =
-    // "//*[@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt1:1:cb4\"]")
-    private WebElement bilingualSubmitBtn;
 
     @FindBy(xpath = "//a[text()='Bilingual Indicator']")
     private WebElement bilingualRowAdded;
@@ -352,9 +277,9 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitShortTime();
 
             // If Country Pop up screen is present
-            if (selectCountryFromPopUp.isDisplayed()){
+            if (selectCountryFromPopUp.isDisplayed()) {
                 //selectCountryFromPopUp.click();
-                okButton.click();
+                clickOkButton();
                 waitShortTime();
             }
 
@@ -384,7 +309,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     public void fillPersonInformationTab() {
         try {
             // Set Person Number for Future Use and Reference
-            waitFor(ExpectedConditions.visibilityOf(personNo),15);
+            waitFor(ExpectedConditions.visibilityOf(personNo), 15);
             String personNumber = personNo.getText();
             data.setPersonNumber(personNumber);
 
@@ -434,9 +359,6 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitFor(ExpectedConditions.elementToBeClickable(newlySeparatedVeteranDischargeDate), 15);
             newlySeparatedVeteranDischargeDate.sendKeys(data.getnewlySeparatedVeteranDischargeDate());
             waitNormalTime();
-
-            //scrollToPageTop(driver);
-            //waitFor(ExpectedConditions.elementToBeClickable(addressLine1), 15);
             clickNextButton(); // Next Button to go to next page
             waitUntilPageLoad(); // wait until next tab loads
             reportWithScreenShot("Summary of Person Information tab");
@@ -492,20 +414,21 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             // Enter Cost Center
             waitFor(ExpectedConditions.elementToBeClickable(costCenter), 15);
             costCenter.sendKeys(data.getCostCenter());
+            waitShortTime();
 
             // Enter ER Profit Center
             waitFor(ExpectedConditions.elementToBeClickable(erProfitCenter), 15);
             erProfitCenter.sendKeys(data.getErProfitCenter());
+            waitShortTime();
 
             // Clicking Add button to enter Payroll Details
-            addBtn.click();
+            clickCreateButton();
+            waitNormalTime();
 
             // Select Payroll Details
             waitFor(ExpectedConditions.elementToBeClickable(payroll), 15);
             payroll.sendKeys(data.getPayroll());
-
-            scrollToPageTop(driver);
-            waitFor(ExpectedConditions.elementToBeClickable(i9Status), 5);
+            waitShortTime();
             clickNextButton(); // Next Button to go to next page
             waitUntilPageLoad(); // wait until next tab loads
 
@@ -524,18 +447,20 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             // Enter Salary Basis
             waitFor(ExpectedConditions.elementToBeClickable(salaryBasis), 15);
             salaryBasis.sendKeys(data.getSalaryBasis());
+            waitShortTime();
 
             // Enter Salary Amount
             waitFor(ExpectedConditions.elementToBeClickable(salaryAmount), 15);
+            salaryAmount.clear();
             salaryAmount.sendKeys(data.getSalaryAmount());
+            waitShortTime();
 
             // Enable Use salary components check box
-            waitFor(ExpectedConditions.elementToBeClickable(salarycmpnt), 15);
+            waitFor(ExpectedConditions.visibilityOf(salarycmpnt), 15);
             salarycmpnt.click();
 
             clickNextButton(); // Next Button to go to next page
             waitUntilPageLoad(); // wait until next tab loads
-
             reportWithScreenShot("Summary of Compensation and Other Information Tab");
 
         } catch (Exception e) {
@@ -547,34 +472,12 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     // Check Review tab with Employee information
     public void checkReviewTabDisplayedWithInformation() {
         try {
-
             reportWithScreenShot("Summary of Review tab with Employee information");
         } catch (Exception e) {
             reportWithScreenShot("Error While checking values in Review Tab due to:" + e.getMessage());
         }
     }
 
-    // Click on Submit Button to submit new Hire details
-    public void clickSubmitButton() {
-        try {
-            waitNormalTime();
-            waitFor(ExpectedConditions.elementToBeClickable(submit), 15);
-            submit.click();
-        } catch (Exception e) {
-            reportWithScreenShot("Error While Submitting new Hire information due to:" + e.getMessage());
-        }
-    }
-
-    // Click on Ok Button if Warning is displayed
-    public void clickOk() {
-        try {
-            waitFor(ExpectedConditions.elementToBeClickable(warningBtn), 15);
-            warningBtn.click();
-
-        } catch (Exception e) {
-            reportWithScreenShot("Error While clicking OK button due to:" + e.getMessage());
-        }
-    }
 
     // Person Management Search check available
     public boolean checkpersonManagementSearchAvailable() {
@@ -679,23 +582,11 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     public boolean checkManageElementEntriesAvailable() {
         try {
             reportWithScreenShot("Checking if Manage Element Entries page  is Displayed");
-            waitFor(ExpectedConditions.visibilityOf(createBtn), 15);
-            return createBtn.isDisplayed();
+            waitFor(ExpectedConditions.visibilityOf(manageElementEnteriesTextCheck), 15);
+            return manageElementEnteriesTextCheck.isDisplayed();
         } catch (Exception e) {
             reportWithScreenShot("Manage Element Entries page  not Displayed");
-            return createBtn.isDisplayed();
-        }
-    }
-
-    // User click on Create button
-    public void createButtonClick() {
-        try {
-
-            waitFor(ExpectedConditions.elementToBeClickable(createBtn), 15);
-            createBtn.click();
-
-        } catch (Exception e) {
-            reportWithScreenShot("Error While user click on Create button:" + e.getMessage());
+            return manageElementEnteriesTextCheck.isDisplayed();
         }
     }
 
@@ -738,7 +629,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     // Click on Submit Button for Bilingual
     public void bilingualSubmit() {
         try {
-            bilingualSubmitBtn.click();
+            clickSubmitButton();
         } catch (Exception e) {
             reportWithScreenShot("Error While User bilingual Submit Button:" + e.getMessage());
         }
@@ -752,27 +643,6 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
         } catch (Exception e) {
             reportWithScreenShot("Bilingual row is not added");
             return bilingualRowAdded.isDisplayed();
-        }
-    }
-
-    // Click on Next to goto next tab
-    public void clickNextButton() {
-        try {
-            next.click();
-        } catch (Exception e) {
-            reportWithScreenShot("Error While Next Button due to:" + e.getMessage());
-        }
-    }
-
-    public void checkSubmitSuccessful() {
-
-        try {
-            waitFor(ExpectedConditions.elementToBeClickable(confirmBtn), 15);
-            confirmBtn.click();
-            Thread.sleep(3000);
-
-        } catch (Exception e) {
-            reportWithScreenShot("Submission not successful due to:" + e.getMessage());
         }
     }
 
