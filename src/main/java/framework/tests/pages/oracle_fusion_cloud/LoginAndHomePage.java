@@ -59,7 +59,6 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             logger.debug("{}:{} called", this.getClass().getName(), "goTo");
             driver.get(context.getEnvironment().getWebUrl());
             waitUntilPageLoad();
-            waitShortTime();
             reportWithScreenShot("Go to :" + context.getEnvironment().getWebUrl());
         } catch (Exception e) {
             reportWithScreenShot("Failed while trying to open Url: " + context.getEnvironment().getWebUrl()
@@ -69,6 +68,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
 
     // Login Page check available
     public boolean checkLoginPageAvailable() {
+        waitFor(ExpectedConditions.elementToBeClickable(signIn), 15);
         return signIn.isDisplayed();
     }
 

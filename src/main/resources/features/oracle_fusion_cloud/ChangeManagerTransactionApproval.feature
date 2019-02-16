@@ -26,20 +26,20 @@ Feature: Change Manager Transaction and Approval
       | Change Manager |
       
  
-  #@Line_manager1_approves_change_manager_request
-#Scenario Outline: As an Line Manager 1, i should be able to approves request of employee's manager change
-    #Given user runs <Test Scenario>
-    #And user login to Oracle Applications Cloud web page
-    #When user clicks on Notifications bell icon
-    #And user clicks on Action Required Notification link
-    #Then notification details should be opened in new window with employee's manager change details
-    #When user clicks on Approve button
-    #Then The request should be approved and home page should be displayed
-    #And user click on Sign Out option
-    #Then Sign out should be successful
-    #
-    #Examples:
-      #| Test Scenario  |
-      #| Change Manager |
-      #
+  @Line_manager1_approves_change_manager_request
+Scenario Outline: As an Line Manager 1, i should be able to approves request of employee's manager change
+    Given user runs <Test Scenario>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Notifications bell icon
+    And user clicks on Action Required Notification link
+    Then notification details should be opened in new window with employee's manager change details
+    When user clicks on Approve button
+    Then The request should be approved and home page should be displayed
+    And user click on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario  |
+      | Change Manager |
+
  
