@@ -222,7 +222,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     public boolean checkHireAnEmployeePageAvailable() {
         try {
             reportWithScreenShot("Checking if Hire An Employee Page is Displayed");
-            waitFor(ExpectedConditions.visibilityOf(hireAnEmployeePageCheck), 5);
+            waitFor(ExpectedConditions.visibilityOf(hireAnEmployeePageCheck), 15);
             return hireAnEmployeePageCheck.isDisplayed();
         } catch (Exception e) {
             reportWithScreenShot("Hire An Employee Page not Displayed");
@@ -296,11 +296,10 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             country.clear();
             country.sendKeys(data.getCountry());
             country.sendKeys(Keys.TAB);
-            waitShortTime();
+            waitNormalTime();
 
             // If Country Pop up screen is present
             if (selectCountryFromPopUp.isDisplayed()) {
-                //selectCountryFromPopUp.click();
                 clickOkButton();
                 waitShortTime();
             }

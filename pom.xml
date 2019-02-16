@@ -29,7 +29,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <forkCount>0</forkCount>
         <reuseForks>false</reuseForks>
-        <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
     </properties>
 
     <build>
@@ -101,8 +102,7 @@
                     </executions>
                     <configuration>
                         <sourceJsonReportDirectory>${project.basedir}/test-output/reports</sourceJsonReportDirectory>
-                        <generatedHtmlReportDirectory>${project.basedir}/test-output/reports/html
-                        </generatedHtmlReportDirectory>
+                        <generatedHtmlReportDirectory>${project.basedir}/test-output/reports/html_${timestamp}</generatedHtmlReportDirectory>
                     </configuration>
                 </plugin>
             </plugins>
