@@ -44,7 +44,10 @@ Feature: Perform edit on Address,Contact Type,Personal Payment Method and disabi
     Then My Details page should be displayed
     When user click on Sign Out option
     Then Sign out should be successful
-  
+
+   Examples:
+     | Test Scenario      |
+     | New Hire Scenario1 |
 #@Update_Personal_Payment_Method_Expenses_only
   #Scenario Outline:  As an Employee, i should be able to update Personal Payment Method (Expenses only) details
     #Given user runs <Test Scenario>

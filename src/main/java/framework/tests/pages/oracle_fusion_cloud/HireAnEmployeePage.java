@@ -608,11 +608,10 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
         }
     }
 
-    // After entering person number, click on Search Button
-    public void clickSearch() {
+    // After entering person number, click on Search Button until person
+    public boolean clickSearch() {
         try {
-            System.out.println("before search btn click");
-          
+
             searchBtn.click();
            
             int elementsize = driver
@@ -624,10 +623,16 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
                 searchBtn.click();
                 counter++;
             }
+            if(elementsize==0 && counter > 60)
+            {
+                throw new Exception("Person number not found");
+            }
 
             reportWithScreenShot("Search Results of person Number");
+            return true;
         } catch (Exception e) {
             reportWithScreenShot("Error While checking search results of employee:" + e.getMessage());
+            return false;
         }
     }
 

@@ -115,7 +115,8 @@ public class TalentAcquisitionNewHireSteps implements En {
         });
 
         Then("user click on Search button", () -> {
-            hireAnEmployee.clickSearch();
+            assertThat(hireAnEmployee.clickSearch()).isTrue();
+
         });
 
         Then("Employee name should be listed in search results", () -> {
