@@ -37,6 +37,18 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
 
     @FindBy(linkText = "New Person")
     private WebElement newPerson;
+    
+    @FindBy(linkText = "Personal Information")
+    private WebElement PersonalInfoMyDetailsPage;
+    
+    @FindBy(xpath = "(//div[@title='My Details'])[2]")
+    private WebElement empMyDetails; 
+    
+    @FindBy(xpath = "(//div[@title='Edit My Details: Contact Information'])[1]")
+    private WebElement empMyDetailsContactInfo;  
+    
+    @FindBy(xpath = "(//div[@title='Edit My Details: Contacts'])[1]")
+    private WebElement empMyDetailsContactPage;  
 
     @FindBy(linkText = "Person Management")
     private WebElement personManagement;
@@ -122,6 +134,52 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             reportWithScreenShot("Unable to open New Person on Navigator Screen due to:" + e.getMessage());
         }
     }
+    
+    // open Personal Info My Details Page 
+    public void navigateToPersonalInfoMyDetailspage() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(PersonalInfoMyDetailsPage), 5);
+            PersonalInfoMyDetailsPage.click();
+            waitUntilPageLoad();
+        } catch (Exception e) {
+            reportWithScreenShot("Unable to open Personal Info My Details Page due to:" + e.getMessage());
+        }
+    }
+    
+    public boolean checkEmpMyDetailsPageDisplayed() {
+        try {
+            waitUntilPageLoad();
+            reportWithScreenShot("Checking if My Details Page is Displayed");
+            return empMyDetails.isDisplayed();
+        } catch (Exception e) {
+            reportWithScreenShot("My Details Page is not Displayed");
+            return false;
+        }
+    }
+    
+    public boolean checkEmpMyDetailsContactInfoPageDisplayed() {
+        try {
+            waitUntilPageLoad();
+            reportWithScreenShot("Checking if My Details Contact Info Page is Displayed");
+            return empMyDetailsContactInfo.isDisplayed();
+        } catch (Exception e) {
+            reportWithScreenShot("My Details Contact Info Page is not Displayed");
+            return false;
+        }
+    }
+    
+    public boolean checkEmpMyDetailsContactPageDisplayed() {
+        try {
+            waitUntilPageLoad();
+            reportWithScreenShot("Checking if My Details Contact Page is Displayed");
+            return empMyDetailsContactPage.isDisplayed();
+        } catch (Exception e) {
+            reportWithScreenShot("My Details Contact Page is not Displayed");
+            return false;
+        }
+    }
+    
+    
 
     // Person Management selection in Navigator Screen
     public void navigatorPersonManagement() {

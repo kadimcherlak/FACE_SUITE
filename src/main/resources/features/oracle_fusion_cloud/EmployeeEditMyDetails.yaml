@@ -1,4 +1,10 @@
 New Hire Scenario1:
+  altWorkLocationaddressType: 'Alternate Work Location Address'
+  altWorkLocationcountry: 'United States'
+  altWorkLocationaddressLine1: 'SMALLSYS INC, 795 E DRAGRAM'
+  altWorkLocationzipCode: '85705'
+  contactsRelationship: 'Contact'
+  contactsEmergencyContactName: 'ar, dyvsld'
   addressLine1: '527 Johns Avenue'
   addressLine2: 'Suite 436'
   actualAmount: '150'
@@ -23,7 +29,7 @@ New Hire Scenario1:
   erProfitCenter: '31'
   firstName: ''  # Kept blank as Randomly Generated as part of the execution
   gender: 'Male'
-  globalMobilityIndicator: ''
+  globalMobilityIndicator: 'International Assignment'
   grade: 'E'
   hireAction: 'Hire'
   hireDate: '28-Jan-19'
@@ -51,3 +57,4 @@ New Hire Scenario1:
   workerType: 'Employee'
   workingAsManager: 'No'
   zipCode: '75038'
+  

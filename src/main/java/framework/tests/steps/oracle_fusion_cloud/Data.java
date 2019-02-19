@@ -8,10 +8,16 @@ public class Data extends framework.core.models.Data {
     private String actualAmount;
     private String addressLine1;
     private String addressLine2;
+    private String altWorkLocationaddressType;
+    private String altWorkLocationcountry;
+    private String altWorkLocationaddressLine1;
+    private String altWorkLocationzipCode;
     private String assignmentCategory;
     private String businessUnit;
     private String changeManagerReason;
     private String city;
+    private String contactsEmergencyContactName;
+    private String contactsRelationship;
     private String companyEntity;
     private String costCenter;
     private String country;
@@ -19,14 +25,18 @@ public class Data extends framework.core.models.Data {
     private String county;
     private String dateOfBirth;
     private String department;
+    private String destinationLegalEmployer;
     private String effectiveAsOfDate;
     private String elementName;
     private String elementNameADP;
+    private String employmentAction;
+    private String employmentActionReason;
     private String employeeManagerChange;
     private String email;
     private String erProfitCenter;
     private String firstName;
     private String gender;
+    private String globalMobilityIndicator;
     private String grade;
     private String hireAction;
     private String hireDate;
@@ -71,6 +81,22 @@ public class Data extends framework.core.models.Data {
     public String getAddressLine2() {
         return addressLine2;
     }
+    
+    public String getAltWorkLocationaddressType() {
+        return altWorkLocationaddressType;
+    }
+    
+    public String getAltWorkLocationcountry() {
+        return altWorkLocationcountry;
+    }
+    
+    public String getAltWorkLocationaddressLine1() {
+        return altWorkLocationaddressLine1;
+    }
+    
+    public String getAltWorkLocationzipCode() {
+        return altWorkLocationzipCode;
+    }
 
     public String getAssignmentCategory() {
         return assignmentCategory;
@@ -88,6 +114,15 @@ public class Data extends framework.core.models.Data {
         return city;
     }
 
+    public String getContactsEmergencyContactName() {
+    	return contactsEmergencyContactName;
+    }
+    
+    public String getContactsRelationship() {
+        return contactsRelationship;
+    }
+
+    
     public String getCompanyEntity() {
         return companyEntity;
     }
@@ -115,6 +150,12 @@ public class Data extends framework.core.models.Data {
     public String getDepartment() {
         return department;
     }
+    
+    
+    public String getDestinationLegalEmployer() {
+        return destinationLegalEmployer;
+    }
+    
 
     public String geteffectiveAsOfDate() {
         return effectiveAsOfDate;
@@ -155,6 +196,14 @@ public class Data extends framework.core.models.Data {
 
     }
 
+    public String getEmploymentAction() {
+        return employmentAction;
+    }
+    
+    public String getEmploymentActionReason() {
+        return employmentActionReason;
+    }
+    
     public String employeeManagerChange() {
         return employeeManagerChange;
     }
@@ -170,7 +219,11 @@ public class Data extends framework.core.models.Data {
     public String getGender() {
         return gender;
     }
-
+    
+    public String getGlobalMobilityIndicator() {
+        return globalMobilityIndicator;
+    }
+    
     public String getGrade() {
         return grade;
     }
@@ -228,9 +281,12 @@ public class Data extends framework.core.models.Data {
     public String getNationalID() {
         Random rnd = new Random();
         String ssn_temp = String.format("%09d", rnd.nextInt(1000000000));
-        String nationalID = String.valueOf(ssn_temp).replaceFirst("(\\d{3})(\\d{2})(\\d+)", "$1-$2-$3");
-        return nationalID;
-    }
+        while (ssn_temp.startsWith("9") || ssn_temp.startsWith("000") || ssn_temp.startsWith("666") )
+        {
+        	ssn_temp = String.format("%09d", rnd.nextInt(1000000000));
+        }
+        String nationalID = ssn_temp.replaceFirst("(\\d{3})(\\d{2})(\\d+)", "$1-$2-$3");
+        return nationalID;    }
 
     public String getNationalIDType() {
         return nationalIDType;

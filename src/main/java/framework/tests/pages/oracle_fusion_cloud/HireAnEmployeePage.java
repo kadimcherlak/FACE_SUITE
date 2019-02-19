@@ -21,6 +21,9 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     // Hire An Employee Page Elements
     @FindBy(xpath = "//*[text()='Hire an Employee: Identification']")
     private WebElement hireAnEmployeePageCheck;
+    
+    @FindBy(xpath = "//*[text()='Hire an Employee: Person Information']")
+    private WebElement personInfoPageCheck;
 
     @FindBy(xpath = "//label[text()='Hire Date']/following::input[1]")
     private WebElement hireDate;
@@ -132,7 +135,10 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
     @FindBy(xpath = "(//input[@class='x109'])[16]")
     private WebElement payroll;
-
+    
+    @FindBy(xpath = "(//input[@class='x109'])[18]")
+    private WebElement payrollTempAssign;
+    
     @FindBy(xpath = "//label[text()='I-9 Status']/following::input[1]")
     private WebElement i9Status;
 
@@ -207,7 +213,57 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
     @FindBy(xpath = "(//span[@class='xwb'])[1]")
     private WebElement done;
+    
+    @FindBy(xpath = "//*[@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt1:0:pt1:Perso1:0:SP3:table1:_ATp:table2:0:gl1\"]")
+    private WebElement personLink;
 
+    @FindBy(xpath = "//a[@title='Edit']")
+    private WebElement personMgmt_Edit;
+
+    @FindBy(xpath = "//tr[contains(@id,'updBtn')]")
+    private WebElement personMgmt_Update;
+    
+    @FindBy(xpath = "//div[text()='Update Employment']")
+    private WebElement updateEmploymentTitle;
+    
+    @FindBy(xpath = "//div[@title='Close person management']")
+    private WebElement personMgmt_Done;
+
+    @FindBy(xpath = "//label[contains(@for,'effectiveDate')]//following::input[1]")
+    private WebElement UpdateEmployment_EffectiveDate;
+
+    @FindBy(xpath = "//label[contains(@for,'actionsName')]/following::input[1]")
+    private WebElement UpdateEmployment_Action;
+
+    @FindBy(xpath = "//label[contains(@for,'actionReason')]/following::input[1]")
+    private WebElement UpdateEmployment_ActionReason;
+
+    @FindBy(xpath = "//button[@accesskey='K']")
+    private WebElement btnOK;
+
+    @FindBy(xpath = "//label[text()='Destination Legal Employer']/following::input[1]")
+    private WebElement UpdateEmployment_DestLegalEmployer;
+
+    //@FindBy(xpath = "//label[text()='Create Primary Work Relationship']/following::input[1]")
+    //private WebElement UpdateEmployment_DestLegalEmployer;
+
+    @FindBy(xpath = "//label[contains(@for,'rdoMakePrimary:_0')]")
+    private WebElement UpdateEmployment_createprimarywork;
+    
+    @FindBy(xpath = "//h1[text()='Global Temporary Assignment: Identification']")
+    private WebElement globalTempAssignment;
+
+    @FindBy(xpath = "//label[text()='Existing Address']")
+    private WebElement personalinfo_existingaddress;
+
+    @FindBy(xpath = "//label[text()='Global Mobility Indicator']/following::input[1]")
+    private WebElement empinfo_globalMobilityInd;
+
+    @FindBy(xpath = "//label[text()='Working Hours']/following::input[1]")
+    private WebElement empinfo_workingHrs;
+    
+    @FindBy(xpath = "//h1[text()='Global Temporary Assignment: Employment Information']")
+    private WebElement globalTempAssignmentEmpInfo;
 
     public HireAnEmployeePage(Context context) {
         super(context);
@@ -329,8 +385,12 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     // Enter Value into Person Information tab
     public void fillPersonInformationTab() {
         try {
+        	//check if person information tab loaded
+        	
+        	waitFor(ExpectedConditions.visibilityOf(personInfoPageCheck), 15);
+        	
             // Set Person Number for Future Use and Reference
-            waitFor(ExpectedConditions.visibilityOf(personNo), 15);
+        	            waitFor(ExpectedConditions.visibilityOf(personNo), 15);
             String personNumber = personNo.getText();
             data.setPersonNumber(personNumber);
 
@@ -445,6 +505,19 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             // Clicking Add button to enter Payroll Details
             clickCreateButton();
             waitNormalTime();
+            
+           if (!data.getGlobalMobilityIndicator().isEmpty())
+          {
+            	 // Select Global Mobility Indicator	
+                
+            waitFor(ExpectedConditions.elementToBeClickable(empinfo_globalMobilityInd), 15);
+                empinfo_globalMobilityInd.click();
+                waitFor(ExpectedConditions.elementToBeClickable(
+                        driver.findElement(By.xpath("//li[text()='" + data.getGlobalMobilityIndicator() + "']"))), 15);
+                driver.findElement(By.xpath("//li[text()='" + data.getGlobalMobilityIndicator() + "']")).click();
+                waitShortTime();
+
+           }
 
             // Select Payroll Details
             waitFor(ExpectedConditions.elementToBeClickable(payroll), 15);
@@ -452,7 +525,8 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitShortTime();
             clickNextButton(); // Next Button to go to next page
             waitUntilPageLoad(); // wait until next tab loads
-
+            
+           
             reportWithScreenShot("Summary of Employment Information tab");
 
         } catch (Exception e) {
@@ -523,7 +597,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             // Enter effective as of date
             waitFor(ExpectedConditions.elementToBeClickable(effectiveAsOfDate), 15);
             effectiveAsOfDate.clear();
-            effectiveAsOfDate.sendKeys(data.geteffectiveAsOfDate());
+            effectiveAsOfDate.sendKeys(getCurrentDate());
             Thread.sleep(2500);
             // actions.sendKeys(Keys.TAB);
             // System.out.println("after effective date entered");
@@ -533,39 +607,46 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
         }
     }
 
-    // After entering person number, click on Search Button
-    public void clickSearch() {
+    // After entering person number, click on Search Button until person
+    public boolean clickSearch() {
         try {
-            System.out.println("before search btn click");
-            waitFor(ExpectedConditions.elementToBeClickable(searchBtn), 15);
-            searchBtn.click();
 
-            WebElement personexists = driver
-                    .findElement(By.xpath("//td//span[text()='" + data.getPersonNumber() + "']"));
+            searchBtn.click();
+           
+            int elementsize = driver
+                    .findElements(By.xpath("//td//span[text()='" + data.getPersonNumber() + "']")).size();
             int counter = 0;
-            while (!personexists.isDisplayed() && counter <= 60) {
+            while (elementsize==0 && counter <= 60) {
+             elementsize = driver
+                        .findElements(By.xpath("//td//span[text()='" + data.getPersonNumber() + "']")).size();
                 searchBtn.click();
                 counter++;
             }
+            if(elementsize==0 && counter > 60)
+            {
+                throw new Exception("Person number not found");
+            }
 
             reportWithScreenShot("Search Results of person Number");
+            return true;
         } catch (Exception e) {
             reportWithScreenShot("Error While checking search results of employee:" + e.getMessage());
+            return false;
         }
     }
 
-    // Validate if search result displays right person details
+
+ // Validate if search result displays right person details
     public void validateSearchResult() {
         try {
 
             // Verify if person number searched matched the record displayed
 
-            WebElement personexists = driver
-                    .findElement(By.xpath("//td//span[text()='" + data.getPersonNumber() + "']"));
-
-            waitFor(ExpectedConditions.visibilityOf(personexists), 15);
-
+         int elementsize = driver
+                    .findElements(By.xpath("//td//span[text()='" + data.getPersonNumber() + "']")).size();
+         if (elementsize==1){
             reportWithScreenShot("Search Results of person Number");
+         }
         } catch (Exception e) {
             reportWithScreenShot("Error in person displayed from search:" + e.getMessage());
         }
@@ -580,6 +661,108 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
         } catch (Exception e) {
             reportWithScreenShot("Error While user click on EmpName Action click:" + e.getMessage());
+        }
+    }
+    
+    // User click on Employee Name link
+    public void clickPersonNameLink() {
+        try {
+
+            waitFor(ExpectedConditions.elementToBeClickable(personLink), 15);
+            personLink.click();
+
+        } catch (Exception e) {
+            reportWithScreenShot("Error While user click on person Name link:" + e.getMessage());
+        }
+    }
+    
+    // User click on Edit and Update button
+    public void clickEditUpdate() {
+        try {
+
+            waitFor(ExpectedConditions.elementToBeClickable(personMgmt_Edit), 15);
+            personMgmt_Edit.click();
+            
+            waitFor(ExpectedConditions.elementToBeClickable(personMgmt_Update), 15);
+            personMgmt_Update.click();
+
+        } catch (Exception e) {
+            reportWithScreenShot("Error While user click on Edit and update button:" + e.getMessage());
+        }
+    }
+    
+ // User checks if Update Employment Window is Displayed
+    public boolean checkUpdateEmployementWindowDisplayed() {
+        try {
+            waitUntilPageLoad();
+            reportWithScreenShot("Checking if Update Employment Window is Displayed");
+            return updateEmploymentTitle.isDisplayed();
+        } catch (Exception e) {
+            reportWithScreenShot("Update Employment Window is not Displayed");
+            return false;
+        }
+    }
+    
+    // User enter details in Update Employment Window
+    public void fillUpdateEmpWindow() {
+        try {
+
+        	 // Enter current date into effective date
+            waitFor(ExpectedConditions.elementToBeClickable(UpdateEmployment_EffectiveDate), 15);
+            UpdateEmployment_EffectiveDate.sendKeys(getCurrentDate());
+            
+            // Enter Action value
+            waitFor(ExpectedConditions.elementToBeClickable(UpdateEmployment_Action), 15);
+            UpdateEmployment_Action.sendKeys(data.getEmploymentAction());
+            
+         // Enter Action Reason value
+            waitFor(ExpectedConditions.elementToBeClickable(UpdateEmployment_ActionReason), 15);
+            UpdateEmployment_ActionReason.sendKeys(data.getEmploymentActionReason());
+            
+         // Enter Destination Legal Employer value
+            waitFor(ExpectedConditions.elementToBeClickable(UpdateEmployment_DestLegalEmployer), 15);
+            UpdateEmployment_DestLegalEmployer.sendKeys(data.getDestinationLegalEmployer());
+            
+            waitFor(ExpectedConditions.elementToBeClickable(UpdateEmployment_createprimarywork), 15);
+            UpdateEmployment_createprimarywork.click();
+            
+            waitFor(ExpectedConditions.elementToBeClickable(btnOK), 15);
+            btnOK.click();
+            
+            waitFor(ExpectedConditions.elementToBeClickable(btnOK), 15);
+            btnOK.click();
+
+        } catch (Exception e) {
+            reportWithScreenShot("Error While user enter details in Update Employment Window:" + e.getMessage());
+        }
+    }
+    
+ // User checks if Update Employment Window is Displayed
+    public boolean checkGlobalAssignmentPageDisplayed() {
+        try {
+            waitUntilPageLoad();
+            reportWithScreenShot("Checking if Global Temporary Assignment: Identification page is Displayed");
+            return globalTempAssignment.isDisplayed();
+        } catch (Exception e) {
+            reportWithScreenShot("Global Temporary Assignment: Identification page is not Displayed");
+            return false;
+        }
+    }
+    
+    // User Navigate to Employment Information page
+    public void navigateToEmpInfoPage() {
+        try {
+
+        	 waitNormalTime();
+             clickNextButton(); // Next Button to go to next page
+             waitUntilPageLoad(); // wait until next tab loads
+             
+             waitNormalTime();
+             clickNextButton(); // Next Button to go to next page
+             waitUntilPageLoad(); // wait until next tab loads
+
+        } catch (Exception e) {
+            reportWithScreenShot("Error While user Navigate to Employment Information page:" + e.getMessage());
         }
     }
 
@@ -618,7 +801,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             // Enter Business Unit
             waitFor(ExpectedConditions.elementToBeClickable(elementName), 15);
             elementName.sendKeys(data.getElementName());
-            actions.sendKeys(Keys.TAB);
+            elementName.sendKeys(Keys.TAB);
             waitFor(ExpectedConditions.visibilityOf(assignment), 15);
 
         } catch (Exception e) {
