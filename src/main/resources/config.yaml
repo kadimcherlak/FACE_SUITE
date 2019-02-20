@@ -5,8 +5,8 @@ testConfig:
     - json:test-output/reports/cucumber.json
     - framework.core.reports.CucumberEventListener
   returnScreenshotOnEveryAction: false
-  scriptTimeout: 120
-  pageLoadTimeout: 120
+  scriptTimeout: 60
+  pageLoadTimeout: 60
   #screenshotWidth: 640
   #screenshotHeight: 480
 

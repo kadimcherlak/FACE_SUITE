@@ -151,11 +151,9 @@ public class Data extends framework.core.models.Data {
         return department;
     }
 
-
     public String getDestinationLegalEmployer() {
         return destinationLegalEmployer;
     }
-
 
     public String geteffectiveAsOfDate() {
         return effectiveAsOfDate;
@@ -258,8 +256,7 @@ public class Data extends framework.core.models.Data {
             int randomLimitedInt = leftLimit + (int) (random.nextFloat() * (rightLimit - leftLimit + 1));
             buffer.append((char) randomLimitedInt);
         }
-        String lastName = "LAUTO" + buffer.toString().toUpperCase();
-        return lastName;
+        return "LAUTO" + buffer.toString().toUpperCase();
     }
 
     public String getLegalEmployer() {
@@ -284,8 +281,7 @@ public class Data extends framework.core.models.Data {
         while (ssn_temp.startsWith("9") || ssn_temp.startsWith("000") || ssn_temp.startsWith("666")) {
             ssn_temp = String.format("%09d", rnd.nextInt(1000000000));
         }
-        String nationalID = ssn_temp.replaceFirst("(\\d{3})(\\d{2})(\\d+)", "$1-$2-$3");
-        return nationalID;
+        return ssn_temp.replaceFirst("(\\d{3})(\\d{2})(\\d+)", "$1-$2-$3");
     }
 
     public String getNationalIDType() {
