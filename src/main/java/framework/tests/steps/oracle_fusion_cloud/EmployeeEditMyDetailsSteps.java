@@ -22,105 +22,70 @@ public class EmployeeEditMyDetailsSteps implements En {
         logger = context.getLogger();
         logger.debug("{} loaded", this.getClass().getName());
 
-//        Given("^user runs (.*?)$", (String testCaseKey) -> {
-//            context.setData(testCaseKey);
-//            data = context.getData();
-//            loginAndHomePage = new LoginAndHomePage(context);
-//        });
-//
-//        And("^user is on the oracle fusion login page$", () -> {
-//            loginAndHomePage.openUrl();
-//            assertThat(loginAndHomePage.checkLoginPageAvailable()).isTrue();
-//        });
-//
-//        And("^user provides credentials for login$", () -> {
-//            loginAndHomePage.enterCredentials();
-//        });
-//
-//        When("^the user click on Sign In$", () -> {
-//            loginAndHomePage.signIn();
-//        });
-//
-//        Then("^the Oracle Fusion Home Page is displayed", () -> {
-//            assertThat(loginAndHomePage.checkHomePageAvailable()).isTrue();
-//        });
-//
-//        Given("user login to Oracle Applications Cloud web page", () -> {
-//            loginAndHomePage.openUrl();
-//            assertThat(loginAndHomePage.checkLoginPageAvailable()).isTrue();
-//            loginAndHomePage.enterCredentials();
-//            loginAndHomePage.signIn();
-//            assertThat(loginAndHomePage.checkHomePageAvailable()).isTrue();
-//        });
-//
-//        When("user clicks on Navigator icon", () -> {
-//            loginAndHomePage.navigatorScreen();
-//        });
-
         When("user clicks on Personal Information link under About me section", () -> {
-        	 data = context.getData();
-        	loginAndHomePage = new LoginAndHomePage(context);
-        	loginAndHomePage.navigateToPersonalInfoMyDetailspage();
+            data = context.getData();
+            loginAndHomePage = new LoginAndHomePage(context);
+            loginAndHomePage.navigateToPersonalInfoMyDetailspage();
         });
-        
+
         When("My Details page should be displayed", () -> {
-          	 assertThat(loginAndHomePage.checkEmpMyDetailsPageDisplayed()).isTrue();
-          });
+            loginAndHomePage.checkEmpMyDetailsPageDisplayed();
+        });
 
         When("user clicks on Edit button on top right side", () -> {
-        	employeeEditMyDetailsPage.clickMyDetailsEdit();
+            employeeEditMyDetailsPage.clickMyDetailsEdit();
         });
-        
+
         When("Edit My Details: Contact Information page should be displayed", () -> {
-         	 assertThat(loginAndHomePage.checkEmpMyDetailsContactInfoPageDisplayed()).isTrue();
-         });
-        
+            loginAndHomePage.checkEmpMyDetailsContactInfoPageDisplayed();
+        });
+
         When("user clicks on Add icon in the Address section", () -> {
-        	employeeEditMyDetailsPage.clickAddressAdd();
+            employeeEditMyDetailsPage.clickAddressAdd();
         });
-        
+
         When("user Enter Details in Address fields", () -> {
-        	employeeEditMyDetailsPage.fillAlternateWorklocationAddress();
+            employeeEditMyDetailsPage.fillAlternateWorklocationAddress();
         });
-        
+
         When("user click on Save and Close button", () -> {
-        	employeeEditMyDetailsPage.clickSaveAndClose();
+            employeeEditMyDetailsPage.clickSaveAndClose();
         });
-        
+
         When("user clicks on Contacts icon on the left panel", () -> {
-        	employeeEditMyDetailsPage.clickContactsIcon();
+            employeeEditMyDetailsPage.clickContactsIcon();
         });
-        
+
         When("Edit My Details: Contacts page should be displayed", () -> {
-        	 assertThat(loginAndHomePage.checkEmpMyDetailsContactPageDisplayed()).isTrue();
+            loginAndHomePage.checkEmpMyDetailsContactPageDisplayed();
         });
-        
+
         When("user clicks on Add icon in the Contacts section", () -> {
-        	employeeEditMyDetailsPage.clickContactsAdd();
+            employeeEditMyDetailsPage.clickContactsAdd();
         });
-        
+
         When("Add Contact dialog box should be displayed", () -> {
-        	 assertThat(employeeEditMyDetailsPage.checkAddContactDialogBoxDisplayed()).isTrue();
+            assertThat(employeeEditMyDetailsPage.checkAddContactDialogBoxDisplayed()).isTrue();
         });
 
         When("user clicks on Select an existing person radiobutton", () -> {
-        	employeeEditMyDetailsPage.clickSelectExistPerson();
+            employeeEditMyDetailsPage.clickSelectExistPerson();
         });
-        
+
         When("user clicks on Continue button", () -> {
-        	employeeEditMyDetailsPage.clickContinueBtn();
+            employeeEditMyDetailsPage.clickContinueBtn();
         });
-        
+
         When("user Select value for Relationship as Contact from dropdown", () -> {
-        	employeeEditMyDetailsPage.selectRelationship();
+            employeeEditMyDetailsPage.selectRelationship();
         });
-        
+
         When("user enter details in Emergency Contact Name", () -> {
-        	employeeEditMyDetailsPage.enterEmergencyContactName();
+            employeeEditMyDetailsPage.enterEmergencyContactName();
         });
-        
+
         When("user select Emergency contact check box", () -> {
-        	employeeEditMyDetailsPage.clickEmergencyContactCheckbox();
+            employeeEditMyDetailsPage.clickEmergencyContactCheckbox();
         });
 
     }

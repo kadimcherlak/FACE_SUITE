@@ -6,7 +6,6 @@ import framework.tests.pages.oracle_fusion_cloud.LoginAndHomePage;
 import framework.tests.pages.oracle_fusion_cloud.NewPersonPage;
 import org.apache.logging.log4j.Logger;
 
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class TalentAcquisitionNewHireSteps implements En {
 
@@ -24,11 +23,13 @@ public class TalentAcquisitionNewHireSteps implements En {
             context.setData(testCaseKey);
             data = context.getData();
             loginAndHomePage = new LoginAndHomePage(context);
+            newPersonPage = new NewPersonPage(context);
+            hireAnEmployee = new HireAnEmployeePage(context);
         });
 
         And("^user is on the oracle fusion login page$", () -> {
             loginAndHomePage.openUrl();
-            assertThat(loginAndHomePage.checkLoginPageAvailable()).isTrue();
+            loginAndHomePage.checkLoginPageAvailable();
         });
 
         And("^user provides credentials for login$", () -> {
@@ -40,15 +41,15 @@ public class TalentAcquisitionNewHireSteps implements En {
         });
 
         Then("^the Oracle Fusion Home Page is displayed", () -> {
-            assertThat(loginAndHomePage.checkHomePageAvailable()).isTrue();
+            loginAndHomePage.checkHomePageAvailable();
         });
 
         Given("user login to Oracle Applications Cloud web page", () -> {
             loginAndHomePage.openUrl();
-            assertThat(loginAndHomePage.checkLoginPageAvailable()).isTrue();
+            loginAndHomePage.checkLoginPageAvailable();
             loginAndHomePage.enterCredentials();
             loginAndHomePage.signIn();
-            assertThat(loginAndHomePage.checkHomePageAvailable()).isTrue();
+            loginAndHomePage.checkHomePageAvailable();
         });
 
         When("user clicks on Navigator icon", () -> {
@@ -60,14 +61,12 @@ public class TalentAcquisitionNewHireSteps implements En {
         });
 
         When("user clicks on Hire an employee on right side of the page under Tasks pane", () -> {
-            newPersonPage = new NewPersonPage(context);
             newPersonPage.clickTaskButton();
             newPersonPage.clickHireAnEmployee();
         });
 
         Then("new Hire an employee screen should be displayed", () -> {
-            hireAnEmployee = new HireAnEmployeePage(context);
-            assertThat(hireAnEmployee.checkHireAnEmployeePageAvailable()).isTrue();
+            hireAnEmployee.checkHireAnEmployeePageAvailable();
         });
 
         When("user enter details in Identification tab", () -> {
@@ -107,7 +106,7 @@ public class TalentAcquisitionNewHireSteps implements En {
         });
 
         Then("Person Management: Search screen should be displayed", () -> {
-            assertThat(hireAnEmployee.checkpersonManagementSearchAvailable()).isTrue();
+            hireAnEmployee.checkpersonManagementSearchAvailable();
         });
 
         Then("user enter the Person number generated from previous step in Person Number field", () -> {
@@ -115,8 +114,7 @@ public class TalentAcquisitionNewHireSteps implements En {
         });
 
         Then("user click on Search button", () -> {
-            assertThat(hireAnEmployee.clickSearch()).isTrue();
-
+            hireAnEmployee.clickSearch();
         });
 
         Then("Employee name should be listed in search results", () -> {
@@ -126,27 +124,27 @@ public class TalentAcquisitionNewHireSteps implements En {
         When("user click on employee name link", () -> {
             hireAnEmployee.empNameLinkClick();
         });
-        
+
         When("user click on employee name link in search results", () -> {
             hireAnEmployee.clickPersonNameLink();
         });
-        
+
         When("user clicks on Edit button and select Update option", () -> {
             hireAnEmployee.clickEditUpdate();
         });
-        
+
         When("Update Employment new window should be displayed", () -> {
-        	 assertThat(hireAnEmployee.checkUpdateEmployementWindowDisplayed()).isTrue();
+            hireAnEmployee.checkUpdateEmployementWindowDisplayed();
         });
-        
+
         When("user enter details in Update Employment Window and click on Ok button", () -> {
             hireAnEmployee.fillUpdateEmpWindow();
         });
-        
+
         When("Global Temporary Assignment page should be displayed", () -> {
             hireAnEmployee.checkGlobalAssignmentPageDisplayed();
         });
-        
+
         When("user navigate to Employment Information page", () -> {
             hireAnEmployee.navigateToEmpInfoPage();
         });
@@ -187,7 +185,6 @@ public class TalentAcquisitionNewHireSteps implements En {
             hireAnEmployee.enteractualAmountAndDate();
         });
 
-
         Then("user click on Submit button", () -> {
             hireAnEmployee.bilingualSubmit();
         });
@@ -208,18 +205,14 @@ public class TalentAcquisitionNewHireSteps implements En {
             hireAnEmployee.clickDoneButton();
         });
 
-
         Then("user click on Sign Out option", () -> {
-            // Write code here that turns the phrase above into concrete actions
             loginAndHomePage.signOut();
         });
 
         Then("Sign out should be successful", () -> {
-            // Write code here that turns the phrase above into concrete actions
             loginAndHomePage.signOutConfirm();
-            assertThat(loginAndHomePage.checkLoginPageAvailable()).isTrue();
+            loginAndHomePage.checkLoginPageAvailable();
         });
 
     }
-
 }

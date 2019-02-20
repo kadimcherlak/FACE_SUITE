@@ -70,9 +70,9 @@ public class BasePage<T> extends WebPage {
     // Click on Submit Button to submit new Hire details
     public void clickSubmitButton() {
         try {
-            waitNormalTime();
             waitFor(ExpectedConditions.elementToBeClickable(submit), 15);
             submit.click();
+            waitShortTime();
         } catch (Exception e) {
             reportWithScreenShot("Error While Submitting new Hire information due to:" + e.getMessage());
         }
@@ -81,9 +81,9 @@ public class BasePage<T> extends WebPage {
     // Click on Submit Button to submit new Hire details
     public void clickOkButton() {
         try {
-            waitNormalTime();
             waitFor(ExpectedConditions.elementToBeClickable(okButton), 15);
             okButton.click();
+            waitShortTime();
         } catch (Exception e) {
             reportWithScreenShot("Error While clicking OK button due to:" + e.getMessage());
         }
@@ -94,7 +94,7 @@ public class BasePage<T> extends WebPage {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(warningBtn), 15);
             warningBtn.click();
-
+            waitShortTime();
         } catch (Exception e) {
             reportWithScreenShot("Error While clicking OK button due to:" + e.getMessage());
         }
@@ -104,6 +104,7 @@ public class BasePage<T> extends WebPage {
     public void clickNextButton() {
         try {
             next.click();
+            waitShortTime();
         } catch (Exception e) {
             reportWithScreenShot("Error While Next Button due to:" + e.getMessage());
         }
@@ -114,8 +115,7 @@ public class BasePage<T> extends WebPage {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(confirmBtn), 15);
             confirmBtn.click();
-            Thread.sleep(3000);
-
+            waitShortTime();
         } catch (Exception e) {
             reportWithScreenShot("Submission not successful due to:" + e.getMessage());
         }
@@ -126,6 +126,7 @@ public class BasePage<T> extends WebPage {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(createBtn), 15);
             createBtn.click();
+            waitShortTime();
         } catch (Exception e) {
             reportWithScreenShot("Error While user click on Create button:" + e.getMessage());
         }

@@ -81,19 +81,19 @@ public class Data extends framework.core.models.Data {
     public String getAddressLine2() {
         return addressLine2;
     }
-    
+
     public String getAltWorkLocationaddressType() {
         return altWorkLocationaddressType;
     }
-    
+
     public String getAltWorkLocationcountry() {
         return altWorkLocationcountry;
     }
-    
+
     public String getAltWorkLocationaddressLine1() {
         return altWorkLocationaddressLine1;
     }
-    
+
     public String getAltWorkLocationzipCode() {
         return altWorkLocationzipCode;
     }
@@ -115,14 +115,14 @@ public class Data extends framework.core.models.Data {
     }
 
     public String getContactsEmergencyContactName() {
-    	return contactsEmergencyContactName;
+        return contactsEmergencyContactName;
     }
-    
+
     public String getContactsRelationship() {
         return contactsRelationship;
     }
 
-    
+
     public String getCompanyEntity() {
         return companyEntity;
     }
@@ -150,12 +150,10 @@ public class Data extends framework.core.models.Data {
     public String getDepartment() {
         return department;
     }
-    
-    
+
     public String getDestinationLegalEmployer() {
         return destinationLegalEmployer;
     }
-    
 
     public String geteffectiveAsOfDate() {
         return effectiveAsOfDate;
@@ -199,11 +197,11 @@ public class Data extends framework.core.models.Data {
     public String getEmploymentAction() {
         return employmentAction;
     }
-    
+
     public String getEmploymentActionReason() {
         return employmentActionReason;
     }
-    
+
     public String employeeManagerChange() {
         return employeeManagerChange;
     }
@@ -219,11 +217,11 @@ public class Data extends framework.core.models.Data {
     public String getGender() {
         return gender;
     }
-    
+
     public String getGlobalMobilityIndicator() {
         return globalMobilityIndicator;
     }
-    
+
     public String getGrade() {
         return grade;
     }
@@ -258,8 +256,7 @@ public class Data extends framework.core.models.Data {
             int randomLimitedInt = leftLimit + (int) (random.nextFloat() * (rightLimit - leftLimit + 1));
             buffer.append((char) randomLimitedInt);
         }
-        String lastName = "LAUTO" + buffer.toString().toUpperCase();
-        return lastName;
+        return "LAUTO" + buffer.toString().toUpperCase();
     }
 
     public String getLegalEmployer() {
@@ -281,12 +278,11 @@ public class Data extends framework.core.models.Data {
     public String getNationalID() {
         Random rnd = new Random();
         String ssn_temp = String.format("%09d", rnd.nextInt(1000000000));
-        while (ssn_temp.startsWith("9") || ssn_temp.startsWith("000") || ssn_temp.startsWith("666") )
-        {
-        	ssn_temp = String.format("%09d", rnd.nextInt(1000000000));
+        while (ssn_temp.startsWith("9") || ssn_temp.startsWith("000") || ssn_temp.startsWith("666")) {
+            ssn_temp = String.format("%09d", rnd.nextInt(1000000000));
         }
-        String nationalID = ssn_temp.replaceFirst("(\\d{3})(\\d{2})(\\d+)", "$1-$2-$3");
-        return nationalID;    }
+        return ssn_temp.replaceFirst("(\\d{3})(\\d{2})(\\d+)", "$1-$2-$3");
+    }
 
     public String getNationalIDType() {
         return nationalIDType;

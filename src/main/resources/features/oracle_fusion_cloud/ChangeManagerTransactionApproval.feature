@@ -1,9 +1,8 @@
-@Manager_Change
+@MANAGER_CHANGE
 Feature: Change Manager Transaction and Approval
 
-  @Line_manager_performs_change_manager
+  @LINE_MANAGER_PERFORMS_CHANGE_MANAGER
   Scenario Outline: As an Line Manager, i should be able to Perform Change Manager transaction for my direct reportees
-
     Given user runs <Test Scenario>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -24,10 +23,9 @@ Feature: Change Manager Transaction and Approval
     Examples:
       | Test Scenario  |
       | Change Manager |
-      
- 
-  @Line_manager1_approves_change_manager_request
-Scenario Outline: As an Line Manager 1, i should be able to approves request of employee's manager change
+
+  @LINE_MANAGER1_APPROVES_CHANGE_MANAGER_REQUEST
+  Scenario Outline: As an Line Manager 1, i should be able to approves request of employee's manager change
     Given user runs <Test Scenario>
     And user login to Oracle Applications Cloud web page
     When user clicks on Notifications bell icon
@@ -41,5 +39,3 @@ Scenario Outline: As an Line Manager 1, i should be able to approves request of 
     Examples:
       | Test Scenario  |
       | Change Manager |
-
- 

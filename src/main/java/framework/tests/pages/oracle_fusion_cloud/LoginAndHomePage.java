@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
 
     Context context;
@@ -37,18 +39,18 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
 
     @FindBy(linkText = "New Person")
     private WebElement newPerson;
-    
+
     @FindBy(linkText = "Personal Information")
-    private WebElement PersonalInfoMyDetailsPage;
-    
+    private WebElement personalInfoMyDetailsPage;
+
     @FindBy(xpath = "(//div[@title='My Details'])[2]")
-    private WebElement empMyDetails; 
-    
+    private WebElement empMyDetails;
+
     @FindBy(xpath = "(//div[@title='Edit My Details: Contact Information'])[1]")
-    private WebElement empMyDetailsContactInfo;  
-    
+    private WebElement empMyDetailsContactInfo;
+
     @FindBy(xpath = "(//div[@title='Edit My Details: Contacts'])[1]")
-    private WebElement empMyDetailsContactPage;  
+    private WebElement empMyDetailsContactPage;
 
     @FindBy(linkText = "Person Management")
     private WebElement personManagement;
@@ -72,16 +74,23 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             driver.get(context.getEnvironment().getWebUrl());
             waitUntilPageLoad();
             reportWithScreenShot("Go to :" + context.getEnvironment().getWebUrl());
+            assertThat(userId.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Failed while trying to open Url: " + context.getEnvironment().getWebUrl()
                     + " due to :" + e.getMessage());
+            assertThat(false).isTrue();
         }
     }
 
     // Login Page check available
-    public boolean checkLoginPageAvailable() {
-        waitFor(ExpectedConditions.elementToBeClickable(signIn), 15);
-        return signIn.isDisplayed();
+    public void checkLoginPageAvailable() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(signIn), 15);
+            assertThat(signIn.isDisplayed()).isTrue();
+        } catch (Exception e) {
+            reportWithScreenShot("Login Page not available due to :" + e.getMessage());
+            assertThat(false).isTrue();
+        }
     }
 
     // Login Page enter credentials
@@ -89,27 +98,36 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
         try {
             userId.sendKeys(data.getUserName());
             password.sendKeys(data.getPassword());
+            assertThat(userId.isDisplayed()).isTrue();
+            assertThat(password.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Failed to pass username:" + data.getUserName() + " or Password:" + data.getPassword()
                     + " due to :" + e.getMessage());
+            assertThat(false).isTrue();
         }
     }
 
     // Login Page perform SignIn
     public void signIn() {
-        signIn.click();
+        try {
+            assertThat(signIn.isDisplayed()).isTrue();
+            signIn.click();
+        } catch (Exception e) {
+            reportWithScreenShot("Failed to click SignIn button due to: " + e.getMessage());
+            assertThat(false).isTrue();
+        }
     }
 
     // Home Page Related Methods
     // Home Page check available
-    public boolean checkHomePageAvailable() {
+    public void checkHomePageAvailable() {
         try {
             waitUntilPageLoad();
+            assertThat(userName.isDisplayed()).isTrue();
             reportWithScreenShot("Checking if Home Page is Displayed");
-            return userName.isDisplayed();
         } catch (Exception e) {
             reportWithScreenShot("Hope Page not Displayed");
-            return false;
+            assertThat(false).isTrue();
         }
     }
 
@@ -118,9 +136,11 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     public void navigatorScreen() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(navigatorOpen), 5);
+            assertThat(navigatorOpen.isDisplayed()).isTrue();
             navigatorOpen.click();
         } catch (Exception e) {
             reportWithScreenShot("Unable to open Navigator Screen");
+            assertThat(false).isTrue();
         }
     }
 
@@ -128,58 +148,61 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     public void navigatorScreenNewPersonSelect() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(newPerson), 5);
+            assertThat(newPerson.isDisplayed()).isTrue();
             newPerson.click();
             waitUntilPageLoad();
         } catch (Exception e) {
             reportWithScreenShot("Unable to open New Person on Navigator Screen due to:" + e.getMessage());
+            assertThat(false).isTrue();
         }
     }
-    
+
     // open Personal Info My Details Page 
     public void navigateToPersonalInfoMyDetailspage() {
         try {
-            waitFor(ExpectedConditions.elementToBeClickable(PersonalInfoMyDetailsPage), 5);
-            PersonalInfoMyDetailsPage.click();
+            waitFor(ExpectedConditions.elementToBeClickable(personalInfoMyDetailsPage), 5);
+            assertThat(personalInfoMyDetailsPage.isDisplayed()).isTrue();
+            personalInfoMyDetailsPage.click();
             waitUntilPageLoad();
         } catch (Exception e) {
             reportWithScreenShot("Unable to open Personal Info My Details Page due to:" + e.getMessage());
+            assertThat(false).isTrue();
         }
     }
-    
-    public boolean checkEmpMyDetailsPageDisplayed() {
+
+    public void checkEmpMyDetailsPageDisplayed() {
         try {
             waitUntilPageLoad();
+            assertThat(empMyDetails.isDisplayed()).isTrue();
             reportWithScreenShot("Checking if My Details Page is Displayed");
-            return empMyDetails.isDisplayed();
         } catch (Exception e) {
             reportWithScreenShot("My Details Page is not Displayed");
-            return false;
+            assertThat(false).isTrue();
         }
     }
-    
-    public boolean checkEmpMyDetailsContactInfoPageDisplayed() {
+
+    public void checkEmpMyDetailsContactInfoPageDisplayed() {
         try {
             waitUntilPageLoad();
+            assertThat(empMyDetailsContactInfo.isDisplayed()).isTrue();
             reportWithScreenShot("Checking if My Details Contact Info Page is Displayed");
-            return empMyDetailsContactInfo.isDisplayed();
         } catch (Exception e) {
             reportWithScreenShot("My Details Contact Info Page is not Displayed");
-            return false;
+            assertThat(false).isTrue();
         }
     }
-    
-    public boolean checkEmpMyDetailsContactPageDisplayed() {
+
+    public void checkEmpMyDetailsContactPageDisplayed() {
         try {
             waitUntilPageLoad();
+            assertThat(empMyDetailsContactPage.isDisplayed()).isTrue();
             reportWithScreenShot("Checking if My Details Contact Page is Displayed");
-            return empMyDetailsContactPage.isDisplayed();
         } catch (Exception e) {
             reportWithScreenShot("My Details Contact Page is not Displayed");
-            return false;
+            assertThat(false).isTrue();
         }
     }
-    
-    
+
 
     // Person Management selection in Navigator Screen
     public void navigatorPersonManagement() {
@@ -187,43 +210,48 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             waitFor(ExpectedConditions.elementToBeClickable(personManagement), 5);
             personManagement.click();
             waitUntilPageLoad();
+            assertThat(personManagement.isDisplayed()).isTrue();
             reportWithScreenShot("search screen");
         } catch (Exception e) {
             reportWithScreenShot("Unable to open Person Management on Navigator Screen due to:" + e.getMessage());
+            assertThat(false).isTrue();
         }
     }
 
-// // Search for Person created in Person Management Screen
-//    public void searchPerson() {
-//        try {
-//            waitFor(ExpectedConditions.elementToBeClickable(personManagement), 5);
-//            personManagement.click();
-//            waitUntilPageLoad();
-//        } catch (Exception e) {
-//            reportWithScreenShot("Unable to open Person Management on Navigator Screen due to:" + e.getMessage());
-//        }
-//    }
-//    
+    /*// Search for Person created in Person Management Screen
+    public void searchPerson() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(personManagement), 5);
+            personManagement.click();
+            waitUntilPageLoad();
+        } catch (Exception e) {
+            reportWithScreenShot("Unable to open Person Management on Navigator Screen due to:" + e.getMessage());
+        }
+    }*/
+
 
     // Signout perform SignOut
     public void signOut() {
         try {
             dropDownButtonForSignOut.click();
             waitFor(ExpectedConditions.elementToBeClickable(signOut), 5);
+            assertThat(signOut.isDisplayed()).isTrue();
             signOut.click();
         } catch (Exception e) {
             reportWithScreenShot("Unable to Signout due to :" + e.getMessage());
+            assertThat(false).isTrue();
         }
-
     }
 
     // Signout Confirm
     public void signOutConfirm() {
         try {
+            assertThat(signOutConfirm.isDisplayed()).isTrue();
             signOutConfirm.click();
             reportWithScreenShot("Checking if Login Page is Displayed");
         } catch (Exception e) {
             reportWithScreenShot("Login Page not Displayed due to:" + e.getMessage());
+            assertThat(false).isTrue();
         }
     }
 }
