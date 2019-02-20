@@ -364,8 +364,8 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             nationalId.sendKeys(data.getNationalID());
 
             // Goto next tab
-            clickNextButton(); // Next Button to go to next page
             reportWithScreenShot("Summary of Identification tab");
+            clickNextButton(); // Next Button to go to next page
             waitUntilPageLoad(); // wait until next tab loads
 
             //check if person information tab loaded
