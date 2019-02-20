@@ -11,8 +11,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
 
-    Context context;
-    Data data;
+    private Context context;
+    private Data data;
 
     // Login Page Elements
     @FindBy(id = "userid")
@@ -78,7 +78,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
         } catch (Exception e) {
             reportWithScreenShot("Failed while trying to open Url: " + context.getEnvironment().getWebUrl()
                     + " due to :" + e.getMessage());
-            assertThat(false).isTrue();
+            assertThat(userId.isDisplayed()).isTrue();
         }
     }
 
@@ -89,7 +89,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             assertThat(signIn.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Login Page not available due to :" + e.getMessage());
-            assertThat(false).isTrue();
+            assertThat(signIn.isDisplayed()).isTrue();
         }
     }
 
@@ -103,7 +103,8 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
         } catch (Exception e) {
             reportWithScreenShot("Failed to pass username:" + data.getUserName() + " or Password:" + data.getPassword()
                     + " due to :" + e.getMessage());
-            assertThat(false).isTrue();
+            assertThat(userId.isDisplayed()).isTrue();
+            assertThat(password.isDisplayed()).isTrue();
         }
     }
 
@@ -114,7 +115,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             signIn.click();
         } catch (Exception e) {
             reportWithScreenShot("Failed to click SignIn button due to: " + e.getMessage());
-            assertThat(false).isTrue();
+            assertThat(signIn.isDisplayed()).isTrue();
         }
     }
 
@@ -127,7 +128,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             reportWithScreenShot("Checking if Home Page is Displayed");
         } catch (Exception e) {
             reportWithScreenShot("Hope Page not Displayed");
-            assertThat(false).isTrue();
+            assertThat(userName.isDisplayed()).isTrue();
         }
     }
 
@@ -140,7 +141,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             navigatorOpen.click();
         } catch (Exception e) {
             reportWithScreenShot("Unable to open Navigator Screen");
-            assertThat(false).isTrue();
+            assertThat(navigatorOpen.isDisplayed()).isTrue();
         }
     }
 
@@ -153,7 +154,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             waitUntilPageLoad();
         } catch (Exception e) {
             reportWithScreenShot("Unable to open New Person on Navigator Screen due to:" + e.getMessage());
-            assertThat(false).isTrue();
+            assertThat(newPerson.isDisplayed()).isTrue();
         }
     }
 
@@ -166,7 +167,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             waitUntilPageLoad();
         } catch (Exception e) {
             reportWithScreenShot("Unable to open Personal Info My Details Page due to:" + e.getMessage());
-            assertThat(false).isTrue();
+            assertThat(personalInfoMyDetailsPage.isDisplayed()).isTrue();
         }
     }
 
@@ -177,7 +178,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             reportWithScreenShot("Checking if My Details Page is Displayed");
         } catch (Exception e) {
             reportWithScreenShot("My Details Page is not Displayed");
-            assertThat(false).isTrue();
+            assertThat(empMyDetails.isDisplayed()).isTrue();
         }
     }
 
@@ -188,7 +189,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             reportWithScreenShot("Checking if My Details Contact Info Page is Displayed");
         } catch (Exception e) {
             reportWithScreenShot("My Details Contact Info Page is not Displayed");
-            assertThat(false).isTrue();
+            assertThat(empMyDetailsContactInfo.isDisplayed()).isTrue();
         }
     }
 
@@ -199,7 +200,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             reportWithScreenShot("Checking if My Details Contact Page is Displayed");
         } catch (Exception e) {
             reportWithScreenShot("My Details Contact Page is not Displayed");
-            assertThat(false).isTrue();
+            assertThat(empMyDetailsContactPage.isDisplayed()).isTrue();
         }
     }
 
@@ -207,28 +208,16 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     // Person Management selection in Navigator Screen
     public void navigatorPersonManagement() {
         try {
-            waitFor(ExpectedConditions.elementToBeClickable(personManagement), 5);
+            waitFor(ExpectedConditions.elementToBeClickable(personManagement), 15);
+            assertThat(personManagement.isDisplayed()).isTrue();
             personManagement.click();
             waitUntilPageLoad();
-            assertThat(personManagement.isDisplayed()).isTrue();
             reportWithScreenShot("search screen");
         } catch (Exception e) {
             reportWithScreenShot("Unable to open Person Management on Navigator Screen due to:" + e.getMessage());
-            assertThat(false).isTrue();
+            assertThat(personManagement.isDisplayed()).isTrue();
         }
     }
-
-    /*// Search for Person created in Person Management Screen
-    public void searchPerson() {
-        try {
-            waitFor(ExpectedConditions.elementToBeClickable(personManagement), 5);
-            personManagement.click();
-            waitUntilPageLoad();
-        } catch (Exception e) {
-            reportWithScreenShot("Unable to open Person Management on Navigator Screen due to:" + e.getMessage());
-        }
-    }*/
-
 
     // Signout perform SignOut
     public void signOut() {
@@ -239,7 +228,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             signOut.click();
         } catch (Exception e) {
             reportWithScreenShot("Unable to Signout due to :" + e.getMessage());
-            assertThat(false).isTrue();
+            assertThat(signOut.isDisplayed()).isTrue();
         }
     }
 
@@ -251,7 +240,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             reportWithScreenShot("Checking if Login Page is Displayed");
         } catch (Exception e) {
             reportWithScreenShot("Login Page not Displayed due to:" + e.getMessage());
-            assertThat(false).isTrue();
+            assertThat(signOutConfirm.isDisplayed()).isTrue();
         }
     }
 }
