@@ -38,7 +38,7 @@ Feature: Set up a New Hire
       #| Test Scenario      |
       #| New Hire Scenario1 |
 
- @BILINGUALINDICATOR
+  @BILINGUALINDICATOR
   Scenario Outline: : As an PPS Tier2 Recruitment and Onboarding Administration User Role, i should be able to Hire a Employee with a bilingual indicator
     Given user runs <Test Scenario>
     And user login to Oracle Applications Cloud web page
@@ -116,7 +116,7 @@ Feature: Set up a New Hire
       #| Test Scenario      |
       #| New Hire Scenario1 |
 #
- @UPDATE_PERSONAL_ASSIGNMENT_DATA
+  @UPDATE_PERSONAL_ASSIGNMENT_DATA
   Scenario Outline: : As an PPS Tier 2 Workforce and Assignment Administrator, i should able to edit personal and assignment data, filling the Global Mobility Indicator and free text fields, to create Global Temporary Assignment and perform Global Transfer
     Given user runs <Test Scenario>
     And user login to Oracle Applications Cloud web page

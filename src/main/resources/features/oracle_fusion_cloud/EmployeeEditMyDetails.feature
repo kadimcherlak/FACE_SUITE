@@ -1,5 +1,5 @@
 @Employee_Edit_Details
-Feature: Perform edit on Address,Contact Type,Personal Payment Method and disability Information 
+Feature: Perform edit on Address,Contact Type,Personal Payment Method and disability Information
 
   @NewAddress_alternative_work_location
   Scenario Outline:  As an Employee, i should be able to add a New Address to indicate an alternative work location
@@ -10,7 +10,7 @@ Feature: Perform edit on Address,Contact Type,Personal Payment Method and disabi
     Then My Details page should be displayed
     When user clicks on Edit button on top right side
     Then Edit My Details: Contact Information page should be displayed
-    When user clicks on Add icon in the Address section 
+    When user clicks on Add icon in the Address section
     And user Enter Details in Address fields
     And user click on Save and Close button
     Then My Details page should be displayed
@@ -22,7 +22,7 @@ Feature: Perform edit on Address,Contact Type,Personal Payment Method and disabi
       | Test Scenario      |
       | New Hire Scenario1 |
 
- @Add_Emergency_Contact_details
+  @Add_Emergency_Contact_details
   Scenario Outline:  As an Employee, i should be able to select a contact type from Emergency Contact list and add details
     Given user runs <Test Scenario>
     And user login to Oracle Applications Cloud web page
@@ -33,7 +33,7 @@ Feature: Perform edit on Address,Contact Type,Personal Payment Method and disabi
     Then Edit My Details: Contact Information page should be displayed
     When user clicks on Contacts icon on the left panel
     Then Edit My Details: Contacts page should be displayed
-    When user clicks on Add icon in the Contacts section 
+    When user clicks on Add icon in the Contacts section
     Then Add Contact dialog box should be displayed
     And user clicks on Select an existing person radiobutton
     And user clicks on Continue button
@@ -45,9 +45,9 @@ Feature: Perform edit on Address,Contact Type,Personal Payment Method and disabi
     When user click on Sign Out option
     Then Sign out should be successful
 
-   Examples:
-     | Test Scenario      |
-     | New Hire Scenario1 |
+    Examples:
+      | Test Scenario      |
+      | New Hire Scenario1 |
 #@Update_Personal_Payment_Method_Expenses_only
   #Scenario Outline:  As an Employee, i should be able to update Personal Payment Method (Expenses only) details
     #Given user runs <Test Scenario>

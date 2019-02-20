@@ -126,27 +126,27 @@ public class TalentAcquisitionNewHireSteps implements En {
         When("user click on employee name link", () -> {
             hireAnEmployee.empNameLinkClick();
         });
-        
+
         When("user click on employee name link in search results", () -> {
             hireAnEmployee.clickPersonNameLink();
         });
-        
+
         When("user clicks on Edit button and select Update option", () -> {
             hireAnEmployee.clickEditUpdate();
         });
-        
+
         When("Update Employment new window should be displayed", () -> {
-        	 assertThat(hireAnEmployee.checkUpdateEmployementWindowDisplayed()).isTrue();
+            assertThat(hireAnEmployee.checkUpdateEmployementWindowDisplayed()).isTrue();
         });
-        
+
         When("user enter details in Update Employment Window and click on Ok button", () -> {
             hireAnEmployee.fillUpdateEmpWindow();
         });
-        
+
         When("Global Temporary Assignment page should be displayed", () -> {
             hireAnEmployee.checkGlobalAssignmentPageDisplayed();
         });
-        
+
         When("user navigate to Employment Information page", () -> {
             hireAnEmployee.navigateToEmpInfoPage();
         });

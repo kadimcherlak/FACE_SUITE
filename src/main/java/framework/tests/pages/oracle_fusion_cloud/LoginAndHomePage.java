@@ -37,18 +37,18 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
 
     @FindBy(linkText = "New Person")
     private WebElement newPerson;
-    
+
     @FindBy(linkText = "Personal Information")
     private WebElement PersonalInfoMyDetailsPage;
-    
+
     @FindBy(xpath = "(//div[@title='My Details'])[2]")
-    private WebElement empMyDetails; 
-    
+    private WebElement empMyDetails;
+
     @FindBy(xpath = "(//div[@title='Edit My Details: Contact Information'])[1]")
-    private WebElement empMyDetailsContactInfo;  
-    
+    private WebElement empMyDetailsContactInfo;
+
     @FindBy(xpath = "(//div[@title='Edit My Details: Contacts'])[1]")
-    private WebElement empMyDetailsContactPage;  
+    private WebElement empMyDetailsContactPage;
 
     @FindBy(linkText = "Person Management")
     private WebElement personManagement;
@@ -134,7 +134,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             reportWithScreenShot("Unable to open New Person on Navigator Screen due to:" + e.getMessage());
         }
     }
-    
+
     // open Personal Info My Details Page 
     public void navigateToPersonalInfoMyDetailspage() {
         try {
@@ -145,7 +145,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             reportWithScreenShot("Unable to open Personal Info My Details Page due to:" + e.getMessage());
         }
     }
-    
+
     public boolean checkEmpMyDetailsPageDisplayed() {
         try {
             waitUntilPageLoad();
@@ -156,7 +156,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             return false;
         }
     }
-    
+
     public boolean checkEmpMyDetailsContactInfoPageDisplayed() {
         try {
             waitUntilPageLoad();
@@ -167,7 +167,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             return false;
         }
     }
-    
+
     public boolean checkEmpMyDetailsContactPageDisplayed() {
         try {
             waitUntilPageLoad();
@@ -178,8 +178,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             return false;
         }
     }
-    
-    
+
 
     // Person Management selection in Navigator Screen
     public void navigatorPersonManagement() {
