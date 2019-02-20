@@ -41,9 +41,9 @@ public class NewPersonPage extends BasePage<NewPersonPage> {
 
     public void clickHireAnEmployee() {
         try {
-            reportWithScreenShot("Select Hire An Employee");
             waitFor(ExpectedConditions.elementToBeClickable(hireAndEmployee), 5);
             hireAndEmployee.click();
+            reportWithScreenShot("Select Hire An Employee");
         } catch (Exception e) {
             reportWithScreenShot("Failed to open Task pane due to :" + e.getMessage());
         }

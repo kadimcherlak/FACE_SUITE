@@ -3,8 +3,6 @@ New Hire Scenario1:
   addressLine2: 'Suite 436'
   actualAmount: '150'
   assignmentCategory: 'Full-time regular'
-  elementName: 'Bilingual Indicator'
-  elementNameADP: 'ADP Auto & Home'
   businessUnit: 'Finance'
   city: 'Irving'
   companyEntity: '510'
@@ -15,11 +13,12 @@ New Hire Scenario1:
   dateOfBirth: '12-Apr-1988'
   department: 'Finance Internal Audit - EMEA'
   destinationLegalEmployer: 'Pearson Inc'
+  elementName: 'Bilingual Indicator'
+  elementNameADP: 'ADP Auto & Home'
   email: 'uatnewhire67@abc.com'
   employmentAction: 'Global Temporary Assignment'
   employmentActionReason: 'GM Temporary Relocation'
   effectiveAsOfDate: '13-Feb-2019'
-  payCheckDate: '13-Feb-2019'
   erProfitCenter: '31'
   firstName: ''  # Kept blank as Randomly Generated as part of the execution
   gender: 'Male'
@@ -39,8 +38,9 @@ New Hire Scenario1:
   newlySeparatedVeteranDischargeDate: '12-Apr-2017'
   number: 2717522
   password: 'Welcome123'
-  payroll: 'Bi-Weekly Exempt'
   pearsonEmailRequired: 'Yes'
+  payroll: 'Bi-Weekly Exempt'
+  payCheckDate: '13-Feb-2019'
   salaryAmount: 21208.59
   salaryBasis: 'US Annual Salary'
   state: 'TX'
