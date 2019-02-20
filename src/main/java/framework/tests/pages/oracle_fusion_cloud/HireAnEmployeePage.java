@@ -17,6 +17,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     private Context context;
     private Data data;
     private Actions actions;
+    private int elementsize;
 
     // Hire An Employee Page Elements
     @FindBy(xpath = "//*[text()='Hire an Employee: Identification']")
@@ -160,17 +161,14 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//button[text()='Search']")
     private WebElement searchBtn;
 
-    @FindBy(xpath = "(//span[@class='x2qb'])[2]")
-    private WebElement personListed;
-
     @FindBy(xpath = "//img[@title='Actions']")
     private WebElement actionsBtn;
 
     @FindBy(xpath = "(//td[text()='Payroll'])[2]")
+    //This locator is only available option to select, no other locator style exist
     private WebElement payrollOption;
 
-    //@TODO - Locator to be fixed
-    @FindBy(xpath = "/html/body/div[1]/form/div[2]/div[2]/div[2]/div/div/table/tbody/tr/td/table/tbody/tr[2]/td/div/table/tbody/tr[2]/td[2]")
+    @FindBy(xpath = "(//td[@class='xmz'][contains(.,'Manage Element Entries')])[2]")
     private WebElement manageElementEntries;
 
     @FindBy(xpath = "(//*[text()='Manage Element Entries'])[1]")
@@ -277,9 +275,8 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             assertThat(hireAnEmployeePageCheck.isDisplayed()).isTrue();
             reportWithScreenShot("Checking if Hire An Employee Page is Displayed");
         } catch (Exception e) {
-            assertThat(hireAnEmployeePageCheck.isDisplayed()).isTrue();
             reportWithScreenShot("Hire An Employee Page not Displayed due to: " + e.getMessage());
-
+            assertThat(hireAnEmployeePageCheck.isDisplayed()).isTrue();
         }
     }
 
@@ -364,6 +361,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             nationalId.sendKeys(data.getNationalID());
 
             // Goto next tab
+            scrollToPageTop(driver);
             reportWithScreenShot("Summary of Identification tab");
             clickNextButton(); // Next Button to go to next page
             waitUntilPageLoad(); // wait until next tab loads
@@ -432,8 +430,9 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
             // Goto next tab
             waitNormalTime();
-            clickNextButton(); // Next Button to go to next page
+            scrollToPageTop(driver);
             reportWithScreenShot("Summary of Person Information tab");
+            clickNextButton(); // Next Button to go to next page
             waitUntilPageLoad(); // wait until next tab loads
 
 
@@ -518,8 +517,9 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitShortTime();
 
             // Goto next tab
-            clickNextButton(); // Next Button to go to next page
+            scrollToPageTop(driver);
             reportWithScreenShot("Summary of Employment Information tab");
+            clickNextButton(); // Next Button to go to next page
             waitUntilPageLoad(); // wait until next tab loads
 
             // Check if next page loaded
@@ -551,10 +551,10 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitShortTime();
 
             // Goto Next tab
-            clickNextButton(); // Next Button to go to next page
+            scrollToPageTop(driver);
             reportWithScreenShot("Summary of Compensation and Other Information Tab");
+            clickNextButton(); // Next Button to go to next page
             waitUntilPageLoad(); // wait until next tab loads
-
 
             // Check if next page loaded
             waitFor(ExpectedConditions.visibilityOf(reviewTab),15);
@@ -579,7 +579,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     }
 
     // Person Management Search check available
-    public void checkpersonManagementSearchAvailable() {
+    public void checkPersonManagementSearchAvailable() {
         try {
             reportWithScreenShot("Checking if Person Management Search screen is Displayed");
             waitFor(ExpectedConditions.visibilityOf(personManagementSearch), 15);
@@ -593,7 +593,6 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     // Enter Value into Person Management: Search screen
     public void searchPerson() {
         try {
-
             // Enter person number into keywords
             waitFor(ExpectedConditions.elementToBeClickable(keywords), 15);
             keywords.sendKeys(data.getPersonNumber());
@@ -615,45 +614,37 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             searchBtn.click(); // Click Search Button
 
             // Check for Employee for max 60 seconds
-            int elementsize = driver
-                    .findElements(By.xpath("//td//span[text()='" + data.getPersonNumber() + "']")).size();
+            elementsize = driver
+                    .findElements(By.xpath("//span[text()='" + data.getPersonNumber() + "']")).size();
             int counter = 0;
-            while (elementsize == 0 && counter <= 60) {
+            while (elementsize == 0 && counter <= 20) {
                 elementsize = driver
-                        .findElements(By.xpath("//td//span[text()='" + data.getPersonNumber() + "']")).size();
+                        .findElements(By.xpath("//span[text()='" + data.getPersonNumber() + "']")).size();
                 searchBtn.click();
+                waitShortTime();
                 counter++;
             }
-            if (elementsize == 0 && counter > 60) {
-                throw new Exception("Person number not found");
+
+            // Throw Exception if Person name now found after 60 seconds
+            if (elementsize == 0) {
+                throw new Exception("Person number not found after 60 seconds");
             }
 
-            reportWithScreenShot("Search Results of person Number");
-            assertThat(true).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Error While checking search results of employee:" + e.getMessage());
-            assertThat(false).isTrue();
+            assertThat(elementsize != 0).isTrue();
         }
     }
 
 
     // Validate if search result displays right person details
     public void validateSearchResult() {
-        try {
-
-            // Verify if person number searched matched the record displayed
-            int elementsize = driver
-                    .findElements(By.xpath("//td//span[text()='" + data.getPersonNumber() + "']")).size();
-            if (elementsize == 1) {
-                reportWithScreenShot("Search Results of person Number");
-            }
-        } catch (Exception e) {
-            reportWithScreenShot("Error in person displayed from search:" + e.getMessage());
-        }
+        // Report Person number with screenshot (as this methods is always True)
+        reportWithScreenShot("Search Results of person Number");
     }
 
     // User click on actions button
-    public void empNameLinkClick() {
+    public void clickActionButton() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(actionsBtn), 15);
             actionsBtn.click();
@@ -760,19 +751,29 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
         }
     }
 
+    // Click on Payroll Options under Actions
+    public void clickPayrollOption() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(payrollOption), 15);
+            assertThat(payrollOption.isDisplayed()).isTrue();
+            payrollOption.click();
+        } catch (Exception e) {
+            reportWithScreenShot("Error While selecting Payroll options:" + e.getMessage());
+            assertThat(payrollOption.isDisplayed()).isTrue();
+        }
+    }
+
     // User click on Manage Element Entries
     public void manageElementEntriesClick() {
         try {
-
-            waitFor(ExpectedConditions.elementToBeClickable(payrollOption), 15);
-            payrollOption.click();
-
             waitFor(ExpectedConditions.elementToBeClickable(manageElementEntries), 15);
+            assertThat(manageElementEntries.isDisplayed()).isTrue();
             manageElementEntries.click();
 
             reportWithScreenShot("Search Results of person Number");
         } catch (Exception e) {
             reportWithScreenShot("Error While checking values in Review Tab due to:" + e.getMessage());
+            assertThat(manageElementEntries.isDisplayed()).isTrue();
         }
     }
 
@@ -791,7 +792,6 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     // User Enter Element Name details as BILINGUAL
     public void fillElementEntryInfo() {
         try {
-
             // Enter Business Unit
             waitFor(ExpectedConditions.elementToBeClickable(elementName), 15);
             elementName.sendKeys(data.getElementName());

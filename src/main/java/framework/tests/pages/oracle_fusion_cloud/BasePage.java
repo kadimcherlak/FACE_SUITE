@@ -49,7 +49,7 @@ public class BasePage<T> extends WebPage {
 
     public void waitUntilPageLoad() {
         try {
-            new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) wd ->
+            new WebDriverWait(driver, 20).until((ExpectedCondition<Boolean>) wd ->
                     ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         } catch (Exception e) {
             logger.error("Exception:waitUntilPageLoad = Error running JavascriptExecutor - {}", e.getMessage());
@@ -131,4 +131,5 @@ public class BasePage<T> extends WebPage {
             reportWithScreenShot("Error While user click on Create button:" + e.getMessage());
         }
     }
+
 }

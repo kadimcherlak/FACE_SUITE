@@ -10,6 +10,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPage> {
 
     Context context;
@@ -167,14 +169,14 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     }
 
     // User checks if My Details Contact Page is displayed
-    public boolean checkAddContactDialogBoxDisplayed() {
+    public void checkAddContactDialogBoxDisplayed() {
         try {
             waitUntilPageLoad();
             reportWithScreenShot("Checking if My Details Contact Page is Displayed");
-            return addContactDialog.isDisplayed();
+            assertThat(addContactDialog.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("My Details Contact Page is not Displayed");
-            return false;
+            assertThat(addContactDialog.isDisplayed()).isTrue();
         }
     }
 

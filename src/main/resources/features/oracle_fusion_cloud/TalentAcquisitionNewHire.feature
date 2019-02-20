@@ -1,7 +1,7 @@
 @TALENT_ACQUISITION
-Feature: Set up a New Hire
+Feature: New Hire and Related Activities
 
-  @LOGIN_LOGOUT_TEST
+  @LOGIN_LOGOUT
   Scenario Outline: Perform Login to Oracle Fusion Cloud
     Given user runs <Test Scenario>
     And user is on the oracle fusion login page
@@ -60,7 +60,7 @@ Feature: Set up a New Hire
     And user enter the Person number generated from previous step in Person Number field
     And user click on Search button
     Then Employee name should be listed in search results
-    When user click on employee name link
+    When user click on Action Button
     And user clicks on Manage Element Entries link under Payroll section on right side of the page under Tasks pane
     Then manage element entries screen should be displayed
     And user clicks on Add button

@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 public class NewPersonPage extends BasePage<NewPersonPage> {
 
     Context context;
@@ -33,19 +35,24 @@ public class NewPersonPage extends BasePage<NewPersonPage> {
     public void clickTaskButton() {
         try {
             waitUntilPageLoad();
+            assertThat(taskButton.isDisplayed()).isTrue();
             taskButton.click();
         } catch (Exception e) {
             reportWithScreenShot("Failed to open Task pane due to :" + e.getMessage());
+            assertThat(taskButton.isDisplayed()).isTrue();
         }
     }
 
     public void clickHireAnEmployee() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(hireAndEmployee), 5);
+            assertThat(hireAndEmployee.isDisplayed()).isTrue();
             hireAndEmployee.click();
             reportWithScreenShot("Select Hire An Employee");
+            waitUntilPageLoad();
         } catch (Exception e) {
             reportWithScreenShot("Failed to open Task pane due to :" + e.getMessage());
+            assertThat(hireAndEmployee.isDisplayed()).isTrue();
         }
     }
 }

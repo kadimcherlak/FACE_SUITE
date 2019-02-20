@@ -1,9 +1,6 @@
 package framework.tests.steps.oracle_fusion_cloud;
 
 import cucumber.api.java8.En;
-import framework.tests.pages.oracle_fusion_cloud.HireAnEmployeePage;
-import framework.tests.pages.oracle_fusion_cloud.LoginAndHomePage;
-import framework.tests.pages.oracle_fusion_cloud.NewPersonPage;
 import org.apache.logging.log4j.Logger;
 
 
@@ -11,9 +8,6 @@ public class TalentAcquisitionNewHireSteps implements En {
 
     private Logger logger;
     private Data data;
-    private LoginAndHomePage loginAndHomePage;
-    private NewPersonPage newPersonPage;
-    private HireAnEmployeePage hireAnEmployee;
 
     public TalentAcquisitionNewHireSteps(Context context) {
         logger = context.getLogger();
@@ -22,196 +16,195 @@ public class TalentAcquisitionNewHireSteps implements En {
         Given("^user runs (.*?)$", (String testCaseKey) -> {
             context.setData(testCaseKey);
             data = context.getData();
-            loginAndHomePage = new LoginAndHomePage(context);
-            newPersonPage = new NewPersonPage(context);
-            hireAnEmployee = new HireAnEmployeePage(context);
+            context.setPages(context);
         });
 
         And("^user is on the oracle fusion login page$", () -> {
-            loginAndHomePage.openUrl();
-            loginAndHomePage.checkLoginPageAvailable();
+            context.loginAndHome.openUrl();
+            context.loginAndHome.checkLoginPageAvailable();
         });
 
         And("^user provides credentials for login$", () -> {
-            loginAndHomePage.enterCredentials();
+            context.loginAndHome.enterCredentials();
         });
 
         When("^the user click on Sign In$", () -> {
-            loginAndHomePage.signIn();
+            context.loginAndHome.signIn();
         });
 
         Then("^the Oracle Fusion Home Page is displayed", () -> {
-            loginAndHomePage.checkHomePageAvailable();
+            context.loginAndHome.checkHomePageAvailable();
         });
 
         Given("user login to Oracle Applications Cloud web page", () -> {
-            loginAndHomePage.openUrl();
-            loginAndHomePage.checkLoginPageAvailable();
-            loginAndHomePage.enterCredentials();
-            loginAndHomePage.signIn();
-            loginAndHomePage.checkHomePageAvailable();
+            context.loginAndHome.openUrl();
+            context.loginAndHome.checkLoginPageAvailable();
+            context.loginAndHome.enterCredentials();
+            context.loginAndHome.signIn();
+            context.loginAndHome.checkHomePageAvailable();
         });
 
         When("user clicks on Navigator icon", () -> {
-            loginAndHomePage.navigatorScreen();
+            context.loginAndHome.navigatorScreen();
         });
 
         When("user clicks on new person link under My Workforce section", () -> {
-            loginAndHomePage.navigatorScreenNewPersonSelect();
+            context.loginAndHome.navigatorScreenNewPersonSelect();
         });
 
         When("user clicks on Hire an employee on right side of the page under Tasks pane", () -> {
-            newPersonPage.clickTaskButton();
-            newPersonPage.clickHireAnEmployee();
+            context.newPerson.clickTaskButton();
+            context.newPerson.clickHireAnEmployee();
         });
 
         Then("new Hire an employee screen should be displayed", () -> {
-            hireAnEmployee.checkHireAnEmployeePageAvailable();
+            context.hireAnEmployee.checkHireAnEmployeePageAvailable();
         });
 
         When("user enter details in Identification tab", () -> {
-            hireAnEmployee.fillIdentificationTab();
+            context.hireAnEmployee.fillIdentificationTab();
         });
 
         When("user enter details in Person information tab", () -> {
-            hireAnEmployee.fillPersonInformationTab();
+            context.hireAnEmployee.fillPersonInformationTab();
         });
 
         When("user enter details in Employment Information tab", () -> {
-            hireAnEmployee.fillEmploymentInformationTab();
+            context.hireAnEmployee.fillEmploymentInformationTab();
         });
 
         When("user enter details in Compensation and Other Information tab", () -> {
-            hireAnEmployee.fillCompensationAndOtherInformationTab();
+            context.hireAnEmployee.fillCompensationAndOtherInformationTab();
         });
 
         Then("Review page should be displayed in view only mode", () -> {
-            hireAnEmployee.checkReviewTabDisplayedWithInformation();
+            context.hireAnEmployee.checkReviewTabDisplayedWithInformation();
         });
 
         When("user clicks on submit button", () -> {
-            hireAnEmployee.clickSubmitButton();
+            context.hireAnEmployee.clickSubmitButton();
         });
 
         When("clicks ok in the Warning and confirmation message displayed", () -> {
-            hireAnEmployee.clickWarningOkButton();
+            context.hireAnEmployee.clickWarningOkButton();
         });
 
         Then("Page should be submitted successfully", () -> {
-            hireAnEmployee.clickConfirmButton();
+            context.hireAnEmployee.clickConfirmButton();
         });
 
         When("user clicks on Person Management link under My Workforce section", () -> {
-            loginAndHomePage.navigatorPersonManagement();
+            context.loginAndHome.navigatorPersonManagement();
         });
 
         Then("Person Management: Search screen should be displayed", () -> {
-            hireAnEmployee.checkpersonManagementSearchAvailable();
+            context.hireAnEmployee.checkPersonManagementSearchAvailable();
         });
 
         Then("user enter the Person number generated from previous step in Person Number field", () -> {
-            hireAnEmployee.searchPerson();
+            context.hireAnEmployee.searchPerson();
         });
 
         Then("user click on Search button", () -> {
-            hireAnEmployee.clickSearch();
+            context.hireAnEmployee.clickSearch();
         });
 
         Then("Employee name should be listed in search results", () -> {
-            hireAnEmployee.validateSearchResult();
+            context.hireAnEmployee.validateSearchResult();
         });
 
-        When("user click on employee name link", () -> {
-            hireAnEmployee.empNameLinkClick();
+        When("user click on Action Button", () -> {
+            context.hireAnEmployee.clickActionButton();
         });
 
         When("user click on employee name link in search results", () -> {
-            hireAnEmployee.clickPersonNameLink();
+            context.hireAnEmployee.clickPersonNameLink();
         });
 
         When("user clicks on Edit button and select Update option", () -> {
-            hireAnEmployee.clickEditUpdate();
+            context.hireAnEmployee.clickEditUpdate();
         });
 
         When("Update Employment new window should be displayed", () -> {
-            hireAnEmployee.checkUpdateEmployementWindowDisplayed();
+            context.hireAnEmployee.checkUpdateEmployementWindowDisplayed();
         });
 
         When("user enter details in Update Employment Window and click on Ok button", () -> {
-            hireAnEmployee.fillUpdateEmpWindow();
+            context.hireAnEmployee.fillUpdateEmpWindow();
         });
 
         When("Global Temporary Assignment page should be displayed", () -> {
-            hireAnEmployee.checkGlobalAssignmentPageDisplayed();
+            context.hireAnEmployee.checkGlobalAssignmentPageDisplayed();
         });
 
         When("user navigate to Employment Information page", () -> {
-            hireAnEmployee.navigateToEmpInfoPage();
+            context.hireAnEmployee.navigateToEmpInfoPage();
         });
 
         When("user clicks on Manage Element Entries link under Payroll section on right side of the page under Tasks pane", () -> {
-            hireAnEmployee.manageElementEntriesClick();
+            context.hireAnEmployee.clickPayrollOption();
+            context.hireAnEmployee.manageElementEntriesClick();
         });
 
         Then("manage element entries screen should be displayed", () -> {
-            hireAnEmployee.checkManageElementEntriesAvailable();
+            context.hireAnEmployee.checkManageElementEntriesAvailable();
         });
 
         Then("user clicks on Add button", () -> {
-            hireAnEmployee.clickCreateButton();
+            context.hireAnEmployee.clickCreateButton();
         });
 
         Then("user enter Effective date : System Date and Element Name as Bilingual Indicator", () -> {
-            hireAnEmployee.fillElementEntryInfo();
+            context.hireAnEmployee.fillElementEntryInfo();
         });
 
         Then("user enter Effective date : System Date and Element Name as ADP Auto & Home", () -> {
-            hireAnEmployee.fillADPElementEntryInfo();
+            context.hireAnEmployee.fillADPElementEntryInfo();
         });
 
         Then("user click on continue button", () -> {
-            hireAnEmployee.clickContinue();
+            context.hireAnEmployee.clickContinue();
         });
 
         Then("General Information page should be displayed with Bilingual field populated with Yes", () -> {
-            hireAnEmployee.bilingualYesDisplay();
+            context.hireAnEmployee.bilingualYesDisplay();
         });
 
         Then("General Information page should be displayed with Actual Amount", () -> {
-            hireAnEmployee.actualAmountDisplay();
+            context.hireAnEmployee.actualAmountDisplay();
         });
 
         Then("user enter Actual Amount and Paycheck Date", () -> {
-            hireAnEmployee.enteractualAmountAndDate();
+            context.hireAnEmployee.enteractualAmountAndDate();
         });
 
         Then("user click on Submit button", () -> {
-            hireAnEmployee.bilingualSubmit();
+            context.hireAnEmployee.bilingualSubmit();
         });
 
         Then("user click on Submit button in ADP", () -> {
-            hireAnEmployee.adpSubmit();
+            context.hireAnEmployee.adpSubmit();
         });
 
         Then("Manage Element entries page should be displayed with Bilingual Indicator row added", () -> {
-            hireAnEmployee.bilingualRowAdded();
+            context.hireAnEmployee.bilingualRowAdded();
         });
 
         Then("Manage Element entries page should be displayed with ADP Auto & Home row added", () -> {
-            hireAnEmployee.adpRowAdded();
+            context.hireAnEmployee.adpRowAdded();
         });
 
         Then("user click on Done button at the top", () -> {
-            hireAnEmployee.clickDoneButton();
+            context.hireAnEmployee.clickDoneButton();
         });
 
         Then("user click on Sign Out option", () -> {
-            loginAndHomePage.signOut();
+            context.loginAndHome.signOut();
         });
 
         Then("Sign out should be successful", () -> {
-            loginAndHomePage.signOutConfirm();
-            loginAndHomePage.checkLoginPageAvailable();
+            context.loginAndHome.signOutConfirm();
+            context.loginAndHome.checkLoginPageAvailable();
         });
 
     }
