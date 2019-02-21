@@ -13,41 +13,6 @@ public class TalentAcquisitionNewHireSteps implements En {
         logger = context.getLogger();
         logger.debug("{} loaded", this.getClass().getName());
 
-        Given("^user runs (.*?)$", (String testCaseKey) -> {
-            context.setData(testCaseKey);
-            data = context.getData();
-            context.setPages(context);
-        });
-
-        And("^user is on the oracle fusion login page$", () -> {
-            context.loginAndHome.openUrl();
-            context.loginAndHome.checkLoginPageAvailable();
-        });
-
-        And("^user provides credentials for login$", () -> {
-            context.loginAndHome.enterCredentials();
-        });
-
-        When("^the user click on Sign In$", () -> {
-            context.loginAndHome.signIn();
-        });
-
-        Then("^the Oracle Fusion Home Page is displayed", () -> {
-            context.loginAndHome.checkHomePageAvailable();
-        });
-
-        Given("user login to Oracle Applications Cloud web page", () -> {
-            context.loginAndHome.openUrl();
-            context.loginAndHome.checkLoginPageAvailable();
-            context.loginAndHome.enterCredentials();
-            context.loginAndHome.signIn();
-            context.loginAndHome.checkHomePageAvailable();
-        });
-
-        When("user clicks on Navigator icon", () -> {
-            context.loginAndHome.navigatorScreen();
-        });
-
         When("user clicks on new person link under My Workforce section", () -> {
             context.loginAndHome.navigatorScreenNewPersonSelect();
         });
@@ -79,18 +44,6 @@ public class TalentAcquisitionNewHireSteps implements En {
 
         Then("Review page should be displayed in view only mode", () -> {
             context.hireAnEmployee.checkReviewTabDisplayedWithInformation();
-        });
-
-        When("user clicks on submit button", () -> {
-            context.hireAnEmployee.clickSubmitButton();
-        });
-
-        When("clicks ok in the Warning and confirmation message displayed", () -> {
-            context.hireAnEmployee.clickWarningOkButton();
-        });
-
-        Then("Page should be submitted successfully", () -> {
-            context.hireAnEmployee.clickConfirmButton();
         });
 
         When("user clicks on Person Management link under My Workforce section", () -> {
@@ -196,15 +149,6 @@ public class TalentAcquisitionNewHireSteps implements En {
 
         Then("user click on Done button at the top", () -> {
             context.hireAnEmployee.clickDoneButton();
-        });
-
-        Then("user click on Sign Out option", () -> {
-            context.loginAndHome.signOut();
-        });
-
-        Then("Sign out should be successful", () -> {
-            context.loginAndHome.signOutConfirm();
-            context.loginAndHome.checkLoginPageAvailable();
         });
 
     }

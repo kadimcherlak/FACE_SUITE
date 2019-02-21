@@ -25,6 +25,7 @@ public class Context extends framework.core.models.Context {
     public HireAnEmployeePage hireAnEmployee;
     public EmployeeEditMyDetailsPage employeeEditMyDetails;
     public ChangeManagerPage changeManager;
+    public PersonManagementPage personManagment;
     
     public Context() {
         logger.debug("Initializing context");
@@ -90,15 +91,7 @@ public class Context extends framework.core.models.Context {
         hireAnEmployee = new HireAnEmployeePage(context);
         loginAndHome = new LoginAndHomePage(context);
         newPerson = new NewPersonPage(context);
+        personManagment = new PersonManagementPage(context);
     }
 
-//    public List getPages() {
-//        List pages = new ArrayList();
-//        pages.add(changeManager);
-//        pages.add(employeeEditMyDetails);
-//        pages.add(hireAnEmployee);
-//        pages.add(employeeEditMyDetails);
-//        pages.add(newPerson);
-//        return pages;
-//    }
 }
