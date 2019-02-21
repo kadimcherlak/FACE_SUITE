@@ -22,7 +22,7 @@ New Hire Scenario1:
   erProfitCenter: '31'
   firstName: ''  # Kept blank as Randomly Generated as part of the execution
   gender: 'Male'
-  globalMobilityIndicator: ''
+  globalMobilityIndicator: 'International Assignment'
   grade: 'E'
   hireAction: 'Hire'
   hireDate: '28-Jan-19'
@@ -41,6 +41,7 @@ New Hire Scenario1:
   pearsonEmailRequired: 'Yes'
   payroll: 'Bi-Weekly Exempt'
   payCheckDate: '13-Feb-2019'
+  personNumber: 3259933
   salaryAmount: 21208.59
   salaryBasis: 'US Annual Salary'
   state: 'TX'

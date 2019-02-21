@@ -28,7 +28,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     @FindBy(xpath = "//a[contains(@class,'AFBrandingLinkColor svg-glob menu')]")
     private WebElement userName;
 
-    @FindBy(xpath = "//a[contains(@class,'AFBrandingLinkColor svg-glob menu')]//img")
+    @FindBy(id = "pt1:_UIScmil1u::icon")
     private WebElement dropDownButtonForSignOut;
 
     @FindBy(xpath = "//a[text()='Sign Out']")
@@ -222,8 +222,11 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     // Signout perform SignOut
     public void signOut() {
         try {
-            dropDownButtonForSignOut.click();
-            waitFor(ExpectedConditions.elementToBeClickable(signOut), 5);
+            waitUntilPageLoad();
+            waitNormalTime();
+            waitFor(ExpectedConditions.elementToBeClickable(userName), 15);
+            userName.click();
+            waitFor(ExpectedConditions.elementToBeClickable(signOut), 15);
             assertThat(signOut.isDisplayed()).isTrue();
             signOut.click();
         } catch (Exception e) {
@@ -236,6 +239,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     public void signOutConfirm() {
         try {
             assertThat(signOutConfirm.isDisplayed()).isTrue();
+            waitFor(ExpectedConditions.elementToBeClickable(signOutConfirm), 15);
             signOutConfirm.click();
             reportWithScreenShot("Checking if Login Page is Displayed");
         } catch (Exception e) {

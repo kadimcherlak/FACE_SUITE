@@ -98,7 +98,7 @@ Feature: New Hire and Related Activities
     And user enter the Person number generated from previous step in Person Number field
     And user click on Search button
     Then Employee name should be listed in search results
-    When user click on employee name link
+    When user click on Action Button
     And user clicks on Manage Element Entries link under Payroll section on right side of the page under Tasks pane
     Then manage element entries screen should be displayed
     And user clicks on Add button
@@ -141,17 +141,17 @@ Feature: New Hire and Related Activities
     When user click on employee name link in search results
     And user clicks on Edit button and select Update option
     Then Update Employment new window should be displayed
-    And user enter details in Update Employment Window and click on Ok button
+    When user enter details in Update Employment Window and click on Ok button
     Then Global Temporary Assignment page should be displayed
-    And user navigate to Employment Information page
+    When user navigate to Employment Information page
     And user enter details in Employment Information tab
     And user enter details in Compensation and Other Information tab
     Then Review page should be displayed in view only mode
     When user clicks on submit button
     And clicks ok in the Warning and confirmation message displayed
     Then Page should be submitted successfully
-    And user click on Done button at the top
-    When user click on Sign Out option
+    When user click on Done button at the top
+    And user click on Sign Out option
     Then Sign out should be successful
 
     Examples:

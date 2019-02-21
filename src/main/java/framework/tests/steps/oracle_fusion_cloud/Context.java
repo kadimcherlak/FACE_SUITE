@@ -14,19 +14,19 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 public class Context extends framework.core.models.Context {
-    private Logger logger = LogManager.getLogger(Context.class);
-    private WebDriver driver;
-    private Config config;
-    private Environment environment;
-    private DataStore dataStore = new DataStore();
-    private Data data = new Data();
     public LoginAndHomePage loginAndHome;
     public NewPersonPage newPerson;
     public HireAnEmployeePage hireAnEmployee;
     public EmployeeEditMyDetailsPage employeeEditMyDetails;
     public ChangeManagerPage changeManager;
     public PersonManagementPage personManagment;
-    
+    private Logger logger = LogManager.getLogger(Context.class);
+    private WebDriver driver;
+    private Config config;
+    private Environment environment;
+    private DataStore dataStore = new DataStore();
+    private Data data = new Data();
+
     public Context() {
         logger.debug("Initializing context");
         environment = Core.getEnvironment();

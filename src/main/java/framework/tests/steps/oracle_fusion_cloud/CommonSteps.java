@@ -60,7 +60,7 @@ public class CommonSteps implements En {
             context.hireAnEmployee.clickConfirmButton();
         });
 
-        Then("user click on Sign Out option", () -> {
+        When("user click on Sign Out option", () -> {
             context.loginAndHome.signOut();
         });
 
