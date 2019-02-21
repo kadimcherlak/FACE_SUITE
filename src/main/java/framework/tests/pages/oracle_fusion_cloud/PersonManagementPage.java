@@ -16,6 +16,20 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(linkText = "My Team")
     private WebElement myTeam;
 
+    @FindBy(xpath = "//*[text()='Person Management: Search']")
+    private WebElement personManagementSearch;
+
+    @FindBy(xpath = "//label[text()='Keywords']/following::input[1]")
+    private WebElement keywords;
+
+    @FindBy(xpath = "//label[text()='Effective As-of Date']/following::input[1]")
+    private WebElement effectiveAsOfDate;
+
+    @FindBy(xpath = "//button[text()='Search']")
+    private WebElement searchBtn;
+
+    @FindBy(xpath = "//img[@title='Actions']")
+    private WebElement actionsBtn;
 
     public PersonManagementPage(Context context) {
         super(context);

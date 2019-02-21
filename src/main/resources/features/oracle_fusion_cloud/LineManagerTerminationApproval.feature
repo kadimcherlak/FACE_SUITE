@@ -1,8 +1,8 @@
-@Termination
+@TERMINATION
 Feature: Line Manager terminates a direct report who is a regular employee and PPS approves the termination
 
 
-  @Line_manager_terminate_direct_reportees
+  @LINEMANAGER_TERMINATE_DIRECT_REPORTEES
 Scenario Outline: As an Line Manager, i should be able to terminate a direct report who is a regular employee
 
     Given user runs <Test Scenario>
@@ -25,9 +25,9 @@ Scenario Outline: As an Line Manager, i should be able to terminate a direct rep
     Examples:
       | Test Scenario      |
       | New Hire Scenario1 |
-      
- 
-   @PPS_approves_termination
+
+
+  @PPS_APPROVES_TERMINATION
 Scenario Outline: As an PPS Tier 2 Workforce and Assignment Administration, i should be able to approves request of termination for direct reportee who is Regular employee
      Given user runs <Test Scenario>
      And user login to Oracle Applications Cloud web page
