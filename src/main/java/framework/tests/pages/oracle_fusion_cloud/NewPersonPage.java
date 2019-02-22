@@ -2,6 +2,7 @@ package framework.tests.pages.oracle_fusion_cloud;
 
 import framework.tests.steps.oracle_fusion_cloud.Context;
 import framework.tests.steps.oracle_fusion_cloud.Data;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -42,6 +43,7 @@ public class NewPersonPage extends BasePage<NewPersonPage> {
     public void clickTaskButton() {
         try {
             waitUntilPageLoad();
+            waitFor(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//h1[contains(.,'Overview')]"))), 15);
             assertThat(taskButton.isDisplayed()).isTrue();
             taskButton.click();
         } catch (Exception e) {
@@ -52,7 +54,7 @@ public class NewPersonPage extends BasePage<NewPersonPage> {
 
     public void clickHireAnEmployee() {
         try {
-            waitFor(ExpectedConditions.elementToBeClickable(hireAndEmployee), 5);
+            waitFor(ExpectedConditions.elementToBeClickable(hireAndEmployee), 15);
             assertThat(hireAndEmployee.isDisplayed()).isTrue();
             hireAndEmployee.click();
             reportWithScreenShot("Select Hire An Employee");

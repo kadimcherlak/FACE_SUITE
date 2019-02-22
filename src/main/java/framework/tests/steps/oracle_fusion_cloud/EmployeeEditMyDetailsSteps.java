@@ -12,8 +12,8 @@ public class EmployeeEditMyDetailsSteps implements En {
         logger = context.getLogger();
         logger.debug("{} loaded", this.getClass().getName());
 
-        When("user clicks on Personal Information link under About me section", () -> {
-            context.loginAndHome.navigateToPersonalInfoMyDetailspage();
+        When("user clicks on (.*?) link under About me section$", (String applicationName) -> {
+            context.loginAndHome.selectApplicationInNavigatorPane(applicationName);
         });
 
         When("My Details page should be displayed", () -> {

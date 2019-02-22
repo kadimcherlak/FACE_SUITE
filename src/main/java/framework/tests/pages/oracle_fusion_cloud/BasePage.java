@@ -105,7 +105,7 @@ public class BasePage<T> extends WebPage {
         try {
             waitFor(ExpectedConditions.visibilityOf(next), 15);
             next.click();
-            waitNormalTime();
+            waitShortTime();
         } catch (Exception e) {
             reportWithScreenShot("Error While Next Button due to:" + e.getMessage());
         }
