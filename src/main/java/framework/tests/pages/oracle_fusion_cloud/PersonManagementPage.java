@@ -21,6 +21,12 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(className = "svg-icon03")
     private WebElement navigatorOpen;
 
+    @FindBy(xpath = "//h1[contains(text(),': Identification')]")
+    private WebElement identificationTab;
+
+    @FindBy(xpath = "//h1[contains(text(),': Person Information')]")
+    private WebElement personInfoTab;
+
     @FindBy(xpath = "//*[text()='Person Management: Search']")
     private WebElement personManagementSearch;
 
@@ -496,9 +502,12 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     // User Navigate to Employment Information page
     public void navigateToEmpInfoPage() {
         try {
+
+            waitFor(ExpectedConditions.visibilityOf(identificationTab), 15);
             clickNextButton(); // Next Button to go to next page
             waitUntilPageLoad(); // wait until next tab loads
 
+            waitFor(ExpectedConditions.visibilityOf(personInfoTab), 15);
             clickNextButton(); // Next Button to go to next page
             waitUntilPageLoad(); // wait until next tab loads
 

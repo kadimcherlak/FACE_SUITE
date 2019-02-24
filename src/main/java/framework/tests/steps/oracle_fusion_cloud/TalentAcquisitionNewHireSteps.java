@@ -13,8 +13,8 @@ public class TalentAcquisitionNewHireSteps implements En {
         logger = context.getLogger();
         logger.debug("{} loaded", this.getClass().getName());
 
-        When("user clicks on new person link under My Workforce section", () -> {
-            context.loginAndHome.navigatorScreenNewPersonSelect();
+        When("user clicks on (.*?) link under My Workforce section$", (String applicationName) -> {
+            context.loginAndHome.selectApplicationInNavigatorPane(applicationName);
         });
 
         When("user clicks on Hire an employee on right side of the page under Tasks pane", () -> {
@@ -23,7 +23,7 @@ public class TalentAcquisitionNewHireSteps implements En {
         });
 
         Then("new Hire an employee screen should be displayed", () -> {
-            context.hireAnEmployee.checkHireAnEmployeePageAvailable();
+            context.hireAnEmployee.checkIdentificationTabAvailable();
         });
 
         When("user enter details in Identification tab", () -> {
@@ -44,10 +44,6 @@ public class TalentAcquisitionNewHireSteps implements En {
 
         Then("Review page should be displayed in view only mode", () -> {
             context.hireAnEmployee.checkReviewTabDisplayedWithInformation();
-        });
-
-        When("user clicks on Person Management link under My Workforce section", () -> {
-            context.loginAndHome.navigatorPersonManagement();
         });
 
         Then("Person Management: Search screen should be displayed", () -> {
@@ -91,7 +87,11 @@ public class TalentAcquisitionNewHireSteps implements En {
         });
 
         When("user navigate to Employment Information page", () -> {
-            context.personManagment.navigateToEmpInfoPage();
+            //context.personManagment.navigateToEmpInfoPage();
+            context.hireAnEmployee.checkIdentificationTabAvailable();
+            context.hireAnEmployee.clickNextButton();
+            context.hireAnEmployee.checkPersonInformationTabAvailable();
+            context.hireAnEmployee.clickNextButton();
         });
 
         When("user clicks on Manage Element Entries link under Payroll section on right side of the page under Tasks pane", () -> {

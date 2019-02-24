@@ -19,11 +19,20 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     private Actions actions;
 
     // Hire An Employee Page Elements
-    @FindBy(xpath = "//*[text()='Hire an Employee: Identification']")
-    private WebElement hireAnEmployeePageCheck;
+    @FindBy(xpath = "//h1[contains(text(),': Identification')]")
+    private WebElement identificationTab;
 
-    @FindBy(xpath = "//*[text()='Hire an Employee: Person Information']")
-    private WebElement personInfoPageCheck;
+    @FindBy(xpath = "//h1[contains(text(),': Person Information')]")
+    private WebElement personInfoTab;
+
+    @FindBy(xpath = "//h1[contains(text(),': Employment Information')]")
+    private WebElement empInfoTab;
+
+    @FindBy(xpath = "//h1[contains(text(),': Compensation and Other Information')]")
+    private WebElement compAndOtherInfoTab;
+
+    @FindBy(xpath = "//h1[contains(text(),': Review')]")
+    private WebElement reviewTab;
 
     @FindBy(xpath = "(//input[@class='x2b'])[1]")
     private WebElement basicDetailsDate;
@@ -145,9 +154,6 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//label[@class='x1cd']")
     private WebElement salarycmpnt;
 
-    @FindBy(xpath = "//*[contains(text(),': Review')]")
-    private WebElement reviewTab;
-
     @FindBy(xpath = "//label[text()='Global Mobility Indicator']/following::input[1]")
     private WebElement empInfoGlobalMobilityInd;
 
@@ -160,18 +166,41 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
         logger.debug("{} loaded", this.getClass().getName());
     }
 
-    // Hire an Employee Page check available
-    public void checkHireAnEmployeePageAvailable() {
+    // Identification Tab check available
+    public void checkIdentificationTabAvailable() {
         try {
-            waitFor(ExpectedConditions.visibilityOf(hireAnEmployeePageCheck), 15);
-            assertThat(hireAnEmployeePageCheck.isDisplayed()).isTrue();
-            reportWithScreenShot("Checking if Hire An Employee Page is Displayed");
+            waitFor(ExpectedConditions.visibilityOf(identificationTab), 15);
+            assertThat(identificationTab.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if Identification Page is Displayed");
         } catch (Exception e) {
-            reportWithScreenShot("Hire An Employee Page not Displayed due to: " + e.getMessage());
-            assertThat(hireAnEmployeePageCheck.isDisplayed()).isTrue();
+            reportWithScreenShot("Identification Page not Displayed due to: " + e.getMessage());
+            assertThat(identificationTab.isDisplayed()).isTrue();
         }
     }
 
+    // Person Information Tab check available
+    public void checkPersonInformationTabAvailable() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(personInfoTab), 15);
+            assertThat(personInfoTab.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if Person Information Page is Displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Person Information Page not Displayed due to: " + e.getMessage());
+            assertThat(personInfoTab.isDisplayed()).isTrue();
+        }
+    }
+
+    // Employment Information Tab check available
+    public void checkEmploymentInformationTabAvailable() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(empInfoTab), 15);
+            assertThat(empInfoTab.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if Employment Information Page is Displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Employment Information Page not Displayed due to: " + e.getMessage());
+            assertThat(empInfoTab.isDisplayed()).isTrue();
+        }
+    }
     // Enter Value into Identification tab
     public void fillIdentificationTab() {
         try {
@@ -259,11 +288,11 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitUntilPageLoad(); // wait until next tab loads
 
             //check if person information tab loaded
-            waitFor(ExpectedConditions.visibilityOf(personInfoPageCheck), 15);
-            assertThat(personInfoPageCheck.isDisplayed()).isTrue();
+            waitFor(ExpectedConditions.visibilityOf(personInfoTab), 15);
+            assertThat(personInfoTab.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Error While Entering Value into Identification Tab due to:" + e.getMessage());
-            assertThat(personInfoPageCheck.isDisplayed()).isTrue();
+            assertThat(personInfoTab.isDisplayed()).isTrue();
         }
     }
 

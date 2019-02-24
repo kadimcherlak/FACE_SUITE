@@ -20,7 +20,7 @@ Feature: New Hire and Related Activities
     Given user runs <Test Scenario>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
-    And user clicks on new person link under My Workforce section
+    And user clicks on New Person link under My Workforce section
     And user clicks on Hire an employee on right side of the page under Tasks pane
     Then new Hire an employee screen should be displayed
     When user enter details in Identification tab
@@ -42,18 +42,18 @@ Feature: New Hire and Related Activities
   Scenario Outline: : As an PPS Tier2 Recruitment and Onboarding Administration User Role, i should be able to Hire a Employee with a bilingual indicator
     Given user runs <Test Scenario>
     And user login to Oracle Applications Cloud web page
-#    When user clicks on Navigator icon
-#    And user clicks on new person link under My Workforce section
-#    And user clicks on Hire an employee on right side of the page under Tasks pane
-#    Then new Hire an employee screen should be displayed
-#    And user enter details in Identification tab
-#    And user enter details in Person information tab
-#    And user enter details in Employment Information tab
-#    And user enter details in Compensation and Other Information tab
-#    Then Review page should be displayed in view only mode
-#    When user clicks on submit button
-#    And clicks ok in the Warning and confirmation message displayed
-#    Then Page should be submitted successfully
+    When user clicks on Navigator icon
+    And user clicks on New Person link under My Workforce section
+    And user clicks on Hire an employee on right side of the page under Tasks pane
+    Then new Hire an employee screen should be displayed
+    And user enter details in Identification tab
+    And user enter details in Person information tab
+    And user enter details in Employment Information tab
+    And user enter details in Compensation and Other Information tab
+    Then Review page should be displayed in view only mode
+    When user clicks on submit button
+    And clicks ok in the Warning and confirmation message displayed
+    Then Page should be submitted successfully
     When user clicks on Navigator icon
     And user clicks on Person Management link under My Workforce section
     Then Person Management: Search screen should be displayed
@@ -81,7 +81,7 @@ Feature: New Hire and Related Activities
     Given user runs <Test Scenario>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
-    And user clicks on new person link under My Workforce section
+    And user clicks on New Person link under My Workforce section
     And user clicks on Hire an employee on right side of the page under Tasks pane
     Then new Hire an employee screen should be displayed
     And user enter details in Identification tab
@@ -121,7 +121,7 @@ Feature: New Hire and Related Activities
     Given user runs <Test Scenario>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
-    And user clicks on new person link under My Workforce section
+    And user clicks on New Person link under My Workforce section
     And user clicks on Hire an employee on right side of the page under Tasks pane
     Then new Hire an employee screen should be displayed
     And user enter details in Identification tab

@@ -20,7 +20,8 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     // Edit My Details Page Elements
 
-    @FindBy(xpath = "//a[@title='Edit']")
+    // @FindBy(xpath = "//a[@title='Edit']")
+    @FindBy(xpath = "//button[contains(.,'Edit')]")
     private WebElement myDetailsEdit;
 
     @FindBy(xpath = "(//a[@title='Add'])[2]")
@@ -84,6 +85,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             waitFor(ExpectedConditions.visibilityOf(myDetailsEdit), 15);
             myDetailsEdit.click();
             reportWithScreenShot("User clicks on Edit Button");
+            waitShortTime();
 
         } catch (Exception e) {
             reportWithScreenShot(
@@ -148,6 +150,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
             waitFor(ExpectedConditions.elementToBeClickable(contactsIcon), 15);
             contactsIcon.click();
+            waitShortTime();
 
         } catch (Exception e) {
             reportWithScreenShot("Error While user click on save and close button:" + e.getMessage());
@@ -199,6 +202,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             waitFor(ExpectedConditions.visibilityOf(continueBtn), 15);
             continueBtn.click();
             reportWithScreenShot("User clicks on Continue Button in contacts page");
+            waitShortTime();
 
         } catch (Exception e) {
             reportWithScreenShot(
@@ -209,7 +213,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     // User select value from Relationship
     public void selectRelationship() {
         try {
-            // Click Edit button in My details Page
+            // User select value from Relationship
+
+            relationshipOption.click();
             waitFor(ExpectedConditions
                     .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getContactsRelationship() + "']"))), 5);
             driver.findElement(By.xpath("//li[text()='" + data.getContactsRelationship() + "']")).click();
