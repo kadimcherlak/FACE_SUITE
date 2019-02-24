@@ -56,8 +56,8 @@ Feature: Perform edit on Address,Contact Type,Personal Payment Method and disabi
     When user clicks on Navigator icon
     And user clicks on Personal Information link under About me section
     Then My Details page should be displayed
-    When user clicks on More Information icon 'i'  under name icon
-    Then A pop up window with employee details should be displayed.
+    When user clicks on More Information icon under name icon
+    Then A pop up window with employee details should be displayed
     When user clicks on Actions (v) button
     Then the values Absence,Payroll,Personal and Employment should be displayed
     When user clicks Manage Personal Payment Methods under Payroll option
