@@ -73,6 +73,10 @@ public class TalentAcquisitionNewHireSteps implements En {
         When("user clicks on Edit button and select Update option", () -> {
             context.personManagment.clickEditUpdate();
         });
+        
+        When("user clicks on Action button and select Edit option", () -> {
+            context.personManagment.clickActionEdit();
+        });
 
         Then("Update Employment new window should be displayed", () -> {
             context.personManagment.checkUpdateEmployementWindowDisplayed();
@@ -94,7 +98,18 @@ public class TalentAcquisitionNewHireSteps implements En {
             context.personManagment.clickPayrollOption();
             context.personManagment.manageElementEntriesClick();
         });
+        
+        
+        And("user click on Task Icon on the right side", () -> {
+            context.personManagment.taskIconClick();
+        });
+        
+        
+        And("user select Manage Salary option from task icon menu", () -> {
+            context.personManagment.manageSalaryClick();
+        });
 
+        
         Then("manage element entries screen should be displayed", () -> {
             context.personManagment.checkManageElementEntriesAvailable();
         });

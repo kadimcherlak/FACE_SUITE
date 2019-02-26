@@ -48,7 +48,17 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
     @FindBy(xpath = "(//td[@class='xmz'][contains(.,'Manage Element Entries')])[2]")
     private WebElement manageElementEntries;
-
+    
+    @FindBy(xpath = "//li[@class='x1ui']//a[contains(text(),'Manage Salary')]")
+    private WebElement manageSalary;
+    
+    @FindBy(xpath = "//div[@class='x1l0']/a[contains(.,'Manage Salary')]")
+    private WebElement manageSalaryTab;
+    
+    
+    @FindBy(xpath = "//img[@title='Tasks']")
+    private WebElement taskIcon;
+    
     @FindBy(xpath = "(//*[text()='Manage Element Entries'])[1]")
     private WebElement manageElementEnteriesTextCheck;
 
@@ -141,7 +151,16 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
     @FindBy(xpath = "//label[text()='Working Hours']/following::input[1]")
     private WebElement empInfoWorkingHrs;
-
+    
+    @FindBy(xpath = "//td[@class='xmz' and text()='Edit']")
+    private WebElement editAction;
+    
+    @FindBy(xpath = "//div[1][@class='xjd']//button[@title='Action']")
+    private WebElement btnAction;
+    
+    @FindBy(xpath = "//h1[@class='xyx'][contains(text(),'Current Salary')]")
+    private WebElement currentSalaryTab;
+    
     // Person Management Contructor
     public PersonManagementPage(Context context) {
         super(context);
@@ -250,6 +269,34 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
         } catch (Exception e) {
             reportWithScreenShot("Error While checking values in Review Tab due to:" + e.getMessage());
             assertThat(manageElementEntries.isDisplayed()).isTrue();
+        }
+    }
+    
+    // User click  Task icon right side
+    public void taskIconClick() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(taskIcon), 15);
+            assertThat(taskIcon.isDisplayed()).isTrue();
+            taskIcon.click();
+
+            reportWithScreenShot("Task icon on right is open");
+        } catch (Exception e) {
+            reportWithScreenShot("Error While checking values in Review Tab due to:" + e.getMessage());
+            assertThat(taskIcon.isDisplayed()).isTrue();
+        }
+    }
+    
+    // User click on Manage Salary under Task icon
+    public void manageSalaryClick() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(manageSalary), 15);
+            assertThat(manageSalary.isDisplayed()).isTrue();
+            manageSalary.click();
+            waitFor(ExpectedConditions.visibilityOf(manageSalaryTab), 15);
+            reportWithScreenShot("Salary page of a person searched");
+        } catch (Exception e) {
+            reportWithScreenShot("Error While checking values in Review Tab due to:" + e.getMessage());
+            assertThat(manageSalary.isDisplayed()).isTrue();
         }
     }
 
@@ -420,6 +467,21 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
         } catch (Exception e) {
             reportWithScreenShot("Error While user click on Edit and update button:" + e.getMessage());
             assertThat(manageEmployment.isDisplayed()).isTrue();
+        }
+    }
+    
+    // User click on Edit and Update button
+    public void clickActionEdit() {
+        try {
+        	btnAction.click();
+            waitFor(ExpectedConditions.elementToBeClickable(editAction), 15);
+            editAction.click();
+
+            waitFor(ExpectedConditions.visibilityOf(currentSalaryTab), 15);
+            assertThat(manageSalaryTab.isDisplayed()).isTrue();
+        } catch (Exception e) {
+            reportWithScreenShot("Error While user click on Edit and update button:" + e.getMessage());
+            assertThat(manageSalaryTab.isDisplayed()).isTrue();
         }
     }
 
