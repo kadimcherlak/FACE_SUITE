@@ -12,8 +12,8 @@ public class EmployeeEditMyDetailsSteps implements En {
         logger = context.getLogger();
         logger.debug("{} loaded", this.getClass().getName());
 
-        When("user clicks on (.*?) link under About me section$", (String applicationName) -> {
-            context.loginAndHome.selectApplicationInNavigatorPane(applicationName);
+        When("user clicks on (.*?) link under About me section$", (String linkName) -> {
+            context.loginAndHome.selectLinkInNavigatorPane(linkName);
         });
 
         When("My Details page should be displayed", () -> {
@@ -74,6 +74,22 @@ public class EmployeeEditMyDetailsSteps implements En {
 
         When("user select Emergency contact check box", () -> {
             context.employeeEditMyDetails.clickEmergencyContactCheckbox();
+        });
+        
+        When("user clicks on More Information icon under name icon", () -> {
+        	context.employeeEditMyDetails.clickMoreInformationImage();
+        });
+        
+        Then("A pop up window with employee details should be displayed", () -> {
+        	context.employeeEditMyDetails.checkMoreInformationPopupDisplayed();
+        });
+        
+        When("user clicks on Actions \\(v) button", () -> {
+        	context.employeeEditMyDetails.clickMoreInformationActionButton();
+        });
+        
+        Then("the values Absences,Compensation,Personal and Employment should be displayed", () -> {
+        	
         });
 
     }

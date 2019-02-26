@@ -200,18 +200,17 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
         }
     }
 
-
     // Common Method to Select Application in Navigator Pane
-    public void selectApplicationInNavigatorPane(String applicationName) {
+    public void selectLinkInNavigatorPane(String linkName) {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(navigator), 15);
-            appWebElement = driver.findElement(By.xpath("//a[text()='" + applicationName + "']"));
+            appWebElement = driver.findElement(By.xpath("//a[text()='" + linkName + "']"));
             assertThat(appWebElement.isDisplayed()).isTrue();
-            reportWithScreenShot("Application :" + applicationName + " selected from Navigator pane");
+            reportWithScreenShot("Application :" + linkName + " selected from Navigator pane");
             appWebElement.click();
             waitUntilPageLoad();
         } catch (Exception e) {
-            reportWithScreenShot("Unable to open :" + applicationName + " due to" + e.getMessage());
+            reportWithScreenShot("Unable to open :" + linkName + " due to" + e.getMessage());
             assertThat(appWebElement.isDisplayed()).isTrue();
         }
     }
