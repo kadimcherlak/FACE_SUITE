@@ -75,6 +75,22 @@ public class EmployeeEditMyDetailsSteps implements En {
         When("user select Emergency contact check box", () -> {
             context.employeeEditMyDetails.clickEmergencyContactCheckbox();
         });
+        
+        When("user clicks on More Information icon under name icon", () -> {
+        	context.employeeEditMyDetails.clickMoreInformationImage();
+        });
+        
+        Then("A pop up window with employee details should be displayed", () -> {
+        	context.employeeEditMyDetails.checkMoreInformationPopupDisplayed();
+        });
+        
+        When("user clicks on Actions \\(v) button", () -> {
+        	context.employeeEditMyDetails.clickMoreInformationActionButton();
+        });
+        
+        Then("the values Absences,Compensation,Personal and Employment should be displayed", () -> {
+        	
+        });
 
     }
 

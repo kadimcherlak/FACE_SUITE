@@ -67,6 +67,28 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//label[@class='x1cd']")
     private WebElement emergencyContactCheckbox;
+    
+    @FindBy(xpath = "//img[@title='More Information']")
+    private WebElement myDetailsMoreInformation;
+    
+    @FindBy(xpath = "//a[@title='Recent Actions']")
+    private WebElement moreInformationPopUp;
+    
+    @FindBy(xpath = "//a[@title='Absences']")
+    private WebElement moreInformationAbsencesLink;
+    
+    @FindBy(xpath = "//a[@title='Compensation']")
+    private WebElement moreInformationCompensationLink;
+    
+    @FindBy(xpath = "//a[@title='Personal and Employment']")
+    private WebElement moreInformationPersonalAndEmploymentLink;
+    
+    @FindBy(xpath = "//img[@title='Actions']")
+    private WebElement moreInformationActionButton;
+    
+    
+    
+  
 
     public EmployeeEditMyDetailsPage(Context context) {
         super(context);
@@ -258,6 +280,74 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
         } catch (Exception e) {
             reportWithScreenShot("Error While user click on save and close button:" + e.getMessage());
+        }
+    }
+    
+    // User click on More Information below My Details Page
+    
+    /**
+     * This method will click on the more information icon under my details page
+     * @author Rakesh Ghosal
+     */
+    public void clickMoreInformationImage() {
+        try {
+
+            waitFor(ExpectedConditions.elementToBeClickable(myDetailsMoreInformation), 15);
+            myDetailsMoreInformation.click();
+
+        } catch (Exception e) {
+            reportWithScreenShot("Error while click on more information on my details page:" + e.getMessage());
+        }
+    }
+    
+    /**
+     * This method will validate if the pop up is displayed or not after clicking on more information in my details page
+     * @author Rakesh Ghosal
+     */
+    public void checkMoreInformationPopupDisplayed() {
+        try {
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(moreInformationPopUp), 15);
+            assertThat(moreInformationPopUp.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if My Details more information pop up is Displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("My Details more information pop up is not Displayed");
+            assertThat(moreInformationPopUp.isDisplayed()).isTrue();
+        }
+    }
+    
+    /**
+     * This method will click on the more information action button page
+     * @author Rakesh Ghosal
+     */
+    public void clickMoreInformationActionButton() {
+        try {
+
+            waitFor(ExpectedConditions.elementToBeClickable(moreInformationActionButton), 15);
+            moreInformationActionButton.click();
+
+        } catch (Exception e) {
+            reportWithScreenShot("Error while click on more information action button:" + e.getMessage());
+        }
+    }
+    
+    /**
+     * This method will validate Absences, Compensation , Personal and Employment link in more information link
+     * @author Rakesh Ghosal
+     */
+    public void validateLinksPresentInMoreInformationPage() {
+        try {
+
+        	assertThat(moreInformationActionButton.isDisplayed()).isTrue();
+        	assertThat(moreInformationCompensationLink.isDisplayed()).isTrue();
+        	assertThat(moreInformationPersonalAndEmploymentLink.isDisplayed()).isTrue();
+        	reportWithScreenShot("Checking if My Details more information Absences, Compensation , Personal and Employment link in more information link is displayed");
+
+        } catch (Exception e) {
+            reportWithScreenShot("Checking if My Details more information Absences, Compensation , Personal and Employment link in more information link is displayed:" + e.getMessage());
+            assertThat(moreInformationActionButton.isDisplayed()).isTrue();
+        	assertThat(moreInformationCompensationLink.isDisplayed()).isTrue();
+        	assertThat(moreInformationPersonalAndEmploymentLink.isDisplayed()).isTrue();
         }
     }
 
