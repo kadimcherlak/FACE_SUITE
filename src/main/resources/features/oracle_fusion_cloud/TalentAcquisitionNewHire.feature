@@ -15,7 +15,7 @@ Feature: New Hire and Related Activities
       | Test Scenario | Test File Name | Test Sheet Name    |
       | LOGIN_LOGOUT  |                | Talent_Acquisition |
 
-  @VETS_DATA
+  @NEW_HIRE
   Scenario Outline:  Create New Hire with veteran data
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
