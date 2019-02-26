@@ -57,6 +57,7 @@ public class NewPersonPage extends BasePage<NewPersonPage> {
             waitFor(ExpectedConditions.elementToBeClickable(hireAndEmployee), 15);
             assertThat(hireAndEmployee.isDisplayed()).isTrue();
             hireAndEmployee.click();
+
             reportWithScreenShot("Select Hire An Employee");
             waitUntilPageLoad();
         } catch (Exception e) {

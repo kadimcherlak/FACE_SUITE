@@ -37,6 +37,7 @@ public class Data extends framework.core.models.Data {
     private String firstName;
     private String gender;
     private String globalMobilityIndicator;
+    private boolean globalMobilityIndicatorCheck;
     private String grade;
     private String hireAction;
     private String hireDate;
@@ -57,8 +58,10 @@ public class Data extends framework.core.models.Data {
     private String pearsonEmailRequired;
     private String payCheckDate;
     private String personNumber;
+    private String personName;
     private String salaryAmount;
     private String salaryBasis;
+    private String scenario;
     private String state;
     private String type1;
     private String type2;
@@ -222,6 +225,14 @@ public class Data extends framework.core.models.Data {
         return globalMobilityIndicator;
     }
 
+    public boolean getGlobalMobilityIndicatorCheck() {
+        return globalMobilityIndicatorCheck;
+    }
+
+    public void setGlobalMobilityIndicatorCheck(boolean globalMobilityIndicatorCheck) {
+        this.globalMobilityIndicatorCheck = globalMobilityIndicatorCheck;
+    }
+
     public String getGrade() {
         return grade;
     }
@@ -316,6 +327,9 @@ public class Data extends framework.core.models.Data {
         return personNumber;
     }
 
+    public String getPersonName() {
+        return personName;
+    }
     public void setPersonNumber(String personNumber) {
         this.personNumber = personNumber;
     }
@@ -326,6 +340,10 @@ public class Data extends framework.core.models.Data {
 
     public String getSalaryBasis() {
         return salaryBasis;
+    }
+
+    public String getScenario() {
+        return scenario;
     }
 
     public String getState() {

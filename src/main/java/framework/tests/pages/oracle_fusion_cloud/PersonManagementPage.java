@@ -535,6 +535,9 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             waitFor(ExpectedConditions.elementToBeClickable(updateEmploymentCreatePrimaryWork), 15);
             updateEmploymentCreatePrimaryWork.click();
 
+            // Set getGlobalMobilityIndicatorCheck value to True
+            data.setGlobalMobilityIndicatorCheck(true);
+
             // Click OK
             btnOK.click();
 

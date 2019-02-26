@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.ocas.implement</groupId>
-    <artifactId>ocas.implement</artifactId>
+    <groupId>com.cafe.implement</groupId>
+    <artifactId>cafe.implement</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>ocas-implementation</name>
-    <description>Example implementation of ocas test automation framework.</description>
+    <name>cafe-implementation</name>
+    <description>Example implementation of cafe test automation framework.</description>
     <url>https://github.com/</url>
 
     <licenses>
@@ -84,6 +84,8 @@
                             <environment>${environment}</environment>
                             <!--suppress UnresolvedMavenProperty -->
                             <tags>${tags}</tags>
+                            <!--suppress UnresolvedMavenProperty -->
+                            <testFile>${testFile}</testFile>
                         </systemPropertyVariables>
                     </configuration>
                 </plugin>
@@ -114,11 +116,11 @@
     <dependencies>
         <!-- core dependency -->
         <dependency>
-            <groupId>com.ocas.core</groupId>
-            <artifactId>ocas-core</artifactId>
+            <groupId>com.cafe.core</groupId>
+            <artifactId>cafe-core</artifactId>
             <scope>system</scope>
             <version>1.0</version>
-            <systemPath>${basedir}\lib\ocas-core-0.0.1-SNAPSHOT.jar</systemPath>
+            <systemPath>${basedir}\lib\cafe-core-0.0.1-SNAPSHOT.jar</systemPath>
         </dependency>
 
         <!-- required to run surefire -->

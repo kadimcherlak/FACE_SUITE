@@ -48,13 +48,13 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     @FindBy(linkText = "Personal Information")
     private WebElement personalInfoMyDetailsPage;
 
-    @FindBy(xpath = "(//div[@title='My Details'])[2]")
+    @FindBy(xpath = "//h1[contains(.,'My Details')]")
     private WebElement empMyDetails;
 
-    @FindBy(xpath = "(//div[@title='Edit My Details: Contact Information'])[1]")
+    @FindBy(xpath = "//h1[contains(.,'Edit My Details: Contact Information')]")
     private WebElement empMyDetailsContactInfo;
 
-    @FindBy(xpath = "(//div[@title='Edit My Details: Contacts'])[1]")
+    @FindBy(xpath = "//span[@class='section-title'][contains(.,'Contacts')]")
     private WebElement empMyDetailsContactPage;
 
     @FindBy(linkText = "Person Management")
@@ -200,32 +200,17 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
         }
     }
 
-
-//    // Person Management selection in Navigator Screen
-//    public void navigatorPersonManagement() {
-//        try {
-//            waitFor(ExpectedConditions.elementToBeClickable(personManagement), 15);
-//            assertThat(personManagement.isDisplayed()).isTrue();
-//            personManagement.click();
-//            waitUntilPageLoad();
-//            reportWithScreenShot("search screen");
-//        } catch (Exception e) {
-//            reportWithScreenShot("Unable to open Person Management on Navigator Screen due to:" + e.getMessage());
-//            assertThat(personManagement.isDisplayed()).isTrue();
-//        }
-//    }
-
     // Common Method to Select Application in Navigator Pane
-    public void selectApplicationInNavigatorPane(String applicationName) {
+    public void selectLinkInNavigatorPane(String linkName) {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(navigator), 15);
-            appWebElement = driver.findElement(By.xpath("//a[text()='" + applicationName + "']"));
+            appWebElement = driver.findElement(By.xpath("//a[text()='" + linkName + "']"));
             assertThat(appWebElement.isDisplayed()).isTrue();
-            reportWithScreenShot("Application :" + applicationName + " selected from Navigator pane");
+            reportWithScreenShot("Application :" + linkName + " selected from Navigator pane");
             appWebElement.click();
             waitUntilPageLoad();
         } catch (Exception e) {
-            reportWithScreenShot("Unable to open :" + applicationName + " due to" + e.getMessage());
+            reportWithScreenShot("Unable to open :" + linkName + " due to" + e.getMessage());
             assertThat(appWebElement.isDisplayed()).isTrue();
         }
     }

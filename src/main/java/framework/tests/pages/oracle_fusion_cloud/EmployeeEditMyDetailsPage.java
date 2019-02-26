@@ -20,7 +20,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     // Edit My Details Page Elements
 
-    @FindBy(xpath = "//a[@title='Edit']")
+    @FindBy(xpath = "//button[contains(.,'Edit')]")
     private WebElement myDetailsEdit;
 
     @FindBy(xpath = "(//a[@title='Add'])[2]")
@@ -29,10 +29,10 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//a[@title='Add']")
     private WebElement contactsAddBtn;
 
-    @FindBy(xpath = "(//*[@class='x2h'])[4]")
+    @FindBy(xpath = "(//*[@class='x2h'])[3]")
     private WebElement altWorkLocationAddType;
 
-    @FindBy(xpath = "(//input[@class='x109'])[2]")
+    @FindBy(xpath = "(//input[@class='x109'])[1]")
     private WebElement altWorkLocationcountry;
 
     @FindBy(xpath = "//span[text()='United States']")
@@ -90,6 +90,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     
   
 
+    @FindBy(xpath = "//h1[contains(.,'My Details')]")
+    private WebElement empMyDetails;
+
     public EmployeeEditMyDetailsPage(Context context) {
         super(context);
         this.context = context;
@@ -106,6 +109,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             waitFor(ExpectedConditions.visibilityOf(myDetailsEdit), 15);
             myDetailsEdit.click();
             reportWithScreenShot("User clicks on Edit Button");
+            waitShortTime();
 
         } catch (Exception e) {
             reportWithScreenShot(
@@ -131,6 +135,8 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     public void fillAlternateWorklocationAddress() {
         try {
             // Click Edit button in My details Page
+            waitShortTime();
+            altWorkLocationAddType.click();
             waitFor(ExpectedConditions
                     .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getAltWorkLocationaddressType() + "']"))), 5);
             driver.findElement(By.xpath("//li[text()='" + data.getAltWorkLocationaddressType() + "']")).click();
@@ -152,15 +158,16 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
             waitFor(ExpectedConditions.elementToBeClickable(altWorkLocationaddressLine1), 5);
             altWorkLocationaddressLine1.sendKeys(data.getAltWorkLocationaddressLine1());
-
             waitFor(ExpectedConditions.elementToBeClickable(altWorkLocationzipCode), 5);
             altWorkLocationzipCode.sendKeys(data.getAltWorkLocationzipCode());
-
+            altWorkLocationaddressLine1.click();
             reportWithScreenShot("User enter Alternate work location Address details");
+            assertThat(saveAndCloseBtn.isDisplayed()).isTrue();
 
         } catch (Exception e) {
             reportWithScreenShot(
                     "Error While user enter Alternate work location Address details due to:" + e.getMessage());
+            assertThat(saveAndCloseBtn.isDisplayed()).isTrue();
         }
     }
 
@@ -170,6 +177,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
             waitFor(ExpectedConditions.elementToBeClickable(contactsIcon), 15);
             contactsIcon.click();
+            waitShortTime();
 
         } catch (Exception e) {
             reportWithScreenShot("Error While user click on save and close button:" + e.getMessage());
@@ -221,6 +229,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             waitFor(ExpectedConditions.visibilityOf(continueBtn), 15);
             continueBtn.click();
             reportWithScreenShot("User clicks on Continue Button in contacts page");
+            waitShortTime();
 
         } catch (Exception e) {
             reportWithScreenShot(
@@ -231,7 +240,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     // User select value from Relationship
     public void selectRelationship() {
         try {
-            // Click Edit button in My details Page
+            // User select value from Relationship
+
+            relationshipOption.click();
             waitFor(ExpectedConditions
                     .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getContactsRelationship() + "']"))), 5);
             driver.findElement(By.xpath("//li[text()='" + data.getContactsRelationship() + "']")).click();
