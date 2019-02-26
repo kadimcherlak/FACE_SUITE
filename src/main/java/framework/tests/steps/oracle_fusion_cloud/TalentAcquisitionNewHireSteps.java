@@ -87,7 +87,11 @@ public class TalentAcquisitionNewHireSteps implements En {
         });
 
         When("user navigate to Employment Information page", () -> {
-            context.personManagment.navigateToEmpInfoPage();
+            //context.personManagment.navigateToEmpInfoPage();
+            context.hireAnEmployee.checkIdentificationTabAvailable();
+            context.hireAnEmployee.clickNextButton();
+            context.hireAnEmployee.checkPersonInformationTabAvailable();
+            context.hireAnEmployee.clickNextButton();
         });
 
         When("user clicks on Manage Element Entries link under Payroll section on right side of the page under Tasks pane", () -> {

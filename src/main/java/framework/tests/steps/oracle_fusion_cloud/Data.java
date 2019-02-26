@@ -58,6 +58,7 @@ public class Data extends framework.core.models.Data {
     private String pearsonEmailRequired;
     private String payCheckDate;
     private String personNumber;
+    private String personName;
     private String salaryAmount;
     private String salaryBasis;
     private String scenario;
@@ -326,6 +327,9 @@ public class Data extends framework.core.models.Data {
         return personNumber;
     }
 
+    public String getPersonName() {
+        return personName;
+    }
     public void setPersonNumber(String personNumber) {
         this.personNumber = personNumber;
     }
