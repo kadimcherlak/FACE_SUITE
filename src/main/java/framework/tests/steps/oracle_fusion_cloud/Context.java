@@ -68,9 +68,6 @@ public class Context extends framework.core.models.Context {
         try {
             // Code to Load Data from Yaml file
             //dataStore = DataLoader.loadDataStoreFromYaml(getFeatureDataFile(scenario.getId()), data);
-
-            // Code to Load Date from Excel file
-            //dataStore = DataLoader.loadDataStroreFromExcel(getFeatureDataFile(scenario.getId()),"Test_Data",data);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -109,7 +106,7 @@ public class Context extends framework.core.models.Context {
     }
 
     private String getPath() {
-        return System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources";
+        return System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "testdata";
     }
     public void setPages(Context context) {
         changeManager = new ChangeManagerPage(context);
