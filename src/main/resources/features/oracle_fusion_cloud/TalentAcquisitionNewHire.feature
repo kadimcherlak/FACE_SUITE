@@ -13,7 +13,7 @@ Feature: New Hire and Related Activities
 
     Examples:
       | Test Scenario | Test File Name | Test Sheet Name    |
-      | LOGIN_LOGOUT  |                | Talent_Acquisition |
+      | LOGIN_LOGOUT  | TestData.xlsx  | Talent_Acquisition |
 
   @NEW_HIRE
   Scenario Outline:  Create New Hire with veteran data
@@ -36,7 +36,7 @@ Feature: New Hire and Related Activities
 
     Examples:
       | Test Scenario | Test File Name | Test Sheet Name    |
-      | VETS_DATA     | TestData.xlsx  | Talent_Acquisition |
+      | NEW_HIRE      | TestData.xlsx  | Talent_Acquisition |
 
   @BILINGUAL_INDICATOR
   Scenario Outline: Hire a Employee with a bilingual indicator
