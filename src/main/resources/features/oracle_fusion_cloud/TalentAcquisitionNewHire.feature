@@ -16,7 +16,7 @@ Feature: New Hire and Related Activities
       | LOGIN_LOGOUT  |                | Talent_Acquisition |
 
   @VETS_DATA
-  Scenario Outline:  As an PPS Tier2 Recruitment and Onboarding Administration User Role, i should be able to set up a New Hire and enter VETS data
+  Scenario Outline:  Create New Hire with veteran data
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -39,7 +39,7 @@ Feature: New Hire and Related Activities
       | VETS_DATA     | TestData.xlsx  | Talent_Acquisition |
 
   @BILINGUAL_INDICATOR
-  Scenario Outline: : As an PPS Tier2 Recruitment and Onboarding Administration User Role, i should be able to Hire a Employee with a bilingual indicator
+  Scenario Outline: Hire a Employee with a bilingual indicator
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -77,7 +77,7 @@ Feature: New Hire and Related Activities
       | BILINGUAL_INDICATOR | TestData.xlsx  | Talent_Acquisition |
 
   @UPDATE_ELEMENT_ENTRIES
-  Scenario Outline: : As an PPS Tier 2 Workforce and Assignment Administrator, i should be able to Update Element Entries for the employee
+  Scenario Outline: : Update Element Entries for the New Hire employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -117,7 +117,7 @@ Feature: New Hire and Related Activities
       | UPDATE_ELEMENT_ENTRIES | TestData.xlsx  | Talent_Acquisition |
 
   @UPDATE_PERSONAL_ASSIGNMENT_DATA
-  Scenario Outline: : As an PPS Tier 2 Workforce and Assignment Administrator, i should able to edit personal and assignment data, filling the Global Mobility Indicator and free text fields, to create Global Temporary Assignment and perform Global Transfer
+  Scenario Outline: Create Global Temporary Assignment and perform Global Transfer for New Hire Employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
