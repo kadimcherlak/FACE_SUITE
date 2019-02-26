@@ -200,21 +200,6 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
         }
     }
 
-
-//    // Person Management selection in Navigator Screen
-//    public void navigatorPersonManagement() {
-//        try {
-//            waitFor(ExpectedConditions.elementToBeClickable(personManagement), 15);
-//            assertThat(personManagement.isDisplayed()).isTrue();
-//            personManagement.click();
-//            waitUntilPageLoad();
-//            reportWithScreenShot("search screen");
-//        } catch (Exception e) {
-//            reportWithScreenShot("Unable to open Person Management on Navigator Screen due to:" + e.getMessage());
-//            assertThat(personManagement.isDisplayed()).isTrue();
-//        }
-//    }
-
     // Common Method to Select Application in Navigator Pane
     public void selectLinkInNavigatorPane(String linkName) {
         try {
