@@ -13,8 +13,9 @@ public class CommonSteps implements En {
         logger = context.getLogger();
         logger.debug("{} loaded", this.getClass().getName());
 
-        Given("^user runs (.*?)$", (String testCaseKey) -> {
-            context.setData(testCaseKey);
+        Given("^user runs (.*?) from (.*?) under (.*?)$", (String testScenario, String testFileName, String testSheetName) -> {
+            context.setExcelDataStore(testFileName, testSheetName);
+            context.setData(testScenario);
             data = context.getData();
             context.setPages(context);
         });

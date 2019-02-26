@@ -419,7 +419,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             erProfitCenter.sendKeys(data.getErProfitCenter());
             waitShortTime();
 
-            if (!data.getGlobalMobilityIndicator().isEmpty()) {
+            if (data.getGlobalMobilityIndicatorCheck()) {
                 // Select Global Mobility Indicator
                 waitFor(ExpectedConditions.elementToBeClickable(empInfoGlobalMobilityInd), 15);
                 empInfoGlobalMobilityInd.click();
