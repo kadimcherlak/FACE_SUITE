@@ -2,7 +2,7 @@
 Feature: Perform edit on Address,Contact Type,Personal Payment Method and disability Information
 
   @NEW_ADDRESS_ALTERNATIVE_WORK_LOCATION
-  Scenario Outline:  As an Employee, i should be able to add a New Address to indicate an alternative work location
+  Scenario Outline:  Employee to add New Address to indicate an alternative work location
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -22,7 +22,7 @@ Feature: Perform edit on Address,Contact Type,Personal Payment Method and disabi
       | NEW_ADDRESS_ALTERNATIVE_WORK_LOCATION | TestData.xlsx  | Employee_Details |
 
   @ADD_EMERGENCY_CONTACT_DETAILS
-  Scenario Outline:  As an Employee, i should be able to select a contact type from Emergency Contact list and add details
+  Scenario Outline:  Employee to select a contact type from Emergency Contact list and add details
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -49,7 +49,7 @@ Feature: Perform edit on Address,Contact Type,Personal Payment Method and disabi
       | ADD_EMERGENCY_CONTACT_DETAILS | TestData.xlsx  | Employee_Details |
 
   @UPDATE_PERSONAL_PAYMENT_METHODS_EXPENSES_ONLY
-  Scenario Outline:  As an Employee, i should be able to update Personal Payment Method (Expenses only) details
+  Scenario Outline:  Employee to update Personal Payment Method (Expenses only) details
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -83,7 +83,7 @@ Feature: Perform edit on Address,Contact Type,Personal Payment Method and disabi
       | UPDATE_PERSONAL_PAYMENT_METHODS_EXPENSES_ONLY | TestData.xlsx  | Employee_Details |
 
   @UPDATE_PERSONAL_PAYMENT_METHODS_NON_EXPENSES_ONLY
-  Scenario Outline:  As an Employee, i should be able to update Personal Payment Method (Non - Expenses only) details
+  Scenario Outline:  Employee to update Personal Payment Method (Non - Expenses only) details
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -117,7 +117,7 @@ Feature: Perform edit on Address,Contact Type,Personal Payment Method and disabi
       | UPDATE_PERSONAL_PAYMENT_METHODS_NON_EXPENSES_ONLY | TestData.xlsx  | Employee_Details |
 
   @UPDATE_ADDRESS_BIOGRAPHICAL_INFO_DRIVING_LICENSE_DOCUMENTS
-  Scenario Outline:  As an Employee, i should be able to update Address,BiographicalInfo and DrivingLicense Documents
+  Scenario Outline:  Employee to update Address, BiographicalInfo and Driving License Documents
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
