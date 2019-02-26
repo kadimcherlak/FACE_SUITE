@@ -48,16 +48,12 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     @FindBy(linkText = "Personal Information")
     private WebElement personalInfoMyDetailsPage;
 
-    //@FindBy(xpath = "(//div[@title='My Details'])[2]")
-    @FindBy(xpath = "//h1[@class='xmt '][contains(.,'My Details')]")
+    @FindBy(xpath = "//h1[contains(.,'My Details')]")
     private WebElement empMyDetails;
 
-    //    @FindBy(xpath = "(//div[@title='Edit My Details: Contact Information'])[1]")
     @FindBy(xpath = "//h1[contains(.,'Edit My Details: Contact Information')]")
     private WebElement empMyDetailsContactInfo;
 
-    // @FindBy(xpath = "(//div[@title='Edit My Details: Contacts'])[1]")
-    //@FindBy(xpath = "//h1[contains(.,'Edit My Details: Contact Information')]")
     @FindBy(xpath = "//span[@class='section-title'][contains(.,'Contacts')]")
     private WebElement empMyDetailsContactPage;
 
@@ -204,20 +200,6 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
         }
     }
 
-
-//    // Person Management selection in Navigator Screen
-//    public void navigatorPersonManagement() {
-//        try {
-//            waitFor(ExpectedConditions.elementToBeClickable(personManagement), 15);
-//            assertThat(personManagement.isDisplayed()).isTrue();
-//            personManagement.click();
-//            waitUntilPageLoad();
-//            reportWithScreenShot("search screen");
-//        } catch (Exception e) {
-//            reportWithScreenShot("Unable to open Person Management on Navigator Screen due to:" + e.getMessage());
-//            assertThat(personManagement.isDisplayed()).isTrue();
-//        }
-//    }
 
     // Common Method to Select Application in Navigator Pane
     public void selectApplicationInNavigatorPane(String applicationName) {

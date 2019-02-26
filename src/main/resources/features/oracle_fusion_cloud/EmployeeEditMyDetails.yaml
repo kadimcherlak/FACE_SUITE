@@ -44,7 +44,7 @@ New Hire Scenario1:
   nationalIDType: 'Social Security Number'
   newlySeparatedVeteranDischargeDate: '12-Apr-2017'
   number: 2717522
-  password: 'Welcome123'
+  password: 'Welcome1'
   payroll: 'Bi-Weekly Exempt'
   pearsonEmailRequired: 'Yes'
   salaryAmount: 21208.59
@@ -52,7 +52,7 @@ New Hire Scenario1:
   state: 'TX'
   type1: 'Work Phone'
   type2: 'Home E-Mail'
-  userName: '3259228'
+  userName: '3009386'
   veteranSelfIdentificationStatus: 'Not a Protected Veteran'
   workerType: 'Employee'
   workingAsManager: 'No'

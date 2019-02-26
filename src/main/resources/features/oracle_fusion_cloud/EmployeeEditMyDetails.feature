@@ -1,8 +1,8 @@
 @EMPLOYEE_EDIT_DETAILS
-Feature: Perform edit on Address,Contact Type,Personal Payment Method and disability Information
+Feature: Employee performs edit on Address,Contact Type,Personal Payment Method and disability Information
 
   @NEW_ADDRESS_ALTERNATIVE_WORK_LOCATION
-  Scenario Outline:  As an Employee, i should be able to add a New Address to indicate an alternative work location
+  Scenario Outline: Employee add a New Address to indicate an alternative work location
     Given user runs <Test Scenario>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -23,7 +23,7 @@ Feature: Perform edit on Address,Contact Type,Personal Payment Method and disabi
       | New Hire Scenario1 |
 
   @ADD_EMERGENCY_CONTACT_DETAILS
-  Scenario Outline:  As an Employee, i should be able to select a contact type from Emergency Contact list and add details
+  Scenario Outline:  Employee select a contact type from Emergency Contact list and add details
     Given user runs <Test Scenario>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
