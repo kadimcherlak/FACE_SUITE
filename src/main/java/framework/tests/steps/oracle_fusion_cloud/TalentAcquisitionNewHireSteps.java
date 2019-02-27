@@ -78,6 +78,23 @@ public class TalentAcquisitionNewHireSteps implements En {
             context.personManagment.clickActionEdit();
         });
 
+        When("user enters new Salary Amount under Current Salary section", () -> {
+            context.personManagment.enterSalaryAmount();
+        });
+
+        When("user selects Use salary component checkbox", () -> {
+            context.personManagment.checkboxUseSalary();
+        });
+
+
+        Then("Components tab is displayed in Manage Salary", () -> {
+            context.personManagment.tabComponentsManageSalary();
+        });
+
+        When("user clicks on Add button in Components tab",() -> {
+            context.personManagment.clickAddComponent();
+        });
+
         Then("Update Employment new window should be displayed", () -> {
             context.personManagment.checkUpdateEmployementWindowDisplayed();
         });
@@ -109,7 +126,7 @@ public class TalentAcquisitionNewHireSteps implements En {
         });
         
         
-        And("user select Manage Salary option from task icon menu", () -> {
+        And("user clicks Manage Salary option from task icon menu", () -> {
             context.personManagment.manageSalaryClick();
         });
 
@@ -165,6 +182,30 @@ public class TalentAcquisitionNewHireSteps implements En {
         When("user click on Done button at the top", () -> {
             context.personManagment.clickDoneButton();
         });
+        And("^user selects (.*?) from Component dropdown$", (String linkName) -> {
+            context.personManagment.selectComponentTypeManageSalary(linkName);
+        });
+        And("^user enters amount in Amount field in Components tab$", () -> {
+           context.personManagment.enterAmountInComponent();
+        });
+        And("^user clicks on Continue button in Manage Salary tab$", () -> {
+
+            context.personManagment.clickButtonContinueInManageSalary();
+
+        });
+
+        When("^user clicks on Submit button in Manage Salary Review page$", () -> {
+            context.personManagment.clickSubmitButtonInReviewPage();
+        });
+        And("^user clicks Yes button on popup modal$", () -> {
+            context.personManagment.clickYesOnPopup();
+        });
+
+        And("^user clicks Ok button confirmation popup modal$", () -> {
+            context.personManagment.clickOKOnPopup();
+        });
+
+
 
     }
 }

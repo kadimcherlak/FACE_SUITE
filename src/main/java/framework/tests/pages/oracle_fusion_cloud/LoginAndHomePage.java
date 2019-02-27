@@ -211,7 +211,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             waitUntilPageLoad();
         } catch (Exception e) {
             reportWithScreenShot("Unable to open :" + linkName + " due to" + e.getMessage());
-            assertThat(appWebElement.isDisplayed()).isTrue();
+            assertThat(false).isTrue();
         }
     }
 
