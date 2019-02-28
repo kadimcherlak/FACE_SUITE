@@ -166,7 +166,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//h1[@class='xyx'][contains(text(),'Current Salary')]")
     private WebElement currentSalaryTab;
 
-    @FindBy(xpath = "//a[text()='Manage Salary']")
+    @FindBy(xpath = "//li[@class='x1ui']/a[text()='Manage Salary']")
     private WebElement linkManagesalary;
 
     @FindBy(xpath = "//button[@title='Action']")
@@ -225,7 +225,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//button[text()='OK']")
     private WebElement popupOK_ManageSalary;
 
-    @FindBy(xpath = "//label[text()='Action Reason']//following::input[1]")
+     @FindBy(xpath = "//label[text()='Action Reason']//following::input[1]")
     private WebElement txtboxActionReason_ManageSalary;
 
     @FindBy(xpath = "//span[text()='Edit']")
@@ -267,6 +267,14 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//li[@class='x1pk'][text()='Promotion']")
     private WebElement valPromotion;
 
+    @FindBy(xpath = "//a[@title='Search: Salary Basis']")
+    private WebElement dropdownSalaryBasis_ManageSalary;
+
+    @FindBy(xpath = "//button[@id='_FOd1::msgDlg::cancel']")
+    private WebElement btnOK_WarningPopup;
+
+    @FindBy(xpath = "//tr[3]//td//span[@class='x2qb']")
+    private WebElement usHourlyWages40;
 
     // Person Management Contructor
     public PersonManagementPage(Context context) {
@@ -855,7 +863,6 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     }
 
     //user clicks Yes button on Manage salary review page
-
     public void clickOKOnPopup() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(confirmBtnOK), 15);
@@ -865,6 +872,36 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             reportWithScreenShot(" Ok button in Manage salary review page is clicked");
         } catch (Exception e) {
             reportWithScreenShot("Error While clicking ok button:" + e.getMessage());
+            assertThat(false).isTrue();
+        }
+    }
+
+    //user clicks Ok button on Warning modal - Manage salary review page
+    public void clickWarningModal() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(btnOK_WarningPopup), 15);
+            btnOK_WarningPopup.click();
+            waitFor(ExpectedConditions.elementToBeClickable(btnContinue_ManageSalary), 15);
+            assertThat(btnContinue_ManageSalary.isDisplayed());
+            reportWithScreenShot(" User closes the warning modal by clicking OK button");
+        } catch (Exception e) {
+            reportWithScreenShot("Error While clicking ok button on warning modal:" + e.getMessage());
+            assertThat(false).isTrue();
+        }
+    }
+
+    // user selecting component type under component tab in manage salary page
+    public void selectSalarBasis() {
+
+        try {
+
+            dropdownSalaryBasis_ManageSalary.click();
+            waitFor(ExpectedConditions.elementToBeClickable(usHourlyWages40), 15);
+            assertThat(usHourlyWages40.isDisplayed());
+            usHourlyWages40.click();
+            reportWithScreenShot( " is selected from dropdown:");
+        } catch (Exception e) {
+            reportWithScreenShot("Error While selecting  from dropdown:" + e.getMessage());
             assertThat(false).isTrue();
         }
     }

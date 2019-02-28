@@ -204,7 +204,13 @@ public class TalentAcquisitionNewHireSteps implements En {
         And("^user clicks Ok button confirmation popup modal$", () -> {
             context.personManagment.clickOKOnPopup();
         });
+        When("^user selects US Hourly Wages (\\d+) hours from Salary Basis$", (Integer arg0) -> {
+            context.personManagment.selectSalarBasis();
+        });
+        Then("^user closes Warning modal by clicking OK button$", () -> {
+            context.personManagment.clickWarningModal();
 
+        });
 
 
     }
