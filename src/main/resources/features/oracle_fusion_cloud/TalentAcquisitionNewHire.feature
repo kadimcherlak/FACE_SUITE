@@ -1,19 +1,19 @@
 @TALENT_ACQUISITION
 Feature: New Hire and Related Activities
 
-  @LOGIN_LOGOUT
-  Scenario Outline: Perform Login to Oracle Fusion Cloud
-    Given user runs <Test Scenario>
-    And user is on the oracle fusion login page
-    And user provides credentials for login
-    When the user click on Sign In
-    Then the Oracle Fusion Home Page is displayed
-    When user click on Sign Out option
-    Then Sign out should be successful
+ // @LOGIN_LOGOUT
+  //Scenario Outline: Perform Login to Oracle Fusion Cloud
+   // Given user runs <Test Scenario>
+   // And user is on the oracle fusion login page
+    //And user provides credentials for login
+    //When the user click on Sign In
+    //Then the Oracle Fusion Home Page is displayed
+    //When user click on Sign Out option
+    //Then Sign out should be successful
 
-    Examples:
-      | Test Scenario      |
-      | New Hire Scenario1 |
+    //Examples:
+     // | Test Scenario      |
+      //| New Hire Scenario1 |
 
   @VETS_DATA
   Scenario Outline:  As an PPS Tier2 Recruitment and Onboarding Administration User Role, i should be able to set up a New Hire and enter VETS data
