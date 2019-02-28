@@ -2,8 +2,8 @@
 Feature: Change Manager Transaction and Approval
 
   @LINE_MANAGER_PERFORMS_CHANGE_MANAGER
-  Scenario Outline: As an Line Manager, i should be able to Perform Change Manager transaction for my direct reportees
-    Given user runs <Test Scenario>
+  Scenario Outline: Line Manager to Perform Change Manager transaction for direct reportees
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
     And user clicks on My Team link under My Team section
@@ -21,12 +21,12 @@ Feature: Change Manager Transaction and Approval
     Then Sign out should be successful
 
     Examples:
-      | Test Scenario  |
-      | Change Manager |
+      | Test Scenario                        | Test File Name | Test Sheet Name |
+      | LINE_MANAGER_PERFORMS_CHANGE_MANAGER | TestData.xlsx  | Change_Manager  |
 
-  @LINE_MANAGER1_APPROVES_CHANGE_MANAGER_REQUEST
-  Scenario Outline: As an Line Manager 1, i should be able to approves request of employee's manager change
-    Given user runs <Test Scenario>
+  @LINE_MANAGER_APPROVES_CHANGE_MANAGER_REQUEST
+  Scenario Outline: Line Manager to approve request of employee's manager change
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Notifications bell icon
     And user clicks on Action Required Notification link
@@ -37,5 +37,5 @@ Feature: Change Manager Transaction and Approval
     Then Sign out should be successful
 
     Examples:
-      | Test Scenario  |
-      | Change Manager |
+      | Test Scenario                                 | Test File Name | Test Sheet Name |
+      | LINE_MANAGER1_APPROVES_CHANGE_MANAGER_REQUEST | TestData.xlsx  | Change_Manager  |

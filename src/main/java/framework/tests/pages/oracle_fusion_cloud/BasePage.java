@@ -49,7 +49,7 @@ public class BasePage<T> extends WebPage {
 
     public void waitUntilPageLoad() {
         try {
-            new WebDriverWait(driver, 20).until((ExpectedCondition<Boolean>) wd ->
+            new WebDriverWait(driver, 40).until((ExpectedCondition<Boolean>) wd ->
                     ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         } catch (Exception e) {
             logger.error("Exception:waitUntilPageLoad = Error running JavascriptExecutor - {}", e.getMessage());
@@ -103,6 +103,7 @@ public class BasePage<T> extends WebPage {
     // Click on Next to goto next tab
     public void clickNextButton() {
         try {
+            waitFor(ExpectedConditions.visibilityOf(next), 15);
             next.click();
             waitShortTime();
         } catch (Exception e) {

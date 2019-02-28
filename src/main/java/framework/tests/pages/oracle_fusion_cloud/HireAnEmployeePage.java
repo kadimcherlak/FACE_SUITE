@@ -17,26 +17,34 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     private Context context;
     private Data data;
     private Actions actions;
-    private int elementsize;
 
     // Hire An Employee Page Elements
-    @FindBy(xpath = "//*[text()='Hire an Employee: Identification']")
-    private WebElement hireAnEmployeePageCheck;
+    @FindBy(xpath = "//h1[contains(text(),': Identification')]")
+    private WebElement identificationTab;
 
-    @FindBy(xpath = "//*[text()='Hire an Employee: Person Information']")
-    private WebElement personInfoPageCheck;
+    @FindBy(xpath = "//h1[contains(text(),': Person Information')]")
+    private WebElement personInfoTab;
 
-    @FindBy(xpath = "//label[text()='Hire Date']/following::input[1]")
-    private WebElement hireDate;
+    @FindBy(xpath = "//h1[contains(text(),': Employment Information')]")
+    private WebElement empInfoTab;
 
-    @FindBy(xpath = "//input[@title='Hire']")
-    private WebElement hireAction;
+    @FindBy(xpath = "//h1[contains(text(),': Compensation and Other Information')]")
+    private WebElement compAndOtherInfoTab;
 
-    @FindBy(xpath = "//label[text()='Hire Reason']/following::input[1]")
-    private WebElement hireReason;
+    @FindBy(xpath = "//h1[contains(text(),': Review')]")
+    private WebElement reviewTab;
 
-    @FindBy(xpath = "//label[text()='Legal Employer']/following::input[1]")
-    private WebElement legalEmployer;
+    @FindBy(xpath = "(//input[@class='x2b'])[1]")
+    private WebElement basicDetailsDate;
+
+    @FindBy(xpath = "(//input[@class='x2h'])[1]")
+    private WebElement basicDetailsAction;
+
+    @FindBy(xpath = "(//input[@class='x2h'])[2]")
+    private WebElement basicDetailsReason;
+
+    @FindBy(xpath = "//input[@class='x109']")
+    private WebElement basicDetailsEmployer;
 
     @FindBy(xpath = "//*[text()='Employee']")
     private WebElement checkWorkerType;
@@ -146,118 +154,8 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//label[@class='x1cd']")
     private WebElement salarycmpnt;
 
-    @FindBy(xpath = "//*[text()='Hire an Employee: Review']")
-    private WebElement reviewTab;
-
-    @FindBy(xpath = "//*[text()='Person Management: Search']")
-    private WebElement personManagementSearch;
-
-    @FindBy(xpath = "//label[text()='Keywords']/following::input[1]")
-    private WebElement keywords;
-
-    @FindBy(xpath = "//label[text()='Effective As-of Date']/following::input[1]")
-    private WebElement effectiveAsOfDate;
-
-    @FindBy(xpath = "//button[text()='Search']")
-    private WebElement searchBtn;
-
-    @FindBy(xpath = "//img[@title='Actions']")
-    private WebElement actionsBtn;
-
-    @FindBy(xpath = "(//td[text()='Payroll'])[2]")
-    //This locator is only available option to select, no other locator style exist
-    private WebElement payrollOption;
-
-    @FindBy(xpath = "(//td[@class='xmz'][contains(.,'Manage Element Entries')])[2]")
-    private WebElement manageElementEntries;
-
-    @FindBy(xpath = "(//*[text()='Manage Element Entries'])[1]")
-    private WebElement manageElementEnteriesTextCheck;
-
-    @FindBy(xpath = "//label[text()='Element Name']/following::input[1]")
-    private WebElement elementName;
-
-    @FindBy(xpath = "//label[text()='Assignment']")
-    private WebElement assignment;
-
-    @FindBy(xpath = "//label[text()='Payroll Relationship']")
-    private WebElement payrollRelationship;
-
-    @FindBy(xpath = "//button[@title='Continue']")
-    private WebElement continueBtn;
-
-    @FindBy(xpath = "//label[text()='Bilingual']/following::input[1]")
-    private WebElement bilingualYes;
-
-    @FindBy(xpath = "//a[text()='Bilingual Indicator']")
-    private WebElement bilingualRowAdded;
-
-    @FindBy(xpath = "//label[text()='Actual Amount']/following::input[1]")
-    private WebElement actualAmount;
-
-    @FindBy(xpath = "//label[text()='Paycheck Date']/following::input[1]")
-    private WebElement payCheckDate;
-
-    @FindBy(xpath = "//*[contains(@class,'x10t') and contains(text(),'m')]")
-    private WebElement bilingualSubmitBtn;
-
-    @FindBy(xpath = "//*[contains(@class,'x10t') and contains(text(),'m')]")
-    private WebElement adpSubmitBtn;
-
-    @FindBy(xpath = "//*[contains(text(),'ADP Auto & Home')]")
-    private WebElement adpRowAdded;
-
-    @FindBy(xpath = "(//span[@class='xwb'])[1]")
-    private WebElement done;
-
-    //@TODO - Locator to be fixed
-    @FindBy(xpath = "//*[@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt1:0:pt1:Perso1:0:SP3:table1:_ATp:table2:0:gl1\"]")
-    private WebElement personLink;
-
-    @FindBy(xpath = "//a[@title='Edit']")
-    private WebElement personMgmtEdit;
-
-    @FindBy(xpath = "//tr[contains(@id,'updBtn')]")
-    private WebElement personMgmtUpdate;
-
-    @FindBy(xpath = "//div[text()='Update Employment']")
-    private WebElement updateEmploymentTitle;
-
-    @FindBy(xpath = "//div[@title='Close person management']")
-    private WebElement personMgmtDone;
-
-    @FindBy(xpath = "//label[contains(@for,'effectiveDate')]//following::input[1]")
-    private WebElement updateEmploymentEffectiveDate;
-
-    @FindBy(xpath = "//label[contains(@for,'actionsName')]/following::input[1]")
-    private WebElement updateEmploymentAction;
-
-    @FindBy(xpath = "//label[contains(@for,'actionReason')]/following::input[1]")
-    private WebElement updateEmploymentActionReason;
-
-    @FindBy(xpath = "//button[@accesskey='K']")
-    private WebElement btnOK;
-
-    @FindBy(xpath = "//label[text()='Destination Legal Employer']/following::input[1]")
-    private WebElement updateEmploymentDestLegalEmployer;
-
-    @FindBy(xpath = "//label[contains(@for,'rdoMakePrimary:_0')]")
-    private WebElement updateEmploymentCreatePrimaryWork;
-
-    @FindBy(xpath = "//h1[text()='Global Temporary Assignment: Identification']")
-    private WebElement globalTempAssignment;
-
-    @FindBy(xpath = "//label[text()='Existing Address']")
-    private WebElement personalInfoExistingAddress;
-
     @FindBy(xpath = "//label[text()='Global Mobility Indicator']/following::input[1]")
     private WebElement empInfoGlobalMobilityInd;
-
-    @FindBy(xpath = "//label[text()='Working Hours']/following::input[1]")
-    private WebElement empInfoWorkingHrs;
-
-    @FindBy(xpath = "//h1[text()='Global Temporary Assignment: Employment Information']")
-    private WebElement globalTempAssignmentEmpInfo;
 
     public HireAnEmployeePage(Context context) {
         super(context);
@@ -268,41 +166,64 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
         logger.debug("{} loaded", this.getClass().getName());
     }
 
-    // Hire an Employee Page check available
-    public void checkHireAnEmployeePageAvailable() {
+    // Identification Tab check available
+    public void checkIdentificationTabAvailable() {
         try {
-            waitFor(ExpectedConditions.visibilityOf(hireAnEmployeePageCheck), 15);
-            assertThat(hireAnEmployeePageCheck.isDisplayed()).isTrue();
-            reportWithScreenShot("Checking if Hire An Employee Page is Displayed");
+            waitFor(ExpectedConditions.visibilityOf(identificationTab), 15);
+            assertThat(identificationTab.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if Identification Page is Displayed");
         } catch (Exception e) {
-            reportWithScreenShot("Hire An Employee Page not Displayed due to: " + e.getMessage());
-            assertThat(hireAnEmployeePageCheck.isDisplayed()).isTrue();
+            reportWithScreenShot("Identification Page not Displayed due to: " + e.getMessage());
+            assertThat(identificationTab.isDisplayed()).isTrue();
         }
     }
 
+    // Person Information Tab check available
+    public void checkPersonInformationTabAvailable() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(personInfoTab), 15);
+            assertThat(personInfoTab.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if Person Information Page is Displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Person Information Page not Displayed due to: " + e.getMessage());
+            assertThat(personInfoTab.isDisplayed()).isTrue();
+        }
+    }
+
+    // Employment Information Tab check available
+    public void checkEmploymentInformationTabAvailable() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(empInfoTab), 15);
+            assertThat(empInfoTab.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if Employment Information Page is Displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Employment Information Page not Displayed due to: " + e.getMessage());
+            assertThat(empInfoTab.isDisplayed()).isTrue();
+        }
+    }
     // Enter Value into Identification tab
     public void fillIdentificationTab() {
         try {
             // Enter Hire Date
-            hireDate.clear();
-            actions.doubleClick(hireDate).sendKeys(getCurrentDate());
+            basicDetailsDate.clear();
+            actions.doubleClick(basicDetailsDate).sendKeys(getCurrentDate());
 
             // Select Hire Action
-            hireAction.click();
+            basicDetailsAction.click();
             waitFor(ExpectedConditions
                     .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getHireAction() + "']"))), 5);
             driver.findElement(By.xpath("//li[text()='" + data.getHireAction() + "']")).click();
-            hireAction.sendKeys(Keys.TAB);
+            basicDetailsAction.sendKeys(Keys.TAB);
 
             // Select Hire Reason
-            hireReason.click();
+            basicDetailsReason.click();
             waitFor(ExpectedConditions
                     .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getHireReason() + "']"))), 5);
             driver.findElement(By.xpath("//li[text()='" + data.getHireReason() + "']")).click();
-            hireReason.sendKeys(Keys.TAB);
+            basicDetailsReason.sendKeys(Keys.TAB);
 
             // Check Worker Type
-            actions.moveToElement(legalEmployer).click().sendKeys(data.getLegalEmployer()).sendKeys(Keys.ENTER)
+            actions.moveToElement(basicDetailsEmployer).click().sendKeys(data.getLegalEmployer()).sendKeys(Keys.ENTER)
                     .sendKeys(Keys.TAB).perform();
             assertThat(checkWorkerType.getText().equals(data.getWorkerType())).isTrue();
             waitNormalTime();
@@ -367,11 +288,11 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitUntilPageLoad(); // wait until next tab loads
 
             //check if person information tab loaded
-            waitFor(ExpectedConditions.visibilityOf(personInfoPageCheck), 15);
-            assertThat(personInfoPageCheck.isDisplayed()).isTrue();
+            waitFor(ExpectedConditions.visibilityOf(personInfoTab), 15);
+            assertThat(personInfoTab.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Error While Entering Value into Identification Tab due to:" + e.getMessage());
-            assertThat(personInfoPageCheck.isDisplayed()).isTrue();
+            assertThat(personInfoTab.isDisplayed()).isTrue();
         }
     }
 
@@ -498,7 +419,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             erProfitCenter.sendKeys(data.getErProfitCenter());
             waitShortTime();
 
-            if (!data.getGlobalMobilityIndicator().isEmpty()) {
+            if (data.getGlobalMobilityIndicatorCheck()) {
                 // Select Global Mobility Indicator
                 waitFor(ExpectedConditions.elementToBeClickable(empInfoGlobalMobilityInd), 15);
                 empInfoGlobalMobilityInd.click();
@@ -557,7 +478,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitUntilPageLoad(); // wait until next tab loads
 
             // Check if next page loaded
-            waitFor(ExpectedConditions.visibilityOf(reviewTab),15);
+            waitFor(ExpectedConditions.visibilityOf(reviewTab), 15);
             assertThat(reviewTab.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot(
@@ -569,352 +490,12 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     // Check Review tab with Employee information
     public void checkReviewTabDisplayedWithInformation() {
         try {
-            waitFor(ExpectedConditions.visibilityOf(reviewTab),15);
+            waitFor(ExpectedConditions.visibilityOf(reviewTab), 15);
             reportWithScreenShot("Summary of Review tab with Employee information");
             assertThat(reviewTab.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Error While checking values in Review Tab due to:" + e.getMessage());
             assertThat(reviewTab.isDisplayed()).isTrue();
-        }
-    }
-
-    // Person Management Search check available
-    public void checkPersonManagementSearchAvailable() {
-        try {
-            reportWithScreenShot("Checking if Person Management Search screen is Displayed");
-            waitFor(ExpectedConditions.visibilityOf(personManagementSearch), 15);
-            assertThat(personManagementSearch.isDisplayed()).isTrue();
-        } catch (Exception e) {
-            reportWithScreenShot("Person Management Search screen not Displayed");
-            assertThat(personManagementSearch.isDisplayed()).isTrue();
-        }
-    }
-
-    // Enter Value into Person Management: Search screen
-    public void searchPerson() {
-        try {
-            // Enter person number into keywords
-            waitFor(ExpectedConditions.elementToBeClickable(keywords), 15);
-            keywords.sendKeys(data.getPersonNumber());
-
-            // Enter effective as of date
-            waitFor(ExpectedConditions.elementToBeClickable(effectiveAsOfDate), 15);
-            effectiveAsOfDate.clear();
-            effectiveAsOfDate.sendKeys(getCurrentDate());
-            waitShortTime();
-            reportWithScreenShot("Summary of Person Management: Search screen");
-        } catch (Exception e) {
-            reportWithScreenShot("Error While checking values in Person Management: Search screen:" + e.getMessage());
-        }
-    }
-
-    // After entering person number, click on Search Button until person
-    public void clickSearch() {
-        try {
-            searchBtn.click(); // Click Search Button
-
-            // Check for Employee for max 60 seconds
-            elementsize = driver
-                    .findElements(By.xpath("//span[text()='" + data.getPersonNumber() + "']")).size();
-            int counter = 0;
-            while (elementsize == 0 && counter <= 20) {
-                elementsize = driver
-                        .findElements(By.xpath("//span[text()='" + data.getPersonNumber() + "']")).size();
-                searchBtn.click();
-                waitShortTime();
-                counter++;
-            }
-
-            // Throw Exception if Person name now found after 60 seconds
-            if (elementsize == 0) {
-                throw new Exception("Person number not found after 60 seconds");
-            }
-
-        } catch (Exception e) {
-            reportWithScreenShot("Error While checking search results of employee:" + e.getMessage());
-            assertThat(elementsize != 0).isTrue();
-        }
-    }
-
-
-    // Validate if search result displays right person details
-    public void validateSearchResult() {
-        // Report Person number with screenshot (as this methods is always True)
-        reportWithScreenShot("Search Results of person Number");
-    }
-
-    // User click on actions button
-    public void clickActionButton() {
-        try {
-            waitFor(ExpectedConditions.elementToBeClickable(actionsBtn), 15);
-            actionsBtn.click();
-        } catch (Exception e) {
-            reportWithScreenShot("Error While user click on EmpName Action click:" + e.getMessage());
-        }
-    }
-
-    // User click on Employee Name link
-    public void clickPersonNameLink() {
-        try {
-            waitFor(ExpectedConditions.elementToBeClickable(personLink), 15);
-            personLink.click();
-        } catch (Exception e) {
-            reportWithScreenShot("Error While user click on person Name link:" + e.getMessage());
-        }
-    }
-
-    // User click on Edit and Update button
-    public void clickEditUpdate() {
-        try {
-            waitFor(ExpectedConditions.elementToBeClickable(personMgmtEdit), 15);
-            personMgmtEdit.click();
-
-            waitFor(ExpectedConditions.elementToBeClickable(personMgmtUpdate), 15);
-            personMgmtUpdate.click();
-        } catch (Exception e) {
-            reportWithScreenShot("Error While user click on Edit and update button:" + e.getMessage());
-        }
-    }
-
-    // User checks if Update Employment Window is Displayed
-    public void checkUpdateEmployementWindowDisplayed() {
-        try {
-            waitUntilPageLoad();
-            reportWithScreenShot("Checking if Update Employment Window is Displayed");
-            assertThat(updateEmploymentTitle.isDisplayed()).isTrue();
-        } catch (Exception e) {
-            reportWithScreenShot("Update Employment Window is not Displayed");
-            assertThat(updateEmploymentTitle.isDisplayed()).isTrue();
-        }
-    }
-
-    // User enter details in Update Employment Window
-    public void fillUpdateEmpWindow() {
-        try {
-
-            // Enter current date into effective date
-            waitFor(ExpectedConditions.elementToBeClickable(updateEmploymentEffectiveDate), 15);
-            updateEmploymentEffectiveDate.sendKeys(getCurrentDate());
-
-            // Enter Action value
-            waitFor(ExpectedConditions.elementToBeClickable(updateEmploymentAction), 15);
-            updateEmploymentAction.sendKeys(data.getEmploymentAction());
-
-            // Enter Action Reason value
-            waitFor(ExpectedConditions.elementToBeClickable(updateEmploymentActionReason), 15);
-            updateEmploymentActionReason.sendKeys(data.getEmploymentActionReason());
-
-            // Enter Destination Legal Employer value
-            waitFor(ExpectedConditions.elementToBeClickable(updateEmploymentDestLegalEmployer), 15);
-            updateEmploymentDestLegalEmployer.sendKeys(data.getDestinationLegalEmployer());
-
-            waitFor(ExpectedConditions.elementToBeClickable(updateEmploymentCreatePrimaryWork), 15);
-            updateEmploymentCreatePrimaryWork.click();
-
-            waitFor(ExpectedConditions.elementToBeClickable(btnOK), 15);
-            btnOK.click();
-
-            waitFor(ExpectedConditions.elementToBeClickable(btnOK), 15);
-            btnOK.click();
-
-        } catch (Exception e) {
-            reportWithScreenShot("Error While user enter details in Update Employment Window:" + e.getMessage());
-        }
-    }
-
-    // User checks if Update Employment Window is Displayed
-    public void checkGlobalAssignmentPageDisplayed() {
-        try {
-            waitUntilPageLoad();
-            reportWithScreenShot("Checking if Global Temporary Assignment: Identification page is Displayed");
-            assertThat(globalTempAssignment.isDisplayed()).isTrue();
-        } catch (Exception e) {
-            reportWithScreenShot("Global Temporary Assignment: Identification page is not Displayed");
-            assertThat(globalTempAssignment.isDisplayed()).isTrue();
-        }
-    }
-
-    // User Navigate to Employment Information page
-    public void navigateToEmpInfoPage() {
-        try {
-
-            waitNormalTime();
-            clickNextButton(); // Next Button to go to next page
-            waitUntilPageLoad(); // wait until next tab loads
-
-            waitNormalTime();
-            clickNextButton(); // Next Button to go to next page
-            waitUntilPageLoad(); // wait until next tab loads
-
-        } catch (Exception e) {
-            reportWithScreenShot("Error While user Navigate to Employment Information page:" + e.getMessage());
-        }
-    }
-
-    // Click on Payroll Options under Actions
-    public void clickPayrollOption() {
-        try {
-            waitFor(ExpectedConditions.elementToBeClickable(payrollOption), 15);
-            assertThat(payrollOption.isDisplayed()).isTrue();
-            payrollOption.click();
-        } catch (Exception e) {
-            reportWithScreenShot("Error While selecting Payroll options:" + e.getMessage());
-            assertThat(payrollOption.isDisplayed()).isTrue();
-        }
-    }
-
-    // User click on Manage Element Entries
-    public void manageElementEntriesClick() {
-        try {
-            waitFor(ExpectedConditions.elementToBeClickable(manageElementEntries), 15);
-            assertThat(manageElementEntries.isDisplayed()).isTrue();
-            manageElementEntries.click();
-
-            reportWithScreenShot("Search Results of person Number");
-        } catch (Exception e) {
-            reportWithScreenShot("Error While checking values in Review Tab due to:" + e.getMessage());
-            assertThat(manageElementEntries.isDisplayed()).isTrue();
-        }
-    }
-
-    // Check if Manage Element Entries page available
-    public void checkManageElementEntriesAvailable() {
-        try {
-            reportWithScreenShot("Checking if Manage Element Entries page  is Displayed");
-            waitFor(ExpectedConditions.visibilityOf(manageElementEnteriesTextCheck), 15);
-            assertThat(manageElementEnteriesTextCheck.isDisplayed()).isTrue();
-        } catch (Exception e) {
-            reportWithScreenShot("Manage Element Entries page  not Displayed");
-            assertThat(manageElementEnteriesTextCheck.isDisplayed()).isTrue();
-        }
-    }
-
-    // User Enter Element Name details as BILINGUAL
-    public void fillElementEntryInfo() {
-        try {
-            // Enter Business Unit
-            waitFor(ExpectedConditions.elementToBeClickable(elementName), 15);
-            elementName.sendKeys(data.getElementName());
-            elementName.sendKeys(Keys.TAB);
-            waitFor(ExpectedConditions.visibilityOf(assignment), 15);
-
-        } catch (Exception e) {
-            reportWithScreenShot("Error While user enters Element Name:" + e.getMessage());
-        }
-    }
-
-    // User Enter Element Name details as ADP Auto & Home
-    public void fillADPElementEntryInfo() {
-        try {
-
-            // Enter Business Unit
-            waitFor(ExpectedConditions.elementToBeClickable(elementName), 15);
-            elementName.sendKeys(data.getElementNameADP());
-            actions.sendKeys(Keys.TAB);
-            waitFor(ExpectedConditions.visibilityOf(payrollRelationship), 15);
-
-        } catch (Exception e) {
-            reportWithScreenShot("Error While user enters Element Name as ADP:" + e.getMessage());
-        }
-    }
-
-    // Click on Continue Button
-    public void clickContinue() {
-        try {
-            continueBtn.click();
-        } catch (Exception e) {
-            reportWithScreenShot("Error While User Click Continue Button:" + e.getMessage());
-        }
-    }
-
-    // Actual Amount field check available
-    public void actualAmountDisplay() {
-        try {
-            reportWithScreenShot("Checking if actual amount Field is Displayed");
-            waitFor(ExpectedConditions.visibilityOf(actualAmount), 15);
-            assertThat(actualAmount.isDisplayed()).isTrue();
-        } catch (Exception e) {
-            reportWithScreenShot("Actual Amount field not Displayed");
-            assertThat(actualAmount.isDisplayed()).isTrue();
-        }
-    }
-
-    // Enter Actual Amount and date
-    public void enteractualAmountAndDate() {
-        try {
-            // Enter Actual Amount
-            waitFor(ExpectedConditions.elementToBeClickable(actualAmount), 15);
-            actualAmount.sendKeys(data.getActualAmount());
-
-            // Enter effective as of date
-            waitFor(ExpectedConditions.elementToBeClickable(payCheckDate), 15);
-            payCheckDate.clear();
-            payCheckDate.sendKeys(data.getPayCheckDate());
-            Thread.sleep(2500);
-        } catch (Exception e) {
-            reportWithScreenShot("Error While User entering Amount and date:" + e.getMessage());
-
-        }
-    }
-
-    // Click on Submit Button for ADP
-    public void adpSubmit() {
-        try {
-            adpSubmitBtn.click();
-        } catch (Exception e) {
-            reportWithScreenShot("Error While User Submit Button for ADP scenario:" + e.getMessage());
-        }
-    }
-
-    public void adpRowAdded() {
-        try {
-            reportWithScreenShot("Checking if ADP Auto & Home row is Displayed");
-            waitFor(ExpectedConditions.visibilityOf(adpRowAdded), 15);
-            assertThat(adpRowAdded.isDisplayed()).isTrue();
-        } catch (Exception e) {
-            reportWithScreenShot("ADP Auto & Home r row is not added");
-            assertThat(adpRowAdded.isDisplayed()).isTrue();
-        }
-    }
-
-    // Click on Done button
-    public void clickDoneButton() {
-        try {
-            done.click();
-        } catch (Exception e) {
-            reportWithScreenShot("Error While user click Done Button due to:" + e.getMessage());
-        }
-    }
-
-    // Hire an Employee Page check available
-    public void bilingualYesDisplay() {
-        try {
-            reportWithScreenShot("Checking if Bilingual Field is Displayed");
-            waitFor(ExpectedConditions.visibilityOf(bilingualYes), 15);
-            assertThat(bilingualYes.isDisplayed()).isTrue();
-        } catch (Exception e) {
-            reportWithScreenShot("Bilingual field not Displayed");
-            assertThat(bilingualYes.isDisplayed()).isTrue();
-        }
-    }
-
-    // Click on Submit Button for Bilingual
-    public void bilingualSubmit() {
-        try {
-            clickSubmitButton();
-        } catch (Exception e) {
-            reportWithScreenShot("Error While User bilingual Submit Button:" + e.getMessage());
-        }
-    }
-
-    public void bilingualRowAdded() {
-        try {
-            reportWithScreenShot("Checking if Bilingual row is Displayed");
-            waitFor(ExpectedConditions.visibilityOf(bilingualRowAdded), 15);
-            assertThat(bilingualRowAdded.isDisplayed()).isTrue();
-        } catch (Exception e) {
-            reportWithScreenShot("Bilingual row is not added");
-            assertThat(bilingualRowAdded.isDisplayed()).isTrue();
         }
     }
 

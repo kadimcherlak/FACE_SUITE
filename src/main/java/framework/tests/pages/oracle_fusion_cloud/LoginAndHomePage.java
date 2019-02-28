@@ -2,6 +2,7 @@ package framework.tests.pages.oracle_fusion_cloud;
 
 import framework.tests.steps.oracle_fusion_cloud.Context;
 import framework.tests.steps.oracle_fusion_cloud.Data;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -13,6 +14,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
 
     private Context context;
     private Data data;
+    private WebElement appWebElement;
 
     // Login Page Elements
     @FindBy(id = "userid")
@@ -28,7 +30,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     @FindBy(xpath = "//a[contains(@class,'AFBrandingLinkColor svg-glob menu')]")
     private WebElement userName;
 
-    @FindBy(xpath = "//a[contains(@class,'AFBrandingLinkColor svg-glob menu')]//img")
+    @FindBy(id = "pt1:_UIScmil1u::icon")
     private WebElement dropDownButtonForSignOut;
 
     @FindBy(xpath = "//a[text()='Sign Out']")
@@ -37,19 +39,22 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     @FindBy(id = "Confirm")
     private WebElement signOutConfirm;
 
+    @FindBy(xpath = "//h1[contains(.,'Navigator')]")
+    private WebElement navigator;
+
     @FindBy(linkText = "New Person")
     private WebElement newPerson;
 
     @FindBy(linkText = "Personal Information")
     private WebElement personalInfoMyDetailsPage;
 
-    @FindBy(xpath = "(//div[@title='My Details'])[2]")
+    @FindBy(xpath = "//h1[contains(.,'My Details')]")
     private WebElement empMyDetails;
 
-    @FindBy(xpath = "(//div[@title='Edit My Details: Contact Information'])[1]")
+    @FindBy(xpath = "//h1[contains(.,'Edit My Details: Contact Information')]")
     private WebElement empMyDetailsContactInfo;
 
-    @FindBy(xpath = "(//div[@title='Edit My Details: Contacts'])[1]")
+    @FindBy(xpath = "//span[@class='section-title'][contains(.,'Contacts')]")
     private WebElement empMyDetailsContactPage;
 
     @FindBy(linkText = "Person Management")
@@ -58,6 +63,10 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     // Navigator Screen in Home Page
     @FindBy(className = "svg-icon03")
     private WebElement navigatorOpen;
+
+    // Home Icon in Home Page
+    @FindBy(xpath = "//path[@class='svg-outline']")
+    private WebElement homeIcon;
 
     public LoginAndHomePage(Context context) {
         super(context);
@@ -145,19 +154,6 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
         }
     }
 
-    // New Person selection in Navigator Screen
-    public void navigatorScreenNewPersonSelect() {
-        try {
-            waitFor(ExpectedConditions.elementToBeClickable(newPerson), 5);
-            assertThat(newPerson.isDisplayed()).isTrue();
-            newPerson.click();
-            waitUntilPageLoad();
-        } catch (Exception e) {
-            reportWithScreenShot("Unable to open New Person on Navigator Screen due to:" + e.getMessage());
-            assertThat(newPerson.isDisplayed()).isTrue();
-        }
-    }
-
     // open Personal Info My Details Page 
     public void navigateToPersonalInfoMyDetailspage() {
         try {
@@ -204,26 +200,31 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
         }
     }
 
-
-    // Person Management selection in Navigator Screen
-    public void navigatorPersonManagement() {
+    // Common Method to Select Application in Navigator Pane
+    public void selectLinkInNavigatorPane(String linkName) {
         try {
-            waitFor(ExpectedConditions.elementToBeClickable(personManagement), 15);
-            assertThat(personManagement.isDisplayed()).isTrue();
-            personManagement.click();
+            waitFor(ExpectedConditions.elementToBeClickable(navigator), 15);
+            appWebElement = driver.findElement(By.xpath("//a[text()='" + linkName + "']"));
+            assertThat(appWebElement.isDisplayed()).isTrue();
+            reportWithScreenShot("Application :" + linkName + " selected from Navigator pane");
+            appWebElement.click();
             waitUntilPageLoad();
-            reportWithScreenShot("search screen");
         } catch (Exception e) {
-            reportWithScreenShot("Unable to open Person Management on Navigator Screen due to:" + e.getMessage());
-            assertThat(personManagement.isDisplayed()).isTrue();
+            reportWithScreenShot("Unable to open :" + linkName + " due to" + e.getMessage());
+            assertThat(appWebElement.isDisplayed()).isTrue();
         }
     }
 
     // Signout perform SignOut
     public void signOut() {
         try {
-            dropDownButtonForSignOut.click();
-            waitFor(ExpectedConditions.elementToBeClickable(signOut), 5);
+            waitNormalTime(); //Few methods unable to click on username and then signout due to timing issue
+            //5 seconds wait provided
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(userName), 15);
+            userName.click();
+
+            waitFor(ExpectedConditions.elementToBeClickable(signOut), 15);
             assertThat(signOut.isDisplayed()).isTrue();
             signOut.click();
         } catch (Exception e) {
@@ -236,6 +237,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     public void signOutConfirm() {
         try {
             assertThat(signOutConfirm.isDisplayed()).isTrue();
+            waitFor(ExpectedConditions.elementToBeClickable(signOutConfirm), 15);
             signOutConfirm.click();
             reportWithScreenShot("Checking if Login Page is Displayed");
         } catch (Exception e) {
