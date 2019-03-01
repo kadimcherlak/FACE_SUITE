@@ -141,7 +141,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     // New Person selection in Navigator Screen
     public void navigatorScreen() {
         try {
-            waitFor(ExpectedConditions.elementToBeClickable(navigatorOpen), 5);
+            waitFor(ExpectedConditions.elementToBeClickable(navigatorOpen), 15);
             assertThat(navigatorOpen.isDisplayed()).isTrue();
             navigatorOpen.click();
         } catch (Exception e) {
