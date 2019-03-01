@@ -23,6 +23,7 @@ public class Context extends framework.core.models.Context {
     public EmployeeEditMyDetailsPage employeeEditMyDetails;
     public ChangeManagerPage changeManager;
     public PersonManagementPage personManagment;
+    public ManageCalendarEventsPage manageCalendarEvents;
     private Logger logger = LogManager.getLogger(Context.class);
     private WebDriver driver;
     private Config config;
@@ -115,6 +116,7 @@ public class Context extends framework.core.models.Context {
         loginAndHome = new LoginAndHomePage(context);
         newPerson = new NewPersonPage(context);
         personManagment = new PersonManagementPage(context);
+        manageCalendarEvents = new ManageCalendarEventsPage(context);
     }
 
 }

@@ -2,7 +2,7 @@ package framework.tests.pages.oracle_fusion_cloud;
 
 import framework.tests.steps.oracle_fusion_cloud.Context;
 import framework.tests.steps.oracle_fusion_cloud.Data;
-import org.openqa.selenium.By;
+import junit.framework.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -29,9 +29,6 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     // Home Page Elements
     @FindBy(xpath = "//a[contains(@class,'AFBrandingLinkColor svg-glob menu')]")
     private WebElement userName;
-
-    @FindBy(id = "pt1:_UIScmil1u::icon")
-    private WebElement dropDownButtonForSignOut;
 
     @FindBy(xpath = "//a[text()='Sign Out']")
     private WebElement signOut;
@@ -87,7 +84,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
         } catch (Exception e) {
             reportWithScreenShot("Failed while trying to open Url: " + context.getEnvironment().getWebUrl()
                     + " due to :" + e.getMessage());
-            assertThat(userId.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -98,7 +95,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             assertThat(signIn.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Login Page not available due to :" + e.getMessage());
-            assertThat(signIn.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -112,8 +109,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
         } catch (Exception e) {
             reportWithScreenShot("Failed to pass username:" + data.getUserName() + " or Password:" + data.getPassword()
                     + " due to :" + e.getMessage());
-            assertThat(userId.isDisplayed()).isTrue();
-            assertThat(password.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -124,7 +120,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             signIn.click();
         } catch (Exception e) {
             reportWithScreenShot("Failed to click SignIn button due to: " + e.getMessage());
-            assertThat(signIn.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -137,7 +133,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             reportWithScreenShot("Checking if Home Page is Displayed");
         } catch (Exception e) {
             reportWithScreenShot("Hope Page not Displayed");
-            assertThat(userName.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -150,20 +146,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             navigatorOpen.click();
         } catch (Exception e) {
             reportWithScreenShot("Unable to open Navigator Screen");
-            assertThat(navigatorOpen.isDisplayed()).isTrue();
-        }
-    }
-
-    // open Personal Info My Details Page 
-    public void navigateToPersonalInfoMyDetailspage() {
-        try {
-            waitFor(ExpectedConditions.elementToBeClickable(personalInfoMyDetailsPage), 5);
-            assertThat(personalInfoMyDetailsPage.isDisplayed()).isTrue();
-            personalInfoMyDetailsPage.click();
-            waitUntilPageLoad();
-        } catch (Exception e) {
-            reportWithScreenShot("Unable to open Personal Info My Details Page due to:" + e.getMessage());
-            assertThat(personalInfoMyDetailsPage.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -174,7 +157,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             reportWithScreenShot("Checking if My Details Page is Displayed");
         } catch (Exception e) {
             reportWithScreenShot("My Details Page is not Displayed");
-            assertThat(empMyDetails.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -185,7 +168,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             reportWithScreenShot("Checking if My Details Contact Info Page is Displayed");
         } catch (Exception e) {
             reportWithScreenShot("My Details Contact Info Page is not Displayed");
-            assertThat(empMyDetailsContactInfo.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -196,7 +179,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             reportWithScreenShot("Checking if My Details Contact Page is Displayed");
         } catch (Exception e) {
             reportWithScreenShot("My Details Contact Page is not Displayed");
-            assertThat(empMyDetailsContactPage.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -204,14 +187,10 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     public void selectLinkInNavigatorPane(String linkName) {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(navigator), 15);
-            appWebElement = driver.findElement(By.xpath("//a[text()='" + linkName + "']"));
-            assertThat(appWebElement.isDisplayed()).isTrue();
-            reportWithScreenShot("Application :" + linkName + " selected from Navigator pane");
-            appWebElement.click();
-            waitUntilPageLoad();
+            clickLinkElement(linkName);
         } catch (Exception e) {
             reportWithScreenShot("Unable to open :" + linkName + " due to" + e.getMessage());
-            assertThat(appWebElement.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -229,7 +208,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             signOut.click();
         } catch (Exception e) {
             reportWithScreenShot("Unable to Signout due to :" + e.getMessage());
-            assertThat(signOut.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -242,7 +221,8 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             reportWithScreenShot("Checking if Login Page is Displayed");
         } catch (Exception e) {
             reportWithScreenShot("Login Page not Displayed due to:" + e.getMessage());
-            assertThat(signOutConfirm.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
+
 }

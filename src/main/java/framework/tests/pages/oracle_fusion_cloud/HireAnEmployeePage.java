@@ -9,6 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -174,7 +175,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             reportWithScreenShot("Checking if Identification Page is Displayed");
         } catch (Exception e) {
             reportWithScreenShot("Identification Page not Displayed due to: " + e.getMessage());
-            assertThat(identificationTab.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -186,7 +187,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             reportWithScreenShot("Checking if Person Information Page is Displayed");
         } catch (Exception e) {
             reportWithScreenShot("Person Information Page not Displayed due to: " + e.getMessage());
-            assertThat(personInfoTab.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -198,7 +199,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             reportWithScreenShot("Checking if Employment Information Page is Displayed");
         } catch (Exception e) {
             reportWithScreenShot("Employment Information Page not Displayed due to: " + e.getMessage());
-            assertThat(empInfoTab.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
     // Enter Value into Identification tab
@@ -292,7 +293,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             assertThat(personInfoTab.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Error While Entering Value into Identification Tab due to:" + e.getMessage());
-            assertThat(personInfoTab.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -362,7 +363,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             assertThat(businessUnit.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Error While Entering Value into Person Information  Tab due to:" + e.getMessage());
-            assertThat(businessUnit.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -372,6 +373,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             // Enter Business Unit
             waitFor(ExpectedConditions.elementToBeClickable(businessUnit), 15);
             businessUnit.sendKeys(data.getBusinessUnit());
+            waitShortTime();
 
             // Enter Job
             waitFor(ExpectedConditions.elementToBeClickable(job), 15);
@@ -384,6 +386,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             grade.sendKeys(data.getGrade());*/
 
             // Enter Department
+            waitFor(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[text()='Department']/following::input[1]")), 15);
             waitFor(ExpectedConditions.elementToBeClickable(department), 15);
             department.sendKeys(data.getDepartment());
             waitNormalTime();
@@ -449,7 +452,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
         } catch (Exception e) {
             reportWithScreenShot(
                     "Error While Entering Value into Employement Information Tab due to:" + e.getMessage());
-            assertThat(salaryBasis.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -483,7 +486,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
         } catch (Exception e) {
             reportWithScreenShot(
                     "Error While Entering Value into Compensation and Other Information Tab due to:" + e.getMessage());
-            assertThat(reviewTab.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -495,7 +498,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             assertThat(reviewTab.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Error While checking values in Review Tab due to:" + e.getMessage());
-            assertThat(reviewTab.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 

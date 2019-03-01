@@ -2,6 +2,7 @@ package framework.tests.pages.oracle_fusion_cloud;
 
 import framework.tests.steps.oracle_fusion_cloud.Context;
 import framework.tests.steps.oracle_fusion_cloud.Data;
+import junit.framework.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -9,6 +10,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class ChangeManagerPage extends BasePage<ChangeManagerPage> {
 
@@ -97,19 +100,19 @@ public class ChangeManagerPage extends BasePage<ChangeManagerPage> {
             reportWithScreenShot("My Team Page displayed");
         } catch (Exception e) {
             reportWithScreenShot("Unable to open My Team Screen due to:" + e.getMessage());
+            Assert.fail();
         }
     }
 
     // To check if My Team page is displayed
-    public boolean checkMyTeamPageDisplay() {
-
+    public void checkMyTeamPageDisplay() {
         try {
             reportWithScreenShot("Checking if My Team Page is Displayed");
             waitFor(ExpectedConditions.visibilityOf(filterBtn), 5);
-            return filterBtn.isDisplayed();
+            assertThat(filterBtn.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("My Team Page not Displayed");
-            return filterBtn.isDisplayed();
+            Assert.fail();
         }
     }
 
@@ -121,6 +124,7 @@ public class ChangeManagerPage extends BasePage<ChangeManagerPage> {
 
         } catch (Exception e) {
             reportWithScreenShot("Error While Employee link click due to:" + e.getMessage());
+            Assert.fail();
         }
 
     }
@@ -134,6 +138,7 @@ public class ChangeManagerPage extends BasePage<ChangeManagerPage> {
             waitShortTime();
         } catch (Exception e) {
             reportWithScreenShot("Error While Click of Change Manager link due to:" + e.getMessage());
+            Assert.fail();
         }
 
     }
@@ -150,6 +155,7 @@ public class ChangeManagerPage extends BasePage<ChangeManagerPage> {
 
         } catch (Exception e) {
             reportWithScreenShot("Error While Employee link click due to:" + e.getMessage());
+            Assert.fail();
         }
 
     }
@@ -164,6 +170,7 @@ public class ChangeManagerPage extends BasePage<ChangeManagerPage> {
 
         } catch (Exception e) {
             reportWithScreenShot("Error While selecting new Manager due to:" + e.getMessage());
+            Assert.fail();
         }
 
     }
@@ -175,19 +182,20 @@ public class ChangeManagerPage extends BasePage<ChangeManagerPage> {
             reviewBtn.click();
         } catch (Exception e) {
             reportWithScreenShot("Error While user clicks Review Button due to:" + e.getMessage());
+            Assert.fail();
         }
     }
 
     // To check if current and proposed value is displayed
-    public boolean checkCurrentAndProposedValue() {
+    public void checkCurrentAndProposedValue() {
 
         try {
             reportWithScreenShot("Checking if current value is Displayed");
             waitFor(ExpectedConditions.visibilityOf(currentValue), 5);
-            return currentValue.isDisplayed();
+            assertThat(currentValue.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Current Value is not Displayed");
-            return currentValue.isDisplayed();
+            Assert.fail();
         }
     }
 
@@ -198,6 +206,7 @@ public class ChangeManagerPage extends BasePage<ChangeManagerPage> {
             managerChangeSubmit.click();
         } catch (Exception e) {
             reportWithScreenShot("Error While Submitting new Hire information due to:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -206,9 +215,9 @@ public class ChangeManagerPage extends BasePage<ChangeManagerPage> {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(managerChangeWarningBtn), 5);
             managerChangeWarningBtn.click();
-
         } catch (Exception e) {
             reportWithScreenShot("Error While clicking OK button due to:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -217,9 +226,9 @@ public class ChangeManagerPage extends BasePage<ChangeManagerPage> {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(managerChangeConfirmBtn), 5);
             managerChangeConfirmBtn.click();
-
         } catch (Exception e) {
             reportWithScreenShot("Error While clicking confirm button due to:" + e.getMessage());
+            Assert.fail();
         }
     }
 
