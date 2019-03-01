@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -160,7 +161,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(personManagementSearch.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Person Management Search screen not Displayed");
-            assertThat(personManagementSearch.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -179,13 +180,14 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             reportWithScreenShot("Summary of Person Management: Search screen");
         } catch (Exception e) {
             reportWithScreenShot("Error While checking values in Person Management: Search screen:" + e.getMessage());
+            Assert.fail();
         }
     }
 
     // After entering person number, click on Search Button until person
-    public void clickSearch() {
+    public void clickSearchTillPersonDisplayed() {
         try {
-            searchBtn.click(); // Click Search Button
+            clickSearch(); // Click Search Button
 
             // Check for Employee for max 60 seconds
             elementsize = driver
@@ -193,8 +195,8 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             int counter = 0;
             while (elementsize == 0 && counter <= 20) {
                 elementsize = driver
-                        .findElements(By.xpath("//span[text()='" + data.getPersonNumber() + "']")).size();
-                searchBtn.click();
+                        .findElements(By.xpath("//*[text()='" + data.getPersonNumber() + "']")).size();
+                clickSearch();
                 waitShortTime();
                 counter++;
             }
@@ -206,7 +208,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
         } catch (Exception e) {
             reportWithScreenShot("Error While checking search results of employee:" + e.getMessage());
-            assertThat(elementsize != 0).isTrue();
+            Assert.fail();
         }
     }
 
@@ -224,6 +226,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             actionsBtn.click();
         } catch (Exception e) {
             reportWithScreenShot("Error While user click on EmpName Action click:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -235,7 +238,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             payrollOption.click();
         } catch (Exception e) {
             reportWithScreenShot("Error While selecting Payroll options:" + e.getMessage());
-            assertThat(payrollOption.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -249,7 +252,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             reportWithScreenShot("Search Results of person Number");
         } catch (Exception e) {
             reportWithScreenShot("Error While checking values in Review Tab due to:" + e.getMessage());
-            assertThat(manageElementEntries.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -261,7 +264,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(manageElementEnteriesTextCheck.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Manage Element Entries page  not Displayed");
-            assertThat(manageElementEnteriesTextCheck.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -276,6 +279,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
         } catch (Exception e) {
             reportWithScreenShot("Error While user enters Element Name:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -291,6 +295,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
         } catch (Exception e) {
             reportWithScreenShot("Error While user enters Element Name as ADP:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -300,6 +305,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             continueBtn.click();
         } catch (Exception e) {
             reportWithScreenShot("Error While User Click Continue Button:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -311,7 +317,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(actualAmount.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Actual Amount field not Displayed");
-            assertThat(actualAmount.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -329,7 +335,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             Thread.sleep(2500);
         } catch (Exception e) {
             reportWithScreenShot("Error While User entering Amount and date:" + e.getMessage());
-
+            Assert.fail();
         }
     }
 
@@ -339,6 +345,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             adpSubmitBtn.click();
         } catch (Exception e) {
             reportWithScreenShot("Error While User Submit Button for ADP scenario:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -349,7 +356,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(adpRowAdded.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("ADP Auto & Home r row is not added");
-            assertThat(adpRowAdded.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -361,6 +368,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             waitUntilPageLoad();
         } catch (Exception e) {
             reportWithScreenShot("Error While user click Done Button due to:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -372,7 +380,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(bilingualYes.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Bilingual field not Displayed");
-            assertThat(bilingualYes.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -382,6 +390,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             clickSubmitButton();
         } catch (Exception e) {
             reportWithScreenShot("Error While User bilingual Submit Button:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -392,7 +401,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(bilingualRowAdded.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Bilingual row is not added");
-            assertThat(bilingualRowAdded.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -403,6 +412,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             personLink.click();
         } catch (Exception e) {
             reportWithScreenShot("Error While user click on person Name link:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -419,7 +429,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(manageEmployment.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Error While user click on Edit and update button:" + e.getMessage());
-            assertThat(manageEmployment.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -431,7 +441,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(updateEmploymentTitle.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Update Employment Window is not Displayed");
-            assertThat(updateEmploymentTitle.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -487,7 +497,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(globalTempAssignment.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Error While user enter details in Update Employment Window:" + e.getMessage());
-            assertThat(globalTempAssignment.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -498,7 +508,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(globalTempAssignment.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Global Temporary Assignment: Identification page is not Displayed");
-            assertThat(globalTempAssignment.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -518,7 +528,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(employmentInfoPage.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Error While user Navigate to Employment Information page:" + e.getMessage());
-            assertThat(employmentInfoPage.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 

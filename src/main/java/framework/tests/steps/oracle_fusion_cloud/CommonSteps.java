@@ -29,7 +29,7 @@ public class CommonSteps implements En {
             context.loginAndHome.enterCredentials();
         });
 
-        When("^the user click on Sign In$", () -> {
+        When("^the user clicks on Sign In$", () -> {
             context.loginAndHome.signIn();
         });
 
@@ -61,7 +61,7 @@ public class CommonSteps implements En {
             context.hireAnEmployee.clickConfirmButton();
         });
 
-        When("user click on Sign Out option", () -> {
+        When("user clicks on Sign Out option", () -> {
             context.loginAndHome.signOut();
         });
 
