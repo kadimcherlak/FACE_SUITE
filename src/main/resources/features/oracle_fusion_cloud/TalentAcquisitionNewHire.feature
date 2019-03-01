@@ -157,7 +157,7 @@ Feature: New Hire and Related Activities
       | UPDATE_PERSONAL_ASSIGNMENT_DATA | TestData.xlsx  | Talent_Acquisition |
 
 
-  @UPDATE_SALARY_FOR_EXISTING_EMP 
+  @UPDATE_SALARY_FOR_EXISTING_EMP
   Scenario Outline: Updating salary component of an existing employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
