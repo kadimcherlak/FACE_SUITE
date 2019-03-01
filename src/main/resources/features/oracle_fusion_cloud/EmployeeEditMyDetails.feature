@@ -1,5 +1,5 @@
 @EMPLOYEE_EDIT_DETAILS
-Feature: Perform edit on Address,Contact Type,Personal Payment Method and disability Information
+Feature: Employee performs edit on Address,Contact Type,Personal Payment Method and disability Information
 
   @NEW_ADDRESS_ALTERNATIVE_WORK_LOCATION
   Scenario Outline:  Employee to add New Address to indicate an alternative work location

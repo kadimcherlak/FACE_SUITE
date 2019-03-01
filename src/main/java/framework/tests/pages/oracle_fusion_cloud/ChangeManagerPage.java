@@ -29,27 +29,40 @@ public class ChangeManagerPage extends BasePage<ChangeManagerPage> {
     @FindBy(xpath = "//*[text()='Employment Info:']")
     private WebElement employmentInfoPageCheck;
 
-    @FindBy(xpath = "//button[@title='Actions']")
-    private WebElement actionBtn;
+    //@FindBy(xpath = "//button[@title='Actions']")
+    @FindBy(xpath = "//img[contains(@src,'/hcmUI/images/func_contextpop_orange_20_hov.png')]")
+    private WebElement moreInfoIcon;
 
     // To check if My Team page is displayed
     @FindBy(xpath = "//*[contains(@class,'xwb') and contains(text(),'Filter')]")
     private WebElement filterBtn;
 
-    // To select Personal and Employment option
-    @FindBy(xpath = "//*[contains(@class,'xmy') and contains(text(),'Personal and Employment')]")
-    private WebElement personalEmployment;
+    // To select Change Manager option
+    @FindBy(xpath = "//span[text()='Change Manager']")
+    private WebElement changeManagerLink;
+
+    // To Click Continue Button
+    @FindBy(xpath = "//span[text()='Continue']")
+    private WebElement continueBtn;
+
+    // To Click Continue Button after selecting Change Manager Reason
+    @FindBy(xpath = "//button[@title='Continue']")
+    private WebElement continueBtnAftrMgrChange;
 
     // To select Change Manager option
-    @FindBy(xpath = "//*[contains(@class,'xmz') and contains(text(),'Change Manager')]")
-    private WebElement changeManagerOption;
+    // @FindBy(xpath = "//*[contains(@class,'xmz') and contains(text(),'Change Manager')]")
+    // private WebElement changeManagerOption;
 
     // Change Manager Reason
-    @FindBy(xpath = "//label[text()='Change Manager Reason']/following::input[1]")
+    @FindBy(xpath = "//input[contains(@class,'x2h')]")
     private WebElement changeManagerReason;
 
+    //@FindBy(xpath = "//button[@title='Actions']")
+    @FindBy(xpath = "//*[@id=\"_FOpt1:_FOr1:0:_FOSrPER_HCMPEOPLETOP_FUSE_MY_TEAM:0:MAnt2:4:up1Upl:UPsp1:gpRgn:0:GPmtfr1:1:pce1:lv1Lv:0:pse1:PSEcil6::icon\"]")
+    private WebElement editBtn;
+
     // New Manager Name
-    @FindBy(xpath = "//label[text()='Name']/following::input[1]")
+    @FindBy(xpath = "//input[@class='x1wf']")
     private WebElement managerName;
 
     // Click review button
@@ -106,8 +119,9 @@ public class ChangeManagerPage extends BasePage<ChangeManagerPage> {
     // user clicks on the Employee link
     public void clickEmpLink() {
         try {
-            waitFor(ExpectedConditions.visibilityOf(driver.findElement(By.linkText(data.getPersonNumber()))), 5);
-            driver.findElement(By.linkText(data.getPersonNumber())).click();
+            waitFor(ExpectedConditions.visibilityOf(driver.findElement(By.linkText(data.getPersonName()))), 5);
+            driver.findElement(By.linkText(data.getPersonName())).click();
+
         } catch (Exception e) {
             reportWithScreenShot("Error While Employee link click due to:" + e.getMessage());
             Assert.fail();
@@ -118,10 +132,10 @@ public class ChangeManagerPage extends BasePage<ChangeManagerPage> {
     // User Navigate to Change Manager page
     public void navigateToChangeManagerPage() {
         try {
-            actionBtn.click();
-            personalEmployment.click();
-            changeManagerOption.click();
-
+            moreInfoIcon.click();
+            changeManagerLink.click();
+            continueBtn.click();
+            waitShortTime();
         } catch (Exception e) {
             reportWithScreenShot("Error While Click of Change Manager link due to:" + e.getMessage());
             Assert.fail();
@@ -137,6 +151,7 @@ public class ChangeManagerPage extends BasePage<ChangeManagerPage> {
                     driver.findElement(By.xpath("//li[text()='" + data.getChangeManagerReason() + "']"))), 5);
             driver.findElement(By.xpath("//li[text()='" + data.getChangeManagerReason() + "']")).click();
             changeManagerReason.sendKeys(Keys.TAB);
+            continueBtnAftrMgrChange.click();
 
         } catch (Exception e) {
             reportWithScreenShot("Error While Employee link click due to:" + e.getMessage());
@@ -148,6 +163,7 @@ public class ChangeManagerPage extends BasePage<ChangeManagerPage> {
     // user select value in Manager dropdown
     public void selectNewManager() {
         try {
+            editBtn.click();
             waitFor(ExpectedConditions.elementToBeClickable(managerName), 5);
             managerName.sendKeys(data.getManagerName());
             managerName.sendKeys(Keys.TAB);
