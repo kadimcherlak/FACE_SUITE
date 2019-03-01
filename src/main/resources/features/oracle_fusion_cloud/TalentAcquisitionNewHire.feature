@@ -157,7 +157,7 @@ Feature: New Hire and Related Activities
       | UPDATE_PERSONAL_ASSIGNMENT_DATA | TestData.xlsx  | Talent_Acquisition |
 
 
-  @UPDATE_SALARY_FOR_EXISTING_EMP
+  @UPDATE_SALARY_FOR_EXISTING_EMP 
   Scenario Outline: Updating salary component of an existing employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -188,6 +188,32 @@ Feature: New Hire and Related Activities
       | Test Scenario                  | Test File Name | Test Sheet Name    |
       | UPDATE_SALARY_FOR_EXISTING_EMP | TestData.xlsx  | Talent_Acquisition |
 
+  @EDIT_SALARY_PROPOSAL_REASON
+  Scenario Outline: Admin can edit Salary Proposal Reason
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link under My Workforce section
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button
+    Then Employee name should be listed in search results
+    When user click on employee name link in search results
+    And user click on Task Icon on the right side
+    Then user clicks Manage Salary option from task icon menu
+    And user clicks on Action button and select Edit option
+    And user enters new Salary Amount under Current Salary section
+    And user clicks on Continue button in Manage Salary tab
+    When user clicks on Submit button in Manage Salary Review page
+    And user clicks Yes button on popup modal
+    And user clicks Ok button confirmation popup modal
+    And user click on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario               | Test File Name | Test Sheet Name    |
+      | EDIT_SALARY_PROPOSAL_REASON | TestData.xlsx  | Talent_Acquisition |
+
   @CHANGE_SALARY_BASIS_FOR_EXISTING_EMP
   Scenario Outline: Administration changing salary basis of an employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
@@ -214,30 +240,3 @@ Feature: New Hire and Related Activities
     Examples:
       | Test Scenario                        | Test File Name | Test Sheet Name    |
       | CHANGE_SALARY_BASIS_FOR_EXISTING_EMP | TestData.xlsx  | Talent_Acquisition |
-
-
-  @EDIT_SALARY_PROPOSAL_REASON
-  Scenario Outline: Admin can edit Salary Proposal Reason
-    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
-    And user login to Oracle Applications Cloud web page
-    When user clicks on Navigator icon
-    And user clicks on Person Management link under My Workforce section
-    Then Person Management: Search screen should be displayed
-    And user enter the Person number generated from previous step in Person Number field
-    And user click on Search button
-    Then Employee name should be listed in search results
-    When user click on employee name link in search results
-    And user click on Task Icon on the right side
-    Then user clicks Manage Salary option from task icon menu
-    And user clicks on Action button and select Edit option
-    And user enters new Salary Amount under Current Salary section
-    And user clicks on Continue button in Manage Salary tab
-    When user clicks on Submit button in Manage Salary Review page
-    And user clicks Yes button on popup modal
-    And user clicks Ok button confirmation popup modal
-    And user click on Sign Out option
-    Then Sign out should be successful
-
-    Examples:
-      | Test Scenario                  | Test File Name | Test Sheet Name    |
-      | EDIT_SALARY_PROPOSAL_REASON | TestData.xlsx  | Talent_Acquisition |

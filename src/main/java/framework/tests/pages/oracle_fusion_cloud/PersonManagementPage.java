@@ -2,7 +2,6 @@ package framework.tests.pages.oracle_fusion_cloud;
 
 import framework.tests.steps.oracle_fusion_cloud.Context;
 import framework.tests.steps.oracle_fusion_cloud.Data;
-import junit.framework.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -12,6 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -340,7 +340,8 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
         } catch (Exception e) {
             reportWithScreenShot("Error While checking search results of employee:" + e.getMessage());
-            assertThat(elementsize != 0).isTrue();
+//            assertThat(elementsize != 0).isTrue();
+            Assert.fail();
         }
     }
 
@@ -397,7 +398,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             reportWithScreenShot("Task icon on right is open");
         } catch (Exception e) {
             reportWithScreenShot("Error While checking values in Review Tab due to:" + e.getMessage());
-            assertThat(false).isTrue();
+            Assert.fail();
         }
     }
 
@@ -412,7 +413,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             reportWithScreenShot("Salary page of a person searched");
         } catch (Exception e) {
             reportWithScreenShot("Error While checking values in Review Tab due to:" + e.getMessage());
-            assertThat(false).isTrue();
+            Assert.fail();
         }
     }
 
@@ -592,7 +593,6 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     // User click on Action and Edit button
     public void clickActionEdit() {
         try {
-//            btnAction.click();
             btnAction_ManageSalary.click();
             waitFor(ExpectedConditions.elementToBeClickable(linkActionEdit_ManageSalary), 60);
             linkActionEdit_ManageSalary.click();
@@ -601,7 +601,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             reportWithScreenShot("User click on Action and Edit button");
         } catch (Exception e) {
             reportWithScreenShot("Error While user click on Edit and update button:" + e.getMessage());
-            assertThat(false).isTrue();
+            Assert.fail();
         }
     }
 
@@ -612,17 +612,14 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
                 Thread.sleep(2000);
                 chkboxSalarycomponents_ManageSalary.click();
                 setSalaryAmount();
-//                chkboxSalarycomponents_ManageSalary.click();
-                Thread.sleep(2000);
+               Thread.sleep(2000);
             } else {
                 setSalaryAmount();
-//                chkboxSalarycomponents_ManageSalary.click();
             }
             Thread.sleep(2000);
-
         } catch (Exception e) {
             reportWithScreenShot("Error while enter new salary amount :" + e.getMessage());
-            assertThat(false).isTrue();
+            Assert.fail();
         }
     }
 
@@ -649,7 +646,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             reportWithScreenShot("Selected checkbox Use salary component");
         } catch (Exception e) {
             reportWithScreenShot("Error while selecting checkbox Use salary component :" + e.getMessage());
-            assertThat(false).isTrue();
+            Assert.fail();
         }
     }
 
@@ -661,7 +658,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             reportWithScreenShot("Components tab is displayed on selecting Use salary component checkbox");
         } catch (Exception e) {
             reportWithScreenShot("Error in displaying component tab:" + e.getMessage());
-            assertThat(false).isTrue();
+            Assert.fail();
         }
     }
 
@@ -677,7 +674,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             reportWithScreenShot("User clicked on Add(+) button in component tab");
         } catch (Exception e) {
             reportWithScreenShot("Error in clicking Add(+) button in component tab:" + e.getMessage());
-            assertThat(false).isTrue();
+            Assert.fail();
         }
     }
 
@@ -776,7 +773,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(employmentInfoPage.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Error While user Navigate to Employment Information page:" + e.getMessage());
-            assertThat(employmentInfoPage.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -792,7 +789,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             reportWithScreenShot(linkName + " is selected from dropdown:");
         } catch (Exception e) {
             reportWithScreenShot("Error While selecting " + linkName + " from dropdown:" + e.getMessage());
-            assertThat(false).isTrue();
+            Assert.fail();
         }
     }
 
@@ -811,7 +808,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             reportWithScreenShot(" Adjust amount is entered");
         } catch (Exception e) {
             reportWithScreenShot("Error While entering adjust amountin components tab :" + e.getMessage());
-            assertThat(false).isTrue();
+            Assert.fail();
         }
 
     }
@@ -827,7 +824,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             reportWithScreenShot(" Adjust amount is entered");
         } catch (Exception e) {
             reportWithScreenShot("Error While entering adjust amountin components tab :" + e.getMessage());
-            assertThat(false).isTrue();
+            Assert.fail();
         }
 
     }
@@ -843,7 +840,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             reportWithScreenShot(" Submit button in Manage salary review page is clicked");
         } catch (Exception e) {
             reportWithScreenShot("Error While clicking submit button:" + e.getMessage());
-            assertThat(false).isTrue();
+            Assert.fail();
         }
     }
 
@@ -858,7 +855,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             reportWithScreenShot(" Ok button in Manage salary review page is clicked");
         } catch (Exception e) {
             reportWithScreenShot("Error While clicking ok button:" + e.getMessage());
-            assertThat(false).isTrue();
+            Assert.fail();
         }
     }
 
@@ -872,12 +869,12 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             reportWithScreenShot(" Ok button in Manage salary review page is clicked");
         } catch (Exception e) {
             reportWithScreenShot("Error While clicking ok button:" + e.getMessage());
-            assertThat(false).isTrue();
+            Assert.fail();
         }
     }
 
     //user clicks Ok button on Warning modal - Manage salary review page
-    public void clickWarningModal() {
+    public void clickBtnOK_WarningModal() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(btnOK_WarningPopup), 15);
             btnOK_WarningPopup.click();
@@ -886,7 +883,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             reportWithScreenShot(" User closes the warning modal by clicking OK button");
         } catch (Exception e) {
             reportWithScreenShot("Error While clicking ok button on warning modal:" + e.getMessage());
-            assertThat(false).isTrue();
+            Assert.fail();
         }
     }
 
@@ -902,7 +899,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             reportWithScreenShot( " is selected from dropdown:");
         } catch (Exception e) {
             reportWithScreenShot("Error While selecting  from dropdown:" + e.getMessage());
-            assertThat(false).isTrue();
+            Assert.fail();
         }
     }
 }

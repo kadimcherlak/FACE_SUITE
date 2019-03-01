@@ -208,7 +208,7 @@ public class TalentAcquisitionNewHireSteps implements En {
             context.personManagment.selectSalarBasis();
         });
         Then("^user closes Warning modal by clicking OK button$", () -> {
-            context.personManagment.clickWarningModal();
+            context.personManagment.clickBtnOK_WarningModal();
 
         });
 
