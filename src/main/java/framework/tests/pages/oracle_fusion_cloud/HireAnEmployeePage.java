@@ -373,12 +373,14 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             // Enter Business Unit
             waitFor(ExpectedConditions.elementToBeClickable(businessUnit), 15);
             businessUnit.sendKeys(data.getBusinessUnit());
+            businessUnit.sendKeys(Keys.ENTER);
             waitShortTime();
 
             // Enter Job
             waitFor(ExpectedConditions.elementToBeClickable(job), 15);
             job.sendKeys(data.getJob());
-            waitShortTime();
+            job.sendKeys(Keys.ENTER);
+            waitNormalTime();
 
             // Enter Grade - Not required as of now as its autoloaded
             /*waitFor(ExpectedConditions.elementToBeClickable(grade), 15);
@@ -386,9 +388,9 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             grade.sendKeys(data.getGrade());*/
 
             // Enter Department
-            waitFor(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[text()='Department']/following::input[1]")), 15);
             waitFor(ExpectedConditions.elementToBeClickable(department), 15);
             department.sendKeys(data.getDepartment());
+            department.sendKeys(Keys.ENTER);
             waitNormalTime();
 
             // Enter Location
