@@ -13,13 +13,13 @@ public class TalentAcquisitionNewHireSteps implements En {
         logger = context.getLogger();
         logger.debug("{} loaded", this.getClass().getName());
 
-        When("user clicks on (.*?) link under My Workforce section$", (String linkName) -> {
+        When("user clicks on (.*?) link in Navigator Pane$", (String linkName) -> {
             context.loginAndHome.selectLinkInNavigatorPane(linkName);
         });
 
-        When("user clicks on Hire an employee on right side of the page under Tasks pane", () -> {
+        When("user clicks on (.*?) on right side of the page under Tasks pane", (String linkName) -> {
             context.newPerson.clickTaskButton();
-            context.newPerson.clickHireAnEmployee();
+            context.newPerson.clickLinkElement(linkName);
         });
 
         Then("new Hire an employee screen should be displayed", () -> {
@@ -54,8 +54,8 @@ public class TalentAcquisitionNewHireSteps implements En {
             context.personManagment.searchPerson();
         });
 
-        Then("user click on Search button", () -> {
-            context.personManagment.clickSearch();
+        Then("user click on Search button till person displayed", () -> {
+            context.personManagment.clickSearchTillPersonDisplayed();
         });
 
         Then("Employee name should be listed in search results", () -> {
@@ -94,7 +94,7 @@ public class TalentAcquisitionNewHireSteps implements En {
             context.hireAnEmployee.clickNextButton();
         });
 
-        When("user clicks on Manage Element Entries link under Payroll section on right side of the page under Tasks pane", () -> {
+        When("user clicks on Manage Element Entries link under Payroll section", () -> {
             context.personManagment.clickPayrollOption();
             context.personManagment.manageElementEntriesClick();
         });
