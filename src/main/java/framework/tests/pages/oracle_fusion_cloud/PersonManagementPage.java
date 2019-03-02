@@ -784,7 +784,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
             selectComponentDropdown.click();
             waitFor(ExpectedConditions.elementToBeClickable(valPromotion), 15);
-            assertThat(valPromotion.isDisplayed());
+            assertThat(valPromotion.isDisplayed()).isTrue();
             valPromotion.click();
             reportWithScreenShot(linkName + " is selected from dropdown:");
         } catch (Exception e) {
@@ -836,7 +836,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             waitFor(ExpectedConditions.elementToBeClickable(btnSubmit_ManageSalary), 15);
             btnSubmit_ManageSalary.click();
             waitFor(ExpectedConditions.elementToBeClickable(popButtonYes), 15);
-            assertThat(popButtonYes.isDisplayed());
+            assertThat(popButtonYes.isDisplayed()).isTrue();
             reportWithScreenShot(" Submit button in Manage salary review page is clicked");
         } catch (Exception e) {
             reportWithScreenShot("Error While clicking submit button:" + e.getMessage());
@@ -851,7 +851,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             waitFor(ExpectedConditions.elementToBeClickable(popButtonYes), 15);
             popButtonYes.click();
             waitFor(ExpectedConditions.elementToBeClickable(confirmBtnOK), 15);
-            assertThat(confirmBtnOK.isDisplayed());
+            assertThat(confirmBtnOK.isDisplayed()).isTrue();
             reportWithScreenShot(" Ok button in Manage salary review page is clicked");
         } catch (Exception e) {
             reportWithScreenShot("Error While clicking ok button:" + e.getMessage());
@@ -865,7 +865,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             waitFor(ExpectedConditions.elementToBeClickable(confirmBtnOK), 15);
             confirmBtnOK.click();
             waitFor(ExpectedConditions.elementToBeClickable(btnDone), 15);
-            assertThat(btnDone.isDisplayed());
+            assertThat(btnDone.isDisplayed()).isTrue();
             reportWithScreenShot(" Ok button in Manage salary review page is clicked");
         } catch (Exception e) {
             reportWithScreenShot("Error While clicking ok button:" + e.getMessage());
@@ -879,7 +879,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             waitFor(ExpectedConditions.elementToBeClickable(btnOK_WarningPopup), 15);
             btnOK_WarningPopup.click();
             waitFor(ExpectedConditions.elementToBeClickable(btnContinue_ManageSalary), 15);
-            assertThat(btnContinue_ManageSalary.isDisplayed());
+            assertThat(btnContinue_ManageSalary.isDisplayed()).isTrue();
             reportWithScreenShot(" User closes the warning modal by clicking OK button");
         } catch (Exception e) {
             reportWithScreenShot("Error While clicking ok button on warning modal:" + e.getMessage());
@@ -894,7 +894,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
             dropdownSalaryBasis_ManageSalary.click();
             waitFor(ExpectedConditions.elementToBeClickable(usHourlyWages40), 15);
-            assertThat(usHourlyWages40.isDisplayed());
+            assertThat(usHourlyWages40.isDisplayed()).isTrue();
             usHourlyWages40.click();
             reportWithScreenShot( " is selected from dropdown:");
         } catch (Exception e) {
