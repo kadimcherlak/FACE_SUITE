@@ -57,14 +57,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//li[@class='x1ui']//a[contains(text(),'Manage Salary')]")
     private WebElement manageSalary;
 
-    @FindBy(xpath = "//div[@class='x1l0']/a[contains(.,'Manage Salary')]")
-    private WebElement manageSalaryTab;
-
-
-    @FindBy(xpath = "//img[@title='Tasks']")
-    private WebElement taskIcon;
-
-    @FindBy(xpath = "(//*[text()='Manage Element Entries'])[1]")
+      @FindBy(xpath = "(//*[text()='Manage Element Entries'])[1]")
     private WebElement manageElementEnteriesTextCheck;
 
     @FindBy(xpath = "//label[text()='Element Name']/following::input[1]")
@@ -166,72 +159,10 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//h1[@class='xyx'][contains(text(),'Current Salary')]")
     private WebElement currentSalaryTab;
 
-    @FindBy(xpath = "//li[@class='x1ui']/a[text()='Manage Salary']")
-    private WebElement linkManagesalary;
-
-    @FindBy(xpath = "//button[@title='Action']")
-    private WebElement btnAction_ManageSalary;
-
-    @FindBy(xpath = "//td[text()='Edit']")
-    private WebElement linkActionEdit_ManageSalary;
-
-    @FindBy(xpath = "//label[contains(@for,'UseComponents')]")
-    private WebElement chkboxSalarycomponents_ManageSalary;
-
     @FindBy(xpath = "//a[text()='Components']")
     private WebElement linkComponents_ManageSalary;
 
-    //    @FindBy(xpath = "//div[1][@class='xb7 p_AFSelected']")
-    @FindBy(xpath = "//a[@id='_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt2:1:AP1:sdi1::disAcr']")
-    private WebElement tabComponents_ManageSalary;
-
-
-    @FindBy(xpath = "//img[contains(@id,'create')]")
-    private WebElement addButton_ComponentsTab;
-
-    @FindBy(xpath = "//span[@class='x1z p_AFCustom']//input[@role='combobox']")
-    private WebElement selectComponentDropdown;
-
-    @FindBy(xpath = "//a[@accesskey='u']")
-    private WebElement btnContinue_ManageSalary;
-
-    @FindBy(xpath = "//button[@accesskey='o']")
-    private WebElement btnDone;
-
-    @FindBy(xpath = "//a[@accesskey='m']")
-    private WebElement btnSubmit_ManageSalary;
-
-    @FindBy(xpath = "//button[@accesskey='Y']")
-    private WebElement popButtonYes;
-
-    @FindBy(xpath = "//button[@accesskey='K']")
-    private WebElement confirmBtnOK;
-
-    @FindBy(xpath = "//a[@accesskey='B']")
-    private WebElement btnBack_ManageSalary;
-
-    @FindBy(xpath = "//img[@title='New']")
-    private WebElement btnComponentsNew_ManageSalary;
-
-    @FindBy(xpath = "//td[2]/span[@class='x2qb']//input[@type='text']")
-    private WebElement txtFieldAmount_Components;
-
-    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt2:1:AP1:AT1:_ATp:table1:0:sc1::content")
-    private WebElement drpdownComponent_ManageSalary;
-
-    @FindBy(id = "_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt2:1:AP1:itSA::content")
-    private WebElement txtboxComponentAmt_ManageSalary;
-
-    @FindBy(xpath = "//button[text()='OK']")
-    private WebElement popupOK_ManageSalary;
-
-     @FindBy(xpath = "//label[text()='Action Reason']//following::input[1]")
-    private WebElement txtboxActionReason_ManageSalary;
-
-    @FindBy(xpath = "//span[text()='Edit']")
-    private WebElement btnEdit_ManageEmployment;
-
-    @FindBy(xpath = "//td[text()='Edit']")
+       @FindBy(xpath = "//td[text()='Edit']")
     private WebElement linkActionEdit;
 
     @FindBy(xpath = "//label[@class='af_selectOneChoice_label-text' and text()='Action']//following::input[1]")
@@ -255,26 +186,9 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//label[text()='Seniority Date'][2]//following::input[1]")
     private WebElement txtboxSeniorityDtEnterprise_Manageworkrelationship;
 
-    @FindBy(xpath = "//td[@class='xy7 xy6']//td[1]//span/span[1]")
-    private WebElement txtAnnualSalary;
-
-    @FindBy(xpath = "//tr[7]//td[2][@class='xy7 xy6']/span[1]")
-    private WebElement txtAdjustAmount;
-
     @FindBy(xpath = "//h1[@class='xmu']")
     private WebElement reviewSalaryPage;
 
-    @FindBy(xpath = "//li[@class='x1pk'][text()='Promotion']")
-    private WebElement valPromotion;
-
-    @FindBy(xpath = "//a[@title='Search: Salary Basis']")
-    private WebElement dropdownSalaryBasis_ManageSalary;
-
-    @FindBy(xpath = "//button[@id='_FOd1::msgDlg::cancel']")
-    private WebElement btnOK_WarningPopup;
-
-    @FindBy(xpath = "//tr[3]//td//span[@class='x2qb']")
-    private WebElement usHourlyWages40;
 
     // Person Management Contructor
     public PersonManagementPage(Context context) {
@@ -388,34 +302,8 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
         }
     }
 
-    // User click  Task icon right side
-    public void taskIconClick() {
-        try {
-            waitFor(ExpectedConditions.elementToBeClickable(taskIcon), 15);
-            assertThat(taskIcon.isDisplayed()).isTrue();
-            taskIcon.click();
 
-            reportWithScreenShot("Task icon on right is open");
-        } catch (Exception e) {
-            reportWithScreenShot("Error While checking values in Review Tab due to:" + e.getMessage());
-            Assert.fail();
-        }
-    }
 
-    // User click on Manage Salary under Task icon
-    public void manageSalaryClick() {
-        try {
-            waitFor(ExpectedConditions.elementToBeClickable(linkManagesalary), 15);
-            assertThat(linkManagesalary.isDisplayed()).isTrue();
-            linkManagesalary.click();
-            waitFor(ExpectedConditions.visibilityOf(btnAction_ManageSalary), 60);
-            assertThat(manageSalaryTab.isDisplayed()).isTrue();
-            reportWithScreenShot("Salary page of a person searched");
-        } catch (Exception e) {
-            reportWithScreenShot("Error While checking values in Review Tab due to:" + e.getMessage());
-            Assert.fail();
-        }
-    }
 
     // Check if Manage Element Entries page available
     public void checkManageElementEntriesAvailable() {
@@ -589,95 +477,6 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(manageEmployment.isDisplayed()).isTrue();
         }
     }
-
-    // User click on Action and Edit button
-    public void clickActionEdit() {
-        try {
-            btnAction_ManageSalary.click();
-            waitFor(ExpectedConditions.elementToBeClickable(linkActionEdit_ManageSalary), 60);
-            linkActionEdit_ManageSalary.click();
-            waitFor(ExpectedConditions.elementToBeClickable(chkboxSalarycomponents_ManageSalary), 60);
-            assertThat(chkboxSalarycomponents_ManageSalary.isDisplayed()).isTrue();
-            reportWithScreenShot("User click on Action and Edit button");
-        } catch (Exception e) {
-            reportWithScreenShot("Error While user click on Edit and update button:" + e.getMessage());
-            Assert.fail();
-        }
-    }
-
-    // User enters new Salary Amount under Current Salary section
-    public void enterSalaryAmount() {
-        try {
-            if (driver.findElement(By.xpath("//input[@type='checkbox']")).isSelected()) {
-                Thread.sleep(2000);
-                chkboxSalarycomponents_ManageSalary.click();
-                setSalaryAmount();
-               Thread.sleep(2000);
-            } else {
-                setSalaryAmount();
-            }
-            Thread.sleep(2000);
-        } catch (Exception e) {
-            reportWithScreenShot("Error while enter new salary amount :" + e.getMessage());
-            Assert.fail();
-        }
-    }
-
-    // User enter amount in Salary field
-    public void setSalaryAmount() throws InterruptedException {
-        Thread.sleep(2000);
-        waitFor(ExpectedConditions.visibilityOf(txtboxComponentAmt_ManageSalary), 60);
-        txtboxComponentAmt_ManageSalary.sendKeys(Keys.chord(Keys.CONTROL, "a"));
-        txtboxComponentAmt_ManageSalary.clear();
-        txtboxComponentAmt_ManageSalary.sendKeys(data.getSalaryAmount());
-        txtboxComponentAmt_ManageSalary.sendKeys(Keys.TAB);
-        Thread.sleep(4000);
-        assertThat(txtAnnualSalary.getText().trim().equals(data.getSalaryAmount().trim())).isTrue();
-        reportWithScreenShot("user entered new salary amount in Salary amount field");
-    }
-
-    public void checkboxUseSalary() {
-        try {
-            chkboxSalarycomponents_ManageSalary.click();
-            waitShortTime();
-            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", tabComponents_ManageSalary);
-            Thread.sleep(500);
-            assertThat(tabComponents_ManageSalary.isDisplayed());
-            reportWithScreenShot("Selected checkbox Use salary component");
-        } catch (Exception e) {
-            reportWithScreenShot("Error while selecting checkbox Use salary component :" + e.getMessage());
-            Assert.fail();
-        }
-    }
-
-    // user validating the Component tab is created on select Use Component is checked
-    public void tabComponentsManageSalary() {
-        try {
-            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", tabComponents_ManageSalary);
-            assertThat(tabComponents_ManageSalary.isDisplayed());
-            reportWithScreenShot("Components tab is displayed on selecting Use salary component checkbox");
-        } catch (Exception e) {
-            reportWithScreenShot("Error in displaying component tab:" + e.getMessage());
-            Assert.fail();
-        }
-    }
-
-    // user clicking on Add(+) button in component tab
-    public void clickAddComponent() {
-        try {
-            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", tabComponents_ManageSalary);
-            tabComponents_ManageSalary.click();
-            waitShortTime();
-            addButton_ComponentsTab.click();
-            waitFor(ExpectedConditions.visibilityOf(selectComponentDropdown), 15);
-            assertThat(selectComponentDropdown.isDisplayed());
-            reportWithScreenShot("User clicked on Add(+) button in component tab");
-        } catch (Exception e) {
-            reportWithScreenShot("Error in clicking Add(+) button in component tab:" + e.getMessage());
-            Assert.fail();
-        }
-    }
-
     // User checks if Update Employment Window is Displayed
     public void checkUpdateEmployementWindowDisplayed() {
         try {
@@ -773,132 +572,6 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(employmentInfoPage.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Error While user Navigate to Employment Information page:" + e.getMessage());
-            Assert.fail();
-        }
-    }
-
-    // user selecting component type under component tab in manage salary page
-    public void selectComponentTypeManageSalary(String linkName) {
-
-        try {
-
-            selectComponentDropdown.click();
-            waitFor(ExpectedConditions.elementToBeClickable(valPromotion), 15);
-            assertThat(valPromotion.isDisplayed()).isTrue();
-            valPromotion.click();
-            reportWithScreenShot(linkName + " is selected from dropdown:");
-        } catch (Exception e) {
-            reportWithScreenShot("Error While selecting " + linkName + " from dropdown:" + e.getMessage());
-            Assert.fail();
-        }
-    }
-
-    // user entering amount in Amount field under components tab
-    public void enterAmountInComponent() {
-
-        try {
-
-            txtFieldAmount_Components.sendKeys(Keys.chord(Keys.CONTROL, "a"));
-            waitShortTime();
-            txtFieldAmount_Components.sendKeys(Keys.HOME, Keys.chord(Keys.SHIFT, Keys.END));
-            txtFieldAmount_Components.sendKeys(data.getActualAmount());
-            txtFieldAmount_Components.sendKeys(Keys.TAB);
-            Thread.sleep(2000);
-            assertThat(data.getActualAmount().trim().equals(txtAdjustAmount.getText())).isTrue();
-            reportWithScreenShot(" Adjust amount is entered");
-        } catch (Exception e) {
-            reportWithScreenShot("Error While entering adjust amountin components tab :" + e.getMessage());
-            Assert.fail();
-        }
-
-    }
-
-    // user clicking on continue button in manage salary page
-    public void clickButtonContinueInManageSalary() {
-
-        try {
-            btnContinue_ManageSalary.click();
-            waitForLoad();
-            waitFor(ExpectedConditions.visibilityOf(btnBack_ManageSalary), 30);
-            assertThat(btnBack_ManageSalary.isDisplayed()).isTrue();
-            reportWithScreenShot(" Adjust amount is entered");
-        } catch (Exception e) {
-            reportWithScreenShot("Error While entering adjust amountin components tab :" + e.getMessage());
-            Assert.fail();
-        }
-
-    }
-
-    //user clicks submit button on Manage salary review page
-
-    public void clickSubmitButtonInReviewPage() {
-        try {
-            waitFor(ExpectedConditions.elementToBeClickable(btnSubmit_ManageSalary), 15);
-            btnSubmit_ManageSalary.click();
-            waitFor(ExpectedConditions.elementToBeClickable(popButtonYes), 15);
-            assertThat(popButtonYes.isDisplayed()).isTrue();
-            reportWithScreenShot(" Submit button in Manage salary review page is clicked");
-        } catch (Exception e) {
-            reportWithScreenShot("Error While clicking submit button:" + e.getMessage());
-            Assert.fail();
-        }
-    }
-
-    //user clicks Yes button on Manage salary review page
-
-    public void clickYesOnPopup() {
-        try {
-            waitFor(ExpectedConditions.elementToBeClickable(popButtonYes), 15);
-            popButtonYes.click();
-            waitFor(ExpectedConditions.elementToBeClickable(confirmBtnOK), 15);
-            assertThat(confirmBtnOK.isDisplayed()).isTrue();
-            reportWithScreenShot(" Ok button in Manage salary review page is clicked");
-        } catch (Exception e) {
-            reportWithScreenShot("Error While clicking ok button:" + e.getMessage());
-            Assert.fail();
-        }
-    }
-
-    //user clicks Yes button on Manage salary review page
-    public void clickOKOnPopup() {
-        try {
-            waitFor(ExpectedConditions.elementToBeClickable(confirmBtnOK), 15);
-            confirmBtnOK.click();
-            waitFor(ExpectedConditions.elementToBeClickable(btnDone), 15);
-            assertThat(btnDone.isDisplayed()).isTrue();
-            reportWithScreenShot(" Ok button in Manage salary review page is clicked");
-        } catch (Exception e) {
-            reportWithScreenShot("Error While clicking ok button:" + e.getMessage());
-            Assert.fail();
-        }
-    }
-
-    //user clicks Ok button on Warning modal - Manage salary review page
-    public void clickBtnOK_WarningModal() {
-        try {
-            waitFor(ExpectedConditions.elementToBeClickable(btnOK_WarningPopup), 15);
-            btnOK_WarningPopup.click();
-            waitFor(ExpectedConditions.elementToBeClickable(btnContinue_ManageSalary), 15);
-            assertThat(btnContinue_ManageSalary.isDisplayed()).isTrue();
-            reportWithScreenShot(" User closes the warning modal by clicking OK button");
-        } catch (Exception e) {
-            reportWithScreenShot("Error While clicking ok button on warning modal:" + e.getMessage());
-            Assert.fail();
-        }
-    }
-
-    // user selecting component type under component tab in manage salary page
-    public void selectSalaryBasis() {
-
-        try {
-
-            dropdownSalaryBasis_ManageSalary.click();
-            waitFor(ExpectedConditions.elementToBeClickable(usHourlyWages40), 15);
-            assertThat(usHourlyWages40.isDisplayed()).isTrue();
-            usHourlyWages40.click();
-            reportWithScreenShot( " is selected from dropdown:");
-        } catch (Exception e) {
-            reportWithScreenShot("Error While selecting  from dropdown:" + e.getMessage());
             Assert.fail();
         }
     }

@@ -92,6 +92,73 @@ public class EmployeeEditMyDetailsSteps implements En {
         	
         });
 
+
+//----
+
+        And("user click on Task Icon on the right side", () -> {
+            context.employeeEditMyDetails.taskIconClick();
+        });
+
+        And("user clicks Manage Salary option from task icon menu", () -> {
+            context.employeeEditMyDetails.manageSalaryClick();
+        });
+
+        When("user clicks on Action button and select Edit option", () -> {
+            context.employeeEditMyDetails.clickActionEdit();
+        });
+
+        When("user enters new Salary Amount under Current Salary section", () -> {
+            context.employeeEditMyDetails.enterSalaryAmount();
+        });
+
+
+        When("user selects Use salary component checkbox", () -> {
+            context.employeeEditMyDetails.checkboxUseSalary();
+        });
+
+        Then("Components tab is displayed in Manage Salary", () -> {
+            context.employeeEditMyDetails.tabComponentsManageSalary();
+        });
+
+
+        When("user clicks on Add button in Components tab",() -> {
+            context.employeeEditMyDetails.clickAddComponent();
+        });
+
+        And("^user selects (.*?) from Component dropdown$", (String linkName) -> {
+            context.employeeEditMyDetails.selectComponentTypeManageSalary(linkName);
+        });
+
+        And("^user enters amount in Amount field in Components tab$", () -> {
+            context.employeeEditMyDetails.enterAmountInComponent();
+        });
+
+        And("^user clicks on Continue button in Manage Salary tab$", () -> {
+            context.employeeEditMyDetails.clickButtonContinueInManageSalary();
+
+        });
+
+        When("^user clicks on Submit button in Manage Salary Review page$", () -> {
+            context.employeeEditMyDetails.clickSubmitButtonInReviewPage();
+        });
+
+        And("^user clicks Yes button on popup modal$", () -> {
+            context.employeeEditMyDetails.clickYesOnPopup();
+        });
+
+        And("^user clicks Ok button confirmation popup modal$", () -> {
+            context.employeeEditMyDetails.clickOKOnPopup();
+        });
+
+        When("^user selects US Hourly Wages (\\d+) hours from Salary Basis$", (Integer arg0) -> {
+            context.employeeEditMyDetails.selectSalaryBasis();
+        });
+
+        Then("^user closes Warning modal by clicking OK button$", () -> {
+            context.employeeEditMyDetails.clickBtnOK_WarningModal();
+
+        });
+
     }
 
 }
