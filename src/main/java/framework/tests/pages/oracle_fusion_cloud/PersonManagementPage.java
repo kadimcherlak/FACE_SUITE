@@ -599,6 +599,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
         try {
             // Select i9 status
             waitFor(ExpectedConditions.visibilityOf(i9Status), 5);
+            i9Status.clear();
             i9Status.sendKeys(data.getI9Status());
             reportWithScreenShot("User select value from i9 status");
             waitShortTime();
