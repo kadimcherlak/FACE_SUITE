@@ -205,7 +205,7 @@ public class TalentAcquisitionNewHireSteps implements En {
             context.personManagment.clickOKOnPopup();
         });
         When("^user selects US Hourly Wages (\\d+) hours from Salary Basis$", (Integer arg0) -> {
-            context.personManagment.selectSalarBasis();
+            context.personManagment.selectSalaryBasis();
         });
         Then("^user closes Warning modal by clicking OK button$", () -> {
             context.personManagment.clickBtnOK_WarningModal();

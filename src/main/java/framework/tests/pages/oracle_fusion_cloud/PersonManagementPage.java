@@ -888,7 +888,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     }
 
     // user selecting component type under component tab in manage salary page
-    public void selectSalarBasis() {
+    public void selectSalaryBasis() {
 
         try {
 
