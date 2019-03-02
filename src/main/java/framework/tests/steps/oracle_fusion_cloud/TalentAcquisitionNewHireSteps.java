@@ -17,9 +17,9 @@ public class TalentAcquisitionNewHireSteps implements En {
             context.loginAndHome.selectLinkInNavigatorPane(linkName);
         });
 
-        When("user clicks on Hire an employee on right side of the page under Tasks pane", () -> {
+        When("user clicks on (.*?) on right side of the page under Tasks pane", (String linkName) -> {
             context.newPerson.clickTaskButton();
-            context.newPerson.clickHireAnEmployee();
+            context.newPerson.selectLinkInTaskPane(linkName);
         });
 
         Then("new Hire an employee screen should be displayed", () -> {
@@ -70,8 +70,28 @@ public class TalentAcquisitionNewHireSteps implements En {
             context.personManagment.clickPersonNameLink();
         });
 
+        When("Person Management screen should be displayed", () -> {
+            context.personManagment.checkPersonManagementScreenAvailable();
+        });
+
+        When("Manage Work Relationship screen should be displayed", () -> {
+            context.personManagment.checkManageWorkRelationshipDisplayed();
+        });
+
+        When("user click on Actions button and select Edit option", () -> {
+            context.personManagment.clickActionAndEdit();
+        });
+
         When("user clicks on Edit button and select Update option", () -> {
             context.personManagment.clickEditUpdate();
+        });
+
+        When("Edit Work Relationship screen should be displayed", () -> {
+            context.personManagment.checkEditManageWorkRelationshipDisplayed();
+        });
+
+        When("user select Ready to verify value from I-9 Status", () -> {
+            context.personManagment.selectI9Status();
         });
 
         Then("Update Employment new window should be displayed", () -> {
@@ -94,7 +114,7 @@ public class TalentAcquisitionNewHireSteps implements En {
             context.hireAnEmployee.clickNextButton();
         });
 
-        When("user clicks on Manage Element Entries link under Payroll section on right side of the page under Tasks pane", () -> {
+        When("user clicks on Manage Element Entries link under Payroll section", () -> {
             context.personManagment.clickPayrollOption();
             context.personManagment.manageElementEntriesClick();
         });

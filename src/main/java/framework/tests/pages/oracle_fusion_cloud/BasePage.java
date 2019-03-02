@@ -2,6 +2,7 @@ package framework.tests.pages.oracle_fusion_cloud;
 
 import framework.core.drivers.web.WebPage;
 import framework.tests.steps.oracle_fusion_cloud.Context;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,16 +10,20 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 public class BasePage<T> extends WebPage {
+
 
     @FindBy(tagName = "html")
     private WebElement __document;
-
+    private WebElement appWebElement;
     @FindBy(xpath = "//*[text()='Sub']")
     private WebElement submit;
 
@@ -36,6 +41,12 @@ public class BasePage<T> extends WebPage {
 
     @FindBy(xpath = "//img[@title='Create']")
     private WebElement createBtn;
+
+    @FindBy(xpath = "//img[@title='Tasks']")
+    private WebElement taskButton;
+
+    @FindBy(xpath = "//a[text()='Hire an Employee']")
+    private WebElement hireAndEmployee;
 
     public BasePage(Context context) {
         super(context);
@@ -130,6 +141,36 @@ public class BasePage<T> extends WebPage {
             waitShortTime();
         } catch (Exception e) {
             reportWithScreenShot("Error While user click on Create button:" + e.getMessage());
+        }
+    }
+
+    // Open task pane
+    public void clickTaskButton() {
+        try {
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.visibilityOf(taskButton), 15);
+            assertThat(taskButton.isDisplayed()).isTrue();
+            taskButton.click();
+        } catch (Exception e) {
+            reportWithScreenShot("Failed to open Task pane due to :" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // Common Method to Select Links under Task Pane
+    public void selectLinkInTaskPane(String linkName) {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(taskButton), 15);
+            waitNormalTime();  //Introduced Normalwait of 5 secs for the links to be loaded
+            appWebElement = driver.findElement(By.xpath("//a[text()='" + linkName + "']"));
+            reportWithScreenShot("Link :" + linkName + " selected from Task pane");
+            waitFor(ExpectedConditions.elementToBeClickable(appWebElement), 15);
+            assertThat(appWebElement.isDisplayed()).isTrue();
+            appWebElement.click();
+            waitUntilPageLoad();
+        } catch (Exception e) {
+            reportWithScreenShot("Unable to open link :" + linkName + " due to" + e.getMessage());
+            Assert.fail();
         }
     }
 
