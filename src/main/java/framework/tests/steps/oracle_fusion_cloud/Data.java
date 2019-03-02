@@ -14,6 +14,7 @@ public class Data extends framework.core.models.Data {
     private String altWorkLocationzipCode;
     private String assignmentCategory;
     private String businessUnit;
+    private String category;
     private String changeManagerReason;
     private String city;
     private String contactsEmergencyContactName;
@@ -25,8 +26,11 @@ public class Data extends framework.core.models.Data {
     private String county;
     private String dateOfBirth;
     private String department;
+    private String description;
     private String destinationLegalEmployer;
     private String effectiveAsOfDate;
+    private String effectiveFromDate;
+    private String effectiveToDate;
     private String elementName;
     private String elementNameADP;
     private String employmentAction;
@@ -43,16 +47,19 @@ public class Data extends framework.core.models.Data {
     private String hireDate;
     private String hireReason;
     private String hourlyPaidOrSalaried;
+    private String i9Status;
     private String job;
     private String lastName;
     private String legalEmployer;
     private String location;
     private String managerName;
     private String maritalStatus;
+    private String name;
     private String nationalID;
     private String nationalIDType;
     private String newlySeparatedVeteranDischargeDate;
     private String number;
+    private String patternName;
     private String password;
     private String payroll;
     private String pearsonEmailRequired;
@@ -62,7 +69,9 @@ public class Data extends framework.core.models.Data {
     private String salaryAmount;
     private String salaryBasis;
     private String scenario;
+    private String sequence;
     private String state;
+    private String type;
     private String type1;
     private String type2;
     private String userName;
@@ -109,6 +118,10 @@ public class Data extends framework.core.models.Data {
         return businessUnit;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
     public String getChangeManagerReason() {
         return changeManagerReason;
     }
@@ -124,7 +137,6 @@ public class Data extends framework.core.models.Data {
     public String getContactsRelationship() {
         return contactsRelationship;
     }
-
 
     public String getCompanyEntity() {
         return companyEntity;
@@ -154,12 +166,24 @@ public class Data extends framework.core.models.Data {
         return department;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public String getDestinationLegalEmployer() {
         return destinationLegalEmployer;
     }
 
-    public String geteffectiveAsOfDate() {
+    public String getEffectiveAsOfDate() {
         return effectiveAsOfDate;
+    }
+
+    public String getEffectiveFromDate() {
+        return effectiveFromDate;
+    }
+
+    public String getEffectiveToDate() {
+        return effectiveToDate;
     }
 
     public String getEmail() {
@@ -205,18 +229,6 @@ public class Data extends framework.core.models.Data {
         return employmentActionReason;
     }
 
-    public String employeeManagerChange() {
-        return employeeManagerChange;
-    }
-
-    public String changeManagerReason() {
-        return changeManagerReason;
-    }
-
-    public String managerName() {
-        return managerName;
-    }
-
     public String getGender() {
         return gender;
     }
@@ -253,6 +265,10 @@ public class Data extends framework.core.models.Data {
         return hourlyPaidOrSalaried;
     }
 
+    public String getI9Status() {
+        return i9Status;
+    }
+
     public String getJob() {
         return job;
     }
@@ -286,6 +302,10 @@ public class Data extends framework.core.models.Data {
         return maritalStatus;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public String getNationalID() {
         Random rnd = new Random();
         String ssn_temp = String.format("%09d", rnd.nextInt(1000000000));
@@ -305,6 +325,10 @@ public class Data extends framework.core.models.Data {
 
     public String getNumber() {
         return number;
+    }
+
+    public String getPatternName() {
+        return patternName;
     }
 
     public String getPassword() {
@@ -346,8 +370,16 @@ public class Data extends framework.core.models.Data {
         return scenario;
     }
 
+    public String getSequence() {
+        return sequence;
+    }
+
     public String getState() {
         return state;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public String getType1() {

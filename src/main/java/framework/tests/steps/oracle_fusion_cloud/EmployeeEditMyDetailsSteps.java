@@ -87,7 +87,8 @@ public class EmployeeEditMyDetailsSteps implements En {
         When("user clicks on Actions \\(v) button", () -> {
         	context.employeeEditMyDetails.clickMoreInformationActionButton();
         });
-        
+
+
         Then("the values Absences,Compensation,Personal and Employment should be displayed", () -> {
         	
         });

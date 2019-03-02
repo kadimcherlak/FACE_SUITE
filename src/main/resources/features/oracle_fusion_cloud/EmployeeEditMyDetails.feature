@@ -14,7 +14,7 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     And user Enter Details in Address fields
     And user click on Save and Close button
     Then My Details page should be displayed
-    When user click on Sign Out option
+    When user clicks on Sign Out option
     Then Sign out should be successful
 
     Examples:
@@ -41,7 +41,7 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     And user select Emergency contact check box
     And user click on Save and Close button
     Then My Details page should be displayed
-    When user click on Sign Out option
+    When user clicks on Sign Out option
     Then Sign out should be successful
 
     Examples:
@@ -75,7 +75,7 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     Then Overview personal payments page will be displayed
     And user clicks on Done button
     Then Person Gallery page should be displayed
-    When user click on Sign Out option
+    When user clicks on Sign Out option
     Then Sign out should be successful
 
     Examples:
@@ -109,7 +109,7 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     Then Overview personal payments page will be displayed
     And user clicks on Done button
     Then Person Gallery page should be displayed
-    When user click on Sign Out option
+    When user clicks on Sign Out option
     Then Sign out should be successful
 
     Examples:
@@ -173,22 +173,23 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     Then The disability information page should be displayed
     When user clicks on save and close button
     Then My Details page should be displayed
-    When user click on Sign Out option
+    When user clicks on Sign Out option
     Then Sign out should be successful
 
     Examples:
       | Test Scenario                                              | Test File Name | Test Sheet Name  |
       | UPDATE_ADDRESS_BIOGRAPHICAL_INFO_DRIVING_LICENSE_DOCUMENTS | TestData.xlsx  | Employee_Details |
 
-  @UPDATE_SALARY_FOR_EXISTING_EMP @SMOKE
+
+  @UPDATE_SALARY_FOR_EXISTING_EMP
   Scenario Outline: Updating salary component of an existing employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
-    And user clicks on Person Management link under My Workforce section
+    And user clicks on Person Management link in Navigator Pane
     Then Person Management: Search screen should be displayed
     And user enter the Person number generated from previous step in Person Number field
-    And user click on Search button
+    And user click on Search button till person displayed
     Then Employee name should be listed in search results
     When user click on employee name link in search results
     And user click on Task Icon on the right side
@@ -204,22 +205,22 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     When user clicks on Submit button in Manage Salary Review page
     And user clicks Yes button on popup modal
     And user clicks Ok button confirmation popup modal
-    And user click on Sign Out option
+    And user clicks on Sign Out option
     Then Sign out should be successful
 
     Examples:
-      | Test Scenario                  | Test File Name | Test Sheet Name    |
+      | Test Scenario                  | Test File Name | Test Sheet Name  |
       | UPDATE_SALARY_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
 
-  @EDIT_SALARY_PROPOSAL_REASON @SMOKE
+  @EDIT_SALARY_PROPOSAL_REASON
   Scenario Outline: Admin can edit Salary Proposal Reason
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
-    And user clicks on Person Management link under My Workforce section
+    And user clicks on Person Management link in Navigator Pane
     Then Person Management: Search screen should be displayed
     And user enter the Person number generated from previous step in Person Number field
-    And user click on Search button
+    And user click on Search button till person displayed
     Then Employee name should be listed in search results
     When user click on employee name link in search results
     And user click on Task Icon on the right side
@@ -230,22 +231,22 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     When user clicks on Submit button in Manage Salary Review page
     And user clicks Yes button on popup modal
     And user clicks Ok button confirmation popup modal
-    And user click on Sign Out option
+    And user clicks on Sign Out option
     Then Sign out should be successful
 
     Examples:
-      | Test Scenario               | Test File Name | Test Sheet Name    |
+      | Test Scenario               | Test File Name | Test Sheet Name  |
       | EDIT_SALARY_PROPOSAL_REASON | TestData.xlsx  | Employee_Details |
 
-  @CHANGE_SALARY_BASIS_FOR_EXISTING_EMP @SMOKE
+  @CHANGE_SALARY_BASIS_FOR_EXISTING_EMP
   Scenario Outline: Administration changing salary basis of an employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
-    And user clicks on Person Management link under My Workforce section
+    And user clicks on Person Management link in Navigator Pane
     Then Person Management: Search screen should be displayed
     And user enter the Person number generated from previous step in Person Number field
-    And user click on Search button
+    And user click on Search button till person displayed
     Then Employee name should be listed in search results
     When user click on employee name link in search results
     And user click on Task Icon on the right side
@@ -257,9 +258,10 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     When user clicks on Submit button in Manage Salary Review page
     And user clicks Yes button on popup modal
     And user clicks Ok button confirmation popup modal
-    And user click on Sign Out option
+    And user clicks on Sign Out option
     Then Sign out should be successful
 
     Examples:
-      | Test Scenario                        | Test File Name | Test Sheet Name    |
+      | Test Scenario                        | Test File Name | Test Sheet Name  |
       | CHANGE_SALARY_BASIS_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
+

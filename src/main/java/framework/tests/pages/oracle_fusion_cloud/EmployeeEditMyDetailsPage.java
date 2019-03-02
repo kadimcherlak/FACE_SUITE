@@ -89,6 +89,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//img[@title='Actions']")
     private WebElement moreInformationActionButton;
 
+
     @FindBy(xpath = "//img[@title='Tasks']")
     private WebElement taskIcon;
 
@@ -118,6 +119,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//img[contains(@id,'create')]")
     private WebElement addButton_ComponentsTab;
+
 
     @FindBy(xpath = "//h1[contains(.,'My Details')]")
     private WebElement empMyDetails;
@@ -201,6 +203,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         } catch (Exception e) {
             reportWithScreenShot(
                     "Error While user clicks on Edit button due to:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -215,6 +218,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         } catch (Exception e) {
             reportWithScreenShot(
                     "Error While user clicks on Address Add button due to:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -254,7 +258,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         } catch (Exception e) {
             reportWithScreenShot(
                     "Error While user enter Alternate work location Address details due to:" + e.getMessage());
-            assertThat(saveAndCloseBtn.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -268,6 +272,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
         } catch (Exception e) {
             reportWithScreenShot("Error While user click on save and close button:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -282,6 +287,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         } catch (Exception e) {
             reportWithScreenShot(
                     "Error While user clicks on Add button in contact page due to:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -293,19 +299,18 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             assertThat(addContactDialog.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("My Details Contact Page is not Displayed");
-            assertThat(addContactDialog.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
     // User click on Select existing person radio button
     public void clickSelectExistPerson() {
         try {
-
             waitFor(ExpectedConditions.elementToBeClickable(selectExistPerson), 15);
             selectExistPerson.click();
-
         } catch (Exception e) {
             reportWithScreenShot("Error While user click on select Existing Person radio button:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -321,6 +326,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         } catch (Exception e) {
             reportWithScreenShot(
                     "Error While user clicks on Continue button in contact page due to:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -340,6 +346,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         } catch (Exception e) {
             reportWithScreenShot(
                     "Error While User select value from Relationship due to:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -352,6 +359,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
         } catch (Exception e) {
             reportWithScreenShot("Error While user enter Emergency contact name:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -366,6 +374,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         } catch (Exception e) {
             reportWithScreenShot(
                     "Error While user clicks on Emergency Contact Checkbox in contact page due to:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -378,6 +387,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
         } catch (Exception e) {
             reportWithScreenShot("Error While user click on save and close button:" + e.getMessage());
+            Assert.fail();
         }
     }
     
@@ -395,6 +405,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
         } catch (Exception e) {
             reportWithScreenShot("Error while click on more information on my details page:" + e.getMessage());
+            Assert.fail();
         }
     }
     
@@ -410,7 +421,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             reportWithScreenShot("Checking if My Details more information pop up is Displayed");
         } catch (Exception e) {
             reportWithScreenShot("My Details more information pop up is not Displayed");
-            assertThat(moreInformationPopUp.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
     
@@ -426,6 +437,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
         } catch (Exception e) {
             reportWithScreenShot("Error while click on more information action button:" + e.getMessage());
+            Assert.fail();
         }
     }
     
@@ -435,17 +447,13 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
      */
     public void validateLinksPresentInMoreInformationPage() {
         try {
-
         	assertThat(moreInformationActionButton.isDisplayed()).isTrue();
         	assertThat(moreInformationCompensationLink.isDisplayed()).isTrue();
         	assertThat(moreInformationPersonalAndEmploymentLink.isDisplayed()).isTrue();
         	reportWithScreenShot("Checking if My Details more information Absences, Compensation , Personal and Employment link in more information link is displayed");
-
         } catch (Exception e) {
             reportWithScreenShot("Checking if My Details more information Absences, Compensation , Personal and Employment link in more information link is displayed:" + e.getMessage());
-            assertThat(moreInformationActionButton.isDisplayed()).isTrue();
-        	assertThat(moreInformationCompensationLink.isDisplayed()).isTrue();
-        	assertThat(moreInformationPersonalAndEmploymentLink.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -685,6 +693,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             txtFieldAmount_Components.sendKeys(Keys.chord(Keys.CONTROL, "a"));
             waitShortTime();
             txtFieldAmount_Components.sendKeys(Keys.HOME, Keys.chord(Keys.SHIFT, Keys.END));
+            waitShortTime();
             txtFieldAmount_Components.sendKeys(data.getActualAmount());
             txtFieldAmount_Components.sendKeys(Keys.TAB);
             Thread.sleep(2000);
