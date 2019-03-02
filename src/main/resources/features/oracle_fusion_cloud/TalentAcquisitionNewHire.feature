@@ -157,3 +157,31 @@ Feature: New Hire and Related Activities
     Examples:
       | Test Scenario                   | Test File Name | Test Sheet Name    |
       | UPDATE_PERSONAL_ASSIGNMENT_DATA | TestData.xlsx  | Talent_Acquisition |
+
+  @UPDATE_REMOVE_I9_STATUS
+  Scenario Outline:  Verify PPS is able to update/remove I9 Status
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button till person displayed
+    Then Employee name should be listed in search results
+    When user click on employee name link in search results
+    Then Person Management screen should be displayed
+    And user clicks on Manage Work Relationship on right side of the page under Tasks pane
+    Then Manage Work Relationship screen should be displayed
+    When user click on Actions button and select Edit option
+    Then Edit Work Relationship screen should be displayed
+    And user select Ready to verify value from I-9 Status
+    When user clicks on submit button
+    And clicks ok in the Warning and confirmation message displayed
+    Then Page should be submitted successfully
+    When user click on Done button at the top
+    And user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario           | Test File Name | Test Sheet Name    |
+      | UPDATE_REMOVE_I9_STATUS | TestData.xlsx  | Talent_Acquisition |

@@ -2,7 +2,6 @@ package framework.tests.pages.oracle_fusion_cloud;
 
 import framework.core.drivers.web.WebPage;
 import framework.tests.steps.oracle_fusion_cloud.Context;
-import junit.framework.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriverException;
@@ -12,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

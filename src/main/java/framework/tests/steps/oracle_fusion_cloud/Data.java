@@ -47,6 +47,7 @@ public class Data extends framework.core.models.Data {
     private String hireDate;
     private String hireReason;
     private String hourlyPaidOrSalaried;
+    private String i9Status;
     private String job;
     private String lastName;
     private String legalEmployer;
@@ -262,6 +263,10 @@ public class Data extends framework.core.models.Data {
 
     public String getHourlyPaidOrSalaried() {
         return hourlyPaidOrSalaried;
+    }
+
+    public String getI9Status() {
+        return i9Status;
     }
 
     public String getJob() {

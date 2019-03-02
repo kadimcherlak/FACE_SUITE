@@ -14,7 +14,7 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     And user Enter Details in Address fields
     And user click on Save and Close button
     Then My Details page should be displayed
-    When user click on Sign Out option
+    When user clicks on Sign Out option
     Then Sign out should be successful
 
     Examples:
@@ -41,7 +41,7 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     And user select Emergency contact check box
     And user click on Save and Close button
     Then My Details page should be displayed
-    When user click on Sign Out option
+    When user clicks on Sign Out option
     Then Sign out should be successful
 
     Examples:
@@ -75,7 +75,7 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     Then Overview personal payments page will be displayed
     And user clicks on Done button
     Then Person Gallery page should be displayed
-    When user click on Sign Out option
+    When user clicks on Sign Out option
     Then Sign out should be successful
 
     Examples:
@@ -109,7 +109,7 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     Then Overview personal payments page will be displayed
     And user clicks on Done button
     Then Person Gallery page should be displayed
-    When user click on Sign Out option
+    When user clicks on Sign Out option
     Then Sign out should be successful
 
     Examples:
@@ -173,9 +173,10 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     Then The disability information page should be displayed
     When user clicks on save and close button
     Then My Details page should be displayed
-    When user click on Sign Out option
+    When user clicks on Sign Out option
     Then Sign out should be successful
 
     Examples:
       | Test Scenario                                              | Test File Name | Test Sheet Name  |
       | UPDATE_ADDRESS_BIOGRAPHICAL_INFO_DRIVING_LICENSE_DOCUMENTS | TestData.xlsx  | Employee_Details |
+
