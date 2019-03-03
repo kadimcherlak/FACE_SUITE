@@ -3,12 +3,17 @@ package framework.tests.pages.oracle_fusion_cloud;
 import framework.tests.steps.oracle_fusion_cloud.Context;
 import framework.tests.steps.oracle_fusion_cloud.Data;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.testng.Assert;
+
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -53,7 +58,10 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "(//td[@class='xmz'][contains(.,'Manage Element Entries')])[2]")
     private WebElement manageElementEntries;
 
-    @FindBy(xpath = "(//*[text()='Manage Element Entries'])[1]")
+    @FindBy(xpath = "//li[@class='x1ui']//a[contains(text(),'Manage Salary')]")
+    private WebElement manageSalary;
+
+      @FindBy(xpath = "(//*[text()='Manage Element Entries'])[1]")
     private WebElement manageElementEnteriesTextCheck;
 
     @FindBy(xpath = "//label[text()='Element Name']/following::input[1]")
@@ -145,6 +153,46 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
     @FindBy(xpath = "//label[text()='Working Hours']/following::input[1]")
     private WebElement empInfoWorkingHrs;
+
+
+    @FindBy(xpath = "//td[@class='xmz' and text()='Edit']")
+    private WebElement editAction;
+
+    @FindBy(xpath = "//div[1][@class='xjd']//button[@title='Action']")
+    private WebElement btnAction;
+
+    @FindBy(xpath = "//h1[@class='xyx'][contains(text(),'Current Salary')]")
+    private WebElement currentSalaryTab;
+
+    @FindBy(xpath = "//a[text()='Components']")
+    private WebElement linkComponents_ManageSalary;
+
+       @FindBy(xpath = "//td[text()='Edit']")
+    private WebElement linkActionEdit;
+
+    @FindBy(xpath = "//label[@class='af_selectOneChoice_label-text' and text()='Action']//following::input[1]")
+    private WebElement dropdownAction_ManageEmployment;
+
+    @FindBy(xpath = "//label[@class='af_selectOneChoice_label-text' and text()='Action Reason']//following::input[1]")
+    private WebElement dropdownActionReason_ManageEmployment;
+
+    @FindBy(xpath = "//label[text()='Projected End Date']//following::input[1]")
+    private WebElement projectedEndDate_ManageEmployment;
+
+    @FindBy(xpath = "//a[text()='Manage Work Relationship']")
+    private WebElement linkManageWorkRelationship;
+
+    @FindBy(xpath = "//a[@title='Actions']")
+    private WebElement btnActions_Manageworkrelationship;
+
+    @FindBy(xpath = "//label[text()='Seniority Date'][1]//following::input[1]")
+    private WebElement txtboxSeniorityDtLegal_Manageworkrelationship;
+
+    @FindBy(xpath = "//label[text()='Seniority Date'][2]//following::input[1]")
+    private WebElement txtboxSeniorityDtEnterprise_Manageworkrelationship;
+
+    @FindBy(xpath = "//h1[@class='xmu']")
+    private WebElement reviewSalaryPage;
 
     @FindBy(xpath = "//a[text()='Manage Work Relationship']")
     private WebElement manageWorkRelationship;
@@ -239,7 +287,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             if (elementsize == 0) {
                 throw new Exception("Person number not found after 60 seconds");
             }
-
+            reportWithScreenShot("User is on search result page");
         } catch (Exception e) {
             reportWithScreenShot("Error While checking search results of employee:" + e.getMessage());
             Assert.fail();
@@ -290,6 +338,9 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
         }
     }
 
+
+
+
     // Check if Manage Element Entries page available
     public void checkManageElementEntriesAvailable() {
         try {
@@ -314,6 +365,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
         } catch (Exception e) {
             reportWithScreenShot("Error While user enters Element Name:" + e.getMessage());
             Assert.fail();
+
         }
     }
 
@@ -444,6 +496,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(personLink), 15);
             personLink.click();
+            reportWithScreenShot("User clicked on Employee Name link");
         } catch (Exception e) {
             reportWithScreenShot("Error While user click on person Name link:" + e.getMessage());
             Assert.fail();
@@ -466,7 +519,6 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             Assert.fail();
         }
     }
-
     // User checks if Update Employment Window is Displayed
     public void checkUpdateEmployementWindowDisplayed() {
         try {
@@ -568,6 +620,8 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
         }
     }
 
+
+
     // User checks if Manage Work Relationship page is Displayed
     public void checkManageWorkRelationshipDisplayed() {
         try {
@@ -626,7 +680,4 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             Assert.fail();
         }
     }
-
-
-
 }
