@@ -6,13 +6,17 @@ public class Data extends framework.core.models.Data {
 
     // Alpha sorted list of models items (yes it will be long normally)
     private String actualAmount;
+    private String accountNumber;
+    private String accountType;
+    private String accountHolder;
     private String addressLine1;
     private String addressLine2;
-    private String altWorkLocationaddressType;
-    private String altWorkLocationcountry;
-    private String altWorkLocationaddressLine1;
-    private String altWorkLocationzipCode;
+    private String altWorkLocationAddressType;
+    private String altWorkLocationCountry;
+    private String altWorkLocationAddressLine1;
+    private String altWorkLocationZipCode;
     private String assignmentCategory;
+    private String bankName;
     private String businessUnit;
     private String category;
     private String changeManagerReason;
@@ -59,6 +63,7 @@ public class Data extends framework.core.models.Data {
     private String nationalIDType;
     private String newlySeparatedVeteranDischargeDate;
     private String number;
+    private String organizationPaymentMethod;
     private String patternName;
     private String password;
     private String payroll;
@@ -66,6 +71,8 @@ public class Data extends framework.core.models.Data {
     private String payCheckDate;
     private String personNumber;
     private String personName;
+    private String percentage;
+    private String routingNumber;
     private String salaryAmount;
     private String salaryBasis;
     private String scenario;
@@ -86,6 +93,18 @@ public class Data extends framework.core.models.Data {
         return actualAmount;
     }
 
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public String getAccountHolder() {
+        return accountHolder;
+    }
+
     public String getAddressLine1() {
         return addressLine1;
     }
@@ -94,25 +113,30 @@ public class Data extends framework.core.models.Data {
         return addressLine2;
     }
 
-    public String getAltWorkLocationaddressType() {
-        return altWorkLocationaddressType;
+    public String getAltWorkLocationAddressType() {
+        return altWorkLocationAddressType;
     }
 
-    public String getAltWorkLocationcountry() {
-        return altWorkLocationcountry;
+    public String getAltWorkLocationCountry() {
+        return altWorkLocationCountry;
     }
 
-    public String getAltWorkLocationaddressLine1() {
-        return altWorkLocationaddressLine1;
+    public String getAltWorkLocationAddressLine1() {
+        return altWorkLocationAddressLine1;
     }
 
-    public String getAltWorkLocationzipCode() {
-        return altWorkLocationzipCode;
+    public String getAltWorkLocationZipCode() {
+        return altWorkLocationZipCode;
     }
 
     public String getAssignmentCategory() {
         return assignmentCategory;
     }
+
+    public String getBankName() {
+        return bankName;
+    }
+
 
     public String getBusinessUnit() {
         return businessUnit;
@@ -327,6 +351,11 @@ public class Data extends framework.core.models.Data {
         return number;
     }
 
+    public String getOrganizationPaymentMethod() {
+        return organizationPaymentMethod;
+    }
+
+
     public String getPatternName() {
         return patternName;
     }
@@ -357,6 +386,16 @@ public class Data extends framework.core.models.Data {
     public void setPersonNumber(String personNumber) {
         this.personNumber = personNumber;
     }
+
+    public String getPercentage() {
+        return percentage;
+    }
+
+
+    public String getRoutingNumber() {
+        return routingNumber;
+    }
+
 
     public String getSalaryAmount() {
         return salaryAmount;

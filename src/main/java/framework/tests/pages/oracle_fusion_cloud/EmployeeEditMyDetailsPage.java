@@ -30,20 +30,20 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//a[@title='Add']")
     private WebElement contactsAddBtn;
 
-    @FindBy(xpath = "(//*[@class='x2h'])[3]")
+    @FindBy(xpath = "(//*[@class='x2h'])[4]")
     private WebElement altWorkLocationAddType;
 
-    @FindBy(xpath = "(//input[@class='x109'])[1]")
-    private WebElement altWorkLocationcountry;
+    @FindBy(xpath = "(//input[@class='x109'])[2]")
+    private WebElement altWorkLocationCountry;
 
     @FindBy(xpath = "//span[text()='United States']")
     private WebElement selectCountryFromPopUp;
 
     @FindBy(xpath = "(//label[text()='Address Line 1']/following::input[1])[1]")
-    private WebElement altWorkLocationaddressLine1;
+    private WebElement altWorkLocationAddressLine1;
 
     @FindBy(xpath = "(//label[text()='ZIP Code']/following::input[1])[1]")
-    private WebElement altWorkLocationzipCode;
+    private WebElement altWorkLocationZipCode;
 
     @FindBy(xpath = "//div[text()='Contacts']")
     private WebElement contactsIcon;
@@ -135,17 +135,26 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         try {
             // Click Edit button in My details Page
             waitShortTime();
+            addressAddBtn.sendKeys(Keys.TAB);
             altWorkLocationAddType.click();
             waitFor(ExpectedConditions
-                    .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getAltWorkLocationaddressType() + "']"))), 5);
-            driver.findElement(By.xpath("//li[text()='" + data.getAltWorkLocationaddressType() + "']")).click();
+                    .visibilityOf(altWorkLocationAddType), 5);
+            driver.findElement(By.xpath("//li[text()='" + data.getAltWorkLocationAddressType() + "']")).click();
             altWorkLocationAddType.sendKeys(Keys.TAB);
 
             // Enter Country
-            waitFor(ExpectedConditions.visibilityOf(altWorkLocationcountry), 15);
-            altWorkLocationcountry.clear();
-            altWorkLocationcountry.sendKeys(data.getAltWorkLocationcountry());
-            altWorkLocationcountry.sendKeys(Keys.TAB);
+            waitFor(ExpectedConditions.visibilityOf(altWorkLocationCountry), 15);
+            altWorkLocationCountry.clear();
+            altWorkLocationCountry.sendKeys(data.getAltWorkLocationCountry());
+            waitNormalTime();
+            altWorkLocationCountry.sendKeys(Keys.ENTER);
+            altWorkLocationCountry.sendKeys(Keys.TAB);
+
+          /*  // Enter Country
+            waitFor(ExpectedConditions.visibilityOf(altWorkLocationCountry), 15);
+            altWorkLocationCountry.clear();
+            altWorkLocationCountry.sendKeys(data.getAltWorkLocationCountry());
+            altWorkLocationCountry.sendKeys(Keys.TAB);
             waitShortTime();
 
             // If Country Pop up screen is present
@@ -153,13 +162,13 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
                 //selectCountryFromPopUp.click();
                 clickOkButton();
                 waitShortTime();
-            }
+            }*/
 
-            waitFor(ExpectedConditions.elementToBeClickable(altWorkLocationaddressLine1), 5);
-            altWorkLocationaddressLine1.sendKeys(data.getAltWorkLocationaddressLine1());
-            waitFor(ExpectedConditions.elementToBeClickable(altWorkLocationzipCode), 5);
-            altWorkLocationzipCode.sendKeys(data.getAltWorkLocationzipCode());
-            altWorkLocationaddressLine1.click();
+            waitFor(ExpectedConditions.elementToBeClickable(altWorkLocationAddressLine1), 5);
+            altWorkLocationAddressLine1.sendKeys(data.getAltWorkLocationAddressLine1());
+            waitFor(ExpectedConditions.elementToBeClickable(altWorkLocationZipCode), 5);
+            altWorkLocationZipCode.sendKeys(data.getAltWorkLocationZipCode());
+            altWorkLocationAddressLine1.click();
             reportWithScreenShot("User enter Alternate work location Address details");
             assertThat(saveAndCloseBtn.isDisplayed()).isTrue();
 
