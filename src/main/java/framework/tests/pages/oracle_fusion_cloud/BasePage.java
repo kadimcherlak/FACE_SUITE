@@ -249,5 +249,49 @@ public class BasePage<T> extends WebPage {
             Assert.fail();
         }
     }
+    
+    
+  //Select the dropdown value passed as parameter in an input field
+    /**
+     * This method will select the dropdown value passed as parameter in an input field
+     * @param element
+     * @param dropdownValue
+     * @author Rakesh Ghosal
+     */
+    public void selectInputDropdownValue(WebElement element,String dropdownValue)
+    {
+    	try
+    	{
+    		String dropdownXpathValue="//li[text()='"+dropdownValue+"']";
+    		waitFor(ExpectedConditions.elementToBeClickable(element), 15);
+    		element.click();
+    		waitFor(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(dropdownXpathValue))), 15);
+    		driver.findElement(By.xpath(dropdownXpathValue)).click();
+    		
+    		
+    	}catch(Exception e)
+    	{
+    		reportWithScreenShot("Error While selecting dropdown value:" + e.getMessage());
+    		Assert.fail();
+    	}
+    }
+    
+    
+    /**
+     * This method will validate if a Web Element is displayed or not
+     * @param element
+     * @author Rakesh Ghosal
+     */
+    public void validateElementIsDisplayed(WebElement element) {
+		try {
+			waitUntilPageLoad();
+			waitFor(ExpectedConditions.elementToBeClickable(element), 15);
+			assertThat(element.isDisplayed()).isTrue();
+		} catch (Exception e) {
+			reportWithScreenShot("Element is not present:" + e.getMessage());
+			Assert.fail();
+		}
+	}
 
 }
+

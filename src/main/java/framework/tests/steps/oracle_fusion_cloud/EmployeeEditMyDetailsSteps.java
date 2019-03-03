@@ -90,7 +90,7 @@ public class EmployeeEditMyDetailsSteps implements En {
 
 
         Then("the values Absences,Compensation,Personal and Employment should be displayed", () -> {
-        	
+        	context.employeeEditMyDetails.validateLinksPresentInMoreInformationPage();
         });
 
 
@@ -158,6 +158,74 @@ public class EmployeeEditMyDetailsSteps implements En {
         Then("^user closes Warning modal by clicking OK button$", () -> {
             context.employeeEditMyDetails.clickBtnOK_WarningModal();
 
+        });
+        
+        When("user clicks Manage Personal Payment Methods under Payroll option", () -> {
+        	context.employeeEditMyDetails.clcikOnManagePersonalPaymentMethod();
+        });
+        
+        Then("Create Personal Payment Method page should be displayed", () -> {
+        	context.employeeEditMyDetails.validatePersonalPaymentMethodPage();
+        });
+        
+        Then("user clicks on + icon", () -> {
+        	context.employeeEditMyDetails.clickCreateNewPaymentMethodLink();
+        });
+        
+        Then("Personal Payment Method page should be displayed", () -> {
+        	context.employeeEditMyDetails.validateCreatePersonalPaymentMethodPage();
+        });
+        
+        Then("user enter value for Name,Payment Method and Percentage", () -> {
+        	context.employeeEditMyDetails.enterValuesInCreatePersonalPaymentPage();
+        });
+        
+        Then("user clicks on + icon under Bank Accounts", () -> {
+        	context.employeeEditMyDetails.clickCreateNewPaymentMethodLink();
+        });
+        
+        Then("Create Bank Account page should be displayed", () -> {
+        	context.employeeEditMyDetails.validateBankAccountCreatePage();
+        });
+        
+        Then("enter the bank account details", () -> {
+        	context.employeeEditMyDetails.enterValuesInBankAccountCreatePage();
+        });
+        
+        Then("user clicks on Submit button", () -> {
+        	context.employeeEditMyDetails.clickSubmitButton();
+        });
+        
+        Then("Overview personal payments page will be displayed", () -> {
+        	context.employeeEditMyDetails.validatePersonalPaymentMethodPage();
+        });
+        
+        When("user clicks on edit button on top right side of the page", () -> {
+        	context.employeeEditMyDetails.clickEditButton();
+        });
+        
+        Then("Contact Information page should be displayed", () -> {
+        	context.employeeEditMyDetails.validateContactInformationPage();
+        });
+        
+        Then("user clicks on Contact Information section", () -> {
+        	context.employeeEditMyDetails.clickContactInformationLink();
+        });
+        
+        When("user clicks on Edit\\(Pencil Symbol) in the Address section", () -> {
+        	context.employeeEditMyDetails.clickEditAddressLink();
+        });
+        
+        When("Verify that the address format is valid", () -> {
+        	context.employeeEditMyDetails.verifyAddressFormat();;
+        });
+        
+        When("Click on Cancel button", () -> {
+        	context.employeeEditMyDetails.clickCancelButton();
+        });
+        
+        When("Click Yes button", () -> {
+        	context.employeeEditMyDetails.clickYesButtonInPopUp();
         });
 
     }
