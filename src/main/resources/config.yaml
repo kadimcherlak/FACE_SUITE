@@ -12,7 +12,7 @@ testConfig:
 
 driverConfig:
   desiredCapabilities:
-    browserName: firefox
+    browserName: chrome
   #    version: 60
   #    platform: WINDOWS
   #    javascriptEnabled: true
