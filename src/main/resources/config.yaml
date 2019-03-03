@@ -12,18 +12,18 @@ testConfig:
 
 driverConfig:
   desiredCapabilities:
-    browserName: chrome
-    version: 60
-    platform: WINDOWS
-    javascriptEnabled: true
-    acceptSslCerts: true
-    handlesAlerts: true
-    cssSelectorsEnabled: true
-    unexpectedAlertBehaviour: accept
-    explicitTimeout: 60
-    pollingTime: 500
+    browserName: firefox
+  #    version: 60
+  #    platform: WINDOWS
+  #    javascriptEnabled: true
+  #    acceptSslCerts: true
+  #    handlesAlerts: true
+  #    cssSelectorsEnabled: true
+  #    unexpectedAlertBehaviour: accept
+  #    explicitTimeout: 60
+  #    pollingTime: 500
   chrome:
-    path: "C:\\Drivers\\chromedriver_win32\\chromedriver.exe"
+    #path: "C:\\Drivers\\chromedriver_win32\\chromedriver.exe"
     args:
       --disable-extensions
       --disable-infobars
