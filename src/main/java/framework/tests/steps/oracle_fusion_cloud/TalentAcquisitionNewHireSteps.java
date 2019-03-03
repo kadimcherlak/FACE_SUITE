@@ -118,7 +118,7 @@ public class TalentAcquisitionNewHireSteps implements En {
             context.personManagment.clickPayrollOption();
             context.personManagment.manageElementEntriesClick();
         });
-
+        
         Then("manage element entries screen should be displayed", () -> {
             context.personManagment.checkManageElementEntriesAvailable();
         });

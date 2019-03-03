@@ -144,6 +144,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             waitFor(ExpectedConditions.elementToBeClickable(navigatorOpen), 15);
             assertThat(navigatorOpen.isDisplayed()).isTrue();
             navigatorOpen.click();
+            reportWithScreenShot("User open Navigator Screen");
         } catch (Exception e) {
             reportWithScreenShot("Unable to open Navigator Screen");
             Assert.fail();
@@ -206,6 +207,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             waitFor(ExpectedConditions.elementToBeClickable(signOut), 15);
             assertThat(signOut.isDisplayed()).isTrue();
             signOut.click();
+            reportWithScreenShot("User clicked Signout");
         } catch (Exception e) {
             reportWithScreenShot("Unable to Signout due to :" + e.getMessage());
             Assert.fail();

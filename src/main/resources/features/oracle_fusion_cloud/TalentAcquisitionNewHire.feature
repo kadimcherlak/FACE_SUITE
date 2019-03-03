@@ -2,6 +2,7 @@
 Feature: New Hire and Related Activities
 
   @LOGIN_LOGOUT
+
   Scenario Outline: Perform Login to Oracle Fusion Cloud
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user is on the oracle fusion login page
@@ -33,7 +34,6 @@ Feature: New Hire and Related Activities
     Then Page should be submitted successfully
     When user clicks on Sign Out option
     Then Sign out should be successful
-
     Examples:
       | Test Scenario | Test File Name | Test Sheet Name    |
       | NEW_HIRE      | TestData.xlsx  | Talent_Acquisition |
@@ -71,7 +71,6 @@ Feature: New Hire and Related Activities
     Then Manage Element entries page should be displayed with Bilingual Indicator row added
     And user clicks on Sign Out option
     Then Sign out should be successful
-
     Examples:
       | Test Scenario       | Test File Name | Test Sheet Name    |
       | BILINGUAL_INDICATOR | TestData.xlsx  | Talent_Acquisition |
@@ -111,10 +110,10 @@ Feature: New Hire and Related Activities
     And user click on Done button at the top
     And user clicks on Sign Out option
     Then Sign out should be successful
-
     Examples:
       | Test Scenario          | Test File Name | Test Sheet Name    |
       | UPDATE_ELEMENT_ENTRIES | TestData.xlsx  | Talent_Acquisition |
+
 
   @UPDATE_PERSONAL_ASSIGNMENT_DATA
   Scenario Outline: Create Global Temporary Assignment and perform Global Transfer for New Hire Employee
@@ -153,10 +152,10 @@ Feature: New Hire and Related Activities
     When user click on Done button at the top
     And user clicks on Sign Out option
     Then Sign out should be successful
-
     Examples:
       | Test Scenario                   | Test File Name | Test Sheet Name    |
       | UPDATE_PERSONAL_ASSIGNMENT_DATA | TestData.xlsx  | Talent_Acquisition |
+
 
   @UPDATE_REMOVE_I9_STATUS
   Scenario Outline:  Verify PPS is able to update/remove I9 Status
@@ -185,3 +184,4 @@ Feature: New Hire and Related Activities
     Examples:
       | Test Scenario           | Test File Name | Test Sheet Name    |
       | UPDATE_REMOVE_I9_STATUS | TestData.xlsx  | Talent_Acquisition |
+
