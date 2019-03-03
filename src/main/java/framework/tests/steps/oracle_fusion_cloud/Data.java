@@ -86,6 +86,11 @@ public class Data extends framework.core.models.Data {
     private String workerType;
     private String workingAsManager;
     private String zipCode;
+    private String employeeName;
+    private String actionManageSalary;
+    private String actionReasonManageSalary;
+    private String currentSalaryAmount;
+
 
     // Alpha sorted list of getters
     // most of these items get loaded via bean loader, so normally setters not needed.
@@ -448,5 +453,37 @@ public class Data extends framework.core.models.Data {
     public String getZipCode() {
         return zipCode;
     }
+
+	public String getEmployeeName() {
+		return employeeName;
+	}
+
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
+	}
+
+	public String getActionManageSalary() {
+		return actionManageSalary;
+	}
+
+	public void setActionManageSalary(String actionManageSalary) {
+		this.actionManageSalary = actionManageSalary;
+	}
+
+	public String getActionReasonManageSalary() {
+		return actionReasonManageSalary;
+	}
+
+	public void setActionReasonManageSalary(String actionReasonManageSalary) {
+		this.actionReasonManageSalary = actionReasonManageSalary;
+	}
+
+	public String getCurrentSalaryAmount() {
+		return currentSalaryAmount;
+	}
+
+	public void setCurrentSalaryAmount(String currentSalaryAmount) {
+		this.currentSalaryAmount = currentSalaryAmount;
+	}
 
 }
