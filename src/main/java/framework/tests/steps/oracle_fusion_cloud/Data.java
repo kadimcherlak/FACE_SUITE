@@ -6,14 +6,19 @@ public class Data extends framework.core.models.Data {
 
     // Alpha sorted list of models items (yes it will be long normally)
     private String actualAmount;
+    private String accountNumber;
+    private String accountType;
+    private String accountHolder;
     private String addressLine1;
     private String addressLine2;
-    private String altWorkLocationaddressType;
-    private String altWorkLocationcountry;
-    private String altWorkLocationaddressLine1;
-    private String altWorkLocationzipCode;
+    private String altWorkLocationAddressType;
+    private String altWorkLocationCountry;
+    private String altWorkLocationAddressLine1;
+    private String altWorkLocationZipCode;
     private String assignmentCategory;
+    private String bankName;
     private String businessUnit;
+    private String category;
     private String changeManagerReason;
     private String city;
     private String contactsEmergencyContactName;
@@ -25,8 +30,11 @@ public class Data extends framework.core.models.Data {
     private String county;
     private String dateOfBirth;
     private String department;
+    private String description;
     private String destinationLegalEmployer;
     private String effectiveAsOfDate;
+    private String effectiveFromDate;
+    private String effectiveToDate;
     private String elementName;
     private String elementNameADP;
     private String employmentAction;
@@ -43,26 +51,34 @@ public class Data extends framework.core.models.Data {
     private String hireDate;
     private String hireReason;
     private String hourlyPaidOrSalaried;
+    private String i9Status;
     private String job;
     private String lastName;
     private String legalEmployer;
     private String location;
     private String managerName;
     private String maritalStatus;
+    private String name;
     private String nationalID;
     private String nationalIDType;
     private String newlySeparatedVeteranDischargeDate;
     private String number;
+    private String organizationPaymentMethod;
+    private String patternName;
     private String password;
     private String payroll;
     private String pearsonEmailRequired;
     private String payCheckDate;
     private String personNumber;
     private String personName;
+    private String percentage;
+    private String routingNumber;
     private String salaryAmount;
     private String salaryBasis;
     private String scenario;
+    private String sequence;
     private String state;
+    private String type;
     private String type1;
     private String type2;
     private String userName;
@@ -70,11 +86,28 @@ public class Data extends framework.core.models.Data {
     private String workerType;
     private String workingAsManager;
     private String zipCode;
+    private String employeeName;
+    private String actionManageSalary;
+    private String actionReasonManageSalary;
+    private String currentSalaryAmount;
+
 
     // Alpha sorted list of getters
     // most of these items get loaded via bean loader, so normally setters not needed.
     public String getActualAmount() {
         return actualAmount;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public String getAccountHolder() {
+        return accountHolder;
     }
 
     public String getAddressLine1() {
@@ -85,28 +118,37 @@ public class Data extends framework.core.models.Data {
         return addressLine2;
     }
 
-    public String getAltWorkLocationaddressType() {
-        return altWorkLocationaddressType;
+    public String getAltWorkLocationAddressType() {
+        return altWorkLocationAddressType;
     }
 
-    public String getAltWorkLocationcountry() {
-        return altWorkLocationcountry;
+    public String getAltWorkLocationCountry() {
+        return altWorkLocationCountry;
     }
 
-    public String getAltWorkLocationaddressLine1() {
-        return altWorkLocationaddressLine1;
+    public String getAltWorkLocationAddressLine1() {
+        return altWorkLocationAddressLine1;
     }
 
-    public String getAltWorkLocationzipCode() {
-        return altWorkLocationzipCode;
+    public String getAltWorkLocationZipCode() {
+        return altWorkLocationZipCode;
     }
 
     public String getAssignmentCategory() {
         return assignmentCategory;
     }
 
+    public String getBankName() {
+        return bankName;
+    }
+
+
     public String getBusinessUnit() {
         return businessUnit;
+    }
+
+    public String getCategory() {
+        return category;
     }
 
     public String getChangeManagerReason() {
@@ -124,7 +166,6 @@ public class Data extends framework.core.models.Data {
     public String getContactsRelationship() {
         return contactsRelationship;
     }
-
 
     public String getCompanyEntity() {
         return companyEntity;
@@ -154,12 +195,24 @@ public class Data extends framework.core.models.Data {
         return department;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public String getDestinationLegalEmployer() {
         return destinationLegalEmployer;
     }
 
-    public String geteffectiveAsOfDate() {
+    public String getEffectiveAsOfDate() {
         return effectiveAsOfDate;
+    }
+
+    public String getEffectiveFromDate() {
+        return effectiveFromDate;
+    }
+
+    public String getEffectiveToDate() {
+        return effectiveToDate;
     }
 
     public String getEmail() {
@@ -205,18 +258,6 @@ public class Data extends framework.core.models.Data {
         return employmentActionReason;
     }
 
-    public String employeeManagerChange() {
-        return employeeManagerChange;
-    }
-
-    public String changeManagerReason() {
-        return changeManagerReason;
-    }
-
-    public String managerName() {
-        return managerName;
-    }
-
     public String getGender() {
         return gender;
     }
@@ -253,6 +294,10 @@ public class Data extends framework.core.models.Data {
         return hourlyPaidOrSalaried;
     }
 
+    public String getI9Status() {
+        return i9Status;
+    }
+
     public String getJob() {
         return job;
     }
@@ -286,6 +331,10 @@ public class Data extends framework.core.models.Data {
         return maritalStatus;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public String getNationalID() {
         Random rnd = new Random();
         String ssn_temp = String.format("%09d", rnd.nextInt(1000000000));
@@ -305,6 +354,15 @@ public class Data extends framework.core.models.Data {
 
     public String getNumber() {
         return number;
+    }
+
+    public String getOrganizationPaymentMethod() {
+        return organizationPaymentMethod;
+    }
+
+
+    public String getPatternName() {
+        return patternName;
     }
 
     public String getPassword() {
@@ -334,6 +392,16 @@ public class Data extends framework.core.models.Data {
         this.personNumber = personNumber;
     }
 
+    public String getPercentage() {
+        return percentage;
+    }
+
+
+    public String getRoutingNumber() {
+        return routingNumber;
+    }
+
+
     public String getSalaryAmount() {
         return salaryAmount;
     }
@@ -346,8 +414,16 @@ public class Data extends framework.core.models.Data {
         return scenario;
     }
 
+    public String getSequence() {
+        return sequence;
+    }
+
     public String getState() {
         return state;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public String getType1() {
@@ -377,5 +453,37 @@ public class Data extends framework.core.models.Data {
     public String getZipCode() {
         return zipCode;
     }
+
+	public String getEmployeeName() {
+		return employeeName;
+	}
+
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
+	}
+
+	public String getActionManageSalary() {
+		return actionManageSalary;
+	}
+
+	public void setActionManageSalary(String actionManageSalary) {
+		this.actionManageSalary = actionManageSalary;
+	}
+
+	public String getActionReasonManageSalary() {
+		return actionReasonManageSalary;
+	}
+
+	public void setActionReasonManageSalary(String actionReasonManageSalary) {
+		this.actionReasonManageSalary = actionReasonManageSalary;
+	}
+
+	public String getCurrentSalaryAmount() {
+		return currentSalaryAmount;
+	}
+
+	public void setCurrentSalaryAmount(String currentSalaryAmount) {
+		this.currentSalaryAmount = currentSalaryAmount;
+	}
 
 }

@@ -3,11 +3,17 @@ package framework.tests.pages.oracle_fusion_cloud;
 import framework.tests.steps.oracle_fusion_cloud.Context;
 import framework.tests.steps.oracle_fusion_cloud.Data;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.Assert;
+
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -30,6 +36,9 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//*[text()='Person Management: Search']")
     private WebElement personManagementSearch;
 
+    @FindBy(xpath = "//h1[contains(text(),': Person Management')]")
+    private WebElement personManagement;
+
     @FindBy(xpath = "//label[text()='Keywords']/following::input[1]")
     private WebElement keywords;
 
@@ -49,7 +58,10 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "(//td[@class='xmz'][contains(.,'Manage Element Entries')])[2]")
     private WebElement manageElementEntries;
 
-    @FindBy(xpath = "(//*[text()='Manage Element Entries'])[1]")
+    @FindBy(xpath = "//li[@class='x1ui']//a[contains(text(),'Manage Salary')]")
+    private WebElement manageSalary;
+
+      @FindBy(xpath = "(//*[text()='Manage Element Entries'])[1]")
     private WebElement manageElementEnteriesTextCheck;
 
     @FindBy(xpath = "//label[text()='Element Name']/following::input[1]")
@@ -142,6 +154,65 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//label[text()='Working Hours']/following::input[1]")
     private WebElement empInfoWorkingHrs;
 
+
+    @FindBy(xpath = "//td[@class='xmz' and text()='Edit']")
+    private WebElement editAction;
+
+    @FindBy(xpath = "//div[1][@class='xjd']//button[@title='Action']")
+    private WebElement btnAction;
+
+    @FindBy(xpath = "//h1[@class='xyx'][contains(text(),'Current Salary')]")
+    private WebElement currentSalaryTab;
+
+    @FindBy(xpath = "//a[text()='Components']")
+    private WebElement linkComponents_ManageSalary;
+
+       @FindBy(xpath = "//td[text()='Edit']")
+    private WebElement linkActionEdit;
+
+    @FindBy(xpath = "//label[@class='af_selectOneChoice_label-text' and text()='Action']//following::input[1]")
+    private WebElement dropdownAction_ManageEmployment;
+
+    @FindBy(xpath = "//label[@class='af_selectOneChoice_label-text' and text()='Action Reason']//following::input[1]")
+    private WebElement dropdownActionReason_ManageEmployment;
+
+    @FindBy(xpath = "//label[text()='Projected End Date']//following::input[1]")
+    private WebElement projectedEndDate_ManageEmployment;
+
+    @FindBy(xpath = "//a[text()='Manage Work Relationship']")
+    private WebElement linkManageWorkRelationship;
+
+    @FindBy(xpath = "//a[@title='Actions']")
+    private WebElement btnActions_Manageworkrelationship;
+
+    @FindBy(xpath = "//label[text()='Seniority Date'][1]//following::input[1]")
+    private WebElement txtboxSeniorityDtLegal_Manageworkrelationship;
+
+    @FindBy(xpath = "//label[text()='Seniority Date'][2]//following::input[1]")
+    private WebElement txtboxSeniorityDtEnterprise_Manageworkrelationship;
+
+    @FindBy(xpath = "//h1[@class='xmu']")
+    private WebElement reviewSalaryPage;
+
+    @FindBy(xpath = "//a[text()='Manage Work Relationship']")
+    private WebElement manageWorkRelationship;
+
+    @FindBy(xpath = "//h1[contains(.,'Work Relationship Details')]")
+    private WebElement manageWorkRelationshipPage;
+
+    @FindBy(xpath = "//h1[contains(text(),'Edit Work Relationship:')]")
+    private WebElement editManageWorkRelationshipPage;
+
+    @FindBy(xpath = "//a[@title='Actions']")
+    private WebElement manageWorkRelactionsBtn;
+
+    @FindBy(xpath = " //*[contains(@class,'xmz') and contains(text(),'Edit')]")
+    private WebElement manageWorkRelEditBtn;
+
+    @FindBy(xpath = "//label[text()='I-9 Status']/following::input[1]")
+    private WebElement i9Status;
+
+
     // Person Management Contructor
     public PersonManagementPage(Context context) {
         super(context);
@@ -160,7 +231,19 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(personManagementSearch.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Person Management Search screen not Displayed");
-            assertThat(personManagementSearch.isDisplayed()).isTrue();
+            Assert.fail();
+        }
+    }
+
+    // Person Management Screen check available
+    public void checkPersonManagementScreenAvailable() {
+        try {
+            reportWithScreenShot("Checking if Person Management screen is Displayed");
+            waitFor(ExpectedConditions.visibilityOf(personManagement), 15);
+            assertThat(personManagement.isDisplayed()).isTrue();
+        } catch (Exception e) {
+            reportWithScreenShot("Person Management screen not Displayed");
+            assertThat(personManagement.isDisplayed()).isTrue();
         }
     }
 
@@ -179,13 +262,14 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             reportWithScreenShot("Summary of Person Management: Search screen");
         } catch (Exception e) {
             reportWithScreenShot("Error While checking values in Person Management: Search screen:" + e.getMessage());
+            Assert.fail();
         }
     }
 
     // After entering person number, click on Search Button until person
-    public void clickSearch() {
+    public void clickSearchTillPersonDisplayed() {
         try {
-            searchBtn.click(); // Click Search Button
+            clickSearch(); // Click Search Button
 
             // Check for Employee for max 60 seconds
             elementsize = driver
@@ -193,8 +277,8 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             int counter = 0;
             while (elementsize == 0 && counter <= 20) {
                 elementsize = driver
-                        .findElements(By.xpath("//span[text()='" + data.getPersonNumber() + "']")).size();
-                searchBtn.click();
+                        .findElements(By.xpath("//*[text()='" + data.getPersonNumber() + "']")).size();
+                clickSearch();
                 waitShortTime();
                 counter++;
             }
@@ -203,10 +287,10 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             if (elementsize == 0) {
                 throw new Exception("Person number not found after 60 seconds");
             }
-
+            reportWithScreenShot("User is on search result page");
         } catch (Exception e) {
             reportWithScreenShot("Error While checking search results of employee:" + e.getMessage());
-            assertThat(elementsize != 0).isTrue();
+            Assert.fail();
         }
     }
 
@@ -224,6 +308,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             actionsBtn.click();
         } catch (Exception e) {
             reportWithScreenShot("Error While user click on EmpName Action click:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -235,7 +320,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             payrollOption.click();
         } catch (Exception e) {
             reportWithScreenShot("Error While selecting Payroll options:" + e.getMessage());
-            assertThat(payrollOption.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -249,9 +334,12 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             reportWithScreenShot("Search Results of person Number");
         } catch (Exception e) {
             reportWithScreenShot("Error While checking values in Review Tab due to:" + e.getMessage());
-            assertThat(manageElementEntries.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
+
+
+
 
     // Check if Manage Element Entries page available
     public void checkManageElementEntriesAvailable() {
@@ -261,7 +349,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(manageElementEnteriesTextCheck.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Manage Element Entries page  not Displayed");
-            assertThat(manageElementEnteriesTextCheck.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -276,6 +364,8 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
         } catch (Exception e) {
             reportWithScreenShot("Error While user enters Element Name:" + e.getMessage());
+            Assert.fail();
+
         }
     }
 
@@ -291,6 +381,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
         } catch (Exception e) {
             reportWithScreenShot("Error While user enters Element Name as ADP:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -300,6 +391,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             continueBtn.click();
         } catch (Exception e) {
             reportWithScreenShot("Error While User Click Continue Button:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -311,7 +403,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(actualAmount.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Actual Amount field not Displayed");
-            assertThat(actualAmount.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -329,7 +421,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             Thread.sleep(2500);
         } catch (Exception e) {
             reportWithScreenShot("Error While User entering Amount and date:" + e.getMessage());
-
+            Assert.fail();
         }
     }
 
@@ -339,6 +431,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             adpSubmitBtn.click();
         } catch (Exception e) {
             reportWithScreenShot("Error While User Submit Button for ADP scenario:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -349,7 +442,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(adpRowAdded.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("ADP Auto & Home r row is not added");
-            assertThat(adpRowAdded.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -361,6 +454,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             waitUntilPageLoad();
         } catch (Exception e) {
             reportWithScreenShot("Error While user click Done Button due to:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -372,7 +466,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(bilingualYes.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Bilingual field not Displayed");
-            assertThat(bilingualYes.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -382,6 +476,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             clickSubmitButton();
         } catch (Exception e) {
             reportWithScreenShot("Error While User bilingual Submit Button:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -392,7 +487,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(bilingualRowAdded.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Bilingual row is not added");
-            assertThat(bilingualRowAdded.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -401,8 +496,10 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(personLink), 15);
             personLink.click();
+            reportWithScreenShot("User clicked on Employee Name link");
         } catch (Exception e) {
             reportWithScreenShot("Error While user click on person Name link:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -419,10 +516,9 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(manageEmployment.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Error While user click on Edit and update button:" + e.getMessage());
-            assertThat(manageEmployment.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
-
     // User checks if Update Employment Window is Displayed
     public void checkUpdateEmployementWindowDisplayed() {
         try {
@@ -431,7 +527,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(updateEmploymentTitle.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Update Employment Window is not Displayed");
-            assertThat(updateEmploymentTitle.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -487,18 +583,20 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(globalTempAssignment.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Error While user enter details in Update Employment Window:" + e.getMessage());
-            assertThat(globalTempAssignment.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
     // User checks if Update Employment Window is Displayed
     public void checkGlobalAssignmentPageDisplayed() {
         try {
+            waitShortTime();
+            waitFor(ExpectedConditions.visibilityOf(globalTempAssignment), 15);
             reportWithScreenShot("Checking if Global Temporary Assignment: Identification page is Displayed");
             assertThat(globalTempAssignment.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Global Temporary Assignment: Identification page is not Displayed");
-            assertThat(globalTempAssignment.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
@@ -518,9 +616,68 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(employmentInfoPage.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Error While user Navigate to Employment Information page:" + e.getMessage());
-            assertThat(employmentInfoPage.isDisplayed()).isTrue();
+            Assert.fail();
         }
     }
 
 
+
+    // User checks if Manage Work Relationship page is Displayed
+    public void checkManageWorkRelationshipDisplayed() {
+        try {
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(manageWorkRelationshipPage), 15);
+            reportWithScreenShot("Checking if Manage Work Relationship page is Displayed");
+            assertThat(manageWorkRelationshipPage.isDisplayed()).isTrue();
+        } catch (Exception e) {
+            reportWithScreenShot("Manage Work Relationship page  is not Displayed");
+            Assert.fail();
+        }
+    }
+
+    // User checks if Edit Manage Work Relationship page is Displayed
+    public void checkEditManageWorkRelationshipDisplayed() {
+        try {
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(editManageWorkRelationshipPage), 15);
+            reportWithScreenShot("Checking if Edit Manage Work Relationship page is Displayed");
+            assertThat(editManageWorkRelationshipPage.isDisplayed()).isTrue();
+        } catch (Exception e) {
+            reportWithScreenShot("Edit Manage Work Relationship page  is not Displayed");
+            Assert.fail();
+        }
+    }
+
+    //User select Ready to Verify value in i9 status
+    public void selectI9Status() {
+        try {
+            // Select i9 status
+            waitFor(ExpectedConditions.visibilityOf(i9Status), 5);
+            i9Status.clear();
+            i9Status.sendKeys(data.getI9Status());
+            reportWithScreenShot("User select value from i9 status");
+            waitShortTime();
+        } catch (Exception e) {
+            reportWithScreenShot("Failed to select i9 status due to :" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    //User clicks on Action and Edit button
+    public void clickActionAndEdit() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(manageWorkRelactionsBtn), 15);
+            assertThat(manageWorkRelactionsBtn.isDisplayed()).isTrue();
+            manageWorkRelactionsBtn.click();
+            reportWithScreenShot("User Clicks Actions button");
+            waitFor(ExpectedConditions.elementToBeClickable(manageWorkRelEditBtn), 15);
+            assertThat(manageWorkRelEditBtn.isDisplayed()).isTrue();
+            manageWorkRelEditBtn.click();
+            reportWithScreenShot("User Clicks Edit button");
+            waitUntilPageLoad();
+        } catch (Exception e) {
+            reportWithScreenShot("Failed to Click Actions and Edit button due to :" + e.getMessage());
+            Assert.fail();
+        }
+    }
 }

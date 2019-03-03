@@ -2,19 +2,26 @@ package framework.tests.pages.oracle_fusion_cloud;
 
 import framework.core.drivers.web.WebPage;
 import framework.tests.steps.oracle_fusion_cloud.Context;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class BasePage<T> extends WebPage {
+
+    private WebElement appWebElement;
 
     @FindBy(tagName = "html")
     private WebElement __document;
@@ -22,7 +29,7 @@ public class BasePage<T> extends WebPage {
     @FindBy(xpath = "//*[text()='Sub']")
     private WebElement submit;
 
-    @FindBy(xpath = "//button[text()='OK']")
+    @FindBy(xpath = "(//button[text()='OK'])[1]")
     private WebElement okButton;
 
     @FindBy(xpath = "//button[contains(@id,'okWarningDialog')]")
@@ -36,6 +43,12 @@ public class BasePage<T> extends WebPage {
 
     @FindBy(xpath = "//img[@title='Create']")
     private WebElement createBtn;
+
+    @FindBy(xpath = "//button[text()='Search']")
+    private WebElement searchBtn;
+
+    @FindBy(xpath = "//img[@title='Tasks']")
+    private WebElement taskButton;
 
     public BasePage(Context context) {
         super(context);
@@ -53,13 +66,16 @@ public class BasePage<T> extends WebPage {
                     ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         } catch (Exception e) {
             logger.error("Exception:waitUntilPageLoad = Error running JavascriptExecutor - {}", e.getMessage());
+            Assert.fail();
         }
     }
 
+    // Method to get Page Name
     public String getPageName() {
         return driver.getTitle();
     }
 
+    // Method to get Current Date
     public String getCurrentDate() {
         //To input current system date into Hire Date Field
         DateFormat dateFormat = new SimpleDateFormat("dd-MMM-YYYY");
@@ -67,7 +83,7 @@ public class BasePage<T> extends WebPage {
         return dateFormat.format(date);
     }
 
-    // Click on Submit Button to submit new Hire details
+    // Click on Submit Button
     public void clickSubmitButton() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(submit), 15);
@@ -75,10 +91,11 @@ public class BasePage<T> extends WebPage {
             waitShortTime();
         } catch (Exception e) {
             reportWithScreenShot("Error While Submitting new Hire information due to:" + e.getMessage());
+            Assert.fail();
         }
     }
 
-    // Click on Submit Button to submit new Hire details
+    // Click on Ok Button
     public void clickOkButton() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(okButton), 15);
@@ -86,6 +103,7 @@ public class BasePage<T> extends WebPage {
             waitShortTime();
         } catch (Exception e) {
             reportWithScreenShot("Error While clicking OK button due to:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -97,6 +115,7 @@ public class BasePage<T> extends WebPage {
             waitShortTime();
         } catch (Exception e) {
             reportWithScreenShot("Error While clicking OK button due to:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -108,6 +127,7 @@ public class BasePage<T> extends WebPage {
             waitShortTime();
         } catch (Exception e) {
             reportWithScreenShot("Error While Next Button due to:" + e.getMessage());
+            Assert.fail();
         }
     }
 
@@ -119,10 +139,11 @@ public class BasePage<T> extends WebPage {
             waitShortTime();
         } catch (Exception e) {
             reportWithScreenShot("Submission not successful due to:" + e.getMessage());
+            Assert.fail();
         }
     }
 
-    // User click on Create button
+    // Click on Create button
     public void clickCreateButton() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(createBtn), 15);
@@ -130,7 +151,147 @@ public class BasePage<T> extends WebPage {
             waitShortTime();
         } catch (Exception e) {
             reportWithScreenShot("Error While user click on Create button:" + e.getMessage());
+            Assert.fail();
         }
     }
 
+    // Click on Search Button
+    public void clickSearch() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(searchBtn), 15);
+            searchBtn.click(); // Click Search Button
+        } catch (Exception e) {
+            reportWithScreenShot("Error While clicking search button:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // Open task pane
+    public void clickTaskButton() {
+        try {
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.visibilityOf(taskButton), 15);
+            assertThat(taskButton.isDisplayed()).isTrue();
+            taskButton.click();
+        } catch (Exception e) {
+            reportWithScreenShot("Failed to open Task pane due to :" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // Common Method to Select Links under Task Pane
+    public void clickLinkElement(String linkName) {
+        try {
+            waitShortTime(); // To handle task pane load time
+            waitFor(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='" + linkName + "']")), 15);
+            appWebElement = driver.findElement(By.xpath("//a[text()='" + linkName + "']"));
+            reportWithScreenShot("Link :" + linkName + " selected from Task pane");
+            waitFor(ExpectedConditions.elementToBeClickable(appWebElement), 15);
+            assertThat(appWebElement.isDisplayed()).isTrue();
+            appWebElement.click();
+            waitUntilPageLoad();
+        } catch (Exception e) {
+            reportWithScreenShot("Unable to open :" + linkName + " due to " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // Custom wait and click method
+    public boolean custom_wait_clickable_and_click(WebElement element) {
+        int counter = 0;
+        int attempts = 5;
+        while (counter < attempts) {
+            try {
+                waitFor(ExpectedConditions.elementToBeClickable(element), 15);
+                element.click();
+                return true;
+            } catch (WebDriverException e) {
+                if (e.getMessage().contains("is not clickable at point")) {
+                    waitShortTime();
+                    counter += 1;
+                } else {
+                    Assert.fail();
+                }
+            }
+        }
+        try {
+            Assert.fail();
+            throw new Exception("Click Action failed on Element: " + element);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
+     * This function is being used to perform action for each test step in the application
+     *
+     * @param action
+     * @param element
+     * @param objectName
+     * @param value      Author Koushik Kadimcherla
+     */
+    public void performAction(String action, WebElement element, String objectName, String value) {
+        try {
+            switch (action.toUpperCase()) {
+                case "CLICK": {
+                    custom_wait_clickable_and_click(element);
+                }
+                case "TYPE": {
+                    waitFor(ExpectedConditions.elementToBeClickable(element), 15);
+                    element.clear();
+                    element.sendKeys(value);
+                }
+            }
+        } catch (Exception e) {
+            reportWithScreenShot("Unable to perform the operation " + action.toUpperCase() + "on object " + objectName
+                    + " due to " + e.getMessage());
+            Assert.fail();
+        }
+    }
+    
+    
+  //Select the dropdown value passed as parameter in an input field
+    /**
+     * This method will select the dropdown value passed as parameter in an input field
+     * @param element
+     * @param dropdownValue
+     * @author Rakesh Ghosal
+     */
+    public void selectInputDropdownValue(WebElement element,String dropdownValue)
+    {
+    	try
+    	{
+    		String dropdownXpathValue="//li[text()='"+dropdownValue+"']";
+    		waitFor(ExpectedConditions.elementToBeClickable(element), 15);
+    		element.click();
+    		waitFor(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(dropdownXpathValue))), 15);
+    		driver.findElement(By.xpath(dropdownXpathValue)).click();
+    		
+    		
+    	}catch(Exception e)
+    	{
+    		reportWithScreenShot("Error While selecting dropdown value:" + e.getMessage());
+    		Assert.fail();
+    	}
+    }
+    
+    
+    /**
+     * This method will validate if a Web Element is displayed or not
+     * @param element
+     * @author Rakesh Ghosal
+     */
+    public void validateElementIsDisplayed(WebElement element) {
+		try {
+			waitUntilPageLoad();
+			waitFor(ExpectedConditions.elementToBeClickable(element), 15);
+			assertThat(element.isDisplayed()).isTrue();
+		} catch (Exception e) {
+			reportWithScreenShot("Element is not present:" + e.getMessage());
+			Assert.fail();
+		}
+	}
+
 }
+

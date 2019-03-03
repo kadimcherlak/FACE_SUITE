@@ -21,8 +21,9 @@ public class Context extends framework.core.models.Context {
     public NewPersonPage newPerson;
     public HireAnEmployeePage hireAnEmployee;
     public EmployeeEditMyDetailsPage employeeEditMyDetails;
-    public ChangeManagerPage changeManager;
+    public LineManagerPage lineManager;
     public PersonManagementPage personManagment;
+    public ManageCalendarEventsPage manageCalendarEvents;
     private Logger logger = LogManager.getLogger(Context.class);
     private WebDriver driver;
     private Config config;
@@ -109,12 +110,13 @@ public class Context extends framework.core.models.Context {
         return System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "testdata";
     }
     public void setPages(Context context) {
-        changeManager = new ChangeManagerPage(context);
+        lineManager = new LineManagerPage(context);
         employeeEditMyDetails = new EmployeeEditMyDetailsPage(context);
         hireAnEmployee = new HireAnEmployeePage(context);
         loginAndHome = new LoginAndHomePage(context);
         newPerson = new NewPersonPage(context);
         personManagment = new PersonManagementPage(context);
+        manageCalendarEvents = new ManageCalendarEventsPage(context);
     }
 
 }

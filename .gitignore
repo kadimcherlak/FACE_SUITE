@@ -2,9 +2,10 @@
 /logs/
 /target/
 /test-output/
-/.setting/
+/.settings/
 /.classpath
 /.project
 /debug.log
 /bin/
 /.iml/
+//Raghav
