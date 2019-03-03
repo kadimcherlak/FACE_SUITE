@@ -150,24 +150,11 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             altWorkLocationCountry.sendKeys(Keys.ENTER);
             altWorkLocationCountry.sendKeys(Keys.TAB);
 
-          /*  // Enter Country
-            waitFor(ExpectedConditions.visibilityOf(altWorkLocationCountry), 15);
-            altWorkLocationCountry.clear();
-            altWorkLocationCountry.sendKeys(data.getAltWorkLocationCountry());
-            altWorkLocationCountry.sendKeys(Keys.TAB);
-            waitShortTime();
-
-            // If Country Pop up screen is present
-            if (selectCountryFromPopUp.isDisplayed()) {
-                //selectCountryFromPopUp.click();
-                clickOkButton();
-                waitShortTime();
-            }*/
-
             waitFor(ExpectedConditions.elementToBeClickable(altWorkLocationAddressLine1), 5);
             altWorkLocationAddressLine1.sendKeys(data.getAltWorkLocationAddressLine1());
             waitFor(ExpectedConditions.elementToBeClickable(altWorkLocationZipCode), 5);
             altWorkLocationZipCode.sendKeys(data.getAltWorkLocationZipCode());
+            waitShortTime();
             altWorkLocationAddressLine1.click();
             reportWithScreenShot("User enter Alternate work location Address details");
             assertThat(saveAndCloseBtn.isDisplayed()).isTrue();
@@ -301,6 +288,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
             waitFor(ExpectedConditions.elementToBeClickable(saveAndCloseBtn), 15);
             saveAndCloseBtn.click();
+            reportWithScreenShot("User click on save and close button:");
 
         } catch (Exception e) {
             reportWithScreenShot("Error While user click on save and close button:" + e.getMessage());
