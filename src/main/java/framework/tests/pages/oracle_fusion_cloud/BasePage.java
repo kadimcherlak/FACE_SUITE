@@ -223,5 +223,31 @@ public class BasePage<T> extends WebPage {
         return false;
     }
 
+    /**
+     * This function is being used to perform action for each test step in the application
+     *
+     * @param action
+     * @param element
+     * @param objectName
+     * @param value      Author Koushik Kadimcherla
+     */
+    public void performAction(String action, WebElement element, String objectName, String value) {
+        try {
+            switch (action.toUpperCase()) {
+                case "CLICK": {
+                    custom_wait_clickable_and_click(element);
+                }
+                case "TYPE": {
+                    waitFor(ExpectedConditions.elementToBeClickable(element), 15);
+                    element.clear();
+                    element.sendKeys(value);
+                }
+            }
+        } catch (Exception e) {
+            reportWithScreenShot("Unable to perform the operation " + action.toUpperCase() + "on object " + objectName
+                    + " due to " + e.getMessage());
+            Assert.fail();
+        }
+    }
 
 }
