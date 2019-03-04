@@ -185,3 +185,32 @@ Feature: New Hire and Related Activities
       | Test Scenario           | Test File Name | Test Sheet Name    |
       | UPDATE_REMOVE_I9_STATUS | TestData.xlsx  | Talent_Acquisition |
 
+@EDIT_PROJECTED_ENDDATE
+    Scenario Outline:Perform Edit Projected end date for limited term Employee
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button till person displayed
+    Then Employee name should be listed in search results
+    When user click on employee name link in search results
+    Then Person Management screen should be displayed
+    When user clicks on Edit and select Correct option
+    Then Correct Employment page should be displayed
+    When user Enter all the Mandatory fields of Correct Employment window and click Ok button
+    Then Projected End Date field Should be Editable
+    When User enters Projected End Date 
+    And User Clicks on Review Button 
+    Then Review page should be displayed in view only mode
+    When user clicks on submit button
+    And clicks ok in the Warning and confirmation message displayed
+    Then Page should be submitted successfully
+    And user clicks on Sign Out option
+    Then Sign out should be successful
+      
+        Examples:
+      | Test Scenario          | Test File Name | Test Sheet Name    |
+      | EDIT_PROJECTED_ENDDATE | TestData.xlsx  | Talent_Acquisition |
+

@@ -90,7 +90,9 @@ public class Data extends framework.core.models.Data {
     private String actionManageSalary;
     private String actionReasonManageSalary;
     private String currentSalaryAmount;
-
+    private String projectedEndDate;
+	private String correctEmploymentAction;
+	private String correctEmploymentActionReason;
 
     // Alpha sorted list of getters
     // most of these items get loaded via bean loader, so normally setters not needed.
@@ -484,6 +486,30 @@ public class Data extends framework.core.models.Data {
 
 	public void setCurrentSalaryAmount(String currentSalaryAmount) {
 		this.currentSalaryAmount = currentSalaryAmount;
+	}
+
+	public String getProjectedEndDate() {
+		return projectedEndDate;
+	}
+
+	public void setProjectedEndDate(String projectedEndDate) {
+		this.projectedEndDate = projectedEndDate;
+	}
+
+	public String getCorrectEmploymentAction() {
+		return correctEmploymentAction;
+	}
+
+	public void setCorrectEmploymentAction(String correctEmploymentAction) {
+		this.correctEmploymentAction = correctEmploymentAction;
+	}
+
+	public String getCorrectEmploymentActionReason() {
+		return correctEmploymentActionReason;
+	}
+
+	public void setCorrectEmploymentActionReason(String correctEmploymentActionReason) {
+		this.correctEmploymentActionReason = correctEmploymentActionReason;
 	}
 
 }
