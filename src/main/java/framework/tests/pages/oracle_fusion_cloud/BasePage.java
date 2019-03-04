@@ -86,6 +86,7 @@ public class BasePage<T> extends WebPage {
     // Click on Submit Button
     public void clickSubmitButton() {
         try {
+        	waitUntilPageLoad();
             waitFor(ExpectedConditions.elementToBeClickable(submit), 15);
             submit.click();
             waitShortTime();
@@ -98,6 +99,7 @@ public class BasePage<T> extends WebPage {
     // Click on Ok Button
     public void clickOkButton() {
         try {
+        	waitUntilPageLoad();
             waitFor(ExpectedConditions.elementToBeClickable(okButton), 15);
             okButton.click();
             waitShortTime();
@@ -110,7 +112,9 @@ public class BasePage<T> extends WebPage {
     // Click on Ok Button if Warning is displayed
     public void clickWarningOkButton() {
         try {
+        	waitUntilPageLoad();
             waitFor(ExpectedConditions.elementToBeClickable(warningBtn), 15);
+            reportWithScreenShot("Confirmation message displayed");
             warningBtn.click();
             waitShortTime();
         } catch (Exception e) {
@@ -134,9 +138,11 @@ public class BasePage<T> extends WebPage {
     // Click on Confirm Button
     public void clickConfirmButton() {
         try {
+        	waitUntilPageLoad();
             waitFor(ExpectedConditions.elementToBeClickable(confirmBtn), 15);
             confirmBtn.click();
             waitShortTime();
+            reportWithScreenShot("Confirm button clicked successfully");
         } catch (Exception e) {
             reportWithScreenShot("Submission not successful due to:" + e.getMessage());
             Assert.fail();
