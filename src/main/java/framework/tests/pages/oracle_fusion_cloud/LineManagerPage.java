@@ -15,11 +15,11 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class LineManagerPage extends BasePage<LineManagerPage> {
 
+    WebElement hireActionElement;
+    WebElement hireReasonElement;
     private Context context;
     private Data data;
     private Actions actions;
-    WebElement hireActionElement;
-    WebElement hireReasonElement;
     private String currentSalaryAmount;
 
     // Hire An Employee Page Elements
@@ -86,22 +86,22 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
     @FindBy(xpath = "//button[contains(@id,'okConfirmationDialog')]")
     private WebElement managerChangeConfirmBtn;
 
-  //--
+    //--
     @FindBy(xpath = "//h1[text()='My Team ']")
     private WebElement txtboxMyTeam;
-    
+
     @FindBy(xpath = "//a[text()='Compensation']")
     private WebElement lnkCompensation_MyTeam;
-    
+
     @FindBy(xpath = "//a[text()='Manage Salary']")
     private WebElement lnkManageSalary_MyTeam;
-    
+
     @FindBy(xpath = "//button[text()='Propose New Salary']")
     private WebElement btnProposeNewSal_ManageSalary;
-    
+
     @FindBy(xpath = "//input[contains(@name,'NewStartDate')]")
     private WebElement dtStartDate_ManageSalary;
-    
+
     @FindBy(xpath = "//input[contains(@name,'NewAction')]")
     private WebElement drpdownAction_ManageSalary;
 
@@ -116,10 +116,10 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
 
     @FindBy(xpath = "//label[text()='Salary Amount']/following::input[contains(@id,'AA')]")
     private WebElement AdjAmount;
-    
+
     @FindBy(xpath = "//a[@accesskey='u']")
     private WebElement btnContinue_ManageSalary;
-    
+
     @FindBy(xpath = "//div[contains(text(),'0.00')]")
     private WebElement currentsal_ReviewSalary;
 
@@ -271,188 +271,188 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
             Assert.fail();
         }
     }
+
     /**
-	 * Click on Employee More info in My Team page
-	 * Author: Koushik Kadimcherla
-	 */
-	public void clickMoreInfo() {
-		try {
-			waitFor(ExpectedConditions.elementToBeClickable(txtboxMyTeam), 5);
-			WebElement employeeElement = driver.findElement(By.xpath("//a[text()='" + data.getEmployeeName() + "']"));
-			mouseHover(employeeElement);
-			reportWithScreenShot("Clicking on More Info link");
-			//waitFor(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//a[text()='" + data.getEmployeeName() + "']/following::input[1]"))), 5);
-			driver.findElement(By.xpath("(//a[text()='" + data.getEmployeeName() + "']/following::a[@title='More Information'])[1]")).click();
-		} catch (Exception e) {
-			reportWithScreenShot("Error While clicking Employee More Info button due to:" + e.getMessage());
-			Assert.fail();
-		}
-	}
+     * Click on Employee More info in My Team page
+     * Author: Koushik Kadimcherla
+     */
+    public void clickMoreInfo() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(txtboxMyTeam), 5);
+            WebElement employeeElement = driver.findElement(By.xpath("//a[text()='" + data.getEmployeeName() + "']"));
+            mouseHover(employeeElement);
+            reportWithScreenShot("Clicking on More Info link");
+            //waitFor(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//a[text()='" + data.getEmployeeName() + "']/following::input[1]"))), 5);
+            driver.findElement(By.xpath("(//a[text()='" + data.getEmployeeName() + "']/following::a[@title='More Information'])[1]")).click();
+        } catch (Exception e) {
+            reportWithScreenShot("Error While clicking Employee More Info button due to:" + e.getMessage());
+            Assert.fail();
+        }
+    }
 
-	/**
-	 * Click on Compensation in Actions section
-	 * Author: Koushik Kadimcherla
-	 */
-	public void clickCompensation() {
-		try{
-			waitFor(ExpectedConditions.elementToBeClickable(lnkCompensation_MyTeam), 15);
-			lnkCompensation_MyTeam.click();	
-			reportWithScreenShot("Clicking on Compesation link");
-		}
-		catch(Exception e)
-		{
-			reportWithScreenShot("Error While clicking on Compensation button due to:" + e.getMessage());
-			Assert.fail();
-		}
-	}
+    /**
+     * Click on Compensation in Actions section
+     * Author: Koushik Kadimcherla
+     */
+    public void clickCompensation() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(lnkCompensation_MyTeam), 15);
+            lnkCompensation_MyTeam.click();
+            reportWithScreenShot("Clicking on Compesation link");
+        } catch (Exception e) {
+            reportWithScreenShot("Error While clicking on Compensation button due to:" + e.getMessage());
+            Assert.fail();
+        }
+    }
 
-	/**
-	 * Click on Manage Salary in Compensation section
-	 * Author: Koushik Kadimcherla
-	 */
-	public void clickManageSalary() {
-		try {
-			waitShortTime();
-			waitFor(ExpectedConditions.elementToBeClickable(lnkManageSalary_MyTeam), 15);
-			lnkManageSalary_MyTeam.click();
-			reportWithScreenShot("Clicking on Manage Salary link");
-		} catch (Exception e) {
-			reportWithScreenShot("Error While clicking on Manage Salary button due to:" + e.getMessage());
-			Assert.fail();
-		}
-	}
-	/**
-	 * CHECK MANAGER SALARY PAGE is displayed
-	 * Author: Koushik Kadimcherla
-	 */
-	public void checkManageSalaryPageDisplayed() {
-		try {
-			waitUntilPageLoad();
-			waitFor(ExpectedConditions.elementToBeClickable(btnProposeNewSal_ManageSalary), 15);
-			reportWithScreenShot("Checking if Manage Salary page is Displayed");
-			assertThat(btnProposeNewSal_ManageSalary.isDisplayed()).isTrue();
-		} catch (Exception e) {
-			reportWithScreenShot("Manage Salary page  is not Displayed" + e.getMessage());
-			Assert.fail();
-		}
+    /**
+     * Click on Manage Salary in Compensation section
+     * Author: Koushik Kadimcherla
+     */
+    public void clickManageSalary() {
+        try {
+            waitShortTime();
+            waitFor(ExpectedConditions.elementToBeClickable(lnkManageSalary_MyTeam), 15);
+            lnkManageSalary_MyTeam.click();
+            reportWithScreenShot("Clicking on Manage Salary link");
+        } catch (Exception e) {
+            reportWithScreenShot("Error While clicking on Manage Salary button due to:" + e.getMessage());
+            Assert.fail();
+        }
+    }
 
-	}
+    /**
+     * CHECK MANAGER SALARY PAGE is displayed
+     * Author: Koushik Kadimcherla
+     */
+    public void checkManageSalaryPageDisplayed() {
+        try {
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(btnProposeNewSal_ManageSalary), 15);
+            reportWithScreenShot("Checking if Manage Salary page is Displayed");
+            assertThat(btnProposeNewSal_ManageSalary.isDisplayed()).isTrue();
+        } catch (Exception e) {
+            reportWithScreenShot("Manage Salary page  is not Displayed" + e.getMessage());
+            Assert.fail();
+        }
 
-	/**
-	 * CLICK ON PROPOSE NEW SALARY
-	 * Author: Koushik Kadimcherla
-	 */
-	public void clickProposeNewSalary() {
+    }
 
-		try {
-			
-			waitUntilPageLoad();
-			waitFor(ExpectedConditions.elementToBeClickable(btnProposeNewSal_ManageSalary), 15);
-			btnProposeNewSal_ManageSalary.click();
-			reportWithScreenShot("Clicked on Propose New Salary");
-		} catch (Exception e) {
-			reportWithScreenShot("Error while clicking on Propose New Salary button" + e.getMessage());
-			Assert.fail();
-		}
-	}
+    /**
+     * CLICK ON PROPOSE NEW SALARY
+     * Author: Koushik Kadimcherla
+     */
+    public void clickProposeNewSalary() {
 
-	/**
-	 * Enter propose new Salary details 
-	 * Author: Koushik Kadimcherla
-	 */
-	public void enterProposeNewSalaryDetails() {
-		try {
-			waitShortTime();
-			waitFor(ExpectedConditions.elementToBeClickable(dtStartDate_ManageSalary), 15);
-			dtStartDate_ManageSalary.sendKeys(getCurrentDate());
-			waitFor(ExpectedConditions.elementToBeClickable(drpdownAction_ManageSalary), 15);
-			drpdownAction_ManageSalary.sendKeys(data.getActionManageSalary());
-			waitShortTime();
-			waitFor(ExpectedConditions.elementToBeClickable(drpdownReason_ManageSalary), 15);
-			drpdownReason_ManageSalary.sendKeys(data.getActionReasonManageSalary());
-			waitShortTime();
-			reportWithScreenShot("Entering Propose New Salary details");
-			btnOK.click();
-		} catch (Exception e) {
-			reportWithScreenShot("Error while entering data in Propose New Salary popup" + e.getMessage());
-			Assert.fail();
-		}
-	}
+        try {
 
-	/**
-	 * check new salary page is displayed in My Team
-	 * Author: Koushik Kadimcherla
-	 */
-	public void checkNewSalaryPageDisplayed() {
-		try {
-			waitUntilPageLoad();
-			waitFor(ExpectedConditions.elementToBeClickable(salaryAmount), 15);
-			reportWithScreenShot("Checking if New Salary page is Displayed");
-			assertThat(salaryAmount.isDisplayed()).isTrue();
-		} catch (Exception e) {
-			reportWithScreenShot("New Salary page  is not Displayed" + e.getMessage());
-			Assert.fail();
-		}
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(btnProposeNewSal_ManageSalary), 15);
+            btnProposeNewSal_ManageSalary.click();
+            reportWithScreenShot("Clicked on Propose New Salary");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking on Propose New Salary button" + e.getMessage());
+            Assert.fail();
+        }
+    }
 
-	}
+    /**
+     * Enter propose new Salary details
+     * Author: Koushik Kadimcherla
+     */
+    public void enterProposeNewSalaryDetails() {
+        try {
+            waitShortTime();
+            waitFor(ExpectedConditions.elementToBeClickable(dtStartDate_ManageSalary), 15);
+            dtStartDate_ManageSalary.sendKeys(getCurrentDate());
+            waitFor(ExpectedConditions.elementToBeClickable(drpdownAction_ManageSalary), 15);
+            drpdownAction_ManageSalary.sendKeys(data.getActionManageSalary());
+            waitShortTime();
+            waitFor(ExpectedConditions.elementToBeClickable(drpdownReason_ManageSalary), 15);
+            drpdownReason_ManageSalary.sendKeys(data.getActionReasonManageSalary());
+            waitShortTime();
+            reportWithScreenShot("Entering Propose New Salary details");
+            btnOK.click();
+        } catch (Exception e) {
+            reportWithScreenShot("Error while entering data in Propose New Salary popup" + e.getMessage());
+            Assert.fail();
+        }
+    }
 
-	/**
-	 * Setting salary for employee in My Team
-	 * Author: Koushik Kadimcherla
-	 */
-	public void setSalaryinMyteam() {
-		try {
-			waitShortTime();
-			waitFor(ExpectedConditions.visibilityOf(salaryAmount), 60);
-			currentSalaryAmount = salaryAmount.getAttribute("value");
-			salaryAmount.clear();
-			salaryAmount.sendKeys(data.getSalaryAmount());
-			salaryAmount.sendKeys(Keys.TAB);
-			waitNormalTime();
-			assertThat(AdjAmount.getAttribute("value").equals(data.getSalaryAmount().trim())).isTrue();
-			reportWithScreenShot("Adjustment amount and percentage are calculated automatically");
+    /**
+     * check new salary page is displayed in My Team
+     * Author: Koushik Kadimcherla
+     */
+    public void checkNewSalaryPageDisplayed() {
+        try {
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(salaryAmount), 15);
+            reportWithScreenShot("Checking if New Salary page is Displayed");
+            assertThat(salaryAmount.isDisplayed()).isTrue();
+        } catch (Exception e) {
+            reportWithScreenShot("New Salary page  is not Displayed" + e.getMessage());
+            Assert.fail();
+        }
 
-		} catch (Exception e) {
-			reportWithScreenShot("Adjustment amount and percentage are not calculated automatically" + e.getMessage());
-			Assert.fail();
-		}
-	}
+    }
 
-	/**
-	 * Clicks continue button in Manage Salary My Team
-	 * Author: Koushik Kadimcherla
-	 */
-	public void clickButtonContinueInManageSalary() {
-		try {
-			btnContinue_ManageSalary.click();
-			waitForLoad();
-			waitFor(ExpectedConditions.visibilityOf(currentsal_ReviewSalary), 30);
-			assertThat(currentsal_ReviewSalary.isDisplayed()).isTrue();
-			reportWithScreenShot("Review Salary page is displayed");
-		} catch (Exception e) {
-			reportWithScreenShot("Review salary page is not displayed due to error while clicking on Continue button :"
-					+ e.getMessage());
-			Assert.fail();
-		}
-	}
+    /**
+     * Setting salary for employee in My Team
+     * Author: Koushik Kadimcherla
+     */
+    public void setSalaryinMyteam() {
+        try {
+            waitShortTime();
+            waitFor(ExpectedConditions.visibilityOf(salaryAmount), 60);
+            currentSalaryAmount = salaryAmount.getAttribute("value");
+            salaryAmount.clear();
+            salaryAmount.sendKeys(data.getSalaryAmount());
+            salaryAmount.sendKeys(Keys.TAB);
+            waitNormalTime();
+            assertThat(AdjAmount.getAttribute("value").equals(data.getSalaryAmount().trim())).isTrue();
+            reportWithScreenShot("Adjustment amount and percentage are calculated automatically");
 
-	/**
-	 * Review Salary page in Manage Salary My Team 
-	 * Author: Koushik Kadimcherla
-	 */
-	public void reviewSalaryInMyTeam() {
-		try {
-			assertThat(
-					driver.findElement(By.xpath("//div[contains(text(),'" + currentSalaryAmount + "')]")).isDisplayed())
-							.isTrue();
-			assertThat(driver.findElement(By.xpath("//div[contains(text(),'" + data.getSalaryAmount() + "')]"))
-					.isDisplayed()).isTrue();
-			reportWithScreenShot("Current and Proposed salaries are displayed correctly in Review Salary page");
-		} catch (Exception e) {
-			reportWithScreenShot("Current and Proposed salaries are not displayed correctly" + e.getMessage());
-			Assert.fail();
-		}
+        } catch (Exception e) {
+            reportWithScreenShot("Adjustment amount and percentage are not calculated automatically" + e.getMessage());
+            Assert.fail();
+        }
+    }
 
-	}
+    /**
+     * Clicks continue button in Manage Salary My Team
+     * Author: Koushik Kadimcherla
+     */
+    public void clickButtonContinueInManageSalary() {
+        try {
+            btnContinue_ManageSalary.click();
+            waitForLoad();
+            waitFor(ExpectedConditions.visibilityOf(currentsal_ReviewSalary), 30);
+            assertThat(currentsal_ReviewSalary.isDisplayed()).isTrue();
+            reportWithScreenShot("Review Salary page is displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Review salary page is not displayed due to error while clicking on Continue button :"
+                    + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    /**
+     * Review Salary page in Manage Salary My Team
+     * Author: Koushik Kadimcherla
+     */
+    public void reviewSalaryInMyTeam() {
+        try {
+            assertThat(
+                    driver.findElement(By.xpath("//div[contains(text(),'" + currentSalaryAmount + "')]")).isDisplayed())
+                    .isTrue();
+            assertThat(driver.findElement(By.xpath("//div[contains(text(),'" + data.getSalaryAmount() + "')]"))
+                    .isDisplayed()).isTrue();
+            reportWithScreenShot("Current and Proposed salaries are displayed correctly in Review Salary page");
+        } catch (Exception e) {
+            reportWithScreenShot("Current and Proposed salaries are not displayed correctly" + e.getMessage());
+            Assert.fail();
+        }
+
+    }
 
 }

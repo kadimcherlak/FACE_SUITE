@@ -18,6 +18,7 @@ public class CommonSteps implements En {
             context.setData(testScenario);
             data = context.getData();
             context.setPages(context);
+            context.loginAndHome.getCurrentDate();
         });
 
         And("^user is on the oracle fusion login page$", () -> {

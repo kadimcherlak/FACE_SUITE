@@ -27,7 +27,8 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     private WebElement signIn;
 
     // Home Page Elements
-    @FindBy(xpath = "//a[contains(@class,'AFBrandingLinkColor svg-glob menu')]")
+    //@FindBy(xpath = "//a[contains(@class,'AFBrandingLinkColor svg-glob menu')]")
+    @FindBy(xpath = "//img[contains(@id,'pt1:_UIScmil2u::icon')]")
     private WebElement userName;
 
     @FindBy(xpath = "//a[text()='Sign Out']")
@@ -39,7 +40,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     @FindBy(xpath = "//h1[contains(.,'Navigator')]")
     private WebElement navigator;
 
-  //  @FindBy(linkText = "New Person")
+    //  @FindBy(linkText = "New Person")
     @FindBy(xpath = "//a[text()='New Person' and contains(@id,'manager_resources')]")
     private WebElement newPerson;
 
@@ -62,15 +63,18 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     @FindBy(className = "svg-icon03")
     private WebElement navigatorOpen;
 
+    @FindBy(xpath = "//h1[contains(.,'Navigator')]")
+    private WebElement navigatorTitle;
+
     // Home Icon in Home Page
     @FindBy(xpath = "//path[@class='svg-outline']")
     private WebElement homeIcon;
 
-    
-  @FindBy(xpath = "//a[text()='My Team']")
-  private WebElement myTeamIcon;
-  
-  
+
+    @FindBy(xpath = "//a[text()='My Team']")
+    private WebElement myTeamIcon;
+
+
     public LoginAndHomePage(Context context) {
         super(context);
         this.context = context;
@@ -150,6 +154,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             waitFor(ExpectedConditions.elementToBeClickable(navigatorOpen), 15);
             assertThat(navigatorOpen.isDisplayed()).isTrue();
             navigatorOpen.click();
+            waitFor(ExpectedConditions.visibilityOf(navigatorTitle), 15);
             reportWithScreenShot("User open Navigator Screen");
         } catch (Exception e) {
             reportWithScreenShot("Unable to open Navigator Screen");
