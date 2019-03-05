@@ -309,7 +309,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             // Set Person Number for Future Use and Reference
             waitFor(ExpectedConditions.visibilityOf(personNo), 15);
             String personNumber = personNo.getText();
-            data.setPersonNumber(personNumber);
+            writeToExcel("UPDATE_REMOVE_I9_STATUS", "personNumber", personNumber);
             System.out.println(personNumber);
 
             // Enter Address Line 1

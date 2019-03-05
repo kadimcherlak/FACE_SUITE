@@ -1,6 +1,15 @@
 @TALENT_ACQUISITION
 Feature: New Hire and Related Activities
 
+  @TEST_EXCEL
+  Scenario Outline: Perform Login to Oracle Fusion Cloud
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user updated the Excel file with Row Name <Test Scenario> and Column Name personNumber with value 500070
+
+    Examples:
+      | Test Scenario           | Test File Name | Test Sheet Name    |
+      | UPDATE_REMOVE_I9_STATUS | TestData.xlsx  | Talent_Acquisition |
+
   @LOGIN_LOGOUT
   Scenario Outline: Perform Login to Oracle Fusion Cloud
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
@@ -18,6 +27,7 @@ Feature: New Hire and Related Activities
   @NEW_HIRE
   Scenario Outline:  Create New Hire with veteran data
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user updated the Excel file with Row Name <Test Scenario> and Column Name personNumber with value 500070
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
     And user clicks on New Person link in Navigator Pane
