@@ -194,5 +194,6 @@ public class TalentAcquisitionNewHireSteps implements En {
         When("user click on Done button at the top", () -> {
             context.personManagment.clickDoneButton();
         });
+
     }
 }

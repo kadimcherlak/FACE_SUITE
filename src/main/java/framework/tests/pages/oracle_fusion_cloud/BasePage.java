@@ -1,6 +1,7 @@
 package framework.tests.pages.oracle_fusion_cloud;
 
 import framework.core.drivers.web.WebPage;
+import framework.core.utils.DataLoader;
 import framework.tests.steps.oracle_fusion_cloud.Context;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -322,5 +323,16 @@ public class BasePage<T> extends WebPage {
         }
     }
 
+    /**
+     * This method will Update data to excel sheet
+     *
+     * @param rowName
+     * @param colName
+     * @param valToUpdate
+     * @author Raghavendran Ramasubramanian
+     */
+    public void writeToExcel(String rowName, String colName, String valToUpdate) {
+        DataLoader.writeDataToExcel(rowName, colName, valToUpdate);
+    }
 }
 

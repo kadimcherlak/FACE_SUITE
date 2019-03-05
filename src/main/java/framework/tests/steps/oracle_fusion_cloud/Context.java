@@ -24,6 +24,7 @@ public class Context extends framework.core.models.Context {
     public LineManagerPage lineManager;
     public PersonManagementPage personManagment;
     public ManageCalendarEventsPage manageCalendarEvents;
+    public String scenarioName = null;
     private Logger logger = LogManager.getLogger(Context.class);
     private WebDriver driver;
     private Config config;
@@ -59,6 +60,7 @@ public class Context extends framework.core.models.Context {
     }
 
     public void setData(String key) {
+        this.scenarioName = key;
         data = (Data) dataStore.getNode(key);
     }
 
