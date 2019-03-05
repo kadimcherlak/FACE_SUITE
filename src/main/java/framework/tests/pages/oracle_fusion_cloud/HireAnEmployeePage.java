@@ -62,7 +62,8 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//label[text()='Date of Birth']/following::input[1]")
     private WebElement dateOfBirth;
 
-    @FindBy(xpath = "//input[contains(@id,'EmailRequired')]")
+  //  @FindBy(xpath = "//input[contains(@id,'EmailRequired')]")
+    @FindBy(xpath = "//label[text()='Location Contact ']/following::input[1]")
     private WebElement pearsonEmailRequired;
 
     @FindBy(xpath = "//img[@title='Add Row']")
@@ -157,6 +158,10 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
     @FindBy(xpath = "//label[text()='Global Mobility Indicator']/following::input[1]")
     private WebElement empInfoGlobalMobilityInd;
+    
+    //koushik added 3/4 cog
+    @FindBy(xpath = "//label[text()='Birthday']/following::input[1]")
+    private WebElement birthday;
 
     public HireAnEmployeePage(Context context) {
         super(context);
@@ -410,7 +415,13 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitFor(ExpectedConditions.elementToBeClickable(hourlyPaidOrSalaried), 15);
             hourlyPaidOrSalaried.sendKeys(data.getHourlyPaidOrSalaried());
 
-            // Enter Company/Entity
+            //3/4 added for cognizant instance
+            waitFor(ExpectedConditions.elementToBeClickable(birthday), 15);
+            birthday.clear();
+            birthday.sendKeys(data.getDateOfBirth());
+            
+            //3/4 - Koushik commenting for cognizant instance
+           /* // Enter Company/Entity
             waitFor(ExpectedConditions.elementToBeClickable(companyEntity), 15);
             companyEntity.sendKeys(data.getCompanyEntity());
 
@@ -432,7 +443,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
                         driver.findElement(By.xpath("//li[text()='" + data.getGlobalMobilityIndicator() + "']"))), 15);
                 driver.findElement(By.xpath("//li[text()='" + data.getGlobalMobilityIndicator() + "']")).click();
                 waitShortTime();
-            }
+            }*/
 
             // Clicking Add button to enter Payroll Details
             clickCreateButton();
@@ -471,10 +482,11 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             salaryAmount.sendKeys(data.getSalaryAmount());
             waitShortTime();
 
-            // Enable Use salary components check box
+            //commented on 3/4 cog
+           /* // Enable Use salary components check box
             waitFor(ExpectedConditions.visibilityOf(salarycmpnt), 15);
             salarycmpnt.click();
-            waitShortTime();
+            waitShortTime();*/
 
             // Goto Next tab
             scrollToPageTop(driver);

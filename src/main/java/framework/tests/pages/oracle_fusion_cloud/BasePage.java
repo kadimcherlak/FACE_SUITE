@@ -78,7 +78,8 @@ public class BasePage<T> extends WebPage {
     // Method to get Current Date
     public String getCurrentDate() {
         //To input current system date into Hire Date Field
-        DateFormat dateFormat = new SimpleDateFormat("dd-MMM-YYYY");
+      //  DateFormat dateFormat = new SimpleDateFormat("dd-MMM-YYYY");
+    	  DateFormat dateFormat = new SimpleDateFormat("dd/MM/YYYY");
         Date date = new Date();
         return dateFormat.format(date);
     }
@@ -189,8 +190,15 @@ public class BasePage<T> extends WebPage {
     public void clickLinkElement(String linkName) {
         try {
             waitShortTime(); // To handle task pane load time
-            waitFor(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='" + linkName + "']")), 15);
-            appWebElement = driver.findElement(By.xpath("//a[text()='" + linkName + "']"));
+            if(linkName.equals("New Person")){
+            waitFor(ExpectedConditions.elementToBeClickable(By.xpath("(//a[text()='" + linkName + "'])[2]")), 15);
+            appWebElement = driver.findElement(By.xpath("(//a[text()='" + linkName + "'])[2]"));            
+            }
+            else
+            {
+            	   waitFor(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='" + linkName + "']")), 15);
+                   appWebElement = driver.findElement(By.xpath("//a[text()='" + linkName + "']"));   
+            }
             reportWithScreenShot("Link :" + linkName + " selected from Task pane");
             waitFor(ExpectedConditions.elementToBeClickable(appWebElement), 15);
             assertThat(appWebElement.isDisplayed()).isTrue();

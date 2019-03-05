@@ -39,7 +39,8 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     @FindBy(xpath = "//h1[contains(.,'Navigator')]")
     private WebElement navigator;
 
-    @FindBy(linkText = "New Person")
+  //  @FindBy(linkText = "New Person")
+    @FindBy(xpath = "//a[text()='New Person' and contains(@id,'manager_resources')]")
     private WebElement newPerson;
 
     @FindBy(linkText = "Personal Information")
@@ -65,6 +66,11 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     @FindBy(xpath = "//path[@class='svg-outline']")
     private WebElement homeIcon;
 
+    
+  @FindBy(xpath = "//a[text()='My Team']")
+  private WebElement myTeamIcon;
+  
+  
     public LoginAndHomePage(Context context) {
         super(context);
         this.context = context;
