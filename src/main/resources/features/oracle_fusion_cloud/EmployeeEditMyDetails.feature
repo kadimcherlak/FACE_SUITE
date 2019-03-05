@@ -17,7 +17,7 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                         | Test File Name | Test Sheet Name  |
       | NEW_ADDRESS_ALTERNATIVE_WORK_LOCATION | TestData.xlsx  | Employee_Details |
 
@@ -44,7 +44,7 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                 | Test File Name | Test Sheet Name  |
       | ADD_EMERGENCY_CONTACT_DETAILS | TestData.xlsx  | Employee_Details |
 
@@ -72,7 +72,7 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     When user click on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                                 | Test File Name | Test Sheet Name  |
       | UPDATE_PERSONAL_PAYMENT_METHODS_EXPENSES_ONLY | TestData.xlsx  | Employee_Details |
 
@@ -106,7 +106,7 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                                     | Test File Name | Test Sheet Name  |
       | UPDATE_PERSONAL_PAYMENT_METHODS_NON_EXPENSES_ONLY | TestData.xlsx  | Employee_Details |
 
@@ -129,7 +129,7 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     When user click on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario           | Test File Name | Test Sheet Name  |
       | VALIDATE_ADDRESS_FORMAT | TestData.xlsx  | Employee_Details |
 
@@ -193,7 +193,7 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                                              | Test File Name | Test Sheet Name  |
       | UPDATE_ADDRESS_BIOGRAPHICAL_INFO_DRIVING_LICENSE_DOCUMENTS | TestData.xlsx  | Employee_Details |
 
@@ -224,7 +224,7 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                  | Test File Name | Test Sheet Name  |
       | UPDATE_SALARY_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
 
@@ -250,7 +250,7 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario               | Test File Name | Test Sheet Name  |
       | EDIT_SALARY_PROPOSAL_REASON | TestData.xlsx  | Employee_Details |
 
@@ -277,6 +277,6 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                        | Test File Name | Test Sheet Name  |
       | CHANGE_SALARY_BASIS_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |

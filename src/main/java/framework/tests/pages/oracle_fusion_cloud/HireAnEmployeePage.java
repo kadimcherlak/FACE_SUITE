@@ -44,7 +44,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "(//input[@class='x2h'])[2]")
     private WebElement basicDetailsReason;
 
-    @FindBy(xpath = "//input[@class='x109']")
+    @FindBy(xpath = "//label[text()='Legal Employer']/following::input[1]")
     private WebElement basicDetailsEmployer;
 
     @FindBy(xpath = "//*[text()='Employee']")
@@ -62,14 +62,15 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//label[text()='Date of Birth']/following::input[1]")
     private WebElement dateOfBirth;
 
-  //  @FindBy(xpath = "//input[contains(@id,'EmailRequired')]")
+    //  @FindBy(xpath = "//input[contains(@id,'EmailRequired')]")
     @FindBy(xpath = "//label[text()='Location Contact ']/following::input[1]")
-    private WebElement pearsonEmailRequired;
+    private WebElement locationContact;
 
     @FindBy(xpath = "//img[@title='Add Row']")
     private WebElement addRow;
 
-    @FindBy(xpath = "//input[@class='x109' and contains(@id,'iclov1::content') and contains(@name,'iclov1')]")
+    //@FindBy(xpath = "//input[@class='x109' and contains(@id,'iclov1::content') and contains(@name,'iclov1')]")
+    @FindBy(xpath = "(//input[@class='x10u'])[2]")
     private WebElement country;
 
     @FindBy(xpath = "//input[@class='x2h' and contains(@id,'soc2::content') and contains(@aria-owns,'soc2::pop')]")
@@ -87,7 +88,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//label[text()='Address Line 2']/following::input[1]")
     private WebElement addressLine2;
 
-    @FindBy(xpath = "//label[text()='ZIP Code']/following::input[1]")
+    @FindBy(xpath = "//label[text()='Zip Code']/following::input[1]")
     private WebElement zipCode;
 
     @FindBy(xpath = "//label[text()='City']/following::input[1]")
@@ -141,7 +142,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//label[text()='ER/Profit Center']/following::input[1]")
     private WebElement erProfitCenter;
 
-    @FindBy(xpath = "//input[@class='x109' and contains(@id,'table1:0:selectOneChoice1::content') and contains(@name,'table1:0:selectOneChoice1')]")
+    @FindBy(xpath = "//input[@class='x10u' and contains(@id,'table1:0:selectOneChoice1::content') and contains(@name,'table1:0:selectOneChoice1')]")
     private WebElement payroll;
 
     @FindBy(xpath = "//label[text()='I-9 Status']/following::input[1]")
@@ -158,7 +159,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
     @FindBy(xpath = "//label[text()='Global Mobility Indicator']/following::input[1]")
     private WebElement empInfoGlobalMobilityInd;
-    
+
     //koushik added 3/4 cog
     @FindBy(xpath = "//label[text()='Birthday']/following::input[1]")
     private WebElement birthday;
@@ -207,6 +208,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             Assert.fail();
         }
     }
+
     // Enter Value into Identification tab
     public void fillIdentificationTab() {
         try {
@@ -220,6 +222,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
                     .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getHireAction() + "']"))), 5);
             driver.findElement(By.xpath("//li[text()='" + data.getHireAction() + "']")).click();
             basicDetailsAction.sendKeys(Keys.TAB);
+            waitNormalTime();
 
             // Select Hire Reason
             basicDetailsReason.click();
@@ -252,16 +255,14 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             driver.findElement(By.xpath("//li[text()='" + data.getGender() + "']")).click();
 
             // Select Date of Birth
-            waitFor(ExpectedConditions.elementToBeClickable(dateOfBirth), 5);
+            waitFor(ExpectedConditions.elementToBeClickable(dateOfBirth), 15);
             dateOfBirth.sendKeys(data.getDateOfBirth());
             dateOfBirth.sendKeys(Keys.TAB);
 
-            // Select Pearson Email Required
-            waitFor(ExpectedConditions.elementToBeClickable(pearsonEmailRequired), 5);
-            pearsonEmailRequired.click();
-            waitFor(ExpectedConditions.elementToBeClickable(
-                    driver.findElement(By.xpath("//li[text()='" + data.getPearsonEmailRequired() + "']"))), 5);
-            driver.findElement(By.xpath("//li[text()='" + data.getPearsonEmailRequired() + "']")).click();
+            // Select Location Contact Required
+            waitFor(ExpectedConditions.elementToBeClickable(locationContact), 15);
+            locationContact.click();
+            locationContact.sendKeys(data.getPearsonEmailRequired());
             waitShortTime();
 
             // Click to create new row
@@ -309,6 +310,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitFor(ExpectedConditions.visibilityOf(personNo), 15);
             String personNumber = personNo.getText();
             data.setPersonNumber(personNumber);
+            System.out.println(personNumber);
 
             // Enter Address Line 1
             waitFor(ExpectedConditions.elementToBeClickable(addressLine1), 15);
@@ -419,7 +421,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitFor(ExpectedConditions.elementToBeClickable(birthday), 15);
             birthday.clear();
             birthday.sendKeys(data.getDateOfBirth());
-            
+
             //3/4 - Koushik commenting for cognizant instance
            /* // Enter Company/Entity
             waitFor(ExpectedConditions.elementToBeClickable(companyEntity), 15);
@@ -451,7 +453,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             // Select Payroll Details
             waitFor(ExpectedConditions.elementToBeClickable(payroll), 15);
             payroll.sendKeys(data.getPayroll());
-            waitShortTime();
+            waitNormalTime();
 
             // Goto next tab
             scrollToPageTop(driver);

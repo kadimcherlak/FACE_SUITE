@@ -90,6 +90,7 @@ public class Context extends framework.core.models.Context {
             e.printStackTrace();
         }
     }
+
     @After
     public void afterScenario(Scenario scenario) {
         logger.debug("Finishing Feature: {} - Scenario: {}", getFeatureFile(scenario.getId()), scenario.getName());
@@ -109,6 +110,7 @@ public class Context extends framework.core.models.Context {
     private String getPath() {
         return System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "testdata";
     }
+
     public void setPages(Context context) {
         lineManager = new LineManagerPage(context);
         employeeEditMyDetails = new EmployeeEditMyDetailsPage(context);
