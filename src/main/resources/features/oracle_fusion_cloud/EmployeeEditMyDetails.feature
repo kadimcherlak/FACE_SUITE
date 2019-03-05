@@ -197,7 +197,7 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
       | Test Scenario                                              | Test File Name | Test Sheet Name  |
       | UPDATE_ADDRESS_BIOGRAPHICAL_INFO_DRIVING_LICENSE_DOCUMENTS | TestData.xlsx  | Employee_Details |
 
-  @UPDATE_SALARY_FOR_EXISTING_EMP
+  @UPDATE_SALARY_FOR_EXISTING_EMP @demoRun
   Scenario Outline: Updating salary component of an existing employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -212,11 +212,11 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     Then user clicks Manage Salary option from task icon menu
     And user clicks on Action button and select Edit option
     And user enters new Salary Amount under Current Salary section
-    When user selects Use salary component checkbox
-    Then Components tab is displayed in Manage Salary
-    When user clicks on Add button in Components tab
-    And user selects Promotion from Component dropdown
-    And user enters amount in Amount field in Components tab
+#    When user selects Use salary component checkbox
+#    Then Components tab is displayed in Manage Salary
+#    When user clicks on Add button in Components tab
+#    And user selects Promotion from Component dropdown
+#    And user enters amount in Amount field in Components tab
     And user clicks on Continue button in Manage Salary tab
     When user clicks on Submit button in Manage Salary Review page
     And user clicks Yes button on popup modal
@@ -228,7 +228,7 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
       | Test Scenario                  | Test File Name | Test Sheet Name  |
       | UPDATE_SALARY_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
 
-  @EDIT_SALARY_PROPOSAL_REASON
+  @EDIT_SALARY_PROPOSAL_REASON @demoRun
   Scenario Outline: Admin can edit Salary Proposal Reason
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -254,7 +254,7 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
       | Test Scenario               | Test File Name | Test Sheet Name  |
       | EDIT_SALARY_PROPOSAL_REASON | TestData.xlsx  | Employee_Details |
 
-  @CHANGE_SALARY_BASIS_FOR_EXISTING_EMP
+  @CHANGE_SALARY_BASIS_FOR_EXISTING_EMP @demoRun
   Scenario Outline: Administration changing salary basis of an employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -268,7 +268,7 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     And user click on Task Icon on the right side
     Then user clicks Manage Salary option from task icon menu
     And user clicks on Action button and select Edit option
-    When user selects US Hourly Wages 40 hours from Salary Basis
+    When user selects US Hourly Wages hours from Salary Basis
     Then user closes Warning modal by clicking OK button
     And user clicks on Continue button in Manage Salary tab
     When user clicks on Submit button in Manage Salary Review page

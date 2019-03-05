@@ -151,7 +151,7 @@ public class EmployeeEditMyDetailsSteps implements En {
             context.employeeEditMyDetails.clickOKOnPopup();
         });
 
-        When("^user selects US Hourly Wages (\\d+) hours from Salary Basis$", (Integer arg0) -> {
+        When("^user selects US Hourly Wages hours from Salary Basis$", () -> {
             context.employeeEditMyDetails.selectSalaryBasis();
         });
 
