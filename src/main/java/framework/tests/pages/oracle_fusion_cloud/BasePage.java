@@ -86,6 +86,7 @@ public class BasePage<T> extends WebPage {
     // Click on Submit Button
     public void clickSubmitButton() {
         try {
+        	waitUntilPageLoad();
             waitFor(ExpectedConditions.elementToBeClickable(submit), 15);
             submit.click();
             waitShortTime();
@@ -98,6 +99,7 @@ public class BasePage<T> extends WebPage {
     // Click on Ok Button
     public void clickOkButton() {
         try {
+        	waitUntilPageLoad();
             waitFor(ExpectedConditions.elementToBeClickable(okButton), 15);
             okButton.click();
             waitShortTime();
@@ -110,7 +112,9 @@ public class BasePage<T> extends WebPage {
     // Click on Ok Button if Warning is displayed
     public void clickWarningOkButton() {
         try {
+        	waitUntilPageLoad();
             waitFor(ExpectedConditions.elementToBeClickable(warningBtn), 15);
+            reportWithScreenShot("Confirmation message displayed");
             warningBtn.click();
             waitShortTime();
         } catch (Exception e) {
@@ -134,9 +138,11 @@ public class BasePage<T> extends WebPage {
     // Click on Confirm Button
     public void clickConfirmButton() {
         try {
+        	waitUntilPageLoad();
             waitFor(ExpectedConditions.elementToBeClickable(confirmBtn), 15);
             confirmBtn.click();
             waitShortTime();
+            reportWithScreenShot("Confirm button clicked successfully");
         } catch (Exception e) {
             reportWithScreenShot("Submission not successful due to:" + e.getMessage());
             Assert.fail();
@@ -223,5 +229,75 @@ public class BasePage<T> extends WebPage {
         return false;
     }
 
+    /**
+     * This function is being used to perform action for each test step in the application
+     *
+     * @param action
+     * @param element
+     * @param objectName
+     * @param value      Author Koushik Kadimcherla
+     */
+    public void performAction(String action, WebElement element, String objectName, String value) {
+        try {
+            switch (action.toUpperCase()) {
+                case "CLICK": {
+                    custom_wait_clickable_and_click(element);
+                }
+                case "TYPE": {
+                    waitFor(ExpectedConditions.elementToBeClickable(element), 15);
+                    element.clear();
+                    element.sendKeys(value);
+                }
+            }
+        } catch (Exception e) {
+            reportWithScreenShot("Unable to perform the operation " + action.toUpperCase() + "on object " + objectName
+                    + " due to " + e.getMessage());
+            Assert.fail();
+        }
+    }
+    
+    
+  //Select the dropdown value passed as parameter in an input field
+    /**
+     * This method will select the dropdown value passed as parameter in an input field
+     * @param element
+     * @param dropdownValue
+     * @author Rakesh Ghosal
+     */
+    public void selectInputDropdownValue(WebElement element,String dropdownValue)
+    {
+    	try
+    	{
+    		String dropdownXpathValue="//li[text()='"+dropdownValue+"']";
+    		waitFor(ExpectedConditions.elementToBeClickable(element), 15);
+    		element.click();
+    		waitFor(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(dropdownXpathValue))), 15);
+    		driver.findElement(By.xpath(dropdownXpathValue)).click();
+    		
+    		
+    	}catch(Exception e)
+    	{
+    		reportWithScreenShot("Error While selecting dropdown value:" + e.getMessage());
+    		Assert.fail();
+    	}
+    }
+    
+    
+    /**
+     * This method will validate if a Web Element is displayed or not
+     * @param element
+     * @author Rakesh Ghosal
+     */
+    public void validateElementIsDisplayed(WebElement element) {
+		try {
+			waitUntilPageLoad();
+			waitFor(ExpectedConditions.elementToBeClickable(element), 15);
+			assertThat(element.isDisplayed()).isTrue();
+		} catch (Exception e) {
+			reportWithScreenShot("Element is not present:" + e.getMessage());
+			Assert.fail();
+		}
+	}
 
 }
+

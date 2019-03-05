@@ -212,7 +212,24 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//label[text()='I-9 Status']/following::input[1]")
     private WebElement i9Status;
 
+    @FindBy(xpath = "//td[text() = 'Correct']")
+    private WebElement personMgmtCorrect;
+    
+    @FindBy(xpath = "//div[text() = 'Correct Employment']")
+    private WebElement correctEmploymentTitle;
 
+    @FindBy(xpath = "//label[@class = 'af_selectOneChoice_label-text' and text()='Action']/following::input[1]")
+    private WebElement correctEmploymentAction;
+
+    @FindBy(xpath = "(//label[ @class ='af_selectOneChoice_label-text' and text()='Action Reason'])/following::input[1]")
+    private WebElement correctEmploymentActionReason;
+    
+    @FindBy(xpath = "//button[contains(@id,'_FOpt1:_FOr1:0:')and text() = 'OK']")
+    private WebElement correctEmploymentOk;
+   
+    @FindBy(xpath = "//span[text()='Review']")
+    private WebElement reviewButton_ManageEmployment;
+    
     // Person Management Contructor
     public PersonManagementPage(Context context) {
         super(context);
@@ -449,6 +466,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     // Click on Done button
     public void clickDoneButton() {
         try {
+        	waitUntilPageLoad();
             waitFor(ExpectedConditions.elementToBeClickable(done), 15);
             done.click();
             waitUntilPageLoad();
@@ -680,4 +698,136 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             Assert.fail();
         }
     }
+    
+ 
+    /**
+     * Check Manage Employment Screen displayed or not
+     * Author: Koushik Kadimcherla
+     */
+    public void checkManageEmploymentScreenAvailable() {
+        try {
+           // reportWithScreenShot("Checking if  Manageme Employment screen is Displayed");
+            waitFor(ExpectedConditions.visibilityOf(manageEmployment), 15);
+            assertThat(manageEmployment.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if  Manage Employment screen is Displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Manage Employment screen not Displayed");
+            Assert.fail();
+        }
+    }
+
+
+    /**
+     * User click on Edit and Correct button
+     * Author: Koushik Kadimcherla
+     */
+	public void clickEditCorrect() {
+		try {
+			waitFor(ExpectedConditions.elementToBeClickable(personMgmtEdit), 15);
+			personMgmtEdit.click();
+			waitFor(ExpectedConditions.elementToBeClickable(personMgmtCorrect), 15);
+			personMgmtCorrect.click();
+			reportWithScreenShot("Selected Correct Option after clicking on Edit");
+
+		} catch (Exception e) {
+			reportWithScreenShot("Error While user click on Edit and Correct button:" + e.getMessage());
+			Assert.fail();
+		}
+	}
+
+  
+    /**
+     * User checks if  Correct Employment Window is displayed
+     * Author: Koushik Kadimcherla
+     */
+    public void checkCorrectEmployementWindowDisplayed() {
+        try {
+            reportWithScreenShot("Checking if Correct Employment Window is Displayed");
+            waitFor(ExpectedConditions.visibilityOf(correctEmploymentTitle), 15);
+            assertThat(correctEmploymentTitle.isDisplayed()).isTrue();
+        } catch (Exception e) {
+            reportWithScreenShot("Correct Employment Window is not Displayed");
+            Assert.fail();
+        }
+    }
+
+
+    /**
+     * Enter the mandatory fields of Correct Employment Screen 
+     * Author: Koushik Kadimcherla
+     */
+	public void enterCorrectEmploymentMandatoryFields() {
+		try {
+			waitFor(ExpectedConditions.elementToBeClickable(correctEmploymentAction), 15);
+			assertThat(correctEmploymentAction.isDisplayed()).isTrue();
+			correctEmploymentAction.click();
+			waitFor(ExpectedConditions.visibilityOf(
+					driver.findElement(By.xpath("//li[text()='" + data.getCorrectEmploymentAction() + "']"))), 5);
+			driver.findElement(By.xpath("//li[text()='" + data.getCorrectEmploymentAction() + "']")).click();
+			// Enter Action Reason value
+			waitFor(ExpectedConditions.elementToBeClickable(correctEmploymentActionReason), 15);
+			assertThat(correctEmploymentActionReason.isDisplayed()).isTrue();
+			correctEmploymentActionReason.click();
+			waitFor(ExpectedConditions.visibilityOf(
+					driver.findElement(By.xpath("//li[text()='" + data.getCorrectEmploymentActionReason() + "']"))), 5);
+			driver.findElement(By.xpath("//li[text()='" + data.getCorrectEmploymentActionReason() + "']")).click();
+			waitFor(ExpectedConditions.elementToBeClickable(correctEmploymentOk), 15);
+			assertThat(correctEmploymentOk.isDisplayed()).isTrue();
+			reportWithScreenShot("Entered mandatory fields of Correct Employment Screen");
+			correctEmploymentOk.click();
+		} catch (Exception e) {
+			reportWithScreenShot(
+					"Error While user entering Mandatory Fields of Correct Employment Screen :" + e.getMessage());
+			Assert.fail();
+		}
+	}
+    
+    /**
+     * User checks if Projected End date Field is editable
+     * Author: Koushik Kadimcherla
+     */
+	public void checkProjectedEndDateEditable() {
+		try {
+			waitFor(ExpectedConditions.elementToBeClickable(projectedEndDate_ManageEmployment), 15);
+			assertThat(projectedEndDate_ManageEmployment.isEnabled()).isTrue();
+			reportWithScreenShot("Projected End date is Editable ");
+		} catch (Exception e) {
+			reportWithScreenShot("Projected End date is not Editable ");
+			Assert.fail();
+		}
+	}
+    
+    /**
+     * User Enters the  Projected End date Field 
+     * Author: Koushik Kadimcherla
+     */
+	public void fillProjectedEndDate() {
+		try {
+
+			// waitFor(ExpectedConditions.elementToBeClickable(projectedEndDate_ManageEmployment),15);
+			projectedEndDate_ManageEmployment.sendKeys(data.getProjectedEndDate());
+			assertThat(projectedEndDate_ManageEmployment.isEnabled()).isTrue();
+			reportWithScreenShot("User updated Projected End Date ");
+
+		} catch (Exception e) {
+			reportWithScreenShot("Error while updating Projected End Date");
+			// assertThat.isDisplayed()).isTrue();
+			Assert.fail();
+		}
+	}
+ 
+    /**
+     * user clicks on Review button
+     * Author: Koushik Kadimcherla
+     */
+	public void clickReviewButton() {
+		try {
+			waitFor(ExpectedConditions.elementToBeClickable(reviewButton_ManageEmployment), 15);
+			reviewButton_ManageEmployment.click();
+			assertThat(reviewButton_ManageEmployment.isDisplayed()).isTrue();
+		} catch (Exception e) {
+			reportWithScreenShot("Error while user clicks Review button");
+			Assert.fail();
+		}
+	}
 }

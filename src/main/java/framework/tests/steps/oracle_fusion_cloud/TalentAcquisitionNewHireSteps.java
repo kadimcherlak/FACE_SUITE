@@ -167,9 +167,28 @@ public class TalentAcquisitionNewHireSteps implements En {
             context.personManagment.adpRowAdded();
         });
 
-        When("user click on Done button at the top", () -> {
-            context.personManagment.clickDoneButton();
+        When("user clicks on Edit and select Correct option", () -> {
+       	 context.personManagment.clickEditCorrect();
+       });
+
+        Then("Correct Employment page should be displayed", () -> {
+          context.personManagment.checkCorrectEmployementWindowDisplayed();
         });
 
+        When("user Enter all the Mandatory fields of Correct Employment window and click Ok button", () -> {
+        	context.personManagment.enterCorrectEmploymentMandatoryFields();
+        });
+
+       Then("Projected End Date field Should be Editable", () -> {
+         context.personManagment.checkProjectedEndDateEditable();
+       });
+
+       When("User enters Projected End Date", () -> {
+         context.personManagment.fillProjectedEndDate();
+       });
+
+       And("User Clicks on Review Button", () -> {
+         context.personManagment.clickReviewButton();
+       });
     }
 }
