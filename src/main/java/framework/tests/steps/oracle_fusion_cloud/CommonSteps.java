@@ -73,6 +73,8 @@ public class CommonSteps implements En {
 
         And("^user updated the Excel file with Row Name (.*?) and Column Name (.*?) with value (.*?)$", (String rowName, String colName, String valToUpdate) -> {
             context.loginAndHome.writeToExcel(rowName, colName, valToUpdate);
+            context.loginAndHome.csvReader();
+            context.loginAndHome.csvWriter(valToUpdate);
         });
     }
 }

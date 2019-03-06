@@ -62,14 +62,13 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//label[text()='Date of Birth']/following::input[1]")
     private WebElement dateOfBirth;
 
-    //  @FindBy(xpath = "//input[contains(@id,'EmailRequired')]")
+    //@FindBy(xpath = "//input[contains(@id,'EmailRequired')]")
     @FindBy(xpath = "//label[text()='Location Contact ']/following::input[1]")
     private WebElement locationContact;
 
     @FindBy(xpath = "//img[@title='Add Row']")
     private WebElement addRow;
 
-    //@FindBy(xpath = "//input[@class='x109' and contains(@id,'iclov1::content') and contains(@name,'iclov1')]")
     @FindBy(xpath = "(//input[@class='x10u'])[2]")
     private WebElement country;
 
@@ -309,7 +308,11 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             // Set Person Number for Future Use and Reference
             waitFor(ExpectedConditions.visibilityOf(personNo), 15);
             String personNumber = personNo.getText();
-            writeToExcel("UPDATE_REMOVE_I9_STATUS", "personNumber", personNumber);
+            /*writeToExcel("UPDATE_REMOVE_I9_STATUS", "personNumber", personNumber);
+            writeToExcel("UPDATE_ELEMENT_ENTRIES", "personNumber", personNumber);
+            writeToExcel("UPDATE_PERSONAL_ASSIGNMENT_DATA", "personNumber", personNumber);
+            writeToExcel("EDIT_PROJECTED_ENDDATE", "personNumber", personNumber);*/
+            csvWriter(personNumber);
             System.out.println(personNumber);
 
             // Enter Address Line 1
