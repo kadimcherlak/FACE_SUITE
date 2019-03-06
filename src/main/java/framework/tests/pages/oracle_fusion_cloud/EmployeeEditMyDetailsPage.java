@@ -604,7 +604,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 //                    setSalaryAmount();
 //                    Thread.sleep(2000);
 //                } else {
-                    setSalaryAmount();
+            setSalaryAmount();
 //                }
             Thread.sleep(2000);
         } catch (Exception e) {
@@ -624,9 +624,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         txtboxComponentAmt_ManageSalary.sendKeys(data.getSalaryAmount());
         txtboxComponentAmt_ManageSalary.sendKeys(Keys.TAB);
         Thread.sleep(4000);
-        String actAmt = txtAnnualSalary.getText().replace(",","");
-        System.out.println("act amt - "+actAmt);
-        System.out.println("exp amt - "+data.getSalaryAmount().trim());
+        String actAmt = txtAnnualSalary.getText().replace(",", "");
+        System.out.println("act amt - " + actAmt);
+        System.out.println("exp amt - " + data.getSalaryAmount().trim());
 //        Assertions.assertThat(txtAnnualSalary.getText().trim().equals(data.getSalaryAmount().trim())).isTrue();
         reportWithScreenShot("user entered new salary amount in Salary amount field");
     }
@@ -765,6 +765,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         } catch (Exception e) {
             reportWithScreenShot("Error While selecting  from dropdown:" + e.getMessage());
             Assert.fail();
+
         }
     }
 
