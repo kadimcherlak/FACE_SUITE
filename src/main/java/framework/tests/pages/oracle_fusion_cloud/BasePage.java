@@ -55,7 +55,6 @@ public class BasePage<T> extends WebPage {
 
     public BasePage(Context context) {
         super(context);
-
         logger.debug("{} loaded", this.getClass().getName());
     }
 
