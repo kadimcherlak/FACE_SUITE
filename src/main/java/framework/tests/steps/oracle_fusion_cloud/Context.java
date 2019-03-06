@@ -109,7 +109,7 @@ public class Context extends framework.core.models.Context {
         return getFeatureFile(scenarioId).substring(0, index) + ".xlsx";
     }
 
-    private String getPath() {
+    public String getPath() {
         return System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "testdata";
     }
 
