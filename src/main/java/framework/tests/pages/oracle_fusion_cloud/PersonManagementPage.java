@@ -50,7 +50,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     //This locator is only available option to select, no other locator style exist
     private WebElement payrollOption;
 
-    @FindBy(xpath = "(//td[@class='xmz'][contains(.,'Manage Element Entries')])[2]")
+    @FindBy(xpath = "(//td[@class='xnn'][contains(.,'Manage Element Entries')])[2]")
     private WebElement manageElementEntries;
 
     @FindBy(xpath = "//li[@class='x1ui']//a[contains(text(),'Manage Salary')]")
@@ -77,7 +77,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//a[text()='Bilingual Indicator']")
     private WebElement bilingualRowAdded;
 
-    @FindBy(xpath = "//label[text()='Actual Amount']/following::input[1]")
+    @FindBy(xpath = "//label[text()='Amount']/following::input[1]")
     private WebElement actualAmount;
 
     @FindBy(xpath = "//label[text()='Paycheck Date']/following::input[1]")
@@ -86,10 +86,10 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//*[contains(@class,'x10t') and contains(text(),'m')]")
     private WebElement bilingualSubmitBtn;
 
-    @FindBy(xpath = "//*[contains(@class,'x10t') and contains(text(),'m')]")
+    @FindBy(xpath = "//*[contains(@class,'x11e') and contains(text(),'m')]")
     private WebElement adpSubmitBtn;
 
-    @FindBy(xpath = "//*[contains(text(),'ADP Auto & Home')]")
+    @FindBy(xpath = "(//*[contains(text(),'COMP_ELEMENT')])[1]")
     private WebElement adpRowAdded;
 
     @FindBy(xpath = "(//span[@class='xwy'])[1]")
@@ -387,7 +387,8 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             waitFor(ExpectedConditions.elementToBeClickable(elementName), 15);
             elementName.sendKeys(data.getElementNameADP());
             elementName.sendKeys(Keys.TAB);
-            waitFor(ExpectedConditions.visibilityOf(payrollRelationship), 15);
+            waitNormalTime();
+         //   waitFor(ExpectedConditions.visibilityOf(payrollRelationship), 15);
 
         } catch (Exception e) {
             reportWithScreenShot("Error While user enters Element Name as ADP:" + e.getMessage());
@@ -424,10 +425,10 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             waitFor(ExpectedConditions.elementToBeClickable(actualAmount), 15);
             actualAmount.sendKeys(data.getActualAmount());
 
-            // Enter effective as of date
-            waitFor(ExpectedConditions.elementToBeClickable(payCheckDate), 15);
+            // Enter effective as of date - Not required for COgnizant instance
+            /*waitFor(ExpectedConditions.elementToBeClickable(payCheckDate), 15);
             payCheckDate.clear();
-            payCheckDate.sendKeys(data.getPayCheckDate());
+            payCheckDate.sendKeys(data.getPayCheckDate());*/
             Thread.sleep(2500);
         } catch (Exception e) {
             reportWithScreenShot("Error While User entering Amount and date:" + e.getMessage());
