@@ -276,7 +276,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitNormalTime();
             country.sendKeys(Keys.ENTER);
             country.sendKeys(Keys.TAB);
-
+            waitNormalTime();
             // Enter National ID type
             clickNationalIdType.click();
             waitFor(ExpectedConditions
