@@ -91,8 +91,8 @@ public class Data extends framework.core.models.Data {
     private String actionReasonManageSalary;
     private String currentSalaryAmount;
     private String projectedEndDate;
-	private String correctEmploymentAction;
-	private String correctEmploymentActionReason;
+    private String correctEmploymentAction;
+    private String correctEmploymentActionReason;
 
     // Alpha sorted list of getters
     // most of these items get loaded via bean loader, so normally setters not needed.
@@ -387,11 +387,12 @@ public class Data extends framework.core.models.Data {
         return personNumber;
     }
 
-    public String getPersonName() {
-        return personName;
-    }
     public void setPersonNumber(String personNumber) {
         this.personNumber = personNumber;
+    }
+
+    public String getPersonName() {
+        return personName;
     }
 
     public String getPercentage() {
@@ -456,61 +457,61 @@ public class Data extends framework.core.models.Data {
         return zipCode;
     }
 
-	public String getEmployeeName() {
-		return employeeName;
-	}
+    public String getEmployeeName() {
+        return employeeName;
+    }
 
-	public void setEmployeeName(String employeeName) {
-		this.employeeName = employeeName;
-	}
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
+    }
 
-	public String getActionManageSalary() {
-		return actionManageSalary;
-	}
+    public String getActionManageSalary() {
+        return actionManageSalary;
+    }
 
-	public void setActionManageSalary(String actionManageSalary) {
-		this.actionManageSalary = actionManageSalary;
-	}
+    public void setActionManageSalary(String actionManageSalary) {
+        this.actionManageSalary = actionManageSalary;
+    }
 
-	public String getActionReasonManageSalary() {
-		return actionReasonManageSalary;
-	}
+    public String getActionReasonManageSalary() {
+        return actionReasonManageSalary;
+    }
 
-	public void setActionReasonManageSalary(String actionReasonManageSalary) {
-		this.actionReasonManageSalary = actionReasonManageSalary;
-	}
+    public void setActionReasonManageSalary(String actionReasonManageSalary) {
+        this.actionReasonManageSalary = actionReasonManageSalary;
+    }
 
-	public String getCurrentSalaryAmount() {
-		return currentSalaryAmount;
-	}
+    public String getCurrentSalaryAmount() {
+        return currentSalaryAmount;
+    }
 
-	public void setCurrentSalaryAmount(String currentSalaryAmount) {
-		this.currentSalaryAmount = currentSalaryAmount;
-	}
+    public void setCurrentSalaryAmount(String currentSalaryAmount) {
+        this.currentSalaryAmount = currentSalaryAmount;
+    }
 
-	public String getProjectedEndDate() {
-		return projectedEndDate;
-	}
+    public String getProjectedEndDate() {
+        return projectedEndDate;
+    }
 
-	public void setProjectedEndDate(String projectedEndDate) {
-		this.projectedEndDate = projectedEndDate;
-	}
+    public void setProjectedEndDate(String projectedEndDate) {
+        this.projectedEndDate = projectedEndDate;
+    }
 
-	public String getCorrectEmploymentAction() {
-		return correctEmploymentAction;
-	}
+    public String getCorrectEmploymentAction() {
+        return correctEmploymentAction;
+    }
 
-	public void setCorrectEmploymentAction(String correctEmploymentAction) {
-		this.correctEmploymentAction = correctEmploymentAction;
-	}
+    public void setCorrectEmploymentAction(String correctEmploymentAction) {
+        this.correctEmploymentAction = correctEmploymentAction;
+    }
 
-	public String getCorrectEmploymentActionReason() {
-		return correctEmploymentActionReason;
-	}
+    public String getCorrectEmploymentActionReason() {
+        return correctEmploymentActionReason;
+    }
 
-	public void setCorrectEmploymentActionReason(String correctEmploymentActionReason) {
-		this.correctEmploymentActionReason = correctEmploymentActionReason;
-	}
+    public void setCorrectEmploymentActionReason(String correctEmploymentActionReason) {
+        this.correctEmploymentActionReason = correctEmploymentActionReason;
+    }
 
-	
+
 }

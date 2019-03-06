@@ -1,6 +1,7 @@
 package framework.tests.pages.oracle_fusion_cloud;
 
 import framework.core.drivers.web.WebPage;
+import framework.core.utils.DataLoader;
 import framework.tests.steps.oracle_fusion_cloud.Context;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -78,8 +79,8 @@ public class BasePage<T> extends WebPage {
     // Method to get Current Date
     public String getCurrentDate() {
         //To input current system date into Hire Date Field
-      //  DateFormat dateFormat = new SimpleDateFormat("dd-MMM-YYYY");
-    	  DateFormat dateFormat = new SimpleDateFormat("dd/MM/YYYY");
+        //DateFormat dateFormat = new SimpleDateFormat("dd-MMM-YYYY");
+        DateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
         Date date = new Date();
         return dateFormat.format(date);
     }
@@ -87,7 +88,7 @@ public class BasePage<T> extends WebPage {
     // Click on Submit Button
     public void clickSubmitButton() {
         try {
-        	waitUntilPageLoad();
+            waitUntilPageLoad();
             waitFor(ExpectedConditions.elementToBeClickable(submit), 15);
             submit.click();
             waitShortTime();
@@ -100,7 +101,7 @@ public class BasePage<T> extends WebPage {
     // Click on Ok Button
     public void clickOkButton() {
         try {
-        	waitUntilPageLoad();
+            waitUntilPageLoad();
             waitFor(ExpectedConditions.elementToBeClickable(okButton), 15);
             okButton.click();
             waitShortTime();
@@ -113,7 +114,7 @@ public class BasePage<T> extends WebPage {
     // Click on Ok Button if Warning is displayed
     public void clickWarningOkButton() {
         try {
-        	waitUntilPageLoad();
+            waitUntilPageLoad();
             waitFor(ExpectedConditions.elementToBeClickable(warningBtn), 15);
             reportWithScreenShot("Confirmation message displayed");
             warningBtn.click();
@@ -139,7 +140,7 @@ public class BasePage<T> extends WebPage {
     // Click on Confirm Button
     public void clickConfirmButton() {
         try {
-        	waitUntilPageLoad();
+            waitUntilPageLoad();
             waitFor(ExpectedConditions.elementToBeClickable(confirmBtn), 15);
             confirmBtn.click();
             waitShortTime();
@@ -155,7 +156,7 @@ public class BasePage<T> extends WebPage {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(createBtn), 15);
             createBtn.click();
-            waitShortTime();
+            waitNormalTime();
         } catch (Exception e) {
             reportWithScreenShot("Error While user click on Create button:" + e.getMessage());
             Assert.fail();
@@ -190,15 +191,30 @@ public class BasePage<T> extends WebPage {
     public void clickLinkElement(String linkName) {
         try {
             waitShortTime(); // To handle task pane load time
-            if(linkName.equals("New Person")){
-            waitFor(ExpectedConditions.elementToBeClickable(By.xpath("(//a[text()='" + linkName + "'])[2]")), 15);
-            appWebElement = driver.findElement(By.xpath("(//a[text()='" + linkName + "'])[2]"));            
+            if (linkName.equals("New Person")) {
+                waitFor(ExpectedConditions.elementToBeClickable(By.xpath("(//a[text()='" + linkName + "'])[4]")), 15);
+                appWebElement = driver.findElement(By.xpath("(//a[text()='" + linkName + "'])[4]"));
+            } else {
+                waitFor(ExpectedConditions.elementToBeClickable(By.xpath("(//a[text()='" + linkName + "'])[2]")), 15);
+                appWebElement = driver.findElement(By.xpath("(//a[text()='" + linkName + "'])[2]"));
             }
-            else
-            {
-            	   waitFor(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='" + linkName + "']")), 15);
-                   appWebElement = driver.findElement(By.xpath("//a[text()='" + linkName + "']"));   
-            }
+            reportWithScreenShot("Link :" + linkName + " selected from Navigator pane");
+            waitFor(ExpectedConditions.elementToBeClickable(appWebElement), 15);
+            assertThat(appWebElement.isDisplayed()).isTrue();
+            appWebElement.click();
+            waitUntilPageLoad();
+        } catch (Exception e) {
+            reportWithScreenShot("Unable to open :" + linkName + " due to " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // Common Method to Select Links under Task Pane
+    public void clickLinkElementInTaskPane(String linkName) {
+        try {
+            waitShortTime(); // To handle task pane load time
+            waitFor(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='" + linkName + "']")), 15);
+            appWebElement = driver.findElement(By.xpath("//a[text()='" + linkName + "']"));
             reportWithScreenShot("Link :" + linkName + " selected from Task pane");
             waitFor(ExpectedConditions.elementToBeClickable(appWebElement), 15);
             assertThat(appWebElement.isDisplayed()).isTrue();
@@ -263,49 +279,60 @@ public class BasePage<T> extends WebPage {
             Assert.fail();
         }
     }
-    
-    
-  //Select the dropdown value passed as parameter in an input field
+
+
+    //Select the dropdown value passed as parameter in an input field
+
     /**
      * This method will select the dropdown value passed as parameter in an input field
+     *
      * @param element
      * @param dropdownValue
      * @author Rakesh Ghosal
      */
-    public void selectInputDropdownValue(WebElement element,String dropdownValue)
-    {
-    	try
-    	{
-    		String dropdownXpathValue="//li[text()='"+dropdownValue+"']";
-    		waitFor(ExpectedConditions.elementToBeClickable(element), 15);
-    		element.click();
-    		waitFor(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(dropdownXpathValue))), 15);
-    		driver.findElement(By.xpath(dropdownXpathValue)).click();
-    		
-    		
-    	}catch(Exception e)
-    	{
-    		reportWithScreenShot("Error While selecting dropdown value:" + e.getMessage());
-    		Assert.fail();
-    	}
+    public void selectInputDropdownValue(WebElement element, String dropdownValue) {
+        try {
+            String dropdownXpathValue = "//li[text()='" + dropdownValue + "']";
+            waitFor(ExpectedConditions.elementToBeClickable(element), 15);
+            element.click();
+            waitFor(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(dropdownXpathValue))), 15);
+            driver.findElement(By.xpath(dropdownXpathValue)).click();
+
+
+        } catch (Exception e) {
+            reportWithScreenShot("Error While selecting dropdown value:" + e.getMessage());
+            Assert.fail();
+        }
     }
-    
-    
+
+
     /**
      * This method will validate if a Web Element is displayed or not
+     *
      * @param element
      * @author Rakesh Ghosal
      */
     public void validateElementIsDisplayed(WebElement element) {
-		try {
-			waitUntilPageLoad();
-			waitFor(ExpectedConditions.elementToBeClickable(element), 15);
-			assertThat(element.isDisplayed()).isTrue();
-		} catch (Exception e) {
-			reportWithScreenShot("Element is not present:" + e.getMessage());
-			Assert.fail();
-		}
-	}
+        try {
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(element), 15);
+            assertThat(element.isDisplayed()).isTrue();
+        } catch (Exception e) {
+            reportWithScreenShot("Element is not present:" + e.getMessage());
+            Assert.fail();
+        }
+    }
 
+    /**
+     * This method will Update data to excel sheet
+     *
+     * @param rowName
+     * @param colName
+     * @param valToUpdate
+     * @author Raghavendran Ramasubramanian
+     */
+    public void writeToExcel(String rowName, String colName, String valToUpdate) {
+        DataLoader.writeDataToExcel(rowName, colName, valToUpdate);
+    }
 }
 

@@ -18,6 +18,7 @@ public class CommonSteps implements En {
             context.setData(testScenario);
             data = context.getData();
             context.setPages(context);
+            context.loginAndHome.getCurrentDate();
         });
 
         And("^user is on the oracle fusion login page$", () -> {
@@ -70,5 +71,8 @@ public class CommonSteps implements En {
             context.loginAndHome.checkLoginPageAvailable();
         });
 
+        And("^user updated the Excel file with Row Name (.*?) and Column Name (.*?) with value (.*?)$", (String rowName, String colName, String valToUpdate) -> {
+            context.loginAndHome.writeToExcel(rowName, colName, valToUpdate);
+        });
     }
 }

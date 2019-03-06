@@ -24,6 +24,7 @@ public class Context extends framework.core.models.Context {
     public LineManagerPage lineManager;
     public PersonManagementPage personManagment;
     public ManageCalendarEventsPage manageCalendarEvents;
+    public String scenarioName = null;
     private Logger logger = LogManager.getLogger(Context.class);
     private WebDriver driver;
     private Config config;
@@ -59,6 +60,7 @@ public class Context extends framework.core.models.Context {
     }
 
     public void setData(String key) {
+        this.scenarioName = key;
         data = (Data) dataStore.getNode(key);
     }
 
@@ -90,6 +92,7 @@ public class Context extends framework.core.models.Context {
             e.printStackTrace();
         }
     }
+
     @After
     public void afterScenario(Scenario scenario) {
         logger.debug("Finishing Feature: {} - Scenario: {}", getFeatureFile(scenario.getId()), scenario.getName());
@@ -109,6 +112,7 @@ public class Context extends framework.core.models.Context {
     private String getPath() {
         return System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "testdata";
     }
+
     public void setPages(Context context) {
         lineManager = new LineManagerPage(context);
         employeeEditMyDetails = new EmployeeEditMyDetailsPage(context);

@@ -1,8 +1,16 @@
 @TALENT_ACQUISITION
 Feature: New Hire and Related Activities
 
-  @LOGIN_LOGOUT
+  @TEST_EXCEL
+  Scenario Outline: Perform Login to Oracle Fusion Cloud
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user updated the Excel file with Row Name <Test Scenario> and Column Name personNumber with value 500070
 
+    Examples:
+      | Test Scenario           | Test File Name | Test Sheet Name    |
+      | UPDATE_REMOVE_I9_STATUS | TestData.xlsx  | Talent_Acquisition |
+
+  @LOGIN_LOGOUT
   Scenario Outline: Perform Login to Oracle Fusion Cloud
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user is on the oracle fusion login page
@@ -19,6 +27,7 @@ Feature: New Hire and Related Activities
   @NEW_HIRE
   Scenario Outline:  Create New Hire with veteran data
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user updated the Excel file with Row Name <Test Scenario> and Column Name personNumber with value 500070
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
     And user clicks on New Person link in Navigator Pane
@@ -185,8 +194,8 @@ Feature: New Hire and Related Activities
       | Test Scenario           | Test File Name | Test Sheet Name    |
       | UPDATE_REMOVE_I9_STATUS | TestData.xlsx  | Talent_Acquisition |
 
-@EDIT_PROJECTED_ENDDATE
-    Scenario Outline:Perform Edit Projected end date for limited term Employee
+  @EDIT_PROJECTED_ENDDATE
+  Scenario Outline:Perform Edit Projected end date for limited term Employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -201,16 +210,16 @@ Feature: New Hire and Related Activities
     Then Correct Employment page should be displayed
     When user Enter all the Mandatory fields of Correct Employment window and click Ok button
     Then Projected End Date field Should be Editable
-    When User enters Projected End Date 
-    And User Clicks on Review Button 
+    When User enters Projected End Date
+    And User Clicks on Review Button
     Then Review page should be displayed in view only mode
     When user clicks on submit button
     And clicks ok in the Warning and confirmation message displayed
     Then Page should be submitted successfully
     And user clicks on Sign Out option
     Then Sign out should be successful
-      
-        Examples:
+
+    Examples:
       | Test Scenario          | Test File Name | Test Sheet Name    |
       | EDIT_PROJECTED_ENDDATE | TestData.xlsx  | Talent_Acquisition |
 

@@ -19,7 +19,7 @@ public class TalentAcquisitionNewHireSteps implements En {
 
         When("user clicks on (.*?) on right side of the page under Tasks pane", (String linkName) -> {
             context.newPerson.clickTaskButton();
-            context.newPerson.clickLinkElement(linkName);
+            context.newPerson.clickLinkElementInTaskPane(linkName);
         });
 
         Then("new Hire an employee screen should be displayed", () -> {
@@ -118,7 +118,7 @@ public class TalentAcquisitionNewHireSteps implements En {
             context.personManagment.clickPayrollOption();
             context.personManagment.manageElementEntriesClick();
         });
-        
+
         Then("manage element entries screen should be displayed", () -> {
             context.personManagment.checkManageElementEntriesAvailable();
         });
@@ -168,27 +168,32 @@ public class TalentAcquisitionNewHireSteps implements En {
         });
 
         When("user clicks on Edit and select Correct option", () -> {
-       	 context.personManagment.clickEditCorrect();
-       });
+            context.personManagment.clickEditCorrect();
+        });
 
         Then("Correct Employment page should be displayed", () -> {
-          context.personManagment.checkCorrectEmployementWindowDisplayed();
+            context.personManagment.checkCorrectEmployementWindowDisplayed();
         });
 
         When("user Enter all the Mandatory fields of Correct Employment window and click Ok button", () -> {
-        	context.personManagment.enterCorrectEmploymentMandatoryFields();
+            context.personManagment.enterCorrectEmploymentMandatoryFields();
         });
 
-       Then("Projected End Date field Should be Editable", () -> {
-         context.personManagment.checkProjectedEndDateEditable();
-       });
+        Then("Projected End Date field Should be Editable", () -> {
+            context.personManagment.checkProjectedEndDateEditable();
+        });
 
-       When("User enters Projected End Date", () -> {
-         context.personManagment.fillProjectedEndDate();
-       });
+        When("User enters Projected End Date", () -> {
+            context.personManagment.fillProjectedEndDate();
+        });
 
-       And("User Clicks on Review Button", () -> {
-         context.personManagment.clickReviewButton();
-       });
+        And("User Clicks on Review Button", () -> {
+            context.personManagment.clickReviewButton();
+        });
+
+        When("user click on Done button at the top", () -> {
+            context.personManagment.clickDoneButton();
+        });
+
     }
 }

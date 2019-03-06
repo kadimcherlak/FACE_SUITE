@@ -75,22 +75,22 @@ public class EmployeeEditMyDetailsSteps implements En {
         When("user select Emergency contact check box", () -> {
             context.employeeEditMyDetails.clickEmergencyContactCheckbox();
         });
-        
+
         When("user clicks on More Information icon under name icon", () -> {
-        	context.employeeEditMyDetails.clickMoreInformationImage();
+            context.employeeEditMyDetails.clickMoreInformationImage();
         });
-        
+
         Then("A pop up window with employee details should be displayed", () -> {
-        	context.employeeEditMyDetails.checkMoreInformationPopupDisplayed();
+            context.employeeEditMyDetails.checkMoreInformationPopupDisplayed();
         });
-        
+
         When("user clicks on Actions \\(v) button", () -> {
-        	context.employeeEditMyDetails.clickMoreInformationActionButton();
+            context.employeeEditMyDetails.clickMoreInformationActionButton();
         });
 
 
         Then("the values Absences,Compensation,Personal and Employment should be displayed", () -> {
-        	context.employeeEditMyDetails.validateLinksPresentInMoreInformationPage();
+            context.employeeEditMyDetails.validateLinksPresentInMoreInformationPage();
         });
 
 
@@ -122,7 +122,7 @@ public class EmployeeEditMyDetailsSteps implements En {
         });
 
 
-        When("user clicks on Add button in Components tab",() -> {
+        When("user clicks on Add button in Components tab", () -> {
             context.employeeEditMyDetails.clickAddComponent();
         });
 
@@ -159,73 +159,74 @@ public class EmployeeEditMyDetailsSteps implements En {
             context.employeeEditMyDetails.clickBtnOK_WarningModal();
 
         });
-        
+
         When("user clicks Manage Personal Payment Methods under Payroll option", () -> {
-        	context.employeeEditMyDetails.clcikOnManagePersonalPaymentMethod();
+            context.employeeEditMyDetails.clcikOnManagePersonalPaymentMethod();
         });
-        
+
         Then("Create Personal Payment Method page should be displayed", () -> {
-        	context.employeeEditMyDetails.validatePersonalPaymentMethodPage();
+            context.employeeEditMyDetails.validatePersonalPaymentMethodPage();
         });
-        
+
         Then("user clicks on + icon", () -> {
-        	context.employeeEditMyDetails.clickCreateNewPaymentMethodLink();
+            context.employeeEditMyDetails.clickCreateNewPaymentMethodLink();
         });
-        
+
         Then("Personal Payment Method page should be displayed", () -> {
-        	context.employeeEditMyDetails.validateCreatePersonalPaymentMethodPage();
+            context.employeeEditMyDetails.validateCreatePersonalPaymentMethodPage();
         });
-        
+
         Then("user enter value for Name,Payment Method and Percentage", () -> {
-        	context.employeeEditMyDetails.enterValuesInCreatePersonalPaymentPage();
+            context.employeeEditMyDetails.enterValuesInCreatePersonalPaymentPage();
         });
-        
+
         Then("user clicks on + icon under Bank Accounts", () -> {
-        	context.employeeEditMyDetails.clickCreateNewPaymentMethodLink();
+            context.employeeEditMyDetails.clickCreateNewPaymentMethodLink();
         });
-        
+
         Then("Create Bank Account page should be displayed", () -> {
-        	context.employeeEditMyDetails.validateBankAccountCreatePage();
+            context.employeeEditMyDetails.validateBankAccountCreatePage();
         });
-        
+
         Then("enter the bank account details", () -> {
-        	context.employeeEditMyDetails.enterValuesInBankAccountCreatePage();
+            context.employeeEditMyDetails.enterValuesInBankAccountCreatePage();
         });
-        
+
         Then("user clicks on Submit button", () -> {
-        	context.employeeEditMyDetails.clickSubmitButton();
+            context.employeeEditMyDetails.clickSubmitButton();
         });
-        
+
         Then("Overview personal payments page will be displayed", () -> {
-        	context.employeeEditMyDetails.validatePersonalPaymentMethodPage();
+            context.employeeEditMyDetails.validatePersonalPaymentMethodPage();
         });
-        
+
         When("user clicks on edit button on top right side of the page", () -> {
-        	context.employeeEditMyDetails.clickEditButton();
+            context.employeeEditMyDetails.clickEditButton();
         });
-        
+
         Then("Contact Information page should be displayed", () -> {
-        	context.employeeEditMyDetails.validateContactInformationPage();
+            context.employeeEditMyDetails.validateContactInformationPage();
         });
-        
+
         Then("user clicks on Contact Information section", () -> {
-        	context.employeeEditMyDetails.clickContactInformationLink();
+            context.employeeEditMyDetails.clickContactInformationLink();
         });
-        
+
         When("user clicks on Edit\\(Pencil Symbol) in the Address section", () -> {
-        	context.employeeEditMyDetails.clickEditAddressLink();
+            context.employeeEditMyDetails.clickEditAddressLink();
         });
-        
+
         When("Verify that the address format is valid", () -> {
-        	context.employeeEditMyDetails.verifyAddressFormat();;
+            context.employeeEditMyDetails.verifyAddressFormat();
+            ;
         });
-        
+
         When("Click on Cancel button", () -> {
-        	context.employeeEditMyDetails.clickCancelButton();
+            context.employeeEditMyDetails.clickCancelButton();
         });
-        
+
         When("Click Yes button", () -> {
-        	context.employeeEditMyDetails.clickYesButtonInPopUp();
+            context.employeeEditMyDetails.clickYesButtonInPopUp();
         });
 
     }

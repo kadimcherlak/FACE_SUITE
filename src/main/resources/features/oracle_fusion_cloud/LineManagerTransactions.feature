@@ -84,7 +84,7 @@ Feature: Line Manager Transaction and Approval
       | Test Scenario            | Test File Name | Test Sheet Name      |
       | PPS_APPROVES_TERMINATION | TestData.xlsx  | Termination_Approval |
 
-@LINEMANAGER_CHANGE_OF_SALARY_ACTION
+  @LINEMANAGER_CHANGE_OF_SALARY_ACTION
   Scenario Outline: Line Manager performs a Change of salary with Reason Change in Working Hours for employee moving to part-time hours
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -104,7 +104,7 @@ Feature: Line Manager Transaction and Approval
     Then The transaction should be saved properly and My Team page should be displayed
     And user clicks on Sign Out option
     Then Sign out should be successful
-   
-   Examples:
-      | Test Scenario                       | Test File Name | Test Sheet Name|
-      | LINEMANAGER_CHANGE_OF_SALARY_ACTION | TestData.xlsx  | Line_Manager   |
+
+    Examples:
+      | Test Scenario                       | Test File Name | Test Sheet Name |
+      | LINEMANAGER_CHANGE_OF_SALARY_ACTION | TestData.xlsx  | Line_Manager    |

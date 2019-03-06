@@ -70,22 +70,22 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//label[@class='x1cd']")
     private WebElement emergencyContactCheckbox;
-    
+
     @FindBy(xpath = "//img[@title='More Information']")
     private WebElement myDetailsMoreInformation;
-    
+
     @FindBy(xpath = "//a[@title='Recent Actions']")
     private WebElement moreInformationPopUp;
-    
+
     @FindBy(xpath = "//a[@title='Absences']")
     private WebElement moreInformationAbsencesLink;
-    
+
     @FindBy(xpath = "//a[@title='Compensation']")
     private WebElement moreInformationCompensationLink;
-    
+
     @FindBy(xpath = "//a[@title='Personal and Employment']")
     private WebElement moreInformationPersonalAndEmploymentLink;
-    
+
     @FindBy(xpath = "//img[@title='Actions']")
     private WebElement moreInformationActionButton;
 
@@ -181,34 +181,34 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//tr[7]//td[2][@class='xy7 xy6']/span[1]")
     private WebElement txtAdjustAmount;
-    
+
     @FindBy(xpath = "//a[@title='Personal Payment Methods']")
     private WebElement personalPaymentMethods;
-    
+
     @FindBy(xpath = "(//a[text()='Manage Personal Payment Methods'])[1]")
     private WebElement ManagePersonalPaymentMethods;
-    
+
     @FindBy(xpath = "//th/descendant::span[contains(text(),'Processing Order')]")
     private WebElement createPersonalPaymentMethodIndicator;
-    
+
     @FindBy(xpath = "//img[@title='Create']")
     private WebElement create_Btn;
-    
+
     @FindBy(xpath = "//h1[contains(text(),'Create Personal Payment Method')]")
     private WebElement personalPaymentMethodPageIndicator;
-    
+
     @FindBy(xpath = "//label[text()='Name']/following::input[1]")
     private WebElement bankName;
-    
+
     @FindBy(xpath = "//label[text()='Organization Payment Method']//following::input[1]")
     private WebElement orgPaymentMethod;
-    
+
     @FindBy(xpath = "//label[text()='Percentage']//following::input[1]")
     private WebElement percentage;
-    
+
     @FindBy(xpath = "//div[contains(text(),'Create Bank Account')]")
     private WebElement createBankAccountPageIndicator;
-    
+
     @FindBy(xpath = "//label[text()='Account Number']//following::input[1]")
     private WebElement AccountNumber;
 
@@ -220,55 +220,54 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//label[text()='Routing Number']//following::input[1]")
     private WebElement RoutingNumber;
-    
+
     @FindBy(xpath = "//button[text()='Save and Close']")
     private WebElement saveclose_btn;
-    
+
     @FindBy(xpath = "(//a[@role='button'])[2]")
     private WebElement submitButton;
-    
+
     @FindBy(xpath = "//button[contains(.,'Edit')]")
     private WebElement editButton;
-    
+
     @FindBy(xpath = "//h1[contains(text(),'Edit My Details: Contact Information')]")
     private WebElement contactInformationPageIndicator;
-    
+
     @FindBy(xpath = "//div[contains(text(),'Contact Information')]")
     private WebElement contactInformationLink;
-    
+
     @FindBy(xpath = "//img[@alt='Edit']")
     private WebElement EditBtn;
-    
+
     @FindBy(xpath = "//label[text()='Effective Start Date']/parent::td/descendant::span[@title='Required']")
     private WebElement effectiveStartDateRequiredValidation;
-    
+
     @FindBy(xpath = "//label[text()='Address Line 1']/parent::td/descendant::span[@title='Required']")
     private WebElement addLine1RequiredValidation;
-    
+
     @FindBy(xpath = "//label[text()='ZIP Code']/parent::td/descendant::span[@title='Required']")
     private WebElement zipCodeRequiredValidation;
-    
+
     @FindBy(xpath = "//label[text()='City']/parent::td/descendant::span[@title='Required']")
     private WebElement cityRequiredValidation;
-    
+
     @FindBy(xpath = "//label[text()='State']/parent::td/descendant::span[@title='Required']")
     private WebElement stateRequiredValidation;
-    
+
     @FindBy(xpath = "//td/descendant::label[text()='Effective Start Date']/preceding::tr[1]/descendant::label[contains(text(),'Type')]")
     private WebElement addressType;
-    
+
     @FindBy(xpath = "//label[text()='Country']")
     private WebElement country;
-    
+
     @FindBy(xpath = "//label[text()='Address Line 2']")
     private WebElement addressLine2;
-    
+
     @FindBy(xpath = "//a[@accesskey='C']")
     private WebElement cancelBtn;
-    
+
     @FindBy(xpath = "//button[text()='Yes']")
     private WebElement yesBtn;
-    
 
 
     public EmployeeEditMyDetailsPage(Context context) {
@@ -476,11 +475,12 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-    
+
     // User click on More Information below My Details Page
-    
+
     /**
      * This method will click on the more information icon under my details page
+     *
      * @author Rakesh Ghosal
      */
     public void clickMoreInformationImage() {
@@ -494,9 +494,10 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-    
+
     /**
      * This method will validate if the pop up is displayed or not after clicking on more information in my details page
+     *
      * @author Rakesh Ghosal
      */
     public void checkMoreInformationPopupDisplayed() {
@@ -510,9 +511,10 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-    
+
     /**
      * This method will click on the more information action button page
+     *
      * @author Rakesh Ghosal
      */
     public void clickMoreInformationActionButton() {
@@ -526,17 +528,18 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-    
+
     /**
      * This method will validate Absences, Compensation , Personal and Employment link in more information link
+     *
      * @author Rakesh Ghosal
      */
     public void validateLinksPresentInMoreInformationPage() {
         try {
-        	assertThat(moreInformationActionButton.isDisplayed()).isTrue();
-        	assertThat(moreInformationCompensationLink.isDisplayed()).isTrue();
-        	assertThat(moreInformationPersonalAndEmploymentLink.isDisplayed()).isTrue();
-        	reportWithScreenShot("Checking if My Details more information Absences, Compensation , Personal and Employment link in more information link is displayed");
+            assertThat(moreInformationActionButton.isDisplayed()).isTrue();
+            assertThat(moreInformationCompensationLink.isDisplayed()).isTrue();
+            assertThat(moreInformationPersonalAndEmploymentLink.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if My Details more information Absences, Compensation , Personal and Employment link in more information link is displayed");
         } catch (Exception e) {
             reportWithScreenShot("Checking if My Details more information Absences, Compensation , Personal and Employment link in more information link is displayed:" + e.getMessage());
             Assert.fail();
@@ -750,7 +753,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             waitFor(ExpectedConditions.elementToBeClickable(usHourlyWages40), 15);
             assertThat(usHourlyWages40.isDisplayed()).isTrue();
             usHourlyWages40.click();
-            reportWithScreenShot( " is selected from dropdown:");
+            reportWithScreenShot(" is selected from dropdown:");
         } catch (Exception e) {
             reportWithScreenShot("Error While selecting  from dropdown:" + e.getMessage());
             Assert.fail();
@@ -791,303 +794,311 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
 
     }
-    
+
     /**
-	 * This method will click on manage personal payment method
-	 * 
-	 * @author Rakesh Ghosal
-	 */
-	public void clcikOnManagePersonalPaymentMethod() {
-		try {
+     * This method will click on manage personal payment method
+     *
+     * @author Rakesh Ghosal
+     */
+    public void clcikOnManagePersonalPaymentMethod() {
+        try {
 
-			waitFor(ExpectedConditions.elementToBeClickable(personalPaymentMethods), 15);
-			personalPaymentMethods.click();
-			Thread.sleep(1000);
-			waitFor(ExpectedConditions.elementToBeClickable(ManagePersonalPaymentMethods), 15);
-			ManagePersonalPaymentMethods.click();
+            waitFor(ExpectedConditions.elementToBeClickable(personalPaymentMethods), 15);
+            personalPaymentMethods.click();
+            Thread.sleep(1000);
+            waitFor(ExpectedConditions.elementToBeClickable(ManagePersonalPaymentMethods), 15);
+            ManagePersonalPaymentMethods.click();
 
-		} catch (Exception e) {
+        } catch (Exception e) {
 
-			reportWithScreenShot("Error while click on manage personal payment method:" + e.getMessage());
-			Assert.fail();
-		}
+            reportWithScreenShot("Error while click on manage personal payment method:" + e.getMessage());
+            Assert.fail();
+        }
 
-	}
-	
-	/**
-	 * This method validate if we and landed on create personal payment method
-	 * page
-	 * 
-	 * @author Rakesh Ghosal
-	 */
-	public void validatePersonalPaymentMethodPage() {
-		try {
+    }
 
-			waitUntilPageLoad();
-			waitFor(ExpectedConditions.elementToBeClickable(createPersonalPaymentMethodIndicator), 15);
-			assertThat(createPersonalPaymentMethodIndicator.isDisplayed()).isTrue();
-			reportWithScreenShot("Checking if Personal Payment Method Page is displayed");
+    /**
+     * This method validate if we and landed on create personal payment method
+     * page
+     *
+     * @author Rakesh Ghosal
+     */
+    public void validatePersonalPaymentMethodPage() {
+        try {
 
-		} catch (Exception e) {
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(createPersonalPaymentMethodIndicator), 15);
+            assertThat(createPersonalPaymentMethodIndicator.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if Personal Payment Method Page is displayed");
 
-			reportWithScreenShot("Create Personal Payment Method page is not displayed:" + e.getMessage());
-			Assert.fail();
-		}
+        } catch (Exception e) {
 
-	}
-	
-	/**
-	 * This method click on create new payment method button
-	 * 
-	 * @author Rakesh Ghosal
-	 */
-	public void clickCreateNewPaymentMethodLink() {
-		try {
+            reportWithScreenShot("Create Personal Payment Method page is not displayed:" + e.getMessage());
+            Assert.fail();
+        }
 
-			waitFor(ExpectedConditions.elementToBeClickable(create_Btn), 15);
-			create_Btn.click();
+    }
 
-		} catch (Exception e) {
+    /**
+     * This method click on create new payment method button
+     *
+     * @author Rakesh Ghosal
+     */
+    public void clickCreateNewPaymentMethodLink() {
+        try {
 
-			reportWithScreenShot("Create new payment method operation is not done:" + e.getMessage());
-			Assert.fail();
-		}
+            waitFor(ExpectedConditions.elementToBeClickable(create_Btn), 15);
+            create_Btn.click();
 
-	}
-	
-	/**
-	 * This method validate if we and landed on create personal payment method
-	 * page
-	 * 
-	 * @author Rakesh Ghosal
-	 */
-	public void validateCreatePersonalPaymentMethodPage() {
-		try {
+        } catch (Exception e) {
 
-			waitUntilPageLoad();
-			waitFor(ExpectedConditions.elementToBeClickable(personalPaymentMethodPageIndicator), 15);
-			assertThat(personalPaymentMethodPageIndicator.isDisplayed()).isTrue();
-			reportWithScreenShot("Checking if Create Personal Payment Method page is displayed");
+            reportWithScreenShot("Create new payment method operation is not done:" + e.getMessage());
+            Assert.fail();
+        }
 
-		} catch (Exception e) {
+    }
 
-			reportWithScreenShot("Create Personal Payment Method page is not displayed:" + e.getMessage());
-			Assert.fail();
-		}
+    /**
+     * This method validate if we and landed on create personal payment method
+     * page
+     *
+     * @author Rakesh Ghosal
+     */
+    public void validateCreatePersonalPaymentMethodPage() {
+        try {
 
-	}
-	
-	
-	/**
-	 * This method will enter value in the fileds of create personal payment
-	 * page
-	 * 
-	 * @author Rakesh Ghosal
-	 */
-	public void enterValuesInCreatePersonalPaymentPage() {
-		try {
-			waitFor(ExpectedConditions.elementToBeClickable(bankName), 15);
-			bankName.clear();
-			bankName.sendKeys(data.getBankName());
-			try {
-				if (percentage.isDisplayed()) {
-					waitFor(ExpectedConditions.elementToBeClickable(percentage), 15);
-					percentage.clear();
-					percentage.sendKeys(data.getPercentage());
-				}
-			} catch (Exception e) {
-				System.out.println("Percentage is not displayed,skipping");
-			}
-			selectInputDropdownValue(orgPaymentMethod, data.getOrganizationPaymentMethod());
-			reportWithScreenShot("Entering values in create personal payment page");
-		} catch (Exception e) {
-			reportWithScreenShot("Error while entering bank name,percentage and organization payment method:" + e.getMessage());
-		}
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(personalPaymentMethodPageIndicator), 15);
+            assertThat(personalPaymentMethodPageIndicator.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if Create Personal Payment Method page is displayed");
 
-	}
-	
-	/**
-	 * This method will validate if we are landed on bank account create page
-	 * @author Rakesh Ghosal
-	 */
-	public void validateBankAccountCreatePage() {
-		try {
-			waitUntilPageLoad();
-			waitFor(ExpectedConditions.elementToBeClickable(createBankAccountPageIndicator), 15);
-			assertThat(createBankAccountPageIndicator.isDisplayed()).isTrue();
-			reportWithScreenShot("Checking if Bank Account create page is displayed");
-		} catch (Exception e) {
-			reportWithScreenShot("Create Bank account page indicator is not displayed:" + e.getMessage());
-		}
-	}
-	
-	/**
-	 * This method will enter value in the fileds of bank account create page
-	 * page
-	 * 
-	 * @author Rakesh Ghosal
-	 */
-	public void enterValuesInBankAccountCreatePage() {
-		try {
-			waitFor(ExpectedConditions.elementToBeClickable(AccountNumber), 15);
-			AccountNumber.clear();
-			AccountNumber.sendKeys(data.getAccountNumber());
-			selectInputDropdownValue(AccountType, data.getAccountType());
-			waitFor(ExpectedConditions.elementToBeClickable(AccountHolder), 15);
-			AccountHolder.clear();
-			AccountHolder.sendKeys(data.getAccountHolder());
-			waitFor(ExpectedConditions.elementToBeClickable(RoutingNumber), 15);
-			RoutingNumber.clear();
-			RoutingNumber.sendKeys(data.getRoutingNumber());
-			waitFor(ExpectedConditions.elementToBeClickable(saveclose_btn), 15);
-			reportWithScreenShot("Entering values in bank account create page");
-			saveclose_btn.click();
-			waitFor(ExpectedConditions.invisibilityOf(saveclose_btn));
-			Thread.sleep(1000);
-			
-		} catch (Exception e) {
-			reportWithScreenShot("Error while entering bank details:" + e.getMessage());
-		}
+        } catch (Exception e) {
 
-	}
-	
-	/**
-	 * This method will click on submit button after Bank Account creation is done
-	 * @author Rakesh Ghosal
-	 */
-	public void clickSubmitButton() {
-		try {
-			waitFor(ExpectedConditions.elementToBeClickable(submitButton), 15);
-			submitButton.click();
-			reportWithScreenShot("Clicking submit button");
-			
-		} catch (Exception e) {
-			reportWithScreenShot("Submit button is not clicked properly:" + e.getMessage());
-		}
+            reportWithScreenShot("Create Personal Payment Method page is not displayed:" + e.getMessage());
+            Assert.fail();
+        }
 
-	}
-	
-	/**
-	 * This method will click on edit button at the upper right corner in my details page
-	 * @author Rakesh Ghosal
-	 */
-	public void clickEditButton() {
-		try {
-			waitFor(ExpectedConditions.elementToBeClickable(editButton), 15);
-			editButton.click();
-			reportWithScreenShot("Clicking edit button");
-			
-		} catch (Exception e) {
-			reportWithScreenShot("Edit button is not clicked properly:" + e.getMessage());
-			Assert.fail();
-		}
+    }
 
-	}
-	
-	/**
-	 * This method will validate if we are landed on contact information page
-	 * @author Rakesh Ghosal
-	 */
-	public void validateContactInformationPage() {
-		try {
-			waitUntilPageLoad();
-			waitFor(ExpectedConditions.elementToBeClickable(contactInformationPageIndicator), 15);
-			assertThat(contactInformationPageIndicator.isDisplayed()).isTrue();
-			reportWithScreenShot("Checking if we are landed on contact information page");
-		} catch (Exception e) {
-			reportWithScreenShot("Contact information page is not displayed:" + e.getMessage());
-		}
-	}
-	
-	
-	/**
-	 * This method will click on contact information link in contact information page
-	 * @author Rakesh Ghosal
-	 */
-	public void clickContactInformationLink() {
-		try {
-			waitFor(ExpectedConditions.elementToBeClickable(contactInformationLink), 15);
-			contactInformationLink.click();
-			reportWithScreenShot("Clicking contact information link");
-			
-		} catch (Exception e) {
-			reportWithScreenShot("Contact information link is not clicked properly:" + e.getMessage());
-			Assert.fail();
-		}
 
-	}
-	
-	/**
-	 * This method will click on edit address button
-	 * @author Rakesh Ghosal
-	 */
-	public void clickEditAddressLink() {
-		try {
-			waitFor(ExpectedConditions.elementToBeClickable(EditBtn), 15);
-			EditBtn.click();
-			reportWithScreenShot("Clicking edit address link in Edit my details contact information page");
-			
-		} catch (Exception e) {
-			reportWithScreenShot("Edit address link is not clicked in Edit my details contact information page:" + e.getMessage());
-			Assert.fail();
-		}
+    /**
+     * This method will enter value in the fileds of create personal payment
+     * page
+     *
+     * @author Rakesh Ghosal
+     */
+    public void enterValuesInCreatePersonalPaymentPage() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(bankName), 15);
+            bankName.clear();
+            bankName.sendKeys(data.getBankName());
+            try {
+                if (percentage.isDisplayed()) {
+                    waitFor(ExpectedConditions.elementToBeClickable(percentage), 15);
+                    percentage.clear();
+                    percentage.sendKeys(data.getPercentage());
+                }
+            } catch (Exception e) {
+                System.out.println("Percentage is not displayed,skipping");
+            }
+            selectInputDropdownValue(orgPaymentMethod, data.getOrganizationPaymentMethod());
+            reportWithScreenShot("Entering values in create personal payment page");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while entering bank name,percentage and organization payment method:" + e.getMessage());
+        }
 
-	}
-	
-	/**
-	 * Verify that the address format
-	 * @author Rakesh Ghosal
-	 */
-	public void verifyAddressFormat() {
-		try {
-			validateElementIsDisplayed(effectiveStartDateRequiredValidation);
-			validateElementIsDisplayed(addLine1RequiredValidation);
-			validateElementIsDisplayed(zipCodeRequiredValidation);
-			validateElementIsDisplayed(cityRequiredValidation);
-			validateElementIsDisplayed(stateRequiredValidation);
-			validateElementIsDisplayed(addressType);
-			validateElementIsDisplayed(country);
-			validateElementIsDisplayed(addressLine2);
-			reportWithScreenShot("Clicking if address format is valid");
-		} catch (Exception e) {
-			reportWithScreenShot("Address format is not valid:" + e.getMessage());
-			Assert.fail();
-		}
+    }
 
-	}
-	
-	/**
-	 * This method will click on cancel button
-	 * @author Rakesh Ghosal
-	 */
-	public void clickCancelButton() {
-		try {
-			waitFor(ExpectedConditions.elementToBeClickable(cancelBtn), 15);
-			cancelBtn.click();
-			reportWithScreenShot("Clicking Cancel button");
-		} catch (Exception e) {
-			reportWithScreenShot("Cancel button is not clicked:" + e.getMessage());
-			Assert.fail();
-		}
+    /**
+     * This method will validate if we are landed on bank account create page
+     *
+     * @author Rakesh Ghosal
+     */
+    public void validateBankAccountCreatePage() {
+        try {
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(createBankAccountPageIndicator), 15);
+            assertThat(createBankAccountPageIndicator.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if Bank Account create page is displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Create Bank account page indicator is not displayed:" + e.getMessage());
+        }
+    }
 
-	}
-	
-	/**
-	 * This method will click on Yes button in the pop up
-	 * @author Rakesh Ghosal
-	 */
-	public void clickYesButtonInPopUp() {
-		try {
-			waitFor(ExpectedConditions.elementToBeClickable(yesBtn), 15);
-			yesBtn.click();
-			reportWithScreenShot("Clicking yes button in pop up");
-		} catch (Exception e) {
-			reportWithScreenShot("Yes button is not clicked in pop up:" + e.getMessage());
-			Assert.fail();
-		}
+    /**
+     * This method will enter value in the fileds of bank account create page
+     * page
+     *
+     * @author Rakesh Ghosal
+     */
+    public void enterValuesInBankAccountCreatePage() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(AccountNumber), 15);
+            AccountNumber.clear();
+            AccountNumber.sendKeys(data.getAccountNumber());
+            selectInputDropdownValue(AccountType, data.getAccountType());
+            waitFor(ExpectedConditions.elementToBeClickable(AccountHolder), 15);
+            AccountHolder.clear();
+            AccountHolder.sendKeys(data.getAccountHolder());
+            waitFor(ExpectedConditions.elementToBeClickable(RoutingNumber), 15);
+            RoutingNumber.clear();
+            RoutingNumber.sendKeys(data.getRoutingNumber());
+            waitFor(ExpectedConditions.elementToBeClickable(saveclose_btn), 15);
+            reportWithScreenShot("Entering values in bank account create page");
+            saveclose_btn.click();
+            waitFor(ExpectedConditions.invisibilityOf(saveclose_btn));
+            Thread.sleep(1000);
 
-	}
-    
+        } catch (Exception e) {
+            reportWithScreenShot("Error while entering bank details:" + e.getMessage());
+        }
+
+    }
+
+    /**
+     * This method will click on submit button after Bank Account creation is done
+     *
+     * @author Rakesh Ghosal
+     */
+    public void clickSubmitButton() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(submitButton), 15);
+            submitButton.click();
+            reportWithScreenShot("Clicking submit button");
+
+        } catch (Exception e) {
+            reportWithScreenShot("Submit button is not clicked properly:" + e.getMessage());
+        }
+
+    }
+
+    /**
+     * This method will click on edit button at the upper right corner in my details page
+     *
+     * @author Rakesh Ghosal
+     */
+    public void clickEditButton() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(editButton), 15);
+            editButton.click();
+            reportWithScreenShot("Clicking edit button");
+
+        } catch (Exception e) {
+            reportWithScreenShot("Edit button is not clicked properly:" + e.getMessage());
+            Assert.fail();
+        }
+
+    }
+
+    /**
+     * This method will validate if we are landed on contact information page
+     *
+     * @author Rakesh Ghosal
+     */
+    public void validateContactInformationPage() {
+        try {
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(contactInformationPageIndicator), 15);
+            assertThat(contactInformationPageIndicator.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if we are landed on contact information page");
+        } catch (Exception e) {
+            reportWithScreenShot("Contact information page is not displayed:" + e.getMessage());
+        }
+    }
+
+
+    /**
+     * This method will click on contact information link in contact information page
+     *
+     * @author Rakesh Ghosal
+     */
+    public void clickContactInformationLink() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(contactInformationLink), 15);
+            contactInformationLink.click();
+            reportWithScreenShot("Clicking contact information link");
+
+        } catch (Exception e) {
+            reportWithScreenShot("Contact information link is not clicked properly:" + e.getMessage());
+            Assert.fail();
+        }
+
+    }
+
+    /**
+     * This method will click on edit address button
+     *
+     * @author Rakesh Ghosal
+     */
+    public void clickEditAddressLink() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(EditBtn), 15);
+            EditBtn.click();
+            reportWithScreenShot("Clicking edit address link in Edit my details contact information page");
+
+        } catch (Exception e) {
+            reportWithScreenShot("Edit address link is not clicked in Edit my details contact information page:" + e.getMessage());
+            Assert.fail();
+        }
+
+    }
+
+    /**
+     * Verify that the address format
+     *
+     * @author Rakesh Ghosal
+     */
+    public void verifyAddressFormat() {
+        try {
+            validateElementIsDisplayed(effectiveStartDateRequiredValidation);
+            validateElementIsDisplayed(addLine1RequiredValidation);
+            validateElementIsDisplayed(zipCodeRequiredValidation);
+            validateElementIsDisplayed(cityRequiredValidation);
+            validateElementIsDisplayed(stateRequiredValidation);
+            validateElementIsDisplayed(addressType);
+            validateElementIsDisplayed(country);
+            validateElementIsDisplayed(addressLine2);
+            reportWithScreenShot("Clicking if address format is valid");
+        } catch (Exception e) {
+            reportWithScreenShot("Address format is not valid:" + e.getMessage());
+            Assert.fail();
+        }
+
+    }
+
+    /**
+     * This method will click on cancel button
+     *
+     * @author Rakesh Ghosal
+     */
+    public void clickCancelButton() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(cancelBtn), 15);
+            cancelBtn.click();
+            reportWithScreenShot("Clicking Cancel button");
+        } catch (Exception e) {
+            reportWithScreenShot("Cancel button is not clicked:" + e.getMessage());
+            Assert.fail();
+        }
+
+    }
+
+    /**
+     * This method will click on Yes button in the pop up
+     *
+     * @author Rakesh Ghosal
+     */
+    public void clickYesButtonInPopUp() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(yesBtn), 15);
+            yesBtn.click();
+            reportWithScreenShot("Clicking yes button in pop up");
+        } catch (Exception e) {
+            reportWithScreenShot("Yes button is not clicked in pop up:" + e.getMessage());
+            Assert.fail();
+        }
+
+    }
 
 
 }
