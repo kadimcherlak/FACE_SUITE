@@ -28,7 +28,6 @@ public class CSVReadWrite {
         String[] nextLine;
         // nextLine[] is an array of values from the line
         while ((nextLine = csvReader.readNext()) != null) {
-            System.out.println(nextLine[0]);
             value = nextLine[0];
         }
         return value;
