@@ -28,6 +28,15 @@ public class EmployeeEditMyDetailsSteps implements En {
             context.employeeEditMyDetails.clickFamilyandEmergencyContacts();
         });
 
+        When("Family and Emergency Contacts page should be displayed", () -> {
+            context.employeeEditMyDetails.checkFamilyandEmergencyContactsPageDisplayed();
+        });
+
+        When("user clicks on Add and Create a New Contact option in My Contacts section", () -> {
+            context.employeeEditMyDetails.clickAddandNewContact();
+        });
+
+
         When("Edit My Details: Contact Information page should be displayed", () -> {
             context.loginAndHome.checkEmpMyDetailsContactInfoPageDisplayed();
         });
@@ -42,6 +51,10 @@ public class EmployeeEditMyDetailsSteps implements En {
 
         When("user click on submit button in Contact Information page", () -> {
             context.employeeEditMyDetails.clickContactSubmit();
+        });
+
+        When("Alternate Work location address should be displayed", () -> {
+            context.employeeEditMyDetails.checkAlternateWorkLocationAddressDisplayed();
         });
 
 

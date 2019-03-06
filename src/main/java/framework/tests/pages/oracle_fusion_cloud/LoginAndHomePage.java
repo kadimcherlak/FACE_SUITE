@@ -187,6 +187,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
         }
     }
 
+
     public void checkEmpMyDetailsContactPageDisplayed() {
         try {
             waitUntilPageLoad();

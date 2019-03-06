@@ -13,7 +13,7 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     When user clicks on Add icon in the Address section
     And user Enter Details in Address fields
     And user click on submit button in Contact Information page
-    Then Contact Information page should be displayed
+    Then Alternate Work location address should be displayed
     When user clicks on Sign Out option
     Then Sign out should be successful
 
@@ -29,6 +29,8 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     And user clicks on Personal Information link under About me section
     Then Personal Info page should be displayed
     When user clicks on Family and Emergency Contacts section
+    Then Family and Emergency Contacts page should be displayed
+    When user clicks on Add and Create a New Contact option in My Contacts section
     Then Edit My Details: Contact Information page should be displayed
     When user clicks on Contacts icon on the left panel
     Then Edit My Details: Contacts page should be displayed

@@ -235,8 +235,14 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//h1[contains(.,'Contact Information')]")
     private WebElement contactInformationPageIndicator;
 
+    @FindBy(xpath = "//h1[contains(.,'Family and Emergency Contacts')]")
+    private WebElement familyAndEmergencyPageIndicator;
+
     @FindBy(xpath = "//span[contains(text(),'Contact Information')]")
     private WebElement contactInformationLink;
+
+    @FindBy(xpath = "//span[contains(.,'Family and Emergency Contacts')]")
+    private WebElement familyAndEmergencyContactsLink;
 
     @FindBy(xpath = "//img[@alt='Edit']")
     private WebElement EditBtn;
@@ -273,6 +279,15 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "(//a[@class='xwv'])[8]")
     private WebElement contactSubmitBtn;
+
+    @FindBy(xpath = "//span[text()='Add']")
+    private WebElement myContactsAddBtn;
+
+    @FindBy(xpath = "//td[text()='Create a New Contact']")
+    private WebElement createNewContactOption;
+
+    @FindBy(xpath = "//label[contains(.,'Alternate work Location Address')]")
+    private WebElement altWorkLocAddDisplay;
 
 
     public EmployeeEditMyDetailsPage(Context context) {
@@ -324,9 +339,11 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 // Enter Country
             // waitFor(ExpectedConditions.visibilityOf(altWorkLocationCountry), 15);
             altWorkLocationCountry.clear();
-            driver.findElement(By.xpath("//li[text()='" + data.getAltWorkLocationCountry() + "']")).click();
-            // altWorkLocationCountry.sendKeys(data.getAltWorkLocationCountry());
+            // driver.findElement(By.xpath("//li[text()='" + data.getAltWorkLocationCountry() + "']")).click();
+            altWorkLocationCountry.sendKeys(data.getAltWorkLocationCountry());
             waitNormalTime();
+            altWorkLocationCountry.sendKeys(Keys.DOWN, Keys.RETURN);
+            waitShortTime();
             //altWorkLocationCountry.sendKeys(Keys.ENTER);
             altWorkLocationCountry.sendKeys(Keys.TAB);
 
@@ -367,6 +384,17 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
+    public void checkAlternateWorkLocationAddressDisplayed() {
+        try {
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.visibilityOf(altWorkLocAddDisplay), 15);
+            assertThat(altWorkLocAddDisplay.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if Alternate Work location Address is Displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Alternate Work location Address is not Displayed");
+            Assert.fail();
+        }
+    }
 
     // User click on Contacts Icon
     public void clickContactsIcon() {
@@ -1029,6 +1057,19 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     }
 
 
+    public void checkFamilyandEmergencyContactsPageDisplayed() {
+        try {
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(familyAndEmergencyPageIndicator), 15);
+            assertThat(familyAndEmergencyPageIndicator.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if we are landed on family And Emergency page");
+        } catch (Exception e) {
+            reportWithScreenShot("Family And Emergency page is not displayed:" + e.getMessage());
+        }
+    }
+
+
+
     /**
      * This method will click on contact information link in contact information page
      *
@@ -1050,12 +1091,29 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     public void clickFamilyandEmergencyContacts() {
         try {
-            waitFor(ExpectedConditions.elementToBeClickable(contactInformationLink), 15);
-            contactInformationLink.click();
-            reportWithScreenShot("Clicking contact information link");
+            waitFor(ExpectedConditions.elementToBeClickable(familyAndEmergencyContactsLink), 15);
+            familyAndEmergencyContactsLink.click();
+            reportWithScreenShot("Clicking Family And Emergency Contacts Link");
 
         } catch (Exception e) {
-            reportWithScreenShot("Contact information link is not clicked properly:" + e.getMessage());
+            reportWithScreenShot("Family And Emergency Contacts link is not clicked properly:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+
+    public void clickAddandNewContact() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(myContactsAddBtn), 15);
+            myContactsAddBtn.click();
+            reportWithScreenShot("Clicking Add Button");
+
+            waitFor(ExpectedConditions.elementToBeClickable(createNewContactOption), 15);
+            createNewContactOption.click();
+            reportWithScreenShot("Clicking Create a new Contact option");
+
+        } catch (Exception e) {
+            reportWithScreenShot("Create a new Contact option is not clicked properly:" + e.getMessage());
             Assert.fail();
         }
     }
