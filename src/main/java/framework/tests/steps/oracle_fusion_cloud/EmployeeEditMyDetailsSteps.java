@@ -16,12 +16,16 @@ public class EmployeeEditMyDetailsSteps implements En {
             context.loginAndHome.selectLinkInNavigatorPane(linkName);
         });
 
-        When("My Details page should be displayed", () -> {
-            context.loginAndHome.checkEmpMyDetailsPageDisplayed();
+        When("Personal Info page should be displayed", () -> {
+            context.loginAndHome.checkPersonalInfoPageDisplayed();
         });
 
         When("user clicks on Edit button on top right side", () -> {
             context.employeeEditMyDetails.clickMyDetailsEdit();
+        });
+
+        When("user clicks on Family and Emergency Contacts section", () -> {
+            context.employeeEditMyDetails.clickFamilyandEmergencyContacts();
         });
 
         When("Edit My Details: Contact Information page should be displayed", () -> {
@@ -35,6 +39,12 @@ public class EmployeeEditMyDetailsSteps implements En {
         When("user Enter Details in Address fields", () -> {
             context.employeeEditMyDetails.fillAlternateWorklocationAddress();
         });
+
+        When("user click on submit button in Contact Information page", () -> {
+            context.employeeEditMyDetails.clickContactSubmit();
+        });
+
+
 
         When("user click on Save and Close button", () -> {
             context.employeeEditMyDetails.clickSaveAndClose();
