@@ -125,7 +125,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//button[@accesskey='K']")
     private WebElement btnOK;
 
-    @FindBy(xpath = "//button[@accesskey='K'][contains(@id,'management:0:MAt1:0:pt1:Manag1:0:AP1:ctb1')][contains(.,'OK')]")
+    @FindBy(xpath = "//button[@accesskey='K' and contains(@id,'Manag1:0:AP1:ctb1') and contains(.,'O')]")
     private WebElement btnOK1;
 
     @FindBy(xpath = "//h1[contains(.,'Global Temporary Assignment: Employment Information')]")
@@ -461,6 +461,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     public void clickDoneButton() {
         try {
             waitUntilPageLoad();
+            waitFor(ExpectedConditions.visibilityOf(done), 15);
             waitFor(ExpectedConditions.elementToBeClickable(done), 15);
             done.click();
             waitUntilPageLoad();
@@ -520,12 +521,14 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(personMgmtEdit), 15);
             personMgmtEdit.click();
+            waitShortTime();
 
             waitFor(ExpectedConditions.elementToBeClickable(personMgmtUpdate), 15);
             personMgmtUpdate.click();
+            waitShortTime();
 
-            waitFor(ExpectedConditions.visibilityOf(manageEmployment), 15);
-            assertThat(manageEmployment.isDisplayed()).isTrue();
+            waitFor(ExpectedConditions.visibilityOf(updateEmploymentTitle), 15);
+            assertThat(updateEmploymentTitle.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Error While user click on Edit and update button:" + e.getMessage());
             Assert.fail();
@@ -581,9 +584,6 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             // Select Create Primary Work Relationship Yes option
             waitFor(ExpectedConditions.elementToBeClickable(updateEmploymentCreatePrimaryWork), 15);
             updateEmploymentCreatePrimaryWork.click();
-
-            // Set getGlobalMobilityIndicatorCheck value to True
-            data.setGlobalMobilityIndicatorCheck(true);
 
             // Click OK
             btnOK.click();
