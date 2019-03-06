@@ -264,7 +264,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
         try {
             // Enter person number into keywords
             waitFor(ExpectedConditions.elementToBeClickable(keywords), 15);
-            keywords.sendKeys(data.getPersonNumber());
+            keywords.sendKeys(csvReader());
 
             // Enter effective as of date
             waitFor(ExpectedConditions.elementToBeClickable(effectiveAsOfDate), 15);
@@ -285,11 +285,11 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
             // Check for Employee for max 60 seconds
             elementsize = driver
-                    .findElements(By.xpath("//span[text()='" + data.getPersonNumber() + "']")).size();
+                    .findElements(By.xpath("//span[text()='" + csvReader() + "']")).size();
             int counter = 0;
             while (elementsize == 0 && counter <= 20) {
                 elementsize = driver
-                        .findElements(By.xpath("//*[text()='" + data.getPersonNumber() + "']")).size();
+                        .findElements(By.xpath("//span[text()='" + csvReader() + "']")).size();
                 clickSearch();
                 waitShortTime();
                 counter++;
@@ -388,7 +388,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             elementName.sendKeys(data.getElementNameADP());
             elementName.sendKeys(Keys.TAB);
             waitNormalTime();
-         //   waitFor(ExpectedConditions.visibilityOf(payrollRelationship), 15);
+            //   waitFor(ExpectedConditions.visibilityOf(payrollRelationship), 15);
 
         } catch (Exception e) {
             reportWithScreenShot("Error While user enters Element Name as ADP:" + e.getMessage());
@@ -429,7 +429,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             /*waitFor(ExpectedConditions.elementToBeClickable(payCheckDate), 15);
             payCheckDate.clear();
             payCheckDate.sendKeys(data.getPayCheckDate());*/
-            Thread.sleep(2500);
+            waitShortTime();
         } catch (Exception e) {
             reportWithScreenShot("Error While User entering Amount and date:" + e.getMessage());
             Assert.fail();
