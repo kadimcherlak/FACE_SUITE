@@ -73,9 +73,8 @@ Feature: New Hire and Related Activities
       | Test Scenario          | Test File Name | Test Sheet Name    |
       | UPDATE_ELEMENT_ENTRIES | TestData.xlsx  | Talent_Acquisition |
 
-
   @UPDATE_PERSONAL_ASSIGNMENT_DATA
-  Scenario Outline: Create Global Temporary Assignment and perform Global Transfer for New Hire Employee
+  Scenario Outline: Perform Global Transfer for New Hire Employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -102,7 +101,6 @@ Feature: New Hire and Related Activities
     Examples:
       | Test Scenario                   | Test File Name | Test Sheet Name    |
       | UPDATE_PERSONAL_ASSIGNMENT_DATA | TestData.xlsx  | Talent_Acquisition |
-
 
   @UPDATE_I9_STATUS
   Scenario Outline:  Verify PPS is able to update I9 Status
