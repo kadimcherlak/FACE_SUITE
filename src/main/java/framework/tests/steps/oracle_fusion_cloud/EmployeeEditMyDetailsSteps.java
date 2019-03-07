@@ -16,13 +16,35 @@ public class EmployeeEditMyDetailsSteps implements En {
             context.loginAndHome.selectLinkInNavigatorPane(linkName);
         });
 
-        When("My Details page should be displayed", () -> {
-            context.loginAndHome.checkEmpMyDetailsPageDisplayed();
+        When("Personal Info page should be displayed", () -> {
+            context.loginAndHome.checkPersonalInfoPageDisplayed();
         });
 
         When("user clicks on Edit button on top right side", () -> {
             context.employeeEditMyDetails.clickMyDetailsEdit();
         });
+
+        When("user clicks on Family and Emergency Contacts section", () -> {
+            context.employeeEditMyDetails.clickFamilyandEmergencyContacts();
+        });
+
+        When("Family and Emergency Contacts page should be displayed", () -> {
+            context.employeeEditMyDetails.checkFamilyandEmergencyContactsPageDisplayed();
+        });
+
+        When("user clicks on Add and Create a New Contact option in My Contacts section", () -> {
+            context.employeeEditMyDetails.clickAddandNewContact();
+        });
+
+
+        When("New Contact page should be displayed", () -> {
+            context.employeeEditMyDetails.checkNewContactPageDisplayed();
+        });
+
+        When("user Enter Details in New Contact page", () -> {
+            context.employeeEditMyDetails.fillNewContactInfo();
+        });
+
 
         When("Edit My Details: Contact Information page should be displayed", () -> {
             context.loginAndHome.checkEmpMyDetailsContactInfoPageDisplayed();
@@ -32,8 +54,20 @@ public class EmployeeEditMyDetailsSteps implements En {
             context.employeeEditMyDetails.clickAddressAdd();
         });
 
+        When("user click on submit button in New Contact page", () -> {
+            context.employeeEditMyDetails.clickEmergencyContactSubmit();
+        });
+
         When("user Enter Details in Address fields", () -> {
             context.employeeEditMyDetails.fillAlternateWorklocationAddress();
+        });
+
+        When("user click on submit button in Contact Information page", () -> {
+            context.employeeEditMyDetails.clickContactSubmit();
+        });
+
+        When("Alternate Work location address should be displayed", () -> {
+            context.employeeEditMyDetails.checkAlternateWorkLocationAddressDisplayed();
         });
 
         When("user click on Save and Close button", () -> {

@@ -47,8 +47,11 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     @FindBy(linkText = "Personal Information")
     private WebElement personalInfoMyDetailsPage;
 
-    @FindBy(xpath = "//h1[contains(.,'My Details')]")
-    private WebElement empMyDetails;
+    //@FindBy(xpath = "//h1[contains(.,'My Details')]")
+    //private WebElement empMyDetails;
+
+    @FindBy(xpath = "//h1[contains(.,'Personal Info')]")
+    private WebElement personalInfo;
 
     @FindBy(xpath = "//h1[contains(.,'Edit My Details: Contact Information')]")
     private WebElement empMyDetailsContactInfo;
@@ -162,13 +165,14 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
         }
     }
 
-    public void checkEmpMyDetailsPageDisplayed() {
+    //Check for Personal Info page is displayed
+    public void checkPersonalInfoPageDisplayed() {
         try {
             waitUntilPageLoad();
-            assertThat(empMyDetails.isDisplayed()).isTrue();
-            reportWithScreenShot("Checking if My Details Page is Displayed");
+            assertThat(personalInfo.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if Personal Info Page is Displayed");
         } catch (Exception e) {
-            reportWithScreenShot("My Details Page is not Displayed");
+            reportWithScreenShot("Personal Info Page is not Displayed");
             Assert.fail();
         }
     }
@@ -183,6 +187,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             Assert.fail();
         }
     }
+
 
     public void checkEmpMyDetailsContactPageDisplayed() {
         try {
