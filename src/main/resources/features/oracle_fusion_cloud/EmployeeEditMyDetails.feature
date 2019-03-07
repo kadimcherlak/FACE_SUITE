@@ -197,7 +197,7 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
       | Test Scenario                                              | Test File Name | Test Sheet Name  |
       | UPDATE_ADDRESS_BIOGRAPHICAL_INFO_DRIVING_LICENSE_DOCUMENTS | TestData.xlsx  | Employee_Details |
 
-  @CHANGE_SALARY_BASIS_FOR_EXISTING_EMP @demoRun
+  @CHANGE_SALARY_BASIS_FOR_EXISTING_EMP
   Scenario Outline: Administration changing salary basis of an employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
