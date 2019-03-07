@@ -14,6 +14,7 @@ public class Data extends framework.core.models.Data {
     private String altWorkLocationAddressType;
     private String altWorkLocationCountry;
     private String altWorkLocationAddressLine1;
+    private String altWorkLocationAddressLine2;
     private String altWorkLocationZipCode;
     private String assignmentCategory;
     private String bankName;
@@ -41,8 +42,10 @@ public class Data extends framework.core.models.Data {
     private String employmentActionReason;
     private String employeeManagerChange;
     private String email;
+    private String emailType;
     private String erProfitCenter;
     private String firstName;
+    private String familyName;
     private String gender;
     private String globalMobilityIndicator;
     private boolean globalMobilityIndicatorCheck;
@@ -73,6 +76,9 @@ public class Data extends framework.core.models.Data {
     private String personNumber;
     private String personName;
     private String percentage;
+    private String phoneType;
+    private String phoneNumber;
+    private String relationship;
     private String routingNumber;
     private String salaryAmount;
     private String salaryBasis;
@@ -131,6 +137,10 @@ public class Data extends framework.core.models.Data {
 
     public String getAltWorkLocationAddressLine1() {
         return altWorkLocationAddressLine1;
+    }
+
+    public String getAltWorkLocationAddressLine2() {
+        return altWorkLocationAddressLine2;
     }
 
     public String getAltWorkLocationZipCode() {
@@ -222,6 +232,10 @@ public class Data extends framework.core.models.Data {
         return email;
     }
 
+    public String getEmailType() {
+        return emailType;
+    }
+
     public String getEmployeeManagerChange() {
         return employeeManagerChange;
     }
@@ -251,6 +265,10 @@ public class Data extends framework.core.models.Data {
         }
         return "FAUTO" + buffer.toString().toUpperCase();
 
+    }
+
+    public String getFamilyName() {
+        return familyName;
     }
 
     public String getEmploymentAction() {
@@ -396,10 +414,21 @@ public class Data extends framework.core.models.Data {
         return personName;
     }
 
+    public String getPhoneType() {
+        return phoneType;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
     public String getPercentage() {
         return percentage;
     }
 
+    public String getRelationship() {
+        return relationship;
+    }
 
     public String getRoutingNumber() {
         return routingNumber;
