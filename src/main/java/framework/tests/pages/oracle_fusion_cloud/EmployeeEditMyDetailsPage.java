@@ -178,7 +178,10 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//button[@id='_FOd1::msgDlg::cancel']")
     private WebElement btnOK_WarningPopup;
 
-    @FindBy(xpath = "//span[text()='US Hourly Wages']")
+    //@FindBy(xpath = "//span[text()='US Hourly Wages']")
+    //private WebElement usHourlyWages;
+
+    @FindBy(xpath = "//span[text()='United States Hourly Salary Basis']")
     private WebElement usHourlyWages;
 
     @FindBy(xpath = "//tr[7]//td[2][@class='xy7 xy6']/span[1]")
