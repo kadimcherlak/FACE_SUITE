@@ -756,18 +756,21 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     // user selecting component type under component tab in manage salary page
     public void selectSalaryBasis() {
-
         try {
-
+            String selectValue = null;
+            selectValue = data.getSalaryBasis();
+            System.out.println("Salary basis " + selectValue);
             dropdownSalaryBasis_ManageSalary.click();
-            waitFor(ExpectedConditions.elementToBeClickable(usHourlyWages), 15);
-            assertThat(usHourlyWages.isDisplayed()).isTrue();
-            usHourlyWages.click();
+            waitShortTime();
+            WebElement dropdownElement = driver.findElement(By.xpath("//span[text()='" + selectValue + "']"));
+            waitFor(ExpectedConditions.elementToBeClickable(dropdownElement), 15);
+            assertThat(dropdownElement.isDisplayed()).isTrue();
+            dropdownElement.click();
+            waitShortTime();
             reportWithScreenShot(" is selected from dropdown:");
         } catch (Exception e) {
             reportWithScreenShot("Error While selecting  from dropdown:" + e.getMessage());
             Assert.fail();
-
         }
     }
 

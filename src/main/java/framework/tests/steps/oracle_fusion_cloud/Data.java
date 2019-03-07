@@ -56,6 +56,7 @@ public class Data extends framework.core.models.Data {
     private String lastName;
     private String legalEmployer;
     private String location;
+    private String locationContact;
     private String managerName;
     private String maritalStatus;
     private String name;
@@ -325,6 +326,10 @@ public class Data extends framework.core.models.Data {
         return location;
     }
 
+    public String getLocationContact() {
+        return locationContact;
+    }
+
     public String getManagerName() {
         return managerName;
     }
@@ -377,10 +382,6 @@ public class Data extends framework.core.models.Data {
 
     public String getPayCheckDate() {
         return payCheckDate;
-    }
-
-    public String getPearsonEmailRequired() {
-        return pearsonEmailRequired;
     }
 
     public String getPersonNumber() {
