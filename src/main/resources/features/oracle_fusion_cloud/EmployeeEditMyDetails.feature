@@ -2,7 +2,7 @@
 Feature: Employee performs edit on Address,Contact Type,Personal Payment Method and disability Information
 
   @NEW_ADDRESS_ALTERNATIVE_WORK_LOCATION
-  Scenario Outline: Employee to add New Address to indicate an alternative work location
+  Scenario Outline: Employee add New Address of type Alternative Work Location
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -22,7 +22,7 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
       | NEW_ADDRESS_ALTERNATIVE_WORK_LOCATION | TestData.xlsx  | Employee_Details |
 
   @ADD_EMERGENCY_CONTACT_DETAILS
-  Scenario Outline: Employee to select a contact type from Emergency Contact list and add details
+  Scenario Outline: Employee add Emergency Contact details
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -31,18 +31,10 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     When user clicks on Family and Emergency Contacts section
     Then Family and Emergency Contacts page should be displayed
     When user clicks on Add and Create a New Contact option in My Contacts section
-    Then Edit My Details: Contact Information page should be displayed
-    When user clicks on Contacts icon on the left panel
-    Then Edit My Details: Contacts page should be displayed
-    When user clicks on Add icon in the Contacts section
-    Then Add Contact dialog box should be displayed
-    And user clicks on Select an existing person radiobutton
-    And user clicks on Continue button
-    And user Select value for Relationship as Contact from dropdown
-    And user enter details in Emergency Contact Name
-    And user select Emergency contact check box
-    And user click on Save and Close button
-    Then My Details page should be displayed
+    Then New Contact page should be displayed
+    And user Enter Details in New Contact page
+    And user click on submit button in New Contact page
+    Then Family and Emergency Contacts page should be displayed
     When user clicks on Sign Out option
     Then Sign out should be successful
 

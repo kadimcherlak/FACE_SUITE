@@ -165,6 +165,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
         }
     }
 
+    //Check for Personal Info page is displayed
     public void checkPersonalInfoPageDisplayed() {
         try {
             waitUntilPageLoad();

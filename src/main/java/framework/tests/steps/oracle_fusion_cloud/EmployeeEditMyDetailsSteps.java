@@ -37,12 +37,25 @@ public class EmployeeEditMyDetailsSteps implements En {
         });
 
 
+        When("New Contact page should be displayed", () -> {
+            context.employeeEditMyDetails.checkNewContactPageDisplayed();
+        });
+
+        When("user Enter Details in New Contact page", () -> {
+            context.employeeEditMyDetails.fillNewContactInfo();
+        });
+
+
         When("Edit My Details: Contact Information page should be displayed", () -> {
             context.loginAndHome.checkEmpMyDetailsContactInfoPageDisplayed();
         });
 
         When("user clicks on Add icon in the Address section", () -> {
             context.employeeEditMyDetails.clickAddressAdd();
+        });
+
+        When("user click on submit button in New Contact page", () -> {
+            context.employeeEditMyDetails.clickEmergencyContactSubmit();
         });
 
         When("user Enter Details in Address fields", () -> {
@@ -56,8 +69,6 @@ public class EmployeeEditMyDetailsSteps implements En {
         When("Alternate Work location address should be displayed", () -> {
             context.employeeEditMyDetails.checkAlternateWorkLocationAddressDisplayed();
         });
-
-
 
         When("user click on Save and Close button", () -> {
             context.employeeEditMyDetails.clickSaveAndClose();
