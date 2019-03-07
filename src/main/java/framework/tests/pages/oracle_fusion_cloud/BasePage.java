@@ -180,6 +180,7 @@ public class BasePage<T> extends WebPage {
     public void clickTaskButton() {
         try {
             waitUntilPageLoad();
+            waitNormalTime();
             waitFor(ExpectedConditions.visibilityOf(taskButton), 15);
             assertThat(taskButton.isDisplayed()).isTrue();
             taskButton.click();
