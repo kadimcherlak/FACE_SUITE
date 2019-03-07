@@ -521,4 +521,14 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
         }
     }
 
+    public void checkAndUpdateLegalEmployerIfEmpty() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(basicDetailsEmployer), 15);
+            if (basicDetailsEmployer.getText().equalsIgnoreCase(""))
+                actions.moveToElement(basicDetailsEmployer).click().sendKeys(data.getLegalEmployer()).sendKeys(Keys.ENTER).perform();
+        } catch (Exception e) {
+            reportWithScreenShot("Error While updating Legal Employer value in Information Tab due to:" + e.getMessage());
+            Assert.fail();
+        }
+    }
 }

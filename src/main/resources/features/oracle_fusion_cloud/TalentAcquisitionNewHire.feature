@@ -4,7 +4,7 @@ Feature: New Hire and Related Activities
   @TEST_EXCEL
   Scenario Outline: Perform Login to Oracle Fusion Cloud
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
-    And user updated the Excel file with Row Name <Test Scenario> and Column Name personNumber with value 500071
+    And user updated the Excel file with Row Name <Test Scenario> and Column Name personNumber with value 500103
 
     Examples:
       | Test Scenario           | Test File Name | Test Sheet Name    |
