@@ -247,29 +247,32 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//img[@alt='Edit']")
     private WebElement EditBtn;
 
-    @FindBy(xpath = "//label[text()='Effective Start Date']/parent::td/descendant::span[@title='Required']")
+    @FindBy(xpath = "//label[text()='When does this address change start?']/parent::div/descendant::span[@title='Required']")
     private WebElement effectiveStartDateRequiredValidation;
 
-    @FindBy(xpath = "//label[text()='Address Line 1']/parent::td/descendant::span[@title='Required']")
+    @FindBy(xpath = "//label[text()='Address Line 1']/parent::div/descendant::span[@title='Required']")
     private WebElement addLine1RequiredValidation;
 
-    @FindBy(xpath = "//label[text()='ZIP Code']/parent::td/descendant::span[@title='Required']")
-    private WebElement zipCodeRequiredValidation;
+    @FindBy(xpath = "(//label[text()='Zip Code']/following::input)[2]")
+    private WebElement zipCode;
 
-    @FindBy(xpath = "//label[text()='City']/parent::td/descendant::span[@title='Required']")
-    private WebElement cityRequiredValidation;
+    @FindBy(xpath = "(//label[text()='City']/following::input)[2]")
+    private WebElement city;
 
-    @FindBy(xpath = "//label[text()='State']/parent::td/descendant::span[@title='Required']")
-    private WebElement stateRequiredValidation;
+    @FindBy(xpath = "(//label[text()='State']/following::input)[2]")
+    private WebElement state;
 
-    @FindBy(xpath = "//td/descendant::label[text()='Effective Start Date']/preceding::tr[1]/descendant::label[contains(text(),'Type')]")
+    @FindBy(xpath = "//label[text()='Type']/following::span[1]")
     private WebElement addressType;
 
-    @FindBy(xpath = "//label[text()='Country']")
-    private WebElement country;
+    @FindBy(xpath = "(//label[text()='County']/following::input)[2]")
+    private WebElement county;
 
-    @FindBy(xpath = "//label[text()='Address Line 2']")
+    @FindBy(xpath = "//label[text()='Address Line 2']/following::span[1]")
     private WebElement addressLine2;
+    
+    @FindBy(xpath = "//label[text()='Country']/following::span[1]")
+    private WebElement country;
 
     @FindBy(xpath = "//a[@accesskey='C']")
     private WebElement cancelBtn;
@@ -288,6 +291,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//label[contains(.,'Alternate work Location Address')]")
     private WebElement altWorkLocAddDisplay;
+    
+    @FindBy(xpath = "(//div[@title='Address']/descendant::img[@alt='Edit'])[1]")
+    private WebElement editAddressButton;
 
 
     public EmployeeEditMyDetailsPage(Context context) {
@@ -1125,8 +1131,8 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
      */
     public void clickEditAddressLink() {
         try {
-            waitFor(ExpectedConditions.elementToBeClickable(EditBtn), 15);
-            EditBtn.click();
+            waitFor(ExpectedConditions.elementToBeClickable(editAddressButton), 15);
+            editAddressButton.click();
             reportWithScreenShot("Clicking edit address link in Edit my details contact information page");
 
         } catch (Exception e) {
@@ -1145,12 +1151,13 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         try {
             validateElementIsDisplayed(effectiveStartDateRequiredValidation);
             validateElementIsDisplayed(addLine1RequiredValidation);
-            validateElementIsDisplayed(zipCodeRequiredValidation);
-            validateElementIsDisplayed(cityRequiredValidation);
-            validateElementIsDisplayed(stateRequiredValidation);
+            validateElementIsDisplayed(zipCode);
+            validateElementIsDisplayed(city);
+            validateElementIsDisplayed(state);
             validateElementIsDisplayed(addressType);
             validateElementIsDisplayed(country);
             validateElementIsDisplayed(addressLine2);
+            validateElementIsDisplayed(county);
             reportWithScreenShot("Clicking if address format is valid");
         } catch (Exception e) {
             reportWithScreenShot("Address format is not valid:" + e.getMessage());

@@ -118,17 +118,13 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
     And user clicks on Personal Information link under About me section
-    Then My Details page should be displayed
-    When user clicks on edit button on top right side of the page
-    Then Contact Information page should be displayed
+    Then Personal Info page should be displayed
     When user clicks on Contact Information section
     Then Contact Information page should be displayed
     When user clicks on Edit(Pencil Symbol) in the Address section
     And Verify that the address format is valid
     And Click on Cancel button
-    And Click Yes button
-    Then My Details page should be displayed
-    When user click on Sign Out option
+    When user clicks on Sign Out option
     Then Sign out should be successful
 
     Examples:
