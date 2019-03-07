@@ -115,7 +115,9 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     // Login Page enter credentials
     public void enterCredentials() {
         try {
+            waitFor(ExpectedConditions.visibilityOf(userId), 15);
             userId.sendKeys(data.getUserName());
+            waitFor(ExpectedConditions.visibilityOf(password), 15);
             password.sendKeys(data.getPassword());
             assertThat(userId.isDisplayed()).isTrue();
             assertThat(password.isDisplayed()).isTrue();
