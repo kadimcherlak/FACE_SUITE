@@ -51,7 +51,7 @@ Feature: Employee edits Personal Information
     Then Personal Info page should be displayed
     When user clicks on Contact Information section
     Then Contact Information page should be displayed
-    When user clicks on Edit(Pencil Symbol) in the Address section
+    When user clicks on Edit in the Address section
     And Verify that the address format is valid
     And Click on Cancel button
     When user clicks on Sign Out option

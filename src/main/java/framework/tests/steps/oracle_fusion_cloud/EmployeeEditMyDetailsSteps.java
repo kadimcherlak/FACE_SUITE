@@ -246,7 +246,7 @@ public class EmployeeEditMyDetailsSteps implements En {
             context.employeeEditMyDetails.clickContactInformationLink();
         });
 
-        When("user clicks on Edit\\(Pencil Symbol) in the Address section", () -> {
+        When("user clicks on Edit in the Address section", () -> {
             context.employeeEditMyDetails.clickEditAddressLink();
         });
 
