@@ -3,6 +3,7 @@ package framework.tests.pages.oracle_fusion_cloud;
 import framework.core.drivers.web.WebPage;
 import framework.core.utils.DataLoader;
 import framework.tests.steps.oracle_fusion_cloud.Context;
+import framework.tests.utils.CSVReadWrite;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriverException;
@@ -14,6 +15,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -333,6 +335,36 @@ public class BasePage<T> extends WebPage {
      */
     public void writeToExcel(String rowName, String colName, String valToUpdate) {
         DataLoader.writeDataToExcel(rowName, colName, valToUpdate);
+    }
+
+    /**
+     * This method will read data from csv
+     *
+     * @author Raghavendran Ramasubramanian
+     */
+    public String csvReader() {
+        try {
+            CSVReadWrite csv = new CSVReadWrite((Context) context);
+            return csv.read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assert false;
+        return null;
+    }
+
+    /**
+     * This method will write data to csv
+     *
+     * @author Raghavendran Ramasubramanian
+     */
+    public void csvWriter(String updVal) {
+        try {
+            CSVReadWrite csv = new CSVReadWrite((Context) context);
+            csv.write(updVal);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 
