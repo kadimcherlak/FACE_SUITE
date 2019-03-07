@@ -461,6 +461,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     public void clickDoneButton() {
         try {
             waitUntilPageLoad();
+            waitShortTime();
             waitFor(ExpectedConditions.visibilityOf(done), 15);
             waitFor(ExpectedConditions.elementToBeClickable(done), 15);
             done.click();
