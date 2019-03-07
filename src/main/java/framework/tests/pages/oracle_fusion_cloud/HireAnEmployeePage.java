@@ -4,6 +4,7 @@ import framework.tests.steps.oracle_fusion_cloud.Context;
 import framework.tests.steps.oracle_fusion_cloud.Data;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -261,7 +262,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             // Select Location Contact Required
             waitFor(ExpectedConditions.elementToBeClickable(locationContact), 15);
             locationContact.click();
-            locationContact.sendKeys(data.getPearsonEmailRequired());
+            locationContact.sendKeys(data.getLocationContact());
             waitShortTime();
 
             // Click to create new row
@@ -404,9 +405,15 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitNormalTime();
 
             // Enter Location
-            waitFor(ExpectedConditions.elementToBeClickable(location), 15);
-            location.sendKeys(data.getLocation());
-            waitShortTime();
+            try {
+                waitFor(ExpectedConditions.elementToBeClickable(location), 15);
+                location.sendKeys(data.getLocation());
+                waitShortTime();
+            } catch (StaleElementReferenceException e) {
+                waitShortTime();
+                location.sendKeys(data.getLocation());
+            }
+
 
             // Enter assignment Category
             waitFor(ExpectedConditions.elementToBeClickable(assignmentCategory), 15);
@@ -521,4 +528,14 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
         }
     }
 
+    public void checkAndUpdateLegalEmployerIfEmpty() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(basicDetailsEmployer), 15);
+            if (basicDetailsEmployer.getText().equalsIgnoreCase(""))
+                actions.moveToElement(basicDetailsEmployer).click().sendKeys(data.getLegalEmployer()).sendKeys(Keys.ENTER).perform();
+        } catch (Exception e) {
+            reportWithScreenShot("Error While updating Legal Employer value in Information Tab due to:" + e.getMessage());
+            Assert.fail();
+        }
+    }
 }

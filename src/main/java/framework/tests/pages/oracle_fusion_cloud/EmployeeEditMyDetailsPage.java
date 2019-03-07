@@ -25,16 +25,17 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//button[contains(.,'Edit')]")
     private WebElement myDetailsEdit;
 
-    @FindBy(xpath = "(//a[@title='Add'])[2]")
+    @FindBy(xpath = "(//span[text()='Add'])[5]")
     private WebElement addressAddBtn;
 
     @FindBy(xpath = "//a[@title='Add']")
     private WebElement contactsAddBtn;
 
-    @FindBy(xpath = "(//*[@class='x2h'])[4]")
+    @FindBy(xpath = "(//div[@class='xys'])[1]")
     private WebElement altWorkLocationAddType;
 
-    @FindBy(xpath = "(//input[@class='x109'])[2]")
+    // @FindBy(xpath = "(//label[text()='Country']/following::input[1])[1]")
+    @FindBy(xpath = "//input[@class='x1xc']")
     private WebElement altWorkLocationCountry;
 
     @FindBy(xpath = "//span[text()='United States']")
@@ -43,7 +44,10 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "(//label[text()='Address Line 1']/following::input[1])[1]")
     private WebElement altWorkLocationAddressLine1;
 
-    @FindBy(xpath = "(//label[text()='ZIP Code']/following::input[1])[1]")
+    @FindBy(xpath = "(//label[text()='Address Line 2']/following::input[1])[1]")
+    private WebElement altWorkLocationAddressLine2;
+
+    @FindBy(xpath = "(//label[text()='Zip Code']/following::input[1])[1]")
     private WebElement altWorkLocationZipCode;
 
     @FindBy(xpath = "//div[text()='Contacts']")
@@ -178,7 +182,10 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//button[@id='_FOd1::msgDlg::cancel']")
     private WebElement btnOK_WarningPopup;
 
-    @FindBy(xpath = "//span[text()='US Hourly Wages']")
+    //@FindBy(xpath = "//span[text()='US Hourly Wages']")
+    //private WebElement usHourlyWages;
+
+    @FindBy(xpath = "//span[text()='United States Hourly Salary Basis']")
     private WebElement usHourlyWages;
 
     @FindBy(xpath = "//tr[7]//td[2][@class='xy7 xy6']/span[1]")
@@ -232,44 +239,110 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//button[contains(.,'Edit')]")
     private WebElement editButton;
 
-    @FindBy(xpath = "//h1[contains(text(),'Edit My Details: Contact Information')]")
+    // @FindBy(xpath = "//h1[contains(text(),'Edit My Details: Contact Information')]")
+    @FindBy(xpath = "//h1[contains(.,'Contact Information')]")
     private WebElement contactInformationPageIndicator;
 
-    @FindBy(xpath = "//div[contains(text(),'Contact Information')]")
+    @FindBy(xpath = "//h1[contains(.,'Family and Emergency Contacts')]")
+    private WebElement familyAndEmergencyPageIndicator;
+
+    @FindBy(xpath = "//h1[contains(.,'New Contact')]")
+    private WebElement newContactPage;
+
+    @FindBy(xpath = "//span[contains(text(),'Contact Information')]")
     private WebElement contactInformationLink;
+
+    @FindBy(xpath = "//span[contains(.,'Family and Emergency Contacts')]")
+    private WebElement familyAndEmergencyContactsLink;
 
     @FindBy(xpath = "//img[@alt='Edit']")
     private WebElement EditBtn;
 
-    @FindBy(xpath = "//label[text()='Effective Start Date']/parent::td/descendant::span[@title='Required']")
+    @FindBy(xpath = "//label[text()='When does this address change start?']/parent::div/descendant::span[@title='Required']")
     private WebElement effectiveStartDateRequiredValidation;
 
-    @FindBy(xpath = "//label[text()='Address Line 1']/parent::td/descendant::span[@title='Required']")
+    @FindBy(xpath = "//label[text()='Address Line 1']/parent::div/descendant::span[@title='Required']")
     private WebElement addLine1RequiredValidation;
 
-    @FindBy(xpath = "//label[text()='ZIP Code']/parent::td/descendant::span[@title='Required']")
-    private WebElement zipCodeRequiredValidation;
+    @FindBy(xpath = "(//label[text()='Zip Code']/following::input)[2]")
+    private WebElement zipCode;
 
-    @FindBy(xpath = "//label[text()='City']/parent::td/descendant::span[@title='Required']")
-    private WebElement cityRequiredValidation;
+    @FindBy(xpath = "(//label[text()='City']/following::input)[2]")
+    private WebElement city;
 
-    @FindBy(xpath = "//label[text()='State']/parent::td/descendant::span[@title='Required']")
-    private WebElement stateRequiredValidation;
+    @FindBy(xpath = "(//label[text()='State']/following::input)[2]")
+    private WebElement state;
 
-    @FindBy(xpath = "//td/descendant::label[text()='Effective Start Date']/preceding::tr[1]/descendant::label[contains(text(),'Type')]")
+    @FindBy(xpath = "//label[text()='Type']/following::span[1]")
     private WebElement addressType;
 
-    @FindBy(xpath = "//label[text()='Country']")
-    private WebElement country;
+    @FindBy(xpath = "(//label[text()='County']/following::input)[2]")
+    private WebElement county;
 
-    @FindBy(xpath = "//label[text()='Address Line 2']")
+    @FindBy(xpath = "//label[text()='Address Line 2']/following::span[1]")
     private WebElement addressLine2;
+    
+    @FindBy(xpath = "//label[text()='Country']/following::span[1]")
+    private WebElement country;
 
     @FindBy(xpath = "//a[@accesskey='C']")
     private WebElement cancelBtn;
 
     @FindBy(xpath = "//button[text()='Yes']")
     private WebElement yesBtn;
+
+    @FindBy(xpath = "(//a[@class='xwv'])[8]")
+    private WebElement contactSubmitBtn;
+
+    @FindBy(xpath = "//span[text()='Add']")
+    private WebElement myContactsAddBtn;
+
+    @FindBy(xpath = "//td[text()='Create a New Contact']")
+    private WebElement createNewContactOption;
+
+    @FindBy(xpath = "//label[contains(.,'Alternate work Location Address')]")
+    private WebElement altWorkLocAddDisplay;
+    
+    @FindBy(xpath = "(//div[@title='Address']/descendant::img[@alt='Edit'])[1]")
+    private WebElement editAddressButton;
+
+    @FindBy(xpath = "//label[text()='First Name']//following::input[1]")
+    private WebElement firstName;
+
+    @FindBy(xpath = "//label[text()='Family Name']//following::input[1]")
+    private WebElement familyName;
+
+    @FindBy(xpath = "//label[text()='Relationship']//following::input[1]")
+    //@FindBy(xpath = "(//input[contains(@class,'x2h')])[2]")
+    private WebElement relationship;
+
+    @FindBy(xpath = "//label[text()='What is the start date of this relationship?']//following::input[1]")
+    private WebElement relationshipDate;
+
+    @FindBy(xpath = "//label[text()='Gender']//following::input[1]")
+    private WebElement gender;
+
+    @FindBy(xpath = "//label[@class='x1da']")
+    private WebElement personEmergencyContactCheckbox;
+
+
+    @FindBy(xpath = "(//label[text()='Type']//following::input[1])[1]")
+    private WebElement phoneType;
+
+    @FindBy(xpath = "(//label[text()='Type']//following::input[1])[2]")
+    private WebElement emailType;
+
+    @FindBy(xpath = "//label[text()='Country Code']//following::input[1]")
+    private WebElement countryCode;
+
+    @FindBy(xpath = "//label[text()='Number']//following::input[1]")
+    private WebElement phoneNumber;
+
+    @FindBy(xpath = "//label[text()='Email']//following::input[1]")
+    private WebElement email;
+
+
+
 
 
     public EmployeeEditMyDetailsPage(Context context) {
@@ -300,9 +373,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     // Click on Address Add button
     public void clickAddressAdd() {
         try {
-            // Click Edit button in My details Page
             waitFor(ExpectedConditions.visibilityOf(addressAddBtn), 15);
             addressAddBtn.click();
+            waitShortTime();
             reportWithScreenShot("User clicks on Address Add Button");
 
         } catch (Exception e) {
@@ -315,35 +388,136 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     // User enters Alternate work location Address details
     public void fillAlternateWorklocationAddress() {
         try {
-            // Click Edit button in My details Page
             waitShortTime();
-            addressAddBtn.sendKeys(Keys.TAB);
-            altWorkLocationAddType.click();
-            waitFor(ExpectedConditions
-                    .visibilityOf(altWorkLocationAddType), 5);
-            driver.findElement(By.xpath("//li[text()='" + data.getAltWorkLocationAddressType() + "']")).click();
-            altWorkLocationAddType.sendKeys(Keys.TAB);
-
             // Enter Country
-            waitFor(ExpectedConditions.visibilityOf(altWorkLocationCountry), 15);
+            // waitFor(ExpectedConditions.visibilityOf(altWorkLocationCountry), 15);
             altWorkLocationCountry.clear();
             altWorkLocationCountry.sendKeys(data.getAltWorkLocationCountry());
             waitNormalTime();
-            altWorkLocationCountry.sendKeys(Keys.ENTER);
+            altWorkLocationCountry.sendKeys(Keys.DOWN, Keys.RETURN);
+            waitShortTime();
             altWorkLocationCountry.sendKeys(Keys.TAB);
-
+            //Enter Address Type
+            altWorkLocationAddType.click();
+            waitFor(ExpectedConditions.visibilityOf(altWorkLocationAddType), 5);
+            driver.findElement(By.xpath("//li[text()='" + data.getAltWorkLocationAddressType() + "']")).click();
+            //Enter Address Line1
             waitFor(ExpectedConditions.elementToBeClickable(altWorkLocationAddressLine1), 5);
             altWorkLocationAddressLine1.sendKeys(data.getAltWorkLocationAddressLine1());
+            //Enter Address Line2
+            waitFor(ExpectedConditions.elementToBeClickable(altWorkLocationAddressLine2), 5);
+            altWorkLocationAddressLine2.sendKeys(data.getAltWorkLocationAddressLine2());
+            //Enter ZipCode
             waitFor(ExpectedConditions.elementToBeClickable(altWorkLocationZipCode), 5);
             altWorkLocationZipCode.sendKeys(data.getAltWorkLocationZipCode());
             waitShortTime();
             altWorkLocationAddressLine1.click();
             reportWithScreenShot("User enter Alternate work location Address details");
-            assertThat(saveAndCloseBtn.isDisplayed()).isTrue();
+            assertThat(contactSubmitBtn.isDisplayed()).isTrue();
 
         } catch (Exception e) {
             reportWithScreenShot(
                     "Error While user enter Alternate work location Address details due to:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+
+    // User enter Emergency Contact details
+    public void fillNewContactInfo() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(firstName), 5);
+            firstName.sendKeys(data.getFirstName());
+
+            waitFor(ExpectedConditions.visibilityOf(familyName), 5);
+            familyName.sendKeys(data.getFamilyName());
+
+            relationship.click();
+            waitFor(ExpectedConditions.visibilityOf(relationship), 5);
+            driver.findElement(By.xpath("//li[text()='" + data.getRelationship() + "']")).click();
+
+            waitFor(ExpectedConditions.visibilityOf(relationshipDate), 5);
+            relationshipDate.clear();
+            relationshipDate.sendKeys(getCurrentDate());
+
+            // gender.click();
+            // waitFor(ExpectedConditions.visibilityOf(gender), 5);
+            //driver.findElement(By.xpath("//li[text()='" + data.getGender() + "']")).click();
+
+            waitFor(ExpectedConditions.visibilityOf(personEmergencyContactCheckbox), 5);
+            personEmergencyContactCheckbox.click();
+
+            phoneType.click();
+            waitFor(ExpectedConditions.visibilityOf(phoneType), 5);
+            driver.findElement(By.xpath("//li[text()='" + data.getPhoneType() + "']")).click();
+
+            countryCode.click();
+            waitFor(ExpectedConditions.visibilityOf(countryCode), 5);
+            driver.findElement(By.xpath("//li[text()='" + data.getCountryCode() + "']")).click();
+
+            waitFor(ExpectedConditions.visibilityOf(phoneNumber), 5);
+            phoneNumber.clear();
+            phoneNumber.sendKeys(data.getPhoneNumber());
+
+            emailType.click();
+            waitFor(ExpectedConditions.visibilityOf(emailType), 5);
+            driver.findElement(By.xpath("//li[text()='" + data.getEmailType() + "']")).click();
+
+            waitFor(ExpectedConditions.visibilityOf(email), 5);
+            email.clear();
+            email.sendKeys(data.getEmail());
+
+
+            reportWithScreenShot("User enter Emergency Contact details");
+            assertThat(btnSubmit_ManageSalary.isDisplayed()).isTrue();
+
+        } catch (Exception e) {
+            reportWithScreenShot(
+                    "Error While user enter Emergency Contact details due to:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // Click on submit button in Contacts page
+    public void clickContactSubmit() {
+        try {
+            // Click submit button in Contacts Page
+            waitFor(ExpectedConditions.visibilityOf(contactSubmitBtn), 15);
+            contactSubmitBtn.click();
+            reportWithScreenShot("User clicks on Submit Button in contacts page");
+
+        } catch (Exception e) {
+            reportWithScreenShot(
+                    "Error While user clicks on Submit button in contact page due to:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+
+    // Click on submit button in Emergency Contacts page
+    public void clickEmergencyContactSubmit() {
+        try {
+            // Click submit button in Contacts Page
+            waitFor(ExpectedConditions.visibilityOf(btnSubmit_ManageSalary), 15);
+            btnSubmit_ManageSalary.click();
+            reportWithScreenShot("User clicks on Submit Button in Emergency contacts page");
+
+        } catch (Exception e) {
+            reportWithScreenShot(
+                    "Error While user clicks on Submit button in Emergency contact page due to:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    //check for display of Alternate Work Location Address
+    public void checkAlternateWorkLocationAddressDisplayed() {
+        try {
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.visibilityOf(altWorkLocAddDisplay), 15);
+            assertThat(altWorkLocAddDisplay.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if Alternate Work location Address is Displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Alternate Work location Address is not Displayed");
             Assert.fail();
         }
     }
@@ -753,18 +927,21 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     // user selecting component type under component tab in manage salary page
     public void selectSalaryBasis() {
-
         try {
-
+            String selectValue = null;
+            selectValue = data.getSalaryBasis();
+            System.out.println("Salary basis " + selectValue);
             dropdownSalaryBasis_ManageSalary.click();
-            waitFor(ExpectedConditions.elementToBeClickable(usHourlyWages), 15);
-            assertThat(usHourlyWages.isDisplayed()).isTrue();
-            usHourlyWages.click();
+            waitShortTime();
+            WebElement dropdownElement = driver.findElement(By.xpath("//span[text()='" + selectValue + "']"));
+            waitFor(ExpectedConditions.elementToBeClickable(dropdownElement), 15);
+            assertThat(dropdownElement.isDisplayed()).isTrue();
+            dropdownElement.click();
+            waitShortTime();
             reportWithScreenShot(" is selected from dropdown:");
         } catch (Exception e) {
             reportWithScreenShot("Error While selecting  from dropdown:" + e.getMessage());
             Assert.fail();
-
         }
     }
 
@@ -1014,6 +1191,31 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
+    //Check for display of Family and Emergency Contacts Page Display
+    public void checkFamilyandEmergencyContactsPageDisplayed() {
+        try {
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(familyAndEmergencyPageIndicator), 15);
+            assertThat(familyAndEmergencyPageIndicator.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if we are landed on family And Emergency page");
+        } catch (Exception e) {
+            reportWithScreenShot("Family And Emergency page is not displayed:" + e.getMessage());
+        }
+    }
+
+    //Check if New Contact Page is displayed
+    public void checkNewContactPageDisplayed() {
+        try {
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(newContactPage), 15);
+            assertThat(newContactPage.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if we are landed on New Contact page");
+        } catch (Exception e) {
+            reportWithScreenShot("New Contact page is not displayed:" + e.getMessage());
+        }
+    }
+
+
 
     /**
      * This method will click on contact information link in contact information page
@@ -1033,6 +1235,36 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     }
 
+    //User Clicks on Family and Emergency Contacts option
+    public void clickFamilyandEmergencyContacts() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(familyAndEmergencyContactsLink), 15);
+            familyAndEmergencyContactsLink.click();
+            reportWithScreenShot("Clicking Family And Emergency Contacts Link");
+
+        } catch (Exception e) {
+            reportWithScreenShot("Family And Emergency Contacts link is not clicked properly:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    //User Clicks on Add button and New Contact option
+    public void clickAddandNewContact() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(myContactsAddBtn), 15);
+            myContactsAddBtn.click();
+            reportWithScreenShot("Clicking Add Button");
+
+            waitFor(ExpectedConditions.elementToBeClickable(createNewContactOption), 15);
+            createNewContactOption.click();
+            reportWithScreenShot("Clicking Create a new Contact option");
+
+        } catch (Exception e) {
+            reportWithScreenShot("Create a new Contact option is not clicked properly:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
     /**
      * This method will click on edit address button
      *
@@ -1040,8 +1272,8 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
      */
     public void clickEditAddressLink() {
         try {
-            waitFor(ExpectedConditions.elementToBeClickable(EditBtn), 15);
-            EditBtn.click();
+            waitFor(ExpectedConditions.elementToBeClickable(editAddressButton), 15);
+            editAddressButton.click();
             reportWithScreenShot("Clicking edit address link in Edit my details contact information page");
 
         } catch (Exception e) {
@@ -1060,12 +1292,13 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         try {
             validateElementIsDisplayed(effectiveStartDateRequiredValidation);
             validateElementIsDisplayed(addLine1RequiredValidation);
-            validateElementIsDisplayed(zipCodeRequiredValidation);
-            validateElementIsDisplayed(cityRequiredValidation);
-            validateElementIsDisplayed(stateRequiredValidation);
+            validateElementIsDisplayed(zipCode);
+            validateElementIsDisplayed(city);
+            validateElementIsDisplayed(state);
             validateElementIsDisplayed(addressType);
             validateElementIsDisplayed(country);
             validateElementIsDisplayed(addressLine2);
+            validateElementIsDisplayed(county);
             reportWithScreenShot("Clicking if address format is valid");
         } catch (Exception e) {
             reportWithScreenShot("Address format is not valid:" + e.getMessage());

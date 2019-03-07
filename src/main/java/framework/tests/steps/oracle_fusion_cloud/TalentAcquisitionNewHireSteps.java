@@ -109,9 +109,9 @@ public class TalentAcquisitionNewHireSteps implements En {
         When("user navigate to Employment Information page", () -> {
             //context.personManagment.navigateToEmpInfoPage();
             context.hireAnEmployee.checkIdentificationTabAvailable();
-
-
+            //context.hireAnEmployee.checkAndUpdateLegalEmployerIfEmpty();
             context.hireAnEmployee.clickNextButton();
+
             context.hireAnEmployee.checkPersonInformationTabAvailable();
             context.hireAnEmployee.clickNextButton();
         });
