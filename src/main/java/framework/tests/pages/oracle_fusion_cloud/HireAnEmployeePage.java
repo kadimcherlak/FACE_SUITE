@@ -261,7 +261,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             // Select Location Contact Required
             waitFor(ExpectedConditions.elementToBeClickable(locationContact), 15);
             locationContact.click();
-            locationContact.sendKeys(data.getPearsonEmailRequired());
+            locationContact.sendKeys(data.getLocationContact());
             waitShortTime();
 
             // Click to create new row

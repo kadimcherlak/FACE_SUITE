@@ -1,28 +1,5 @@
-@TALENT_ACQUISITION
+@DemoSet1
 Feature: New Hire and Related Activities
-
-  @TEST_EXCEL
-  Scenario Outline: Perform Login to Oracle Fusion Cloud
-    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
-    And user updated the Excel file with Row Name <Test Scenario> and Column Name personNumber with value 500103
-
-    Examples:
-      | Test Scenario           | Test File Name | Test Sheet Name    |
-      | UPDATE_REMOVE_I9_STATUS | TestData.xlsx  | Talent_Acquisition |
-
-  @LOGIN_LOGOUT
-  Scenario Outline: Perform Login to Oracle Fusion Cloud
-    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
-    And user is on the oracle fusion login page
-    And user provides credentials for login
-    When the user clicks on Sign In
-    Then the Oracle Fusion Home Page is displayed
-    When user clicks on Sign Out option
-    Then Sign out should be successful
-
-    Examples:
-      | Test Scenario | Test File Name | Test Sheet Name    |
-      | LOGIN_LOGOUT  | TestData.xlsx  | Talent_Acquisition |
 
   @NEW_HIRE
   Scenario Outline:  Create a New Hire
@@ -73,6 +50,113 @@ Feature: New Hire and Related Activities
       | Test Scenario          | Test File Name | Test Sheet Name    |
       | UPDATE_ELEMENT_ENTRIES | TestData.xlsx  | Talent_Acquisition |
 
+  @UPDATE_SALARY_FOR_EXISTING_EMP
+  Scenario Outline: Admin updating salary component of an existing employee
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button till person displayed
+    Then Employee name should be listed in search results
+    When user click on employee name link in search results
+    And user click on Task Icon on the right side
+    Then user clicks Manage Salary option from task icon menu
+    And user clicks on Action button and select Edit option
+    And user enters new Salary Amount under Current Salary section
+    And user clicks on Continue button in Manage Salary tab
+    When user clicks on Submit button in Manage Salary Review page
+    And user clicks Yes button on popup modal
+    And user clicks Ok button confirmation popup modal
+    And user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario                  | Test File Name | Test Sheet Name  |
+      | UPDATE_SALARY_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
+
+  @CHANGE_SALARY_BASIS_FOR_EXISTING_EMP
+  Scenario Outline: Admin changing salary basis of an employee
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button till person displayed
+    Then Employee name should be listed in search results
+    When user click on employee name link in search results
+    And user click on Task Icon on the right side
+    Then user clicks Manage Salary option from task icon menu
+    And user clicks on Action button and select Edit option
+    When user selects US Hourly Wages hours from Salary Basis
+    Then user closes Warning modal by clicking OK button
+    And user clicks on Continue button in Manage Salary tab
+    When user clicks on Submit button in Manage Salary Review page
+    And user clicks Yes button on popup modal
+    And user clicks Ok button confirmation popup modal
+    And user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario                        | Test File Name | Test Sheet Name  |
+      | CHANGE_SALARY_BASIS_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
+
+  @EDIT_SALARY_PROPOSAL_REASON
+  Scenario Outline: Admin can edit Salary Proposal Reason
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button till person displayed
+    Then Employee name should be listed in search results
+    When user click on employee name link in search results
+    And user click on Task Icon on the right side
+    Then user clicks Manage Salary option from task icon menu
+    And user clicks on Action button and select Edit option
+    And user enters new Salary Amount under Current Salary section
+    And user clicks on Continue button in Manage Salary tab
+    When user clicks on Submit button in Manage Salary Review page
+    And user clicks Yes button on popup modal
+    And user clicks Ok button confirmation popup modal
+    And user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario               | Test File Name | Test Sheet Name  |
+      | EDIT_SALARY_PROPOSAL_REASON | TestData.xlsx  | Employee_Details |
+
+  @UPDATE_I9_STATUS
+  Scenario Outline:  Verify PPS is able to update I9 Status
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button till person displayed
+    Then Employee name should be listed in search results
+    When user click on employee name link in search results
+    Then Person Management screen should be displayed
+    And user clicks on Manage Work Relationship on right side of the page under Tasks pane
+    Then Manage Work Relationship screen should be displayed
+    When user click on Actions button and select Edit option
+    Then Edit Work Relationship screen should be displayed
+    And user select Ready to verify value from I-9 Status
+    When user clicks on submit button
+    And clicks ok in the Warning and confirmation message displayed
+    Then Page should be submitted successfully
+    When user click on Done button at the top
+    And user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario    | Test File Name | Test Sheet Name    |
+      | UPDATE_I9_STATUS | TestData.xlsx  | Talent_Acquisition |
+
   @UPDATE_PERSONAL_ASSIGNMENT_DATA
   Scenario Outline: Perform Global Transfer for New Hire Employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
@@ -101,61 +185,3 @@ Feature: New Hire and Related Activities
     Examples:
       | Test Scenario                   | Test File Name | Test Sheet Name    |
       | UPDATE_PERSONAL_ASSIGNMENT_DATA | TestData.xlsx  | Talent_Acquisition |
-
-  @UPDATE_I9_STATUS
-  Scenario Outline:  Verify PPS is able to update I9 Status
-    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
-    And user login to Oracle Applications Cloud web page
-    When user clicks on Navigator icon
-    And user clicks on Person Management link in Navigator Pane
-    Then Person Management: Search screen should be displayed
-    And user enter the Person number generated from previous step in Person Number field
-    And user click on Search button till person displayed
-    Then Employee name should be listed in search results
-    When user click on employee name link in search results
-    Then Person Management screen should be displayed
-    And user clicks on Manage Work Relationship on right side of the page under Tasks pane
-    Then Manage Work Relationship screen should be displayed
-    When user click on Actions button and select Edit option
-    Then Edit Work Relationship screen should be displayed
-    And user select Ready to verify value from I-9 Status
-    When user clicks on submit button
-    And clicks ok in the Warning and confirmation message displayed
-    Then Page should be submitted successfully
-    When user click on Done button at the top
-    And user clicks on Sign Out option
-    Then Sign out should be successful
-
-    Examples:
-      | Test Scenario           | Test File Name | Test Sheet Name    |
-      | UPDATE_I9_STATUS | TestData.xlsx  | Talent_Acquisition |
-
-  @EDIT_PROJECTED_ENDDATE
-  Scenario Outline:Perform Edit Projected end date for limited term Employee
-    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
-    And user login to Oracle Applications Cloud web page
-    When user clicks on Navigator icon
-    And user clicks on Person Management link in Navigator Pane
-    Then Person Management: Search screen should be displayed
-    And user enter the Person number generated from previous step in Person Number field
-    And user click on Search button till person displayed
-    Then Employee name should be listed in search results
-    When user click on employee name link in search results
-    Then Person Management screen should be displayed
-    When user clicks on Edit and select Correct option
-    Then Correct Employment page should be displayed
-    When user Enter all the Mandatory fields of Correct Employment window and click Ok button
-    Then Projected End Date field Should be Editable
-    When User enters Projected End Date
-    And User Clicks on Review Button
-    Then Review page should be displayed in view only mode
-    When user clicks on submit button
-    And clicks ok in the Warning and confirmation message displayed
-    Then Page should be submitted successfully
-    And user clicks on Sign Out option
-    Then Sign out should be successful
-
-    Examples:
-      | Test Scenario          | Test File Name | Test Sheet Name    |
-      | EDIT_PROJECTED_ENDDATE | TestData.xlsx  | Talent_Acquisition |
-

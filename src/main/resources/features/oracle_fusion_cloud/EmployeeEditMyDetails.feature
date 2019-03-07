@@ -1,5 +1,5 @@
 @EMPLOYEE_EDIT_DETAILS
-Feature: Employee performs edit on Address,Contact Type,Personal Payment Method and disability Information
+Feature: Perform Edit on Employee Information
 
   @NEW_ADDRESS_ALTERNATIVE_WORK_LOCATION
   Scenario Outline: Employee to add New Address to indicate an alternative work location
@@ -197,8 +197,8 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
       | Test Scenario                                              | Test File Name | Test Sheet Name  |
       | UPDATE_ADDRESS_BIOGRAPHICAL_INFO_DRIVING_LICENSE_DOCUMENTS | TestData.xlsx  | Employee_Details |
 
-  @CHANGE_SALARY_BASIS_FOR_EXISTING_EMP @demoRun
-  Scenario Outline: Administration changing salary basis of an employee
+  @CHANGE_SALARY_BASIS_FOR_EXISTING_EMP
+  Scenario Outline: Admin changing salary basis of an employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -224,8 +224,8 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
       | Test Scenario                        | Test File Name | Test Sheet Name  |
       | CHANGE_SALARY_BASIS_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
 
-  @UPDATE_SALARY_FOR_EXISTING_EMP @demoRun
-  Scenario Outline: Updating salary component of an existing employee
+  @UPDATE_SALARY_FOR_EXISTING_EMP
+  Scenario Outline: Admin updating salary component of an existing employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -255,7 +255,7 @@ Feature: Employee performs edit on Address,Contact Type,Personal Payment Method 
       | Test Scenario                  | Test File Name | Test Sheet Name  |
       | UPDATE_SALARY_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
 
-  @EDIT_SALARY_PROPOSAL_REASON @demoRun
+  @EDIT_SALARY_PROPOSAL_REASON
   Scenario Outline: Admin can edit Salary Proposal Reason
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
