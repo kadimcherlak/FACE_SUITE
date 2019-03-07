@@ -4,6 +4,7 @@ import framework.tests.steps.oracle_fusion_cloud.Context;
 import framework.tests.steps.oracle_fusion_cloud.Data;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -404,9 +405,15 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitNormalTime();
 
             // Enter Location
-            waitFor(ExpectedConditions.elementToBeClickable(location), 15);
-            location.sendKeys(data.getLocation());
-            waitShortTime();
+            try {
+                waitFor(ExpectedConditions.elementToBeClickable(location), 15);
+                location.sendKeys(data.getLocation());
+                waitShortTime();
+            } catch (StaleElementReferenceException e) {
+                waitShortTime();
+                location.sendKeys(data.getLocation());
+            }
+
 
             // Enter assignment Category
             waitFor(ExpectedConditions.elementToBeClickable(assignmentCategory), 15);

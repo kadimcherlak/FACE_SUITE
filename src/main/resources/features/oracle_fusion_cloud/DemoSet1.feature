@@ -158,7 +158,7 @@ Feature: New Hire and Related Activities
       | UPDATE_I9_STATUS | TestData.xlsx  | Talent_Acquisition |
 
   @UPDATE_PERSONAL_ASSIGNMENT_DATA
-  Scenario Outline: Perform Global Transfer for New Hire Employee
+  Scenario Outline: Perform Global Transfer for Employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
