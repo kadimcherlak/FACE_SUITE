@@ -395,12 +395,13 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             altWorkLocationCountry.sendKeys(data.getAltWorkLocationCountry());
             waitNormalTime();
             altWorkLocationCountry.sendKeys(Keys.DOWN, Keys.RETURN);
-            waitShortTime();
             altWorkLocationCountry.sendKeys(Keys.TAB);
+            waitNormalTime();
             //Enter Address Type
             altWorkLocationAddType.click();
             waitFor(ExpectedConditions.visibilityOf(altWorkLocationAddType), 5);
             driver.findElement(By.xpath("//li[text()='" + data.getAltWorkLocationAddressType() + "']")).click();
+            waitNormalTime();
             //Enter Address Line1
             waitFor(ExpectedConditions.elementToBeClickable(altWorkLocationAddressLine1), 5);
             altWorkLocationAddressLine1.sendKeys(data.getAltWorkLocationAddressLine1());
@@ -725,6 +726,8 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     // User click  Task icon right side
     public void taskIconClick() {
         try {
+            waitUntilPageLoad();
+            waitNormalTime();
             waitFor(ExpectedConditions.elementToBeClickable(taskIcon), 30);
             mouseHover(taskIcon);
             taskIcon.click();
@@ -1298,7 +1301,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             validateElementIsDisplayed(addressType);
             validateElementIsDisplayed(country);
             validateElementIsDisplayed(addressLine2);
-            //  validateElementIsDisplayed(county);
+            //validateElementIsDisplayed(county);
             reportWithScreenShot("Clicking if address format is valid");
         } catch (Exception e) {
             reportWithScreenShot("Address format is not valid:" + e.getMessage());
