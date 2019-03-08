@@ -35,7 +35,6 @@ public class Context extends framework.core.models.Context {
     private DataStore dataStore = new DataStore();
     private Data data = new Data();
 
-
     public Context() {
         logger.debug("Initializing context");
         environment = Core.getEnvironment();
@@ -96,15 +95,11 @@ public class Context extends framework.core.models.Context {
     public void afterScenario(Scenario scenario) {
         logger.debug("Finishing Feature: {} - Scenario: {}", getFeatureFile(scenario.getId()), scenario.getName());
         logger.debug("STATUS: {}", scenario.getStatus());
-<<<<<<< HEAD
-     }
-=======
         System.out.println(scenario.getStatus());
         if (scenario.getStatus().toString().equalsIgnoreCase("FAILED")) {
             driver.quit();
         }
     }
->>>>>>> remotes/origin/demo
 
     private String getFeatureFile(String scenarioId) {
         return scenarioId.substring(0, scenarioId.lastIndexOf(":"));

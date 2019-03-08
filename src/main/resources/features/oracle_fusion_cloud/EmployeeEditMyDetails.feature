@@ -188,11 +188,7 @@ Feature: Perform Edit on Employee Information
       | UPDATE_ADDRESS_BIOGRAPHICAL_INFO_DRIVING_LICENSE_DOCUMENTS | TestData.xlsx  | Employee_Details |
 
   @CHANGE_SALARY_BASIS_FOR_EXISTING_EMP
-<<<<<<< HEAD
-  Scenario Outline: Administration changing salary basis of an employee
-=======
   Scenario Outline: Admin changing salary basis of an employee
->>>>>>> remotes/origin/demo
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
