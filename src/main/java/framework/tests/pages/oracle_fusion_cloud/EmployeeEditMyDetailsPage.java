@@ -1298,7 +1298,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             validateElementIsDisplayed(addressType);
             validateElementIsDisplayed(country);
             validateElementIsDisplayed(addressLine2);
-            validateElementIsDisplayed(county);
+            //  validateElementIsDisplayed(county);
             reportWithScreenShot("Clicking if address format is valid");
         } catch (Exception e) {
             reportWithScreenShot("Address format is not valid:" + e.getMessage());
