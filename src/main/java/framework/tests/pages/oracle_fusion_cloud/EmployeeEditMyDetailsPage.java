@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
 
 public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPage> {
 
@@ -281,7 +282,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//label[text()='Address Line 2']/following::span[1]")
     private WebElement addressLine2;
-    
+
     @FindBy(xpath = "//label[text()='Country']/following::span[1]")
     private WebElement country;
 
@@ -302,7 +303,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//label[contains(.,'Alternate work Location Address')]")
     private WebElement altWorkLocAddDisplay;
-    
+
     @FindBy(xpath = "(//div[@title='Address']/descendant::img[@alt='Edit'])[1]")
     private WebElement editAddressButton;
 
@@ -340,9 +341,27 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//label[text()='Email']//following::input[1]")
     private WebElement email;
+    //---------
+    @FindBy(xpath = "//img[@title='More Information']")
+    private WebElement personMoreInfoEllipsis;
 
+    @FindBy(xpath = "//span[contains(text(),'Personal Details')]")
+    private WebElement lnkPersonalDetails;
 
+    @FindBy(xpath = "//div[@title='Personal Details']")
+    private WebElement pagePersonalDetails;
 
+    @FindBy(xpath = "//span[@class='xmg'][text()='Update Photo']")
+    private WebElement optionUpdatePhoto;
+
+    @FindBy(xpath = "//input[@type='file']")
+    private WebElement choosePhotoFile;
+
+    @FindBy(xpath = "//td[@class='x1ul']")
+    private WebElement moreMenu;
+
+    @FindBy(xpath = "//button[@id='_FOpt1:_FOr1:0:_FOSrPER_HCMPEOPLETOP_FUSE_PER_INFO:0:MAnt2:2:pim1Upl:UPsp1:sh1:if1::upBtn']")
+    private WebElement btnPhotoUpdated;
 
 
     public EmployeeEditMyDetailsPage(Context context) {
@@ -798,8 +817,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         txtboxComponentAmt_ManageSalary.sendKeys(Keys.TAB);
         Thread.sleep(4000);
         String actAmt = txtAnnualSalary.getText().replace(",", "");
-        System.out.println("act amt - " + actAmt);
-        System.out.println("exp amt - " + data.getSalaryAmount().trim());
 //        Assertions.assertThat(txtAnnualSalary.getText().trim().equals(data.getSalaryAmount().trim())).isTrue();
         reportWithScreenShot("user entered new salary amount in Salary amount field");
     }
@@ -1216,7 +1233,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     }
 
 
-
     /**
      * This method will click on contact information link in contact information page
      *
@@ -1341,5 +1357,111 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     }
 
+    public void clickPersonalDetailsLink() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(lnkPersonalDetails), 30);
+//            mouseHover(lnkPersonalDetails);
+//            clickWebElement(lnkPersonalDetails);
+//            doubleClick(lnkPersonalDetails);
+////            lnkPersonalDetails.click();
+            JavascriptExecutor executor = (JavascriptExecutor) driver;
+            executor.executeScript("arguments[0].click();", lnkPersonalDetails);
+            Thread.sleep(2000);
+            waitUntilPageLoad();
+            assertThat(pagePersonalDetails.isDisplayed());
+            reportWithScreenShot("User clicked on Personal Details link :");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking Personal details link:" + e.getMessage());
+            Assert.fail();
+        }
+    }
 
+    public void checkPersonalDetailPageDisplayed() {
+        try {
+            assertThat(pagePersonalDetails.isDisplayed());
+            reportWithScreenShot("Persona Details page displayed :");
+        } catch (Exception e) {
+            reportWithScreenShot("Error in displaying Persona Details page displayed:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void clickEllipsisOnLogo() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(personMoreInfoEllipsis), 60);
+            doubleClick(personMoreInfoEllipsis);
+//            personMoreInfoEllipsis.click();
+            waitFor(ExpectedConditions.visibilityOf(moreMenu), 60);
+            scrollToElement(optionUpdatePhoto);
+            assertThat(optionUpdatePhoto.isDisplayed());
+            reportWithScreenShot("Users clicked on ellipsis to open More options menu :");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking ellipsis :" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void checkMoreOptionMenuDisplayed() {
+        try {
+            scrollToElement(optionUpdatePhoto);
+            assertThat(optionUpdatePhoto.isDisplayed());
+            reportWithScreenShot("Users More options menu displayed :");
+        } catch (Exception e) {
+            reportWithScreenShot("Error in displaying More option menu :" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void clickUpdatePhotoLink() {
+
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(optionUpdatePhoto), 15);
+            optionUpdatePhoto.click();
+            waitFor(ExpectedConditions.visibilityOf(choosePhotoFile), 60);
+            assertThat(choosePhotoFile.isDisplayed());
+            reportWithScreenShot("User clicks on Update Photo link from more options menu :");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking Update Photo link :" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void checkPhotPageDisplayed() {
+        try {
+
+            assertThat(choosePhotoFile.isDisplayed());
+            reportWithScreenShot("Photo page is displayed :");
+        } catch (Exception e) {
+            reportWithScreenShot("Error in displaying Photo page:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void choosePhotoToUpload() {
+
+        try {
+
+            String imgLocation = System.getProperty("user.dir") + "/src/main/resources/testdata/TestImage.jpg";
+            choosePhotoFile.sendKeys(imgLocation);
+            Thread.sleep(2000);
+            waitFor(ExpectedConditions.visibilityOf(btnPhotoUpdated), 100);
+            assertThat(btnPhotoUpdated.isDisplayed()).isTrue();
+            reportWithScreenShot("User uploaded the photo :");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while uploading the photo :" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void checkUserPhotoUploaded() {
+        try {
+
+            waitFor(ExpectedConditions.visibilityOf(btnPhotoUpdated), 100);
+            assertThat(btnPhotoUpdated.isDisplayed()).isTrue();
+            reportWithScreenShot("User updated the photo Successfully :");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while updating the photo :" + e.getMessage());
+            Assert.fail();
+        }
+    }
 }

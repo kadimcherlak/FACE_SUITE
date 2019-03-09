@@ -272,3 +272,26 @@ Feature: Perform Edit on Employee Information
       | EDIT_SALARY_PROPOSAL_REASON | TestData.xlsx  | Employee_Details |
 
 
+  @EMPLOYEE_UPLOADS_A_PHOTO
+  Scenario Outline: Employee add Emergency Contact details
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Personal Information link under About me section
+    Then Personal Info page should be displayed
+    When user clicks on Personal Details link in Person Info page
+    Then Personal Details page should be displayed
+    And user clicks on ellipsis on Employee Logo name
+    Then users More option menu is displayed
+    And user clicks Update Photo link to upload photo
+    Then Photo upload page should be displayed
+    When user clicks on Choose File button to upload a photo
+#    Then user selected photo is uploaded to system
+    When user clicks on Save and Close button
+    Then Personal Info page should be displayed
+    When user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario            | Test File Name | Test Sheet Name  |
+      | EMPLOYEE_UPLOADS_A_PHOTO | TestData.xlsx  | Employee_Details |
