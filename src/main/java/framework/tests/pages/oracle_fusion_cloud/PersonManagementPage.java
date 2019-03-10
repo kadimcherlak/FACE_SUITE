@@ -822,6 +822,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             waitFor(ExpectedConditions.elementToBeClickable(reviewButton_ManageEmployment), 15);
             reviewButton_ManageEmployment.click();
             assertThat(reviewButton_ManageEmployment.isDisplayed()).isTrue();
+            reportWithScreenShot("User clicked on Review  button");
         } catch (Exception e) {
             reportWithScreenShot("Error while user clicks Review button");
             Assert.fail();

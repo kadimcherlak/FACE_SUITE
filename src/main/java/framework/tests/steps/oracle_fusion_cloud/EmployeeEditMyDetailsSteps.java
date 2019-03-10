@@ -173,7 +173,7 @@ public class EmployeeEditMyDetailsSteps implements En {
 
         });
 
-        When("^user clicks on Submit button in Manage Salary Review page$", () -> {
+        When("^user clicks on Submit button in Review page$", () -> {
             context.employeeEditMyDetails.clickSubmitButtonInReviewPage();
         });
 
@@ -395,6 +395,17 @@ public class EmployeeEditMyDetailsSteps implements En {
 
         Then("^user selected photo is uploaded to system$", () -> {
             context.employeeEditMyDetails.checkUserPhotoUploaded();
+        });
+        When("^user enters details in Update Employment Window and click on Ok button$", () -> {
+
+            context.employeeEditMyDetails.fillUpdateEmpWindow_PersonMgmt();
+        });
+        And("^user selects Assignment Status as (.*?)$", (String value) -> {
+            context.employeeEditMyDetails.selectAssignmentStatus(value);
+        });
+        When("^user clicks on Review button in Management Employment page$", () -> {
+            context.employeeEditMyDetails.clickReviewButton();
+
         });
 
     }

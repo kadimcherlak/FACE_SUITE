@@ -2,6 +2,7 @@ package framework.tests.pages.oracle_fusion_cloud;
 
 import framework.tests.steps.oracle_fusion_cloud.Context;
 import framework.tests.steps.oracle_fusion_cloud.Data;
+import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -93,7 +94,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//img[@title='Actions']")
     private WebElement moreInformationActionButton;
 
-
     @FindBy(xpath = "//img[@title='Tasks']")
     private WebElement taskIcon;
 
@@ -123,17 +123,14 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//a[@id='_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt2:1:AP1:sdi1::disAcr']")
     private WebElement tabComponents_ManageSalary;
 
-
     @FindBy(xpath = "//img[contains(@id,'create')]")
     private WebElement addButton_ComponentsTab;
-
 
     @FindBy(xpath = "//h1[contains(.,'My Details')]")
     private WebElement empMyDetails;
 
     @FindBy(xpath = "//span[@id='_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt3:1:AP1:inputText1::content']")
     private WebElement txtAnnualSalary;
-
 
     @FindBy(xpath = "//span[@class='x1z p_AFCustom']//input[@role='combobox']")
     private WebElement selectComponentDropdown;
@@ -326,7 +323,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//label[@class='x1da']")
     private WebElement personEmergencyContactCheckbox;
 
-
     @FindBy(xpath = "(//label[text()='Type']//following::input[1])[1]")
     private WebElement phoneType;
 
@@ -363,6 +359,26 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//button[@id='_FOpt1:_FOr1:0:_FOSrPER_HCMPEOPLETOP_FUSE_PER_INFO:0:MAnt2:2:pim1Upl:UPsp1:sh1:if1::upBtn']")
     private WebElement btnPhotoUpdated;
 
+    @FindBy(xpath = "//label[contains(@for,'effectiveDate')]//following::input[1]")
+    private WebElement modalUpdateEmploymentEffectiveDate;
+
+    @FindBy(xpath = "//label[contains(@for,'actionsName')]/following::input[1]")
+    private WebElement modalUpdateEmploymentAction;
+
+    @FindBy(xpath = "//label[contains(@for,'actionReason')]/following::input[1]")
+    private WebElement modalUpdateEmploymentActionReason;
+
+    @FindBy(xpath = "//h1[contains(text(),'Edit Employment')]")
+    private WebElement editEmploymentPage;
+
+    @FindBy(xpath = "//button[@accesskey='K']")
+    private WebElement btnOK;
+
+    @FindBy(xpath = "//label[text()='Assignment Status']//following::input[1]")
+    private WebElement dropdownAssignmentStatus;
+
+    @FindBy(xpath = "//span[text()='Review']")
+    private WebElement btnReview;
 
     public EmployeeEditMyDetailsPage(Context context) {
         super(context);
@@ -901,9 +917,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     public void clickSubmitButtonInReviewPage() {
         try {
-            waitFor(ExpectedConditions.elementToBeClickable(btnSubmit_ManageSalary), 15);
+            waitFor(ExpectedConditions.elementToBeClickable(btnSubmit_ManageSalary), 60);
             btnSubmit_ManageSalary.click();
-            waitFor(ExpectedConditions.elementToBeClickable(popButtonYes), 15);
+            waitFor(ExpectedConditions.elementToBeClickable(popButtonYes), 60);
             assertThat(popButtonYes.isDisplayed()).isTrue();
             reportWithScreenShot(" Submit button in Manage salary review page is clicked");
         } catch (Exception e) {
@@ -916,9 +932,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     public void clickYesOnPopup() {
         try {
-            waitFor(ExpectedConditions.elementToBeClickable(popButtonYes), 15);
+            waitFor(ExpectedConditions.elementToBeClickable(popButtonYes), 30);
             popButtonYes.click();
-            waitFor(ExpectedConditions.elementToBeClickable(confirmBtnOK), 15);
+            waitFor(ExpectedConditions.elementToBeClickable(confirmBtnOK), 30);
             assertThat(confirmBtnOK.isDisplayed()).isTrue();
             reportWithScreenShot(" Ok button in Manage salary review page is clicked");
         } catch (Exception e) {
@@ -931,9 +947,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     //user clicks Yes button on Manage salary review page
     public void clickOKOnPopup() {
         try {
-            waitFor(ExpectedConditions.elementToBeClickable(confirmBtnOK), 15);
+            waitFor(ExpectedConditions.elementToBeClickable(confirmBtnOK), 30);
             confirmBtnOK.click();
-            waitFor(ExpectedConditions.elementToBeClickable(btnDone), 15);
+            waitFor(ExpectedConditions.elementToBeClickable(btnDone), 30);
             assertThat(btnDone.isDisplayed()).isTrue();
             reportWithScreenShot(" Ok button in Manage salary review page is clicked");
         } catch (Exception e) {
@@ -1461,6 +1477,81 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             reportWithScreenShot("User updated the photo Successfully :");
         } catch (Exception e) {
             reportWithScreenShot("Error while updating the photo :" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // User enter details in Update Employment Window
+    public void fillUpdateEmpWindow_PersonMgmt() {
+        try {
+            // Enter current date into effective date
+            waitFor(ExpectedConditions.elementToBeClickable(modalUpdateEmploymentEffectiveDate), 15);
+            modalUpdateEmploymentEffectiveDate.clear();
+            modalUpdateEmploymentEffectiveDate.sendKeys(getCurrentDate());
+            modalUpdateEmploymentEffectiveDate.sendKeys(Keys.TAB);
+            waitShortTime();
+
+            // Enter Action value
+            waitFor(ExpectedConditions.elementToBeClickable(modalUpdateEmploymentAction), 15);
+            modalUpdateEmploymentAction.click();
+            waitFor(ExpectedConditions
+                    .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getEmploymentAction() + "']"))), 5);
+            driver.findElement(By.xpath("//li[text()='" + data.getEmploymentAction() + "']")).click();
+            modalUpdateEmploymentAction.sendKeys(Keys.TAB);
+            waitNormalTime();
+
+            // Enter Action Reason value
+            waitFor(ExpectedConditions.elementToBeClickable(modalUpdateEmploymentActionReason), 15);
+            modalUpdateEmploymentActionReason.click();
+            waitFor(ExpectedConditions
+                    .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getEmploymentActionReason() + "']"))), 5);
+            driver.findElement(By.xpath("//li[text()='" + data.getEmploymentActionReason() + "']")).click();
+            modalUpdateEmploymentActionReason.sendKeys(Keys.TAB);
+            waitShortTime();
+            reportWithScreenShot("User updated the values in Update Employment Modal");
+            // Click OK
+            btnOK.click();
+            waitFor(ExpectedConditions.visibilityOf(editEmploymentPage), 30);
+            assertThat(editEmploymentPage.isDisplayed()).isTrue();
+            reportWithScreenShot("User clicked OK button on Update Employment Modal");
+        } catch (Exception e) {
+
+            reportWithScreenShot("Error While updating values in Update Employment Modal:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void selectAssignmentStatus(String value) {
+
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(dropdownAssignmentStatus),30);
+            dropdownAssignmentStatus.click();
+            waitFor(ExpectedConditions
+                    .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getAssignmentStatus() + "']"))), 15);
+            WebElement valueToBeSelected = driver.findElement(By.xpath("//li[text()='" + data.getAssignmentStatus() + "']"));
+            waitFor(ExpectedConditions.elementToBeClickable(valueToBeSelected),15);
+            assertThat(valueToBeSelected.isDisplayed()).isTrue();
+            valueToBeSelected.click();
+            reportWithScreenShot("User clicked OK button on Update Employment Modal");
+        }catch (Exception e){
+            reportWithScreenShot("Error While updating values in Update Employment Modal:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    /**
+     * user clicks on Review button
+     * Author: Sangameshwar Balur
+     */
+    public void clickReviewButton() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(btnReview), 15);
+            btnReview.click();
+            waitFor(ExpectedConditions.elementToBeClickable(btnSubmit_ManageSalary), 30);
+            Assertions.assertThat(btnSubmit_ManageSalary.isDisplayed()).isTrue();
+            reportWithScreenShot("User clicked on Review  button");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while user clicks Review button");
             Assert.fail();
         }
     }
