@@ -20,6 +20,47 @@ public class EmployeeEditMyDetailsSteps implements En {
             context.loginAndHome.checkPersonalInfoPageDisplayed();
         });
 
+        When("Import and Load Data page should be displayed", () -> {
+            context.employeeEditMyDetails.checkImportAndLoadDataDisplayed();
+        });
+
+        When("user clicks on Import File option", () -> {
+            context.employeeEditMyDetails.clickImportFile();
+        });
+
+
+        When("Select File page should be displayed", () -> {
+            context.employeeEditMyDetails.checkSelectFilePageDisplayed();
+        });
+
+        When("user clicks on Choose File option", () -> {
+            context.employeeEditMyDetails.clickChooseFile();
+        });
+
+        When("user upload HDL File and click Submit button", () -> {
+            context.employeeEditMyDetails.uploadFile();
+        });
+
+        When("File should be successfully submitted", () -> {
+            context.employeeEditMyDetails.fileSubmit();
+        });
+
+        When("Process Id should be generated", () -> {
+            context.employeeEditMyDetails.CheckProcessIdGeneration();
+        });
+
+        When("user search for the process id generated in search screen", () -> {
+            context.employeeEditMyDetails.searchProcessId();
+        });
+
+        When("user clicks on Refresh button1 till process Id displayed", () -> {
+            context.employeeEditMyDetails.clickRefreshBtn1TillProcessIdDisplayed();
+        });
+
+        When("user clicks on Refresh button1 till file is imported and loaded", () -> {
+            context.employeeEditMyDetails.clickRefreshBtn1TillFileLoaded();
+        });
+
         When("user clicks on Edit button on top right side", () -> {
             context.employeeEditMyDetails.clickMyDetailsEdit();
         });

@@ -50,6 +50,7 @@ public class Data extends framework.core.models.Data {
     private String globalMobilityIndicator;
     private boolean globalMobilityIndicatorCheck;
     private String grade;
+    private String hdlFilePath;
     private String hireAction;
     private String hireDate;
     private String hireReason;
@@ -78,6 +79,7 @@ public class Data extends framework.core.models.Data {
     private String percentage;
     private String phoneType;
     private String phoneNumber;
+    private Integer processId;
     private String relationship;
     private String routingNumber;
     private String salaryAmount;
@@ -299,6 +301,10 @@ public class Data extends framework.core.models.Data {
         return grade;
     }
 
+    public String getHdlFilePath() {
+        return hdlFilePath;
+    }
+
     public String getHireAction() {
         return hireAction;
     }
@@ -420,6 +426,14 @@ public class Data extends framework.core.models.Data {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public Integer getProcessId() {
+        return processId;
+    }
+
+    public void setProcessId(Integer processId) {
+        this.processId = processId;
     }
 
     public String getPercentage() {
