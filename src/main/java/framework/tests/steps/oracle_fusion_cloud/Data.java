@@ -17,6 +17,7 @@ public class Data extends framework.core.models.Data {
     private String altWorkLocationAddressLine2;
     private String altWorkLocationZipCode;
     private String assignmentCategory;
+    private String assignmentStatus;
     private String bankName;
     private String businessUnit;
     private String category;
@@ -45,12 +46,12 @@ public class Data extends framework.core.models.Data {
     private String emailType;
     private String erProfitCenter;
     private String firstName;
+    private String filePath;
     private String familyName;
     private String gender;
     private String globalMobilityIndicator;
     private boolean globalMobilityIndicatorCheck;
     private String grade;
-    private String filePath;
     private String hireAction;
     private String hireDate;
     private String hireReason;
@@ -152,6 +153,10 @@ public class Data extends framework.core.models.Data {
 
     public String getAssignmentCategory() {
         return assignmentCategory;
+    }
+
+    public String getAssignmentStatus() {
+        return assignmentStatus;
     }
 
     public String getBankName() {
@@ -302,10 +307,6 @@ public class Data extends framework.core.models.Data {
         return grade;
     }
 
-    public String getFilePath() {
-        return filePath;
-    }
-
     public String getHireAction() {
         return hireAction;
     }
@@ -443,6 +444,10 @@ public class Data extends framework.core.models.Data {
 
     public String getPercentage() {
         return percentage;
+    }
+
+    public String getFilePath() {
+        return filePath;
     }
 
     public String getRelationship() {

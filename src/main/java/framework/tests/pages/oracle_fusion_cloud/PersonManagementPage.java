@@ -224,6 +224,9 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
     @FindBy(xpath = "//span[text()='Review']")
     private WebElement reviewButton_ManageEmployment;
+    
+    @FindBy(xpath = "(//label[text()='Hire Date']/following::input[1])[1]")
+    private WebElement hireDate;
 
     // Person Management Contructor
     public PersonManagementPage(Context context) {
@@ -822,8 +825,26 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             waitFor(ExpectedConditions.elementToBeClickable(reviewButton_ManageEmployment), 15);
             reviewButton_ManageEmployment.click();
             assertThat(reviewButton_ManageEmployment.isDisplayed()).isTrue();
+            reportWithScreenShot("User clicked on Review  button");
         } catch (Exception e) {
             reportWithScreenShot("Error while user clicks Review button");
+            Assert.fail();
+        }
+    }
+    
+    /**
+     * User changes hire date
+     * Author: Rakesh Ghosal
+     */
+    public void enterHireDate() {
+        try {
+        	scrollToElement(hireDate);
+            waitFor(ExpectedConditions.elementToBeClickable(hireDate), 15);
+            hireDate.clear();
+            hireDate.sendKeys(getCurrentDate());
+        } catch (Exception e) {
+        	System.out.println(e);
+            reportWithScreenShot("Error while entering hire date");
             Assert.fail();
         }
     }
