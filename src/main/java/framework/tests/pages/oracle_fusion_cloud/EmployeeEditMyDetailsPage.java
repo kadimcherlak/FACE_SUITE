@@ -12,10 +12,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
-import java.awt.*;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPage> {
@@ -57,7 +53,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//*@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_data_exchange:0:MAt2:0:AP1:AT1:_ATp:ATt4:0:ot2\"]")
     private WebElement loadedPercent;
 
-    @FindBy(xpath = "(//h1[contains(.,'Search')])[1]")
+    @FindBy(xpath = "//a[@title='Expand Search']")
     private WebElement processIdSearch;
 
     // @FindBy(xpath = "//span[@class='xwy' and text()='Add Fields']")
@@ -77,6 +73,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//button[contains(.,'Search')]")
     private WebElement searchBtn;
+
+    @FindBy(xpath = "//label[text()='Name']//following::input[1]")
+    private WebElement hdlName;
 
     @FindBy(xpath = "(//div[@class='xys'])[1]")
     private WebElement altWorkLocationAddType;
@@ -310,6 +309,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//h1[contains(.,'Import and Load Data')]")
     private WebElement importAndLoadDataPage;
 
+    @FindBy(xpath = "//a[text()='Person Management']")
+    private WebElement clickPersonManagementLink;
+
     @FindBy(xpath = "//h1[contains(.,'New Contact')]")
     private WebElement newContactPage;
 
@@ -345,7 +347,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//label[text()='Address Line 2']/following::span[1]")
     private WebElement addressLine2;
-    
+
     @FindBy(xpath = "//label[text()='Country']/following::span[1]")
     private WebElement country;
 
@@ -366,7 +368,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//label[contains(.,'Alternate work Location Address')]")
     private WebElement altWorkLocAddDisplay;
-    
+
     @FindBy(xpath = "(//div[@title='Address']/descendant::img[@alt='Edit'])[1]")
     private WebElement editAddressButton;
 
@@ -408,9 +410,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//label[text()='Email']//following::input[1]")
     private WebElement email;
-
-
-
 
 
     public EmployeeEditMyDetailsPage(Context context) {
@@ -1350,12 +1349,19 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     }
 
-    //User clicks on Choose File button
-    public void clickChooseFile() {
+    //User Upload File and click submit button
+    // public void clickChooseFile() {
+    public void uploadFile() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(chooseFile), 15);
-            chooseFile.click();
-            reportWithScreenShot("Clicking Choose File button");
+            // chooseFile.click();
+            chooseFile.sendKeys(data.getFilePath());
+            reportWithScreenShot("Checking if File path is searched and placed");
+            submitButtonFileUpload.click();
+            reportWithScreenShot("User clicks Submit after file is browsed");
+            submitButtonImportDataLoad.click();
+            reportWithScreenShot("User clicks Submit for file Upload");
+
         } catch (Exception e) {
             reportWithScreenShot("Choose File button is not clicked properly:" + e.getMessage());
             Assert.fail();
@@ -1363,7 +1369,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     }
 
-    // User Upload File and click submit button
+    /* User Upload File and click submit button
     public void uploadFile() {
         try {
             waitNormalTime();
@@ -1391,7 +1397,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
                     "Error While user upload due to:" + e.getMessage());
             Assert.fail();
         }
-    }
+    }*/
 
     //Check for file is submitted successfully
     public void fileSubmit() {
@@ -1438,6 +1444,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             enterProcessId.sendKeys(String.valueOf(data.getProcessId()));
             reportWithScreenShot("user enter the Process ID in search screen");
             searchBtn.click();
+            searchBtn.click();
         } catch (Exception e) {
             reportWithScreenShot("Choose File button is not clicked properly:" + e.getMessage());
             Assert.fail();
@@ -1472,67 +1479,101 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
-    // Click on Refresh Button until File status is imported and loaded
-    public void clickRefreshBtn1TillFileLoaded() {
-        //String expectedPercent="100";
-        public WebElement checkProgress (String status){
-            WebElement ele = driver.findBy(By.xpath("(//img[@alt='" + status + "'));
-            return ele;
-
-            public WebElement getProgressElement (String status){
-                WebElement ele = driver.findBy(By.xpath("(//img[@alt='" + status + "'));
-                return ele;
-            }
-        }
-        try {
-            int counter = 0;
-            clickRefreshBtn1(); // Click Refresh Button
-            while (!loadedPercent.getText().contains("100") && counter <= 60) {
-                clickRefreshBtn1();
-                waitShortTime();
-                counter++;
-            }
-
-            // Throw Exception if process id now found after 60 seconds
-            //if (!loadedPercent.getText().contains("100")) {
-            //    throw new Exception("Process ID not found after 60 seconds");
-            // }
-
-            reportWithScreenShot("file is imported and loaded screenshot");
-        } catch (Exception e) {
-            reportWithScreenShot("Error While file is imported and loaded due to:" + e.getMessage());
-            Assert.fail();
-        }
+    public WebElement getProgressElement(String status, int occurance) {
+        WebElement ele = driver.findElement(By.xpath("(//img[@title='" + status + "'])[" + occurance + "]"));
+        return ele;
     }
 
-    public void testProgress() {
+    // Click on Refresh Button until File status is imported and loaded
+    public void clickRefreshBtn1TillFileLoaded() {
         try {
+            scrollToElement(processId);
+            waitLongTime();
+            elementsize = driver
+                    .findElements(By.xpath("(//img[@title='Success'])[2]")).size();
             int count = 0;
-            while (!getProgressElement('Success', 2).isDisplayed() || count < 70) {
-                if (getProgressElement('Success', 1).isDisplayed()) {
+
+            while (elementsize == 0 && count <= 70) {
+                elementsize = driver
+                        .findElements(By.xpath("(//img[@title='Success'])[2]")).size();
+                clickRefreshBtn1();
+                Thread.sleep(20000);
+                count++;
+            }
+
+            //  clickRefreshBtn1();
+            //  while (!getProgressElement("Success", 2).isDisplayed() && !getProgressElement("Success", 1).isDisplayed() && count <= 70){
+            //     clickRefreshBtn1();
+            //  waitLongTime();
+            //   count++;
+            // }
+
+            // Throw Exception if Person name now found after 60 seconds
+            if (elementsize == 0) {
+                throw new Exception("File not imported after 210 seconds");
+        }
+
+
+          /*  while (!getProgressElement("Success", 2).isDisplayed() || count < 70) {
+                if (getProgressElement("Success", 1).isDisplayed()) {
                     System.out.println("Import Success");
-                    if (getProgressElement('Success', 2).isDisplayed()) {
+                    if (getProgressElement("Success", 2).isDisplayed()) {
                         System.out.println("Load Success");
                         break;
                     } else {
-                        count += 1
+                        count += 1;
                         waitShortTime();
-                        refresh.click();
+                        clickRefreshBtn1();
                         continue;
                     }
                 } else {
-                    count += 1
+                    count += 1;
                     waitShortTime();
-                    refresh.click();
+                    clickRefreshBtn1();
                     continue;
                 }
             }
 
-            if (count <= 70) {
-                postive step;
-            } else {
-                throw new Exception("Couldnt find process id after 240 seconds")
-            }
+            if (count > 70) {
+             throw new Exception("Couldnt upload file after 210 seconds");
+            }*/
+            // Throw Exception if Person name now found after 60 seconds
+
+        } catch (
+                Exception e) {
+            reportWithScreenShot("Error While importing and loading files:" + e.getMessage());
+            Assert.fail();
+        }
+
+    }
+
+
+    //User click person Management
+    public void clickPersonManagementLink() {
+        try {
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(clickPersonManagementLink), 15);
+            clickPersonManagementLink.click();
+            reportWithScreenShot("Click person management link");
+        } catch (Exception e) {
+            reportWithScreenShot("Unable to click person management link due to:" + e.getMessage());
+        }
+    }
+
+    //User search person created from file
+    public void searchNewPerson() {
+        try {
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(hdlName), 15);
+            hdlName.sendKeys(data.getHdlName());
+            waitFor(ExpectedConditions.elementToBeClickable(searchBtn), 15);
+            searchBtn.click();
+            waitShortTime();
+            searchBtn.click();
+
+            reportWithScreenShot("Search result displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Unable to search person due to:" + e.getMessage());
         }
     }
     //Check if New Contact Page is displayed

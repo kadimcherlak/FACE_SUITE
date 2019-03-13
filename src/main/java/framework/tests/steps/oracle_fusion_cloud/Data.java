@@ -50,10 +50,11 @@ public class Data extends framework.core.models.Data {
     private String globalMobilityIndicator;
     private boolean globalMobilityIndicatorCheck;
     private String grade;
-    private String hdlFilePath;
+    private String filePath;
     private String hireAction;
     private String hireDate;
     private String hireReason;
+    private String hdlName;
     private String hourlyPaidOrSalaried;
     private String i9Status;
     private String job;
@@ -301,8 +302,8 @@ public class Data extends framework.core.models.Data {
         return grade;
     }
 
-    public String getHdlFilePath() {
-        return hdlFilePath;
+    public String getFilePath() {
+        return filePath;
     }
 
     public String getHireAction() {
@@ -315,6 +316,10 @@ public class Data extends framework.core.models.Data {
 
     public String getHireReason() {
         return hireReason;
+    }
+
+    public String getHdlName() {
+        return hdlName;
     }
 
     public String getHourlyPaidOrSalaried() {

@@ -33,9 +33,9 @@ public class EmployeeEditMyDetailsSteps implements En {
             context.employeeEditMyDetails.checkSelectFilePageDisplayed();
         });
 
-        When("user clicks on Choose File option", () -> {
-            context.employeeEditMyDetails.clickChooseFile();
-        });
+        // When("user clicks on Choose File option", () -> {
+        //    context.employeeEditMyDetails.clickChooseFile();
+        //});
 
         When("user upload HDL File and click Submit button", () -> {
             context.employeeEditMyDetails.uploadFile();
@@ -59,6 +59,15 @@ public class EmployeeEditMyDetailsSteps implements En {
 
         When("user clicks on Refresh button1 till file is imported and loaded", () -> {
             context.employeeEditMyDetails.clickRefreshBtn1TillFileLoaded();
+        });
+
+        When("user clicks on Person Management Link in Navigation pane", () -> {
+            context.employeeEditMyDetails.clickPersonManagementLink();
+        });
+
+
+        When("user search for the person newly created from file", () -> {
+            context.employeeEditMyDetails.searchNewPerson();
         });
 
         When("user clicks on Edit button on top right side", () -> {
