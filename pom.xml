@@ -84,8 +84,6 @@
                             <environment>${environment}</environment>
                             <!--suppress UnresolvedMavenProperty -->
                             <tags>${tags}</tags>
-                            <!--suppress UnresolvedMavenProperty -->
-                            <testFile>${testFile}</testFile>
                         </systemPropertyVariables>
                     </configuration>
                 </plugin>

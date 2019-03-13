@@ -204,7 +204,7 @@ Feature: Perform Edit on Employee Information
     When user selects US Hourly Wages hours from Salary Basis
     Then user closes Warning modal by clicking OK button
     And user clicks on Continue button in Manage Salary tab
-    When user clicks on Submit button in Manage Salary Review page
+    When user clicks on Submit button in Review page
     And user clicks Yes button on popup modal
     And user clicks Ok button confirmation popup modal
     And user clicks on Sign Out option
@@ -235,7 +235,7 @@ Feature: Perform Edit on Employee Information
 #    And user selects Promotion from Component dropdown
 #    And user enters amount in Amount field in Components tab
     And user clicks on Continue button in Manage Salary tab
-    When user clicks on Submit button in Manage Salary Review page
+    When user clicks on Submit button in Review page
     And user clicks Yes button on popup modal
     And user clicks Ok button confirmation popup modal
     And user clicks on Sign Out option
@@ -261,7 +261,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Action button and select Edit option
     And user enters new Salary Amount under Current Salary section
     And user clicks on Continue button in Manage Salary tab
-    When user clicks on Submit button in Manage Salary Review page
+    When user clicks on Submit button in Review page
     And user clicks Yes button on popup modal
     And user clicks Ok button confirmation popup modal
     And user clicks on Sign Out option
@@ -272,3 +272,53 @@ Feature: Perform Edit on Employee Information
       | EDIT_SALARY_PROPOSAL_REASON | TestData.xlsx  | Employee_Details |
 
 
+  @EMPLOYEE_UPLOADS_A_PHOTO
+  Scenario Outline: Employee add Emergency Contact details
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Personal Information link under About me section
+    Then Personal Info page should be displayed
+    When user clicks on Personal Details link in Person Info page
+    Then Personal Details page should be displayed
+    And user clicks on ellipsis on Employee Logo name
+    Then users More option menu is displayed
+    And user clicks Update Photo link to upload photo
+    Then Photo upload page should be displayed
+    When user clicks on Choose File button to upload a photo
+#    Then user selected photo is uploaded to system
+    When user clicks on Save and Close button
+    Then Personal Info page should be displayed
+    When user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario            | Test File Name | Test Sheet Name  |
+      | EMPLOYEE_UPLOADS_A_PHOTO | TestData.xlsx  | Employee_Details |
+
+  @CHANGE_ASSIGNMENT_VIA_PRSN_MGMNT
+  Scenario Outline: Admin can edit Salary Proposal Reason
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button till person displayed
+    Then Employee name should be listed in search results
+    When user click on employee name link in search results
+    And user clicks on Edit button and select Update option
+    Then Update Employment new window should be displayed
+    When user enters details in Update Employment Window and click on Ok button
+    And user selects Assignment Status as Active - No Payroll
+    When user clicks on Review button in Management Employment page
+    When user clicks on Submit button in Review page
+    And user clicks Yes button on popup modal
+    And user clicks Ok button confirmation popup modal
+    And user clicks on Sign Out option
+    Then Sign out should be successful
+
+
+    Examples:
+      | Test Scenario                    | Test File Name | Test Sheet Name  |
+      | CHANGE_ASSIGNMENT_VIA_PRSN_MGMNT | TestData.xlsx  | Employee_Details |

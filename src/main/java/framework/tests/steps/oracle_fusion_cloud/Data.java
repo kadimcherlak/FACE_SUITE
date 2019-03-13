@@ -17,6 +17,7 @@ public class Data extends framework.core.models.Data {
     private String altWorkLocationAddressLine2;
     private String altWorkLocationZipCode;
     private String assignmentCategory;
+    private String assignmentStatus;
     private String bankName;
     private String businessUnit;
     private String category;
@@ -149,6 +150,10 @@ public class Data extends framework.core.models.Data {
 
     public String getAssignmentCategory() {
         return assignmentCategory;
+    }
+
+    public String getAssignmentStatus() {
+        return assignmentStatus;
     }
 
     public String getBankName() {
