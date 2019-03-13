@@ -12,16 +12,7 @@ testConfig:
 
 driverConfig:
   desiredCapabilities:
-    browserName: chrome
-  #    version: 60
-  #    platform: WINDOWS
-  #    javascriptEnabled: true
-  #    acceptSslCerts: true
-  #    handlesAlerts: true
-  #    cssSelectorsEnabled: true
-  #    unexpectedAlertBehaviour: accept
-  #    explicitTimeout: 60
-  #    pollingTime: 500
+    browserName:
   chrome:
     #path: "C:\\Drivers\\chromedriver_win32\\chromedriver.exe"
     args:
