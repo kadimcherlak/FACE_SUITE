@@ -6,7 +6,7 @@ Feature: New Hire and Related Activities
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user updated the Excel file with Row Name <Test Scenario> and Column Name personNumber with value 500103
 
-    Examples:
+    Examples: 
       | Test Scenario           | Test File Name | Test Sheet Name    |
       | UPDATE_REMOVE_I9_STATUS | TestData.xlsx  | Talent_Acquisition |
 
@@ -20,12 +20,12 @@ Feature: New Hire and Related Activities
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario | Test File Name | Test Sheet Name    |
       | LOGIN_LOGOUT  | TestData.xlsx  | Talent_Acquisition |
 
   @NEW_HIRE
-  Scenario Outline:  Create a New Hire
+  Scenario Outline: Create a New Hire
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -42,7 +42,8 @@ Feature: New Hire and Related Activities
     Then Page should be submitted successfully
     When user clicks on Sign Out option
     Then Sign out should be successful
-    Examples:
+
+    Examples: 
       | Test Scenario | Test File Name | Test Sheet Name    |
       | NEW_HIRE      | TestData.xlsx  | Talent_Acquisition |
 
@@ -69,7 +70,8 @@ Feature: New Hire and Related Activities
     And user click on Done button at the top
     And user clicks on Sign Out option
     Then Sign out should be successful
-    Examples:
+
+    Examples: 
       | Test Scenario          | Test File Name | Test Sheet Name    |
       | UPDATE_ELEMENT_ENTRIES | TestData.xlsx  | Talent_Acquisition |
 
@@ -98,12 +100,13 @@ Feature: New Hire and Related Activities
     When user click on Done button at the top
     And user clicks on Sign Out option
     Then Sign out should be successful
-    Examples:
+
+    Examples: 
       | Test Scenario                   | Test File Name | Test Sheet Name    |
       | UPDATE_PERSONAL_ASSIGNMENT_DATA | TestData.xlsx  | Talent_Acquisition |
 
   @UPDATE_I9_STATUS
-  Scenario Outline:  Verify PPS is able to update I9 Status
+  Scenario Outline: Verify PPS is able to update I9 Status
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -126,12 +129,12 @@ Feature: New Hire and Related Activities
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
-      | Test Scenario           | Test File Name | Test Sheet Name    |
+    Examples: 
+      | Test Scenario    | Test File Name | Test Sheet Name    |
       | UPDATE_I9_STATUS | TestData.xlsx  | Talent_Acquisition |
 
   @EDIT_PROJECTED_ENDDATE
-  Scenario Outline:Perform Edit Projected end date for limited term Employee
+  Scenario Outline: Perform Edit Projected end date for limited term Employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -155,7 +158,31 @@ Feature: New Hire and Related Activities
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario          | Test File Name | Test Sheet Name    |
       | EDIT_PROJECTED_ENDDATE | TestData.xlsx  | Talent_Acquisition |
 
+  @EDIT_SENIORITY_DATE
+  Scenario Outline: Update hire date in Manage Work Relationship screen
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button till person displayed
+    Then Employee name should be listed in search results
+    When user click on employee name link in search results
+    Then Person Management screen should be displayed
+    And user clicks on Manage Work Relationship on right side of the page under Tasks pane
+    Then user click on Actions button and select Edit option
+    And Enter the seniority date under Legal Employer and under Enterprise
+    When user clicks on submit button
+    And clicks ok in the Warning and confirmation message displayed
+    Then Page should be submitted successfully
+    And user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples: 
+      | Test Scenario       | Test File Name | Test Sheet Name    |
+      | EDIT_SENIORITY_DATE | TestData.xlsx  | Talent_Acquisition |
