@@ -1395,11 +1395,12 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     public void uploadFile() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(chooseFile), 15);
-            // chooseFile.click();
             chooseFile.sendKeys(data.getFilePath());
             reportWithScreenShot("Checking if File path is searched and placed");
+            waitFor(ExpectedConditions.elementToBeClickable(submitButtonFileUpload), 15);
             submitButtonFileUpload.click();
             reportWithScreenShot("User clicks Submit after file is browsed");
+            waitFor(ExpectedConditions.elementToBeClickable(submitButtonImportDataLoad), 15);
             submitButtonImportDataLoad.click();
             reportWithScreenShot("User clicks Submit for file Upload");
 
@@ -1484,7 +1485,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             waitFor(ExpectedConditions.visibilityOf(enterProcessId), 15);
             enterProcessId.sendKeys(String.valueOf(data.getProcessId()));
             reportWithScreenShot("user enter the Process ID in search screen");
-            searchBtn.click();
+            waitFor(ExpectedConditions.elementToBeClickable(searchBtn), 15);
             searchBtn.click();
         } catch (Exception e) {
             reportWithScreenShot("Choose File button is not clicked properly:" + e.getMessage());
@@ -1494,7 +1495,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     }
 
     // Click on Refresh Button until process id is displayed
-    public void clickRefreshBtn1TillProcessIdDisplayed() {
+   /* public void clickRefreshBtn1TillProcessIdDisplayed() {
         try {
             clickRefreshBtn1(); // Click Refresh Button
 
@@ -1518,7 +1519,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             reportWithScreenShot("Error While checking search results of Process Id:" + e.getMessage());
             Assert.fail();
         }
-    }
+    }*/
 
     public WebElement getProgressElement(String status, int occurance) {
         WebElement ele = driver.findElement(By.xpath("(//img[@title='" + status + "'])[" + occurance + "]"));
@@ -1528,8 +1529,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     // Click on Refresh Button until File status is imported and loaded
     public void clickRefreshBtn1TillFileLoaded() {
         try {
-
-            waitLongTime();
             elementsize = driver
                     .findElements(By.xpath("(//img[@title='Success'])[2]")).size();
             int count = 0;
@@ -1538,8 +1537,10 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
                 elementsize = driver
                         .findElements(By.xpath("(//img[@title='Success'])[2]")).size();
                 clickRefreshBtn1();
-                Thread.sleep(2000);
+                waitShortTime();
                 count++;
+                System.out.println(count);
+                System.out.println(elementsize);
             }
 
             //  clickRefreshBtn1();

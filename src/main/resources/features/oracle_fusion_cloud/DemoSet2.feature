@@ -75,7 +75,7 @@ Feature: Employee edits Personal Information
     Then File should be successfully submitted
     And Process Id should be generated
     When user search for the process id generated in search screen
-    And user clicks on Refresh button1 till process Id displayed
+    #And user clicks on Refresh button1 till process Id displayed
     And user clicks on Refresh button1 till file is imported and loaded
     When user clicks on Navigator icon
     And user clicks on Person Management Link in Navigation pane

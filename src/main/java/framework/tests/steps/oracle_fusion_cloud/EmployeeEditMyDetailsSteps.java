@@ -53,9 +53,9 @@ public class EmployeeEditMyDetailsSteps implements En {
             context.employeeEditMyDetails.searchProcessId();
         });
 
-        When("user clicks on Refresh button1 till process Id displayed", () -> {
-            context.employeeEditMyDetails.clickRefreshBtn1TillProcessIdDisplayed();
-        });
+        // When("user clicks on Refresh button1 till process Id displayed", () -> {
+        //   context.employeeEditMyDetails.clickRefreshBtn1TillProcessIdDisplayed();
+        //});
 
         When("user clicks on Refresh button1 till file is imported and loaded", () -> {
             context.employeeEditMyDetails.clickRefreshBtn1TillFileLoaded();
