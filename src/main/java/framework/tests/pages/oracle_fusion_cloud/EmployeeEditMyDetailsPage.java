@@ -1545,10 +1545,10 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
      */
     public void clickReviewButton() {
         try {
-            waitFor(ExpectedConditions.elementToBeClickable(btnReview), 15);
+            waitFor(ExpectedConditions.elementToBeClickable(btnReview), 30);
             btnReview.click();
-            waitFor(ExpectedConditions.elementToBeClickable(btnSubmit_ManageSalary), 30);
-            Assertions.assertThat(btnSubmit_ManageSalary.isDisplayed()).isTrue();
+            waitFor(ExpectedConditions.elementToBeClickable(btnBack_ManageSalary), 60);
+            Assertions.assertThat(btnBack_ManageSalary.isDisplayed()).isTrue();
             reportWithScreenShot("User clicked on Review  button");
         } catch (Exception e) {
             reportWithScreenShot("Error while user clicks Review button");
