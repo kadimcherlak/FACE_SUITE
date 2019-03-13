@@ -1458,8 +1458,8 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     public void choosePhotoToUpload() {
 
         try {
-
-            String imgLocation = System.getProperty("user.dir") + "/src/main/resources/testdata/TestImage.jpg";
+            //String imgLocation = System.getProperty("user.dir") + "/src/main/resources/testdata/TestImage.jpg";
+            String imgLocation = data.getFilePath();
             choosePhotoFile.sendKeys(imgLocation);
             Thread.sleep(2000);
             waitFor(ExpectedConditions.visibilityOf(btnPhotoUpdated), 100);

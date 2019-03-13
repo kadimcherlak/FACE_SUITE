@@ -46,6 +46,7 @@ public class Data extends framework.core.models.Data {
     private String emailType;
     private String erProfitCenter;
     private String firstName;
+    private String filePath;
     private String familyName;
     private String gender;
     private String globalMobilityIndicator;
@@ -429,6 +430,10 @@ public class Data extends framework.core.models.Data {
 
     public String getPercentage() {
         return percentage;
+    }
+
+    public String getFilePath() {
+        return filePath;
     }
 
     public String getRelationship() {
