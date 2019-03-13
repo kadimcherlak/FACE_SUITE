@@ -16,6 +16,8 @@ import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 
+import static framework.core.drivers.Core.getWebDriver;
+
 public class Context extends framework.core.models.Context {
     public LoginAndHomePage loginAndHome;
     public NewPersonPage newPerson;
@@ -66,18 +68,14 @@ public class Context extends framework.core.models.Context {
 
     @Before
     public void beforeScenario(Scenario scenario) {
-        setScenario(scenario);
-        logger.debug("Starting Feature: {} - Scenario: {}", getFeatureFile(scenario.getId()), scenario.getName());
-        try {
-            // Code to Load Data from Yaml file
-            //dataStore = DataLoader.loadDataStoreFromYaml(getFeatureDataFile(scenario.getId()), data);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        logger.debug("Initialized dataStore at the context layer");
-        driver = Core.getWebDriver();
+        driver = getWebDriver();
         highLight = new HighLight(driver);
         logger.debug("Initialized driver at the context layer");
+
+        setScenario(scenario);
+        logger.debug("Starting Feature: {} - Scenario: {}", getFeatureFile(scenario.getId()), scenario.getName());
+        logger.debug("Initialized dataStore at the context layer");
+
     }
 
     public void setExcelDataStore(String excelName, String sheetName) {
@@ -97,6 +95,10 @@ public class Context extends framework.core.models.Context {
     public void afterScenario(Scenario scenario) {
         logger.debug("Finishing Feature: {} - Scenario: {}", getFeatureFile(scenario.getId()), scenario.getName());
         logger.debug("STATUS: {}", scenario.getStatus());
+        System.out.println(scenario.getStatus());
+        if (scenario.getStatus().toString().equalsIgnoreCase("FAILED")) {
+            driver.quit();
+        }
     }
 
     private String getFeatureFile(String scenarioId) {
@@ -109,7 +111,7 @@ public class Context extends framework.core.models.Context {
         return getFeatureFile(scenarioId).substring(0, index) + ".xlsx";
     }
 
-    private String getPath() {
+    public String getPath() {
         return System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "testdata";
     }
 

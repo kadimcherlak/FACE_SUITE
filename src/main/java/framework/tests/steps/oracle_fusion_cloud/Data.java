@@ -14,8 +14,10 @@ public class Data extends framework.core.models.Data {
     private String altWorkLocationAddressType;
     private String altWorkLocationCountry;
     private String altWorkLocationAddressLine1;
+    private String altWorkLocationAddressLine2;
     private String altWorkLocationZipCode;
     private String assignmentCategory;
+    private String assignmentStatus;
     private String bankName;
     private String businessUnit;
     private String category;
@@ -41,8 +43,10 @@ public class Data extends framework.core.models.Data {
     private String employmentActionReason;
     private String employeeManagerChange;
     private String email;
+    private String emailType;
     private String erProfitCenter;
     private String firstName;
+    private String familyName;
     private String gender;
     private String globalMobilityIndicator;
     private boolean globalMobilityIndicatorCheck;
@@ -56,6 +60,7 @@ public class Data extends framework.core.models.Data {
     private String lastName;
     private String legalEmployer;
     private String location;
+    private String locationContact;
     private String managerName;
     private String maritalStatus;
     private String name;
@@ -72,6 +77,9 @@ public class Data extends framework.core.models.Data {
     private String personNumber;
     private String personName;
     private String percentage;
+    private String phoneType;
+    private String phoneNumber;
+    private String relationship;
     private String routingNumber;
     private String salaryAmount;
     private String salaryBasis;
@@ -132,12 +140,20 @@ public class Data extends framework.core.models.Data {
         return altWorkLocationAddressLine1;
     }
 
+    public String getAltWorkLocationAddressLine2() {
+        return altWorkLocationAddressLine2;
+    }
+
     public String getAltWorkLocationZipCode() {
         return altWorkLocationZipCode;
     }
 
     public String getAssignmentCategory() {
         return assignmentCategory;
+    }
+
+    public String getAssignmentStatus() {
+        return assignmentStatus;
     }
 
     public String getBankName() {
@@ -221,6 +237,10 @@ public class Data extends framework.core.models.Data {
         return email;
     }
 
+    public String getEmailType() {
+        return emailType;
+    }
+
     public String getEmployeeManagerChange() {
         return employeeManagerChange;
     }
@@ -250,6 +270,10 @@ public class Data extends framework.core.models.Data {
         }
         return "FAUTO" + buffer.toString().toUpperCase();
 
+    }
+
+    public String getFamilyName() {
+        return familyName;
     }
 
     public String getEmploymentAction() {
@@ -325,6 +349,10 @@ public class Data extends framework.core.models.Data {
         return location;
     }
 
+    public String getLocationContact() {
+        return locationContact;
+    }
+
     public String getManagerName() {
         return managerName;
     }
@@ -379,10 +407,6 @@ public class Data extends framework.core.models.Data {
         return payCheckDate;
     }
 
-    public String getPearsonEmailRequired() {
-        return pearsonEmailRequired;
-    }
-
     public String getPersonNumber() {
         return personNumber;
     }
@@ -395,10 +419,21 @@ public class Data extends framework.core.models.Data {
         return personName;
     }
 
+    public String getPhoneType() {
+        return phoneType;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
     public String getPercentage() {
         return percentage;
     }
 
+    public String getRelationship() {
+        return relationship;
+    }
 
     public String getRoutingNumber() {
         return routingNumber;

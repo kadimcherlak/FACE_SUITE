@@ -4,6 +4,7 @@ import framework.tests.steps.oracle_fusion_cloud.Context;
 import framework.tests.steps.oracle_fusion_cloud.Data;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -62,14 +63,13 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//label[text()='Date of Birth']/following::input[1]")
     private WebElement dateOfBirth;
 
-    //  @FindBy(xpath = "//input[contains(@id,'EmailRequired')]")
+    //@FindBy(xpath = "//input[contains(@id,'EmailRequired')]")
     @FindBy(xpath = "//label[text()='Location Contact ']/following::input[1]")
     private WebElement locationContact;
 
     @FindBy(xpath = "//img[@title='Add Row']")
     private WebElement addRow;
 
-    //@FindBy(xpath = "//input[@class='x109' and contains(@id,'iclov1::content') and contains(@name,'iclov1')]")
     @FindBy(xpath = "(//input[@class='x10u'])[2]")
     private WebElement country;
 
@@ -262,7 +262,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             // Select Location Contact Required
             waitFor(ExpectedConditions.elementToBeClickable(locationContact), 15);
             locationContact.click();
-            locationContact.sendKeys(data.getPearsonEmailRequired());
+            locationContact.sendKeys(data.getLocationContact());
             waitShortTime();
 
             // Click to create new row
@@ -276,7 +276,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitNormalTime();
             country.sendKeys(Keys.ENTER);
             country.sendKeys(Keys.TAB);
-
+            waitNormalTime();
             // Enter National ID type
             clickNationalIdType.click();
             waitFor(ExpectedConditions
@@ -309,7 +309,11 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             // Set Person Number for Future Use and Reference
             waitFor(ExpectedConditions.visibilityOf(personNo), 15);
             String personNumber = personNo.getText();
-            writeToExcel("UPDATE_REMOVE_I9_STATUS", "personNumber", personNumber);
+            /*writeToExcel("UPDATE_REMOVE_I9_STATUS", "personNumber", personNumber);
+            writeToExcel("UPDATE_ELEMENT_ENTRIES", "personNumber", personNumber);
+            writeToExcel("UPDATE_PERSONAL_ASSIGNMENT_DATA", "personNumber", personNumber);
+            writeToExcel("EDIT_PROJECTED_ENDDATE", "personNumber", personNumber);*/
+            csvWriter(personNumber);
             System.out.println(personNumber);
 
             // Enter Address Line 1
@@ -401,9 +405,15 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitNormalTime();
 
             // Enter Location
-            waitFor(ExpectedConditions.elementToBeClickable(location), 15);
-            location.sendKeys(data.getLocation());
-            waitShortTime();
+            try {
+                waitFor(ExpectedConditions.elementToBeClickable(location), 15);
+                location.sendKeys(data.getLocation());
+                waitShortTime();
+            } catch (StaleElementReferenceException e) {
+                waitShortTime();
+                location.sendKeys(data.getLocation());
+            }
+
 
             // Enter assignment Category
             waitFor(ExpectedConditions.elementToBeClickable(assignmentCategory), 15);
@@ -518,4 +528,14 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
         }
     }
 
+    public void checkAndUpdateLegalEmployerIfEmpty() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(basicDetailsEmployer), 15);
+            if (basicDetailsEmployer.getText().equalsIgnoreCase(""))
+                actions.moveToElement(basicDetailsEmployer).click().sendKeys(data.getLegalEmployer()).sendKeys(Keys.ENTER).perform();
+        } catch (Exception e) {
+            reportWithScreenShot("Error While updating Legal Employer value in Information Tab due to:" + e.getMessage());
+            Assert.fail();
+        }
+    }
 }
