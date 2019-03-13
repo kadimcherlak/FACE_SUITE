@@ -17,7 +17,9 @@ import org.testng.Assert;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -397,5 +399,27 @@ public class BasePage<T> extends WebPage {
             e.printStackTrace();
         }
     }
+    
+    /**
+     * This method increase a String date by given number of days and return in String
+     *
+     * @author Rakesh
+     * @throws ParseException 
+     */
+    public String addDaysToDate(String dateInStringFormat,int noOfDays,String dateFormat) throws ParseException {
+        try {
+        	SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+        	Calendar c = Calendar.getInstance();
+        	c.setTime(sdf.parse(dateInStringFormat));
+        	c.add(Calendar.DATE, 1);  // number of days to add
+        	dateInStringFormat = sdf.format(c.getTime());
+        	return dateInStringFormat;
+        	
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
 }
 

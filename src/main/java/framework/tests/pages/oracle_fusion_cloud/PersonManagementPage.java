@@ -227,6 +227,9 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     
     @FindBy(xpath = "(//label[text()='Hire Date']/following::input[1])[1]")
     private WebElement hireDate;
+    
+    @FindBy(xpath = "(//label[text()='Hire Date'])[3]/following::span[1]")
+    private WebElement enterpriseHireDate;
 
     // Person Management Contructor
     public PersonManagementPage(Context context) {
@@ -838,10 +841,13 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
      */
     public void enterHireDate() {
         try {
+        	String newHireDate;
         	scrollToElement(hireDate);
             waitFor(ExpectedConditions.elementToBeClickable(hireDate), 15);
+            String existingHireDate=enterpriseHireDate.getText().trim();
             hireDate.clear();
-            hireDate.sendKeys(getCurrentDate());
+            newHireDate=addDaysToDate(existingHireDate, 1, "mm/dd/yyyy");
+            hireDate.sendKeys(newHireDate);
         } catch (Exception e) {
         	System.out.println(e);
             reportWithScreenShot("Error while entering hire date");
