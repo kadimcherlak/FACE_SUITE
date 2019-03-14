@@ -61,7 +61,7 @@ Feature: Employee edits Personal Information
       | VALIDATE_ADDRESS_FORMAT | TestData.xlsx  | Employee_Details |
 
   @UPLOAD_HDL_FILE
-  Scenario Outline: Upload HDL File
+  Scenario Outline: New Hire Process using HDL File upload
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -70,20 +70,16 @@ Feature: Employee edits Personal Information
     Then Import and Load Data page should be displayed
     When user clicks on Import File option
     Then Select File page should be displayed
-    #When user clicks on Choose File option
     When user upload HDL File and click Submit button
     Then File should be successfully submitted
     And Process Id should be generated
     When user search for the process id generated in search screen
-    #And user clicks on Refresh button1 till process Id displayed
     And user clicks on Refresh button1 till file is imported and loaded
     When user clicks on Navigator icon
     And user clicks on Person Management Link in Navigation pane
     #And user clicks on new Person Management link in Navigator Pane
     Then Person Management: Search screen should be displayed
     And user search for the person newly created from file
-    #And user enter the Person number generated from previous step in Person Number field
-    #And user click on Search button till person displayed
     When user clicks on Sign Out option
     Then Sign out should be successful
     Examples:

@@ -1411,36 +1411,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     }
 
-    /* User Upload File and click submit button
-    public void uploadFile() {
-        try {
-            waitNormalTime();
-            // hit enter
-            Robot r = new Robot();
-            StringSelection stringSelection = new StringSelection("C:\\Users\\4rven\\OneDrive\\Desktop\\Oracle Cloud\\HDL\\Testdata\\Salary.zip");
-            //StringSelection stringSelection = new StringSelection(data.getHdlFilePath());
-            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
-            r.keyPress(KeyEvent.VK_CONTROL);
-            r.keyPress(KeyEvent.VK_V);
-            waitShortTime();
-            r.keyPress(KeyEvent.VK_ENTER);
-            r.keyRelease(KeyEvent.VK_ENTER);
-            r.keyRelease(KeyEvent.VK_CONTROL);
-            waitShortTime();
-
-            reportWithScreenShot("Checking if File path is searched and placed");
-            submitButtonFileUpload.click();
-            reportWithScreenShot("User clicks Submit after file is browsed");
-            submitButtonImportDataLoad.click();
-            reportWithScreenShot("User clicks Submit for file Upload");
-
-        } catch (Exception e) {
-            reportWithScreenShot(
-                    "Error While user upload due to:" + e.getMessage());
-            Assert.fail();
-        }
-    }*/
-
     //Check for file is submitted successfully
     public void fileSubmit() {
         try {
@@ -1459,11 +1429,11 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         try {
             waitFor(ExpectedConditions.visibilityOf(processId), 15);
             String processId1 = processId.getText();
-            System.out.println(processId1);
+            //System.out.println(processId1);
             String[] parts = processId1.split(" ");
             String OS = parts[2];
             Integer processId = Integer.parseInt(OS);
-            System.out.println(processId);
+            //System.out.println(processId);
             data.setProcessId(processId);
             reportWithScreenShot("Clicking OK button in Process ID generation page");
             processOkBtn.click();
@@ -1543,13 +1513,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
                 System.out.println(elementsize);
             }
 
-            //  clickRefreshBtn1();
-            //  while (!getProgressElement("Success", 2).isDisplayed() && !getProgressElement("Success", 1).isDisplayed() && count <= 70){
-            //     clickRefreshBtn1();
-            //  waitLongTime();
-            //   count++;
-            // }
-
             // Throw Exception if Person name now found after 60 seconds
             if (elementsize == 0) {
                 throw new Exception("File not imported after 210 seconds");
@@ -1581,7 +1544,13 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             }*/
             // Throw Exception if Person name now found after 60 seconds
             scrollToElement(processId);
+            waitShortTime();
+            for (int i = 0; i <= 75; i++) {
+                clickRefreshBtn1();
+                System.out.println("inside loop for additional refresh-" + i);
+            }
             reportWithScreenShot("Import and load status view");
+
 
         } catch (
                 Exception e) {
@@ -1612,8 +1581,23 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             hdlName.sendKeys(data.getHdlName());
             waitFor(ExpectedConditions.elementToBeClickable(searchBtn), 15);
             searchBtn.click();
-            waitShortTime();
-            searchBtn.click();
+
+            // Check for Employee for max 60 seconds
+            elementsize = driver
+                    .findElements(By.xpath("//img[@title='Actions']")).size();
+            int counter = 0;
+            while (elementsize == 0 && counter <= 40) {
+                elementsize = driver
+                        .findElements(By.xpath("//img[@title='Actions']")).size();
+                searchBtn.click();
+                waitShortTime();
+                counter++;
+            }
+
+            // Throw Exception if Person name now found after 60 seconds
+            if (elementsize == 0) {
+                throw new Exception("Person number not found after 60 seconds");
+            }
 
             reportWithScreenShot("Search result displayed");
         } catch (Exception e) {
