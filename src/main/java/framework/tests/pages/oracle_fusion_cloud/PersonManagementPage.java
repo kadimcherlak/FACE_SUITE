@@ -17,6 +17,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     private Context context;
     private Data data;
     private int elementsize;
+    private String searchDate;
 
     // Person Management Page Locators
     @FindBy(className = "svg-icon03")
@@ -275,7 +276,11 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             // Enter effective as of date
             waitFor(ExpectedConditions.elementToBeClickable(effectiveAsOfDate), 15);
             effectiveAsOfDate.clear();
-            effectiveAsOfDate.sendKeys(getCurrentDate());
+
+            // Add Current Date + 1 as the senario runs before this test changes the date to current date +1 (Scenario name : Seniority date)
+            searchDate = addDaysToDate(getCurrentDate(), 1, "mm/dd/yyyy");
+
+            effectiveAsOfDate.sendKeys(searchDate);
             waitShortTime();
             reportWithScreenShot("Summary of Person Management: Search screen");
         } catch (Exception e) {
@@ -560,7 +565,9 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             // Enter current date into effective date
             waitFor(ExpectedConditions.elementToBeClickable(updateEmploymentEffectiveDate), 15);
             updateEmploymentEffectiveDate.clear();
-            updateEmploymentEffectiveDate.sendKeys(getCurrentDate());
+
+            // Add Current Date + 1 as the senario runs before this test changes the date to current date +1 (Scenario name : Seniority date
+            updateEmploymentEffectiveDate.sendKeys(searchDate);
             updateEmploymentEffectiveDate.sendKeys(Keys.TAB);
             waitShortTime();
 

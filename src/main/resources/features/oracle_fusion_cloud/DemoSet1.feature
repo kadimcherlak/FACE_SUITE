@@ -211,7 +211,7 @@ Feature: New Hire and Related Activities
       | Test Scenario                   | Test File Name | Test Sheet Name    |
       | UPDATE_PERSONAL_ASSIGNMENT_DATA | TestData.xlsx  | Talent_Acquisition |
 
-  @UPLOAD_HDL_FILE1
+  @UPLOAD_HDL_FILE
   Scenario Outline: New Hire Process using HDL File upload
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -228,7 +228,6 @@ Feature: New Hire and Related Activities
     And user clicks on Refresh button1 till file is imported and loaded
     When user clicks on Navigator icon
     And user clicks on Person Management Link in Navigation pane
-    #And user clicks on new Person Management link in Navigator Pane
     Then Person Management: Search screen should be displayed
     And user search for the person newly created from file
     When user clicks on Sign Out option

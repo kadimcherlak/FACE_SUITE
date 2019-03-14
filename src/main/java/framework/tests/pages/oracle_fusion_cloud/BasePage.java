@@ -153,7 +153,7 @@ public class BasePage<T> extends WebPage {
             waitUntilPageLoad();
             waitFor(ExpectedConditions.elementToBeClickable(confirmBtn), 15);
             confirmBtn.click();
-            waitShortTime();
+            waitNormalTime();
             reportWithScreenShot("Confirm button clicked successfully");
         } catch (Exception e) {
             reportWithScreenShot("Submission not successful due to:" + e.getMessage());
@@ -411,7 +411,7 @@ public class BasePage<T> extends WebPage {
         	SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
         	Calendar c = Calendar.getInstance();
         	c.setTime(sdf.parse(dateInStringFormat));
-        	c.add(Calendar.DATE, 1);  // number of days to add
+            c.add(Calendar.DATE, noOfDays);  // number of days to add
         	dateInStringFormat = sdf.format(c.getTime());
         	return dateInStringFormat;
         	
