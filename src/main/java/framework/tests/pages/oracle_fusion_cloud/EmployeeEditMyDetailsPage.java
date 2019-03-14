@@ -21,6 +21,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     Data data;
     Actions actions;
     private int elementsize;
+    private String status;
 
     // Edit My Details Page Elements
 
@@ -77,6 +78,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//label[text()='Name']//following::input[1]")
     private WebElement hdlName;
+
+    @FindBy(xpath = "//span[text()='Salary.zip']//following::img[2]")
+    private WebElement loadStatus;
 
     @FindBy(xpath = "(//div[@class='xys'])[1]")
     private WebElement altWorkLocationAddType;
@@ -234,6 +238,13 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//button[@id='_FOd1::msgDlg::cancel']")
     private WebElement btnOK_WarningPopup;
+
+
+    @FindBy(xpath = "//h1[text()='Salary.zip: Details']")
+    private WebElement salaryDetailsSection;
+
+    @FindBy(xpath = "//h1[text()='Search Results']")
+    private WebElement searchResultsSection;
 
     //@FindBy(xpath = "//span[text()='US Hourly Wages']")
     //private WebElement usHourlyWages;
@@ -1465,91 +1476,40 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     }
 
-    // Click on Refresh Button until process id is displayed
-   /* public void clickRefreshBtn1TillProcessIdDisplayed() {
-        try {
-            clickRefreshBtn1(); // Click Refresh Button
-
-            // Check for process id displayed for max 60 seconds
-            elementsize = driver.findElements(By.xpath("//span[text()='" + data.getProcessId() + "']")).size();
-            int counter = 0;
-            while (elementsize == 0 && counter <= 20) {
-                elementsize = driver.findElements(By.xpath("//span[text()='" + data.getProcessId() + "']")).size();
-                clickRefreshBtn1();
-                waitShortTime();
-                counter++;
-            }
-
-            // Throw Exception if process id not found after 60 seconds
-            if (elementsize == 0) {
-                throw new Exception("Process ID not found after 60 seconds");
-            }
-            reportWithScreenShot("User is on Import and Data load search result page");
-
-        } catch (Exception e) {
-            reportWithScreenShot("Error While checking search results of Process Id:" + e.getMessage());
-            Assert.fail();
-        }
-    }*/
-
-    public WebElement getProgressElement(String status, int occurance) {
-        WebElement ele = driver.findElement(By.xpath("(//img[@title='" + status + "'])[" + occurance + "]"));
-        return ele;
-    }
 
     // Click on Refresh Button until File status is imported and loaded
     public void clickRefreshBtn1TillFileLoaded() {
         try {
-            elementsize = driver
-                    .findElements(By.xpath("(//img[@title='Success'])[2]")).size();
+
+            elementsize = driver.findElements(By.xpath("//span[text()='" + data.getProcessId() + "']")).size();
+            int counter = 0;
+            while (elementsize == 0 && counter <= 30) {
+                elementsize = driver.findElements(By.xpath("//span[text()='" + data.getProcessId() + "']")).size();
+                searchBtn.click();
+                waitShortTime();
+                counter++;
+            }
+
+            waitFor(ExpectedConditions.visibilityOf(salaryDetailsSection), 15);
+            scrollToElement(salaryDetailsSection);
+
             int count = 0;
 
-            while (elementsize == 0 && count <= 70) {
-                elementsize = driver
-                        .findElements(By.xpath("(//img[@title='Success'])[2]")).size();
-                clickRefreshBtn1();
-                waitShortTime();
-                count++;
-                System.out.println(count);
-                System.out.println(elementsize);
-            }
+            waitFor(ExpectedConditions.visibilityOf(loadStatus), 15);
 
-            // Throw Exception if Person name now found after 60 seconds
-            if (elementsize == 0) {
-                throw new Exception("File not imported after 210 seconds");
-            }
-
-
-          /*  while (!getProgressElement("Success", 2).isDisplayed() || count < 70) {
-                if (getProgressElement("Success", 1).isDisplayed()) {
-                    System.out.println("Import Success");
-                    if (getProgressElement("Success", 2).isDisplayed()) {
-                        System.out.println("Load Success");
-                        break;
-                    } else {
-                        count += 1;
-                        waitShortTime();
-                        clickRefreshBtn1();
-                        continue;
-                    }
+            while (count <= 110) {
+                status = loadStatus.getAttribute("title");
+                if (status.equals("Success")) {
+                    break;
+                } else if (status.equals("Error")) {
+                    throw new Exception("File Load failure");
                 } else {
-                    count += 1;
                     waitShortTime();
                     clickRefreshBtn1();
-                    continue;
-                }
+                    }
+                count++;
             }
-
-            if (count > 70) {
-             throw new Exception("Couldnt upload file after 210 seconds");
-            }*/
-            // Throw Exception if Person name now found after 60 seconds
             scrollToElement(processId);
-            waitShortTime();
-            for (int i = 0; i <= 75; i++) {
-                clickRefreshBtn1();
-                System.out.println("inside loop for additional refresh-" + i);
-            }
             reportWithScreenShot("Import and load status view");
 
 
@@ -1577,6 +1537,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     //User search person created from file
     public void searchNewPerson() {
         try {
+
             waitUntilPageLoad();
             waitFor(ExpectedConditions.elementToBeClickable(hdlName), 15);
             hdlName.sendKeys(data.getHdlName());
@@ -1599,7 +1560,8 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             if (elementsize == 0) {
                 throw new Exception("Person number not found after 60 seconds");
             }
-
+            waitFor(ExpectedConditions.visibilityOf(searchResultsSection), 15);
+            scrollToElement(searchResultsSection);
             reportWithScreenShot("Search result displayed");
         } catch (Exception e) {
             reportWithScreenShot("Unable to search person due to:" + e.getMessage());
