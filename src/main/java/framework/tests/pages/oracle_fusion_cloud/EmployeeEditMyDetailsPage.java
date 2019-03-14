@@ -1074,9 +1074,10 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         try {
             String selectValue = null;
             selectValue = data.getSalaryBasis();
-            System.out.println("Salary basis " + selectValue);
+            //System.out.println("Salary basis " + selectValue);
+            waitFor(ExpectedConditions.elementToBeClickable(dropdownSalaryBasis_ManageSalary), 15);
             dropdownSalaryBasis_ManageSalary.click();
-            waitShortTime();
+            waitNormalTime();
             WebElement dropdownElement = driver.findElement(By.xpath("//span[text()='" + selectValue + "']"));
             waitFor(ExpectedConditions.elementToBeClickable(dropdownElement), 15);
             assertThat(dropdownElement.isDisplayed()).isTrue();

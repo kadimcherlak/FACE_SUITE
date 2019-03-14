@@ -66,7 +66,7 @@ Feature: New Hire and Related Activities
     And user clicks on Action button and select Edit option
     And user enters new Salary Amount under Current Salary section
     And user clicks on Continue button in Manage Salary tab
-    When user clicks on Submit button in Manage Salary Review page
+    When user clicks on Submit button in Review page
     And user clicks Yes button on popup modal
     And user clicks Ok button confirmation popup modal
     And user clicks on Sign Out option
@@ -93,7 +93,7 @@ Feature: New Hire and Related Activities
     When user selects US Hourly Wages hours from Salary Basis
     Then user closes Warning modal by clicking OK button
     And user clicks on Continue button in Manage Salary tab
-    When user clicks on Submit button in Manage Salary Review page
+    When user clicks on Submit button in Review page
     And user clicks Yes button on popup modal
     And user clicks Ok button confirmation popup modal
     And user clicks on Sign Out option
@@ -119,7 +119,7 @@ Feature: New Hire and Related Activities
     And user clicks on Action button and select Edit option
     And user enters new Salary Amount under Current Salary section
     And user clicks on Continue button in Manage Salary tab
-    When user clicks on Submit button in Manage Salary Review page
+    When user clicks on Submit button in Review page
     And user clicks Yes button on popup modal
     And user clicks Ok button confirmation popup modal
     And user clicks on Sign Out option
