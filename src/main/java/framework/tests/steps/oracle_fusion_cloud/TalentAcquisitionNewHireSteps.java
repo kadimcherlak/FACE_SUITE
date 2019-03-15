@@ -196,6 +196,10 @@ public class TalentAcquisitionNewHireSteps implements En {
         When("user click on Done button at the top", () -> {
             context.personManagment.clickDoneButton();
         });
+        
+        When("Enter the seniority date under Legal Employer and under Enterprise", () -> {
+            context.personManagment.enterHireDate();;
+        });
 
     }
 }

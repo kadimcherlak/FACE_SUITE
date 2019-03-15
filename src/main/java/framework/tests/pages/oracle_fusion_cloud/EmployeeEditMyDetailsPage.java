@@ -2,6 +2,7 @@ package framework.tests.pages.oracle_fusion_cloud;
 
 import framework.tests.steps.oracle_fusion_cloud.Context;
 import framework.tests.steps.oracle_fusion_cloud.Data;
+import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -19,6 +20,8 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     Context context;
     Data data;
     Actions actions;
+    private int elementsize;
+    private String status;
 
     // Edit My Details Page Elements
 
@@ -31,12 +34,66 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//a[@title='Add']")
     private WebElement contactsAddBtn;
 
+    @FindBy(xpath = "//a[@title='Import File']")
+    private WebElement importFileBtn;
+
+    @FindBy(xpath = "//td[text()='Import Local File']")
+    private WebElement importLocalFileBtn;
+
+    @FindBy(xpath = "//div[text()='Select File']")
+    private WebElement selectFilePage;
+
+    @FindBy(xpath = "//input[@type='file']")
+    private WebElement chooseFile;
+
+    @FindBy(xpath = "(//td[contains(@class,'x1o')])[1]")
+    private WebElement processId;
+
+    @FindBy(xpath = "(//button[@class='x111 p_AFTextOnly' and text()='OK'])[1]")
+    private WebElement processOkBtn;
+
+    @FindBy(xpath = "//*@id=\"_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_data_exchange:0:MAt2:0:AP1:AT1:_ATp:ATt4:0:ot2\"]")
+    private WebElement loadedPercent;
+
+    @FindBy(xpath = "//a[@title='Expand Search']")
+    private WebElement processIdSearch;
+
+    // @FindBy(xpath = "//span[@class='xwy' and text()='Add Fields']")
+    // private WebElement processIdAddFields;
+
+    //@FindBy(xpath = "(//td[contains(.,'Process ID')])[22]")
+    // private WebElement includeProcessId;
+
+    // @FindBy(xpath = "(//td[contains(.,'Process ID')])[22]")
+    // private WebElement enterProcessId;
+
+    @FindBy(xpath = "(//label[contains(.,'Process ID')])[1]")
+    private WebElement processIdDisplayed;
+
+    @FindBy(xpath = "//input[contains(@name,'exchange:0:MAt2:0:AP1:qryId1:value00')]")
+    private WebElement enterProcessId;
+
+    @FindBy(xpath = "//button[contains(.,'Search')]")
+    private WebElement searchBtn;
+
+    @FindBy(xpath = "//label[text()='Name']//following::input[1]")
+    private WebElement hdlName;
+
+    @FindBy(xpath = "//span[text()='Salary.zip']//following::img[2]")
+    private WebElement loadStatus;
+
     @FindBy(xpath = "(//div[@class='xys'])[1]")
     private WebElement altWorkLocationAddType;
 
     // @FindBy(xpath = "(//label[text()='Country']/following::input[1])[1]")
     @FindBy(xpath = "//input[@class='x1xc']")
     private WebElement altWorkLocationCountry;
+
+    @FindBy(xpath = "(//input[@class='x2h'])[6]")
+    private WebElement emergencyAddType;
+
+    @FindBy(xpath = "(//input[@class='x1xc'])[2]")
+    private WebElement emergencyContactCountry;
 
     @FindBy(xpath = "//span[text()='United States']")
     private WebElement selectCountryFromPopUp;
@@ -182,6 +239,13 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//button[@id='_FOd1::msgDlg::cancel']")
     private WebElement btnOK_WarningPopup;
 
+
+    @FindBy(xpath = "//h1[text()='Salary.zip: Details']")
+    private WebElement salaryDetailsSection;
+
+    @FindBy(xpath = "//h1[text()='Search Results']")
+    private WebElement searchResultsSection;
+
     //@FindBy(xpath = "//span[text()='US Hourly Wages']")
     //private WebElement usHourlyWages;
 
@@ -236,6 +300,15 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "(//a[@role='button'])[2]")
     private WebElement submitButton;
 
+    @FindBy(xpath = "//button[text()='Submit']")
+    private WebElement submitButtonFileUpload;
+
+    @FindBy(xpath = "//span[text()='Submit']")
+    private WebElement submitButtonImportDataLoad;
+
+    @FindBy(xpath = "//div[text()='Submitted']")
+    private WebElement fileSubmitted;
+
     @FindBy(xpath = "//button[contains(.,'Edit')]")
     private WebElement editButton;
 
@@ -245,6 +318,12 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//h1[contains(.,'Family and Emergency Contacts')]")
     private WebElement familyAndEmergencyPageIndicator;
+
+    @FindBy(xpath = "//h1[contains(.,'Import and Load Data')]")
+    private WebElement importAndLoadDataPage;
+
+    @FindBy(xpath = "//a[text()='Person Management']")
+    private WebElement clickPersonManagementLink;
 
     @FindBy(xpath = "//h1[contains(.,'New Contact')]")
     private WebElement newContactPage;
@@ -281,7 +360,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//label[text()='Address Line 2']/following::span[1]")
     private WebElement addressLine2;
-    
+
     @FindBy(xpath = "//label[text()='Country']/following::span[1]")
     private WebElement country;
 
@@ -302,7 +381,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//label[contains(.,'Alternate work Location Address')]")
     private WebElement altWorkLocAddDisplay;
-    
+
     @FindBy(xpath = "(//div[@title='Address']/descendant::img[@alt='Edit'])[1]")
     private WebElement editAddressButton;
 
@@ -329,10 +408,14 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "(//label[text()='Type']//following::input[1])[1]")
     private WebElement phoneType;
 
+    @FindBy(xpath = "//label[contains(.,'Enter a New Address')]")
+    private WebElement enterNewAddCheckBox;
+
     @FindBy(xpath = "(//label[text()='Type']//following::input[1])[2]")
     private WebElement emailType;
 
-    @FindBy(xpath = "//label[text()='Country Code']//following::input[1]")
+    //@FindBy(xpath = "//label[text()='Country Code']//following::input[1]")
+    @FindBy(xpath = "//input[@class='x1xc']")
     private WebElement countryCode;
 
     @FindBy(xpath = "//label[text()='Number']//following::input[1]")
@@ -340,10 +423,48 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//label[text()='Email']//following::input[1]")
     private WebElement email;
+    //---------
+    @FindBy(xpath = "//img[@title='More Information']")
+    private WebElement personMoreInfoEllipsis;
 
+    @FindBy(xpath = "//span[contains(text(),'Personal Details')]")
+    private WebElement lnkPersonalDetails;
 
+    @FindBy(xpath = "//div[@title='Personal Details']")
+    private WebElement pagePersonalDetails;
 
+    @FindBy(xpath = "//span[@class='xmg'][text()='Update Photo']")
+    private WebElement optionUpdatePhoto;
 
+    @FindBy(xpath = "//input[@type='file']")
+    private WebElement choosePhotoFile;
+
+    @FindBy(xpath = "//td[@class='x1ul']")
+    private WebElement moreMenu;
+
+    @FindBy(xpath = "//button[@id='_FOpt1:_FOr1:0:_FOSrPER_HCMPEOPLETOP_FUSE_PER_INFO:0:MAnt2:2:pim1Upl:UPsp1:sh1:if1::upBtn']")
+    private WebElement btnPhotoUpdated;
+
+    @FindBy(xpath = "//label[contains(@for,'effectiveDate')]//following::input[1]")
+    private WebElement modalUpdateEmploymentEffectiveDate;
+
+    @FindBy(xpath = "//label[contains(@for,'actionsName')]/following::input[1]")
+    private WebElement modalUpdateEmploymentAction;
+
+    @FindBy(xpath = "//label[contains(@for,'actionReason')]/following::input[1]")
+    private WebElement modalUpdateEmploymentActionReason;
+
+    @FindBy(xpath = "//h1[contains(text(),'Edit Employment')]")
+    private WebElement editEmploymentPage;
+
+    @FindBy(xpath = "//button[@accesskey='K']")
+    private WebElement btnOK;
+
+    @FindBy(xpath = "//label[text()='Assignment Status']//following::input[1]")
+    private WebElement dropdownAssignmentStatus;
+
+    @FindBy(xpath = "//span[text()='Review']")
+    private WebElement btnReview;
 
     public EmployeeEditMyDetailsPage(Context context) {
         super(context);
@@ -395,12 +516,13 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             altWorkLocationCountry.sendKeys(data.getAltWorkLocationCountry());
             waitNormalTime();
             altWorkLocationCountry.sendKeys(Keys.DOWN, Keys.RETURN);
-            waitShortTime();
             altWorkLocationCountry.sendKeys(Keys.TAB);
+            waitNormalTime();
             //Enter Address Type
             altWorkLocationAddType.click();
             waitFor(ExpectedConditions.visibilityOf(altWorkLocationAddType), 5);
             driver.findElement(By.xpath("//li[text()='" + data.getAltWorkLocationAddressType() + "']")).click();
+            waitNormalTime();
             //Enter Address Line1
             waitFor(ExpectedConditions.elementToBeClickable(altWorkLocationAddressLine1), 5);
             altWorkLocationAddressLine1.sendKeys(data.getAltWorkLocationAddressLine1());
@@ -451,9 +573,13 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             waitFor(ExpectedConditions.visibilityOf(phoneType), 5);
             driver.findElement(By.xpath("//li[text()='" + data.getPhoneType() + "']")).click();
 
-            countryCode.click();
-            waitFor(ExpectedConditions.visibilityOf(countryCode), 5);
-            driver.findElement(By.xpath("//li[text()='" + data.getCountryCode() + "']")).click();
+            waitShortTime();
+            countryCode.clear();
+            countryCode.sendKeys(data.getCountryCode());
+            waitShortTime();
+            countryCode.sendKeys(Keys.DOWN, Keys.RETURN);
+            //countryCode.sendKeys(Keys.TAB);
+            waitNormalTime();
 
             waitFor(ExpectedConditions.visibilityOf(phoneNumber), 5);
             phoneNumber.clear();
@@ -467,6 +593,35 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             email.clear();
             email.sendKeys(data.getEmail());
 
+            waitFor(ExpectedConditions.visibilityOf(enterNewAddCheckBox), 5);
+            enterNewAddCheckBox.click();
+            actions.sendKeys(Keys.TAB);
+
+            waitShortTime();
+            // Enter Country
+            // waitFor(ExpectedConditions.visibilityOf(altWorkLocationCountry), 15);
+            emergencyContactCountry.clear();
+            emergencyContactCountry.sendKeys(data.getAltWorkLocationCountry());
+            waitNormalTime();
+            emergencyContactCountry.sendKeys(Keys.DOWN, Keys.RETURN);
+            emergencyContactCountry.sendKeys(Keys.TAB);
+            waitNormalTime();
+            //Enter Address Type
+            emergencyAddType.click();
+            waitFor(ExpectedConditions.visibilityOf(emergencyAddType), 5);
+            driver.findElement(By.xpath("//li[text()='" + data.getAltWorkLocationAddressType() + "']")).click();
+            waitNormalTime();
+            //Enter Address Line1
+            waitFor(ExpectedConditions.elementToBeClickable(altWorkLocationAddressLine1), 5);
+            altWorkLocationAddressLine1.sendKeys(data.getAltWorkLocationAddressLine1());
+            //Enter Address Line2
+            waitFor(ExpectedConditions.elementToBeClickable(altWorkLocationAddressLine2), 5);
+            altWorkLocationAddressLine2.sendKeys(data.getAltWorkLocationAddressLine2());
+            //Enter ZipCode
+            waitFor(ExpectedConditions.elementToBeClickable(altWorkLocationZipCode), 5);
+            altWorkLocationZipCode.sendKeys(data.getAltWorkLocationZipCode());
+            waitShortTime();
+            altWorkLocationAddressLine1.click();
 
             reportWithScreenShot("User enter Emergency Contact details");
             assertThat(btnSubmit_ManageSalary.isDisplayed()).isTrue();
@@ -725,6 +880,8 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     // User click  Task icon right side
     public void taskIconClick() {
         try {
+            waitUntilPageLoad();
+            waitNormalTime();
             waitFor(ExpectedConditions.elementToBeClickable(taskIcon), 30);
             mouseHover(taskIcon);
             taskIcon.click();
@@ -798,8 +955,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         txtboxComponentAmt_ManageSalary.sendKeys(Keys.TAB);
         Thread.sleep(4000);
         String actAmt = txtAnnualSalary.getText().replace(",", "");
-        System.out.println("act amt - " + actAmt);
-        System.out.println("exp amt - " + data.getSalaryAmount().trim());
 //        Assertions.assertThat(txtAnnualSalary.getText().trim().equals(data.getSalaryAmount().trim())).isTrue();
         reportWithScreenShot("user entered new salary amount in Salary amount field");
     }
@@ -884,9 +1039,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     public void clickSubmitButtonInReviewPage() {
         try {
-            waitFor(ExpectedConditions.elementToBeClickable(btnSubmit_ManageSalary), 15);
+            waitFor(ExpectedConditions.elementToBeClickable(btnSubmit_ManageSalary), 60);
             btnSubmit_ManageSalary.click();
-            waitFor(ExpectedConditions.elementToBeClickable(popButtonYes), 15);
+            waitFor(ExpectedConditions.elementToBeClickable(popButtonYes), 60);
             assertThat(popButtonYes.isDisplayed()).isTrue();
             reportWithScreenShot(" Submit button in Manage salary review page is clicked");
         } catch (Exception e) {
@@ -899,9 +1054,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     public void clickYesOnPopup() {
         try {
-            waitFor(ExpectedConditions.elementToBeClickable(popButtonYes), 15);
+            waitFor(ExpectedConditions.elementToBeClickable(popButtonYes), 30);
             popButtonYes.click();
-            waitFor(ExpectedConditions.elementToBeClickable(confirmBtnOK), 15);
+            waitFor(ExpectedConditions.elementToBeClickable(confirmBtnOK), 30);
             assertThat(confirmBtnOK.isDisplayed()).isTrue();
             reportWithScreenShot(" Ok button in Manage salary review page is clicked");
         } catch (Exception e) {
@@ -914,9 +1069,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     //user clicks Yes button on Manage salary review page
     public void clickOKOnPopup() {
         try {
-            waitFor(ExpectedConditions.elementToBeClickable(confirmBtnOK), 15);
+            waitFor(ExpectedConditions.elementToBeClickable(confirmBtnOK), 30);
             confirmBtnOK.click();
-            waitFor(ExpectedConditions.elementToBeClickable(btnDone), 15);
+            waitFor(ExpectedConditions.elementToBeClickable(btnDone), 30);
             assertThat(btnDone.isDisplayed()).isTrue();
             reportWithScreenShot(" Ok button in Manage salary review page is clicked");
         } catch (Exception e) {
@@ -930,9 +1085,10 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         try {
             String selectValue = null;
             selectValue = data.getSalaryBasis();
-            System.out.println("Salary basis " + selectValue);
+            //System.out.println("Salary basis " + selectValue);
+            waitFor(ExpectedConditions.elementToBeClickable(dropdownSalaryBasis_ManageSalary), 15);
             dropdownSalaryBasis_ManageSalary.click();
-            waitShortTime();
+            waitNormalTime();
             WebElement dropdownElement = driver.findElement(By.xpath("//span[text()='" + selectValue + "']"));
             waitFor(ExpectedConditions.elementToBeClickable(dropdownElement), 15);
             assertThat(dropdownElement.isDisplayed()).isTrue();
@@ -1203,6 +1359,214 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
+
+    //Check for display of Import and Load Data Page Display
+    public void checkImportAndLoadDataDisplayed() {
+        try {
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(importAndLoadDataPage), 15);
+            assertThat(importAndLoadDataPage.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if we are landed on Import and Load Data Page Display");
+        } catch (Exception e) {
+            reportWithScreenShot("Import and Load Data Page Display is not displayed:" + e.getMessage());
+        }
+    }
+
+
+    //Check for display of Select File Page Display
+    public void checkSelectFilePageDisplayed() {
+        try {
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(selectFilePage), 15);
+            assertThat(selectFilePage.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if we are landed on Select File Page Display");
+        } catch (Exception e) {
+            reportWithScreenShot("Select File Page Display is not displayed:" + e.getMessage());
+        }
+    }
+
+    //User clicks on Import File button and Import Local File Option
+    public void clickImportFile() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(importFileBtn), 15);
+            importFileBtn.click();
+            reportWithScreenShot("Clicking Import File button");
+            waitFor(ExpectedConditions.elementToBeClickable(importLocalFileBtn), 15);
+            importLocalFileBtn.click();
+            reportWithScreenShot("Clicking Import Local File Option");
+
+        } catch (Exception e) {
+            reportWithScreenShot("Import File button is not clicked properly:" + e.getMessage());
+            Assert.fail();
+        }
+
+    }
+
+    //User Upload File and click submit button
+    // public void clickChooseFile() {
+    public void uploadFile() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(chooseFile), 15);
+            chooseFile.sendKeys(data.getFilePath());
+            reportWithScreenShot("Checking if File path is searched and placed");
+            waitFor(ExpectedConditions.elementToBeClickable(submitButtonFileUpload), 15);
+            submitButtonFileUpload.click();
+            reportWithScreenShot("User clicks Submit after file is browsed");
+            waitFor(ExpectedConditions.elementToBeClickable(submitButtonImportDataLoad), 15);
+            submitButtonImportDataLoad.click();
+            reportWithScreenShot("User clicks Submit for file Upload");
+
+        } catch (Exception e) {
+            reportWithScreenShot("Choose File button is not clicked properly:" + e.getMessage());
+            Assert.fail();
+        }
+
+    }
+
+    //Check for file is submitted successfully
+    public void fileSubmit() {
+        try {
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(fileSubmitted), 15);
+            assertThat(fileSubmitted.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if File is submitted successfully");
+        } catch (Exception e) {
+            reportWithScreenShot("File submission is not successful due to:" + e.getMessage());
+        }
+    }
+
+
+    //User checks if Process ID is generated and sets them back for validating if file is imported properly
+    public void CheckProcessIdGeneration() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(processId), 15);
+            String processId1 = processId.getText();
+            //System.out.println(processId1);
+            String[] parts = processId1.split(" ");
+            String OS = parts[2];
+            Integer processId = Integer.parseInt(OS);
+            //System.out.println(processId);
+            data.setProcessId(processId);
+            reportWithScreenShot("Clicking OK button in Process ID generation page");
+            processOkBtn.click();
+        } catch (Exception e) {
+            reportWithScreenShot("Choose File button is not clicked properly:" + e.getMessage());
+            Assert.fail();
+        }
+
+    }
+
+    //User search for the process ID
+    public void searchProcessId() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(processIdSearch), 15);
+            processIdSearch.click();
+            waitFor(ExpectedConditions.visibilityOf(processIdDisplayed), 15);
+            assertThat(processIdDisplayed.isDisplayed()).isTrue();
+
+            waitFor(ExpectedConditions.visibilityOf(enterProcessId), 15);
+            enterProcessId.sendKeys(String.valueOf(data.getProcessId()));
+            reportWithScreenShot("user enter the Process ID in search screen");
+            waitFor(ExpectedConditions.elementToBeClickable(searchBtn), 15);
+            searchBtn.click();
+        } catch (Exception e) {
+            reportWithScreenShot("Choose File button is not clicked properly:" + e.getMessage());
+            Assert.fail();
+        }
+
+    }
+
+
+    // Click on Refresh Button until File status is imported and loaded
+    public void clickRefreshBtn1TillFileLoaded() {
+        try {
+
+            elementsize = driver.findElements(By.xpath("//span[text()='" + data.getProcessId() + "']")).size();
+            int counter = 0;
+            while (elementsize == 0 && counter <= 30) {
+                elementsize = driver.findElements(By.xpath("//span[text()='" + data.getProcessId() + "']")).size();
+                searchBtn.click();
+                waitShortTime();
+                counter++;
+            }
+
+            waitFor(ExpectedConditions.visibilityOf(salaryDetailsSection), 15);
+            scrollToElement(salaryDetailsSection);
+
+            int count = 0;
+
+            waitFor(ExpectedConditions.visibilityOf(loadStatus), 15);
+
+            while (count <= 110) {
+                status = loadStatus.getAttribute("title");
+                if (status.equals("Success")) {
+                    break;
+                } else if (status.equals("Error")) {
+                    throw new Exception("File Load failure");
+                } else {
+                    waitShortTime();
+                    clickRefreshBtn1();
+                    }
+                count++;
+            }
+            scrollToElement(processId);
+            reportWithScreenShot("Import and load status view");
+
+
+        } catch (
+                Exception e) {
+            reportWithScreenShot("Error While importing and loading files:" + e.getMessage());
+            Assert.fail();
+        }
+
+    }
+
+
+    //User click person Management
+    public void clickPersonManagementLink() {
+        try {
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(clickPersonManagementLink), 15);
+            clickPersonManagementLink.click();
+            reportWithScreenShot("Click person management link");
+        } catch (Exception e) {
+            reportWithScreenShot("Unable to click person management link due to:" + e.getMessage());
+        }
+    }
+
+    //User search person created from file
+    public void searchNewPerson() {
+        try {
+
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(hdlName), 15);
+            hdlName.sendKeys(data.getHdlName());
+            waitFor(ExpectedConditions.elementToBeClickable(searchBtn), 15);
+            searchBtn.click();
+
+            // Check for Employee for max 60 seconds
+            elementsize = driver
+                    .findElements(By.xpath("//img[@title='Actions']")).size();
+            int counter = 0;
+            while (elementsize == 0 && counter <= 40) {
+                elementsize = driver
+                        .findElements(By.xpath("//img[@title='Actions']")).size();
+                searchBtn.click();
+                waitShortTime();
+                counter++;
+            }
+
+            // Throw Exception if Person name now found after 60 seconds
+            if (elementsize == 0) {
+                throw new Exception("Person number not found after 60 seconds");
+            }
+            waitFor(ExpectedConditions.visibilityOf(searchResultsSection), 15);
+            scrollToElement(searchResultsSection);
+            reportWithScreenShot("Search result displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Unable to search person due to:" + e.getMessage());
+        }
+    }
     //Check if New Contact Page is displayed
     public void checkNewContactPageDisplayed() {
         try {
@@ -1214,7 +1578,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             reportWithScreenShot("New Contact page is not displayed:" + e.getMessage());
         }
     }
-
 
 
     /**
@@ -1298,7 +1661,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             validateElementIsDisplayed(addressType);
             validateElementIsDisplayed(country);
             validateElementIsDisplayed(addressLine2);
-            validateElementIsDisplayed(county);
+            //validateElementIsDisplayed(county);
             reportWithScreenShot("Clicking if address format is valid");
         } catch (Exception e) {
             reportWithScreenShot("Address format is not valid:" + e.getMessage());
@@ -1341,5 +1704,186 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     }
 
+    public void clickPersonalDetailsLink() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(lnkPersonalDetails), 30);
+//            mouseHover(lnkPersonalDetails);
+//            clickWebElement(lnkPersonalDetails);
+//            doubleClick(lnkPersonalDetails);
+////            lnkPersonalDetails.click();
+            JavascriptExecutor executor = (JavascriptExecutor) driver;
+            executor.executeScript("arguments[0].click();", lnkPersonalDetails);
+            Thread.sleep(2000);
+            waitUntilPageLoad();
+            assertThat(pagePersonalDetails.isDisplayed());
+            reportWithScreenShot("User clicked on Personal Details link :");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking Personal details link:" + e.getMessage());
+            Assert.fail();
+        }
+    }
 
+    public void checkPersonalDetailPageDisplayed() {
+        try {
+            assertThat(pagePersonalDetails.isDisplayed());
+            reportWithScreenShot("Persona Details page displayed :");
+        } catch (Exception e) {
+            reportWithScreenShot("Error in displaying Persona Details page displayed:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void clickEllipsisOnLogo() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(personMoreInfoEllipsis), 60);
+            doubleClick(personMoreInfoEllipsis);
+//            personMoreInfoEllipsis.click();
+            waitFor(ExpectedConditions.visibilityOf(moreMenu), 60);
+            scrollToElement(optionUpdatePhoto);
+            assertThat(optionUpdatePhoto.isDisplayed());
+            reportWithScreenShot("Users clicked on ellipsis to open More options menu :");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking ellipsis :" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void checkMoreOptionMenuDisplayed() {
+        try {
+            scrollToElement(optionUpdatePhoto);
+            assertThat(optionUpdatePhoto.isDisplayed());
+            reportWithScreenShot("Users More options menu displayed :");
+        } catch (Exception e) {
+            reportWithScreenShot("Error in displaying More option menu :" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void clickUpdatePhotoLink() {
+
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(optionUpdatePhoto), 15);
+            optionUpdatePhoto.click();
+            waitFor(ExpectedConditions.visibilityOf(choosePhotoFile), 60);
+            assertThat(choosePhotoFile.isDisplayed());
+            reportWithScreenShot("User clicks on Update Photo link from more options menu :");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking Update Photo link :" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void checkPhotPageDisplayed() {
+        try {
+
+            assertThat(choosePhotoFile.isDisplayed());
+            reportWithScreenShot("Photo page is displayed :");
+        } catch (Exception e) {
+            reportWithScreenShot("Error in displaying Photo page:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void choosePhotoToUpload() {
+
+        try {
+            //String imgLocation = System.getProperty("user.dir") + "/src/main/resources/testdata/TestImage.jpg";
+            String imgLocation = data.getFilePath();
+            choosePhotoFile.sendKeys(imgLocation);
+            Thread.sleep(2000);
+            waitFor(ExpectedConditions.visibilityOf(btnPhotoUpdated), 100);
+            assertThat(btnPhotoUpdated.isDisplayed()).isTrue();
+            reportWithScreenShot("User uploaded the photo :");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while uploading the photo :" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void checkUserPhotoUploaded() {
+        try {
+
+            waitFor(ExpectedConditions.visibilityOf(btnPhotoUpdated), 100);
+            assertThat(btnPhotoUpdated.isDisplayed()).isTrue();
+            reportWithScreenShot("User updated the photo Successfully :");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while updating the photo :" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // User enter details in Update Employment Window
+    public void fillUpdateEmpWindow_PersonMgmt() {
+        try {
+            // Enter current date into effective date
+            waitFor(ExpectedConditions.elementToBeClickable(modalUpdateEmploymentEffectiveDate), 15);
+            modalUpdateEmploymentEffectiveDate.clear();
+            modalUpdateEmploymentEffectiveDate.sendKeys(getCurrentDate());
+            modalUpdateEmploymentEffectiveDate.sendKeys(Keys.TAB);
+            waitShortTime();
+
+            // Enter Action value
+            waitFor(ExpectedConditions.elementToBeClickable(modalUpdateEmploymentAction), 15);
+            modalUpdateEmploymentAction.click();
+            waitFor(ExpectedConditions
+                    .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getEmploymentAction() + "']"))), 5);
+            driver.findElement(By.xpath("//li[text()='" + data.getEmploymentAction() + "']")).click();
+            modalUpdateEmploymentAction.sendKeys(Keys.TAB);
+            waitNormalTime();
+
+            // Enter Action Reason value
+            waitFor(ExpectedConditions.elementToBeClickable(modalUpdateEmploymentActionReason), 15);
+            modalUpdateEmploymentActionReason.click();
+            waitFor(ExpectedConditions
+                    .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getEmploymentActionReason() + "']"))), 5);
+            driver.findElement(By.xpath("//li[text()='" + data.getEmploymentActionReason() + "']")).click();
+            modalUpdateEmploymentActionReason.sendKeys(Keys.TAB);
+            waitShortTime();
+            reportWithScreenShot("User updated the values in Update Employment Modal");
+            // Click OK
+            btnOK.click();
+            waitFor(ExpectedConditions.visibilityOf(editEmploymentPage), 30);
+            assertThat(editEmploymentPage.isDisplayed()).isTrue();
+            reportWithScreenShot("User clicked OK button on Update Employment Modal");
+        } catch (Exception e) {
+
+            reportWithScreenShot("Error While updating values in Update Employment Modal:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void selectAssignmentStatus(String value) {
+
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(dropdownAssignmentStatus), 30);
+            dropdownAssignmentStatus.click();
+            waitFor(ExpectedConditions
+                    .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getAssignmentStatus() + "']"))), 15);
+            WebElement valueToBeSelected = driver.findElement(By.xpath("//li[text()='" + data.getAssignmentStatus() + "']"));
+            waitFor(ExpectedConditions.elementToBeClickable(valueToBeSelected), 15);
+            assertThat(valueToBeSelected.isDisplayed()).isTrue();
+            valueToBeSelected.click();
+            reportWithScreenShot("User clicked OK button on Update Employment Modal");
+        } catch (Exception e) {
+            reportWithScreenShot("Error While updating values in Update Employment Modal:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    /**
+     * user clicks on Review button
+     * Author: Sangameshwar Balur
+     */
+    public void clickReviewButton() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(btnReview), 30);
+            btnReview.click();
+            waitFor(ExpectedConditions.elementToBeClickable(btnBack_ManageSalary), 60);
+            Assertions.assertThat(btnBack_ManageSalary.isDisplayed()).isTrue();
+            reportWithScreenShot("User clicked on Review  button");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while user clicks Review button");
+            Assert.fail();
+        }
+    }
 }

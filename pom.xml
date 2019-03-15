@@ -77,16 +77,6 @@
                                 <value>false</value>
                             </property>
                         </properties>
-                        <systemPropertyVariables>
-                            <!--suppress UnresolvedMavenProperty -->
-                            <featureDir>${featureDir}</featureDir>
-                            <!--suppress UnresolvedMavenProperty -->
-                            <environment>${environment}</environment>
-                            <!--suppress UnresolvedMavenProperty -->
-                            <tags>${tags}</tags>
-                            <!--suppress UnresolvedMavenProperty -->
-                            <testFile>${testFile}</testFile>
-                        </systemPropertyVariables>
                     </configuration>
                 </plugin>
                 <plugin>

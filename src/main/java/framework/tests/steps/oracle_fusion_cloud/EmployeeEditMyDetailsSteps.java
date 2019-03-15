@@ -20,6 +20,48 @@ public class EmployeeEditMyDetailsSteps implements En {
             context.loginAndHome.checkPersonalInfoPageDisplayed();
         });
 
+        When("Import and Load Data page should be displayed", () -> {
+            context.employeeEditMyDetails.checkImportAndLoadDataDisplayed();
+        });
+
+        When("user clicks on Import File option", () -> {
+            context.employeeEditMyDetails.clickImportFile();
+        });
+
+
+        When("Select File page should be displayed", () -> {
+            context.employeeEditMyDetails.checkSelectFilePageDisplayed();
+        });
+
+        When("user upload HDL File and click Submit button", () -> {
+            context.employeeEditMyDetails.uploadFile();
+        });
+
+        When("File should be successfully submitted", () -> {
+            context.employeeEditMyDetails.fileSubmit();
+        });
+
+        When("Process Id should be generated", () -> {
+            context.employeeEditMyDetails.CheckProcessIdGeneration();
+        });
+
+        When("user search for the process id generated in search screen", () -> {
+            context.employeeEditMyDetails.searchProcessId();
+        });
+
+        When("user clicks on Refresh button1 till file is imported and loaded", () -> {
+            context.employeeEditMyDetails.clickRefreshBtn1TillFileLoaded();
+        });
+
+        When("user clicks on Person Management Link in Navigation pane", () -> {
+            context.employeeEditMyDetails.clickPersonManagementLink();
+        });
+
+
+        When("user search for the person newly created from file", () -> {
+            context.employeeEditMyDetails.searchNewPerson();
+        });
+
         When("user clicks on Edit button on top right side", () -> {
             context.employeeEditMyDetails.clickMyDetailsEdit();
         });
@@ -173,7 +215,7 @@ public class EmployeeEditMyDetailsSteps implements En {
 
         });
 
-        When("^user clicks on Submit button in Manage Salary Review page$", () -> {
+        When("^user clicks on Submit button in Review page$", () -> {
             context.employeeEditMyDetails.clickSubmitButtonInReviewPage();
         });
 
@@ -261,6 +303,151 @@ public class EmployeeEditMyDetailsSteps implements En {
 
         When("Click Yes button", () -> {
             context.employeeEditMyDetails.clickYesButtonInPopUp();
+        });
+        Then("^My Details page should be displayed$", () -> {
+        });
+        When("^user clicks on Actions \\(v\\) button$", () -> {
+        });
+        And("^user clicks on \\+ icon$", () -> {
+        });
+        And("^user clicks on \\+ icon under Bank Accounts$", () -> {
+        });
+        When("^user click on Sign Out option$", () -> {
+        });
+        When("^user clicks on More Information icon 'i'  under name icon$", () -> {
+        });
+        Then("^A pop up window with employee details should be displayed\\.$", () -> {
+        });
+        Then("^the values Absence,Payroll,Personal and Employment should be displayed$", () -> {
+        });
+        And("^user enter value for Name as \"([^\"]*)\"$", (String arg0) -> {
+        });
+        And("^user enter value from Organization Payment Method dropdown as \"([^\"]*)\"$", (String arg0) -> {
+        });
+        And("^user enter value for Account Number as \"([^\"]*)\"$", (String arg0) -> {
+        });
+        And("^user enter value from Account type as \"([^\"]*)\"$", (String arg0) -> {
+        });
+        And("^user enter value for Routing Number as \"([^\"]*)\"$", (String arg0) -> {
+        });
+        And("^user enter value for Routing Account Holder$", () -> {
+        });
+        And("^user clicks on Done button$", () -> {
+        });
+        Then("^Person Gallery page should be displayed$", () -> {
+        });
+        When("^user clicks on Edit\\(Pencil Symbol\\) in the Address section$", () -> {
+        });
+        When("^user clicks on 'Edit' button on top right side of the page$", () -> {
+        });
+        When("^user clicks on 'Contact Information' section$", () -> {
+        });
+        Then("^Personal address should be displayed$", () -> {
+        });
+        And("^user enter value for effective date when address becomes active$", () -> {
+        });
+        And("^user enter value for Address Line (\\d+)$", (Integer arg0) -> {
+        });
+        And("^user enter value for Zip Code$", () -> {
+        });
+        And("^user clicks on Save and Close button$", () -> {
+            context.employeeEditMyDetails.clickSaveAndClose();
+        });
+        When("^user clicks on \"([^\"]*)\" icon in the left side of the page which is available in Edit My Details page$", (String arg0) -> {
+        });
+        Then("^\"([^\"]*)\" page should be displayed$", (String arg0) -> {
+        });
+        And("^user clicks on Click on Edit Icon\\(Pencil icon\\)$", () -> {
+        });
+        Then("^Biographical Information page should be displayed in edit mode$", () -> {
+        });
+        And("^user enter value for Title$", () -> {
+        });
+        And("^user enter value for First Name$", () -> {
+        });
+        And("^user enter value for Last Name$", () -> {
+        });
+        When("^user clicks on Documents icon which is available in Edit My Details in the left hand side of the page$", () -> {
+        });
+        When("^user clicks on Edit\\(Pencil Symbol\\) in the License section$", () -> {
+        });
+        And("^user enters License number$", () -> {
+        });
+        And("^user clicks on Save button$", () -> {
+        });
+        Then("^License number is saved$", () -> {
+        });
+        When("^user clicks on Disability icon on the left panel$", () -> {
+        });
+        Then("^Disability Information page should be displayed$", () -> {
+        });
+        And("^user \\+ icon$", () -> {
+        });
+        Then("^Country Pop up should be displayed$", () -> {
+        });
+        And("^user selects United States from the dropdown and clicks on Continue button$", () -> {
+        });
+        And("^user selects Self-Disclosed Disability as \"([^\"]*)\"\\(Radio Button\\)$", (String arg0) -> {
+        });
+        And("^user enters effective start state$", () -> {
+        });
+        And("^user clicks on \"([^\"]*)\" Link$", (String arg0) -> {
+        });
+        Then("^Form CC-(\\d+): Voluntary Self-Identification for Disability page should be displayed$", (Integer arg0) -> {
+        });
+        When("^user clicks on print icon under Tools Option$", () -> {
+        });
+        Then("^Print Page should be Displayed and employee should be able to print the Page$", () -> {
+        });
+        When("^user clicks on download icon under Tools Option$", () -> {
+        });
+        Then("^user should able to Download Form CC-(\\d+)$", (Integer arg0) -> {
+        });
+        Then("^The disability information page should be displayed$", () -> {
+        });
+
+        When("^user clicks on Personal Details link in Person Info page$", () -> {
+            context.employeeEditMyDetails.clickPersonalDetailsLink();
+
+        });
+
+        Then("^Personal Details page should be displayed$", () -> {
+            context.employeeEditMyDetails.checkPersonalDetailPageDisplayed();
+        });
+
+        And("^user clicks on ellipsis on Employee Logo name$", () -> {
+            context.employeeEditMyDetails.clickEllipsisOnLogo();
+        });
+
+        Then("^users More option menu is displayed$", () -> {
+            context.employeeEditMyDetails.checkMoreOptionMenuDisplayed();
+        });
+
+        And("^user clicks Update Photo link to upload photo$", () -> {
+            context.employeeEditMyDetails.clickUpdatePhotoLink();
+        });
+
+        Then("^Photo upload page should be displayed$", () -> {
+            context.employeeEditMyDetails.checkPhotPageDisplayed();
+        });
+
+        When("^user clicks on Choose File button to upload a photo$", () -> {
+            context.employeeEditMyDetails.choosePhotoToUpload();
+        });
+
+        Then("^user selected photo is uploaded to system$", () -> {
+            context.employeeEditMyDetails.checkUserPhotoUploaded();
+        });
+        When("^user enters details in Update Employment Window and click on Ok button$", () -> {
+
+            context.employeeEditMyDetails.fillUpdateEmpWindow_PersonMgmt();
+        });
+        And("^user selects Assignment Status as (.*?)$", (String value) -> {
+            context.employeeEditMyDetails.selectAssignmentStatus(value);
+        });
+        When("^user clicks on Review button in Management Employment page$", () -> {
+            context.employeeEditMyDetails.clickReviewButton();
+
         });
 
     }
