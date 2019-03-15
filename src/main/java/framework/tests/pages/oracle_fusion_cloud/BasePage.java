@@ -17,7 +17,9 @@ import org.testng.Assert;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -49,6 +51,12 @@ public class BasePage<T> extends WebPage {
 
     @FindBy(xpath = "//button[text()='Search']")
     private WebElement searchBtn;
+
+    @FindBy(xpath = "(//span[text()='Refresh'])[1]")
+    private WebElement refreshBtn1;
+
+    @FindBy(xpath = "(//span[text()='Refresh'])[2]")
+    private WebElement refreshBtn2;
 
     @FindBy(xpath = "//img[@title='Tasks']")
     private WebElement taskButton;
@@ -145,7 +153,7 @@ public class BasePage<T> extends WebPage {
             waitUntilPageLoad();
             waitFor(ExpectedConditions.elementToBeClickable(confirmBtn), 15);
             confirmBtn.click();
-            waitShortTime();
+            waitNormalTime();
             reportWithScreenShot("Confirm button clicked successfully");
         } catch (Exception e) {
             reportWithScreenShot("Submission not successful due to:" + e.getMessage());
@@ -175,6 +183,30 @@ public class BasePage<T> extends WebPage {
             Assert.fail();
         }
     }
+
+    // Click on Refresh Button1
+    public void clickRefreshBtn1() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(refreshBtn1), 15);
+            refreshBtn1.click(); // Click Search Button
+        } catch (Exception e) {
+            reportWithScreenShot("Error While clicking Refresh button1:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // Click on Refresh Button2
+    public void clickRefreshBtn2() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(refreshBtn2), 15);
+            refreshBtn2.click(); // Click Search Button
+        } catch (Exception e) {
+            reportWithScreenShot("Error While clicking Refresh button2:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+
 
     // Open task pane
     public void clickTaskButton() {
@@ -367,5 +399,27 @@ public class BasePage<T> extends WebPage {
             e.printStackTrace();
         }
     }
+    
+    /**
+     * This method increase a String date by given number of days and return in String
+     *
+     * @author Rakesh
+     * @throws ParseException 
+     */
+    public String addDaysToDate(String dateInStringFormat,int noOfDays,String dateFormat) throws ParseException {
+        try {
+        	SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+        	Calendar c = Calendar.getInstance();
+        	c.setTime(sdf.parse(dateInStringFormat));
+            c.add(Calendar.DATE, noOfDays);  // number of days to add
+        	dateInStringFormat = sdf.format(c.getTime());
+        	return dateInStringFormat;
+        	
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
 }
 

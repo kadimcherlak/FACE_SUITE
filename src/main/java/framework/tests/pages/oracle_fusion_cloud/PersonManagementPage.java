@@ -17,6 +17,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     private Context context;
     private Data data;
     private int elementsize;
+    private String searchDate;
 
     // Person Management Page Locators
     @FindBy(className = "svg-icon03")
@@ -224,6 +225,12 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
     @FindBy(xpath = "//span[text()='Review']")
     private WebElement reviewButton_ManageEmployment;
+    
+    @FindBy(xpath = "(//label[text()='Hire Date']/following::input[1])[1]")
+    private WebElement hireDate;
+    
+    @FindBy(xpath = "(//label[text()='Hire Date'])[3]/following::span[1]")
+    private WebElement enterpriseHireDate;
 
     // Person Management Contructor
     public PersonManagementPage(Context context) {
@@ -269,7 +276,11 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             // Enter effective as of date
             waitFor(ExpectedConditions.elementToBeClickable(effectiveAsOfDate), 15);
             effectiveAsOfDate.clear();
-            effectiveAsOfDate.sendKeys(getCurrentDate());
+
+            // Add Current Date + 1 as the senario runs before this test changes the date to current date +1 (Scenario name : Seniority date)
+            searchDate = addDaysToDate(getCurrentDate(), 1, "mm/dd/yyyy");
+
+            effectiveAsOfDate.sendKeys(searchDate);
             waitShortTime();
             reportWithScreenShot("Summary of Person Management: Search screen");
         } catch (Exception e) {
@@ -461,7 +472,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     public void clickDoneButton() {
         try {
             waitUntilPageLoad();
-            waitShortTime();
+            waitNormalTime();
             waitFor(ExpectedConditions.visibilityOf(done), 15);
             waitFor(ExpectedConditions.elementToBeClickable(done), 15);
             done.click();
@@ -554,7 +565,9 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             // Enter current date into effective date
             waitFor(ExpectedConditions.elementToBeClickable(updateEmploymentEffectiveDate), 15);
             updateEmploymentEffectiveDate.clear();
-            updateEmploymentEffectiveDate.sendKeys(getCurrentDate());
+
+            // Add Current Date + 1 as the senario runs before this test changes the date to current date +1 (Scenario name : Seniority date
+            updateEmploymentEffectiveDate.sendKeys(searchDate);
             updateEmploymentEffectiveDate.sendKeys(Keys.TAB);
             waitShortTime();
 
@@ -825,6 +838,26 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             reportWithScreenShot("User clicked on Review  button");
         } catch (Exception e) {
             reportWithScreenShot("Error while user clicks Review button");
+            Assert.fail();
+        }
+    }
+    
+    /**
+     * User changes hire date
+     * Author: Rakesh Ghosal
+     */
+    public void enterHireDate() {
+        try {
+        	String newHireDate;
+        	scrollToElement(hireDate);
+            waitFor(ExpectedConditions.elementToBeClickable(hireDate), 15);
+            String existingHireDate=enterpriseHireDate.getText().trim();
+            hireDate.clear();
+            newHireDate=addDaysToDate(existingHireDate, 1, "mm/dd/yyyy");
+            hireDate.sendKeys(newHireDate);
+        } catch (Exception e) {
+        	System.out.println(e);
+            reportWithScreenShot("Error while entering hire date");
             Assert.fail();
         }
     }

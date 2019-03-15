@@ -113,7 +113,7 @@ Feature: Perform Edit on Employee Information
     Then Personal Info page should be displayed
     When user clicks on Contact Information section
     Then Contact Information page should be displayed
-    When user clicks on Edit(Pencil Symbol) in the Address section
+    When user clicks on Edit in the Address section
     And Verify that the address format is valid
     And Click on Cancel button
     When user clicks on Sign Out option
@@ -140,7 +140,7 @@ Feature: Perform Edit on Employee Information
     And user enter value for Address Line 1
     And user enter value for Zip Code
     And user clicks on Save and Close button
-    Then My details page should be displayed
+    Then My Details page should be displayed
     When user clicks on "Biographical information" icon in the left side of the page which is available in Edit My Details page
     Then "Edit My Details: Biographical Information" page should be displayed
     And user clicks on Click on Edit Icon(Pencil icon)
@@ -149,7 +149,7 @@ Feature: Perform Edit on Employee Information
     And user enter value for First Name
     And user enter value for Last Name
     And user clicks on Save and Close button
-    Then My details page should be displayed
+    Then My Details page should be displayed
     When user clicks on Documents icon which is available in Edit My Details in the left hand side of the page
     Then "Edit My Details: Contacts" page should be displayed
     When user clicks on Edit(Pencil Symbol) in the License section
@@ -178,7 +178,7 @@ Feature: Perform Edit on Employee Information
     Then user should able to Download Form CC-503
     When user clicks on Done button
     Then The disability information page should be displayed
-    When user clicks on save and close button
+    When user clicks on Save and Close button
     Then My Details page should be displayed
     When user clicks on Sign Out option
     Then Sign out should be successful

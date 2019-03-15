@@ -46,6 +46,7 @@ public class Data extends framework.core.models.Data {
     private String emailType;
     private String erProfitCenter;
     private String firstName;
+    private String filePath;
     private String familyName;
     private String gender;
     private String globalMobilityIndicator;
@@ -54,6 +55,7 @@ public class Data extends framework.core.models.Data {
     private String hireAction;
     private String hireDate;
     private String hireReason;
+    private String hdlName;
     private String hourlyPaidOrSalaried;
     private String i9Status;
     private String job;
@@ -79,6 +81,7 @@ public class Data extends framework.core.models.Data {
     private String percentage;
     private String phoneType;
     private String phoneNumber;
+    private Integer processId;
     private String relationship;
     private String routingNumber;
     private String salaryAmount;
@@ -316,6 +319,10 @@ public class Data extends framework.core.models.Data {
         return hireReason;
     }
 
+    public String getHdlName() {
+        return hdlName;
+    }
+
     public String getHourlyPaidOrSalaried() {
         return hourlyPaidOrSalaried;
     }
@@ -427,8 +434,20 @@ public class Data extends framework.core.models.Data {
         return phoneNumber;
     }
 
+    public Integer getProcessId() {
+        return processId;
+    }
+
+    public void setProcessId(Integer processId) {
+        this.processId = processId;
+    }
+
     public String getPercentage() {
         return percentage;
+    }
+
+    public String getFilePath() {
+        return filePath;
     }
 
     public String getRelationship() {

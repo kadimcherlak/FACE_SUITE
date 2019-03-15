@@ -385,7 +385,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitFor(ExpectedConditions.elementToBeClickable(businessUnit), 15);
             businessUnit.sendKeys(data.getBusinessUnit());
             businessUnit.sendKeys(Keys.ENTER);
-            waitShortTime();
+            waitNormalTime();
 
             // Enter Job
             waitFor(ExpectedConditions.elementToBeClickable(job), 15);
@@ -431,31 +431,6 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitFor(ExpectedConditions.elementToBeClickable(birthday), 15);
             birthday.clear();
             birthday.sendKeys(data.getDateOfBirth());
-
-            //3/4 - Koushik commenting for cognizant instance
-           /* // Enter Company/Entity
-            waitFor(ExpectedConditions.elementToBeClickable(companyEntity), 15);
-            companyEntity.sendKeys(data.getCompanyEntity());
-
-            // Enter Cost Center
-            waitFor(ExpectedConditions.elementToBeClickable(costCenter), 15);
-            costCenter.sendKeys(data.getCostCenter());
-            waitShortTime();
-
-            // Enter ER Profit Center
-            waitFor(ExpectedConditions.elementToBeClickable(erProfitCenter), 15);
-            erProfitCenter.sendKeys(data.getErProfitCenter());
-            waitShortTime();
-
-            if (data.getGlobalMobilityIndicatorCheck()) {
-                // Select Global Mobility Indicator
-                waitFor(ExpectedConditions.elementToBeClickable(empInfoGlobalMobilityInd), 15);
-                empInfoGlobalMobilityInd.click();
-                waitFor(ExpectedConditions.elementToBeClickable(
-                        driver.findElement(By.xpath("//li[text()='" + data.getGlobalMobilityIndicator() + "']"))), 15);
-                driver.findElement(By.xpath("//li[text()='" + data.getGlobalMobilityIndicator() + "']")).click();
-                waitShortTime();
-            }*/
 
             // Clicking Add button to enter Payroll Details
             clickCreateButton();
