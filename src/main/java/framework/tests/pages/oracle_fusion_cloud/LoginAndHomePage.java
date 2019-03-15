@@ -77,7 +77,6 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     @FindBy(xpath = "//a[text()='My Team']")
     private WebElement myTeamIcon;
 
-
     public LoginAndHomePage(Context context) {
         super(context);
         this.context = context;

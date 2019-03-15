@@ -230,8 +230,12 @@ public class BasePage<T> extends WebPage {
                 waitFor(ExpectedConditions.elementToBeClickable(By.xpath("(//a[text()='" + linkName + "'])[4]")), 15);
                 appWebElement = driver.findElement(By.xpath("(//a[text()='" + linkName + "'])[4]"));
             } else {
-                waitFor(ExpectedConditions.elementToBeClickable(By.xpath("(//a[text()='" + linkName + "'])[2]")), 15);
-                appWebElement = driver.findElement(By.xpath("(//a[text()='" + linkName + "'])[2]"));
+//                waitFor(ExpectedConditions.elementToBeClickable(By.xpath("(//a[text()='" + linkName + "'])[2]")), 15);
+//                appWebElement = driver.findElement(By.xpath("(//a[text()='" + linkName + "'])[2]"));
+
+                WebElement elementToClick = driver.findElement(By.xpath("//div[contains(@id, 'pt1:nv_pgl3')]//a[text()='"+linkName+"']"));
+               waitFor(ExpectedConditions.elementToBeClickable(elementToClick),30);
+                appWebElement = elementToClick;
             }
             reportWithScreenShot("Link :" + linkName + " selected from Navigator pane");
             waitFor(ExpectedConditions.elementToBeClickable(appWebElement), 15);
