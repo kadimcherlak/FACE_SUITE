@@ -125,6 +125,7 @@ public class BasePage<T> extends WebPage {
     public void clickWarningOkButton() {
         try {
             waitUntilPageLoad();
+            waitNormalTime();
             waitFor(ExpectedConditions.elementToBeClickable(warningBtn), 15);
             reportWithScreenShot("Confirmation message displayed");
             warningBtn.click();
@@ -227,11 +228,11 @@ public class BasePage<T> extends WebPage {
         try {
             waitShortTime(); // To handle task pane load time
             if (linkName.equals("New Person")) {
-                waitFor(ExpectedConditions.elementToBeClickable(By.xpath("(//a[text()='" + linkName + "'])[4]")), 15);
-                appWebElement = driver.findElement(By.xpath("(//a[text()='" + linkName + "'])[4]"));
-            } else {
                 waitFor(ExpectedConditions.elementToBeClickable(By.xpath("(//a[text()='" + linkName + "'])[2]")), 15);
                 appWebElement = driver.findElement(By.xpath("(//a[text()='" + linkName + "'])[2]"));
+            } else {
+                waitFor(ExpectedConditions.elementToBeClickable(By.xpath("(//a[text()='" + linkName + "'])[1]")), 15);
+                appWebElement = driver.findElement(By.xpath("(//a[text()='" + linkName + "'])[1]"));
             }
             reportWithScreenShot("Link :" + linkName + " selected from Navigator pane");
             waitFor(ExpectedConditions.elementToBeClickable(appWebElement), 15);

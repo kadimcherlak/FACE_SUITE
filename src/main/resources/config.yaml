@@ -35,7 +35,7 @@ driverConfig:
 
 environments:
   oracle_fusion_dev:
-    webUrl: https://hcczdev-dev.login.em3.oraclecloud.com
+    webUrl: https://ecqg-dev1.fa.us2.oraclecloud.com
   oracle_fusion_test:
     webUrl: https://hcczdev-test.login.em3.oraclecloud.com
   oracle_fusion_cognizant:
