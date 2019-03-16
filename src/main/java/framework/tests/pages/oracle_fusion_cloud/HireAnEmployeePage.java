@@ -164,6 +164,10 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//label[text()='Birthday']/following::input[1]")
     private WebElement birthday;
 
+    //koushik added 3/16 cog
+    @FindBy(xpath = "//input[contains(@id,'ManagerName')]")
+    private WebElement managerName;
+    
     public HireAnEmployeePage(Context context) {
         super(context);
         this.context = context;
@@ -427,6 +431,10 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitFor(ExpectedConditions.elementToBeClickable(hourlyPaidOrSalaried), 15);
             hourlyPaidOrSalaried.sendKeys(data.getHourlyPaidOrSalaried());
 
+            //3/16 adding Manager name logic
+            waitFor(ExpectedConditions.elementToBeClickable(managerName), 15);
+            managerName.sendKeys(data.getManagerName());
+            
            /* //3/4 added for cognizant instance
             waitFor(ExpectedConditions.elementToBeClickable(birthday), 15);
             birthday.clear();
