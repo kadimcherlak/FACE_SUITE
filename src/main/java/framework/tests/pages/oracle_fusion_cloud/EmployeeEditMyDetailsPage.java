@@ -427,7 +427,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//img[@title='More Information']")
     private WebElement personMoreInfoEllipsis;
 
-    @FindBy(xpath = "//span[contains(text(),'Personal Details')]")
+    @FindBy(xpath = "//span[text()='Personal Details']")
     private WebElement lnkPersonalDetails;
 
     @FindBy(xpath = "//div[@title='Personal Details']")
