@@ -96,7 +96,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "(//span[@class='xwy'])[1]")
     private WebElement done;
 
-    @FindBy(xpath = "//span[contains(@id,'table2:0:ot11')]")
+    @FindBy(xpath = "//a[contains(@id,'table2:0') and contains(@id, 'l1')]")
     private WebElement personLink;
 
     @FindBy(xpath = "//a[@title='Edit']")
