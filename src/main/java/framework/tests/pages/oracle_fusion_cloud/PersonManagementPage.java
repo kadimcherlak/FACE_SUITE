@@ -228,7 +228,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     
     @FindBy(xpath = "(//label[text()='Hire Date']/following::input[1])[1]")
     private WebElement hireDate;
-    
+
     @FindBy(xpath = "(//label[text()='Hire Date'])[3]/following::span[1]")
     private WebElement enterpriseHireDate;
 
