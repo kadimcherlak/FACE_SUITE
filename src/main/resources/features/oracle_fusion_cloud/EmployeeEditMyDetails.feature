@@ -17,7 +17,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                         | Test File Name | Test Sheet Name  |
       | NEW_ADDRESS_ALTERNATIVE_WORK_LOCATION | TestData.xlsx  | Employee_Details |
 
@@ -38,7 +38,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                 | Test File Name | Test Sheet Name  |
       | ADD_EMERGENCY_CONTACT_DETAILS | TestData.xlsx  | Employee_Details |
 
@@ -66,7 +66,7 @@ Feature: Perform Edit on Employee Information
     When user click on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                                 | Test File Name | Test Sheet Name  |
       | UPDATE_PERSONAL_PAYMENT_METHODS_EXPENSES_ONLY | TestData.xlsx  | Employee_Details |
 
@@ -100,7 +100,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                                     | Test File Name | Test Sheet Name  |
       | UPDATE_PERSONAL_PAYMENT_METHODS_NON_EXPENSES_ONLY | TestData.xlsx  | Employee_Details |
 
@@ -119,7 +119,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario           | Test File Name | Test Sheet Name  |
       | VALIDATE_ADDRESS_FORMAT | TestData.xlsx  | Employee_Details |
 
@@ -129,61 +129,25 @@ Feature: Perform Edit on Employee Information
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
     And user clicks on Personal Information link under About me section
-    Then My Details page should be displayed
-    When user clicks on 'Edit' button on top right side of the page
-    Then Edit My Details: Contact Information page should be displayed
-    When user clicks on 'Contact Information' section
+    Then Personal Info page should be displayed
+    When user clicks on Contact Information section
     Then Contact Information page should be displayed
-    When user clicks on Edit(Pencil Symbol) in the Address section
-    Then Personal address should be displayed
-    And user enter value for effective date when address becomes active
-    And user enter value for Address Line 1
-    And user enter value for Zip Code
-    And user clicks on Save and Close button
-    Then My Details page should be displayed
-    When user clicks on "Biographical information" icon in the left side of the page which is available in Edit My Details page
-    Then "Edit My Details: Biographical Information" page should be displayed
-    And user clicks on Click on Edit Icon(Pencil icon)
-    Then Biographical Information page should be displayed in edit mode
-    And user enter value for Title
-    And user enter value for First Name
-    And user enter value for Last Name
-    And user clicks on Save and Close button
-    Then My Details page should be displayed
-    When user clicks on Documents icon which is available in Edit My Details in the left hand side of the page
-    Then "Edit My Details: Contacts" page should be displayed
-    When user clicks on Edit(Pencil Symbol) in the License section
-    And user enters License number
-    And user clicks on Save button
-    Then License number is saved
-    And user clicks on Done button
-    Then Person Gallery page should be displayed
-    When user clicks on Navigator icon
-    And user clicks on Personal Information link under About me section
-    Then My Details page should be displayed
-    When user clicks on 'Edit' button on top right side of the page
-    Then Edit My Details: Contact Information page should be displayed
-    When user clicks on Disability icon on the left panel
-    Then Disability Information page should be displayed
-    And user + icon
-    Then Country Pop up should be displayed
-    And user selects United States from the dropdown and clicks on Continue button
-    And user selects Self-Disclosed Disability as "No, I don't have a disability"(Radio Button)
-    And user enters effective start state
-    And user clicks on "Form CC-305: Voluntary Self-Identification for Disability" Link
-    Then Form CC-305: Voluntary Self-Identification for Disability page should be displayed
-    When user clicks on print icon under Tools Option
-    Then Print Page should be Displayed and employee should be able to print the Page
-    When user clicks on download icon under Tools Option
-    Then user should able to Download Form CC-503
-    When user clicks on Done button
-    Then The disability information page should be displayed
-    When user clicks on Save and Close button
-    Then My Details page should be displayed
+    And validate user is able to view work phone, work email and home address
+    When user clicks on Edit in the Address section
+    And Verify that the address format is valid
+    And Click on Cancel button
+    And click on back button
+    Then Personal Info page should be displayed
+    And user clicks on Personal Details link in Person Info page
+    Then Personal Details page should be displayed
+    Then validate Biographical Information are displayed
+    And click on back button
+    And user clicks on Document Records link under Personal Info
+    Then validate user is able to view the documents
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                                              | Test File Name | Test Sheet Name  |
       | UPDATE_ADDRESS_BIOGRAPHICAL_INFO_DRIVING_LICENSE_DOCUMENTS | TestData.xlsx  | Employee_Details |
 
@@ -210,7 +174,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                        | Test File Name | Test Sheet Name  |
       | CHANGE_SALARY_BASIS_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
 
@@ -229,11 +193,11 @@ Feature: Perform Edit on Employee Information
     Then user clicks Manage Salary option from task icon menu
     And user clicks on Action button and select Edit option
     And user enters new Salary Amount under Current Salary section
-#    When user selects Use salary component checkbox
-#    Then Components tab is displayed in Manage Salary
-#    When user clicks on Add button in Components tab
-#    And user selects Promotion from Component dropdown
-#    And user enters amount in Amount field in Components tab
+    #    When user selects Use salary component checkbox
+    #    Then Components tab is displayed in Manage Salary
+    #    When user clicks on Add button in Components tab
+    #    And user selects Promotion from Component dropdown
+    #    And user enters amount in Amount field in Components tab
     And user clicks on Continue button in Manage Salary tab
     When user clicks on Submit button in Review page
     And user clicks Yes button on popup modal
@@ -241,7 +205,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                  | Test File Name | Test Sheet Name  |
       | UPDATE_SALARY_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
 
@@ -267,10 +231,9 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario               | Test File Name | Test Sheet Name  |
       | EDIT_SALARY_PROPOSAL_REASON | TestData.xlsx  | Employee_Details |
-
 
   @EMPLOYEE_UPLOADS_A_PHOTO @DryRun
   Scenario Outline: Employee add Emergency Contact details
@@ -286,13 +249,13 @@ Feature: Perform Edit on Employee Information
     And user clicks Update Photo link to upload photo
     Then Photo upload page should be displayed
     When user clicks on Choose File button to upload a photo
-#    Then user selected photo is uploaded to system
+    #    Then user selected photo is uploaded to system
     When user clicks on Save and Close button
     Then Personal Info page should be displayed
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario            | Test File Name | Test Sheet Name  |
       | EMPLOYEE_UPLOADS_A_PHOTO | TestData.xlsx  | Employee_Details |
 
@@ -318,7 +281,6 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-
-    Examples:
+    Examples: 
       | Test Scenario                    | Test File Name | Test Sheet Name  |
       | CHANGE_ASSIGNMENT_VIA_PRSN_MGMNT | TestData.xlsx  | Employee_Details |
