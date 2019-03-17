@@ -1,8 +1,8 @@
 @DemoSet2
 Feature: Employee edits Personal Information
 
-  @NEW_ADDRESS_ALTERNATIVE_WORK_LOCATION
-  Scenario Outline: Employee add New Address of type Alternative Work Location
+  @ADD_NEW_ADDRESS_TYPE_DETAILS
+  Scenario Outline: Employee add New Address of type Mailing Address
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -12,16 +12,16 @@ Feature: Employee edits Personal Information
     Then Contact Information page should be displayed
     When user clicks on Add icon in the Address section
     And user Enter Details in Address fields
-    And user click on submit button in Contact Information page
-    Then Alternate Work location address should be displayed
+    And user click on submit button in New Contact page
+    Then New Mailing address should be displayed
     When user clicks on Sign Out option
     Then Sign out should be successful
 
     Examples:
       | Test Scenario                         | Test File Name | Test Sheet Name  |
-      | NEW_ADDRESS_ALTERNATIVE_WORK_LOCATION | TestData.xlsx  | Employee_Details |
+      | ADD_NEW_ADDRESS_TYPE_DETAILS | TestData.xlsx  | Employee_Details |
 
-  @ADD_EMERGENCY_CONTACT_DETAILS
+  @ADD_NEW_EMERGENCY_CONTACT_DETAILS
   Scenario Outline: Employee add Emergency Contact details
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -40,7 +40,7 @@ Feature: Employee edits Personal Information
 
     Examples:
       | Test Scenario                 | Test File Name | Test Sheet Name  |
-      | ADD_EMERGENCY_CONTACT_DETAILS | TestData.xlsx  | Employee_Details |
+      | ADD_NEW_EMERGENCY_CONTACT_DETAILS | TestData.xlsx  | Employee_Details |
 
   @VALIDATE_ADDRESS_FORMAT
   Scenario Outline: Validate US Address format after clicking on edit address

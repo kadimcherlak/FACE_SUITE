@@ -39,5 +39,5 @@ environments:
   oracle_fusion_test:
     webUrl: https://hcczdev-test.login.em3.oraclecloud.com
   oracle_fusion_cognizant:
-    webUrl: https://ecqg-test.fa.us2.oraclecloud.com/hcmUI/faces/FuseWelcome
+    webUrl: https://ecqg-dev1.fa.us2.oraclecloud.com/fscmUI/faces/FuseWelcome
   

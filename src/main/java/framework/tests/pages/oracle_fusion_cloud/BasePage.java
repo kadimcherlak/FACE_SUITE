@@ -220,7 +220,7 @@ public class BasePage<T> extends WebPage {
         }
     }
 
-    // Common Method to Select Links under Task Pane
+    /*// Common Method to Select Links under Task Pane
     public void clickLinkElement(String linkName) {
         try {
             waitShortTime(); // To handle task pane load time
@@ -230,6 +230,32 @@ public class BasePage<T> extends WebPage {
             } else {
                 waitFor(ExpectedConditions.elementToBeClickable(By.xpath("(//a[text()='" + linkName + "'])[2]")), 15);
                 appWebElement = driver.findElement(By.xpath("(//a[text()='" + linkName + "'])[2]"));
+            }
+            reportWithScreenShot("Link :" + linkName + " selected from Navigator pane");
+            waitFor(ExpectedConditions.elementToBeClickable(appWebElement), 15);
+            assertThat(appWebElement.isDisplayed()).isTrue();
+            appWebElement.click();
+            waitUntilPageLoad();
+        } catch (Exception e) {
+            reportWithScreenShot("Unable to open :" + linkName + " due to " + e.getMessage());
+            Assert.fail();
+        }
+    }*/
+
+    // Common Method to Select Links under Task Pane
+    public void clickLinkElement(String linkName) {
+        try {
+            waitShortTime(); // To handle task pane load time
+            if (linkName.equals("New Person")) {
+                waitFor(ExpectedConditions.elementToBeClickable(By.xpath("(//a[text()='" + linkName + "'])[4]")), 15);
+                appWebElement = driver.findElement(By.xpath("(//a[text()='" + linkName + "'])[4]"));
+            } else {
+//                waitFor(ExpectedConditions.elementToBeClickable(By.xpath("(//a[text()='" + linkName + "'])[2]")), 15);
+//                appWebElement = driver.findElement(By.xpath("(//a[text()='" + linkName + "'])[2]"));
+
+                WebElement elementToClick = driver.findElement(By.xpath("//div[contains(@id, 'pt1:nv_pgl3')]//a[text()='" + linkName + "']"));
+                waitFor(ExpectedConditions.elementToBeClickable(elementToClick), 30);
+                appWebElement = elementToClick;
             }
             reportWithScreenShot("Link :" + linkName + " selected from Navigator pane");
             waitFor(ExpectedConditions.elementToBeClickable(appWebElement), 15);

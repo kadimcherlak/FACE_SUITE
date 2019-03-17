@@ -21,7 +21,7 @@ Feature: Perform Edit on Employee Information
       | Test Scenario                         | Test File Name | Test Sheet Name  |
       | NEW_ADDRESS_ALTERNATIVE_WORK_LOCATION | TestData.xlsx  | Employee_Details |
 
-  @ADD_EMERGENCY_CONTACT_DETAILS
+  #@ADD_EMERGENCY_CONTACT_DETAILS
   Scenario Outline: Employee add Emergency Contact details
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page

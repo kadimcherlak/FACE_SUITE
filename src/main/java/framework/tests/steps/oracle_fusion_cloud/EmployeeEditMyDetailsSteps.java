@@ -101,15 +101,15 @@ public class EmployeeEditMyDetailsSteps implements En {
         });
 
         When("user Enter Details in Address fields", () -> {
-            context.employeeEditMyDetails.fillAlternateWorklocationAddress();
+            context.employeeEditMyDetails.fillNewAddressType();
         });
 
         When("user click on submit button in Contact Information page", () -> {
             context.employeeEditMyDetails.clickContactSubmit();
         });
 
-        When("Alternate Work location address should be displayed", () -> {
-            context.employeeEditMyDetails.checkAlternateWorkLocationAddressDisplayed();
+        When("New Mailing address should be displayed", () -> {
+            context.employeeEditMyDetails.checkNewMailingAddressDisplayed();
         });
 
         When("user click on Save and Close button", () -> {
