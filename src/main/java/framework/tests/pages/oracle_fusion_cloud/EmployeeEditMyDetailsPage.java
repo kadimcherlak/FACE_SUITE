@@ -343,7 +343,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//label[text()='Address Line 1']/parent::div/descendant::span[@title='Required']")
     private WebElement addLine1RequiredValidation;
 
-    @FindBy(xpath = "(//label[text()='Zip Code']/following::input)[2]")
+    @FindBy(xpath = "(//label[text()='ZIP Code']/following::input)[2]")
     private WebElement zipCode;
 
     @FindBy(xpath = "(//label[text()='City']/following::input)[2]")

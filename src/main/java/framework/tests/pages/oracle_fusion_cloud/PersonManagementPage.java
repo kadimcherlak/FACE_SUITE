@@ -228,7 +228,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     
     @FindBy(xpath = "(//label[text()='Hire Date']/following::input[1])[1]")
     private WebElement hireDate;
-
+    
     @FindBy(xpath = "(//label[text()='Hire Date'])[3]/following::span[1]")
     private WebElement enterpriseHireDate;
 
@@ -853,7 +853,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             waitFor(ExpectedConditions.elementToBeClickable(hireDate), 15);
             String existingHireDate=enterpriseHireDate.getText().trim();
             hireDate.clear();
-            newHireDate=addDaysToDate(existingHireDate, 1, "mm/dd/yyyy");
+            newHireDate=addDaysToDate(existingHireDate, 1, "mm/dd/yy");
             hireDate.sendKeys(newHireDate);
         } catch (Exception e) {
         	System.out.println(e);
