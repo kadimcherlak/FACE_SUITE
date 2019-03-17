@@ -88,7 +88,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//label[text()='Address Line 2']/following::input[1]")
     private WebElement addressLine2;
 
-    @FindBy(xpath = "//label[text()='Zip Code']/following::input[1]")
+    @FindBy(xpath = "//label[text()='ZIP Code']/following::input[1]")
     private WebElement zipCode;
 
     @FindBy(xpath = "//label[text()='City']/following::input[1]")
@@ -164,6 +164,10 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//label[text()='Birthday']/following::input[1]")
     private WebElement birthday;
 
+    //koushik added 3/16 cog
+    @FindBy(xpath = "//input[contains(@id,'ManagerName')]")
+    private WebElement managerName;
+    
     public HireAnEmployeePage(Context context) {
         super(context);
         this.context = context;
@@ -259,10 +263,10 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             dateOfBirth.sendKeys(data.getDateOfBirth());
             dateOfBirth.sendKeys(Keys.TAB);
 
-            // Select Location Contact Required
+          /*  // Select Location Contact Required
             waitFor(ExpectedConditions.elementToBeClickable(locationContact), 15);
             locationContact.click();
-            locationContact.sendKeys(data.getLocationContact());
+            locationContact.sendKeys(data.getLocationContact());*/
             waitShortTime();
 
             // Click to create new row
@@ -427,12 +431,17 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitFor(ExpectedConditions.elementToBeClickable(hourlyPaidOrSalaried), 15);
             hourlyPaidOrSalaried.sendKeys(data.getHourlyPaidOrSalaried());
 
-            //3/4 added for cognizant instance
+            //3/16 adding Manager name logic
+            waitFor(ExpectedConditions.elementToBeClickable(managerName), 15);
+            managerName.sendKeys(data.getManagerName());
+            
+           /* //3/4 added for cognizant instance
             waitFor(ExpectedConditions.elementToBeClickable(birthday), 15);
             birthday.clear();
             birthday.sendKeys(data.getDateOfBirth());
-
+*/
             // Clicking Add button to enter Payroll Details
+            waitShortTime();
             clickCreateButton();
 
             // Select Payroll Details

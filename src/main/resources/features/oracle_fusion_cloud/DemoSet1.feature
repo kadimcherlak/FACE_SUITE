@@ -1,7 +1,7 @@
 @DemoSet1
 Feature: New Hire and Related Activities
 
-  @NEW_HIRE
+  @NEW_HIRE_1
   Scenario Outline:  Create a New Hire
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
