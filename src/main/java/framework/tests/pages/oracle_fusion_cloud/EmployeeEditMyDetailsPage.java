@@ -172,7 +172,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//label[contains(@for,'UseComponents')]")
     private WebElement chkboxSalarycomponents_ManageSalary;
 
-    @FindBy(xpath = "//input[@id='_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt3:1:AP1:itSA::content']")
+    @FindBy(xpath = "//label[text()='Salary Amount']//following::input[1]")
     private WebElement txtboxComponentAmt_ManageSalary;
 
     //    @FindBy(xpath = "//div[1][@class='xb7 p_AFSelected']")
@@ -187,7 +187,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//h1[contains(.,'My Details')]")
     private WebElement empMyDetails;
 
-    @FindBy(xpath = "//span[@id='_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt3:1:AP1:inputText1::content']")
+    @FindBy(xpath = "//label[text()='Annual Salary']//following::span[1]")
     private WebElement txtAnnualSalary;
 
 
@@ -427,7 +427,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//img[@title='More Information']")
     private WebElement personMoreInfoEllipsis;
 
-    @FindBy(xpath = "//span[contains(text(),'Personal Details')]")
+    @FindBy(xpath = "//span[text()='Personal Details']")
     private WebElement lnkPersonalDetails;
 
     @FindBy(xpath = "//div[@title='Personal Details']")
@@ -1834,10 +1834,13 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             // Enter Action Reason value
             waitFor(ExpectedConditions.elementToBeClickable(modalUpdateEmploymentActionReason), 15);
             modalUpdateEmploymentActionReason.click();
-            waitFor(ExpectedConditions
-                    .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getEmploymentActionReason() + "']"))), 5);
-            driver.findElement(By.xpath("//li[text()='" + data.getEmploymentActionReason() + "']")).click();
-            modalUpdateEmploymentActionReason.sendKeys(Keys.TAB);
+            waitShortTime();
+//            waitFor(ExpectedConditions
+//                    .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getEmploymentActionReason() + "']"))), 5);
+            if(!data.getEmploymentActionReason().isEmpty()){
+                driver.findElement(By.xpath("//li[text()='" + data.getEmploymentActionReason() + "']")).click();
+                modalUpdateEmploymentActionReason.sendKeys(Keys.TAB);
+            }
             waitShortTime();
             reportWithScreenShot("User updated the values in Update Employment Modal");
             // Click OK

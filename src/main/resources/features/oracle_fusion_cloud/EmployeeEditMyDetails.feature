@@ -187,7 +187,7 @@ Feature: Perform Edit on Employee Information
       | Test Scenario                                              | Test File Name | Test Sheet Name  |
       | UPDATE_ADDRESS_BIOGRAPHICAL_INFO_DRIVING_LICENSE_DOCUMENTS | TestData.xlsx  | Employee_Details |
 
-  @CHANGE_SALARY_BASIS_FOR_EXISTING_EMP
+  @CHANGE_SALARY_BASIS_FOR_EXISTING_EMP @DryRun
   Scenario Outline: Admin changing salary basis of an employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -214,7 +214,7 @@ Feature: Perform Edit on Employee Information
       | Test Scenario                        | Test File Name | Test Sheet Name  |
       | CHANGE_SALARY_BASIS_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
 
-  @UPDATE_SALARY_FOR_EXISTING_EMP
+  @UPDATE_SALARY_FOR_EXISTING_EMP @DryRun
   Scenario Outline: Admin updating salary component of an existing employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -245,7 +245,7 @@ Feature: Perform Edit on Employee Information
       | Test Scenario                  | Test File Name | Test Sheet Name  |
       | UPDATE_SALARY_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
 
-  @EDIT_SALARY_PROPOSAL_REASON
+  @EDIT_SALARY_PROPOSAL_REASON @DryRun
   Scenario Outline: Admin can edit Salary Proposal Reason
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -272,7 +272,7 @@ Feature: Perform Edit on Employee Information
       | EDIT_SALARY_PROPOSAL_REASON | TestData.xlsx  | Employee_Details |
 
 
-  @EMPLOYEE_UPLOADS_A_PHOTO
+  @EMPLOYEE_UPLOADS_A_PHOTO @DryRun
   Scenario Outline: Employee add Emergency Contact details
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -296,7 +296,7 @@ Feature: Perform Edit on Employee Information
       | Test Scenario            | Test File Name | Test Sheet Name  |
       | EMPLOYEE_UPLOADS_A_PHOTO | TestData.xlsx  | Employee_Details |
 
-  @CHANGE_ASSIGNMENT_VIA_PRSN_MGMNT
+  @CHANGE_ASSIGNMENT_VIA_PRSN_MGMNT @DryRun
   Scenario Outline: Admin can edit Salary Proposal Reason
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
