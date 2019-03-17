@@ -96,8 +96,13 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "(//span[@class='xwy'])[1]")
     private WebElement done;
 
-    @FindBy(xpath = "//span[contains(@id,'table2:0:ot11')]")
+    /*@FindBy(xpath = "//span[contains(@id,'table2:0:ot11')]")
+    private WebElement personLink;*/
+    
+    //Rakesh - Changing the below xpath and try to make it generic
+    @FindBy(xpath = "(//table[@summary='Search Results']/descendant::a)[1]")
     private WebElement personLink;
+    
 
     @FindBy(xpath = "//a[@title='Edit']")
     private WebElement personMgmtEdit;
@@ -853,7 +858,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             waitFor(ExpectedConditions.elementToBeClickable(hireDate), 15);
             String existingHireDate=enterpriseHireDate.getText().trim();
             hireDate.clear();
-            newHireDate=addDaysToDate(existingHireDate, 1, "mm/dd/yyyy");
+            newHireDate=addDaysToDate(existingHireDate, 1, "mm/dd/yy");
             hireDate.sendKeys(newHireDate);
         } catch (Exception e) {
         	System.out.println(e);
