@@ -188,7 +188,7 @@ Feature: Perform Edit on Employee Information
       | UPDATE_ADDRESS_BIOGRAPHICAL_INFO_DRIVING_LICENSE_DOCUMENTS | TestData.xlsx  | Employee_Details |
 
   @CHANGE_SALARY_BASIS_FOR_EXISTING_EMP @DryRun
-  Scenario Outline: Admin changing salary basis of an employee
+  Scenario Outline: Admin changing salary basis of an employee to 40 hours
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -246,7 +246,7 @@ Feature: Perform Edit on Employee Information
       | UPDATE_SALARY_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
 
   @EDIT_SALARY_PROPOSAL_REASON @DryRun
-  Scenario Outline: Admin can edit Salary Proposal Reason
+  Scenario Outline: Admin updating Salary Proposal Reason for an employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -273,7 +273,7 @@ Feature: Perform Edit on Employee Information
 
 
   @EMPLOYEE_UPLOADS_A_PHOTO @DryRun
-  Scenario Outline: Employee add Emergency Contact details
+  Scenario Outline: Employee updating photo from personal information page
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -297,7 +297,7 @@ Feature: Perform Edit on Employee Information
       | EMPLOYEE_UPLOADS_A_PHOTO | TestData.xlsx  | Employee_Details |
 
   @CHANGE_ASSIGNMENT_VIA_PRSN_MGMNT @DryRun
-  Scenario Outline: Admin can edit Salary Proposal Reason
+  Scenario Outline: Admin updating the assignment status of an employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
