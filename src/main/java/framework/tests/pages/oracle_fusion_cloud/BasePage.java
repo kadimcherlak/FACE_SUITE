@@ -129,7 +129,7 @@ public class BasePage<T> extends WebPage {
             waitFor(ExpectedConditions.elementToBeClickable(warningBtn), 15);
             reportWithScreenShot("Confirmation message displayed");
             warningBtn.click();
-            waitShortTime();
+            waitNormalTime();
         } catch (Exception e) {
             reportWithScreenShot("Error While clicking OK button due to:" + e.getMessage());
             Assert.fail();
@@ -152,7 +152,7 @@ public class BasePage<T> extends WebPage {
     public void clickConfirmButton() {
         try {
             waitUntilPageLoad();
-            waitFor(ExpectedConditions.elementToBeClickable(confirmBtn), 15);
+            waitFor(ExpectedConditions.elementToBeClickable(confirmBtn), 30);
             confirmBtn.click();
             waitNormalTime();
             reportWithScreenShot("Confirm button clicked successfully");
