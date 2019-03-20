@@ -144,7 +144,7 @@ Feature: Line Manager Transaction and Approval
 
 
   @RETIREMENT
-  Scenario Outline: Employee Termination
+  Scenario Outline: Employee Retirement
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
