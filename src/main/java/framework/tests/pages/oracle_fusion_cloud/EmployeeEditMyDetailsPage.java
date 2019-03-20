@@ -1778,6 +1778,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             executor.executeScript("arguments[0].click();", lnkPersonalDetails);
             Thread.sleep(2000);
             waitUntilPageLoad();
+            waitFor(ExpectedConditions.visibilityOf(pagePersonalDetails), 60);
             assertThat(pagePersonalDetails.isDisplayed());
             reportWithScreenShot("User clicked on Personal Details link :");
         } catch (Exception e) {
