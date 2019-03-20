@@ -62,7 +62,7 @@ Feature: New Hire and Related Activities
     Then Employee name should be listed in search results
     When user click on employee name link in search results
     And user click on Task Icon on the right side
-    Then user clicks Manage Salary option from task icon menu
+    Then from task menu user clicks on Manage Salary option
     And user clicks on Action button and select Edit option
     And user enters new Salary Amount under Current Salary section
     And user clicks on Continue button in Manage Salary tab
@@ -77,7 +77,7 @@ Feature: New Hire and Related Activities
       | UPDATE_SALARY_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
 
   @CHANGE_SALARY_BASIS_FOR_EXISTING_EMP
-  Scenario Outline: Admin changing salary basis of an employee
+  Scenario Outline: Admin changing salary basis of an employee to 40 hours
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -88,7 +88,7 @@ Feature: New Hire and Related Activities
     Then Employee name should be listed in search results
     When user click on employee name link in search results
     And user click on Task Icon on the right side
-    Then user clicks Manage Salary option from task icon menu
+    Then from task menu user clicks on Manage Salary option
     And user clicks on Action button and select Edit option
     When user selects US Hourly Wages hours from Salary Basis
     Then user closes Warning modal by clicking OK button
@@ -104,7 +104,7 @@ Feature: New Hire and Related Activities
       | CHANGE_SALARY_BASIS_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
 
   @EDIT_SALARY_PROPOSAL_REASON
-  Scenario Outline: Admin can edit Salary Proposal Reason
+  Scenario Outline: Admin updating Salary Proposal Reason for an employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -115,7 +115,7 @@ Feature: New Hire and Related Activities
     Then Employee name should be listed in search results
     When user click on employee name link in search results
     And user click on Task Icon on the right side
-    Then user clicks Manage Salary option from task icon menu
+    Then from task menu user clicks on Manage Salary option
     And user clicks on Action button and select Edit option
     And user enters new Salary Amount under Current Salary section
     And user clicks on Continue button in Manage Salary tab

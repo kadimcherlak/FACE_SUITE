@@ -187,7 +187,7 @@ Feature: Perform Edit on Employee Information
       | Test Scenario                                              | Test File Name | Test Sheet Name  |
       | UPDATE_ADDRESS_BIOGRAPHICAL_INFO_DRIVING_LICENSE_DOCUMENTS | TestData.xlsx  | Employee_Details |
 
-  @CHANGE_SALARY_BASIS_FOR_EXISTING_EMP @DryRun
+  @CHANGE_SALARY_BASIS_FOR_EXISTING_EMP
   Scenario Outline: Admin changing salary basis of an employee to 40 hours
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -199,7 +199,7 @@ Feature: Perform Edit on Employee Information
     Then Employee name should be listed in search results
     When user click on employee name link in search results
     And user click on Task Icon on the right side
-    Then user clicks Manage Salary option from task icon menu
+    Then from task menu user clicks on Manage Salary option
     And user clicks on Action button and select Edit option
     When user selects US Hourly Wages hours from Salary Basis
     Then user closes Warning modal by clicking OK button
@@ -214,7 +214,7 @@ Feature: Perform Edit on Employee Information
       | Test Scenario                        | Test File Name | Test Sheet Name  |
       | CHANGE_SALARY_BASIS_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
 
-  @UPDATE_SALARY_FOR_EXISTING_EMP @DryRun
+  @UPDATE_SALARY_FOR_EXISTING_EMP
   Scenario Outline: Admin updating salary component of an existing employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -226,7 +226,7 @@ Feature: Perform Edit on Employee Information
     Then Employee name should be listed in search results
     When user click on employee name link in search results
     And user click on Task Icon on the right side
-    Then user clicks Manage Salary option from task icon menu
+    Then from task menu user clicks on Manage Salary option
     And user clicks on Action button and select Edit option
     And user enters new Salary Amount under Current Salary section
 #    When user selects Use salary component checkbox
@@ -245,7 +245,7 @@ Feature: Perform Edit on Employee Information
       | Test Scenario                  | Test File Name | Test Sheet Name  |
       | UPDATE_SALARY_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
 
-  @EDIT_SALARY_PROPOSAL_REASON @DryRun
+  @EDIT_SALARY_PROPOSAL_REASON
   Scenario Outline: Admin updating Salary Proposal Reason for an employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -257,7 +257,7 @@ Feature: Perform Edit on Employee Information
     Then Employee name should be listed in search results
     When user click on employee name link in search results
     And user click on Task Icon on the right side
-    Then user clicks Manage Salary option from task icon menu
+    Then from task menu user clicks on Manage Salary option
     And user clicks on Action button and select Edit option
     And user enters new Salary Amount under Current Salary section
     And user clicks on Continue button in Manage Salary tab
@@ -272,7 +272,7 @@ Feature: Perform Edit on Employee Information
       | EDIT_SALARY_PROPOSAL_REASON | TestData.xlsx  | Employee_Details |
 
 
-  @EMPLOYEE_UPLOADS_A_PHOTO @DryRun
+  @EMPLOYEE_UPLOADS_A_PHOTO
   Scenario Outline: Employee updating photo from personal information page
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -296,7 +296,7 @@ Feature: Perform Edit on Employee Information
       | Test Scenario            | Test File Name | Test Sheet Name  |
       | EMPLOYEE_UPLOADS_A_PHOTO | TestData.xlsx  | Employee_Details |
 
-  @CHANGE_ASSIGNMENT_VIA_PRSN_MGMNT @DryRun
+  @CHANGE_ASSIGNMENT_VIA_PRSN_MGMNT
   Scenario Outline: Admin updating the assignment status of an employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
