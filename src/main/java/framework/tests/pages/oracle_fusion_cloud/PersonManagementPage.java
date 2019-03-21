@@ -90,13 +90,13 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//*[contains(@class,'x11e') and contains(text(),'m')]")
     private WebElement adpSubmitBtn;
 
-    @FindBy(xpath = "(//*[contains(text(),'COMP_ELEMENT')])[1]")
+    @FindBy(xpath = "(//*[contains(text(),'Comp One Off Bonus Pay')])[1]")
     private WebElement adpRowAdded;
 
     @FindBy(xpath = "(//span[@class='xwy'])[1]")
     private WebElement done;
 
-    @FindBy(xpath = "//a[contains(@id,'table2:0') and contains(@id, 'l1')]")
+    @FindBy(xpath = "//a[contains(@id,'table2:0:gl1')]")
     private WebElement personLink;
 
     @FindBy(xpath = "//a[@title='Edit']")
@@ -397,7 +397,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             // Enter Business Unit
             waitFor(ExpectedConditions.elementToBeClickable(elementName), 15);
             elementName.sendKeys(data.getElementNameADP());
-            elementName.sendKeys(Keys.TAB);
+            elementName.sendKeys(Keys.ENTER);
             waitNormalTime();
             //   waitFor(ExpectedConditions.visibilityOf(payrollRelationship), 15);
 

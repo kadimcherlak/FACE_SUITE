@@ -18,7 +18,7 @@ Feature: Employee edits Personal Information
     Then Sign out should be successful
 
     Examples:
-      | Test Scenario                         | Test File Name | Test Sheet Name  |
+      | Test Scenario                | Test File Name | Test Sheet Name  |
       | ADD_NEW_ADDRESS_TYPE_DETAILS | TestData.xlsx  | Employee_Details |
 
   @ADD_NEW_EMERGENCY_CONTACT_DETAILS

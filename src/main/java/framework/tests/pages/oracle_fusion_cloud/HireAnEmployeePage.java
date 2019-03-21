@@ -167,7 +167,15 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     //koushik added 3/16 cog
     @FindBy(xpath = "//input[contains(@id,'ManagerName')]")
     private WebElement managerName;
-    
+
+    // raghav added 3/18
+    @FindBy(xpath = "//label[text()='Type']/following::input[1]")
+    private WebElement managerType;
+
+    //raghav added 3/18
+    @FindBy(xpath = "//img[contains(@id,'AU2:insert::icon')]")
+    private WebElement managerAddRow;
+
     public HireAnEmployeePage(Context context) {
         super(context);
         this.context = context;
@@ -274,7 +282,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             addRow.click();
 
             // Enter Country
-            waitFor(ExpectedConditions.visibilityOf(country), 15);
+            waitFor(ExpectedConditions.visibilityOf(country), 30);
             country.clear();
             country.sendKeys(data.getCountry());
             waitNormalTime();
@@ -430,11 +438,26 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             // Enter hourly Paid Or Salaried
             waitFor(ExpectedConditions.elementToBeClickable(hourlyPaidOrSalaried), 15);
             hourlyPaidOrSalaried.sendKeys(data.getHourlyPaidOrSalaried());
+            waitNormalTime();
 
             //3/16 adding Manager name logic
-            waitFor(ExpectedConditions.elementToBeClickable(managerName), 15);
-            managerName.sendKeys(data.getManagerName());
-            
+            //3/18 Adding additional logic for handling global scenario
+            if (driver.findElements(By.xpath("//input[contains(@id,'ManagerName')]")).size() != 0) {
+                waitFor(ExpectedConditions.elementToBeClickable(managerName), 15);
+                managerName.sendKeys(data.getManagerName());
+            } else {
+                waitFor(ExpectedConditions.elementToBeClickable(managerAddRow), 15);
+                managerAddRow.click();
+
+                waitFor(ExpectedConditions.elementToBeClickable(managerName), 15);
+                managerName.sendKeys(data.getManagerName());
+
+                waitFor(ExpectedConditions.elementToBeClickable(managerType), 15);
+                managerType.click();
+                managerType.sendKeys(data.getManagerType());
+            }
+
+
            /* //3/4 added for cognizant instance
             waitFor(ExpectedConditions.elementToBeClickable(birthday), 15);
             birthday.clear();

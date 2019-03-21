@@ -13,7 +13,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Add icon in the Address section
     And user Enter Details in Address fields
     And user click on submit button in Contact Information page
-    Then Alternate Work location address should be displayed
+    Then New Mailing address should be displayed
     When user clicks on Sign Out option
     Then Sign out should be successful
 

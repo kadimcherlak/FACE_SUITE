@@ -1,8 +1,8 @@
 @DemoSet1
 Feature: New Hire and Related Activities
 
-  @NEW_HIRE_1
-  Scenario Outline:  Create a New Hire
+  @NEW_HIRE
+  Scenario Outline: Create a New Hire
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -19,6 +19,7 @@ Feature: New Hire and Related Activities
     Then Page should be submitted successfully
     When user clicks on Sign Out option
     Then Sign out should be successful
+
     Examples:
       | Test Scenario | Test File Name | Test Sheet Name    |
       | NEW_HIRE      | TestData.xlsx  | Talent_Acquisition |
@@ -33,8 +34,9 @@ Feature: New Hire and Related Activities
     And user enter the Person number generated from previous step in Person Number field
     And user click on Search button till person displayed
     Then Employee name should be listed in search results
-    When user click on Action Button
-    And user clicks on Manage Element Entries link under Payroll section
+    When user click on employee name link in search results
+    Then Person Management screen should be displayed
+    And user clicks on Manage Element Entries on right side of the page under Tasks pane
     Then manage element entries screen should be displayed
     And user clicks on Add button
     And user enter Effective date : System Date and Element Name as ADP Auto & Home
@@ -46,6 +48,7 @@ Feature: New Hire and Related Activities
     And user click on Done button at the top
     And user clicks on Sign Out option
     Then Sign out should be successful
+
     Examples:
       | Test Scenario          | Test File Name | Test Sheet Name    |
       | UPDATE_ELEMENT_ENTRIES | TestData.xlsx  | Talent_Acquisition |
@@ -183,7 +186,7 @@ Feature: New Hire and Related Activities
       | EDIT_SENIORITY_DATE | TestData.xlsx  | Talent_Acquisition |
 
   @UPDATE_PERSONAL_ASSIGNMENT_DATA
-  Scenario Outline: Perform Global Transfer for Employee
+  Scenario Outline: Perform Global Transfer for New Hire Employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -207,6 +210,7 @@ Feature: New Hire and Related Activities
     When user click on Done button at the top
     And user clicks on Sign Out option
     Then Sign out should be successful
+
     Examples:
       | Test Scenario                   | Test File Name | Test Sheet Name    |
       | UPDATE_PERSONAL_ASSIGNMENT_DATA | TestData.xlsx  | Talent_Acquisition |
