@@ -3,6 +3,7 @@ package framework.tests.pages.oracle_fusion_cloud;
 import framework.core.drivers.web.WebPage;
 import framework.core.utils.DataLoader;
 import framework.tests.steps.oracle_fusion_cloud.Context;
+import framework.tests.steps.oracle_fusion_cloud.Data;
 import framework.tests.utils.CSVReadWrite;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -27,6 +28,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class BasePage<T> extends WebPage {
 
     private WebElement appWebElement;
+    private Data data;
 
     @FindBy(tagName = "html")
     private WebElement __document;
@@ -63,6 +65,7 @@ public class BasePage<T> extends WebPage {
 
     public BasePage(Context context) {
         super(context);
+        this.data = context.getData();
         logger.debug("{} loaded", this.getClass().getName());
     }
 
@@ -174,6 +177,11 @@ public class BasePage<T> extends WebPage {
             confirmBtn.click();
             waitNormalTime();
             reportWithScreenShot("Confirm button clicked successfully");
+            if (data.getPersonNumber() != null) {
+                csvWriter(data.getPersonNumber(), data.getPersonName());
+            } else {
+                throw new Exception("Person Number not generated for a New hire process");
+            }
         } catch (Exception e) {
             reportWithScreenShot("Submission not successful due to:" + e.getMessage());
             Assert.fail();
@@ -394,7 +402,7 @@ public class BasePage<T> extends WebPage {
      *
      * @author Raghavendran Ramasubramanian
      */
-    public String csvReader() {
+    public String[] csvReader() {
         try {
             CSVReadWrite csv = new CSVReadWrite((Context) context);
             return csv.read();
@@ -410,10 +418,10 @@ public class BasePage<T> extends WebPage {
      *
      * @author Raghavendran Ramasubramanian
      */
-    public void csvWriter(String updVal) {
+    public void csvWriter(String personNumber, String personName) {
         try {
             CSVReadWrite csv = new CSVReadWrite((Context) context);
-            csv.write(updVal);
+            csv.write(personNumber, personName);
         } catch (IOException e) {
             e.printStackTrace();
         }

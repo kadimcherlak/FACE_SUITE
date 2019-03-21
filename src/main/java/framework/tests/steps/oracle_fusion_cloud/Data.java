@@ -430,6 +430,10 @@ public class Data extends framework.core.models.Data {
         return personName;
     }
 
+    public void setPersonName(String personName) {
+        this.personName = personName;
+    }
+
     public String getPhoneType() {
         return phoneType;
     }

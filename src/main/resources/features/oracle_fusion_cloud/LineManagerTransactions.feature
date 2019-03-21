@@ -8,13 +8,10 @@ Feature: Line Manager Transaction and Approval
     When user clicks on Navigator icon
     And user clicks on My Team link under My Team section
     Then My Team page should be displayed
-    #And user clicks on the Employee link
     When user navigates to Change Manager option
     Then Change Manager page should be displayed
     And user Select value for Change Manager Reason from dropdown
     And user Select the value in Manager dropdown
-    #And user click on Review button in Change Manager page
-    #Then the current value and proposed values are displayed correctly in Review Page
     And user add comments in the textarea
     When user clicks on Submit button in Change Manager page
     Then The transaction should be saved properly and My Team page should be displayed

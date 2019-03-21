@@ -259,6 +259,9 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             firstName.sendKeys(data.getFirstName());
             firstName.sendKeys(Keys.TAB);
 
+            // set personName to data class for future use
+            data.setPersonName(data.getFirstName() + " " + data.getLastName());
+
             // Select Gender
             waitFor(ExpectedConditions.elementToBeClickable(gender), 5);
             gender.click();
@@ -320,13 +323,13 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
         try {
             // Set Person Number for Future Use and Reference
             waitFor(ExpectedConditions.visibilityOf(personNo), 15);
-            String personNumber = personNo.getText();
+            //String personNumber = personNo.getText();
+            data.setPersonNumber(personNo.getText());
             /*writeToExcel("UPDATE_REMOVE_I9_STATUS", "personNumber", personNumber);
             writeToExcel("UPDATE_ELEMENT_ENTRIES", "personNumber", personNumber);
             writeToExcel("UPDATE_PERSONAL_ASSIGNMENT_DATA", "personNumber", personNumber);
             writeToExcel("EDIT_PROJECTED_ENDDATE", "personNumber", personNumber);*/
-            csvWriter(personNumber);
-            System.out.println(personNumber);
+            //System.out.println(personNumber);
 
             // Enter Address Line 1
             waitFor(ExpectedConditions.elementToBeClickable(addressLine1), 15);
