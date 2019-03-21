@@ -466,6 +466,42 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//span[text()='Review']")
     private WebElement btnReview;
 
+    @FindBy(xpath = "//label[text()='Work Phone']/following::a[1]")
+    private WebElement workPhoneLink;
+
+    @FindBy(xpath = "//label[text()='Work Email']/following::a[1]")
+    private WebElement workEmailLink;
+
+    @FindBy(xpath = "(//label[text()='Home Address']/following::div)[1]")
+    private WebElement homeAddress;
+
+    @FindBy(xpath = "//a[@title='Done']")
+    private WebElement backButton;
+
+    @FindBy(xpath = "//label[text()='Last Name']/following::span[1]")
+    private WebElement lastNameReadOnly;
+
+    @FindBy(xpath = "//label[text()='First Name']/following::span[1]")
+    private WebElement firstNameReadOnly;
+
+    @FindBy(xpath = "//label[text()='Ethnicity']/following::span[1]")
+    private WebElement ethnicityReadOnly;
+
+    @FindBy(xpath = "//label[text()='Marital Status']/following::span[1]")
+    private WebElement maritalStatusReadOnly;
+
+    @FindBy(xpath = "//label[text()='Gender']/following::span[1]")
+    private WebElement genderReadOnly;
+
+    @FindBy(xpath = "//label[text()='Date of Birth']/following::span[1]")
+    private WebElement dateOfBirthReadOnly;
+
+    @FindBy(xpath = "//span[text()='Document Records']")
+    private WebElement lnkDocumentRecords;
+
+    @FindBy(xpath = "(//div[@title='Document Records'])[1]")
+    private WebElement pageDocumentRecord;
+
     @FindBy(xpath = "//a[contains(@id,'table2:0:gl1')]/following::span[1]")
     private WebElement hdlPersonNo;
 
@@ -1933,4 +1969,78 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
+
+    /**
+     * Validate work phone, email and address
+     * Author: Rakesh Ghosal
+     */
+    public void validatePhoneEmailAndAddressIsDisplayed() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(workPhoneLink), 30);
+            Assertions.assertThat(workPhoneLink.isDisplayed()).isTrue();
+            Assertions.assertThat(workEmailLink.isDisplayed()).isTrue();
+            Assertions.assertThat(homeAddress.isDisplayed()).isTrue();
+            reportWithScreenShot("Phone, home and address is displayed ");
+        } catch (Exception e) {
+            reportWithScreenShot("Phone, home and address is not displayed");
+            Assert.fail();
+        }
+    }
+
+    /**
+     * Click on back button
+     * Author: Rakesh Ghosal
+     */
+    public void clickOnBackButton() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(backButton), 15);
+            backButton.click();
+            reportWithScreenShot("User clicks on back button ");
+        } catch (Exception e) {
+            reportWithScreenShot("Back button is not clicked");
+            Assert.fail();
+        }
+    }
+
+    /**
+     * Validate First Name, Last Name, Ethnicity, Marital Status, Gender and Date of Birth is displayed
+     * Author: Rakesh Ghosal
+     */
+    public void validateBiographicalInfoIsDisplayed() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(lastNameReadOnly), 30);
+            Assertions.assertThat(lastNameReadOnly.isDisplayed()).isTrue();
+            Assertions.assertThat(firstNameReadOnly.isDisplayed()).isTrue();
+            Assertions.assertThat(ethnicityReadOnly.isDisplayed()).isTrue();
+            Assertions.assertThat(maritalStatusReadOnly.isDisplayed()).isTrue();
+            Assertions.assertThat(genderReadOnly.isDisplayed()).isTrue();
+            Assertions.assertThat(dateOfBirthReadOnly.isDisplayed()).isTrue();
+            reportWithScreenShot("First Name, Last Name, Ethnicity, Marital Status, Gender and Date of Birth is displayed ");
+        } catch (Exception e) {
+            reportWithScreenShot("First Name, Last Name, Ethnicity, Marital Status, Gender and Date of Birth is not displayed");
+            Assert.fail();
+        }
+    }
+
+
+    /**
+     * Validate First Name, Last Name, Ethnicity, Marital Status, Gender and Date of Birth is displayed
+     * Author: Rakesh Ghosal
+     */
+
+    public void clickDocumentRecordsLink() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(lnkDocumentRecords), 30);
+            JavascriptExecutor executor = (JavascriptExecutor) driver;
+            executor.executeScript("arguments[0].click();", lnkDocumentRecords);
+            Thread.sleep(2000);
+            waitUntilPageLoad();
+            assertThat(pageDocumentRecord.isDisplayed());
+            reportWithScreenShot("User clicked on Document Records link :");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking Document Records link:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+    
 }

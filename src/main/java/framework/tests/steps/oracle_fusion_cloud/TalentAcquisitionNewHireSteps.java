@@ -198,7 +198,7 @@ public class TalentAcquisitionNewHireSteps implements En {
         });
         
         When("Enter the seniority date under Legal Employer and under Enterprise", () -> {
-            context.personManagment.enterHireDate();;
+            context.personManagment.enterHireDate();
         });
 
     }

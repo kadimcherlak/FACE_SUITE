@@ -31,7 +31,7 @@ public class LineManagerSteps implements En {
         });
 
         When("Change Manager page should be displayed", () -> {
-            context.lineManager.checkMyTeamPageDisplay();
+            context.lineManager.checkChangeManagerPageDisplay();
             ;
         });
 
@@ -56,8 +56,7 @@ public class LineManagerSteps implements En {
         });
 
         When("The transaction should be saved properly and My Team page should be displayed", () -> {
-            context.lineManager.clickOk();
-            context.lineManager.clickConfirm();
+            context.lineManager.checkMyTeamPageDisplay();
         });
 
         // --
@@ -96,6 +95,10 @@ public class LineManagerSteps implements En {
 
         Then("Review page should be validated in Manage Salary section", () -> {
             context.lineManager.reviewSalaryInMyTeam();
+        });
+
+        Then("user add comments in the textarea", () -> {
+            context.lineManager.enterComments();
         });
         Then("^user clicks (.*?) option from task icon menu$", (String linkName) -> {
             context.lineManager.clickLinkElementInTaskPane(linkName);

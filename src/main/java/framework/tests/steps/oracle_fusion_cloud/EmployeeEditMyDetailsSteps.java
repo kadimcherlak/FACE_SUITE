@@ -450,6 +450,26 @@ public class EmployeeEditMyDetailsSteps implements En {
 
         });
 
+        Then("validate user is able to view work phone, work email and home address", () -> {
+            context.employeeEditMyDetails.validatePhoneEmailAndAddressIsDisplayed();
+        });
+
+        When("click on back button", () -> {
+            context.employeeEditMyDetails.clickOnBackButton();
+        });
+
+        When("user clicks on Personal Details link under Personal Info", () -> {
+            context.employeeEditMyDetails.clickPersonalDetailsLink();
+        });
+
+        Then("validate Biographical Information are displayed", () -> {
+            context.employeeEditMyDetails.validateBiographicalInfoIsDisplayed();
+        });
+
+        Then("user clicks on Document Records link under Personal Info", () -> {
+            context.employeeEditMyDetails.clickDocumentRecordsLink();
+        });
+
     }
 
 }
