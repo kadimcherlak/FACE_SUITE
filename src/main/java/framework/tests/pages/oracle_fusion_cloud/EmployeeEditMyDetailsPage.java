@@ -469,6 +469,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//a[contains(@id,'table2:0:gl1')]/following::span[1]")
     private WebElement hdlPersonNo;
 
+    @FindBy(xpath = "//a[contains(@id,'table2:0:gl1')]")
+    private WebElement personLink;
+
     public EmployeeEditMyDetailsPage(Context context) {
         super(context);
         this.context = context;
@@ -1594,6 +1597,10 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
             waitFor(ExpectedConditions.visibilityOf(hdlPersonNo), 15);
             String hdlPersonNumber = hdlPersonNo.getText();
+
+            waitFor(ExpectedConditions.visibilityOf(personLink), 15);
+            String flName = personLink.getText();
+            String[] name = splitString(flName);
             csvWriter(hdlPersonNumber);
             System.out.println(hdlPersonNumber);
 

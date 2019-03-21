@@ -419,6 +419,15 @@ public class BasePage<T> extends WebPage {
         }
     }
 
+    public String[] splitString(String value) {
+        try {
+            return value.trim().split(",");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     /**
      * This method increase a String date by given number of days and return in String
      *
