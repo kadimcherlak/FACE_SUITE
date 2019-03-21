@@ -20,6 +20,7 @@ import static framework.core.drivers.Core.getWebDriver;
 
 public class Context extends framework.core.models.Context {
     public LoginAndHomePage loginAndHome;
+    public BasePage basePage;
     public NewPersonPage newPerson;
     public HireAnEmployeePage hireAnEmployee;
     public EmployeeEditMyDetailsPage employeeEditMyDetails;

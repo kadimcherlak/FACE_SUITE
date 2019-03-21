@@ -466,6 +466,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//span[text()='Review']")
     private WebElement btnReview;
 
+    @FindBy(xpath = "//a[contains(@id,'table2:0:gl1')]/following::span[1]")
+    private WebElement hdlPersonNo;
+
     public EmployeeEditMyDetailsPage(Context context) {
         super(context);
         this.context = context;
@@ -1588,6 +1591,12 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             waitFor(ExpectedConditions.visibilityOf(searchResultsSection), 15);
             scrollToElement(searchResultsSection);
             reportWithScreenShot("Search result displayed");
+
+            waitFor(ExpectedConditions.visibilityOf(hdlPersonNo), 15);
+            String hdlPersonNumber = hdlPersonNo.getText();
+            csvWriter(hdlPersonNumber);
+            System.out.println(hdlPersonNumber);
+
         } catch (Exception e) {
             reportWithScreenShot("Unable to search person due to:" + e.getMessage());
             Assert.fail();

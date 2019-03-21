@@ -3,6 +3,7 @@ package framework.tests.pages.oracle_fusion_cloud;
 import framework.tests.steps.oracle_fusion_cloud.Context;
 import framework.tests.steps.oracle_fusion_cloud.Data;
 import junit.framework.Assert;
+import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -21,6 +22,7 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
     private Data data;
     private Actions actions;
     private String currentSalaryAmount;
+    private WebElement appWebElement;
 
     // Hire An Employee Page Elements
 
@@ -32,6 +34,10 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
 
     @FindBy(xpath = "//img[contains(@src,'/hcmUI/images/func_contextpop_orange_20_hov.png')]")
     private WebElement moreInfoIcon;
+
+    // To Check WorkRelationshipDetails tab in Work Relationship Details
+    @FindBy(xpath = "//td[@id='_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt2:0:pt1:r1:0:pt1:SP1:sdh1::_afrTtxt']")
+    private WebElement WorkRelationshipDetails;
 
     // To check if My Team page is displayed
     @FindBy(xpath = "//*[contains(@class,'xwb') and contains(text(),'Filter')]")
@@ -122,6 +128,39 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
 
     @FindBy(xpath = "//div[contains(text(),'0.00')]")
     private WebElement currentsal_ReviewSalary;
+
+    @FindBy(xpath = "//*[text()='Work Relationship Details']")
+    private WebElement workRelationshiDetailsTab;
+
+    @FindBy(xpath = "//a[@title='Actions']")
+    private WebElement buttonActions;
+
+    @FindBy(xpath = "//td[text()='Terminate']")
+    private WebElement buttonTerminate;
+
+    @FindBy(xpath = "//a[contains(@id,'Action::drop')]")
+    private WebElement terminationActionDropdown;
+
+    @FindBy(xpath = "//a[contains(@id,'selectOneChoice2::drop')]")
+    private WebElement terminationSelectReasonDropdown;
+
+    @FindBy(xpath = "//a[contains(@id,'RehireRecom::drop')]")
+    private WebElement terminationRecommendedforRehireDropdown;
+
+    @FindBy(xpath = "//label[contains(text(),'Termination Date')]//following::input[1]")
+    private WebElement text_terminationDate_field;
+
+    @FindBy(xpath = "//*[@accesskey='m']")
+    private WebElement btnSubmit;
+
+    @FindBy(xpath = "//button[@accesskey='Y']")
+    private WebElement btnYes;
+
+    @FindBy(xpath = "//*[@accesskey='B']")
+    private WebElement btnBack;
+
+    @FindBy(xpath = "//button[text()='Review']")
+    private WebElement btnReview;
 
     public LineManagerPage(Context context) {
         super(context);
@@ -216,8 +255,11 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
     // user Click on Review button
     public void clickReviewButton() {
         try {
-            waitFor(ExpectedConditions.elementToBeClickable(reviewBtn), 5);
-            reviewBtn.click();
+            waitFor(ExpectedConditions.elementToBeClickable(btnReview), 15);
+            btnReview.click();
+            waitFor(ExpectedConditions.visibilityOf(btnBack), 60);
+            assertThat(btnBack.isDisplayed()).isTrue();
+            reportWithScreenShot("User clicks on review button:");
         } catch (Exception e) {
             reportWithScreenShot("Error While user clicks Review Button due to:" + e.getMessage());
             Assert.fail();
@@ -455,4 +497,143 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
 
     }
 
+    // Common Method to Select Links under Task Pane
+    public void clickLinkElementInTaskPane(String linkName) {
+        try {
+            waitShortTime(); // To handle task pane load time
+            waitFor(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='" + linkName + "']")), 15);
+            appWebElement = driver.findElement(By.xpath("//a[text()='" + linkName + "']"));
+            reportWithScreenShot("Link :" + linkName + " selected from Task pane");
+            waitFor(ExpectedConditions.elementToBeClickable(appWebElement), 15);
+            Assertions.assertThat(appWebElement.isDisplayed()).isTrue();
+            appWebElement.click();
+            waitUntilPageLoad();
+        } catch (Exception e) {
+            reportWithScreenShot("Unable to open :" + linkName + " due to " + e.getMessage());
+            org.testng.Assert.fail();
+        }
+    }
+
+    // Common Method to Select Links under Task Pane
+    public void manageWorkRelationShipPageDisplayed() {
+
+        try {
+            waitFor(ExpectedConditions.visibilityOf(workRelationshiDetailsTab), 60);
+            Assertions.assertThat(workRelationshiDetailsTab.isDisplayed()).isTrue();
+            reportWithScreenShot("Work Relationship details page is displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Error in displaying work relationship details page");
+            Assert.fail();
+
+        }
+    }
+
+    public void clickActionAndTerminate() {
+        try {
+            buttonActions.click();
+            waitFor(ExpectedConditions.visibilityOf(buttonTerminate), 60);
+            buttonTerminate.click();
+            waitFor(ExpectedConditions.visibilityOf(terminationActionDropdown), 60);
+            Assertions.assertThat(terminationActionDropdown.isDisplayed()).isTrue();
+            reportWithScreenShot("User clicked on Action and Terminate link");
+
+        } catch (Exception e) {
+            reportWithScreenShot("Error in clicking Action and termination link");
+            Assert.fail();
+        }
+    }
+
+    public void terminationPageDisplayed() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(terminationActionDropdown), 60);
+            Assertions.assertThat(terminationActionDropdown.isDisplayed()).isTrue();
+
+            reportWithScreenShot("User clicked on Action and Terminate link");
+        } catch (Exception e) {
+            reportWithScreenShot("Error in clicking Action and termination link");
+            Assert.fail();
+
+        }
+    }
+
+    public void selectTerminationAction(String actionType) {
+
+        try {
+            terminationActionDropdown.click();
+            waitShortTime();
+            driver.findElement(By.xpath("//li[text()='" + actionType + "']")).click();
+            waitShortTime();
+            reportWithScreenShot("User selects Action reason");
+        } catch (Exception e) {
+            reportWithScreenShot("Error selecting Action and termination link");
+            Assert.fail();
+        }
+    }
+
+    public void selectTerminationReason(String actionReason) {
+
+        try {
+            waitShortTime();
+            terminationSelectReasonDropdown.click();
+            waitShortTime();
+            driver.findElement(By.xpath("//li[text()='" + actionReason + "']")).click();
+            reportWithScreenShot("User selects Action reason");
+        } catch (Exception e) {
+            reportWithScreenShot("Error selecting Action and termination link");
+            Assert.fail();
+        }
+    }
+
+    public void updateTerminationDate() {
+        try {
+            waitShortTime();
+            System.out.println("Last 3 days Date -" + getLastTwoDaysDate());
+            text_terminationDate_field.clear();
+            text_terminationDate_field.sendKeys(getLastTwoDaysDate());
+            reportWithScreenShot("Termination Date selected");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while selecting Termination date");
+            Assert.fail();
+        }
+    }
+
+    public void selectRehireReason(String rehireYesNo) {
+        try {
+            terminationRecommendedforRehireDropdown.click();
+            waitShortTime();
+            driver.findElement(By.xpath("//li[text()='" + rehireYesNo + "']")).click();
+            waitShortTime();
+            reportWithScreenShot("User selected " + rehireYesNo + " from rehire dropdown");
+        } catch (Exception e) {
+            reportWithScreenShot("Error selecting " + rehireYesNo + " from rehire dropdown");
+            Assert.fail();
+        }
+    }
+
+    public void clickButtonSubmit() {
+        try {
+            waitShortTime();
+            btnSubmit.click();
+            waitShortTime();
+            waitFor(ExpectedConditions.visibilityOf(btnYes), 60);
+            assertThat(btnYes.isDisplayed()).isTrue();
+            reportWithScreenShot("User clicked on Submit button");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking Submit button");
+            Assert.fail();
+        }
+    }
+
+    public void clickOKOnPopup() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(btnOK), 30);
+            btnOK.click();
+            waitFor(ExpectedConditions.visibilityOf(WorkRelationshipDetails), 30);
+            assertThat(WorkRelationshipDetails.isDisplayed()).isTrue();
+            reportWithScreenShot(" Ok button in Manage salary review page is clicked");
+        } catch (Exception e) {
+            reportWithScreenShot("Error While clicking ok button:" + e.getMessage());
+            Assert.fail();
+        }
+    }
 }

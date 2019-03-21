@@ -176,7 +176,7 @@ public class EmployeeEditMyDetailsSteps implements En {
             context.employeeEditMyDetails.taskIconClick();
         });
 
-        And("user clicks Manage Salary option from task icon menu", () -> {
+        And("from task menu user clicks on Manage Salary option", () -> {
             context.employeeEditMyDetails.manageSalaryClick();
         });
 

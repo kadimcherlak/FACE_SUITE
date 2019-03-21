@@ -41,7 +41,7 @@ public class CSVReadWrite {
                 CSVWriter.NO_QUOTE_CHARACTER,
                 CSVWriter.DEFAULT_ESCAPE_CHARACTER,
                 CSVWriter.DEFAULT_LINE_END);
-        String[] headerRecord = {"personNumber"};
+        String[] headerRecord = {"personNumber", "firstName", ""};
         csvWriter.writeNext(headerRecord);
         csvWriter.writeNext(new String[]{updVal});
         csvWriter.flush();

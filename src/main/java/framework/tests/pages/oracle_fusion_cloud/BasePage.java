@@ -95,6 +95,24 @@ public class BasePage<T> extends WebPage {
         return dateFormat.format(date);
     }
 
+    public static String toddMMyy(Date day) {
+        SimpleDateFormat formatter = new SimpleDateFormat("M/d/yyyy");
+        String date = formatter.format(day);
+        return date;
+    }
+
+    // Method to get last two days Date
+    public String getLastTwoDaysDate() {
+        //To input current system date into Hire Date Field
+        //DateFormat dateFormat = new SimpleDateFormat("dd-MMM-YYYY");
+        DateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
+        Date date = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_MONTH, -3);
+        Date threeDayBack = cal.getTime();
+        return toddMMyy(cal.getTime());
+    }
+
     // Click on Submit Button
     public void clickSubmitButton() {
         try {
@@ -206,7 +224,6 @@ public class BasePage<T> extends WebPage {
             Assert.fail();
         }
     }
-
 
 
     // Open task pane
@@ -401,27 +418,27 @@ public class BasePage<T> extends WebPage {
             e.printStackTrace();
         }
     }
-    
+
     /**
      * This method increase a String date by given number of days and return in String
      *
+     * @throws ParseException
      * @author Rakesh
-     * @throws ParseException 
      */
-    public String addDaysToDate(String dateInStringFormat,int noOfDays,String dateFormat) throws ParseException {
+    public String addDaysToDate(String dateInStringFormat, int noOfDays, String dateFormat) throws ParseException {
         try {
-        	SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
-        	Calendar c = Calendar.getInstance();
-        	c.setTime(sdf.parse(dateInStringFormat));
+            SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+            Calendar c = Calendar.getInstance();
+            c.setTime(sdf.parse(dateInStringFormat));
             c.add(Calendar.DATE, noOfDays);  // number of days to add
-        	dateInStringFormat = sdf.format(c.getTime());
-        	return dateInStringFormat;
-        	
+            dateInStringFormat = sdf.format(c.getTime());
+            return dateInStringFormat;
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
-    
+
 }
 
