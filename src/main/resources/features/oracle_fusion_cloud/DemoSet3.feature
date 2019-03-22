@@ -44,7 +44,7 @@ Feature: Employee edits Personal Information
       | VALIDATE_ADDRESS_FORMAT | TestData.xlsx  | Employee_Details |
 
 
-  @ADD_NEW_ADDRESS_TYPE_DETAILS_1
+  @ADD_NEW_ADDRESS_TYPE_DETAILS
   Scenario Outline: Employee add New Address of type Mailing Address
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
