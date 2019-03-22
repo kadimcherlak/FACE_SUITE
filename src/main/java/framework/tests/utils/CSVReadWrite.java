@@ -23,8 +23,7 @@ public class CSVReadWrite {
     }
 
     public String[] read() throws IOException {
-        //Reader reader = Files.newBufferedReader(Paths.get(context.getPath() + File.separator + csvFile));
-        Reader reader = Files.newBufferedReader(Paths.get(System.getProperty("user.dir")+"\\src\\main\\resources\\testdata" + File.separator + csvFile));
+        Reader reader = Files.newBufferedReader(Paths.get(context.getPath() + File.separator + csvFile));
         CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build();
         String[] nextLine;
 
