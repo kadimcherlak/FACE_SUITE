@@ -58,6 +58,10 @@ public class TalentAcquisitionNewHireSteps implements En {
             context.personManagment.clickSearchTillPersonDisplayed();
         });
 
+        Then("user click on Search button to verify is person is not available in system", () -> {
+            context.personManagment.clickSearchPersonNotDisplayed();
+        });
+
         Then("Employee name should be listed in search results", () -> {
             context.personManagment.validateSearchResult();
         });

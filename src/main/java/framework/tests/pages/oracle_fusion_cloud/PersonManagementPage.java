@@ -318,6 +318,35 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     }
 
 
+    // After entering person number, click on Search Button until person
+    public void clickSearchPersonNotDisplayed() {
+        try {
+            clickSearch(); // Click Search Button
+
+            // Check for Employee for max 60 seconds
+            elementsize = driver
+                    .findElements(By.xpath("//span[text()='" + csvReader()[0] + "']")).size();
+            int counter = 0;
+            while (elementsize >= 1 && counter <= 20) {
+                elementsize = driver
+                        .findElements(By.xpath("//span[text()='" + csvReader()[0] + "']")).size();
+                clickSearch();
+                waitShortTime();
+                counter++;
+            }
+
+            // Throw Exception if Person name now found after 60 seconds
+            if (elementsize >= 1) {
+                throw new Exception("Person number present even after 60 seconds");
+            }
+            reportWithScreenShot("User is not present search result page as expected");
+        } catch (Exception e) {
+            reportWithScreenShot("Error While checking search results of employee:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+
     // Validate if search result displays right person details
     public void validateSearchResult() {
         // Report Person number with screenshot (as this methods is always True)
