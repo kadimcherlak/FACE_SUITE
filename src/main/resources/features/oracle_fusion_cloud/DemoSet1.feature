@@ -20,6 +20,7 @@ Feature: New Hire and Related Activities
     And user clicks on Person Management Link in Navigation pane
     Then Person Management: Search screen should be displayed
     And user search for the person newly created from file
+    And new employee details are stored into csv
     When user clicks on Sign Out option
     Then Sign out should be successful
     Examples:

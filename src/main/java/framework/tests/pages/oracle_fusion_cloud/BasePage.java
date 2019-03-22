@@ -122,7 +122,7 @@ public class BasePage<T> extends WebPage {
             waitUntilPageLoad();
             waitFor(ExpectedConditions.elementToBeClickable(submit), 15);
             submit.click();
-            waitShortTime();
+            waitNormalTime();
         } catch (Exception e) {
             reportWithScreenShot("Error While Submitting new Hire information due to:" + e.getMessage());
             Assert.fail();
@@ -177,6 +177,16 @@ public class BasePage<T> extends WebPage {
             confirmBtn.click();
             waitNormalTime();
             reportWithScreenShot("Confirm button clicked successfully");
+        } catch (Exception e) {
+            reportWithScreenShot("Submission not successful due to:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+
+    // Click on Confirm Button
+    public void saveEmployeeDetails() {
+        try {
             if (data.getPersonNumber() != null) {
                 csvWriter(data.getPersonNumber(), data.getPersonName());
             } else {
@@ -187,6 +197,7 @@ public class BasePage<T> extends WebPage {
             Assert.fail();
         }
     }
+
 
     // Click on Create button
     public void clickCreateButton() {

@@ -229,7 +229,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
         try {
             // Enter Hire Date
             basicDetailsDate.clear();
-            actions.doubleClick(basicDetailsDate).sendKeys(getCurrentDate());
+            actions.doubleClick(basicDetailsDate).sendKeys(data.getHireDate());
 
             // Select Hire Action
             basicDetailsAction.click();
@@ -261,9 +261,6 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitFor(ExpectedConditions.elementToBeClickable(firstName), 5);
             firstName.sendKeys(data.getFirstName());
             firstName.sendKeys(Keys.TAB);
-
-            // set personName to data class for future use
-            //data.setPersonName(data.getFirstName() + " " + data.getLastName());
 
             // Select Gender
             waitFor(ExpectedConditions.elementToBeClickable(gender), 5);

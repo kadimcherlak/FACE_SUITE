@@ -1634,11 +1634,12 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             waitFor(ExpectedConditions.visibilityOf(hdlPersonNo), 15);
             String hdlPersonNumber = hdlPersonNo.getText();
 
-            // Get generated Person Number and Person Name as store it in CSV data sheet for other scenarios
+            // Get generated Person Number and Person Name as store it in data class for other scenarios
             waitFor(ExpectedConditions.visibilityOf(personLink), 15);
             String flName = personLink.getText();
             String[] name = splitString(flName);
-            csvWriter(hdlPersonNumber, name[1] + " " + name[0]);
+            data.setPersonNumber(hdlPersonNumber);
+            data.setPersonName(name[1] + " " + name[0]);
         } catch (Exception e) {
             reportWithScreenShot("Unable to search person due to:" + e.getMessage());
             Assert.fail();

@@ -62,6 +62,10 @@ public class CommonSteps implements En {
             context.hireAnEmployee.clickConfirmButton();
         });
 
+        Then("new employee details are stored into csv", () -> {
+            context.hireAnEmployee.saveEmployeeDetails();
+        });
+
         When("user clicks on Sign Out option", () -> {
             context.loginAndHome.signOut();
         });
