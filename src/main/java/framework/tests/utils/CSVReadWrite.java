@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 
 public class CSVReadWrite {
 
-    private String value;
+    private String[] value;
     private Context context;
     private String csvFile = "commonData.csv";
 
@@ -22,18 +22,19 @@ public class CSVReadWrite {
         this.context = context;
     }
 
-    public String read() throws IOException {
+    public String[] read() throws IOException {
         Reader reader = Files.newBufferedReader(Paths.get(context.getPath() + File.separator + csvFile));
         CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build();
         String[] nextLine;
+
         // nextLine[] is an array of values from the line
         while ((nextLine = csvReader.readNext()) != null) {
-            value = nextLine[0];
+            value = nextLine;
         }
         return value;
     }
 
-    public void write(String updVal) throws IOException {
+    public void write(String personNumber, String personName) throws IOException {
         Writer writer = Files.newBufferedWriter(Paths.get(context.getPath() + File.separator + csvFile));
 
         CSVWriter csvWriter = new CSVWriter(writer,
@@ -41,9 +42,9 @@ public class CSVReadWrite {
                 CSVWriter.NO_QUOTE_CHARACTER,
                 CSVWriter.DEFAULT_ESCAPE_CHARACTER,
                 CSVWriter.DEFAULT_LINE_END);
-        String[] headerRecord = {"personNumber"};
+        String[] headerRecord = {"personNumber", "personName"};
         csvWriter.writeNext(headerRecord);
-        csvWriter.writeNext(new String[]{updVal});
+        csvWriter.writeNext(new String[]{personNumber, personName});
         csvWriter.flush();
         csvWriter.close();
     }

@@ -12,8 +12,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.time.LocalDate;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class LineManagerPage extends BasePage<LineManagerPage> {
@@ -42,11 +40,11 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
     private WebElement WorkRelationshipDetails;
 
     // To check if My Team page is displayed
-    @FindBy(xpath = "//*[contains(@class,'xwb') and contains(text(),'Filter')]")
-    private WebElement filterBtn;
+    @FindBy(xpath = "//div[@title='My Team']/descendant::h1[text()='My Team']")
+    private WebElement myTeamHeader;
 
     // To select Change Manager option
-    @FindBy(xpath = "//span[text()='Change Manager']")
+    @FindBy(xpath = "//td[text()='Change Manager']")
     private WebElement changeManagerLink;
 
     // To Click Continue Button
@@ -67,14 +65,14 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
 
 
     // Change Manager Reason
-    @FindBy(xpath = "//label[text()='Change Manager Reason']/following::input[1]")
+    @FindBy(xpath = "//input[@role='combobox']")
     private WebElement changeManagerReason;
 
     @FindBy(xpath = "//*[@id=\"_FOpt1:_FOr1:0:_FOSrPER_HCMPEOPLETOP_FUSE_MY_TEAM:0:MAnt2:4:up1Upl:UPsp1:gpRgn:0:GPmtfr1:1:pce1:lv1Lv:0:pse1:PSEcil6::icon\"]")
     private WebElement editBtn;
 
     // New Manager Name
-    @FindBy(xpath = "//label[text()='Name']/following::input[1]")
+    @FindBy(xpath = "(//label[text()='Name']/following::input[@role='combobox'])[1]")
     private WebElement managerName;
 
     // Click review button
@@ -85,7 +83,7 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
     @FindBy(xpath = "//div[@title='Current Value']")
     private WebElement currentValue;
 
-    @FindBy(xpath = "//div[@title='Submit']")
+    @FindBy(xpath = "//a[@accesskey='m'][@role='button']")
     private WebElement managerChangeSubmit;
 
     @FindBy(xpath = "//button[contains(@id,'okWarningDialog')]")
@@ -130,6 +128,21 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
 
     @FindBy(xpath = "//div[contains(text(),'0.00')]")
     private WebElement currentsal_ReviewSalary;
+
+    @FindBy(xpath = "//div[@title='Change Manager']/descendant::h1[text()='Change Manager']")
+    private WebElement changeManagerPageDisplayed;
+
+    @FindBy(xpath = "//button[@title='Continue']")
+    private WebElement changeManagerContinueButton;
+
+    @FindBy(xpath = "//img[@title='Edit']")
+    private WebElement changeManagerEditButton;
+
+    @FindBy(xpath = "//td[@title='Add Comments and Attachments']/following::textarea[1]")
+    private WebElement addCommentsAndAttachments;
+
+    @FindBy(xpath = "//tr[@aria-rowindex='1']")
+    private WebElement searchManagerDropdown;
 
     @FindBy(xpath = "//*[text()='Work Relationship Details']")
     private WebElement workRelationshiDetailsTab;
@@ -190,8 +203,8 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
     public void checkMyTeamPageDisplay() {
         try {
             reportWithScreenShot("Checking if My Team Page is Displayed");
-            waitFor(ExpectedConditions.visibilityOf(filterBtn), 5);
-            assertThat(filterBtn.isDisplayed()).isTrue();
+            waitFor(ExpectedConditions.visibilityOf(myTeamHeader), 30);
+            assertThat(myTeamHeader.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("My Team Page not Displayed");
             Assert.fail();
@@ -213,8 +226,13 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
     // User Navigate to Change Manager page
     public void navigateToChangeManagerPage() {
         try {
-            moreInfoIcon.click();
+            String personName = csvReader()[1];
+            String moreInformationXpath = "(//a[text()='" + personName + "'])[1]/following::img[1]";
+            waitFor(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(moreInformationXpath))), 5);
+            driver.findElement(By.xpath(moreInformationXpath)).click();
+            waitFor(ExpectedConditions.elementToBeClickable(changeManagerLink), 15);
             changeManagerLink.click();
+            waitFor(ExpectedConditions.elementToBeClickable(continueBtn), 15);
             continueBtn.click();
             waitShortTime();
         } catch (Exception e) {
@@ -224,15 +242,14 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
 
     }
 
-    // user select change manager reason
+    // user select change manager reason and click on continue button
     public void selectChangeManagerReason() {
         try {
-            changeManagerReason.click();
-            waitFor(ExpectedConditions.visibilityOf(
-                    driver.findElement(By.xpath("//li[text()='" + data.getChangeManagerReason() + "']"))), 5);
-            driver.findElement(By.xpath("//li[text()='" + data.getChangeManagerReason() + "']")).click();
-            changeManagerReason.sendKeys(Keys.TAB);
-            continueBtnAftrMgrChange.click();
+
+            selectInputDropdownValue(changeManagerReason, data.getChangeManagerReason());
+            waitFor(ExpectedConditions.elementToBeClickable(changeManagerContinueButton), 10);
+            changeManagerContinueButton.click();
+            reportWithScreenShot("Clicking on Continue button in Change Manager Screen");
         } catch (Exception e) {
             reportWithScreenShot("Error While Employee link click due to:" + e.getMessage());
             Assert.fail();
@@ -243,9 +260,17 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
     // user select value in Manager dropdown
     public void selectNewManager() {
         try {
-            waitFor(ExpectedConditions.elementToBeClickable(managerName), 5);
+            waitFor(ExpectedConditions.elementToBeClickable(changeManagerEditButton), 10);
+            changeManagerEditButton.click();
+            waitFor(ExpectedConditions.elementToBeClickable(managerName), 15);
+            managerName.clear();
             managerName.sendKeys(data.getManagerName());
-            managerName.sendKeys(Keys.TAB);
+            waitShortTime();
+            waitFor(ExpectedConditions.elementToBeClickable(searchManagerDropdown), 15);
+            searchManagerDropdown.click();
+            waitFor(ExpectedConditions.elementToBeClickable(changeManagerContinueButton), 10);
+            changeManagerContinueButton.click();
+            reportWithScreenShot("Selecting New Manager :" + data.getManagerName() + ", and clicking on continue button");
 
         } catch (Exception e) {
             reportWithScreenShot("Error While selecting new Manager due to:" + e.getMessage());
@@ -259,7 +284,7 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(btnReview), 15);
             btnReview.click();
-            waitFor(ExpectedConditions.visibilityOf(btnBack),60);
+            waitFor(ExpectedConditions.visibilityOf(btnBack), 60);
             assertThat(btnBack.isDisplayed()).isTrue();
             reportWithScreenShot("User clicks on review button:");
         } catch (Exception e) {
@@ -498,6 +523,42 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
         }
 
     }
+
+
+    /**
+     * Validate if user landed on Change Manager Page
+     *
+     * @author Rakesh Ghosal
+     */
+    public void checkChangeManagerPageDisplay() {
+        try {
+            reportWithScreenShot("Checking if Change Manager Page is Displayed");
+            waitFor(ExpectedConditions.visibilityOf(changeManagerPageDisplayed), 5);
+            assertThat(changeManagerPageDisplayed.isDisplayed()).isTrue();
+        } catch (Exception e) {
+            reportWithScreenShot("Change Manager Page is not displayed " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    /**
+     * User enters comment under add comments section in Change Manager Page
+     *
+     * @author Rakesh Ghosal
+     */
+    public void enterComments() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(addCommentsAndAttachments), 15);
+            addCommentsAndAttachments.clear();
+            addCommentsAndAttachments.sendKeys("Changing the Manager for above reason");
+            reportWithScreenShot("Entering comment for Change Manager transaction");
+
+        } catch (Exception e) {
+            reportWithScreenShot("Unable to enter comments for Change Manager transaction" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
 
     // Common Method to Select Links under Task Pane
     public void clickLinkElementInTaskPane(String linkName) {

@@ -1,29 +1,6 @@
 @TALENT_ACQUISITION
 Feature: New Hire and Related Activities
 
-  @TEST_EXCEL
-  Scenario Outline: Perform Login to Oracle Fusion Cloud
-    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
-    And user updated the Excel file with Row Name <Test Scenario> and Column Name personNumber with value 500103
-
-    Examples: 
-      | Test Scenario           | Test File Name | Test Sheet Name    |
-      | UPDATE_REMOVE_I9_STATUS | TestData.xlsx  | Talent_Acquisition |
-
-  @LOGIN_LOGOUT
-  Scenario Outline: Perform Login to Oracle Fusion Cloud
-    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
-    And user is on the oracle fusion login page
-    And user provides credentials for login
-    When the user clicks on Sign In
-    Then the Oracle Fusion Home Page is displayed
-    When user clicks on Sign Out option
-    Then Sign out should be successful
-
-    Examples: 
-      | Test Scenario | Test File Name | Test Sheet Name    |
-      | LOGIN_LOGOUT  | TestData.xlsx  | Talent_Acquisition |
-
   @NEW_HIRE
   Scenario Outline: Create a New Hire
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
@@ -57,8 +34,9 @@ Feature: New Hire and Related Activities
     And user enter the Person number generated from previous step in Person Number field
     And user click on Search button till person displayed
     Then Employee name should be listed in search results
-    When user click on Action Button
-    And user clicks on Manage Element Entries link under Payroll section
+    When user click on employee name link in search results
+    Then Person Management screen should be displayed
+    And user clicks on Manage Element Entries on right side of the page under Tasks pane
     Then manage element entries screen should be displayed
     And user clicks on Add button
     And user enter Effective date : System Date and Element Name as ADP Auto & Home
@@ -157,7 +135,7 @@ Feature: New Hire and Related Activities
       | Test Scenario       | Test File Name | Test Sheet Name    |
       | EDIT_SENIORITY_DATE | TestData.xlsx  | Talent_Acquisition |
 
-  @UPDATE_PERSONAL_ASSIGNMENT_DATA1
+  @UPDATE_PERSONAL_ASSIGNMENT_DATA
   Scenario Outline: Perform Global Transfer for New Hire Employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -185,9 +163,9 @@ Feature: New Hire and Related Activities
 
     Examples:
       | Test Scenario                    | Test File Name | Test Sheet Name    |
-      | UPDATE_PERSONAL_ASSIGNMENT_DATA1 | TestData.xlsx  | Talent_Acquisition |
+      | UPDATE_PERSONAL_ASSIGNMENT_DATA | TestData.xlsx  | Talent_Acquisition |
 
-  @UPLOAD_HDL_FILE1
+  @UPLOAD_HDL_FILE
   Scenario Outline: New Hire Process using HDL File upload
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -210,4 +188,4 @@ Feature: New Hire and Related Activities
     Then Sign out should be successful
     Examples:
       | Test Scenario   | Test File Name | Test Sheet Name  |
-      | UPLOAD_HDL_FILE1 | TestData.xlsx  | Employee_Details |
+      | UPLOAD_HDL_FILE | TestData.xlsx  | Employee_Details |

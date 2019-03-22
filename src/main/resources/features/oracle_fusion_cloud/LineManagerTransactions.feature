@@ -8,13 +8,11 @@ Feature: Line Manager Transaction and Approval
     When user clicks on Navigator icon
     And user clicks on My Team link under My Team section
     Then My Team page should be displayed
-    And user clicks on the Employee link
     When user navigates to Change Manager option
     Then Change Manager page should be displayed
     And user Select value for Change Manager Reason from dropdown
     And user Select the value in Manager dropdown
-    And user click on Review button in Change Manager page
-    Then the current value and proposed values are displayed correctly in Review Page
+    And user add comments in the textarea
     When user clicks on Submit button in Change Manager page
     Then The transaction should be saved properly and My Team page should be displayed
     And user clicks on Sign Out option
@@ -22,7 +20,7 @@ Feature: Line Manager Transaction and Approval
 
     Examples:
       | Test Scenario                        | Test File Name | Test Sheet Name |
-      | LINE_MANAGER_PERFORMS_CHANGE_MANAGER | TestData.xlsx  | Change_Manager  |
+      | LINE_MANAGER_PERFORMS_CHANGE_MANAGER | TestData.xlsx  | Line_Manager    |
 
   @LINE_MANAGER_APPROVES_CHANGE_MANAGER_REQUEST
   Scenario Outline: Line Manager to approve request of employee's manager change
@@ -139,8 +137,8 @@ Feature: Line Manager Transaction and Approval
 
 
     Examples:
-      | Test Scenario | Test File Name | Test Sheet Name  |
-      | TERMINATION   | TestData.xlsx  | Line_Manager |
+      | Test Scenario | Test File Name | Test Sheet Name |
+      | TERMINATION   | TestData.xlsx  | Line_Manager    |
 
 
   @RETIREMENT
@@ -160,7 +158,6 @@ Feature: Line Manager Transaction and Approval
     And user clicks on Action button and select Terminate option
     Then user navigated to Termination Details page
     And user selects Retirement Action
-#    And user selects Work Incident or Work Related Illness Reason
     And user updates Termination date
     And user selects Yes as Recommended for Rehire
     And user clicks on Review button in termination page
@@ -172,5 +169,5 @@ Feature: Line Manager Transaction and Approval
 
 
     Examples:
-      | Test Scenario | Test File Name | Test Sheet Name  |
-      | RETIREMENT   | TestData.xlsx  | Line_Manager |
+      | Test Scenario | Test File Name | Test Sheet Name |
+      | RETIREMENT    | TestData.xlsx  | Line_Manager    |

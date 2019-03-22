@@ -3,6 +3,7 @@ package framework.tests.pages.oracle_fusion_cloud;
 import framework.core.drivers.web.WebPage;
 import framework.core.utils.DataLoader;
 import framework.tests.steps.oracle_fusion_cloud.Context;
+import framework.tests.steps.oracle_fusion_cloud.Data;
 import framework.tests.utils.CSVReadWrite;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -19,7 +20,6 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -28,6 +28,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class BasePage<T> extends WebPage {
 
     private WebElement appWebElement;
+    private Data data;
 
     @FindBy(tagName = "html")
     private WebElement __document;
@@ -64,6 +65,7 @@ public class BasePage<T> extends WebPage {
 
     public BasePage(Context context) {
         super(context);
+        this.data = context.getData();
         logger.debug("{} loaded", this.getClass().getName());
     }
 
@@ -96,6 +98,12 @@ public class BasePage<T> extends WebPage {
         return dateFormat.format(date);
     }
 
+    public static String toddMMyy(Date day) {
+        SimpleDateFormat formatter = new SimpleDateFormat("M/d/yyyy");
+        String date = formatter.format(day);
+        return date;
+    }
+
     // Method to get last two days Date
     public String getLastTwoDaysDate() {
         //To input current system date into Hire Date Field
@@ -106,12 +114,6 @@ public class BasePage<T> extends WebPage {
         cal.add(Calendar.DAY_OF_MONTH, -3);
         Date threeDayBack = cal.getTime();
         return toddMMyy(cal.getTime());
-    }
-
-    public static String toddMMyy(Date day) {
-        SimpleDateFormat formatter = new SimpleDateFormat("M/d/yyyy");
-        String date = formatter.format(day);
-        return date;
     }
 
     // Click on Submit Button
@@ -148,7 +150,7 @@ public class BasePage<T> extends WebPage {
             waitFor(ExpectedConditions.elementToBeClickable(warningBtn), 15);
             reportWithScreenShot("Confirmation message displayed");
             warningBtn.click();
-            waitShortTime();
+            waitNormalTime();
         } catch (Exception e) {
             reportWithScreenShot("Error While clicking OK button due to:" + e.getMessage());
             Assert.fail();
@@ -171,10 +173,15 @@ public class BasePage<T> extends WebPage {
     public void clickConfirmButton() {
         try {
             waitUntilPageLoad();
-            waitFor(ExpectedConditions.elementToBeClickable(confirmBtn), 15);
+            waitFor(ExpectedConditions.elementToBeClickable(confirmBtn), 30);
             confirmBtn.click();
             waitNormalTime();
             reportWithScreenShot("Confirm button clicked successfully");
+            if (data.getPersonNumber() != null) {
+                csvWriter(data.getPersonNumber(), data.getPersonName());
+            } else {
+                throw new Exception("Person Number not generated for a New hire process");
+            }
         } catch (Exception e) {
             reportWithScreenShot("Submission not successful due to:" + e.getMessage());
             Assert.fail();
@@ -395,7 +402,7 @@ public class BasePage<T> extends WebPage {
      *
      * @author Raghavendran Ramasubramanian
      */
-    public String csvReader() {
+    public String[] csvReader() {
         try {
             CSVReadWrite csv = new CSVReadWrite((Context) context);
             return csv.read();
@@ -411,13 +418,22 @@ public class BasePage<T> extends WebPage {
      *
      * @author Raghavendran Ramasubramanian
      */
-    public void csvWriter(String updVal) {
+    public void csvWriter(String personNumber, String personName) {
         try {
             CSVReadWrite csv = new CSVReadWrite((Context) context);
-            csv.write(updVal);
+            csv.write(personNumber, personName);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String[] splitString(String value) {
+        try {
+            return value.trim().split(",");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
