@@ -165,7 +165,14 @@ Feature: New Hire and Related Activities
     And user clicks Ok button confirmation popup modal in termination review page
     And user clicks on Sign Out option
     Then Sign out should be successful
-
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    When user enter the Person number generated from previous step in Person Number field
+    And user click on Search button to verify is person is not available in system
+    And user clicks on Sign Out option
+    Then Sign out should be successful
 
     Examples:
       | Test Scenario | Test File Name | Test Sheet Name |
