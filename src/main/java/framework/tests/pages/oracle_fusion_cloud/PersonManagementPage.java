@@ -271,7 +271,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
         try {
             // Enter person number into keywords
             waitFor(ExpectedConditions.elementToBeClickable(keywords), 15);
-            keywords.sendKeys(csvReader());
+            keywords.sendKeys(csvReader()[0]);
 
             // Enter effective as of date
             waitFor(ExpectedConditions.elementToBeClickable(effectiveAsOfDate), 15);
@@ -296,11 +296,11 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
             // Check for Employee for max 60 seconds
             elementsize = driver
-                    .findElements(By.xpath("//span[text()='" + csvReader() + "']")).size();
+                    .findElements(By.xpath("//span[text()='" + csvReader()[0] + "']")).size();
             int counter = 0;
             while (elementsize == 0 && counter <= 20) {
                 elementsize = driver
-                        .findElements(By.xpath("//span[text()='" + csvReader() + "']")).size();
+                        .findElements(By.xpath("//span[text()='" + csvReader()[0] + "']")).size();
                 clickSearch();
                 waitShortTime();
                 counter++;

@@ -227,7 +227,7 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
     public void navigateToChangeManagerPage() {
         try {
             String personName = csvReader()[1];
-            String moreInformationXpath = "//a[text()='" + personName + "']/following::img[1]";
+            String moreInformationXpath = "(//a[text()='" + personName + "'])[1]/following::img[1]";
             waitFor(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(moreInformationXpath))), 5);
             driver.findElement(By.xpath(moreInformationXpath)).click();
             waitFor(ExpectedConditions.elementToBeClickable(changeManagerLink), 15);
