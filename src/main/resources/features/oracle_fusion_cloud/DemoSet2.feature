@@ -17,6 +17,7 @@ Feature: New Hire and Related Activities
     When user clicks on submit button
     And clicks ok in the Warning and confirmation message displayed
     Then Page should be submitted successfully
+    And new employee details are stored into csv
     When user clicks on Sign Out option
     Then Sign out should be successful
 
