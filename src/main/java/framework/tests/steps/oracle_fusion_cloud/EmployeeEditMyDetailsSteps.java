@@ -92,9 +92,11 @@ public class EmployeeEditMyDetailsSteps implements En {
             context.loginAndHome.checkEmpMyDetailsContactInfoPageDisplayed();
         });
 
+
         When("user clicks on Add icon in the Address section", () -> {
             context.employeeEditMyDetails.clickAddressAdd();
         });
+
 
         When("user click on submit button in New Contact page", () -> {
             context.employeeEditMyDetails.clickEmergencyContactSubmit();
