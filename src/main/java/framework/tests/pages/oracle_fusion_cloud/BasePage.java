@@ -97,6 +97,24 @@ public class BasePage<T> extends WebPage {
         Date date = new Date();
         return dateFormat.format(date);
     }
+    
+    public String getDynamicDate(int days) {
+    	  DateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
+          Date date =new Date();
+          String date1=dateFormat.format(date);
+          Calendar calendar = Calendar.getInstance();
+          try {
+			calendar.setTime(dateFormat.parse(date1));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} // parsed date and setting to calendar
+
+          calendar.add(Calendar.DATE, -days);  // number of days to add
+          String destDate = dateFormat.format(calendar.getTime());  // End date
+          return destDate;
+    }
+    
 
     public static String toddMMyy(Date day) {
         SimpleDateFormat formatter = new SimpleDateFormat("M/d/yyyy");
