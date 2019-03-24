@@ -38,12 +38,28 @@ public class CommonSteps implements En {
             context.loginAndHome.checkHomePageAvailable();
         });
 
+        Then("user waits for few seconds before login", () -> {
+            context.loginAndHome.waitNormalTime();
+        });
+
         Given("user login to Oracle Applications Cloud web page", () -> {
             context.loginAndHome.openUrl();
             context.loginAndHome.checkLoginPageAvailable();
             context.loginAndHome.enterCredentials();
             context.loginAndHome.signIn();
             context.loginAndHome.checkHomePageAvailable();
+        });
+
+        When("user clicks on Bell icon", () -> {
+            context.loginAndHome.clickBellIcon();
+        });
+
+        When("user checks for notifications", () -> {
+            context.loginAndHome.checkNotification();
+        });
+
+        Then("Approved notification should be present", () -> {
+            context.loginAndHome.checkApproved();
         });
 
         When("user clicks on Navigator icon", () -> {

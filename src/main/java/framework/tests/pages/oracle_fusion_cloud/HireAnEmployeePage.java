@@ -369,13 +369,13 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             maritalStatus.sendKeys(Keys.TAB);
 
             // Enter Veteran Self-Identification Status
-            waitFor(ExpectedConditions.elementToBeClickable(veteranSelfIdentificationStatus), 15);
+            /*waitFor(ExpectedConditions.elementToBeClickable(veteranSelfIdentificationStatus), 15);
             veteranSelfIdentificationStatus.sendKeys(data.getVeteranSelfIdentificationStatus());
             veteranSelfIdentificationStatus.sendKeys(Keys.TAB);
 
             // Enter Newly Separated Veteran Discharge Date
             waitFor(ExpectedConditions.elementToBeClickable(newlySeparatedVeteranDischargeDate), 15);
-            newlySeparatedVeteranDischargeDate.sendKeys(data.getNewlySeparatedVeteranDischargeDate());
+            newlySeparatedVeteranDischargeDate.sendKeys(data.getNewlySeparatedVeteranDischargeDate());*/
 
             // Goto next tab
             waitNormalTime();

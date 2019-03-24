@@ -111,7 +111,7 @@ public class BasePage<T> extends WebPage {
         DateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DAY_OF_MONTH, -3);
+        cal.add(Calendar.DAY_OF_MONTH, -1);
         Date threeDayBack = cal.getTime();
         return toddMMyy(cal.getTime());
     }

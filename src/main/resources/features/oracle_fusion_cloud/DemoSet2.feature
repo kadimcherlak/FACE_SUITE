@@ -1,5 +1,5 @@
 @DemoSet2
-Feature: New Hire and Related Activities
+Feature: New Hire to Terminate
 
   @NEW_HIRE
   Scenario Outline: Create a New Hire
@@ -139,8 +139,7 @@ Feature: New Hire and Related Activities
       | LEGAL_ENTITY_TRANSFER | TestData.xlsx  | Talent_Acquisition |
 
 
-
-  @TERMINATION
+  @TERMINATION_1
   Scenario Outline: Employee Termination
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -166,12 +165,11 @@ Feature: New Hire and Related Activities
     And user clicks Ok button confirmation popup modal in termination review page
     And user clicks on Sign Out option
     Then Sign out should be successful
+    And user waits for few seconds before login
     And user login to Oracle Applications Cloud web page
-    When user clicks on Navigator icon
-    And user clicks on Person Management link in Navigator Pane
-    Then Person Management: Search screen should be displayed
-    When user enter the Person number generated from previous step in Person Number field
-    And user click on Search button to verify is person is not available in system
+    When user clicks on Bell icon
+    And user checks for notifications
+    Then Approved notification should be present
     And user clicks on Sign Out option
     Then Sign out should be successful
 
