@@ -31,7 +31,7 @@ public class LineManagerSteps implements En {
         });
 
         When("Change Manager page should be displayed", () -> {
-            context.lineManager.checkMyTeamPageDisplay();
+            context.lineManager.checkChangeManagerPageDisplay();
             ;
         });
 
@@ -56,8 +56,7 @@ public class LineManagerSteps implements En {
         });
 
         When("The transaction should be saved properly and My Team page should be displayed", () -> {
-            context.lineManager.clickOk();
-            context.lineManager.clickConfirm();
+            context.lineManager.checkMyTeamPageDisplay();
         });
 
         // --
@@ -96,6 +95,58 @@ public class LineManagerSteps implements En {
 
         Then("Review page should be validated in Manage Salary section", () -> {
             context.lineManager.reviewSalaryInMyTeam();
+        });
+
+        Then("user add comments in the textarea", () -> {
+            context.lineManager.enterComments();
+        });
+        Then("^user clicks (.*?) option from task icon menu$", (String linkName) -> {
+            context.lineManager.clickLinkElementInTaskPane(linkName);
+        });
+        Then("^Manange work relationship page is displayed$", () -> {
+            context.lineManager.manageWorkRelationShipPageDisplayed();
+        });
+
+        And("^user clicks on Action button and select Terminate option$", () -> {
+            context.lineManager.clickActionAndTerminate();
+
+        });
+
+        Then("^user navigated to Termination Details page$", () -> {
+            context.lineManager.terminationPageDisplayed();
+
+        });
+
+        And("^user selects (.*?) Action$", (String actionType) -> {
+            context.lineManager.selectTerminationAction(actionType);
+
+        });
+
+        And("^user selects (.*?) Reason$", (String actionReason) -> {
+            context.lineManager.selectTerminationReason(actionReason);
+
+        });
+        And("^user updates Termination date$", () -> {
+
+            context.lineManager.updateTerminationDate();
+
+        });
+
+        And("^user selects (.*?) as Recommended for Rehire$", (String rehireYesNo) -> {
+            context.lineManager.selectRehireReason(rehireYesNo);
+
+        });
+        Then("^user clicks on Submit button in termination review page$", () -> {
+            context.lineManager.clickButtonSubmit();
+        });
+        And("^user clicks on Review button in termination page$", () -> {
+            context.lineManager.clickReviewButton();
+        });
+        And("^user clicks Yes button on popup modal in termination review page$", () -> {
+            context.employeeEditMyDetails.clickYesOnPopup();
+        });
+        And("^user clicks Ok button confirmation popup modal in termination review page$", () -> {
+            context.lineManager.clickOKOnPopup();
         });
     }
 

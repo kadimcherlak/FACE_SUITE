@@ -81,6 +81,9 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
     @FindBy(xpath = "//label[text()='Person Number']/following::td[1]")
     private WebElement personNo;
+    
+    @FindBy(xpath = "//label[text()='Name']/following::td[1]")
+    private WebElement personName;
 
     @FindBy(xpath = "//label[text()='Address Line 1']/following::input[1]")
     private WebElement addressLine1;
@@ -167,7 +170,15 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     //koushik added 3/16 cog
     @FindBy(xpath = "//input[contains(@id,'ManagerName')]")
     private WebElement managerName;
-    
+
+    // raghav added 3/18
+    @FindBy(xpath = "//label[text()='Type']/following::input[1]")
+    private WebElement managerType;
+
+    //raghav added 3/18
+    @FindBy(xpath = "//img[contains(@id,'AU2:insert::icon')]")
+    private WebElement managerAddRow;
+
     public HireAnEmployeePage(Context context) {
         super(context);
         this.context = context;
@@ -218,7 +229,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
         try {
             // Enter Hire Date
             basicDetailsDate.clear();
-            actions.doubleClick(basicDetailsDate).sendKeys(getCurrentDate());
+            actions.doubleClick(basicDetailsDate).sendKeys(data.getHireDate());
 
             // Select Hire Action
             basicDetailsAction.click();
@@ -274,7 +285,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             addRow.click();
 
             // Enter Country
-            waitFor(ExpectedConditions.visibilityOf(country), 15);
+            waitFor(ExpectedConditions.visibilityOf(country), 30);
             country.clear();
             country.sendKeys(data.getCountry());
             waitNormalTime();
@@ -312,13 +323,14 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
         try {
             // Set Person Number for Future Use and Reference
             waitFor(ExpectedConditions.visibilityOf(personNo), 15);
-            String personNumber = personNo.getText();
+            //String personNumber = personNo.getText();
+            data.setPersonNumber(personNo.getText());
+            data.setPersonName(personName.getText());
             /*writeToExcel("UPDATE_REMOVE_I9_STATUS", "personNumber", personNumber);
             writeToExcel("UPDATE_ELEMENT_ENTRIES", "personNumber", personNumber);
             writeToExcel("UPDATE_PERSONAL_ASSIGNMENT_DATA", "personNumber", personNumber);
             writeToExcel("EDIT_PROJECTED_ENDDATE", "personNumber", personNumber);*/
-            csvWriter(personNumber);
-            System.out.println(personNumber);
+            //System.out.println(personNumber);
 
             // Enter Address Line 1
             waitFor(ExpectedConditions.elementToBeClickable(addressLine1), 15);
@@ -357,13 +369,13 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             maritalStatus.sendKeys(Keys.TAB);
 
             // Enter Veteran Self-Identification Status
-            waitFor(ExpectedConditions.elementToBeClickable(veteranSelfIdentificationStatus), 15);
+            /*waitFor(ExpectedConditions.elementToBeClickable(veteranSelfIdentificationStatus), 15);
             veteranSelfIdentificationStatus.sendKeys(data.getVeteranSelfIdentificationStatus());
             veteranSelfIdentificationStatus.sendKeys(Keys.TAB);
 
             // Enter Newly Separated Veteran Discharge Date
             waitFor(ExpectedConditions.elementToBeClickable(newlySeparatedVeteranDischargeDate), 15);
-            newlySeparatedVeteranDischargeDate.sendKeys(data.getNewlySeparatedVeteranDischargeDate());
+            newlySeparatedVeteranDischargeDate.sendKeys(data.getNewlySeparatedVeteranDischargeDate());*/
 
             // Goto next tab
             waitNormalTime();
@@ -430,11 +442,26 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             // Enter hourly Paid Or Salaried
             waitFor(ExpectedConditions.elementToBeClickable(hourlyPaidOrSalaried), 15);
             hourlyPaidOrSalaried.sendKeys(data.getHourlyPaidOrSalaried());
+            waitNormalTime();
 
             //3/16 adding Manager name logic
-            waitFor(ExpectedConditions.elementToBeClickable(managerName), 15);
-            managerName.sendKeys(data.getManagerName());
-            
+            //3/18 Adding additional logic for handling global scenario
+            if (driver.findElements(By.xpath("//input[contains(@id,'ManagerName')]")).size() != 0) {
+                waitFor(ExpectedConditions.elementToBeClickable(managerName), 15);
+                managerName.sendKeys(data.getManagerName());
+            } else {
+                waitFor(ExpectedConditions.elementToBeClickable(managerAddRow), 15);
+                managerAddRow.click();
+
+                waitFor(ExpectedConditions.elementToBeClickable(managerName), 15);
+                managerName.sendKeys(data.getManagerName());
+
+                waitFor(ExpectedConditions.elementToBeClickable(managerType), 15);
+                managerType.click();
+                managerType.sendKeys(data.getManagerType());
+            }
+
+
            /* //3/4 added for cognizant instance
             waitFor(ExpectedConditions.elementToBeClickable(birthday), 15);
             birthday.clear();

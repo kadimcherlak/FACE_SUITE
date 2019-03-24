@@ -92,24 +92,26 @@ public class EmployeeEditMyDetailsSteps implements En {
             context.loginAndHome.checkEmpMyDetailsContactInfoPageDisplayed();
         });
 
+
         When("user clicks on Add icon in the Address section", () -> {
             context.employeeEditMyDetails.clickAddressAdd();
         });
+
 
         When("user click on submit button in New Contact page", () -> {
             context.employeeEditMyDetails.clickEmergencyContactSubmit();
         });
 
         When("user Enter Details in Address fields", () -> {
-            context.employeeEditMyDetails.fillAlternateWorklocationAddress();
+            context.employeeEditMyDetails.fillNewAddressType();
         });
 
         When("user click on submit button in Contact Information page", () -> {
             context.employeeEditMyDetails.clickContactSubmit();
         });
 
-        When("Alternate Work location address should be displayed", () -> {
-            context.employeeEditMyDetails.checkAlternateWorkLocationAddressDisplayed();
+        When("New Mailing address should be displayed", () -> {
+            context.employeeEditMyDetails.checkNewMailingAddressDisplayed();
         });
 
         When("user click on Save and Close button", () -> {
@@ -176,7 +178,7 @@ public class EmployeeEditMyDetailsSteps implements En {
             context.employeeEditMyDetails.taskIconClick();
         });
 
-        And("user clicks Manage Salary option from task icon menu", () -> {
+        And("from task menu user clicks on Manage Salary option", () -> {
             context.employeeEditMyDetails.manageSalaryClick();
         });
 
@@ -438,16 +440,37 @@ public class EmployeeEditMyDetailsSteps implements En {
         Then("^user selected photo is uploaded to system$", () -> {
             context.employeeEditMyDetails.checkUserPhotoUploaded();
         });
-        When("^user enters details in Update Employment Window and click on Ok button$", () -> {
 
+        When("^user enters details in Update Employment Window and click on Ok button$", () -> {
             context.employeeEditMyDetails.fillUpdateEmpWindow_PersonMgmt();
         });
+
         And("^user selects Assignment Status as (.*?)$", (String value) -> {
             context.employeeEditMyDetails.selectAssignmentStatus(value);
         });
+
         When("^user clicks on Review button in Management Employment page$", () -> {
             context.employeeEditMyDetails.clickReviewButton();
+        });
 
+        Then("validate user is able to view work phone, work email and home address", () -> {
+            context.employeeEditMyDetails.validatePhoneEmailAndAddressIsDisplayed();
+        });
+
+        When("click on back button", () -> {
+            context.employeeEditMyDetails.clickOnBackButton();
+        });
+
+        When("user clicks on Personal Details link under Personal Info", () -> {
+            context.employeeEditMyDetails.clickPersonalDetailsLink();
+        });
+
+        Then("validate Biographical Information are displayed", () -> {
+            context.employeeEditMyDetails.validateBiographicalInfoIsDisplayed();
+        });
+
+        Then("user clicks on Document Records link under Personal Info", () -> {
+            context.employeeEditMyDetails.clickDocumentRecordsLink();
         });
 
     }

@@ -90,13 +90,13 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//*[contains(@class,'x11e') and contains(text(),'m')]")
     private WebElement adpSubmitBtn;
 
-    @FindBy(xpath = "(//*[contains(text(),'COMP_ELEMENT')])[1]")
+    @FindBy(xpath = "(//*[contains(text(),'Comp One Off Bonus Pay')])[1]")
     private WebElement adpRowAdded;
 
     @FindBy(xpath = "(//span[@class='xwy'])[1]")
     private WebElement done;
 
-    @FindBy(xpath = "//span[contains(@id,'table2:0:ot11')]")
+    @FindBy(xpath = "//a[contains(@id,'table2:0:gl1')]")
     private WebElement personLink;
 
     @FindBy(xpath = "//a[@title='Edit']")
@@ -271,14 +271,14 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
         try {
             // Enter person number into keywords
             waitFor(ExpectedConditions.elementToBeClickable(keywords), 15);
-            keywords.sendKeys(csvReader());
+            keywords.sendKeys(csvReader()[0]);
 
             // Enter effective as of date
             waitFor(ExpectedConditions.elementToBeClickable(effectiveAsOfDate), 15);
             effectiveAsOfDate.clear();
 
             // Add Current Date + 1 as the senario runs before this test changes the date to current date +1 (Scenario name : Seniority date)
-            searchDate = addDaysToDate(getCurrentDate(), 1, "mm/dd/yyyy");
+            searchDate = addDaysToDate("3/14/2019", 1, "mm/dd/yyyy");
 
             effectiveAsOfDate.sendKeys(searchDate);
             waitShortTime();
@@ -296,11 +296,11 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
             // Check for Employee for max 60 seconds
             elementsize = driver
-                    .findElements(By.xpath("//span[text()='" + csvReader() + "']")).size();
+                    .findElements(By.xpath("//span[text()='" + csvReader()[0] + "']")).size();
             int counter = 0;
             while (elementsize == 0 && counter <= 20) {
                 elementsize = driver
-                        .findElements(By.xpath("//span[text()='" + csvReader() + "']")).size();
+                        .findElements(By.xpath("//span[text()='" + csvReader()[0] + "']")).size();
                 clickSearch();
                 waitShortTime();
                 counter++;
@@ -311,6 +311,35 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
                 throw new Exception("Person number not found after 60 seconds");
             }
             reportWithScreenShot("User is on search result page");
+        } catch (Exception e) {
+            reportWithScreenShot("Error While checking search results of employee:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+
+    // After entering person number, click on Search Button until person
+    public void clickSearchPersonNotDisplayed() {
+        try {
+            clickSearch(); // Click Search Button
+
+            // Check for Employee for max 60 seconds
+            elementsize = driver
+                    .findElements(By.xpath("//span[text()='" + csvReader()[0] + "']")).size();
+            int counter = 0;
+            while (elementsize >= 1 && counter <= 20) {
+                elementsize = driver
+                        .findElements(By.xpath("//span[text()='" + csvReader()[0] + "']")).size();
+                clickSearch();
+                waitShortTime();
+                counter++;
+            }
+
+            // Throw Exception if Person name now found after 60 seconds
+            if (elementsize >= 1) {
+                throw new Exception("Person number present even after 60 seconds");
+            }
+            reportWithScreenShot("User is not present search result page as expected");
         } catch (Exception e) {
             reportWithScreenShot("Error While checking search results of employee:" + e.getMessage());
             Assert.fail();
@@ -397,7 +426,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             // Enter Business Unit
             waitFor(ExpectedConditions.elementToBeClickable(elementName), 15);
             elementName.sendKeys(data.getElementNameADP());
-            elementName.sendKeys(Keys.TAB);
+            elementName.sendKeys(Keys.ENTER);
             waitNormalTime();
             //   waitFor(ExpectedConditions.visibilityOf(payrollRelationship), 15);
 
@@ -567,7 +596,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             updateEmploymentEffectiveDate.clear();
 
             // Add Current Date + 1 as the senario runs before this test changes the date to current date +1 (Scenario name : Seniority date
-            updateEmploymentEffectiveDate.sendKeys(searchDate);
+            updateEmploymentEffectiveDate.sendKeys(data.getEffectiveAsOfDate());
             updateEmploymentEffectiveDate.sendKeys(Keys.TAB);
             waitShortTime();
 
@@ -853,7 +882,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             waitFor(ExpectedConditions.elementToBeClickable(hireDate), 15);
             String existingHireDate=enterpriseHireDate.getText().trim();
             hireDate.clear();
-            newHireDate=addDaysToDate(existingHireDate, 1, "mm/dd/yyyy");
+            newHireDate=addDaysToDate(existingHireDate, 1, "mm/dd/yy");
             hireDate.sendKeys(newHireDate);
         } catch (Exception e) {
         	System.out.println(e);

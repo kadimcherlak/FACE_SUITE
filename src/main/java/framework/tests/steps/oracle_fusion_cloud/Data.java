@@ -64,6 +64,7 @@ public class Data extends framework.core.models.Data {
     private String location;
     private String locationContact;
     private String managerName;
+    private String managerType;
     private String maritalStatus;
     private String name;
     private String nationalID;
@@ -162,7 +163,6 @@ public class Data extends framework.core.models.Data {
     public String getBankName() {
         return bankName;
     }
-
 
     public String getBusinessUnit() {
         return businessUnit;
@@ -364,6 +364,10 @@ public class Data extends framework.core.models.Data {
         return managerName;
     }
 
+    public String getManagerType() {
+        return managerType;
+    }
+
     public String getMaritalStatus() {
         return maritalStatus;
     }
@@ -424,6 +428,10 @@ public class Data extends framework.core.models.Data {
 
     public String getPersonName() {
         return personName;
+    }
+
+    public void setPersonName(String personName) {
+        this.personName = personName;
     }
 
     public String getPhoneType() {
@@ -566,6 +574,5 @@ public class Data extends framework.core.models.Data {
     public void setCorrectEmploymentActionReason(String correctEmploymentActionReason) {
         this.correctEmploymentActionReason = correctEmploymentActionReason;
     }
-
 
 }

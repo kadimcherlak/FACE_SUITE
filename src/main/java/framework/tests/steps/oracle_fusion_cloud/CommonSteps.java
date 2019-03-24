@@ -38,12 +38,28 @@ public class CommonSteps implements En {
             context.loginAndHome.checkHomePageAvailable();
         });
 
+        Then("user waits for few seconds before login", () -> {
+            context.loginAndHome.waitNormalTime();
+        });
+
         Given("user login to Oracle Applications Cloud web page", () -> {
             context.loginAndHome.openUrl();
             context.loginAndHome.checkLoginPageAvailable();
             context.loginAndHome.enterCredentials();
             context.loginAndHome.signIn();
             context.loginAndHome.checkHomePageAvailable();
+        });
+
+        When("user clicks on Bell icon", () -> {
+            context.loginAndHome.clickBellIcon();
+        });
+
+        When("user checks for notifications", () -> {
+            context.loginAndHome.checkNotification();
+        });
+
+        Then("Approved notification should be present", () -> {
+            context.loginAndHome.checkApproved();
         });
 
         When("user clicks on Navigator icon", () -> {
@@ -62,6 +78,10 @@ public class CommonSteps implements En {
             context.hireAnEmployee.clickConfirmButton();
         });
 
+        Then("new employee details are stored into csv", () -> {
+            context.hireAnEmployee.saveEmployeeDetails();
+        });
+
         When("user clicks on Sign Out option", () -> {
             context.loginAndHome.signOut();
         });
@@ -74,7 +94,7 @@ public class CommonSteps implements En {
         And("^user updated the Excel file with Row Name (.*?) and Column Name (.*?) with value (.*?)$", (String rowName, String colName, String valToUpdate) -> {
             context.loginAndHome.writeToExcel(rowName, colName, valToUpdate);
             context.loginAndHome.csvReader();
-            context.loginAndHome.csvWriter(valToUpdate);
+            context.loginAndHome.csvWriter(valToUpdate, "firstName lastName");
         });
     }
 }
