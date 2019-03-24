@@ -14,6 +14,11 @@ import org.testng.Assert;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
     private Context context;
@@ -229,8 +234,10 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
         try {
             // Enter Hire Date
             basicDetailsDate.clear();
-            actions.doubleClick(basicDetailsDate).sendKeys(data.getHireDate());
-
+         //   actions.doubleClick(basicDetailsDate).sendKeys(data.getHireDate());
+            String hireDate=getDynamicDate(60);
+            System.out.println(hireDate);
+            actions.doubleClick(basicDetailsDate).sendKeys(hireDate);
             // Select Hire Action
             basicDetailsAction.click();
             waitFor(ExpectedConditions
