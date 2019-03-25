@@ -236,7 +236,7 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
         	String personName = csvReader()[1];
         	waitFor(ExpectedConditions.elementToBeClickable(personSearchTextBox), 15);
         	personSearchTextBox.clear();
-        	personSearchTextBox.sendKeys(personName);
+        	personSearchTextBox.sendKeys(personName.trim());
         	waitFor(ExpectedConditions.elementToBeClickable(searchImage), 15);
         	searchImage.click();
             String moreInformationXpath = "(//a[text()='" + personName + "'])[1]/following::img[1]";
@@ -715,7 +715,7 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
     public boolean waitForChangeManagerLinkEnabled(String xpath)
     {
     	int counter=0;
-    	while(counter<120)
+    	while(counter<20)
     	{
     		try
     		{
@@ -724,6 +724,7 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
     		}catch(Exception e)
     		{
     			//System.out.println("Waiting for Change Manager Link to be enabled..");
+    			waitShortTime();
     			counter++;
     		}
     	}
