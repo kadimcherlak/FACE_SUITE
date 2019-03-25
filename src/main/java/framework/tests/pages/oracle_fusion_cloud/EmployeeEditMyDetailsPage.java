@@ -28,7 +28,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//button[contains(.,'Edit')]")
     private WebElement myDetailsEdit;
 
-    @FindBy(xpath = "(//span[text()='Add'])[5]")
+    @FindBy(xpath = "(//span[text()='Add'])[2]")
     private WebElement addressAddBtn;
 
     @FindBy(xpath = "//a[@title='Add']")
@@ -1938,7 +1938,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             // Enter current date into effective date
             waitFor(ExpectedConditions.elementToBeClickable(modalUpdateEmploymentEffectiveDate), 15);
             modalUpdateEmploymentEffectiveDate.clear();
-            modalUpdateEmploymentEffectiveDate.sendKeys(getCurrentDate());
+            modalUpdateEmploymentEffectiveDate.sendKeys(data.getEffectiveAsOfDate());
             modalUpdateEmploymentEffectiveDate.sendKeys(Keys.TAB);
             waitShortTime();
 

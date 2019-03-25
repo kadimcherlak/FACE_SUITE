@@ -480,16 +480,17 @@ public class EmployeeEditMyDetailsSteps implements En {
         Then("^user selected photo is uploaded to system$", () -> {
             context.employeeEditMyDetails.checkUserPhotoUploaded();
         });
-        When("^user enters details in Update Employment Window and click on Ok button$", () -> {
 
+        When("^user enters details in Update Employment Window and click on Ok button$", () -> {
             context.employeeEditMyDetails.fillUpdateEmpWindow_PersonMgmt();
         });
+
         And("^user selects Assignment Status as (.*?)$", (String value) -> {
             context.employeeEditMyDetails.selectAssignmentStatus(value);
         });
+
         When("^user clicks on Review button in Management Employment page$", () -> {
             context.employeeEditMyDetails.clickReviewButton();
-
         });
 
         Then("validate user is able to view work phone, work email and home address", () -> {

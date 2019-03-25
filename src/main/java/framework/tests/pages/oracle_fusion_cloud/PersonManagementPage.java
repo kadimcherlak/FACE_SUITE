@@ -278,7 +278,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             effectiveAsOfDate.clear();
 
             // Add Current Date + 1 as the senario runs before this test changes the date to current date +1 (Scenario name : Seniority date)
-            searchDate = addDaysToDate(getCurrentDate(), 1, "mm/dd/yyyy");
+            searchDate = addDaysToDate("3/14/2019", 1, "mm/dd/yyyy");
 
             effectiveAsOfDate.sendKeys(searchDate);
             waitShortTime();
@@ -596,7 +596,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             updateEmploymentEffectiveDate.clear();
 
             // Add Current Date + 1 as the senario runs before this test changes the date to current date +1 (Scenario name : Seniority date
-            updateEmploymentEffectiveDate.sendKeys(searchDate);
+            updateEmploymentEffectiveDate.sendKeys(data.getEffectiveAsOfDate());
             updateEmploymentEffectiveDate.sendKeys(Keys.TAB);
             waitShortTime();
 

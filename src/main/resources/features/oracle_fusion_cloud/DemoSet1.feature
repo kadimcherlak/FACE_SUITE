@@ -1,7 +1,7 @@
 @DemoSet1
 Feature: New Hire and Related Activities
 
-  @NEW_HIRE_USING_HDL1
+  @NEW_HIRE_USING_HDL
   Scenario Outline: New Hire Process using HDL File upload
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -25,10 +25,10 @@ Feature: New Hire and Related Activities
     Then Sign out should be successful
     Examples:
       | Test Scenario      | Test File Name | Test Sheet Name  |
-      | NEW_HIRE_USING_HDL1 | TestData.xlsx  | Employee_Details |
+      | NEW_HIRE_USING_HDL | TestData.xlsx  | Employee_Details |
 
 
-  @UPDATE_I9_STATUS1
+  @UPDATE_I9_STATUS
   Scenario Outline:  Verify PPS is able to update I9 Status
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -54,10 +54,10 @@ Feature: New Hire and Related Activities
 
     Examples:
       | Test Scenario    | Test File Name | Test Sheet Name    |
-      | UPDATE_I9_STATUS1 | TestData.xlsx  | Talent_Acquisition |
+      | UPDATE_I9_STATUS | TestData.xlsx  | Talent_Acquisition |
 
 
-  @EDIT_SALARY_PROPOSAL_REASON1
+  @EDIT_SALARY_PROPOSAL_REASON
   Scenario Outline: Admin updating Salary Proposal Reason for an employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -81,10 +81,10 @@ Feature: New Hire and Related Activities
 
     Examples:
       | Test Scenario               | Test File Name | Test Sheet Name  |
-      | EDIT_SALARY_PROPOSAL_REASON1 | TestData.xlsx  | Employee_Details |
+      | EDIT_SALARY_PROPOSAL_REASON | TestData.xlsx  | Employee_Details |
 
 
-  @CHANGE_SALARY_BASIS_FOR_EXISTING_EMP1
+  @CHANGE_SALARY_BASIS_FOR_EXISTING_EMP
   Scenario Outline: Admin changing salary basis of an employee to 40 hours
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -109,10 +109,10 @@ Feature: New Hire and Related Activities
 
     Examples:
       | Test Scenario                        | Test File Name | Test Sheet Name  |
-      | CHANGE_SALARY_BASIS_FOR_EXISTING_EMP1 | TestData.xlsx  | Employee_Details |
+      | CHANGE_SALARY_BASIS_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
 
 
-  @UPDATE_SALARY_FOR_EXISTING_EMP1
+  @UPDATE_SALARY_FOR_EXISTING_EMP
   Scenario Outline: Admin updating salary component of an existing employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -136,10 +136,10 @@ Feature: New Hire and Related Activities
 
     Examples:
       | Test Scenario                  | Test File Name | Test Sheet Name  |
-      | UPDATE_SALARY_FOR_EXISTING_EMP1 | TestData.xlsx  | Employee_Details |
+      | UPDATE_SALARY_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
 
 
-  @LINE_MANAGER_PERFORMS_CHANGE_MANAGER1
+  @LINE_MANAGER_PERFORMS_CHANGE_MANAGER
   Scenario Outline: Line Manager to Perform Change Manager transaction for direct reportees
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -158,10 +158,9 @@ Feature: New Hire and Related Activities
 
     Examples:
       | Test Scenario                        | Test File Name | Test Sheet Name |
-      | LINE_MANAGER_PERFORMS_CHANGE_MANAGER1 | TestData.xlsx  | Line_Manager    |
+      | LINE_MANAGER_PERFORMS_CHANGE_MANAGER | TestData.xlsx  | Line_Manager    |
 
-
-  @RETIREMENT1
+  @RETIREMENT
   Scenario Outline: Employee Retirement
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -186,15 +185,14 @@ Feature: New Hire and Related Activities
     And user clicks Ok button confirmation popup modal in termination review page
     And user clicks on Sign Out option
     Then Sign out should be successful
+    And user waits for few seconds before login
     And user login to Oracle Applications Cloud web page
-    When user clicks on Navigator icon
-    And user clicks on Person Management link in Navigator Pane
-    Then Person Management: Search screen should be displayed
-    When user enter the Person number generated from previous step in Person Number field
-    And user click on Search button to verify is person is not available in system
+    When user clicks on Bell icon
+    And user checks for notifications
+    Then Approved notification should be present
     And user clicks on Sign Out option
     Then Sign out should be successful
 
     Examples:
       | Test Scenario | Test File Name | Test Sheet Name |
-      | RETIREMENT1   | TestData.xlsx  | Line_Manager    |
+      | RETIREMENT    | TestData.xlsx  | Line_Manager    |
