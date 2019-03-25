@@ -1,7 +1,7 @@
 @DemoSet1
 Feature: New Hire and Related Activities
 
-  @NEW_HIRE_USING_HDL
+  @NEW_HIRE_USING_HDL1
   Scenario Outline: New Hire Process using HDL File upload
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -25,10 +25,10 @@ Feature: New Hire and Related Activities
     Then Sign out should be successful
     Examples:
       | Test Scenario      | Test File Name | Test Sheet Name  |
-      | NEW_HIRE_USING_HDL | TestData.xlsx  | Employee_Details |
+      | NEW_HIRE_USING_HDL1 | TestData.xlsx  | Employee_Details |
 
 
-  @UPDATE_I9_STATUS
+  @UPDATE_I9_STATUS1
   Scenario Outline:  Verify PPS is able to update I9 Status
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -54,10 +54,10 @@ Feature: New Hire and Related Activities
 
     Examples:
       | Test Scenario    | Test File Name | Test Sheet Name    |
-      | UPDATE_I9_STATUS | TestData.xlsx  | Talent_Acquisition |
+      | UPDATE_I9_STATUS1 | TestData.xlsx  | Talent_Acquisition |
 
 
-  @EDIT_SALARY_PROPOSAL_REASON
+  @EDIT_SALARY_PROPOSAL_REASON1
   Scenario Outline: Admin updating Salary Proposal Reason for an employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -81,10 +81,10 @@ Feature: New Hire and Related Activities
 
     Examples:
       | Test Scenario               | Test File Name | Test Sheet Name  |
-      | EDIT_SALARY_PROPOSAL_REASON | TestData.xlsx  | Employee_Details |
+      | EDIT_SALARY_PROPOSAL_REASON1 | TestData.xlsx  | Employee_Details |
 
 
-  @CHANGE_SALARY_BASIS_FOR_EXISTING_EMP
+  @CHANGE_SALARY_BASIS_FOR_EXISTING_EMP1
   Scenario Outline: Admin changing salary basis of an employee to 40 hours
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -109,10 +109,10 @@ Feature: New Hire and Related Activities
 
     Examples:
       | Test Scenario                        | Test File Name | Test Sheet Name  |
-      | CHANGE_SALARY_BASIS_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
+      | CHANGE_SALARY_BASIS_FOR_EXISTING_EMP1 | TestData.xlsx  | Employee_Details |
 
 
-  @UPDATE_SALARY_FOR_EXISTING_EMP
+  @UPDATE_SALARY_FOR_EXISTING_EMP1
   Scenario Outline: Admin updating salary component of an existing employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -136,10 +136,10 @@ Feature: New Hire and Related Activities
 
     Examples:
       | Test Scenario                  | Test File Name | Test Sheet Name  |
-      | UPDATE_SALARY_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
+      | UPDATE_SALARY_FOR_EXISTING_EMP1 | TestData.xlsx  | Employee_Details |
 
 
-  @LINE_MANAGER_PERFORMS_CHANGE_MANAGER
+  @LINE_MANAGER_PERFORMS_CHANGE_MANAGER1
   Scenario Outline: Line Manager to Perform Change Manager transaction for direct reportees
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -158,10 +158,10 @@ Feature: New Hire and Related Activities
 
     Examples:
       | Test Scenario                        | Test File Name | Test Sheet Name |
-      | LINE_MANAGER_PERFORMS_CHANGE_MANAGER | TestData.xlsx  | Line_Manager    |
+      | LINE_MANAGER_PERFORMS_CHANGE_MANAGER1 | TestData.xlsx  | Line_Manager    |
 
 
-  @RETIREMENT
+  @RETIREMENT1
   Scenario Outline: Employee Retirement
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -197,4 +197,4 @@ Feature: New Hire and Related Activities
 
     Examples:
       | Test Scenario | Test File Name | Test Sheet Name |
-      | RETIREMENT    | TestData.xlsx  | Line_Manager    |
+      | RETIREMENT1   | TestData.xlsx  | Line_Manager    |

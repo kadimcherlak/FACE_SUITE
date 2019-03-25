@@ -139,7 +139,6 @@ Feature: New Hire and Related Activities
       | LEGAL_ENTITY_TRANSFER | TestData.xlsx  | Talent_Acquisition |
 
 
-
   @TERMINATION
   Scenario Outline: Employee Termination
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>

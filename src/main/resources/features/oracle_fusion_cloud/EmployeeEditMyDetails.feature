@@ -285,3 +285,35 @@ Feature: Perform Edit on Employee Information
     Examples:
       | Test Scenario                    | Test File Name | Test Sheet Name  |
       | CHANGE_ASSIGNMENT_VIA_PRSN_MGMNT | TestData.xlsx  | Employee_Details |
+
+  @ADD_SKILLS_AND_QUALIFICATIONS
+  Scenario Outline: Employee add Skills and Qualification details
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Personal Information link under About me section
+    Then Personal Info page should be displayed
+    When user clicks on Personal Details link in Person Info page
+    Then Personal Details page should be displayed
+    And user clicks on ellipsis on Employee Logo name
+    Then users More option menu is displayed
+    And user clicks Skills and Qualifications link
+    Then Skills and Qualifications page should be displayed
+    When user clicks on Edit button on top right side
+    Then edit Skills and Qualifications page should be displayed
+    When user clicks on Add Content and select Degrees Link
+    Then Degrees page should be displayed
+    And user enter Degree details
+    Then user clicks on Submit button in edit Skills and Qualifications page
+    When user clicks on Add Content and select Licenses and Certifications Link
+    Then Licenses and Certifications page should be displayed
+    And user enter Licenses and Certifications details
+    Then user clicks on Submit button in edit Skills and Qualifications page
+    And user clicks on Save and Close button
+    Then Personal Info page should be displayed
+    When user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario                        | Test File Name | Test Sheet Name  |
+      | ADD_SKILLS_AND_QUALIFICATION_DETAILS | TestData.xlsx  | Employee_Details |

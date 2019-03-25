@@ -1,7 +1,7 @@
 @DemoSet3
 Feature: Employee edits Personal Information
 
-  @EMPLOYEE_UPDATE_A_PHOTO
+  @EMPLOYEE_UPDATE_A_PHOTO1
   Scenario Outline: Employee updating photo from personal information page
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -24,8 +24,7 @@ Feature: Employee edits Personal Information
       | Test Scenario            | Test File Name | Test Sheet Name  |
       | EMPLOYEE_UPDATE_A_PHOTO | TestData.xlsx  | Employee_Details |
 
-
-  @VALIDATE_ADDRESS_FORMAT
+  @VALIDATE_ADDRESS_FORMAT1
   Scenario Outline: Validate US Address format after clicking on edit address
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -43,8 +42,7 @@ Feature: Employee edits Personal Information
       | Test Scenario           | Test File Name | Test Sheet Name  |
       | VALIDATE_ADDRESS_FORMAT | TestData.xlsx  | Employee_Details |
 
-
-  @ADD_NEW_ADDRESS_TYPE_DETAILS
+  @ADD_NEW_ADDRESS_TYPE_DETAILS1
   Scenario Outline: Employee add New Address of type Mailing Address
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -64,9 +62,7 @@ Feature: Employee edits Personal Information
       | Test Scenario                | Test File Name | Test Sheet Name  |
       | ADD_NEW_ADDRESS_TYPE_DETAILS | TestData.xlsx  | Employee_Details |
 
-
-
-  @ADD_NEW_EMERGENCY_CONTACT_DETAILS
+  @ADD_NEW_EMERGENCY_CONTACT_DETAILS1
   Scenario Outline: Employee add Emergency Contact details
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page

@@ -508,6 +508,46 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//a[contains(@id,'table2:0:gl1')]")
     private WebElement personLink;
 
+    @FindBy(xpath = "//span[text()='Skills and Qualifications']")
+    private WebElement skillsAndQualificationsLink;
+
+    @FindBy(xpath = "//h1[contains(text(),'Skills and Qualifications')]")
+    private WebElement skillsAndQualificationsPage;
+
+    @FindBy(xpath = "//h1[contains(text(),'Edit Skills and Qualifications')]")
+    private WebElement editSkillsAndQualificationsPage;
+
+    @FindBy(xpath = "//a[text()='Add Content']")
+    private WebElement addContent;
+
+    @FindBy(xpath = "//td[text()='Degrees']")
+    private WebElement degreesLink;
+
+    @FindBy(xpath = "//td[text()='Licenses and Certifications']")
+    private WebElement licensesLink;
+
+    @FindBy(xpath = "//span[text()='Degrees']")
+    private WebElement degreeText;
+
+    @FindBy(xpath = "//span[text()='Number']")
+    private WebElement numberLicensestext;
+
+    @FindBy(xpath = "//input[contains(@id,'name1Id::content')]")
+    private WebElement degreeSkillsName;
+
+    @FindBy(xpath = "//span[text()='Major']/following::input[2]")
+    private WebElement degreeMajor;
+
+    @FindBy(xpath = "//span[text()='Major']/following::input[3]")
+    private WebElement degreeSchool;
+
+    @FindBy(xpath = "//span[text()='Major']/following::input[4]")
+    private WebElement degreeYear;
+
+    @FindBy(xpath = "//span[text()='Number']/following::input[2]")
+    private WebElement skillsNumber;
+
+
     public EmployeeEditMyDetailsPage(Context context) {
         super(context);
         this.context = context;
@@ -2042,5 +2082,139 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-    
+
+    //clicking Skills and Qualifications link in personal information page
+    public void clickSkillsAndQualificationsLink() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(skillsAndQualificationsLink), 15);
+            skillsAndQualificationsLink.click();
+            reportWithScreenShot("User clicks on Skills and Qualifications link ");
+        } catch (Exception e) {
+            reportWithScreenShot("Skills and Qualifications link is not clicked");
+            Assert.fail();
+        }
+    }
+
+    //checking Skills and Qualifications page is displayed
+    public void checkSkillsAndQualificationsPageDisplayed() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(skillsAndQualificationsPage), 15);
+            skillsAndQualificationsPage.click();
+            reportWithScreenShot("Skills and Qualifications Page Displayed ");
+        } catch (Exception e) {
+            reportWithScreenShot("Skills and Qualifications Page is not Displayed");
+            Assert.fail();
+        }
+    }
+
+    //checking Edit Skills and Qualifications page is displayed
+    public void checkEditSkillsAndQualificationsPageDisplayed() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(editSkillsAndQualificationsPage), 15);
+            editSkillsAndQualificationsPage.click();
+            reportWithScreenShot("Edit Skills and Qualifications Page Displayed ");
+        } catch (Exception e) {
+            reportWithScreenShot("Edit Skills and Qualifications Page is not Displayed");
+            Assert.fail();
+        }
+    }
+
+    // user clicks on Add Content and Degree Link
+    public void clickAddContentDegree() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(addContent), 15);
+            addContent.click();
+            waitFor(ExpectedConditions.elementToBeClickable(degreesLink), 15);
+            degreesLink.click();
+            reportWithScreenShot("User clicks on Degree Link ");
+        } catch (Exception e) {
+            reportWithScreenShot("Unable to Click on Degrees Link");
+            Assert.fail();
+        }
+    }
+
+    // user clicks on Add Content and License and Certifications Link
+    public void clickAddContentLicense() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(addContent), 15);
+            addContent.click();
+            waitFor(ExpectedConditions.elementToBeClickable(licensesLink), 15);
+            licensesLink.click();
+            reportWithScreenShot("User clicks on License and Certifications Link ");
+        } catch (Exception e) {
+            reportWithScreenShot("Unable to Click on License and Certifications Link");
+            Assert.fail();
+        }
+    }
+
+    //checking Degree page is displayed
+    public void checkDegreePageDisplayed() {
+        try {
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.visibilityOf(degreeText), 15);
+            assertThat(degreeText.isDisplayed()).isTrue();
+            reportWithScreenShot("Degree Page Displayed ");
+        } catch (Exception e) {
+            reportWithScreenShot("Degree Page is not Displayed");
+            Assert.fail();
+        }
+    }
+
+    //checking License and Certifications page is displayed
+    public void checkLicensesAndCertificationsPageDisplayed() {
+        try {
+            waitUntilPageLoad();
+            assertThat(numberLicensestext.isDisplayed()).isTrue();
+            reportWithScreenShot("License and Certifications Page Displayed ");
+        } catch (Exception e) {
+            reportWithScreenShot("License and Certifications Page is not Displayed");
+            Assert.fail();
+        }
+    }
+
+    // user enter Degree details
+    public void enterDegreeDetails() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(degreeSkillsName), 15);
+            degreeSkillsName.sendKeys(data.getDegreeName());
+            waitFor(ExpectedConditions.elementToBeClickable(degreeMajor), 15);
+            degreeMajor.sendKeys(data.getDegreeMajor());
+            waitFor(ExpectedConditions.elementToBeClickable(degreeSchool), 15);
+            degreeSchool.sendKeys(data.getDegreeSchool());
+            waitFor(ExpectedConditions.elementToBeClickable(degreeYear), 15);
+            degreeYear.sendKeys(data.getDegreeYear());
+            reportWithScreenShot("User enter Degree details ");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while entering Degree details:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // user enter License and Certifications details
+    public void enterLicensesAndCertificationsDetails() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(degreeSkillsName), 15);
+            degreeSkillsName.sendKeys(data.getLicenseName());
+            waitFor(ExpectedConditions.elementToBeClickable(skillsNumber), 15);
+            skillsNumber.sendKeys(data.getLicenseNumber());
+            reportWithScreenShot("User enter License and Certifications details ");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while entering License and Certifications details:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // user Clicks Submit button
+    public void clickSkillsSubmitButton() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(btnSubmit_ManageSalary), 15);
+            btnSubmit_ManageSalary.click();
+            reportWithScreenShot("User clicks Submit button ");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking Submit button:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+
 }
