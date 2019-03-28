@@ -12,18 +12,9 @@ testConfig:
 
 driverConfig:
   desiredCapabilities:
-    browserName: chrome
-    version: 60
-    platform: WINDOWS
-    javascriptEnabled: true
-    acceptSslCerts: true
-    handlesAlerts: true
-    cssSelectorsEnabled: true
-    unexpectedAlertBehaviour: accept
-    explicitTimeout: 60
-    pollingTime: 500
+    browserName:
   chrome:
-    path: "C:\\Drivers\\chromedriver_win32\\chromedriver.exe"
+    #path: "C:\\Drivers\\chromedriver_win32\\chromedriver.exe"
     args:
       --disable-extensions
       --disable-infobars
@@ -44,6 +35,9 @@ driverConfig:
 
 environments:
   oracle_fusion_dev:
-    webUrl: https://hcczdev-dev.login.em3.oraclecloud.com
+    webUrl: https://ecqg-dev1.fa.us2.oraclecloud.com:443/
   oracle_fusion_test:
     webUrl: https://hcczdev-test.login.em3.oraclecloud.com
+  oracle_fusion_cognizant:
+    webUrl: https://ecqg-test.fa.us2.oraclecloud.com/hcmUI/faces/FuseWelcome
+  

@@ -6,13 +6,19 @@ public class Data extends framework.core.models.Data {
 
     // Alpha sorted list of models items (yes it will be long normally)
     private String actualAmount;
+    private String accountNumber;
+    private String accountType;
+    private String accountHolder;
     private String addressLine1;
     private String addressLine2;
-    private String altWorkLocationaddressType;
-    private String altWorkLocationcountry;
-    private String altWorkLocationaddressLine1;
-    private String altWorkLocationzipCode;
+    private String altWorkLocationAddressType;
+    private String altWorkLocationCountry;
+    private String altWorkLocationAddressLine1;
+    private String altWorkLocationAddressLine2;
+    private String altWorkLocationZipCode;
     private String assignmentCategory;
+    private String assignmentStatus;
+    private String bankName;
     private String businessUnit;
     private String category;
     private String changeManagerReason;
@@ -37,8 +43,11 @@ public class Data extends framework.core.models.Data {
     private String employmentActionReason;
     private String employeeManagerChange;
     private String email;
+    private String emailType;
     private String erProfitCenter;
     private String firstName;
+    private String filePath;
+    private String familyName;
     private String gender;
     private String globalMobilityIndicator;
     private boolean globalMobilityIndicatorCheck;
@@ -46,19 +55,23 @@ public class Data extends framework.core.models.Data {
     private String hireAction;
     private String hireDate;
     private String hireReason;
+    private String hdlName;
     private String hourlyPaidOrSalaried;
     private String i9Status;
     private String job;
     private String lastName;
     private String legalEmployer;
     private String location;
+    private String locationContact;
     private String managerName;
+    private String managerType;
     private String maritalStatus;
     private String name;
     private String nationalID;
     private String nationalIDType;
     private String newlySeparatedVeteranDischargeDate;
     private String number;
+    private String organizationPaymentMethod;
     private String patternName;
     private String password;
     private String payroll;
@@ -66,6 +79,12 @@ public class Data extends framework.core.models.Data {
     private String payCheckDate;
     private String personNumber;
     private String personName;
+    private String percentage;
+    private String phoneType;
+    private String phoneNumber;
+    private Integer processId;
+    private String relationship;
+    private String routingNumber;
     private String salaryAmount;
     private String salaryBasis;
     private String scenario;
@@ -79,11 +98,30 @@ public class Data extends framework.core.models.Data {
     private String workerType;
     private String workingAsManager;
     private String zipCode;
+    private String employeeName;
+    private String actionManageSalary;
+    private String actionReasonManageSalary;
+    private String currentSalaryAmount;
+    private String projectedEndDate;
+    private String correctEmploymentAction;
+    private String correctEmploymentActionReason;
 
     // Alpha sorted list of getters
     // most of these items get loaded via bean loader, so normally setters not needed.
     public String getActualAmount() {
         return actualAmount;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public String getAccountHolder() {
+        return accountHolder;
     }
 
     public String getAddressLine1() {
@@ -94,24 +132,36 @@ public class Data extends framework.core.models.Data {
         return addressLine2;
     }
 
-    public String getAltWorkLocationaddressType() {
-        return altWorkLocationaddressType;
+    public String getAltWorkLocationAddressType() {
+        return altWorkLocationAddressType;
     }
 
-    public String getAltWorkLocationcountry() {
-        return altWorkLocationcountry;
+    public String getAltWorkLocationCountry() {
+        return altWorkLocationCountry;
     }
 
-    public String getAltWorkLocationaddressLine1() {
-        return altWorkLocationaddressLine1;
+    public String getAltWorkLocationAddressLine1() {
+        return altWorkLocationAddressLine1;
     }
 
-    public String getAltWorkLocationzipCode() {
-        return altWorkLocationzipCode;
+    public String getAltWorkLocationAddressLine2() {
+        return altWorkLocationAddressLine2;
+    }
+
+    public String getAltWorkLocationZipCode() {
+        return altWorkLocationZipCode;
     }
 
     public String getAssignmentCategory() {
         return assignmentCategory;
+    }
+
+    public String getAssignmentStatus() {
+        return assignmentStatus;
+    }
+
+    public String getBankName() {
+        return bankName;
     }
 
     public String getBusinessUnit() {
@@ -190,6 +240,10 @@ public class Data extends framework.core.models.Data {
         return email;
     }
 
+    public String getEmailType() {
+        return emailType;
+    }
+
     public String getEmployeeManagerChange() {
         return employeeManagerChange;
     }
@@ -219,6 +273,10 @@ public class Data extends framework.core.models.Data {
         }
         return "FAUTO" + buffer.toString().toUpperCase();
 
+    }
+
+    public String getFamilyName() {
+        return familyName;
     }
 
     public String getEmploymentAction() {
@@ -261,6 +319,10 @@ public class Data extends framework.core.models.Data {
         return hireReason;
     }
 
+    public String getHdlName() {
+        return hdlName;
+    }
+
     public String getHourlyPaidOrSalaried() {
         return hourlyPaidOrSalaried;
     }
@@ -294,8 +356,16 @@ public class Data extends framework.core.models.Data {
         return location;
     }
 
+    public String getLocationContact() {
+        return locationContact;
+    }
+
     public String getManagerName() {
         return managerName;
+    }
+
+    public String getManagerType() {
+        return managerType;
     }
 
     public String getMaritalStatus() {
@@ -327,6 +397,11 @@ public class Data extends framework.core.models.Data {
         return number;
     }
 
+    public String getOrganizationPaymentMethod() {
+        return organizationPaymentMethod;
+    }
+
+
     public String getPatternName() {
         return patternName;
     }
@@ -343,20 +418,54 @@ public class Data extends framework.core.models.Data {
         return payCheckDate;
     }
 
-    public String getPearsonEmailRequired() {
-        return pearsonEmailRequired;
-    }
-
     public String getPersonNumber() {
         return personNumber;
+    }
+
+    public void setPersonNumber(String personNumber) {
+        this.personNumber = personNumber;
     }
 
     public String getPersonName() {
         return personName;
     }
-    public void setPersonNumber(String personNumber) {
-        this.personNumber = personNumber;
+
+    public void setPersonName(String personName) {
+        this.personName = personName;
     }
+
+    public String getPhoneType() {
+        return phoneType;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public Integer getProcessId() {
+        return processId;
+    }
+
+    public void setProcessId(Integer processId) {
+        this.processId = processId;
+    }
+
+    public String getPercentage() {
+        return percentage;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public String getRelationship() {
+        return relationship;
+    }
+
+    public String getRoutingNumber() {
+        return routingNumber;
+    }
+
 
     public String getSalaryAmount() {
         return salaryAmount;
@@ -408,6 +517,62 @@ public class Data extends framework.core.models.Data {
 
     public String getZipCode() {
         return zipCode;
+    }
+
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
+    }
+
+    public String getActionManageSalary() {
+        return actionManageSalary;
+    }
+
+    public void setActionManageSalary(String actionManageSalary) {
+        this.actionManageSalary = actionManageSalary;
+    }
+
+    public String getActionReasonManageSalary() {
+        return actionReasonManageSalary;
+    }
+
+    public void setActionReasonManageSalary(String actionReasonManageSalary) {
+        this.actionReasonManageSalary = actionReasonManageSalary;
+    }
+
+    public String getCurrentSalaryAmount() {
+        return currentSalaryAmount;
+    }
+
+    public void setCurrentSalaryAmount(String currentSalaryAmount) {
+        this.currentSalaryAmount = currentSalaryAmount;
+    }
+
+    public String getProjectedEndDate() {
+        return projectedEndDate;
+    }
+
+    public void setProjectedEndDate(String projectedEndDate) {
+        this.projectedEndDate = projectedEndDate;
+    }
+
+    public String getCorrectEmploymentAction() {
+        return correctEmploymentAction;
+    }
+
+    public void setCorrectEmploymentAction(String correctEmploymentAction) {
+        this.correctEmploymentAction = correctEmploymentAction;
+    }
+
+    public String getCorrectEmploymentActionReason() {
+        return correctEmploymentActionReason;
+    }
+
+    public void setCorrectEmploymentActionReason(String correctEmploymentActionReason) {
+        this.correctEmploymentActionReason = correctEmploymentActionReason;
     }
 
 }
