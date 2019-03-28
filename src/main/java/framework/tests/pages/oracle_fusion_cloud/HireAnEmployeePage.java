@@ -4,6 +4,7 @@ import framework.tests.steps.oracle_fusion_cloud.Context;
 import framework.tests.steps.oracle_fusion_cloud.Data;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -12,6 +13,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
@@ -44,7 +50,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "(//input[@class='x2h'])[2]")
     private WebElement basicDetailsReason;
 
-    @FindBy(xpath = "//input[@class='x109']")
+    @FindBy(xpath = "//label[text()='Legal Employer']/following::input[1]")
     private WebElement basicDetailsEmployer;
 
     @FindBy(xpath = "//*[text()='Employee']")
@@ -62,13 +68,14 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//label[text()='Date of Birth']/following::input[1]")
     private WebElement dateOfBirth;
 
-    @FindBy(xpath = "//input[contains(@id,'EmailRequired')]")
-    private WebElement pearsonEmailRequired;
+    //@FindBy(xpath = "//input[contains(@id,'EmailRequired')]")
+    @FindBy(xpath = "//label[text()='Location Contact ']/following::input[1]")
+    private WebElement locationContact;
 
     @FindBy(xpath = "//img[@title='Add Row']")
     private WebElement addRow;
 
-    @FindBy(xpath = "//input[@class='x109' and contains(@id,'iclov1::content') and contains(@name,'iclov1')]")
+    @FindBy(xpath = "(//input[@class='x10u'])[2]")
     private WebElement country;
 
     @FindBy(xpath = "//input[@class='x2h' and contains(@id,'soc2::content') and contains(@aria-owns,'soc2::pop')]")
@@ -79,6 +86,9 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
     @FindBy(xpath = "//label[text()='Person Number']/following::td[1]")
     private WebElement personNo;
+    
+    @FindBy(xpath = "//label[text()='Name']/following::td[1]")
+    private WebElement personName;
 
     @FindBy(xpath = "//label[text()='Address Line 1']/following::input[1]")
     private WebElement addressLine1;
@@ -140,7 +150,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//label[text()='ER/Profit Center']/following::input[1]")
     private WebElement erProfitCenter;
 
-    @FindBy(xpath = "//input[@class='x109' and contains(@id,'table1:0:selectOneChoice1::content') and contains(@name,'table1:0:selectOneChoice1')]")
+    @FindBy(xpath = "//input[@class='x10u' and contains(@id,'table1:0:selectOneChoice1::content') and contains(@name,'table1:0:selectOneChoice1')]")
     private WebElement payroll;
 
     @FindBy(xpath = "//label[text()='I-9 Status']/following::input[1]")
@@ -157,6 +167,22 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
     @FindBy(xpath = "//label[text()='Global Mobility Indicator']/following::input[1]")
     private WebElement empInfoGlobalMobilityInd;
+
+    //koushik added 3/4 cog
+    @FindBy(xpath = "//label[text()='Birthday']/following::input[1]")
+    private WebElement birthday;
+
+    //koushik added 3/16 cog
+    @FindBy(xpath = "//input[contains(@id,'ManagerName')]")
+    private WebElement managerName;
+
+    // raghav added 3/18
+    @FindBy(xpath = "//label[text()='Type']/following::input[1]")
+    private WebElement managerType;
+
+    //raghav added 3/18
+    @FindBy(xpath = "//img[contains(@id,'AU2:insert::icon')]")
+    private WebElement managerAddRow;
 
     public HireAnEmployeePage(Context context) {
         super(context);
@@ -202,19 +228,23 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             Assert.fail();
         }
     }
+
     // Enter Value into Identification tab
     public void fillIdentificationTab() {
         try {
             // Enter Hire Date
             basicDetailsDate.clear();
-            actions.doubleClick(basicDetailsDate).sendKeys(getCurrentDate());
-
+         //   actions.doubleClick(basicDetailsDate).sendKeys(data.getHireDate());
+            String hireDate=getDynamicDate(60);
+            System.out.println(hireDate);
+            actions.doubleClick(basicDetailsDate).sendKeys(hireDate);
             // Select Hire Action
             basicDetailsAction.click();
             waitFor(ExpectedConditions
                     .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getHireAction() + "']"))), 5);
             driver.findElement(By.xpath("//li[text()='" + data.getHireAction() + "']")).click();
             basicDetailsAction.sendKeys(Keys.TAB);
+            waitNormalTime();
 
             // Select Hire Reason
             basicDetailsReason.click();
@@ -247,16 +277,14 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             driver.findElement(By.xpath("//li[text()='" + data.getGender() + "']")).click();
 
             // Select Date of Birth
-            waitFor(ExpectedConditions.elementToBeClickable(dateOfBirth), 5);
+            waitFor(ExpectedConditions.elementToBeClickable(dateOfBirth), 15);
             dateOfBirth.sendKeys(data.getDateOfBirth());
             dateOfBirth.sendKeys(Keys.TAB);
 
-            // Select Pearson Email Required
-            waitFor(ExpectedConditions.elementToBeClickable(pearsonEmailRequired), 5);
-            pearsonEmailRequired.click();
-            waitFor(ExpectedConditions.elementToBeClickable(
-                    driver.findElement(By.xpath("//li[text()='" + data.getPearsonEmailRequired() + "']"))), 5);
-            driver.findElement(By.xpath("//li[text()='" + data.getPearsonEmailRequired() + "']")).click();
+          /*  // Select Location Contact Required
+            waitFor(ExpectedConditions.elementToBeClickable(locationContact), 15);
+            locationContact.click();
+            locationContact.sendKeys(data.getLocationContact());*/
             waitShortTime();
 
             // Click to create new row
@@ -264,13 +292,13 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             addRow.click();
 
             // Enter Country
-            waitFor(ExpectedConditions.visibilityOf(country), 15);
+            waitFor(ExpectedConditions.visibilityOf(country), 30);
             country.clear();
             country.sendKeys(data.getCountry());
             waitNormalTime();
             country.sendKeys(Keys.ENTER);
             country.sendKeys(Keys.TAB);
-
+            waitNormalTime();
             // Enter National ID type
             clickNationalIdType.click();
             waitFor(ExpectedConditions
@@ -302,8 +330,14 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
         try {
             // Set Person Number for Future Use and Reference
             waitFor(ExpectedConditions.visibilityOf(personNo), 15);
-            String personNumber = personNo.getText();
-            data.setPersonNumber(personNumber);
+            //String personNumber = personNo.getText();
+            data.setPersonNumber(personNo.getText());
+            data.setPersonName(personName.getText());
+            /*writeToExcel("UPDATE_REMOVE_I9_STATUS", "personNumber", personNumber);
+            writeToExcel("UPDATE_ELEMENT_ENTRIES", "personNumber", personNumber);
+            writeToExcel("UPDATE_PERSONAL_ASSIGNMENT_DATA", "personNumber", personNumber);
+            writeToExcel("EDIT_PROJECTED_ENDDATE", "personNumber", personNumber);*/
+            //System.out.println(personNumber);
 
             // Enter Address Line 1
             waitFor(ExpectedConditions.elementToBeClickable(addressLine1), 15);
@@ -342,13 +376,13 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             maritalStatus.sendKeys(Keys.TAB);
 
             // Enter Veteran Self-Identification Status
-            waitFor(ExpectedConditions.elementToBeClickable(veteranSelfIdentificationStatus), 15);
+            /*waitFor(ExpectedConditions.elementToBeClickable(veteranSelfIdentificationStatus), 15);
             veteranSelfIdentificationStatus.sendKeys(data.getVeteranSelfIdentificationStatus());
             veteranSelfIdentificationStatus.sendKeys(Keys.TAB);
 
             // Enter Newly Separated Veteran Discharge Date
             waitFor(ExpectedConditions.elementToBeClickable(newlySeparatedVeteranDischargeDate), 15);
-            newlySeparatedVeteranDischargeDate.sendKeys(data.getNewlySeparatedVeteranDischargeDate());
+            newlySeparatedVeteranDischargeDate.sendKeys(data.getNewlySeparatedVeteranDischargeDate());*/
 
             // Goto next tab
             waitNormalTime();
@@ -374,7 +408,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitFor(ExpectedConditions.elementToBeClickable(businessUnit), 15);
             businessUnit.sendKeys(data.getBusinessUnit());
             businessUnit.sendKeys(Keys.ENTER);
-            waitShortTime();
+            waitNormalTime();
 
             // Enter Job
             waitFor(ExpectedConditions.elementToBeClickable(job), 15);
@@ -394,9 +428,15 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitNormalTime();
 
             // Enter Location
-            waitFor(ExpectedConditions.elementToBeClickable(location), 15);
-            location.sendKeys(data.getLocation());
-            waitShortTime();
+            try {
+                waitFor(ExpectedConditions.elementToBeClickable(location), 15);
+                location.sendKeys(data.getLocation());
+                waitShortTime();
+            } catch (StaleElementReferenceException e) {
+                waitShortTime();
+                location.sendKeys(data.getLocation());
+            }
+
 
             // Enter assignment Category
             waitFor(ExpectedConditions.elementToBeClickable(assignmentCategory), 15);
@@ -409,38 +449,39 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             // Enter hourly Paid Or Salaried
             waitFor(ExpectedConditions.elementToBeClickable(hourlyPaidOrSalaried), 15);
             hourlyPaidOrSalaried.sendKeys(data.getHourlyPaidOrSalaried());
+            waitNormalTime();
 
-            // Enter Company/Entity
-            waitFor(ExpectedConditions.elementToBeClickable(companyEntity), 15);
-            companyEntity.sendKeys(data.getCompanyEntity());
+            //3/16 adding Manager name logic
+            //3/18 Adding additional logic for handling global scenario
+            if (driver.findElements(By.xpath("//input[contains(@id,'ManagerName')]")).size() != 0) {
+                waitFor(ExpectedConditions.elementToBeClickable(managerName), 15);
+                managerName.sendKeys(data.getManagerName());
+            } else {
+                waitFor(ExpectedConditions.elementToBeClickable(managerAddRow), 15);
+                managerAddRow.click();
 
-            // Enter Cost Center
-            waitFor(ExpectedConditions.elementToBeClickable(costCenter), 15);
-            costCenter.sendKeys(data.getCostCenter());
-            waitShortTime();
+                waitFor(ExpectedConditions.elementToBeClickable(managerName), 15);
+                managerName.sendKeys(data.getManagerName());
 
-            // Enter ER Profit Center
-            waitFor(ExpectedConditions.elementToBeClickable(erProfitCenter), 15);
-            erProfitCenter.sendKeys(data.getErProfitCenter());
-            waitShortTime();
-
-            if (data.getGlobalMobilityIndicatorCheck()) {
-                // Select Global Mobility Indicator
-                waitFor(ExpectedConditions.elementToBeClickable(empInfoGlobalMobilityInd), 15);
-                empInfoGlobalMobilityInd.click();
-                waitFor(ExpectedConditions.elementToBeClickable(
-                        driver.findElement(By.xpath("//li[text()='" + data.getGlobalMobilityIndicator() + "']"))), 15);
-                driver.findElement(By.xpath("//li[text()='" + data.getGlobalMobilityIndicator() + "']")).click();
-                waitShortTime();
+                waitFor(ExpectedConditions.elementToBeClickable(managerType), 15);
+                managerType.click();
+                managerType.sendKeys(data.getManagerType());
             }
 
+
+           /* //3/4 added for cognizant instance
+            waitFor(ExpectedConditions.elementToBeClickable(birthday), 15);
+            birthday.clear();
+            birthday.sendKeys(data.getDateOfBirth());
+*/
             // Clicking Add button to enter Payroll Details
+            waitShortTime();
             clickCreateButton();
 
             // Select Payroll Details
             waitFor(ExpectedConditions.elementToBeClickable(payroll), 15);
             payroll.sendKeys(data.getPayroll());
-            waitShortTime();
+            waitNormalTime();
 
             // Goto next tab
             scrollToPageTop(driver);
@@ -471,10 +512,11 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             salaryAmount.sendKeys(data.getSalaryAmount());
             waitShortTime();
 
-            // Enable Use salary components check box
+            //commented on 3/4 cog
+           /* // Enable Use salary components check box
             waitFor(ExpectedConditions.visibilityOf(salarycmpnt), 15);
             salarycmpnt.click();
-            waitShortTime();
+            waitShortTime();*/
 
             // Goto Next tab
             scrollToPageTop(driver);
@@ -504,4 +546,14 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
         }
     }
 
+    public void checkAndUpdateLegalEmployerIfEmpty() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(basicDetailsEmployer), 15);
+            if (basicDetailsEmployer.getText().equalsIgnoreCase(""))
+                actions.moveToElement(basicDetailsEmployer).click().sendKeys(data.getLegalEmployer()).sendKeys(Keys.ENTER).perform();
+        } catch (Exception e) {
+            reportWithScreenShot("Error While updating Legal Employer value in Information Tab due to:" + e.getMessage());
+            Assert.fail();
+        }
+    }
 }

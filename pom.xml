@@ -77,16 +77,6 @@
                                 <value>false</value>
                             </property>
                         </properties>
-                        <systemPropertyVariables>
-                            <!--suppress UnresolvedMavenProperty -->
-                            <featureDir>${featureDir}</featureDir>
-                            <!--suppress UnresolvedMavenProperty -->
-                            <environment>${environment}</environment>
-                            <!--suppress UnresolvedMavenProperty -->
-                            <tags>${tags}</tags>
-                            <!--suppress UnresolvedMavenProperty -->
-                            <testFile>${testFile}</testFile>
-                        </systemPropertyVariables>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -278,6 +268,11 @@
             <groupId>net.java.dev.jna</groupId>
             <artifactId>jna-platform</artifactId>
             <version>4.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>4.1</version>
         </dependency>
     </dependencies>
 </project>

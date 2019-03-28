@@ -3,17 +3,12 @@ package framework.tests.pages.oracle_fusion_cloud;
 import framework.tests.steps.oracle_fusion_cloud.Context;
 import framework.tests.steps.oracle_fusion_cloud.Data;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-import org.testng.Assert;
-
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,6 +17,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     private Context context;
     private Data data;
     private int elementsize;
+    private String searchDate;
 
     // Person Management Page Locators
     @FindBy(className = "svg-icon03")
@@ -55,13 +51,13 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     //This locator is only available option to select, no other locator style exist
     private WebElement payrollOption;
 
-    @FindBy(xpath = "(//td[@class='xmz'][contains(.,'Manage Element Entries')])[2]")
+    @FindBy(xpath = "(//td[@class='xnn'][contains(.,'Manage Element Entries')])[2]")
     private WebElement manageElementEntries;
 
     @FindBy(xpath = "//li[@class='x1ui']//a[contains(text(),'Manage Salary')]")
     private WebElement manageSalary;
 
-      @FindBy(xpath = "(//*[text()='Manage Element Entries'])[1]")
+    @FindBy(xpath = "(//*[text()='Manage Element Entries'])[1]")
     private WebElement manageElementEnteriesTextCheck;
 
     @FindBy(xpath = "//label[text()='Element Name']/following::input[1]")
@@ -82,7 +78,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//a[text()='Bilingual Indicator']")
     private WebElement bilingualRowAdded;
 
-    @FindBy(xpath = "//label[text()='Actual Amount']/following::input[1]")
+    @FindBy(xpath = "//label[text()='Amount']/following::input[1]")
     private WebElement actualAmount;
 
     @FindBy(xpath = "//label[text()='Paycheck Date']/following::input[1]")
@@ -91,16 +87,16 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//*[contains(@class,'x10t') and contains(text(),'m')]")
     private WebElement bilingualSubmitBtn;
 
-    @FindBy(xpath = "//*[contains(@class,'x10t') and contains(text(),'m')]")
+    @FindBy(xpath = "//*[contains(@class,'x11e') and contains(text(),'m')]")
     private WebElement adpSubmitBtn;
 
-    @FindBy(xpath = "//*[contains(text(),'ADP Auto & Home')]")
+    @FindBy(xpath = "(//*[contains(text(),'Comp One Off Bonus Pay')])[1]")
     private WebElement adpRowAdded;
 
-    @FindBy(xpath = "(//span[@class='xwb'])[1]")
+    @FindBy(xpath = "(//span[@class='xwy'])[1]")
     private WebElement done;
 
-    @FindBy(xpath = "//a[@class='xlu' and contains(@id,'table2:0:gl1')]")
+    @FindBy(xpath = "//a[contains(@id,'table2:0:gl1')]")
     private WebElement personLink;
 
     @FindBy(xpath = "//a[@title='Edit']")
@@ -130,7 +126,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//button[@accesskey='K']")
     private WebElement btnOK;
 
-    @FindBy(xpath = "//button[@accesskey='K'][contains(@id,'management:0:MAt1:0:pt1:Manag1:0:AP1:ctb1')][contains(.,'OK')]")
+    @FindBy(xpath = "//button[@accesskey='K' and contains(@id,'Manag1:0:AP1:ctb1') and contains(.,'O')]")
     private WebElement btnOK1;
 
     @FindBy(xpath = "//h1[contains(.,'Global Temporary Assignment: Employment Information')]")
@@ -167,7 +163,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//a[text()='Components']")
     private WebElement linkComponents_ManageSalary;
 
-       @FindBy(xpath = "//td[text()='Edit']")
+    @FindBy(xpath = "//td[text()='Edit']")
     private WebElement linkActionEdit;
 
     @FindBy(xpath = "//label[@class='af_selectOneChoice_label-text' and text()='Action']//following::input[1]")
@@ -206,7 +202,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//a[@title='Actions']")
     private WebElement manageWorkRelactionsBtn;
 
-    @FindBy(xpath = " //*[contains(@class,'xmz') and contains(text(),'Edit')]")
+    @FindBy(xpath = "//td[contains(@class,'xnn') and contains(text(),'Edit')]")
     private WebElement manageWorkRelEditBtn;
 
     @FindBy(xpath = "//label[text()='I-9 Status']/following::input[1]")
@@ -214,7 +210,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
     @FindBy(xpath = "//td[text() = 'Correct']")
     private WebElement personMgmtCorrect;
-    
+
     @FindBy(xpath = "//div[text() = 'Correct Employment']")
     private WebElement correctEmploymentTitle;
 
@@ -223,13 +219,19 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
     @FindBy(xpath = "(//label[ @class ='af_selectOneChoice_label-text' and text()='Action Reason'])/following::input[1]")
     private WebElement correctEmploymentActionReason;
-    
+
     @FindBy(xpath = "//button[contains(@id,'_FOpt1:_FOr1:0:')and text() = 'OK']")
     private WebElement correctEmploymentOk;
-   
+
     @FindBy(xpath = "//span[text()='Review']")
     private WebElement reviewButton_ManageEmployment;
     
+    @FindBy(xpath = "(//label[text()='Hire Date']/following::input[1])[1]")
+    private WebElement hireDate;
+    
+    @FindBy(xpath = "(//label[text()='Hire Date'])[3]/following::span[1]")
+    private WebElement enterpriseHireDate;
+
     // Person Management Contructor
     public PersonManagementPage(Context context) {
         super(context);
@@ -269,12 +271,16 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
         try {
             // Enter person number into keywords
             waitFor(ExpectedConditions.elementToBeClickable(keywords), 15);
-            keywords.sendKeys(data.getPersonNumber());
+            keywords.sendKeys(csvReader()[0]);
 
             // Enter effective as of date
             waitFor(ExpectedConditions.elementToBeClickable(effectiveAsOfDate), 15);
             effectiveAsOfDate.clear();
-            effectiveAsOfDate.sendKeys(getCurrentDate());
+
+            // Add Current Date + 1 as the senario runs before this test changes the date to current date +1 (Scenario name : Seniority date)
+            searchDate = addDaysToDate(getCurrentDate(), 0, "mm/dd/yyyy");
+
+            effectiveAsOfDate.sendKeys(searchDate);
             waitShortTime();
             reportWithScreenShot("Summary of Person Management: Search screen");
         } catch (Exception e) {
@@ -290,11 +296,11 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
             // Check for Employee for max 60 seconds
             elementsize = driver
-                    .findElements(By.xpath("//span[text()='" + data.getPersonNumber() + "']")).size();
+                    .findElements(By.xpath("//span[text()='" + csvReader()[0] + "']")).size();
             int counter = 0;
             while (elementsize == 0 && counter <= 20) {
                 elementsize = driver
-                        .findElements(By.xpath("//*[text()='" + data.getPersonNumber() + "']")).size();
+                        .findElements(By.xpath("//span[text()='" + csvReader()[0] + "']")).size();
                 clickSearch();
                 waitShortTime();
                 counter++;
@@ -305,6 +311,35 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
                 throw new Exception("Person number not found after 60 seconds");
             }
             reportWithScreenShot("User is on search result page");
+        } catch (Exception e) {
+            reportWithScreenShot("Error While checking search results of employee:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+
+    // After entering person number, click on Search Button until person
+    public void clickSearchPersonNotDisplayed() {
+        try {
+            clickSearch(); // Click Search Button
+
+            // Check for Employee for max 60 seconds
+            elementsize = driver
+                    .findElements(By.xpath("//span[text()='" + csvReader()[0] + "']")).size();
+            int counter = 0;
+            while (elementsize >= 1 && counter <= 20) {
+                elementsize = driver
+                        .findElements(By.xpath("//span[text()='" + csvReader()[0] + "']")).size();
+                clickSearch();
+                waitShortTime();
+                counter++;
+            }
+
+            // Throw Exception if Person name now found after 60 seconds
+            if (elementsize >= 1) {
+                throw new Exception("Person number present even after 60 seconds");
+            }
+            reportWithScreenShot("User is not present search result page as expected");
         } catch (Exception e) {
             reportWithScreenShot("Error While checking search results of employee:" + e.getMessage());
             Assert.fail();
@@ -356,8 +391,6 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     }
 
 
-
-
     // Check if Manage Element Entries page available
     public void checkManageElementEntriesAvailable() {
         try {
@@ -393,8 +426,9 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             // Enter Business Unit
             waitFor(ExpectedConditions.elementToBeClickable(elementName), 15);
             elementName.sendKeys(data.getElementNameADP());
-            elementName.sendKeys(Keys.TAB);
-            waitFor(ExpectedConditions.visibilityOf(payrollRelationship), 15);
+            elementName.sendKeys(Keys.ENTER);
+            waitNormalTime();
+            //   waitFor(ExpectedConditions.visibilityOf(payrollRelationship), 15);
 
         } catch (Exception e) {
             reportWithScreenShot("Error While user enters Element Name as ADP:" + e.getMessage());
@@ -431,11 +465,11 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             waitFor(ExpectedConditions.elementToBeClickable(actualAmount), 15);
             actualAmount.sendKeys(data.getActualAmount());
 
-            // Enter effective as of date
-            waitFor(ExpectedConditions.elementToBeClickable(payCheckDate), 15);
+            // Enter effective as of date - Not required for COgnizant instance
+            /*waitFor(ExpectedConditions.elementToBeClickable(payCheckDate), 15);
             payCheckDate.clear();
-            payCheckDate.sendKeys(data.getPayCheckDate());
-            Thread.sleep(2500);
+            payCheckDate.sendKeys(data.getPayCheckDate());*/
+            waitShortTime();
         } catch (Exception e) {
             reportWithScreenShot("Error While User entering Amount and date:" + e.getMessage());
             Assert.fail();
@@ -466,7 +500,9 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     // Click on Done button
     public void clickDoneButton() {
         try {
-        	waitUntilPageLoad();
+            waitUntilPageLoad();
+            waitNormalTime();
+            waitFor(ExpectedConditions.visibilityOf(done), 15);
             waitFor(ExpectedConditions.elementToBeClickable(done), 15);
             done.click();
             waitUntilPageLoad();
@@ -526,17 +562,20 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(personMgmtEdit), 15);
             personMgmtEdit.click();
+            waitShortTime();
 
             waitFor(ExpectedConditions.elementToBeClickable(personMgmtUpdate), 15);
             personMgmtUpdate.click();
+            waitShortTime();
 
-            waitFor(ExpectedConditions.visibilityOf(manageEmployment), 15);
-            assertThat(manageEmployment.isDisplayed()).isTrue();
+            waitFor(ExpectedConditions.visibilityOf(updateEmploymentTitle), 15);
+            assertThat(updateEmploymentTitle.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("Error While user click on Edit and update button:" + e.getMessage());
             Assert.fail();
         }
     }
+
     // User checks if Update Employment Window is Displayed
     public void checkUpdateEmployementWindowDisplayed() {
         try {
@@ -555,7 +594,9 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             // Enter current date into effective date
             waitFor(ExpectedConditions.elementToBeClickable(updateEmploymentEffectiveDate), 15);
             updateEmploymentEffectiveDate.clear();
-            updateEmploymentEffectiveDate.sendKeys(getCurrentDate());
+
+            // Add Current Date + 1 as the senario runs before this test changes the date to current date +1 (Scenario name : Seniority date
+            updateEmploymentEffectiveDate.sendKeys(data.getEffectiveAsOfDate());
             updateEmploymentEffectiveDate.sendKeys(Keys.TAB);
             waitShortTime();
 
@@ -586,9 +627,6 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             // Select Create Primary Work Relationship Yes option
             waitFor(ExpectedConditions.elementToBeClickable(updateEmploymentCreatePrimaryWork), 15);
             updateEmploymentCreatePrimaryWork.click();
-
-            // Set getGlobalMobilityIndicatorCheck value to True
-            data.setGlobalMobilityIndicatorCheck(true);
 
             // Click OK
             btnOK.click();
@@ -639,7 +677,6 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     }
 
 
-
     // User checks if Manage Work Relationship page is Displayed
     public void checkManageWorkRelationshipDisplayed() {
         try {
@@ -688,6 +725,8 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(manageWorkRelactionsBtn.isDisplayed()).isTrue();
             manageWorkRelactionsBtn.click();
             reportWithScreenShot("User Clicks Actions button");
+
+
             waitFor(ExpectedConditions.elementToBeClickable(manageWorkRelEditBtn), 15);
             assertThat(manageWorkRelEditBtn.isDisplayed()).isTrue();
             manageWorkRelEditBtn.click();
@@ -698,15 +737,15 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             Assert.fail();
         }
     }
-    
- 
+
+
     /**
      * Check Manage Employment Screen displayed or not
      * Author: Koushik Kadimcherla
      */
     public void checkManageEmploymentScreenAvailable() {
         try {
-           // reportWithScreenShot("Checking if  Manageme Employment screen is Displayed");
+            // reportWithScreenShot("Checking if  Manageme Employment screen is Displayed");
             waitFor(ExpectedConditions.visibilityOf(manageEmployment), 15);
             assertThat(manageEmployment.isDisplayed()).isTrue();
             reportWithScreenShot("Checking if  Manage Employment screen is Displayed");
@@ -721,21 +760,21 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
      * User click on Edit and Correct button
      * Author: Koushik Kadimcherla
      */
-	public void clickEditCorrect() {
-		try {
-			waitFor(ExpectedConditions.elementToBeClickable(personMgmtEdit), 15);
-			personMgmtEdit.click();
-			waitFor(ExpectedConditions.elementToBeClickable(personMgmtCorrect), 15);
-			personMgmtCorrect.click();
-			reportWithScreenShot("Selected Correct Option after clicking on Edit");
+    public void clickEditCorrect() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(personMgmtEdit), 15);
+            personMgmtEdit.click();
+            waitFor(ExpectedConditions.elementToBeClickable(personMgmtCorrect), 15);
+            personMgmtCorrect.click();
+            reportWithScreenShot("Selected Correct Option after clicking on Edit");
 
-		} catch (Exception e) {
-			reportWithScreenShot("Error While user click on Edit and Correct button:" + e.getMessage());
-			Assert.fail();
-		}
-	}
+        } catch (Exception e) {
+            reportWithScreenShot("Error While user click on Edit and Correct button:" + e.getMessage());
+            Assert.fail();
+        }
+    }
 
-  
+
     /**
      * User checks if  Correct Employment Window is displayed
      * Author: Koushik Kadimcherla
@@ -753,81 +792,102 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
 
     /**
-     * Enter the mandatory fields of Correct Employment Screen 
+     * Enter the mandatory fields of Correct Employment Screen
      * Author: Koushik Kadimcherla
      */
-	public void enterCorrectEmploymentMandatoryFields() {
-		try {
-			waitFor(ExpectedConditions.elementToBeClickable(correctEmploymentAction), 15);
-			assertThat(correctEmploymentAction.isDisplayed()).isTrue();
-			correctEmploymentAction.click();
-			waitFor(ExpectedConditions.visibilityOf(
-					driver.findElement(By.xpath("//li[text()='" + data.getCorrectEmploymentAction() + "']"))), 5);
-			driver.findElement(By.xpath("//li[text()='" + data.getCorrectEmploymentAction() + "']")).click();
-			// Enter Action Reason value
-			waitFor(ExpectedConditions.elementToBeClickable(correctEmploymentActionReason), 15);
-			assertThat(correctEmploymentActionReason.isDisplayed()).isTrue();
-			correctEmploymentActionReason.click();
-			waitFor(ExpectedConditions.visibilityOf(
-					driver.findElement(By.xpath("//li[text()='" + data.getCorrectEmploymentActionReason() + "']"))), 5);
-			driver.findElement(By.xpath("//li[text()='" + data.getCorrectEmploymentActionReason() + "']")).click();
-			waitFor(ExpectedConditions.elementToBeClickable(correctEmploymentOk), 15);
-			assertThat(correctEmploymentOk.isDisplayed()).isTrue();
-			reportWithScreenShot("Entered mandatory fields of Correct Employment Screen");
-			correctEmploymentOk.click();
-		} catch (Exception e) {
-			reportWithScreenShot(
-					"Error While user entering Mandatory Fields of Correct Employment Screen :" + e.getMessage());
-			Assert.fail();
-		}
-	}
-    
+    public void enterCorrectEmploymentMandatoryFields() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(correctEmploymentAction), 15);
+            assertThat(correctEmploymentAction.isDisplayed()).isTrue();
+            correctEmploymentAction.click();
+            waitFor(ExpectedConditions.visibilityOf(
+                    driver.findElement(By.xpath("//li[text()='" + data.getCorrectEmploymentAction() + "']"))), 5);
+            driver.findElement(By.xpath("//li[text()='" + data.getCorrectEmploymentAction() + "']")).click();
+            // Enter Action Reason value
+            waitFor(ExpectedConditions.elementToBeClickable(correctEmploymentActionReason), 15);
+            assertThat(correctEmploymentActionReason.isDisplayed()).isTrue();
+            correctEmploymentActionReason.click();
+            waitFor(ExpectedConditions.visibilityOf(
+                    driver.findElement(By.xpath("//li[text()='" + data.getCorrectEmploymentActionReason() + "']"))), 5);
+            driver.findElement(By.xpath("//li[text()='" + data.getCorrectEmploymentActionReason() + "']")).click();
+            waitFor(ExpectedConditions.elementToBeClickable(correctEmploymentOk), 15);
+            assertThat(correctEmploymentOk.isDisplayed()).isTrue();
+            reportWithScreenShot("Entered mandatory fields of Correct Employment Screen");
+            correctEmploymentOk.click();
+        } catch (Exception e) {
+            reportWithScreenShot(
+                    "Error While user entering Mandatory Fields of Correct Employment Screen :" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
     /**
      * User checks if Projected End date Field is editable
      * Author: Koushik Kadimcherla
      */
-	public void checkProjectedEndDateEditable() {
-		try {
-			waitFor(ExpectedConditions.elementToBeClickable(projectedEndDate_ManageEmployment), 15);
-			assertThat(projectedEndDate_ManageEmployment.isEnabled()).isTrue();
-			reportWithScreenShot("Projected End date is Editable ");
-		} catch (Exception e) {
-			reportWithScreenShot("Projected End date is not Editable ");
-			Assert.fail();
-		}
-	}
-    
+    public void checkProjectedEndDateEditable() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(projectedEndDate_ManageEmployment), 15);
+            assertThat(projectedEndDate_ManageEmployment.isEnabled()).isTrue();
+            reportWithScreenShot("Projected End date is Editable ");
+        } catch (Exception e) {
+            reportWithScreenShot("Projected End date is not Editable ");
+            Assert.fail();
+        }
+    }
+
     /**
-     * User Enters the  Projected End date Field 
+     * User Enters the  Projected End date Field
      * Author: Koushik Kadimcherla
      */
-	public void fillProjectedEndDate() {
-		try {
+    public void fillProjectedEndDate() {
+        try {
 
-			// waitFor(ExpectedConditions.elementToBeClickable(projectedEndDate_ManageEmployment),15);
-			projectedEndDate_ManageEmployment.sendKeys(data.getProjectedEndDate());
-			assertThat(projectedEndDate_ManageEmployment.isEnabled()).isTrue();
-			reportWithScreenShot("User updated Projected End Date ");
+            // waitFor(ExpectedConditions.elementToBeClickable(projectedEndDate_ManageEmployment),15);
+            projectedEndDate_ManageEmployment.sendKeys(data.getProjectedEndDate());
+            assertThat(projectedEndDate_ManageEmployment.isEnabled()).isTrue();
+            reportWithScreenShot("User updated Projected End Date ");
 
-		} catch (Exception e) {
-			reportWithScreenShot("Error while updating Projected End Date");
-			// assertThat.isDisplayed()).isTrue();
-			Assert.fail();
-		}
-	}
- 
+        } catch (Exception e) {
+            reportWithScreenShot("Error while updating Projected End Date");
+            // assertThat.isDisplayed()).isTrue();
+            Assert.fail();
+        }
+    }
+
     /**
      * user clicks on Review button
      * Author: Koushik Kadimcherla
      */
-	public void clickReviewButton() {
-		try {
-			waitFor(ExpectedConditions.elementToBeClickable(reviewButton_ManageEmployment), 15);
-			reviewButton_ManageEmployment.click();
-			assertThat(reviewButton_ManageEmployment.isDisplayed()).isTrue();
-		} catch (Exception e) {
-			reportWithScreenShot("Error while user clicks Review button");
-			Assert.fail();
-		}
-	}
+    public void clickReviewButton() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(reviewButton_ManageEmployment), 15);
+            reviewButton_ManageEmployment.click();
+            assertThat(reviewButton_ManageEmployment.isDisplayed()).isTrue();
+            reportWithScreenShot("User clicked on Review  button");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while user clicks Review button");
+            Assert.fail();
+        }
+    }
+    
+    /**
+     * User changes hire date
+     * Author: Rakesh Ghosal
+     */
+    public void enterHireDate() {
+        try {
+        	String newHireDate;
+        	scrollToElement(hireDate);
+            waitFor(ExpectedConditions.elementToBeClickable(hireDate), 15);
+            String existingHireDate=enterpriseHireDate.getText().trim();
+            hireDate.clear();
+            newHireDate=addDaysToDate(existingHireDate, 1, "mm/dd/yy");
+            hireDate.sendKeys(newHireDate);
+        } catch (Exception e) {
+        	System.out.println(e);
+            reportWithScreenShot("Error while entering hire date");
+            Assert.fail();
+        }
+    }
 }
