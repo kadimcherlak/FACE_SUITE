@@ -547,7 +547,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//span[text()='Number']/following::input[2]")
     private WebElement skillsNumber;
 
-
     public EmployeeEditMyDetailsPage(Context context) {
         super(context);
         this.context = context;
@@ -2164,6 +2163,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     public void checkLicensesAndCertificationsPageDisplayed() {
         try {
             waitUntilPageLoad();
+            waitFor(ExpectedConditions.visibilityOf(numberLicensestext), 15);
             assertThat(numberLicensestext.isDisplayed()).isTrue();
             reportWithScreenShot("License and Certifications Page Displayed ");
         } catch (Exception e) {
@@ -2210,6 +2210,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             waitFor(ExpectedConditions.elementToBeClickable(btnSubmit_ManageSalary), 15);
             btnSubmit_ManageSalary.click();
             reportWithScreenShot("User clicks Submit button ");
+            waitFor(ExpectedConditions.elementToBeClickable(confirmBtnOK), 15);
+            confirmBtnOK.click();
+            reportWithScreenShot("User clicks ok button in confirmation pop up ");
         } catch (Exception e) {
             reportWithScreenShot("Error while clicking Submit button:" + e.getMessage());
             Assert.fail();

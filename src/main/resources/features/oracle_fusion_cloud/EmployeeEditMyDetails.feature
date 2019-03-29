@@ -309,8 +309,6 @@ Feature: Perform Edit on Employee Information
     Then Licenses and Certifications page should be displayed
     And user enter Licenses and Certifications details
     Then user clicks on Submit button in edit Skills and Qualifications page
-    And user clicks on Save and Close button
-    Then Personal Info page should be displayed
     When user clicks on Sign Out option
     Then Sign out should be successful
 
