@@ -1,7 +1,7 @@
 @DemoSet2
 Feature: New Hire to Terminate
 
-  @NEW_HIRE_1
+  @NEW_HIRE
   Scenario Outline: Create a New Hire
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -80,7 +80,7 @@ Feature: New Hire to Terminate
       | Test Scenario       | Test File Name | Test Sheet Name    |
       | EDIT_SENIORITY_DATE | TestData.xlsx  | Talent_Acquisition |
 
-  @TERMINATION_1
+  @TERMINATION
   Scenario Outline: Employee Termination
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
