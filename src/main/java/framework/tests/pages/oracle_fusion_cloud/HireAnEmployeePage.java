@@ -240,6 +240,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             String hireDate = getDynamicDate(60);
             System.out.println(hireDate);
             actions.doubleClick(basicDetailsDate).sendKeys(hireDate);
+
             // Select Hire Action
             basicDetailsAction.click();
             waitFor(ExpectedConditions
@@ -256,13 +257,15 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             basicDetailsReason.sendKeys(Keys.TAB);
 
             // Check Worker Type
-            actions.moveToElement(basicDetailsEmployer).click().sendKeys(data.getLegalEmployer()).sendKeys(Keys.ENTER)
-                    .sendKeys(Keys.TAB).perform();
+            actions.moveToElement(basicDetailsEmployer).click().sendKeys(data.getLegalEmployer()).sendKeys(Keys.ENTER).sendKeys(Keys.TAB).perform();
+            waitShortTime();
+
+            // Check Scenario and perform Action
             if (data.getScenario().contains("PENDING_WORKER")) {
                 pendingWorkerType.click();
                 waitFor(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getWorkerType() + "']"))), 30);
                 driver.findElement(By.xpath("//li[text()='" + data.getWorkerType() + "']")).click();
-                //pendingWorkerType.sendKeys(Keys.ENTER);
+                pendingWorkerType.sendKeys(Keys.TAB);
             } else if (data.getScenario().contains("NON_WORKER")) {
                 nonWorkerType.click();
                 waitFor(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getWorkerType() + "']"))), 30);
@@ -270,8 +273,9 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
                 nonWorkerType.sendKeys(Keys.TAB);
                 waitShortTime();
             }
+
             //waitFor(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[text()='" + data.getWorkerType() + "']"))), 30);
-            assertThat(driver.findElement(By.xpath("//*[text()='" + data.getWorkerType() + "']")).getText().equals(data.getWorkerType())).isTrue();
+            //assertThat(driver.findElement(By.xpath("//*[text()='" + data.getWorkerType() + "']")).getText().equals(data.getWorkerType())).isTrue();
 
             waitNormalTime();
 
