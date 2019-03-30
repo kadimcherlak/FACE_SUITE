@@ -19,6 +19,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     private Context context;
     private Data data;
     private Actions actions;
+    private int elementsize;
 
     // Hire An Employee Page Elements
     @FindBy(xpath = "//h1[contains(text(),': Identification')]")
@@ -50,6 +51,12 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
     @FindBy(xpath = "//*[text()='Employee']")
     private WebElement checkWorkerType;
+
+    @FindBy(xpath = "//label[text()='Nonworker Type']/following::input[1]")
+    private WebElement nonWorkerType;
+
+    @FindBy(xpath = "//label[text()='Proposed Worker Type']/following::input[1]")
+    private WebElement pendingWorkerType;
 
     @FindBy(xpath = "//label[text()='Last Name']/following::input[1]")
     private WebElement lastName;
@@ -251,7 +258,21 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             // Check Worker Type
             actions.moveToElement(basicDetailsEmployer).click().sendKeys(data.getLegalEmployer()).sendKeys(Keys.ENTER)
                     .sendKeys(Keys.TAB).perform();
-            assertThat(checkWorkerType.getText().equals(data.getWorkerType())).isTrue();
+            if (data.getScenario().contains("PENDING_WORKER")) {
+                pendingWorkerType.click();
+                waitFor(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getWorkerType() + "']"))), 30);
+                driver.findElement(By.xpath("//li[text()='" + data.getWorkerType() + "']")).click();
+                //pendingWorkerType.sendKeys(Keys.ENTER);
+            } else if (data.getScenario().contains("NON_WORKER")) {
+                nonWorkerType.click();
+                waitFor(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getWorkerType() + "']"))), 30);
+                driver.findElement(By.xpath("//li[text()='" + data.getWorkerType() + "']")).click();
+                nonWorkerType.sendKeys(Keys.TAB);
+                waitShortTime();
+            }
+            //waitFor(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[text()='" + data.getWorkerType() + "']"))), 30);
+            assertThat(driver.findElement(By.xpath("//*[text()='" + data.getWorkerType() + "']")).getText().equals(data.getWorkerType())).isTrue();
+
             waitNormalTime();
 
             // Enter Last Name
