@@ -176,10 +176,10 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
 
     @FindBy(xpath = "//button[text()='Review']")
     private WebElement btnReview;
-    
+
     @FindBy(xpath = "//input[contains(@id,'keywordSearchBox')]")
     private WebElement personSearchTextBox;
-    
+
     @FindBy(xpath = "//img[@title='Search']")
     private WebElement searchImage;
 
@@ -232,13 +232,13 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
     // User Navigate to Change Manager page
     public void navigateToChangeManagerPage() {
         try {
-        	int counter=0;
-        	String personName = csvReader()[1];
-        	waitFor(ExpectedConditions.elementToBeClickable(personSearchTextBox), 15);
-        	personSearchTextBox.clear();
-        	personSearchTextBox.sendKeys(personName.trim());
-        	waitFor(ExpectedConditions.elementToBeClickable(searchImage), 15);
-        	searchImage.click();
+            int counter = 0;
+            String personName = csvReader()[1];
+            waitFor(ExpectedConditions.elementToBeClickable(personSearchTextBox), 15);
+            personSearchTextBox.clear();
+            personSearchTextBox.sendKeys(personName.trim());
+            waitFor(ExpectedConditions.elementToBeClickable(searchImage), 15);
+            searchImage.click();
             String moreInformationXpath = "(//a[text()='" + personName.trim() + "'])[1]/following::img[1]";
             Assert.assertTrue("Change Manager Link is not enabled", waitForChangeManagerLinkEnabled(moreInformationXpath));
             driver.findElement(By.xpath(moreInformationXpath)).click();
@@ -711,23 +711,19 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
             Assert.fail();
         }
     }
-    
-    public boolean waitForChangeManagerLinkEnabled(String xpath)
-    {
-    	int counter=0;
-    	while(counter<20)
-    	{
-    		try
-    		{
-    		waitFor(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(xpath))), 1);
-    		return true;
-    		}catch(Exception e)
-    		{
-    			//System.out.println("Waiting for Change Manager Link to be enabled..");
-    			waitShortTime();
-    			counter++;
-    		}
-    	}
-    	return false;
+
+    public boolean waitForChangeManagerLinkEnabled(String xpath) {
+        int counter = 0;
+        while (counter < 20) {
+            try {
+                waitFor(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(xpath))), 1);
+                return true;
+            } catch (Exception e) {
+                //System.out.println("Waiting for Change Manager Link to be enabled..");
+                waitShortTime();
+                counter++;
+            }
+        }
+        return false;
     }
 }

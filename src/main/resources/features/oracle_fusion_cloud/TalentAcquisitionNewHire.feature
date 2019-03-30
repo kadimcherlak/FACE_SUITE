@@ -189,3 +189,73 @@ Feature: New Hire and Related Activities
     Examples:
       | Test Scenario   | Test File Name | Test Sheet Name  |
       | UPLOAD_HDL_FILE | TestData.xlsx  | Employee_Details |
+
+  @NEW_HIRE_NON_WORKER
+  Scenario Outline: Create a Non Worker New Hire
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on New Person link in Navigator Pane
+    And user clicks on Add a Nonworker on right side of the page under Tasks pane
+    Then new Hire an employee screen should be displayed
+    When user enter details in Identification tab
+    And user enter details in Person information tab
+    And user enter details in Employment Information tab
+    And user enter details in Compensation and Other Information tab
+    Then Review page should be displayed in view only mode
+    When user clicks on submit button
+    And clicks ok in the Warning and confirmation message displayed
+    Then Page should be submitted successfully
+    When user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario       | Test File Name | Test Sheet Name    |
+      | NEW_HIRE_NON_WORKER | TestData.xlsx  | Talent_Acquisition |
+
+
+  @NEW_HIRE_PENDING_WORKER
+  Scenario Outline: Create a Pending Worker New Hire
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on New Person link in Navigator Pane
+    And user clicks on Add a Pending Worker on right side of the page under Tasks pane
+    Then new Hire an employee screen should be displayed
+    When user enter details in Identification tab
+    And user enter details in Person information tab
+    And user enter details in Employment Information tab
+    And user enter details in Compensation and Other Information tab
+    Then Review page should be displayed in view only mode
+    When user clicks on submit button
+    And clicks ok in the Warning and confirmation message displayed
+    Then Page should be submitted successfully
+    When user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario           | Test File Name | Test Sheet Name    |
+      | NEW_HIRE_PENDING_WORKER | TestData.xlsx  | Talent_Acquisition |
+
+  @NEW_HIRE_CONTINGENT_WORKER
+  Scenario Outline: Create a Pending Worker New Hire
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on New Person link in Navigator Pane
+    And user clicks on Add a Contingent Worker on right side of the page under Tasks pane
+    Then new Hire an employee screen should be displayed
+    When user enter details in Identification tab
+    And user enter details in Person information tab
+    And user enter details in Employment Information tab
+    And user enter details in Compensation and Other Information tab
+    Then Review page should be displayed in view only mode
+    When user clicks on submit button
+    And clicks ok in the Warning and confirmation message displayed
+    Then Page should be submitted successfully
+    When user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario              | Test File Name | Test Sheet Name    |
+      | NEW_HIRE_CONTINGENT_WORKER | TestData.xlsx  | Talent_Acquisition |

@@ -429,8 +429,48 @@ public class EmployeeEditMyDetailsSteps implements En {
             context.employeeEditMyDetails.clickUpdatePhotoLink();
         });
 
+        And("^user clicks Skills and Qualifications link$", () -> {
+            context.employeeEditMyDetails.clickSkillsAndQualificationsLink();
+        });
+
         Then("^Photo upload page should be displayed$", () -> {
             context.employeeEditMyDetails.checkPhotPageDisplayed();
+        });
+
+        Then("^Skills and Qualifications page should be displayed$", () -> {
+            context.employeeEditMyDetails.checkSkillsAndQualificationsPageDisplayed();
+        });
+
+        Then("^edit Skills and Qualifications page should be displayed$", () -> {
+            context.employeeEditMyDetails.checkEditSkillsAndQualificationsPageDisplayed();
+        });
+
+        Then("^user clicks on Add Content and select Degrees Link$", () -> {
+            context.employeeEditMyDetails.clickAddContentDegree();
+        });
+
+        Then("^user clicks on Add Content and select Licenses and Certifications Link$", () -> {
+            context.employeeEditMyDetails.clickAddContentLicense();
+        });
+
+        Then("^Degrees page should be displayed$", () -> {
+            context.employeeEditMyDetails.checkDegreePageDisplayed();
+        });
+
+        Then("^Licenses and Certifications page should be displayed$", () -> {
+            context.employeeEditMyDetails.checkLicensesAndCertificationsPageDisplayed();
+        });
+
+        Then("^user enter Degree details$", () -> {
+            context.employeeEditMyDetails.enterDegreeDetails();
+        });
+
+        Then("^user enter Licenses and Certifications details$", () -> {
+            context.employeeEditMyDetails.enterLicensesAndCertificationsDetails();
+        });
+
+        Then("^user clicks on Submit button in edit Skills and Qualifications page$", () -> {
+            context.employeeEditMyDetails.clickSkillsSubmitButton();
         });
 
         When("^user clicks on Choose File button to upload a photo$", () -> {

@@ -31,6 +31,10 @@ public class Data extends framework.core.models.Data {
     private String countryCode;
     private String county;
     private String dateOfBirth;
+    private String degreeMajor;
+    private String degreeName;
+    private String degreeSchool;
+    private String degreeYear;
     private String department;
     private String description;
     private String destinationLegalEmployer;
@@ -61,6 +65,8 @@ public class Data extends framework.core.models.Data {
     private String job;
     private String lastName;
     private String legalEmployer;
+    private String licenseName;
+    private String licenseNumber;
     private String location;
     private String locationContact;
     private String managerName;
@@ -212,6 +218,22 @@ public class Data extends framework.core.models.Data {
         return dateOfBirth;
     }
 
+    public String getDegreeMajor() {
+        return degreeMajor;
+    }
+
+    public String getDegreeName() {
+        return degreeName;
+    }
+
+    public String getDegreeSchool() {
+        return degreeSchool;
+    }
+
+    public String getDegreeYear() {
+        return degreeYear;
+    }
+
     public String getDepartment() {
         return department;
     }
@@ -350,6 +372,14 @@ public class Data extends framework.core.models.Data {
 
     public String getLegalEmployer() {
         return legalEmployer;
+    }
+
+    public String getLicenseName() {
+        return licenseName;
+    }
+
+    public String getLicenseNumber() {
+        return licenseNumber;
     }
 
     public String getLocation() {
