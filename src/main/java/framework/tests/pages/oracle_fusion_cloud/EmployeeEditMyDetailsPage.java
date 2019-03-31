@@ -546,6 +546,30 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//span[text()='Number']/following::input[2]")
     private WebElement skillsNumber;
+    
+    @FindBy(xpath = "//span[text()='Personal and Employment']/following::a[text()='Manage Person'][1]")
+    private WebElement linkManagePerson;
+    
+    @FindBy(xpath = "//*[@title='Manage Person']/descendant::h1[text()='Manage Person']")
+    private WebElement managePersonPage;
+    
+    @FindBy(xpath = "//label[text()='Home Address']/following::a[@title='Edit'][1]")
+    private WebElement homeAddressEditButton;
+    
+    @FindBy(xpath = "//tr[contains(@id,'correctMenuItem')]")
+    private WebElement managePersonCorrectDropdown;
+    
+    @FindBy(xpath = "//div[text()='Correct Address']")
+    private WebElement correctAddressPopup;
+    
+    @FindBy(xpath = "(//label[text()='City']/following::input)[1]")
+    private WebElement managePersonCity;
+    
+    @FindBy(xpath = "//div[text()='Search and Select: ZIP Code']")
+    private WebElement searchAndSelectZipCodePopUp;
+    
+    @FindBy(xpath = "(//label[text()='ZIP Code']/following::input)[1]")
+    private WebElement managePersonZip;
 
     public EmployeeEditMyDetailsPage(Context context) {
         super(context);
@@ -2218,6 +2242,118 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
+    
+ // User click on Manage Person under Task icon
+    public void managePersonClick() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(linkManagePerson), 15);
+            linkManagePerson.click();
+            waitFor(ExpectedConditions.visibilityOf(managePersonPage), 60);
+            assertThat(managePersonPage.isDisplayed()).isTrue();
+            reportWithScreenShot("Manage Person link clicked and Manage Person page is displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Error While Manage Person Link is clicked:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+    
+ // User click on Edit and Update button
+    /**
+     * User clicks on Edit Button and then click on Correct from the dropdown
+     * @author Rakesh
+     */
+    public void clickEditCorrectManagePerson() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(homeAddressEditButton), 15);
+            homeAddressEditButton.click();
+            waitShortTime();
+
+            waitFor(ExpectedConditions.elementToBeClickable(managePersonCorrectDropdown), 15);
+            managePersonCorrectDropdown.click();
+            waitShortTime();
+
+            waitFor(ExpectedConditions.visibilityOf(correctAddressPopup), 15);
+            assertThat(correctAddressPopup.isDisplayed()).isTrue();
+        } catch (Exception e) {
+            reportWithScreenShot("Error While user click on Edit and Correct button:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+    
+    /**
+     * This method will update the correct address format as given in test data excel
+     * @author Rakesh
+     */
+    public void correctAddressManagePerson()
+    {
+    	try
+    	{
+    		waitFor(ExpectedConditions.elementToBeClickable(altWorkLocationAddressLine1), 15);
+    		altWorkLocationAddressLine1.clear();
+    		altWorkLocationAddressLine1.sendKeys(data.getAddressLine1());
+    		
+    		waitFor(ExpectedConditions.elementToBeClickable(altWorkLocationAddressLine2), 15);
+    		altWorkLocationAddressLine2.clear();
+    		altWorkLocationAddressLine2.sendKeys(data.getAddressLine2());
+    		
+    		waitFor(ExpectedConditions.elementToBeClickable(zipCode), 15);
+    		managePersonZip.clear();
+    		managePersonZip.sendKeys(data.getZipCode());
+    		managePersonZip.sendKeys(Keys.TAB);
+    		waitShortTime();
+    		
+    		try
+    		{
+    			waitFor(ExpectedConditions.visibilityOf(searchAndSelectZipCodePopUp), 10);
+    			String cityToBeSelectedXpath="//*[contains(text(),'"+data.getCity()+"')]";
+    			waitShortTime();
+    			waitFor(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(cityToBeSelectedXpath))), 15);
+    			//driver.findElement(By.xpath(cityToBeSelectedXpath)).click();
+    			Actions actions = new Actions(driver);
+    			actions.doubleClick(driver.findElement(By.xpath(cityToBeSelectedXpath))).build().perform();
+    			waitShortTime();
+    		}catch(Exception er)
+    		{
+    			logger.info("Search and find Zip code is not displayed ");
+    		}
+    		
+    		if(managePersonCity.getAttribute("value").equalsIgnoreCase(data.getCity())==false)
+    		{
+    			reportWithScreenShot("Expected city is not matching :");
+                Assert.fail();
+    		}
+    		
+    		reportWithScreenShot("Correcting Address:");
+    		waitFor(ExpectedConditions.visibilityOf(confirmBtnOK), 15);
+    		confirmBtnOK.click();
+    		
+    		
+    	}catch(Exception e)
+    	{
+    		reportWithScreenShot("Error while correcting home address :"+e.getMessage());
+            Assert.fail();
+    	}
+    }
+    
+    /**
+     * Validate the address is updated in Manage Person Screen
+     * @author Rakesh
+     */
+    public void validateCorrectAddressDisplayed() {
+        try {
+            
+            waitShortTime();
+            String addressXpath="//span[contains(text(),'"+data.getAddressLine1()+"')]";
+            waitFor(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(addressXpath))), 15);
+            reportWithScreenShot("Address is udpated successfully:");
+        } catch (Exception e) {
+            reportWithScreenShot("Address is not udpated :" + e.getMessage());
+            Assert.fail();
+        }
+    }
+    
+    
+    
 
 
 }
