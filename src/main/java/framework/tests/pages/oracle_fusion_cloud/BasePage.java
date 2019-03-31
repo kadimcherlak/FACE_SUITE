@@ -106,7 +106,6 @@ public class BasePage<T> extends WebPage {
         try {
             calendar.setTime(dateFormat.parse(date1));
         } catch (ParseException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } // parsed date and setting to calendar
 
