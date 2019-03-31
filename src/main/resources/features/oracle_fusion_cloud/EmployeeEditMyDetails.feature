@@ -17,7 +17,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                         | Test File Name | Test Sheet Name  |
       | NEW_ADDRESS_ALTERNATIVE_WORK_LOCATION | TestData.xlsx  | Employee_Details |
 
@@ -38,7 +38,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                 | Test File Name | Test Sheet Name  |
       | ADD_EMERGENCY_CONTACT_DETAILS | TestData.xlsx  | Employee_Details |
 
@@ -66,7 +66,7 @@ Feature: Perform Edit on Employee Information
     When user click on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                                 | Test File Name | Test Sheet Name  |
       | UPDATE_PERSONAL_PAYMENT_METHODS_EXPENSES_ONLY | TestData.xlsx  | Employee_Details |
 
@@ -100,7 +100,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                                     | Test File Name | Test Sheet Name  |
       | UPDATE_PERSONAL_PAYMENT_METHODS_NON_EXPENSES_ONLY | TestData.xlsx  | Employee_Details |
 
@@ -119,7 +119,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario           | Test File Name | Test Sheet Name  |
       | VALIDATE_ADDRESS_FORMAT | TestData.xlsx  | Employee_Details |
 
@@ -147,7 +147,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                                              | Test File Name | Test Sheet Name  |
       | UPDATE_ADDRESS_BIOGRAPHICAL_INFO_DRIVING_LICENSE_DOCUMENTS | TestData.xlsx  | Employee_Details |
 
@@ -174,7 +174,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                        | Test File Name | Test Sheet Name  |
       | CHANGE_SALARY_BASIS_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
 
@@ -193,11 +193,11 @@ Feature: Perform Edit on Employee Information
     Then from task menu user clicks on Manage Salary option
     And user clicks on Action button and select Edit option
     And user enters new Salary Amount under Current Salary section
-#    When user selects Use salary component checkbox
-#    Then Components tab is displayed in Manage Salary
-#    When user clicks on Add button in Components tab
-#    And user selects Promotion from Component dropdown
-#    And user enters amount in Amount field in Components tab
+    #    When user selects Use salary component checkbox
+    #    Then Components tab is displayed in Manage Salary
+    #    When user clicks on Add button in Components tab
+    #    And user selects Promotion from Component dropdown
+    #    And user enters amount in Amount field in Components tab
     And user clicks on Continue button in Manage Salary tab
     When user clicks on Submit button in Review page
     And user clicks Yes button on popup modal
@@ -205,7 +205,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                  | Test File Name | Test Sheet Name  |
       | UPDATE_SALARY_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
 
@@ -231,10 +231,9 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario               | Test File Name | Test Sheet Name  |
       | EDIT_SALARY_PROPOSAL_REASON | TestData.xlsx  | Employee_Details |
-
 
   @EMPLOYEE_UPLOADS_A_PHOTO
   Scenario Outline: Employee updating photo from personal information page
@@ -250,13 +249,13 @@ Feature: Perform Edit on Employee Information
     And user clicks Update Photo link to upload photo
     Then Photo upload page should be displayed
     When user clicks on Choose File button to upload a photo
-#    Then user selected photo is uploaded to system
+    #    Then user selected photo is uploaded to system
     When user clicks on Save and Close button
     Then Personal Info page should be displayed
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario            | Test File Name | Test Sheet Name  |
       | EMPLOYEE_UPLOADS_A_PHOTO | TestData.xlsx  | Employee_Details |
 
@@ -282,7 +281,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                    | Test File Name | Test Sheet Name  |
       | CHANGE_ASSIGNMENT_VIA_PRSN_MGMNT | TestData.xlsx  | Employee_Details |
 
@@ -312,7 +311,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                        | Test File Name | Test Sheet Name  |
       | ADD_SKILLS_AND_QUALIFICATION_DETAILS | TestData.xlsx  | Employee_Details |
 
@@ -338,6 +337,30 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario    | Test File Name | Test Sheet Name  |
       | ENTER_JOB_CHANGE | TestData.xlsx  | Employee_Details |
+
+  @ADDRESS_CORRECTION
+  Scenario Outline: Admin makes Address Correction of a Person
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button till person displayed
+    Then Employee name should be listed in search results
+    When user click on employee name link in search results
+    And user click on Task Icon on the right side
+    Then from task menu user clicks on Manage Person option
+    And user clicks on Edit button and select Correct option for Home Address
+    Then update the address in correct address format and click on ok button
+    Then validate the correct address is updated
+    And user clicks on Submit button in Person Management screen
+    When user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples: 
+      | Test Scenario      | Test File Name | Test Sheet Name  |
+      | ADDRESS_CORRECTION | TestData.xlsx  | Employee_Details |

@@ -512,6 +512,28 @@ public class EmployeeEditMyDetailsSteps implements En {
         Then("user clicks on Document Records link under Personal Info", () -> {
             context.employeeEditMyDetails.clickDocumentRecordsLink();
         });
+        
+        Then("from task menu user clicks on Manage Person option", () -> {
+            context.employeeEditMyDetails.managePersonClick();
+        });
+        
+        Then("user clicks on Edit button and select Correct option for Home Address", () -> {
+            context.employeeEditMyDetails.clickEditCorrectManagePerson();
+        });
+        
+        Then("update the address in correct address format and click on ok button", () -> {
+            context.employeeEditMyDetails.correctAddressManagePerson();
+        });
+        
+        Then("validate the correct address is updated", () -> {
+            context.employeeEditMyDetails.validateCorrectAddressDisplayed();
+        });
+        
+        Then("user clicks on Submit button in Person Management screen", () -> {
+            context.employeeEditMyDetails.clickSubmitButtonInReviewPage();
+            context.employeeEditMyDetails.clickYesOnPopup();
+            context.employeeEditMyDetails.clickOKOnPopup();
+        });
 
     }
 
