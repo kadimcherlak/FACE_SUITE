@@ -534,6 +534,15 @@ public class EmployeeEditMyDetailsSteps implements En {
             context.employeeEditMyDetails.clickYesOnPopup();
             context.employeeEditMyDetails.clickOKOnPopup();
         });
+        
+        Then("user clicks on Edit button and select Update option for Home Address", () -> {
+            context.employeeEditMyDetails.clickEditUpdateManagePerson();
+        });
+        
+        Then("enter the effective date", () -> {
+            context.employeeEditMyDetails.enterEffectiveDate();
+            
+        });
 
     }
 

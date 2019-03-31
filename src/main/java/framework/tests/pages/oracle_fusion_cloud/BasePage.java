@@ -484,6 +484,13 @@ public class BasePage<T> extends WebPage {
         }
         return null;
     }
+    
+ // Method to get Current Date
+    public String getCurrentDateWithGivenFormat(String expectedDateFormat) {
+        DateFormat dateFormat = new SimpleDateFormat(expectedDateFormat);
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
 
 }
 
