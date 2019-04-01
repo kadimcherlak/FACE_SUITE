@@ -366,7 +366,7 @@ Feature: Perform Edit on Employee Information
       | ADDRESS_CORRECTION | TestData.xlsx  | Employee_Details |
 
   @MANAGE_PERSON_ADDRESS_UPDATE
-  Scenario Outline: Admin makes Address Correction of a Person
+  Scenario Outline: Admin updates Address of a Person
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -388,3 +388,27 @@ Feature: Perform Edit on Employee Information
     Examples: 
       | Test Scenario                | Test File Name | Test Sheet Name  |
       | MANAGE_PERSON_ADDRESS_UPDATE | TestData.xlsx  | Employee_Details |
+
+  @MANAGE_PERSON_ADD_ALTERNATE_ADDRESS
+  Scenario Outline: Admin adds a Secondary Address Type of a Person
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button till person displayed
+    Then Employee name should be listed in search results
+    When user click on employee name link in search results
+    And user click on Task Icon on the right side
+    Then from task menu user clicks on Manage Person option
+    And user clicks on create address button and select the address type
+    Then add secondary address details and click on ok button
+    Then validate the correct address is updated
+    And user clicks on Submit button in Person Management screen
+    When user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples: 
+      | Test Scenario                       | Test File Name | Test Sheet Name  |
+      | MANAGE_PERSON_ADD_ALTERNATE_ADDRESS | TestData.xlsx  | Employee_Details |
