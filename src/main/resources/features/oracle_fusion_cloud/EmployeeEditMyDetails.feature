@@ -345,5 +345,42 @@ Feature: Perform Edit on Employee Information
     Then Sign out should be successful
 
     Examples:
-      | Test Scenario                                      | Test File Name | Test Sheet Name  |
+      | Test Scenario                                    | Test File Name | Test Sheet Name  |
       | ADDING_EXISTING_EMPLOYEE_AS_AN_EMERGENCY_CONTACT | TestData.xlsx  | Employee_Details |
+
+
+  @MODIFY_EXISTING_EMERGENCY_CONTACT
+  Scenario Outline: Employee Retirement
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button till person displayed
+    Then Employee name should be listed in search results
+    When user click on employee name link in search results
+    And user click on Task Icon on the right side
+    When user clicks Manage Person option from task icon menu
+    Then Manage Person page is displayed
+    And user clicks Contacts link on Manage Person page
+    Then Personal Relationships page is displayed
+    When user clicks on "Edit" option in Personal Relationships page
+    Then modal "Edit Contact" is displayed
+    And user clicks on Edit optoin in Personal Info section
+    And user selects Correct option to update details in Personal Info
+    And user updates First name and Last name in Personal Info modal
+    And user adds contact details in Phone section
+    And user clicks on Edit option in Address section
+    And user selects Update option to update details in Address modal
+    And user updates address fields as need and click OK button
+    Then user clicks on Submit button in Manage Person
+    When user clicks Yes button on popup modal
+    Then user is displayed with confimation modal
+    And user clicks OK button on Confirmation modal
+    And user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario                     | Test File Name | Test Sheet Name  |
+      | MODIFY_EXISTING_EMERGENCY_CONTACT | TestData.xlsx  | Employee_Details |

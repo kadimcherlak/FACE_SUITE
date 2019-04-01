@@ -500,7 +500,7 @@ public class BasePage<T> extends WebPage {
     }
 
     public void createEmergencyContact(String optionToBeClicked) {
-        WebElement createContactType = driver.findElement(By.xpath("//span[text()='" + optionToBeClicked + "']"));
+        WebElement createContactType = driver.findElement(By.xpath("//div[contains(@id,'MAt2:0:SP1:Manag1:0:AT')]//span[text()='" + optionToBeClicked + "']"));
         createContactType.click();
     }
 }

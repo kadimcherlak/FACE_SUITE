@@ -522,6 +522,28 @@ public class EmployeeEditMyDetailsSteps implements En {
         And("^user clicks OK button in contact creation modal$", () -> {
             context.employeeEditMyDetails.clickOKButtonOnBioInfoModal();
         });
+        And("^user clicks on Edit optoin in Personal Info section$", () -> {
+            context.employeeEditMyDetails.clickEditInPersonalInfo();
+        });
+        And("^user selects Correct option to update details in Personal Info$", () -> {
+            context.employeeEditMyDetails.selectCorrectFromEdit();
+        });
+        And("^user updates First name and Last name in Personal Info modal$", () -> {
+            context.employeeEditMyDetails.updateNameRelationshipInfo();
+        });
+        And("^user adds contact details in Phone section$", () -> {
+            context.employeeEditMyDetails.addEmergencyPhoneNumber();
+        });
+        And("^user clicks on Edit option in Address section$", () -> {
+            context.employeeEditMyDetails.clickEditInAddressArea();
+        });
+        And("^user selects Update option to update details in Address modal$", () -> {
+            context.employeeEditMyDetails.selectUpdateFromEditMenu();
+
+        });
+        And("^user updates address fields as need and click OK button$", () -> {
+            context.employeeEditMyDetails.updateEmergencyAddressDetails();
+        });
 
     }
 

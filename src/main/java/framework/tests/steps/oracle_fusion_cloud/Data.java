@@ -31,6 +31,7 @@ public class Data extends framework.core.models.Data {
     private String regionOfBirth;
     private String townOfBirth;
     private String countryCode;
+    private String areaCode;
     private String county;
     private String dateOfBirth;
     private String department;
@@ -112,6 +113,7 @@ public class Data extends framework.core.models.Data {
     private String correctEmploymentActionReason;
     private String contactType;
     private String emergencyContact;
+    private String emergencyContactType;
 
     // Alpha sorted list of getters
     // most of these items get loaded via bean loader, so normally setters not needed.
@@ -214,6 +216,8 @@ public class Data extends framework.core.models.Data {
     public String getContactType(){
         return contactType;
     }
+
+
     public String getBloodType() {
         return bloodType;
     }
@@ -607,5 +611,13 @@ public class Data extends framework.core.models.Data {
 
     public String getEmergencyContact() {
         return emergencyContact;
+    }
+
+    public String getEmergencyContactType() {
+        return emergencyContactType;
+    }
+
+    public String getAreaCode() {
+        return areaCode;
     }
 }
