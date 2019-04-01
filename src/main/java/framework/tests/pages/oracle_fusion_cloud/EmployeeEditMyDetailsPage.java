@@ -582,6 +582,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     
     @FindBy(xpath = "(//button[@accesskey='K'])[2]")
     private WebElement managePersonConfirmBtnOK;
+    
+    @FindBy(xpath = "//img[@title='Create Address']")
+    private WebElement createAddressButton;
 
     public EmployeeEditMyDetailsPage(Context context) {
         super(context);
@@ -2417,6 +2420,24 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 			confirmBtnOK.click();
 		} catch (Exception e) {
 			reportWithScreenShot("Error while entering effective date :" + e.getMessage());
+			Assert.fail();
+		}
+	}
+	
+	/**
+	 * User clicks on create address button
+	 * 
+	 * @author Rakesh
+	 */
+	public void clickCreateAddressButton() {
+		try {
+			waitFor(ExpectedConditions.elementToBeClickable(createAddressButton), 15);
+			createAddressButton.click();
+			selectInputDropdownValue(addressType, data.getAltWorkLocationAddressType());
+			reportWithScreenShot("Clicked on new address button and selected Address Type:");
+			
+		} catch (Exception e) {
+			reportWithScreenShot("Error while clicking new address button and selecting Address Type :" + e.getMessage());
 			Assert.fail();
 		}
 	}

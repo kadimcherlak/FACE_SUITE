@@ -543,6 +543,16 @@ public class EmployeeEditMyDetailsSteps implements En {
             context.employeeEditMyDetails.enterEffectiveDate();
             
         });
+        
+        Then("user clicks on create address button and select the address type", () -> {
+            context.employeeEditMyDetails.clickCreateAddressButton();
+            
+        });
+        
+        Then("add secondary address details and click on ok button", () -> {
+            context.employeeEditMyDetails.correctAddressManagePerson();
+            
+        });
 
     }
 
