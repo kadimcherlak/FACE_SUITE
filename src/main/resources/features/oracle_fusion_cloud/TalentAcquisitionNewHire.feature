@@ -123,7 +123,7 @@ Feature: New Hire and Related Activities
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario          | Test File Name | Test Sheet Name    |
       | CREATE_ELEMENT_ENTRIES | TestData.xlsx  | Talent_Acquisition |
 
