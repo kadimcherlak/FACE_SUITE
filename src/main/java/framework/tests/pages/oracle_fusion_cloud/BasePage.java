@@ -205,7 +205,7 @@ public class BasePage<T> extends WebPage {
     public void saveEmployeeDetails() {
         try {
             if (data.getPersonNumber() != null) {
-                csvWriter(data.getPersonNumber(), data.getPersonName());
+                csvWriter(data.getPersonNumber().trim(), data.getPersonName().trim());
             } else {
                 throw new Exception("Person Number not generated for a New hire process");
             }

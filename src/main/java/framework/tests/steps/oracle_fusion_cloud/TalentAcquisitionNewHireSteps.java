@@ -133,6 +133,10 @@ public class TalentAcquisitionNewHireSteps implements En {
             context.hireAnEmployee.clickCreateButton();
         });
 
+        Then("user clicks on Delete button", () -> {
+            context.personManagment.clickDeleteButton();
+        });
+
         Then("user enter Effective date : System Date and Element Name as Bilingual Indicator", () -> {
             context.personManagment.fillElementEntryInfo();
         });
@@ -173,6 +177,10 @@ public class TalentAcquisitionNewHireSteps implements En {
             context.personManagment.adpRowAdded();
         });
 
+        Then("Manage Element entries page should be displayed with ADP Auto & Home row deleted", () -> {
+            context.personManagment.adpRowDeleted();
+        });
+
         When("user clicks on Edit and select Correct option", () -> {
             context.personManagment.clickEditCorrect();
         });
@@ -203,6 +211,12 @@ public class TalentAcquisitionNewHireSteps implements En {
         
         When("Enter the seniority date under Legal Employer and under Enterprise", () -> {
             context.personManagment.enterHireDate();
+        });
+        And("^user clicks on Delete option$", () -> {
+            context.personManagment.clickDeleteButton();
+        });
+        When("^user selects the element entry to be deleted$", () -> {
+            context.personManagment.selectElementEntry();
         });
 
     }
