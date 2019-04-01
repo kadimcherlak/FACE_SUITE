@@ -97,24 +97,24 @@ public class BasePage<T> extends WebPage {
         Date date = new Date();
         return dateFormat.format(date);
     }
-    
-    public String getDynamicDate(int days) {
-    	  DateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
-          Date date =new Date();
-          String date1=dateFormat.format(date);
-          Calendar calendar = Calendar.getInstance();
-          try {
-			calendar.setTime(dateFormat.parse(date1));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} // parsed date and setting to calendar
 
-          calendar.add(Calendar.DATE, -days);  // number of days to add
-          String destDate = dateFormat.format(calendar.getTime());  // End date
-          return destDate;
+    public String getDynamicDate(int days) {
+        DateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
+        Date date = new Date();
+        String date1 = dateFormat.format(date);
+        Calendar calendar = Calendar.getInstance();
+        try {
+            calendar.setTime(dateFormat.parse(date1));
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } // parsed date and setting to calendar
+
+        calendar.add(Calendar.DATE, -days);  // number of days to add
+        String destDate = dateFormat.format(calendar.getTime());  // End date
+        return destDate;
     }
-    
+
 
     public static String toddMMyy(Date day) {
         SimpleDateFormat formatter = new SimpleDateFormat("M/d/yyyy");
@@ -486,5 +486,22 @@ public class BasePage<T> extends WebPage {
         return null;
     }
 
+    public boolean checkTaskLinkPageDisplayed(String taskLinkPage) {
+        boolean status = false;
+        try {
+            WebElement checkTaskLinkPage = driver.findElement(By.xpath("//div[contains(@title,'" + taskLinkPage + "')]/h1"));
+            waitFor(ExpectedConditions.visibilityOf(checkTaskLinkPage));
+            checkTaskLinkPage.isDisplayed();
+            status = true;
+        } catch (Exception e) {
+            status = false;
+        }
+        return status;
+    }
+
+    public void createEmergencyContact(String optionToBeClicked) {
+        WebElement createContactType = driver.findElement(By.xpath("//span[text()='" + optionToBeClicked + "']"));
+        createContactType.click();
+    }
 }
 

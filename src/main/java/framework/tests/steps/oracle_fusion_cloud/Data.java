@@ -28,6 +28,8 @@ public class Data extends framework.core.models.Data {
     private String companyEntity;
     private String costCenter;
     private String country;
+    private String regionOfBirth;
+    private String townOfBirth;
     private String countryCode;
     private String county;
     private String dateOfBirth;
@@ -67,6 +69,7 @@ public class Data extends framework.core.models.Data {
     private String managerType;
     private String maritalStatus;
     private String name;
+    private String countryOfBirth;
     private String nationalID;
     private String nationalIDType;
     private String newlySeparatedVeteranDischargeDate;
@@ -86,6 +89,7 @@ public class Data extends framework.core.models.Data {
     private String relationship;
     private String routingNumber;
     private String salaryAmount;
+    private String correspondenceLanguage;
     private String salaryBasis;
     private String scenario;
     private String sequence;
@@ -98,6 +102,7 @@ public class Data extends framework.core.models.Data {
     private String workerType;
     private String workingAsManager;
     private String zipCode;
+    private String bloodType;
     private String employeeName;
     private String actionManageSalary;
     private String actionReasonManageSalary;
@@ -105,6 +110,8 @@ public class Data extends framework.core.models.Data {
     private String projectedEndDate;
     private String correctEmploymentAction;
     private String correctEmploymentActionReason;
+    private String contactType;
+    private String emergencyContact;
 
     // Alpha sorted list of getters
     // most of these items get loaded via bean loader, so normally setters not needed.
@@ -198,6 +205,29 @@ public class Data extends framework.core.models.Data {
 
     public String getCountry() {
         return country;
+    }
+
+    public String getCorrespondenceLanguage() {
+        return correspondenceLanguage;
+    }
+
+    public String getContactType(){
+        return contactType;
+    }
+    public String getBloodType() {
+        return bloodType;
+    }
+
+    public String getRegionOfBirth() {
+        return regionOfBirth;
+    }
+
+    public String getCountryOfBirth() {
+        return countryOfBirth;
+    }
+
+    public String getTownOfBirth() {
+        return townOfBirth;
     }
 
     public String getCountryCode() {
@@ -575,4 +605,7 @@ public class Data extends framework.core.models.Data {
         this.correctEmploymentActionReason = correctEmploymentActionReason;
     }
 
+    public String getEmergencyContact() {
+        return emergencyContact;
+    }
 }

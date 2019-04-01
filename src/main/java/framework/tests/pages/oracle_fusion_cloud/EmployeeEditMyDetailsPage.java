@@ -2,6 +2,7 @@ package framework.tests.pages.oracle_fusion_cloud;
 
 import framework.tests.steps.oracle_fusion_cloud.Context;
 import framework.tests.steps.oracle_fusion_cloud.Data;
+import net.bytebuddy.asm.Advice;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -14,6 +15,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
 
 public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPage> {
 
@@ -507,6 +509,30 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//a[contains(@id,'table2:0:gl1')]")
     private WebElement personLink;
+
+    @FindBy(xpath = "//td[2]//button[text()='Edit']")
+    private WebElement button_EditBioInfo;
+
+    @FindBy(xpath = "//input[@id='_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt2:0:SP1:pt_r2:0:id1::content']")
+    private WebElement text_dateOfBirth;
+
+    @FindBy(xpath = "//input[contains(@id,'countryNameId')]")
+    private WebElement text_countryOfBirth;
+
+    @FindBy(xpath = "//input[contains(@id,'MAt2:0:SP1:pt_r2:0:it2')]")
+    private WebElement text_regionOfBirth;
+
+    @FindBy(xpath = "//input[contains(@id,'0:MAt2:0:SP1:pt_r2:0:it1')]")
+    private WebElement text_townOfBirth;
+
+    @FindBy(xpath = "//a[contains(@id,'MAt2:0:SP1:pt_r2:0:soc4')]")
+    private WebElement comboBox_correspondenceLanguage;
+
+    @FindBy(xpath = "//a[contains(@id,'MAt2:0:SP1:pt_r2:0:soc2::drop')]")
+    private WebElement comboBox_bloodType;
+
+    @FindBy(xpath = "//*[@accesskey='m']")
+    private WebElement button_Submit;
 
     public EmployeeEditMyDetailsPage(Context context) {
         super(context);
@@ -1572,7 +1598,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
                 } else {
                     waitShortTime();
                     clickRefreshBtn1();
-                    }
+                }
                 count++;
             }
             scrollToElement(processId);
@@ -1645,6 +1671,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
+
     //Check if New Contact Page is displayed
     public void checkNewContactPageDisplayed() {
         try {
@@ -1917,7 +1944,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             waitShortTime();
 //            waitFor(ExpectedConditions
 //                    .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getEmploymentActionReason() + "']"))), 5);
-            if(!data.getEmploymentActionReason().isEmpty()){
+            if (!data.getEmploymentActionReason().isEmpty()) {
                 driver.findElement(By.xpath("//li[text()='" + data.getEmploymentActionReason() + "']")).click();
                 modalUpdateEmploymentActionReason.sendKeys(Keys.TAB);
             }
@@ -2042,5 +2069,231 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-    
+
+    public void taskLinkPage(String taskLinkPage) {
+        waitShortTime();
+        try {
+//            assertThat(context.basePage.checkTaskLinkPageDisplayed(taskLinkPage)).isTrue();
+//            reportWithScreenShot(taskLinkPage + " page is displayed successfully");
+            Thread.sleep(2000);
+            WebElement checkTaskLinkPage = driver.findElement(By.xpath("//div[contains(@title,'" + taskLinkPage + "')]/h1"));
+            waitFor(ExpectedConditions.visibilityOf(checkTaskLinkPage));
+            boolean status = checkTaskLinkPageDisplayed(taskLinkPage);
+            if (status) {
+                reportWithScreenShot(taskLinkPage + " page is displayed successfully");
+            } else {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            reportWithScreenShot("Error while displaying " + taskLinkPage + " page");
+            Assert.fail();
+        }
+    }
+
+    public void clickEditButtonOfBioInfo() {
+        try {
+            button_EditBioInfo.click();
+            waitFor(ExpectedConditions.visibilityOf(confirmBtnOK));
+            assertThat(confirmBtnOK.isDisplayed()).isTrue();
+            reportWithScreenShot("User clicked Edit button for Biographical Info");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking Edit button of Biographical Info");
+            Assert.fail();
+        }
+    }
+
+    public void checkBioInfoModalDisplayed() {
+
+        try {
+            waitFor(ExpectedConditions.visibilityOf(confirmBtnOK));
+            assertThat(confirmBtnOK.isDisplayed()).isTrue();
+            reportWithScreenShot("Biographical Info modal is displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while displaying Biographical Info");
+            Assert.fail();
+        }
+    }
+
+    public void enterBiographicalInfo() {
+        try {
+            text_dateOfBirth.clear();
+            text_dateOfBirth.sendKeys(data.getDateOfBirth());
+            text_dateOfBirth.sendKeys(Keys.TAB);
+            text_countryOfBirth.clear();
+            text_countryOfBirth.sendKeys(data.getCountryOfBirth());
+            waitNormalTime();
+            text_countryOfBirth.sendKeys(Keys.ENTER);
+            text_countryOfBirth.sendKeys(Keys.TAB);
+            waitNormalTime();
+            text_regionOfBirth.clear();
+            text_regionOfBirth.sendKeys(data.getRegionOfBirth());
+            text_townOfBirth.clear();
+            text_townOfBirth.sendKeys(data.getTownOfBirth());
+            comboBox_correspondenceLanguage.click();
+            waitNormalTime();
+            WebElement elementToSelect = driver.findElement(By.xpath("//li[text()='" + data.getCorrespondenceLanguage() + "']"));
+            elementToSelect.click();
+            waitNormalTime();
+            comboBox_bloodType.click();
+            elementToSelect = driver.findElement(By.xpath("//li[text()='" + data.getBloodType() + "']"));
+            elementToSelect.click();
+            waitNormalTime();
+            reportWithScreenShot("User entered Biographical Info");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while entering Biographical Info");
+            Assert.fail();
+        }
+    }
+
+    public void clickOKButtonOnBioInfoModal() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(btnOK), 30);
+            btnOK.click();
+            waitFor(ExpectedConditions.elementToBeClickable(button_Submit), 30);
+            assertThat(button_Submit.isDisplayed()).isTrue();
+            reportWithScreenShot("User clicked OK button");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking on OK button");
+            Assert.fail();
+        }
+    }
+
+    public void clickSubmitButtonInManagePerson() {
+
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_Submit), 30);
+            waitShortTime();
+            button_Submit.click();
+            reportWithScreenShot("User clicked Submit button");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking Submit button");
+            Assert.fail();
+        }
+
+
+    }
+
+    public void checkWarningModal() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(popButtonYes), 30);
+            assertThat(popButtonYes.isDisplayed()).isTrue();
+            reportWithScreenShot("Warning modal is displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while displaying Warning modal");
+            Assert.fail();
+        }
+    }
+
+    public void checkConfirmationModal() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(confirmBtnOK), 30);
+            assertThat(confirmBtnOK.isDisplayed()).isTrue();
+            reportWithScreenShot("Confirmation modal is displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while displaying Confirmation modal");
+            Assert.fail();
+        }
+    }
+
+    public void clickOKButtonOnConfirmationModal() {
+
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(confirmBtnOK), 30);
+            confirmBtnOK.click();
+            reportWithScreenShot("User clicked OK button on confirmation modal");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while while clicking OK button on Confirmation modal");
+            Assert.fail();
+        }
+    }
+
+    @FindBy(xpath = "//div[@class='x163']//a[text()='Contacts']")
+    private WebElement link_ContactsInManagePersonPage;
+
+    @FindBy(xpath = "//div[text()='Create Contact from Existing Person']")
+    private WebElement modal_CreateContactFromExistingPerson;
+
+    @FindBy(xpath = "//span[text()='Create from Existing Person']")
+    private WebElement button_CreateFromExistingPerson;
+
+    @FindBy(xpath = "//label[text()='Contact Type']/following::input[1]")
+    private WebElement comboBox_ContactType;
+
+    @FindBy(xpath = "//label[text()='Emergency Contact']/following::input[1]")
+    private WebElement comboBox_emergencyContact;
+
+    @FindBy(xpath = "//a[@title='Search: Name']")
+    private WebElement comboBox_Name;
+
+    @FindBy(xpath = "//label[text()='Effective Start Date']/following::input[1]")
+    private WebElement datePicker_EffectiveStartDate;
+
+    @FindBy(xpath = "//table[@class=\"x1n0\"]/tbody/tr[1]")
+    private WebElement comboBox_selectName;
+
+    public void clickContactsLinkInManagePersonPage() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(link_ContactsInManagePersonPage), 30);
+            link_ContactsInManagePersonPage.click();
+            waitShortTime();
+            reportWithScreenShot("User clicked Contacts link in Manage Person page");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking Contacts link in Manage Person page - " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void clickEditOptionInPersonalRelationshipsPage(String optionToBeClicked) {
+        waitNormalTime();
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_CreateFromExistingPerson), 30);
+            createEmergencyContact(optionToBeClicked);
+            Thread.sleep(1000);
+            waitFor(ExpectedConditions.visibilityOf(modal_CreateContactFromExistingPerson));
+            waitShortTime();
+            reportWithScreenShot("User clicked " + optionToBeClicked + " in Personal Relations page");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking " + optionToBeClicked + " in Personal Relations page" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void checkContactTypeModal(String modalName) {
+        waitShortTime();
+        try {
+            WebElement elementContactTypeModal = driver.findElement(By.xpath("//div[text()='" + modalName + "']"));
+            waitFor(ExpectedConditions.visibilityOf(elementContactTypeModal));
+            assertThat(elementContactTypeModal.isDisplayed()).isTrue();
+            reportWithScreenShot(modalName + " modal is displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while displaying " + modalName + " modal - "+e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void enterDetailsInRelationshipInformationModal() {
+        try{
+            comboBox_ContactType.click();
+            waitShortTime();
+            WebElement selectDropDownValues = driver.findElement(By.xpath("//li[text()='" + data.getContactType() + "']"));
+            selectDropDownValues.click();
+            waitShortTime();
+            comboBox_emergencyContact.click();
+            selectDropDownValues = driver.findElement(By.xpath("//li[text()='" + data.getEmergencyContact() + "']"));
+            selectDropDownValues.click();
+            waitShortTime();
+            datePicker_EffectiveStartDate.clear();
+            datePicker_EffectiveStartDate.sendKeys(getDynamicDate(1));
+            datePicker_EffectiveStartDate.sendKeys(Keys.TAB);
+            waitShortTime();
+            comboBox_Name.click();
+            waitShortTime();
+            comboBox_selectName.click();
+            waitShortTime();
+            reportWithScreenShot(" User enter details of Emergency contact details");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while enteronh Emergency contact details - "+e.getMessage());
+            Assert.fail();
+        }
+    }
 }

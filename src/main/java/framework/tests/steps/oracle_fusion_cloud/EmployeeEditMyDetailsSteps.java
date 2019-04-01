@@ -472,6 +472,56 @@ public class EmployeeEditMyDetailsSteps implements En {
         Then("user clicks on Document Records link under Personal Info", () -> {
             context.employeeEditMyDetails.clickDocumentRecordsLink();
         });
+        Then("^(.*?) page is displayed$", (String taskLinkPage) -> {
+            context.employeeEditMyDetails.taskLinkPage(taskLinkPage);
+        });
+
+        Then("^validate user is able to view the documents$", () -> {
+        });
+
+        And("^user clicks on Edit button in Manage Person page to edit Biographical Info$", () -> {
+            context.employeeEditMyDetails.clickEditButtonOfBioInfo();
+        });
+
+        Then("^persons Biographical Info modal displayed$", () -> {
+            context.employeeEditMyDetails.checkBioInfoModalDisplayed();
+        });
+
+        And("^user enters Biographical infomation from Manage Person page$", () -> {
+            context.employeeEditMyDetails.enterBiographicalInfo();
+        });
+
+        And("^user clicks OK button on Biographical Info modal$", () -> {
+            context.employeeEditMyDetails.clickOKButtonOnBioInfoModal();
+        });
+        When("^user clicks on Submit button in Manage Person$", () -> {
+            context.employeeEditMyDetails.clickSubmitButtonInManagePerson();
+        });
+        Then("^Warning modal is diplayed to confirm the request$", () -> {
+            context.employeeEditMyDetails.checkWarningModal();
+        });
+        Then("^user is displayed with confimation modal$", () -> {
+            context.employeeEditMyDetails.checkConfirmationModal();
+        });
+        And("^user clicks OK button on Confirmation modal$", () -> {
+            context.employeeEditMyDetails.clickOKButtonOnConfirmationModal();
+        });
+        And("^user clicks Contacts link on Manage Person page$", () -> {
+            context.employeeEditMyDetails.clickContactsLinkInManagePersonPage();
+        });
+        When("^user clicks on \"([^\"]*)\" option in Personal Relationships page$", (String optionToBeClicked) -> {
+            context.employeeEditMyDetails.clickEditOptionInPersonalRelationshipsPage(optionToBeClicked);
+        });
+        Then("^modal \"([^\"]*)\" is displayed$", (String modalName) -> {
+            context.employeeEditMyDetails.checkContactTypeModal(modalName);
+
+        });
+        And("^user enters details in Relationship Information modal$", () -> {
+            context.employeeEditMyDetails.enterDetailsInRelationshipInformationModal();
+        });
+        And("^user clicks OK button in contact creation modal$", () -> {
+            context.employeeEditMyDetails.clickOKButtonOnBioInfoModal();
+        });
 
     }
 
