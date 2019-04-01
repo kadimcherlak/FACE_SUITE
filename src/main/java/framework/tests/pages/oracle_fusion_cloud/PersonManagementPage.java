@@ -5,6 +5,7 @@ import framework.tests.steps.oracle_fusion_cloud.Data;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -18,6 +19,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     private Data data;
     private int elementsize;
     private String searchDate;
+    private Actions actions;
 
     // Person Management Page Locators
     @FindBy(className = "svg-icon03")
@@ -93,6 +95,9 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "(//*[contains(text(),'Comp One Off Bonus Pay')])[1]")
     private WebElement adpRowAdded;
 
+    @FindBy(xpath = "(//*[contains(text(),'Comp One Off Bonus Pay')])[1]")
+    private WebElement adpRowDeleted;
+
     @FindBy(xpath = "(//span[@class='xwy'])[1]")
     private WebElement done;
 
@@ -101,6 +106,9 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
     @FindBy(xpath = "//a[@title='Edit']")
     private WebElement personMgmtEdit;
+
+    @FindBy(xpath = "(//a[@title='Edit'])[2]")
+    private WebElement manageElementEntriesEdit;
 
     @FindBy(xpath = "//tr[contains(@id,'updBtn')]")
     private WebElement personMgmtUpdate;
@@ -211,6 +219,9 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//td[text() = 'Correct']")
     private WebElement personMgmtCorrect;
 
+    @FindBy(xpath = "//td[text() = 'Correct']")
+    private WebElement manageElementEntriesCorrect;
+
     @FindBy(xpath = "//div[text() = 'Correct Employment']")
     private WebElement correctEmploymentTitle;
 
@@ -232,12 +243,19 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "(//label[text()='Hire Date'])[3]/following::span[1]")
     private WebElement enterpriseHireDate;
 
+    @FindBy(xpath = "//img[@title='Delete']")
+    private WebElement deleteButton;
+
+    @FindBy(xpath = "//button[@accesskey='Y']")
+    private WebElement confirmButton;
+
     // Person Management Contructor
     public PersonManagementPage(Context context) {
         super(context);
         this.context = context;
         this.data = context.getData();
         PageFactory.initElements(driver, this);
+        actions = new Actions(driver);
         logger.debug("{} loaded", this.getClass().getName());
     }
 
@@ -397,6 +415,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             reportWithScreenShot("Checking if Manage Element Entries page  is Displayed");
             waitFor(ExpectedConditions.visibilityOf(manageElementEnteriesTextCheck), 15);
             assertThat(manageElementEnteriesTextCheck.isDisplayed()).isTrue();
+            waitUntilPageLoad();
         } catch (Exception e) {
             reportWithScreenShot("Manage Element Entries page  not Displayed");
             Assert.fail();
@@ -422,7 +441,6 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     // User Enter Element Name details as ADP Auto & Home
     public void fillADPElementEntryInfo() {
         try {
-
             // Enter Business Unit
             waitFor(ExpectedConditions.elementToBeClickable(elementName), 15);
             elementName.sendKeys(data.getElementNameADP());
@@ -463,6 +481,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
         try {
             // Enter Actual Amount
             waitFor(ExpectedConditions.elementToBeClickable(actualAmount), 15);
+            actualAmount.clear();
             actualAmount.sendKeys(data.getActualAmount());
 
             // Enter effective as of date - Not required for COgnizant instance
@@ -493,6 +512,18 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             assertThat(adpRowAdded.isDisplayed()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("ADP Auto & Home r row is not added");
+            Assert.fail();
+        }
+    }
+
+
+    public void adpRowDeleted() {
+        try {
+            reportWithScreenShot("Checking if ADP Auto & Home row is Displayed");
+            waitFor(ExpectedConditions.visibilityOf(adpRowDeleted), 15);
+            assertThat(adpRowDeleted.isDisplayed()).isFalse();
+        } catch (Exception e) {
+            reportWithScreenShot("ADP Auto & Home row is not deleted");
             Assert.fail();
         }
     }
@@ -762,12 +793,16 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
      */
     public void clickEditCorrect() {
         try {
-            waitFor(ExpectedConditions.elementToBeClickable(personMgmtEdit), 15);
-            personMgmtEdit.click();
-            waitFor(ExpectedConditions.elementToBeClickable(personMgmtCorrect), 15);
-            personMgmtCorrect.click();
+            if (data.getScenario().equalsIgnoreCase("UPDATE_ELEMENT_ENTRIES")) {
+                waitFor(ExpectedConditions.elementToBeClickable(manageElementEntriesEdit), 15);
+                manageElementEntriesEdit.click();
+            } else {
+                waitFor(ExpectedConditions.elementToBeClickable(personMgmtEdit), 15);
+                personMgmtEdit.click();
+                waitFor(ExpectedConditions.elementToBeClickable(personMgmtCorrect), 15);
+                personMgmtCorrect.click();
+            }
             reportWithScreenShot("Selected Correct Option after clicking on Edit");
-
         } catch (Exception e) {
             reportWithScreenShot("Error While user click on Edit and Correct button:" + e.getMessage());
             Assert.fail();
@@ -887,6 +922,38 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
         } catch (Exception e) {
         	System.out.println(e);
             reportWithScreenShot("Error while entering hire date");
+            Assert.fail();
+        }
+    }
+
+
+    /*
+     * Raghav - Created Delete option for Element entries
+     */
+    public void clickDeleteButton() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(deleteButton), 15);
+            deleteButton.click();
+            waitFor(ExpectedConditions.elementToBeClickable(confirmButton), 15);
+            confirmButton.click();
+            waitNormalTime();
+        } catch (Exception e) {
+            reportWithScreenShot("Error While user click on Delete button:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    /*
+     * Raghav - Created select option for Element entries
+     */
+    public void selectElementEntry() {
+        try {
+            waitNormalTime();
+            waitFor(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//a[text()='" + data.getElementNameADP() + "']"))), 15);
+            actions.moveToElement(driver.findElement(By.xpath("//a[text()='" + data.getElementNameADP() + "']"))).perform();
+            waitShortTime();
+        } catch (Exception e) {
+            reportWithScreenShot("Error While looking for Element entry: " + data.getElementNameADP() + " due to : " + e.getMessage());
             Assert.fail();
         }
     }
