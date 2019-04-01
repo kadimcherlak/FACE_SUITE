@@ -570,6 +570,18 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     
     @FindBy(xpath = "(//label[text()='ZIP Code']/following::input)[1]")
     private WebElement managePersonZip;
+    
+    @FindBy(xpath = "//tr[contains(@id,'correctMenuItem')]/preceding::td[text()='Update'][1]")
+    private WebElement managePersonUpdateDropdown;
+    
+    @FindBy(xpath = "//div[text()='Update Address']")
+    private WebElement effectiveDateAddressPopUp;
+    
+    @FindBy(xpath = "//label[text()='Effective Start Date']/following::input[1]")
+    private WebElement effectiveDate;
+    
+    @FindBy(xpath = "(//button[@accesskey='K'])[2]")
+    private WebElement managePersonConfirmBtnOK;
 
     public EmployeeEditMyDetailsPage(Context context) {
         super(context);
@@ -2257,103 +2269,156 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
     
- // User click on Edit and Update button
-    /**
-     * User clicks on Edit Button and then click on Correct from the dropdown
-     * @author Rakesh
-     */
-    public void clickEditCorrectManagePerson() {
-        try {
-            waitFor(ExpectedConditions.elementToBeClickable(homeAddressEditButton), 15);
-            homeAddressEditButton.click();
-            waitShortTime();
+	// User click on Edit and Update button
+	/**
+	 * User clicks on Edit Button and then click on Correct from the dropdown
+	 * 
+	 * @author Rakesh
+	 */
+	public void clickEditCorrectManagePerson() {
+		try {
+			waitFor(ExpectedConditions.elementToBeClickable(homeAddressEditButton), 15);
+			homeAddressEditButton.click();
+			waitShortTime();
 
-            waitFor(ExpectedConditions.elementToBeClickable(managePersonCorrectDropdown), 15);
-            managePersonCorrectDropdown.click();
-            waitShortTime();
+			waitFor(ExpectedConditions.elementToBeClickable(managePersonCorrectDropdown), 15);
+			managePersonCorrectDropdown.click();
+			waitShortTime();
 
-            waitFor(ExpectedConditions.visibilityOf(correctAddressPopup), 15);
-            assertThat(correctAddressPopup.isDisplayed()).isTrue();
-        } catch (Exception e) {
-            reportWithScreenShot("Error While user click on Edit and Correct button:" + e.getMessage());
-            Assert.fail();
-        }
-    }
-    
-    /**
-     * This method will update the correct address format as given in test data excel
-     * @author Rakesh
-     */
-    public void correctAddressManagePerson()
-    {
-    	try
-    	{
-    		waitFor(ExpectedConditions.elementToBeClickable(altWorkLocationAddressLine1), 15);
-    		altWorkLocationAddressLine1.clear();
-    		altWorkLocationAddressLine1.sendKeys(data.getAddressLine1());
-    		
-    		waitFor(ExpectedConditions.elementToBeClickable(altWorkLocationAddressLine2), 15);
-    		altWorkLocationAddressLine2.clear();
-    		altWorkLocationAddressLine2.sendKeys(data.getAddressLine2());
-    		
-    		waitFor(ExpectedConditions.elementToBeClickable(zipCode), 15);
-    		managePersonZip.clear();
-    		managePersonZip.sendKeys(data.getZipCode());
-    		managePersonZip.sendKeys(Keys.TAB);
-    		waitShortTime();
-    		
-    		try
-    		{
-    			waitFor(ExpectedConditions.visibilityOf(searchAndSelectZipCodePopUp), 10);
-    			String cityToBeSelectedXpath="//*[contains(text(),'"+data.getCity()+"')]";
-    			waitShortTime();
-    			waitFor(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(cityToBeSelectedXpath))), 15);
-    			//driver.findElement(By.xpath(cityToBeSelectedXpath)).click();
-    			Actions actions = new Actions(driver);
-    			actions.doubleClick(driver.findElement(By.xpath(cityToBeSelectedXpath))).build().perform();
-    			waitShortTime();
-    		}catch(Exception er)
-    		{
-    			logger.info("Search and find Zip code is not displayed ");
-    		}
-    		
-    		if(managePersonCity.getAttribute("value").equalsIgnoreCase(data.getCity())==false)
-    		{
-    			reportWithScreenShot("Expected city is not matching :");
-                Assert.fail();
-    		}
-    		
-    		reportWithScreenShot("Correcting Address:");
-    		waitFor(ExpectedConditions.visibilityOf(confirmBtnOK), 15);
-    		confirmBtnOK.click();
-    		
-    		
-    	}catch(Exception e)
-    	{
-    		reportWithScreenShot("Error while correcting home address :"+e.getMessage());
-            Assert.fail();
-    	}
-    }
-    
-    /**
-     * Validate the address is updated in Manage Person Screen
-     * @author Rakesh
-     */
-    public void validateCorrectAddressDisplayed() {
-        try {
-            
-            waitShortTime();
-            String addressXpath="//span[contains(text(),'"+data.getAddressLine1()+"')]";
-            waitFor(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(addressXpath))), 15);
-            reportWithScreenShot("Address is udpated successfully:");
-        } catch (Exception e) {
-            reportWithScreenShot("Address is not udpated :" + e.getMessage());
-            Assert.fail();
-        }
-    }
-    
-    
-    
+			waitFor(ExpectedConditions.visibilityOf(correctAddressPopup), 15);
+			assertThat(correctAddressPopup.isDisplayed()).isTrue();
 
+			reportWithScreenShot("Correct option is selected from the edit menu in address:");
+		} catch (Exception e) {
+			reportWithScreenShot("Error While user click on Edit and Correct button:" + e.getMessage());
+			Assert.fail();
+		}
+	}
+
+	/**
+	 * This method will update the correct address format as given in test data
+	 * excel
+	 * 
+	 * @author Rakesh
+	 */
+	public void correctAddressManagePerson() {
+		try {
+			waitFor(ExpectedConditions.elementToBeClickable(altWorkLocationAddressLine1), 15);
+			altWorkLocationAddressLine1.clear();
+			altWorkLocationAddressLine1.sendKeys(data.getAddressLine1());
+
+			waitFor(ExpectedConditions.elementToBeClickable(altWorkLocationAddressLine2), 15);
+			altWorkLocationAddressLine2.clear();
+			altWorkLocationAddressLine2.sendKeys(data.getAddressLine2());
+
+			waitFor(ExpectedConditions.elementToBeClickable(zipCode), 15);
+			managePersonZip.clear();
+			managePersonZip.sendKeys(data.getZipCode());
+			managePersonZip.sendKeys(Keys.TAB);
+			waitShortTime();
+
+			try {
+				waitFor(ExpectedConditions.visibilityOf(searchAndSelectZipCodePopUp), 10);
+				String cityToBeSelectedXpath = "//*[contains(text(),'" + data.getCity() + "')]";
+				waitShortTime();
+				waitFor(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(cityToBeSelectedXpath))),
+						15);
+				// driver.findElement(By.xpath(cityToBeSelectedXpath)).click();
+				Actions actions = new Actions(driver);
+				actions.doubleClick(driver.findElement(By.xpath(cityToBeSelectedXpath))).build().perform();
+				waitShortTime();
+			} catch (Exception er) {
+				logger.info("Search and find Zip code is not displayed ");
+			}
+
+			waitFor(ExpectedConditions.elementToBeClickable(managePersonCity), 15);
+			if (managePersonCity.getAttribute("value").equalsIgnoreCase(data.getCity()) == false) {
+				reportWithScreenShot("Expected city is not matching :");
+				Assert.fail();
+			}
+
+			try {
+				waitFor(ExpectedConditions.visibilityOf(confirmBtnOK), 15);
+				confirmBtnOK.click();
+			} catch (Exception e) {
+				try {
+					managePersonConfirmBtnOK.click();
+				} catch (Exception ex) {
+					reportWithScreenShot("Error while correcting home address :");
+					Assert.fail();
+				}
+			}
+
+			reportWithScreenShot("Correcting Address:");
+
+		} catch (Exception e) {
+			reportWithScreenShot("Error while correcting home address :" + e.getMessage());
+			Assert.fail();
+		}
+	}
+
+	/**
+	 * Validate the address is updated in Manage Person Screen
+	 * 
+	 * @author Rakesh
+	 */
+	public void validateCorrectAddressDisplayed() {
+		try {
+
+			waitShortTime();
+			String addressXpath = "//span[contains(text(),'" + data.getAddressLine1() + "')]";
+			waitFor(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(addressXpath))), 15);
+			reportWithScreenShot("Address is udpated successfully:");
+		} catch (Exception e) {
+			reportWithScreenShot("Address is not udpated :" + e.getMessage());
+			Assert.fail();
+		}
+	}
+
+	// User click on Edit and Update button
+	/**
+	 * User clicks on Edit Button and then click on Update from the dropdown
+	 * 
+	 * @author Rakesh
+	 */
+	public void clickEditUpdateManagePerson() {
+		try {
+			waitFor(ExpectedConditions.elementToBeClickable(homeAddressEditButton), 15);
+			homeAddressEditButton.click();
+			waitShortTime();
+
+			waitFor(ExpectedConditions.elementToBeClickable(managePersonUpdateDropdown), 15);
+			managePersonUpdateDropdown.click();
+			waitShortTime();
+
+			waitFor(ExpectedConditions.visibilityOf(effectiveDateAddressPopUp), 15);
+			assertThat(effectiveDateAddressPopUp.isDisplayed()).isTrue();
+			reportWithScreenShot("Update option is selected from the edit menu in address:");
+		} catch (Exception e) {
+			reportWithScreenShot("Error While user click on Edit and Correct button:" + e.getMessage());
+			Assert.fail();
+		}
+	}
+
+	/**
+	 * Enter Effective date during address update in Manage Person Screen
+	 * 
+	 * @author Rakesh
+	 */
+	public void enterEffectiveDate() {
+		try {
+			waitFor(ExpectedConditions.elementToBeClickable(effectiveDate), 15);
+			effectiveDate.clear();
+			//System.out.println(getCurrentDateWithGivenFormat("MM/dd/yy"));
+			effectiveDate.sendKeys(addDaysToDate(getCurrentDateWithGivenFormat("MM/dd/yy"), 2, "MM/dd/yy"));
+			effectiveDate.sendKeys(Keys.TAB);
+			reportWithScreenShot("Effective date has been entered:");
+			waitFor(ExpectedConditions.elementToBeClickable(confirmBtnOK), 15);
+			confirmBtnOK.click();
+		} catch (Exception e) {
+			reportWithScreenShot("Error while entering effective date :" + e.getMessage());
+			Assert.fail();
+		}
+	}
 
 }
