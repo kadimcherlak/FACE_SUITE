@@ -535,6 +535,92 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//*[@accesskey='m']")
     private WebElement button_Submit;
 
+    @FindBy(xpath = "//label[text()='Address Line 1']/following::input[1]")
+    private WebElement text_updateAddressModal_AddressLine1;
+    @FindBy(xpath = "//label[text()='ZIP Code']/following::input[1]")
+    private WebElement text_updateAddressModal_ZipCode;
+    @FindBy(xpath = "//label[text()='City']/following::input[1]")
+    private WebElement text_updateAddressModal_City;
+    @FindBy(xpath = "//label[text()='State']/following::input[1]")
+    private WebElement text_updateAddressModal_State;
+    @FindBy(xpath = "//label[text()='County']/following::input[1]")
+    private WebElement text_updateAddressModal_County;
+
+    @FindBy(xpath = "//div[@class='x163']//a[text()='Contacts']")
+    private WebElement link_ContactsInManagePersonPage;
+
+    @FindBy(xpath = "//div[text()='Create Contact from Existing Person']")
+    private WebElement modal_CreateContactFromExistingPerson;
+
+    @FindBy(xpath = "//span[text()='Create from Existing Person']")
+    private WebElement button_CreateFromExistingPerson;
+
+    @FindBy(xpath = "//label[text()='Contact Type']/following::input[1]")
+    private WebElement comboBox_ContactType;
+
+    @FindBy(xpath = "//label[text()='Emergency Contact']/following::input[1]")
+    private WebElement comboBox_emergencyContact;
+
+    @FindBy(xpath = "//a[@title='Search: Name']")
+    private WebElement comboBox_Name;
+
+    @FindBy(xpath = "//label[text()='Effective Start Date']/following::input[1]")
+    private WebElement datePicker_EffectiveStartDate;
+
+    @FindBy(xpath = "//label[text()='Effective Start Date']/following::td[1]/input[1]")
+    private WebElement datePicker_updateAddressEffectiveStartDate;
+
+    @FindBy(xpath = "//table[@class=\"x1n0\"]/tbody/tr[1]")
+    private WebElement comboBox_selectName;
+
+    @FindBy(xpath = "//label[text()='Home Address']/following::a[@title='Edit'][1]")
+    private WebElement button_EditAddress;
+
+    @FindBy(xpath = "//label[text()='Name']/following::a[@title='Edit'][1]")
+    private WebElement button_EditName;
+
+    @FindBy(xpath = "//label[text()='Name']/following::td[text()='Correct'][2]")
+    private WebElement button_CorrectName;
+
+    @FindBy(xpath = "//label[text()='Home Address']/following::td[text()='Update'][1]")
+    private WebElement button_UpdateAddress;
+
+    @FindBy(xpath = "//label[text()='Last Name']/following::input[1]")
+    private WebElement text_lastName_PersonalInfo;
+
+    @FindBy(xpath = "//label[text()='First Name']/following::input[1]")
+    private WebElement text_firstName_PersonalInfo;
+
+    @FindBy(xpath = "//label[text()='Enter local name']/following::button[@accesskey='K']")
+    private WebElement button_OK_UpdateName;
+
+    @FindBy(xpath = "//label[text()='County']/following::span[text()='K']")
+    private WebElement button_OK_UpdatAddress;
+
+    @FindBy(xpath = "//label[text()='Effective Start Date']/following::span/button[@accesskey='K']")
+    private WebElement button_OK_UpdatAddressDate;
+
+    @FindBy(xpath = "//label[text()='Home Address']/following::span[text()='K']")
+    private WebElement button_OK_CloseEditWindow;
+
+    @FindBy(xpath = "//img[@alt='Add Row']")
+    private WebElement button_AddRowForPhoneDetails;
+
+    @FindBy(xpath = "//a[contains(@id,'AT1:_ATp:table1:0:soc1')]")
+    private WebElement comboBox_emergencyPhoneType;
+
+    @FindBy(xpath = "//a[@title='Search and Select: Country Code']")
+    private WebElement comboBox_emergencyCountryCode;
+
+    @FindBy(xpath = "//label[text()='Country Code']/following::input[1]")
+    private WebElement text_emergencyAreaCode;
+
+    @FindBy(xpath = "//label[text()='Country Code']/following::input[2]")
+    private WebElement text_emergencyPhoneNumber;
+
+    @FindBy(xpath = "//label[text()='Type']/following::input[1]")
+    private WebElement text_CountryCode;
+
     public EmployeeEditMyDetailsPage(Context context) {
         super(context);
         this.context = context;
@@ -2208,33 +2294,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
-    @FindBy(xpath = "//div[@class='x163']//a[text()='Contacts']")
-    private WebElement link_ContactsInManagePersonPage;
-
-    @FindBy(xpath = "//div[text()='Create Contact from Existing Person']")
-    private WebElement modal_CreateContactFromExistingPerson;
-
-    @FindBy(xpath = "//span[text()='Create from Existing Person']")
-    private WebElement button_CreateFromExistingPerson;
-
-    @FindBy(xpath = "//label[text()='Contact Type']/following::input[1]")
-    private WebElement comboBox_ContactType;
-
-    @FindBy(xpath = "//label[text()='Emergency Contact']/following::input[1]")
-    private WebElement comboBox_emergencyContact;
-
-    @FindBy(xpath = "//a[@title='Search: Name']")
-    private WebElement comboBox_Name;
-
-    @FindBy(xpath = "//label[text()='Effective Start Date']/following::input[1]")
-    private WebElement datePicker_EffectiveStartDate;
-
-    @FindBy(xpath = "//label[text()='Effective Start Date']/following::td[1]/input[1]")
-    private WebElement datePicker_updateAddressEffectiveStartDate;
-
-    @FindBy(xpath = "//table[@class=\"x1n0\"]/tbody/tr[1]")
-    private WebElement comboBox_selectName;
-
     public void clickContactsLinkInManagePersonPage() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(link_ContactsInManagePersonPage), 30);
@@ -2302,55 +2361,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
-    @FindBy(xpath = "//label[text()='Home Address']/following::a[@title='Edit'][1]")
-    private WebElement button_EditAddress;
-
-    @FindBy(xpath = "//label[text()='Name']/following::a[@title='Edit'][1]")
-    private WebElement button_EditName;
-
-    @FindBy(xpath = "//label[text()='Name']/following::td[text()='Correct'][2]")
-    private WebElement button_CorrectName;
-
-    @FindBy(xpath = "//label[text()='Home Address']/following::td[text()='Update'][1]")
-    private WebElement button_UpdateAddress;
-
-    @FindBy(xpath = "//label[text()='Last Name']/following::input[1]")
-    private WebElement text_lastName_PersonalInfo;
-
-    @FindBy(xpath = "//label[text()='First Name']/following::input[1]")
-    private WebElement text_firstName_PersonalInfo;
-
-    @FindBy(xpath = "//label[text()='Enter local name']/following::button[@accesskey='K']")
-    private WebElement button_OK_UpdateName;
-
-    @FindBy(xpath = "//label[text()='County']/following::button[@accesskey='K'][1]")
-    private WebElement button_OK_UpdatAddress;
-
-    @FindBy(xpath = "//label[text()='Effective Start Date']/following::button[@accesskey='K'][3]")
-    private WebElement button_OK_UpdatAddressDate;
-
-    @FindBy(xpath = "//label[text()='County']/following::button[@accesskey='K'][2]")
-    private WebElement button_OK_CloseEditWindow;
-
-    @FindBy(xpath = "//img[@alt='Add Row']")
-    private WebElement button_AddRowForPhoneDetails;
-
-    @FindBy(xpath = "//a[contains(@id,'AT1:_ATp:table1:0:soc1')]")
-    private WebElement comboBox_emergencyPhoneType;
-
-    @FindBy(xpath = "//a[@title='Search and Select: Country Code']")
-    private WebElement comboBox_emergencyCountryCode;
-
-    @FindBy(xpath = "//label[text()='Country Code']/following::input[1]")
-    private WebElement text_emergencyAreaCode;
-
-    @FindBy(xpath = "//label[text()='Country Code']/following::input[2]")
-    private WebElement text_emergencyPhoneNumber;
-
-    @FindBy(xpath = "//label[text()='Type']/following::input[1]")
-    private WebElement text_CountryCode;
-
-
     public void clickEditInPersonalInfo() {
 
         try {
@@ -2371,7 +2381,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             button_CorrectName.click();
             waitFor(ExpectedConditions.elementToBeClickable(text_lastName_PersonalInfo), 30);
             assertThat(text_lastName_PersonalInfo.isDisplayed()).isTrue();
-            reportWithScreenShot("User selected Correct option from Edit mednu and displayed Personal Info modal");
+            reportWithScreenShot("User selected Correct option from Edit menu and displayed Personal Info modal");
         } catch (Exception e) {
             reportWithScreenShot("Error while selecting Correct option from Edit menu in personal info" + e.getMessage());
             Assert.fail();
@@ -2385,12 +2395,13 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             text_lastName_PersonalInfo.clear();
             text_lastName_PersonalInfo.sendKeys(data.getLastName());
             text_lastName_PersonalInfo.sendKeys(Keys.TAB);
+            waitShortTime();
             text_firstName_PersonalInfo.clear();
             text_firstName_PersonalInfo.sendKeys(data.getFirstName());
             text_firstName_PersonalInfo.sendKeys(Keys.TAB);
             button_OK_UpdateName.click();
             waitShortTime();
-            assertThat(!button_OK_UpdateName.isDisplayed()).isTrue();
+//            assertThat(!button_OK_UpdateName.isDisplayed()).isTrue();
             reportWithScreenShot("User updates First and Last name in Update name modal");
         } catch (Exception e) {
             reportWithScreenShot("Error while selecting Correct option from Edit menu in personal info" + e.getMessage());
@@ -2419,6 +2430,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             text_emergencyPhoneNumber.clear();
             text_emergencyPhoneNumber.sendKeys(data.getPhoneNumber());
             text_emergencyPhoneNumber.sendKeys(Keys.TAB);
+            waitNormalTime();
 
             reportWithScreenShot("User update the emergency contact details in Phone section");
 
@@ -2458,22 +2470,52 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     public void updateEmergencyAddressDetails() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(datePicker_updateAddressEffectiveStartDate), 30);
-            datePicker_updateAddressEffectiveStartDate.clear();
-            datePicker_updateAddressEffectiveStartDate.sendKeys(getDynamicDate(1));
-            datePicker_updateAddressEffectiveStartDate.sendKeys(Keys.TAB);
+//            datePicker_updateAddressEffectiveStartDate.clear();
+//            datePicker_updateAddressEffectiveStartDate.sendKeys(getCurrentDate());
+//            datePicker_updateAddressEffectiveStartDate.sendKeys(Keys.TAB);
             button_OK_UpdatAddressDate.click();
             waitShortTime();
             waitFor(ExpectedConditions.elementToBeClickable(button_OK_UpdatAddress), 30);
             assertThat(button_OK_UpdatAddress.isDisplayed()).isTrue();
+            updateEmergencyAddress();
+            waitNormalTime();
             button_OK_UpdatAddress.click();
-            waitShortTime();
+            waitNormalTime();
             button_OK_CloseEditWindow.click();
-            waitShortTime();
+            waitNormalTime();
+            if (button_OK_CloseEditWindow.isDisplayed()) {
+                button_OK_CloseEditWindow.click();
+                waitShortTime();
+            }
             reportWithScreenShot("User updated emergency address details");
 
         } catch (Exception e) {
             reportWithScreenShot("Error while updating emergency address details : " + e.getMessage());
             Assert.fail();
         }
+    }
+
+
+    public void updateEmergencyAddress() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(text_updateAddressModal_AddressLine1), 30);
+            text_updateAddressModal_AddressLine1.click();
+            text_updateAddressModal_AddressLine1.sendKeys(data.getAddressLine1());
+            text_updateAddressModal_ZipCode.clear();
+            text_updateAddressModal_ZipCode.sendKeys(data.getZipCode());
+            text_updateAddressModal_City.clear();
+            text_updateAddressModal_City.sendKeys(data.getCity());
+            text_updateAddressModal_State.clear();
+            text_updateAddressModal_State.sendKeys(data.getState());
+            text_updateAddressModal_County.clear();
+            text_updateAddressModal_County.sendKeys(data.getCounty());
+            waitNormalTime();
+            reportWithScreenShot("User updates emergency contact address");
+
+        } catch (Exception e) {
+            reportWithScreenShot("Error while updating emergency contact address : " + e.getMessage());
+            Assert.fail();
+        }
+
     }
 }
