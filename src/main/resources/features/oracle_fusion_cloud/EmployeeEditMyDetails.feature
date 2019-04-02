@@ -350,7 +350,7 @@ Feature: Perform Edit on Employee Information
 
 
   @MODIFY_EXISTING_EMERGENCY_CONTACT
-  Scenario Outline: Manage Person - Modify Existing Emergency Contact
+  Scenario Outline: Manage Person - Modify Existing Emergency Contact 
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
