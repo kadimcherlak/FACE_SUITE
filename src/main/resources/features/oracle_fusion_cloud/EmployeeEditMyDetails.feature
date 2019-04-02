@@ -288,7 +288,7 @@ Feature: Perform Edit on Employee Information
 
 
   @CORRECT_PERSONAL_DESCRIPTIVE_FLEXFIELD_INFORMATION
-  Scenario Outline: Employee Retirement
+  Scenario Outline: Manage Person - Correct Personal Descriptive Flexfield Information
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -318,7 +318,7 @@ Feature: Perform Edit on Employee Information
       | CORRECT_PERSONAL_DESCRIPTIVE_FLEXFIELD_INFORMATION | TestData.xlsx  | Employee_Details |
 
   @ADDING_EXISTING_EMPLOYEE_AS_AN_EMERGENCY_CONTACT
-  Scenario Outline: Employee Retirement
+  Scenario Outline: Manage Person - Add an Existing Employee as an Emergency Contact
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
@@ -350,7 +350,7 @@ Feature: Perform Edit on Employee Information
 
 
   @MODIFY_EXISTING_EMERGENCY_CONTACT
-  Scenario Outline: Employee Retirement
+  Scenario Outline: Manage Person - Modify Existing Emergency Contact
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
