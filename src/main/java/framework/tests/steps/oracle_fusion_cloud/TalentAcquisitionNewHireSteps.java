@@ -230,5 +230,46 @@ public class TalentAcquisitionNewHireSteps implements En {
        Then("Correct Name page should be displayed", () -> {
        	context.personManagment.checkCorrectNameWindowDisplayed();
        });
+        Then("Pending Workers grid should be displayed", () -> {
+            context.hireAnEmployee.checkPendingWorkerGridDisplayed();
+        });
+
+        Then("user search Pending worker Person number generated from previous step", () -> {
+            context.hireAnEmployee.searchPendingWorker();
+        });
+
+        When("user select Pending worker and click Convert under Actions Menu", () -> {
+            context.hireAnEmployee.selectPendingWorker();
+        });
+
+        Then("Convert Pending Worker: Identification page should be displayed", () -> {
+            context.hireAnEmployee.checkPendingWorkerIdentificationPageDisplayed();
+        });
+
+        When("user validates details in Identification tab", () -> {
+            context.hireAnEmployee.validateIdentificationTab();
+        });
+
+        When("user validates details in Person Information tab", () -> {
+            context.hireAnEmployee.validatePersonInformationTab();
+        });
+
+        When("user validates details in Person Profile tab", () -> {
+            context.hireAnEmployee.validatePersonProfileTab();
+        });
+
+        When("user validates details in Employment Information tab", () -> {
+            context.hireAnEmployee.validateEmploymentInformationTab();
+        });
+
+        When("user validates details in Compensation and Other Information tab", () -> {
+            context.hireAnEmployee.validateCompensationInformationTab();
+        });
+
+        Then("user checks if the pending worker is not displayed in Pending Workers grid", () -> {
+            context.hireAnEmployee.checkPendingWorkerDetailNotDisplayed();
+        });
+
     }
+
 }
