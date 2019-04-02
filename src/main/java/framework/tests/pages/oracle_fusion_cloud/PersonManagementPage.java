@@ -216,7 +216,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//label[text()='I-9 Status']/following::input[1]")
     private WebElement i9Status;
 
-    @FindBy(xpath = "//td[text() = 'Correct']")
+    @FindBy(xpath = "(//td[text() = 'Correct'])[4]")
     private WebElement personMgmtCorrect;
 
     @FindBy(xpath = "//td[text() = 'Correct']")
@@ -249,6 +249,15 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//button[@accesskey='Y']")
     private WebElement confirmButton;
 
+    @FindBy(xpath = "//div[text()='Correct Name']")
+    private WebElement textCorrectName;
+    
+    @FindBy(xpath = "//label[text()='First Name' and contains(@class,'inputText_label-text')]/following::input[1]")
+    private WebElement textFirstName;
+    
+    @FindBy(xpath = "//h1[text()='National Identifiers']")
+    private WebElement textNationalIdentifiers;
+    
     // Person Management Contructor
     public PersonManagementPage(Context context) {
         super(context);
@@ -826,7 +835,20 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
         }
     }
 
-
+    /**
+     * User checks if  Correct Name Window is displayed
+     * Author: Koushik Kadimcherla
+     */
+    public void checkCorrectNameWindowDisplayed() {
+        try {
+            reportWithScreenShot("Checking if Correct Name Window is Displayed");
+            waitFor(ExpectedConditions.visibilityOf(textCorrectName), 15);
+            assertThat(textCorrectName.isDisplayed()).isTrue();
+        } catch (Exception e) {
+            reportWithScreenShot("Correct Name Window is not Displayed");
+            Assert.fail();
+        }
+    }
     /**
      * Enter the mandatory fields of Correct Employment Screen
      * Author: Koushik Kadimcherla
@@ -853,6 +875,24 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
         } catch (Exception e) {
             reportWithScreenShot(
                     "Error While user entering Mandatory Fields of Correct Employment Screen :" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    /**
+     * Enter the mandatory fields of Correct Name Screen
+     * Author: Koushik Kadimcherla
+     */
+    public void enterCorrectNameMandatoryFields() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(textCorrectName), 15);
+            assertThat(textCorrectName.isDisplayed()).isTrue();
+            textFirstName.clear();
+            textFirstName.sendKeys(data.getFirstName());
+            btnOK.click();
+        } catch (Exception e) {
+            reportWithScreenShot(
+                    "Error While user entering Mandatory Fields of Correct Name Screen :" + e.getMessage());
             Assert.fail();
         }
     }
@@ -958,4 +998,21 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             Assert.fail();
         }
     }
+    
+    /**
+     * Verify Manage Person page is available
+     * Author: Koushik Kadimcherla
+     */
+	public void checkManagePersonAvailable() {
+		   try {
+			   waitShortTime();
+	            reportWithScreenShot("Checking if Manage Person page  is Displayed");
+	            waitFor(ExpectedConditions.visibilityOf(textNationalIdentifiers), 15);
+	            assertThat(textNationalIdentifiers.isDisplayed()).isTrue();
+	        } catch (Exception e) {
+	            reportWithScreenShot("Manage Person page  not Displayed");
+	            Assert.fail();
+	        }
+		
+	}
 }
