@@ -114,6 +114,7 @@ public class Data extends framework.core.models.Data {
     private String contactType;
     private String emergencyContact;
     private String emergencyContactType;
+    private String degreeName;
 
     // Alpha sorted list of getters
     // most of these items get loaded via bean loader, so normally setters not needed.
@@ -619,5 +620,9 @@ public class Data extends framework.core.models.Data {
 
     public String getAreaCode() {
         return areaCode;
+    }
+
+    public String getDegreeName() {
+        return degreeName;
     }
 }
