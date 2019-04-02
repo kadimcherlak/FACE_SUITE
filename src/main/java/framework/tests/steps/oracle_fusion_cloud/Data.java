@@ -11,6 +11,12 @@ public class Data extends framework.core.models.Data {
     private String accountHolder;
     private String addressLine1;
     private String addressLine2;
+    private String degreeName;
+    private String licenseName;
+    private String degreeYear;
+    private String licenseNumber;
+    private String degreeSchool;
+    private String degreeMajor;
     private String altWorkLocationAddressType;
     private String altWorkLocationCountry;
     private String altWorkLocationAddressLine1;
@@ -619,5 +625,29 @@ public class Data extends framework.core.models.Data {
 
     public String getAreaCode() {
         return areaCode;
+    }
+
+    public String getDegreeName() {
+        return degreeName;
+    }
+
+    public String getLicenseName() {
+        return licenseName;
+    }
+
+    public String getDegreeYear() {
+        return degreeYear;
+    }
+
+    public String getLicenseNumber() {
+        return licenseNumber;
+    }
+
+    public String getDegreeSchool() {
+        return degreeSchool;
+    }
+
+    public String getDegreeMajor() {
+        return degreeMajor;
     }
 }
