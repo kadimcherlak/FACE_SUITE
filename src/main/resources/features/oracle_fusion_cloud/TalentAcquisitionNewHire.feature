@@ -314,3 +314,31 @@ Feature: New Hire and Related Activities
     Examples:
       | Test Scenario   | Test File Name | Test Sheet Name  |
       | UPLOAD_HDL_FILE | TestData.xlsx  | Employee_Details |
+      
+ @MANANGE_PERSON_NAME_CORRECTION
+  Scenario Outline: Correct the First Name of a Person
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button till person displayed
+    Then Employee name should be listed in search results
+    When user click on employee name link in search results
+    Then Person Management screen should be displayed
+    And user clicks on Manage Person on right side of the page under Tasks pane
+    Then Mange Person page should be displayed
+    When user clicks on Edit and select Correct option
+    Then Correct Name page should be displayed
+    When user Enter all the Mandatory fields of Correct Name window and click Ok button
+    When user clicks on submit button
+    And clicks ok in the Warning and confirmation message displayed
+    Then Page should be submitted successfully
+    When user click on Done button at the top
+    And user clicks on Sign Out option
+    Then Sign out should be successful
+    
+    Examples:
+      | Test Scenario                  | Test File Name | Test Sheet Name    |
+      | MANANGE_PERSON_NAME_CORRECTION | TestData.xlsx  | Talent_Acquisition |

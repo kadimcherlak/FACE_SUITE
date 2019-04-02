@@ -193,6 +193,10 @@ public class TalentAcquisitionNewHireSteps implements En {
             context.personManagment.enterCorrectEmploymentMandatoryFields();
         });
 
+        When("user Enter all the Mandatory fields of Correct Name window and click Ok button", () -> {
+            context.personManagment.enterCorrectNameMandatoryFields();
+        });
+        
         Then("Projected End Date field Should be Editable", () -> {
             context.personManagment.checkProjectedEndDateEditable();
         });
@@ -219,5 +223,12 @@ public class TalentAcquisitionNewHireSteps implements En {
             context.personManagment.selectElementEntry();
         });
 
+        Then("Mange Person page should be displayed", () -> {
+       	 context.personManagment.checkManagePersonAvailable();
+       });
+       
+       Then("Correct Name page should be displayed", () -> {
+       	context.personManagment.checkCorrectNameWindowDisplayed();
+       });
     }
 }
