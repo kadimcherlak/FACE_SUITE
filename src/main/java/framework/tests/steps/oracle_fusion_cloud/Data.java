@@ -120,6 +120,10 @@ public class Data extends framework.core.models.Data {
     private String contactType;
     private String emergencyContact;
     private String emergencyContactType;
+    private String terminationAction;
+    private String terminationReason;
+    private String revokeUserAccess;
+    private String recommendedForRehire;
 
 
     // Alpha sorted list of getters
@@ -650,5 +654,21 @@ public class Data extends framework.core.models.Data {
 
     public String getAreaCode() {
         return areaCode;
+    }
+    
+    public String getTerminationAction() {
+        return terminationAction;
+    }
+    
+    public String getTerminationReason() {
+        return terminationReason;
+    }
+    
+    public String getRevokeUserAccess() {
+        return revokeUserAccess;
+    }
+    
+    public String getrecommendedForRehire() {
+        return recommendedForRehire;
     }
 }
