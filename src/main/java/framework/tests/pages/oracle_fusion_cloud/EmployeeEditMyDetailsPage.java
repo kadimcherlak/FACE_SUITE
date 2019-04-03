@@ -1,7 +1,9 @@
 package framework.tests.pages.oracle_fusion_cloud;
 
+import cucumber.api.java.es.E;
 import framework.tests.steps.oracle_fusion_cloud.Context;
 import framework.tests.steps.oracle_fusion_cloud.Data;
+import net.bytebuddy.asm.Advice;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -14,6 +16,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
 
 public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPage> {
 
@@ -546,45 +549,155 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//span[text()='Number']/following::input[2]")
     private WebElement skillsNumber;
-    
+
     @FindBy(xpath = "//span[text()='Personal and Employment']/following::a[text()='Manage Person'][1]")
     private WebElement linkManagePerson;
-    
+
     @FindBy(xpath = "//*[@title='Manage Person']/descendant::h1[text()='Manage Person']")
     private WebElement managePersonPage;
-    
+
     @FindBy(xpath = "//label[text()='Home Address']/following::a[@title='Edit'][1]")
     private WebElement homeAddressEditButton;
-    
+
     @FindBy(xpath = "//tr[contains(@id,'correctMenuItem')]")
     private WebElement managePersonCorrectDropdown;
-    
+
     @FindBy(xpath = "//div[text()='Correct Address']")
     private WebElement correctAddressPopup;
-    
+
     @FindBy(xpath = "(//label[text()='City']/following::input)[1]")
     private WebElement managePersonCity;
-    
+
     @FindBy(xpath = "//div[text()='Search and Select: ZIP Code']")
     private WebElement searchAndSelectZipCodePopUp;
-    
+
     @FindBy(xpath = "(//label[text()='ZIP Code']/following::input)[1]")
     private WebElement managePersonZip;
-    
+
     @FindBy(xpath = "//tr[contains(@id,'correctMenuItem')]/preceding::td[text()='Update'][1]")
     private WebElement managePersonUpdateDropdown;
-    
+
     @FindBy(xpath = "//div[text()='Update Address']")
     private WebElement effectiveDateAddressPopUp;
-    
+
     @FindBy(xpath = "//label[text()='Effective Start Date']/following::input[1]")
     private WebElement effectiveDate;
-    
+
     @FindBy(xpath = "(//button[@accesskey='K'])[2]")
     private WebElement managePersonConfirmBtnOK;
-    
+
     @FindBy(xpath = "//img[@title='Create Address']")
     private WebElement createAddressButton;
+
+    @FindBy(xpath = "//td[2]//button[text()='Edit']")
+    private WebElement button_EditBioInfo;
+
+    @FindBy(xpath = "//input[@id='_FOpt1:_FOr1:0:_FOSritemNode_workforce_management_person_management:0:MAt2:0:SP1:pt_r2:0:id1::content']")
+    private WebElement text_dateOfBirth;
+
+    @FindBy(xpath = "//input[contains(@id,'countryNameId')]")
+    private WebElement text_countryOfBirth;
+
+    @FindBy(xpath = "//input[contains(@id,'MAt2:0:SP1:pt_r2:0:it2')]")
+    private WebElement text_regionOfBirth;
+
+    @FindBy(xpath = "//input[contains(@id,'0:MAt2:0:SP1:pt_r2:0:it1')]")
+    private WebElement text_townOfBirth;
+
+    @FindBy(xpath = "//a[contains(@id,'MAt2:0:SP1:pt_r2:0:soc4')]")
+    private WebElement comboBox_correspondenceLanguage;
+
+    @FindBy(xpath = "//a[contains(@id,'MAt2:0:SP1:pt_r2:0:soc2::drop')]")
+    private WebElement comboBox_bloodType;
+
+    @FindBy(xpath = "//*[@accesskey='m']")
+    private WebElement button_Submit;
+
+    @FindBy(xpath = "//label[text()='Address Line 1']/following::input[1]")
+    private WebElement text_updateAddressModal_AddressLine1;
+    @FindBy(xpath = "//label[text()='ZIP Code']/following::input[1]")
+    private WebElement text_updateAddressModal_ZipCode;
+    @FindBy(xpath = "//label[text()='City']/following::input[1]")
+    private WebElement text_updateAddressModal_City;
+    @FindBy(xpath = "//label[text()='State']/following::input[1]")
+    private WebElement text_updateAddressModal_State;
+    @FindBy(xpath = "//label[text()='County']/following::input[1]")
+    private WebElement text_updateAddressModal_County;
+
+    @FindBy(xpath = "//div[@class='x163']//a[text()='Contacts']")
+    private WebElement link_ContactsInManagePersonPage;
+
+    @FindBy(xpath = "//div[text()='Create Contact from Existing Person']")
+    private WebElement modal_CreateContactFromExistingPerson;
+
+    @FindBy(xpath = "//span[text()='Create from Existing Person']")
+    private WebElement button_CreateFromExistingPerson;
+
+    @FindBy(xpath = "//label[text()='Contact Type']/following::input[1]")
+    private WebElement comboBox_ContactType;
+
+    @FindBy(xpath = "//label[text()='Emergency Contact']/following::input[1]")
+    private WebElement comboBox_emergencyContact;
+
+    @FindBy(xpath = "//a[@title='Search: Name']")
+    private WebElement comboBox_Name;
+
+    @FindBy(xpath = "//label[text()='Effective Start Date']/following::input[1]")
+    private WebElement datePicker_EffectiveStartDate;
+
+    @FindBy(xpath = "//label[text()='Effective Start Date']/following::td[1]/input[1]")
+    private WebElement datePicker_updateAddressEffectiveStartDate;
+
+    @FindBy(xpath = "//table[@class=\"x1n0\"]/tbody/tr[1]")
+    private WebElement comboBox_selectName;
+
+    @FindBy(xpath = "//label[text()='Home Address']/following::a[@title='Edit'][1]")
+    private WebElement button_EditAddress;
+
+    @FindBy(xpath = "//label[text()='Name']/following::a[@title='Edit'][1]")
+    private WebElement button_EditName;
+
+    @FindBy(xpath = "//label[text()='Name']/following::td[text()='Correct'][2]")
+    private WebElement button_CorrectName;
+
+    @FindBy(xpath = "//label[text()='Home Address']/following::td[text()='Update'][1]")
+    private WebElement button_UpdateAddress;
+
+    @FindBy(xpath = "//label[text()='Last Name']/following::input[1]")
+    private WebElement text_lastName_PersonalInfo;
+
+    @FindBy(xpath = "//label[text()='First Name']/following::input[1]")
+    private WebElement text_firstName_PersonalInfo;
+
+    @FindBy(xpath = "//label[text()='Enter local name']/following::button[@accesskey='K']")
+    private WebElement button_OK_UpdateName;
+
+    @FindBy(xpath = "//label[text()='County']/following::span[text()='K']")
+    private WebElement button_OK_UpdatAddress;
+
+    @FindBy(xpath = "//label[text()='Effective Start Date']/following::span/button[@accesskey='K']")
+    private WebElement button_OK_UpdatAddressDate;
+
+    @FindBy(xpath = "//label[text()='Home Address']/following::span[text()='K']")
+    private WebElement button_OK_CloseEditWindow;
+
+    @FindBy(xpath = "//img[@alt='Add Row']")
+    private WebElement button_AddRowForPhoneDetails;
+
+    @FindBy(xpath = "//a[contains(@id,'AT1:_ATp:table1:0:soc1')]")
+    private WebElement comboBox_emergencyPhoneType;
+
+    @FindBy(xpath = "//a[@title='Search and Select: Country Code']")
+    private WebElement comboBox_emergencyCountryCode;
+
+    @FindBy(xpath = "//label[text()='Country Code']/following::input[1]")
+    private WebElement text_emergencyAreaCode;
+
+    @FindBy(xpath = "//label[text()='Country Code']/following::input[2]")
+    private WebElement text_emergencyPhoneNumber;
+
+    @FindBy(xpath = "//label[text()='Type']/following::input[1]")
+    private WebElement text_CountryCode;
 
     public EmployeeEditMyDetailsPage(Context context) {
         super(context);
@@ -1723,6 +1836,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
+
     //Check if New Contact Page is displayed
     public void checkNewContactPageDisplayed() {
         try {
@@ -1995,7 +2109,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             waitShortTime();
 //            waitFor(ExpectedConditions
 //                    .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getEmploymentActionReason() + "']"))), 5);
-            if(!data.getEmploymentActionReason().isEmpty()){
+            if (!data.getEmploymentActionReason().isEmpty()) {
                 driver.findElement(By.xpath("//li[text()='" + data.getEmploymentActionReason() + "']")).click();
                 modalUpdateEmploymentActionReason.sendKeys(Keys.TAB);
             }
@@ -2257,7 +2371,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-    
+
  // User click on Manage Person under Task icon
     public void managePersonClick() {
         try {
@@ -2271,11 +2385,11 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-    
+
 	// User click on Edit and Update button
 	/**
 	 * User clicks on Edit Button and then click on Correct from the dropdown
-	 * 
+	 *
 	 * @author Rakesh
 	 */
 	public void clickEditCorrectManagePerson() {
@@ -2301,7 +2415,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 	/**
 	 * This method will update the correct address format as given in test data
 	 * excel
-	 * 
+	 *
 	 * @author Rakesh
 	 */
 	public void correctAddressManagePerson() {
@@ -2362,7 +2476,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
 	/**
 	 * Validate the address is updated in Manage Person Screen
-	 * 
+	 *
 	 * @author Rakesh
 	 */
 	public void validateCorrectAddressDisplayed() {
@@ -2381,7 +2495,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 	// User click on Edit and Update button
 	/**
 	 * User clicks on Edit Button and then click on Update from the dropdown
-	 * 
+	 *
 	 * @author Rakesh
 	 */
 	public void clickEditUpdateManagePerson() {
@@ -2405,7 +2519,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
 	/**
 	 * Enter Effective date during address update in Manage Person Screen
-	 * 
+	 *
 	 * @author Rakesh
 	 */
 	public void enterEffectiveDate() {
@@ -2423,10 +2537,10 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 			Assert.fail();
 		}
 	}
-	
+
 	/**
 	 * User clicks on create address button
-	 * 
+	 *
 	 * @author Rakesh
 	 */
 	public void clickCreateAddressButton() {
@@ -2435,11 +2549,373 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 			createAddressButton.click();
 			selectInputDropdownValue(addressType, data.getAltWorkLocationAddressType());
 			reportWithScreenShot("Clicked on new address button and selected Address Type:");
-			
+
 		} catch (Exception e) {
 			reportWithScreenShot("Error while clicking new address button and selecting Address Type :" + e.getMessage());
 			Assert.fail();
 		}
 	}
 
+
+    public void taskLinkPage(String taskLinkPage) {
+        waitShortTime();
+        try {
+//            assertThat(context.basePage.checkTaskLinkPageDisplayed(taskLinkPage)).isTrue();
+//            reportWithScreenShot(taskLinkPage + " page is displayed successfully");
+            Thread.sleep(2000);
+            WebElement checkTaskLinkPage = driver.findElement(By.xpath("//div[contains(@title,'" + taskLinkPage + "')]/h1"));
+            waitFor(ExpectedConditions.visibilityOf(checkTaskLinkPage));
+            boolean status = checkTaskLinkPageDisplayed(taskLinkPage);
+            if (status) {
+                reportWithScreenShot(taskLinkPage + " page is displayed successfully");
+            } else {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            reportWithScreenShot("Error while displaying " + taskLinkPage + " page");
+            Assert.fail();
+        }
+    }
+
+    public void clickEditButtonOfBioInfo() {
+        try {
+            button_EditBioInfo.click();
+            waitFor(ExpectedConditions.visibilityOf(confirmBtnOK));
+            assertThat(confirmBtnOK.isDisplayed()).isTrue();
+            reportWithScreenShot("User clicked Edit button for Biographical Info");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking Edit button of Biographical Info");
+            Assert.fail();
+        }
+    }
+
+    public void checkBioInfoModalDisplayed() {
+
+        try {
+            waitFor(ExpectedConditions.visibilityOf(confirmBtnOK));
+            assertThat(confirmBtnOK.isDisplayed()).isTrue();
+            reportWithScreenShot("Biographical Info modal is displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while displaying Biographical Info");
+            Assert.fail();
+        }
+    }
+
+    public void enterBiographicalInfo() {
+        try {
+            text_dateOfBirth.clear();
+            text_dateOfBirth.sendKeys(data.getDateOfBirth());
+            text_dateOfBirth.sendKeys(Keys.TAB);
+            text_countryOfBirth.clear();
+            text_countryOfBirth.sendKeys(data.getCountryOfBirth());
+            waitNormalTime();
+            text_countryOfBirth.sendKeys(Keys.ENTER);
+            text_countryOfBirth.sendKeys(Keys.TAB);
+            waitNormalTime();
+            text_regionOfBirth.clear();
+            text_regionOfBirth.sendKeys(data.getRegionOfBirth());
+            text_townOfBirth.clear();
+            text_townOfBirth.sendKeys(data.getTownOfBirth());
+            comboBox_correspondenceLanguage.click();
+            waitNormalTime();
+            WebElement elementToSelect = driver.findElement(By.xpath("//li[text()='" + data.getCorrespondenceLanguage() + "']"));
+            elementToSelect.click();
+            waitNormalTime();
+            comboBox_bloodType.click();
+            elementToSelect = driver.findElement(By.xpath("//li[text()='" + data.getBloodType() + "']"));
+            elementToSelect.click();
+            waitNormalTime();
+            reportWithScreenShot("User entered Biographical Info");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while entering Biographical Info");
+            Assert.fail();
+        }
+    }
+
+    public void clickOKButtonOnBioInfoModal() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(btnOK), 30);
+            btnOK.click();
+            waitFor(ExpectedConditions.elementToBeClickable(button_Submit), 30);
+            assertThat(button_Submit.isDisplayed()).isTrue();
+            reportWithScreenShot("User clicked OK button");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking on OK button");
+            Assert.fail();
+        }
+    }
+
+    public void clickSubmitButtonInManagePerson() {
+
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_Submit), 30);
+            waitShortTime();
+            button_Submit.click();
+            reportWithScreenShot("User clicked Submit button");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking Submit button");
+            Assert.fail();
+        }
+
+
+    }
+
+    public void checkWarningModal() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(popButtonYes), 30);
+            assertThat(popButtonYes.isDisplayed()).isTrue();
+            reportWithScreenShot("Warning modal is displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while displaying Warning modal");
+            Assert.fail();
+        }
+    }
+
+    public void checkConfirmationModal() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(confirmBtnOK), 30);
+            assertThat(confirmBtnOK.isDisplayed()).isTrue();
+            reportWithScreenShot("Confirmation modal is displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while displaying Confirmation modal");
+            Assert.fail();
+        }
+    }
+
+    public void clickOKButtonOnConfirmationModal() {
+
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(confirmBtnOK), 30);
+            confirmBtnOK.click();
+            reportWithScreenShot("User clicked OK button on confirmation modal");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while while clicking OK button on Confirmation modal");
+            Assert.fail();
+        }
+    }
+
+    public void clickContactsLinkInManagePersonPage() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(link_ContactsInManagePersonPage), 30);
+            link_ContactsInManagePersonPage.click();
+            waitShortTime();
+            reportWithScreenShot("User clicked Contacts link in Manage Person page");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking Contacts link in Manage Person page - " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void clickEditOptionInPersonalRelationshipsPage(String optionToBeClicked) {
+        waitNormalTime();
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_CreateFromExistingPerson), 30);
+            createEmergencyContact(optionToBeClicked);
+            Thread.sleep(1000);
+//            waitFor(ExpectedConditions.visibilityOf(modal_CreateContactFromExistingPerson));
+            assertThat(driver.findElement(By.xpath("//div[contains(@id,'MAt2:0:SP1:Manag1:0:AT')]//span[text()='" + optionToBeClicked + "']")).isDisplayed()).isTrue();
+            waitShortTime();
+            reportWithScreenShot("User clicked " + optionToBeClicked + " in Personal Relations page");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking " + optionToBeClicked + " in Personal Relations page" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void checkContactTypeModal(String modalName) {
+        waitShortTime();
+        try {
+            WebElement elementContactTypeModal = driver.findElement(By.xpath("//div[text()='" + modalName + "']"));
+            waitFor(ExpectedConditions.visibilityOf(elementContactTypeModal));
+            assertThat(elementContactTypeModal.isDisplayed()).isTrue();
+            reportWithScreenShot(modalName + " modal is displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while displaying " + modalName + " modal - " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void enterDetailsInRelationshipInformationModal() {
+        try {
+            comboBox_ContactType.click();
+            waitShortTime();
+            WebElement selectDropDownValues = driver.findElement(By.xpath("//li[text()='" + data.getContactType() + "']"));
+            selectDropDownValues.click();
+            waitShortTime();
+            comboBox_emergencyContact.click();
+            selectDropDownValues = driver.findElement(By.xpath("//li[text()='" + data.getEmergencyContact() + "']"));
+            selectDropDownValues.click();
+            waitShortTime();
+            datePicker_EffectiveStartDate.clear();
+            datePicker_EffectiveStartDate.sendKeys(getDynamicDate(1));
+            datePicker_EffectiveStartDate.sendKeys(Keys.TAB);
+            waitShortTime();
+            comboBox_Name.click();
+            waitShortTime();
+            comboBox_selectName.click();
+            waitShortTime();
+            reportWithScreenShot(" User enter details of Emergency contact details");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while enteronh Emergency contact details - " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void clickEditInPersonalInfo() {
+
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_EditName), 30);
+            button_EditName.click();
+            waitFor(ExpectedConditions.elementToBeClickable(button_CorrectName), 30);
+            assertThat(button_CorrectName.isDisplayed()).isTrue();
+            reportWithScreenShot("User clicked Edit in Personal Info section");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking on Edit button in personal info" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void selectCorrectFromEdit() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_CorrectName), 30);
+            button_CorrectName.click();
+            waitFor(ExpectedConditions.elementToBeClickable(text_lastName_PersonalInfo), 30);
+            assertThat(text_lastName_PersonalInfo.isDisplayed()).isTrue();
+            reportWithScreenShot("User selected Correct option from Edit menu and displayed Personal Info modal");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while selecting Correct option from Edit menu in personal info" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void updateNameRelationshipInfo() {
+
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(text_lastName_PersonalInfo), 30);
+            text_lastName_PersonalInfo.clear();
+            text_lastName_PersonalInfo.sendKeys(data.getLastName());
+            text_lastName_PersonalInfo.sendKeys(Keys.TAB);
+            waitShortTime();
+            text_firstName_PersonalInfo.clear();
+            text_firstName_PersonalInfo.sendKeys(data.getFirstName());
+            text_firstName_PersonalInfo.sendKeys(Keys.TAB);
+            button_OK_UpdateName.click();
+            waitShortTime();
+//            assertThat(!button_OK_UpdateName.isDisplayed()).isTrue();
+            reportWithScreenShot("User updates First and Last name in Update name modal");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while selecting Correct option from Edit menu in personal info" + e.getMessage());
+            Assert.fail();
+        }
+
+    }
+
+    public void addEmergencyPhoneNumber() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_AddRowForPhoneDetails), 30);
+            button_AddRowForPhoneDetails.click();
+            waitFor(ExpectedConditions.elementToBeClickable(comboBox_emergencyPhoneType), 30);
+            comboBox_emergencyPhoneType.click();
+            WebElement selectDropDownValues = driver.findElement(By.xpath("//li[text()='" + data.getEmergencyContactType() + "']"));
+            selectDropDownValues.click();
+
+            text_CountryCode.clear();
+            text_CountryCode.sendKeys(data.getCountryCode());
+            text_CountryCode.sendKeys(Keys.TAB);
+
+            text_emergencyAreaCode.clear();
+            text_emergencyAreaCode.sendKeys(data.getAreaCode());
+            text_emergencyAreaCode.sendKeys(Keys.TAB);
+
+            text_emergencyPhoneNumber.clear();
+            text_emergencyPhoneNumber.sendKeys(data.getPhoneNumber());
+            text_emergencyPhoneNumber.sendKeys(Keys.TAB);
+            waitNormalTime();
+
+            reportWithScreenShot("User update the emergency contact details in Phone section");
+
+        } catch (Exception e) {
+            reportWithScreenShot("Error while updating emergency contact details in Phone section - " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void clickEditInAddressArea() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_EditAddress), 30);
+            button_EditAddress.click();
+            waitFor(ExpectedConditions.elementToBeClickable(button_UpdateAddress), 30);
+            assertThat(button_UpdateAddress.isDisplayed()).isTrue();
+            reportWithScreenShot("User clicked Edit in Address area");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking Edit button in Address area:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void selectUpdateFromEditMenu() {
+
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_UpdateAddress), 30);
+            button_UpdateAddress.click();
+            waitFor(ExpectedConditions.elementToBeClickable(datePicker_updateAddressEffectiveStartDate), 30);
+            assertThat(datePicker_updateAddressEffectiveStartDate.isDisplayed()).isTrue();
+            reportWithScreenShot("User selected Update option from Edit menu in address area");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while selecting Update option from Edit menu in Address area:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void updateEmergencyAddressDetails() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(datePicker_updateAddressEffectiveStartDate), 30);
+//            datePicker_updateAddressEffectiveStartDate.clear();
+//            datePicker_updateAddressEffectiveStartDate.sendKeys(getCurrentDate());
+//            datePicker_updateAddressEffectiveStartDate.sendKeys(Keys.TAB);
+            button_OK_UpdatAddressDate.click();
+            waitShortTime();
+            waitFor(ExpectedConditions.elementToBeClickable(button_OK_UpdatAddress), 30);
+            assertThat(button_OK_UpdatAddress.isDisplayed()).isTrue();
+            updateEmergencyAddress();
+            waitNormalTime();
+            button_OK_UpdatAddress.click();
+            waitNormalTime();
+            button_OK_CloseEditWindow.click();
+            waitNormalTime();
+            if (button_OK_CloseEditWindow.isDisplayed()) {
+                button_OK_CloseEditWindow.click();
+                waitShortTime();
+            }
+            reportWithScreenShot("User updated emergency address details");
+
+        } catch (Exception e) {
+            reportWithScreenShot("Error while updating emergency address details : " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+
+    public void updateEmergencyAddress() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(text_updateAddressModal_AddressLine1), 30);
+            text_updateAddressModal_AddressLine1.click();
+            text_updateAddressModal_AddressLine1.sendKeys(data.getAddressLine1());
+            text_updateAddressModal_ZipCode.clear();
+            text_updateAddressModal_ZipCode.sendKeys(data.getZipCode());
+            text_updateAddressModal_City.clear();
+            text_updateAddressModal_City.sendKeys(data.getCity());
+            text_updateAddressModal_State.clear();
+            text_updateAddressModal_State.sendKeys(data.getState());
+            text_updateAddressModal_County.clear();
+            text_updateAddressModal_County.sendKeys(data.getCounty());
+            waitNormalTime();
+            reportWithScreenShot("User updates emergency contact address");
+
+        } catch (Exception e) {
+            reportWithScreenShot("Error while updating emergency contact address : " + e.getMessage());
+            Assert.fail();
+        }
+
+    }
 }
