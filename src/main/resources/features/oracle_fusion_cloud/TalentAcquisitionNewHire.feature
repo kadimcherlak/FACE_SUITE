@@ -526,3 +526,74 @@ Feature: New Hire and Related Activities
     Examples:
       | Test Scenario                      | Test File Name | Test Sheet Name    |
       | CONVERT_PENDING_WORKER_TO_EMPLOYEE | TestData.xlsx  | Talent_Acquisition |
+
+  @QUICK_CONVERT_PENDING_WORKER_TO_EMPLOYEE
+  Scenario Outline: Quick Convert of a Pending worker
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on New Person link in Navigator Pane
+    Then Pending Workers grid should be displayed
+    And user search Pending worker Person number generated from previous step
+    When user select Pending worker and click Quick Convert under Actions Menu
+    Then confirmation popup box is displayed
+    When user clicks on OK button
+    Then Pending Workers grid should be displayed
+    And user checks if the pending worker is not displayed in Pending Workers grid
+    When user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario                            | Test File Name | Test Sheet Name    |
+      | QUICK_CONVERT_PENDING_WORKER_TO_EMPLOYEE | TestData.xlsx  | Talent_Acquisition |
+
+
+  @CONVERT_CONTINGENT_WORKER_TO_EMPLOYEE
+  Scenario Outline: Convert a Contingent Worker to an Employee
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button till person displayed
+    Then Employee name should be listed in search results
+    When user click on employee name link in search results
+    And user click on Task Icon on the right side
+    When user clicks Manage Work Relationship option from task icon menu
+    Then Manange work relationship page is displayed
+    And user clicks on Action button and select Terminate option
+    Then user navigated to Termination Details page
+    And user selects Termination Action
+    And user selects Work Incident or Work Related Illness Reason
+    And user updates Termination date
+    And user selects Yes as Recommended for Rehire
+    And user clicks on Review button in termination page
+    Then user clicks on Submit button in termination review page
+    And user clicks Yes button on popup modal in termination review page
+    And user clicks Ok button confirmation popup modal in termination review page
+    When user clicks on Navigator icon
+    And user clicks on New Person link in Navigator Pane
+    And user clicks on Hire an Employee on right side of the page under Tasks pane
+    Then new Hire an employee screen should be displayed
+    When user enter details in Identification tab
+    Then Matching Person Records should be displayed
+    And user clicks on Select Person button
+    Then Warning message should be displayed
+    When user clicks on OK button
+    Then Identification tab should be displayed
+    When user enter details in Identification tab
+    And user enter details in Person information tab
+    And user enter details in Employment Information tab
+    And user enter details in Compensation and Other Information tab
+    Then Review page should be displayed in view only mode
+    When user clicks on submit button
+    And clicks ok in the Warning and confirmation message displayed
+    Then Page should be submitted successfully
+    And new employee details are stored into csv
+    When user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario | Test File Name | Test Sheet Name    |
+      | NEW_HIRE      | TestData.xlsx  | Talent_Acquisition |

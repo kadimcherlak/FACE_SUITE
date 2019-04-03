@@ -239,8 +239,16 @@ public class TalentAcquisitionNewHireSteps implements En {
         });
 
         When("user select Pending worker and click Convert under Actions Menu", () -> {
-            context.hireAnEmployee.selectPendingWorker();
+            context.hireAnEmployee.selectConvertPendingWorker();
         });
+        When("user select Pending worker and click Quick Convert under Actions Menu", () -> {
+            context.hireAnEmployee.selectQuickConvertPendingWorker();
+        });
+
+        When("confirmation popup box is displayed", () -> {
+            context.hireAnEmployee.confirmationPopupDisplay();
+        });
+
 
         Then("Convert Pending Worker: Identification page should be displayed", () -> {
             context.hireAnEmployee.checkPendingWorkerIdentificationPageDisplayed();

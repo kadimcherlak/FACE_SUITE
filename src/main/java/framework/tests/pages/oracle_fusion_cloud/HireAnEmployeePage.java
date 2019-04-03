@@ -206,9 +206,17 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//td[text()='Convert']")
     private WebElement link_Convert;
 
+    //venkat added 4/02
+    @FindBy(xpath = "//td[text()='Quick Convert']")
+    private WebElement link_QuickConvert;
+
     //venkat added 3/31
     @FindBy(xpath = "//h1[contains(.,'Convert Pending Worker: Identification')]")
     private WebElement label_ConvertPendingWorker;
+
+    //venkat added 4/02
+    @FindBy(xpath = "//div[text()='Confirmation']")
+    private WebElement popup_Confirmation;
 
     public HireAnEmployeePage(Context context) {
         super(context);
@@ -639,8 +647,8 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
         }
     }
 
-    // select Pending worker from grid
-    public void selectPendingWorker() {
+    // select Convert of Pending worker from grid
+    public void selectConvertPendingWorker() {
         try {
             waitFor(ExpectedConditions.visibilityOf(label_SelectPersonNumber), 30);
             label_SelectPersonNumber.click();
@@ -653,6 +661,37 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             reportWithScreenShot("User clicks on Convert link");
         } catch (Exception e) {
             reportWithScreenShot("User unable to click on actions and convert link due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // select Quick convert for Pending worker from grid
+    public void selectQuickConvertPendingWorker() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(label_SelectPersonNumber), 30);
+            label_SelectPersonNumber.click();
+            waitShortTime();
+            waitFor(ExpectedConditions.visibilityOf(button_ActionsButton), 30);
+            button_ActionsButton.click();
+            reportWithScreenShot("User click on Actions Button");
+            waitFor(ExpectedConditions.visibilityOf(link_QuickConvert), 30);
+            link_QuickConvert.click();
+            reportWithScreenShot("User clicks on Quick Convert link");
+        } catch (Exception e) {
+            reportWithScreenShot("User unable to click on actions and Quick convert link due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+
+    // Checking if confirmation popup is Displayed
+    public void confirmationPopupDisplay() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(popup_Confirmation), 45);
+            assertThat(popup_Confirmation.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if confirmation popup is Displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("confirmation popup is not Displayed due to: " + e.getMessage());
             Assert.fail();
         }
     }
