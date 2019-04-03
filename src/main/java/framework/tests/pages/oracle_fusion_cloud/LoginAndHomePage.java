@@ -87,6 +87,9 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
 
     @FindBy(xpath = "//img[contains(@title,'Quick Actions')]")
     private WebElement quickAction;
+    
+    @FindBy(xpath = "//a[@title='Home'][contains(@id,'home')]")
+    private WebElement homeIconForQuickAction;
 
 
     public LoginAndHomePage(Context context) {
@@ -309,6 +312,24 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
 
         } catch (Exception e) {
             reportWithScreenShot("Termination/Retirement is not present:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+    
+    
+    /**
+     * User clicks on quick action link
+     * @author Rakesh
+     */
+    public void navigateToQuickAction() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(homeIconForQuickAction), 15);
+            homeIconForQuickAction.click();
+            waitFor(ExpectedConditions.elementToBeClickable(quickAction), 15);
+            quickAction.click();
+            reportWithScreenShot("Clicked on the Quick Action Menu :");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking on quick action link:" + e.getMessage());
             Assert.fail();
         }
     }
