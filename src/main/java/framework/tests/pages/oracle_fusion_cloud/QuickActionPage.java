@@ -33,6 +33,24 @@ public class QuickActionPage extends BasePage<QuickActionPage> {
 	
 	@FindBy(xpath = "//h1[text()='Terminate Work Relationship']")
     private WebElement terminateWorkRelationshipPageHeaderText;
+	
+	@FindBy(xpath = "//label[contains(text(),'What')][contains(text(),'the action name?')]/following::input[1]")
+    private WebElement terminationActionName;
+	
+	@FindBy(xpath = "//label[contains(text(),'Why are you terminating')]/following::input[1]")
+    private WebElement terminationReason;
+	
+	@FindBy(xpath = "//button[@title='Continue']")
+    private WebElement terminationContinueButton;
+	
+	@FindBy(xpath = "//label[text()='Revoke User Access']/following::input[1]")
+    private WebElement revokeUserAccess;
+	
+	@FindBy(xpath = "//label[text()='Recommended for Rehire']/following::input[1]")
+    private WebElement recommendedForRehire;
+	
+	@FindBy(xpath = "//span[contains(text(),'You cannot terminate the selected work relationship because it was already terminated')]")
+    private WebElement alreadyTerminatedMessage;
 
 	public QuickActionPage(Context context) {
 
@@ -164,6 +182,50 @@ public class QuickActionPage extends BasePage<QuickActionPage> {
             reportWithScreenShot("Terminate Work Relationship Page Displayed:");
         } catch (Exception e) {
             reportWithScreenShot("Terminate Work Relationship Page has not been displayed:");
+            Assert.fail();
+
+        }
+    }
+    
+    /**
+     * This method will enter the termination details
+     * @author Rakesh
+     */
+    public void enterTerminationDetails() {
+
+        try {
+        	selectInputDropdownValue(terminationActionName, data.getTerminationAction());
+        	waitShortTime();
+        	selectInputDropdownValue(terminationReason, data.getTerminationReason());
+        	waitShortTime();
+        	waitFor(ExpectedConditions.elementToBeClickable(terminationContinueButton), 15);
+        	terminationContinueButton.click();
+        	selectInputDropdownValue(revokeUserAccess, data.getRevokeUserAccess());
+        	waitShortTime();
+        	selectInputDropdownValue(recommendedForRehire, data.getrecommendedForRehire());
+        	waitShortTime();
+        	waitFor(ExpectedConditions.elementToBeClickable(terminationContinueButton), 15);
+        	terminationContinueButton.click();
+            reportWithScreenShot("Termination Details Entered:");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while entering termination details:");
+            Assert.fail();
+
+        }
+    }
+    
+    /**
+     * This method will validate the message that employee has already been terminated
+     * @author Rakesh
+     */
+    public void validateWorkRelationshipAlreadyTerminatedPageDisplayed() {
+
+        try {
+            waitFor(ExpectedConditions.visibilityOf(alreadyTerminatedMessage), 30);
+            Assertions.assertThat(alreadyTerminatedMessage.isDisplayed()).isTrue();
+            reportWithScreenShot("Work Relationship already terminated message displayed:");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while Work Relationship already terminated message displayed or not");
             Assert.fail();
 
         }

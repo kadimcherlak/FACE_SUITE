@@ -176,10 +176,13 @@ Feature: Line Manager Transaction and Approval
     And user selects the person name from the dropdown
     And user clicks on Terminate link from the Quick Action menu
     Then Terminate Work Relationship page should be displayed
-    And user enters all the termination details and click on Submit button
+    And user enters all the termination details
+    And user add comments in the textarea for termination
+    When user clicks on Submit button in Termination Work Relationship page
     Then the Quick Action page should be displayed
-    And user clicks on "Terminate" link from the Quick Action menu
-    Then user should see the message your submission is in progress
+    #And user selects the person name from the dropdown
+    #And user clicks on Terminate link from the Quick Action menu
+    #Then user should see the message selected work relationship was already terminated
     And user clicks on Sign Out option
     Then Sign out should be successful
 

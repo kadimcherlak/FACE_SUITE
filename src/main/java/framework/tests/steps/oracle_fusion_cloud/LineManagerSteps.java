@@ -98,7 +98,7 @@ public class LineManagerSteps implements En {
         });
 
         Then("user add comments in the textarea", () -> {
-            context.lineManager.enterComments();
+            context.lineManager.enterComments("Changing the Manager for above reason");
         });
         Then("^user clicks (.*?) option from task icon menu$", (String linkName) -> {
             context.lineManager.clickLinkElementInTaskPane(linkName);
@@ -167,6 +167,22 @@ public class LineManagerSteps implements En {
         
         Then("Terminate Work Relationship page should be displayed", () -> {
         	context.quickActionPage.validateTerminateWorkRelationshipPageDisplayed();
+        });
+        
+        Then("user enters all the termination details", () -> {
+        	context.quickActionPage.enterTerminationDetails();
+        });
+        
+        Then("user add comments in the textarea for termination", () -> {
+        	context.lineManager.enterComments("Termination initiated for this employee");
+        });
+        
+        When("user clicks on Submit button in Termination Work Relationship page", () -> {
+            context.lineManager.clickSubmitButton();
+        });
+        
+        When("user should see the message selected work relationship was already terminated", () -> {
+            context.lineManager.terminationPageDisplayed();
         });
     }
 
