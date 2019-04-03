@@ -20,8 +20,10 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -509,5 +511,28 @@ public class BasePage<T> extends WebPage {
         WebElement createContactType = driver.findElement(By.xpath("//div[contains(@id,'MAt2:0:SP1:Manag1:0:AT')]//span[text()='" + optionToBeClicked + "']"));
         createContactType.click();
     }
+    
+    /**
+     * This method will handle those link to be enabled for which xpath is composed on the fly
+     * @param xpath
+     * @return
+     * @author Rakesh
+     */
+    public boolean waitForDynamicXpathLinkToBeEnabled(String xpath) {
+        int counter = 0;
+        while (counter < 20) {
+            try {
+                waitFor(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(xpath))), 1);
+                return true;
+            } catch (Exception e) {
+                //System.out.println("Waiting for Change Manager Link to be enabled..");
+                waitShortTime();
+                counter++;
+            }
+        }
+        return false;
+    }
+    
+	
 }
 

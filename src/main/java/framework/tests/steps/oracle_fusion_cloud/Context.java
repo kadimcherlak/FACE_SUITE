@@ -27,6 +27,7 @@ public class Context extends framework.core.models.Context {
     public LineManagerPage lineManager;
     public PersonManagementPage personManagment;
     public ManageCalendarEventsPage manageCalendarEvents;
+    public QuickActionPage quickActionPage;
     public String scenarioName = null;
     private Logger logger = LogManager.getLogger(Context.class);
     private WebDriver driver;
@@ -124,6 +125,7 @@ public class Context extends framework.core.models.Context {
         newPerson = new NewPersonPage(context);
         personManagment = new PersonManagementPage(context);
         manageCalendarEvents = new ManageCalendarEventsPage(context);
+        quickActionPage = new QuickActionPage(context);
     }
 
 }
