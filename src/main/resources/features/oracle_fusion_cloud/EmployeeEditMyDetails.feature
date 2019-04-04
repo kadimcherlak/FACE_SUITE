@@ -414,8 +414,6 @@ Feature: Perform Edit on Employee Information
       | Test Scenario                       | Test File Name | Test Sheet Name  |
       | MANAGE_PERSON_ADD_ALTERNATE_ADDRESS | TestData.xlsx  | Employee_Details |
 
-
-
   @CORRECT_PERSONAL_DESCRIPTIVE_FLEXFIELD_INFORMATION
   Scenario Outline: Manage Person - Correct Personal Descriptive Flexfield Information
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
@@ -513,3 +511,33 @@ Feature: Perform Edit on Employee Information
     Examples:
       | Test Scenario                     | Test File Name | Test Sheet Name  |
       | MODIFY_EXISTING_EMERGENCY_CONTACT | TestData.xlsx  | Employee_Details |
+
+
+  @ADD_EXTRA_INFORMATION_EIT
+  Scenario Outline: Manage Person - Add Extra Information (EIT)
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button till person displayed
+    Then Employee name should be listed in search results
+    When user click on employee name link in search results
+    And user click on Task Icon on the right side
+    When user clicks Manage Person option from task icon menu
+    Then Manage Person page is displayed
+    And user clicks Extra Information link on Manage Person page
+    Then Extra Information page is displayed
+    When user clicks on Edit button to add Extra information
+    And user selects Correct option from Edit menu
+    And user update all addition fields for Extra information
+    Then user clicks on Submit button in Manage Person
+    When user clicks Yes button on popup modal
+    And user clicks OK button on Confirmation modal
+    And user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario             | Test File Name | Test Sheet Name  |
+      | ADD_EXTRA_INFORMATION_EIT | TestData.xlsx  | Employee_Details |

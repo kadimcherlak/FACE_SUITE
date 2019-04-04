@@ -625,6 +625,19 @@ public class EmployeeEditMyDetailsSteps implements En {
         And("^user updates address fields as need and click OK button$", () -> {
             context.employeeEditMyDetails.updateEmergencyAddressDetails();
         });
+        And("^user clicks Extra Information link on Manage Person page$", () -> {
+            context.employeeEditMyDetails.clickLinkExtraInformation();
+        });
+        And("^user clicks on Edit button to add Extra information$", () -> {
+            context.employeeEditMyDetails.clickEditExtraInfo();
+        });
+        And("^user selects Correct option from Edit menu$", () -> {
+            context.employeeEditMyDetails.selectCorrectFromEdit_ExtraInfo();
+        });
+        And("^user update all addition fields for Extra information$", () -> {
+            context.employeeEditMyDetails.fillMiscellaneousInfo_ExtraInfo();
+        });
+
 
     }
 

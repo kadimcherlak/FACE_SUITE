@@ -124,7 +124,13 @@ public class Data extends framework.core.models.Data {
     private String terminationReason;
     private String revokeUserAccess;
     private String recommendedForRehire;
-
+    private String community;
+    private String casteTribe;
+    private String height;
+    private String weight;
+    private String exServicePerson;
+    private String residentialStatus;
+    private String panNumber;
 
     // Alpha sorted list of getters
     // most of these items get loaded via bean loader, so normally setters not needed.
@@ -224,7 +230,7 @@ public class Data extends framework.core.models.Data {
         return correspondenceLanguage;
     }
 
-    public String getContactType(){
+    public String getContactType() {
         return contactType;
     }
 
@@ -655,20 +661,46 @@ public class Data extends framework.core.models.Data {
     public String getAreaCode() {
         return areaCode;
     }
-    
+
     public String getTerminationAction() {
         return terminationAction;
     }
-    
+
     public String getTerminationReason() {
         return terminationReason;
     }
-    
+
     public String getRevokeUserAccess() {
         return revokeUserAccess;
     }
-    
+
     public String getrecommendedForRehire() {
         return recommendedForRehire;
     }
+
+    public String getCommunity() {
+        return community;
+    }
+
+    public String getCasteTribe() {
+        return casteTribe;
+    }
+
+    public String getHeight() {
+        return height;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public String getExServicePerson() {
+        return exServicePerson;
+    }
+
+    public String getResidentialStatus() {
+        return residentialStatus;
+    }
+
+    public String getpanNumber() {   return panNumber;    }
 }
