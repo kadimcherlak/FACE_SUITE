@@ -637,8 +637,12 @@ public class EmployeeEditMyDetailsSteps implements En {
         And("^user update all addition fields for Extra information$", () -> {
             context.employeeEditMyDetails.fillMiscellaneousInfo_ExtraInfo();
         });
-
-
+        And("^user selects Update option to update details in Extra Information page$", () -> {
+            context.employeeEditMyDetails.selectUpdateFromEditMenu_ExtraInfoPage();
+        });
+        And("^user selects Effective update date to update Extra Information and clicks OK button$", () -> {
+            context.employeeEditMyDetails.enterEffectiveDate();
+        });
     }
 
 }

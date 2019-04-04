@@ -702,6 +702,37 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//label[text()='Type']/following::input[1]")
     private WebElement text_CountryCode;
 
+
+    @FindBy(xpath = "//td[text()='Correct']")
+    private WebElement button_CorrectExtraInfo;
+
+    @FindBy(xpath = "//a[contains(@id,'_COMMUNITY')]")
+    private WebElement comboBox_Comminity;
+
+    @FindBy(xpath = "//input[contains(@id,'_CASTE')]")
+    private WebElement text_CasteTribe;
+
+    @FindBy(xpath = "//input[contains(@id,'_HEIGHT')]")
+    private WebElement text_Height;
+
+    @FindBy(xpath = "//input[contains(@id,'_WEIGHT')]")
+    private WebElement text_Weight;
+
+    @FindBy(xpath = "//input[contains(@id,'_PAN_REFERENCE')]")
+    private WebElement text_PANAcknowledgmentNumber;
+
+    @FindBy(xpath = "//a[contains(@id,'_RESIDENTIAL')]")
+    private WebElement comboBox_ResidentialStatus;
+
+    @FindBy(xpath = "//label[text()='PAN Applied']")
+    private WebElement checkBox_PANApplied;
+
+    @FindBy(xpath = "//label[text()='Ex-Service Person']")
+    private WebElement checkBox_ExServicePerson;
+
+    @FindBy(xpath = "//h1[text()='Extra Information']/following::td[text()='Update']")
+    private WebElement button_UpdateExtraInfo;
+
     public EmployeeEditMyDetailsPage(Context context) {
         super(context);
         this.context = context;
@@ -2937,28 +2968,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
-    @FindBy(xpath = "//td[text()='Correct']")
-    private WebElement button_CorrectExtraInfo;
-
-    @FindBy(xpath = "//a[contains(@id,'_COMMUNITY')]")
-    private WebElement comboBox_Comminity;
-
-    @FindBy(xpath = "//input[contains(@id,'_CASTE')]")
-    private WebElement text_CasteTribe;
-    @FindBy(xpath = "//input[contains(@id,'_HEIGHT')]")
-    private WebElement text_Height;
-    @FindBy(xpath = "//input[contains(@id,'_WEIGHT')]")
-    private WebElement text_Weight;
-    @FindBy(xpath = "//input[contains(@id,'_PAN_REFERENCE')]")
-    private WebElement text_PANAcknowledgmentNumber;
-    @FindBy(xpath = "//a[contains(@id,'_RESIDENTIAL')]")
-    private WebElement comboBox_ResidentialStatus;
-    @FindBy(xpath = "//label[text()='PAN Applied']")
-    private WebElement checkBox_PANApplied;
-    @FindBy(xpath = "//label[text()='Ex-Service Person']")
-    private WebElement checkBox_ExServicePerson;
-
-
     public void clickEditExtraInfo() {
         try {
             button_Edit.click();
@@ -3013,6 +3022,20 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             reportWithScreenShot("User fills the Extra info form");
         } catch (Exception e) {
             reportWithScreenShot("Error while filling Extran info form : " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+   public void selectUpdateFromEditMenu_ExtraInfoPage() {
+
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_UpdateExtraInfo), 30);
+            button_UpdateExtraInfo.click();
+            waitFor(ExpectedConditions.elementToBeClickable(datePicker_updateAddressEffectiveStartDate), 30);
+            assertThat(datePicker_updateAddressEffectiveStartDate.isDisplayed()).isTrue();
+            reportWithScreenShot("User selected Update option to update Extra Information");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while selecting Update option to Update extra information:" + e.getMessage());
             Assert.fail();
         }
     }
