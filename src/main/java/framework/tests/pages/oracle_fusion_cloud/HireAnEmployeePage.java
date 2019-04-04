@@ -14,16 +14,12 @@ import org.testng.Assert;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
     private Context context;
     private Data data;
     private Actions actions;
+    private int elementsize;
 
     // Hire An Employee Page Elements
     @FindBy(xpath = "//h1[contains(text(),': Identification')]")
@@ -55,6 +51,12 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
     @FindBy(xpath = "//*[text()='Employee']")
     private WebElement checkWorkerType;
+
+    @FindBy(xpath = "//label[text()='Nonworker Type']/following::input[1]")
+    private WebElement nonWorkerType;
+
+    @FindBy(xpath = "//label[text()='Proposed Worker Type']/following::input[1]")
+    private WebElement pendingWorkerType;
 
     @FindBy(xpath = "//label[text()='Last Name']/following::input[1]")
     private WebElement lastName;
@@ -184,6 +186,30 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//img[contains(@id,'AU2:insert::icon')]")
     private WebElement managerAddRow;
 
+    //venkat added 3/31
+    @FindBy(xpath = "(//a[text()='Pending Workers'])[1]")
+    private WebElement label_PendingWorkerGrid;
+
+    //venkat added 3/31
+    @FindBy(xpath = "//input[contains(@id,'c11::content')]")
+    private WebElement textBox_PersonNumber;
+
+    //venkat added 3/31
+    @FindBy(xpath = "(//td[@class='xeq'])[1]")
+    private WebElement label_SelectPersonNumber;
+
+    //venkat added 3/31
+    @FindBy(xpath = "//a[@title='Actions']")
+    private WebElement button_ActionsButton;
+
+    //venkat added 3/31
+    @FindBy(xpath = "//td[text()='Convert']")
+    private WebElement link_Convert;
+
+    //venkat added 3/31
+    @FindBy(xpath = "//h1[contains(.,'Convert Pending Worker: Identification')]")
+    private WebElement label_ConvertPendingWorker;
+
     public HireAnEmployeePage(Context context) {
         super(context);
         this.context = context;
@@ -229,15 +255,28 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
         }
     }
 
+    // Compensation and other Information Tab check available
+    public void checkCompensationInformationTabAvailable() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(compAndOtherInfoTab), 15);
+            assertThat(compAndOtherInfoTab.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if Compensation and other Information Page is Displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Compensation and other Information Page not Displayed due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
     // Enter Value into Identification tab
     public void fillIdentificationTab() {
         try {
             // Enter Hire Date
             basicDetailsDate.clear();
-         //   actions.doubleClick(basicDetailsDate).sendKeys(data.getHireDate());
-            String hireDate=getDynamicDate(60);
+            //   actions.doubleClick(basicDetailsDate).sendKeys(data.getHireDate());
+            String hireDate = getDynamicDate(60);
             System.out.println(hireDate);
             actions.doubleClick(basicDetailsDate).sendKeys(hireDate);
+
             // Select Hire Action
             basicDetailsAction.click();
             waitFor(ExpectedConditions
@@ -254,9 +293,26 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             basicDetailsReason.sendKeys(Keys.TAB);
 
             // Check Worker Type
-            actions.moveToElement(basicDetailsEmployer).click().sendKeys(data.getLegalEmployer()).sendKeys(Keys.ENTER)
-                    .sendKeys(Keys.TAB).perform();
-            assertThat(checkWorkerType.getText().equals(data.getWorkerType())).isTrue();
+            actions.moveToElement(basicDetailsEmployer).click().sendKeys(data.getLegalEmployer()).sendKeys(Keys.ENTER).sendKeys(Keys.TAB).perform();
+            waitShortTime();
+
+            // Check Scenario and perform Action
+            if (data.getScenario().contains("PENDING_WORKER")) {
+                pendingWorkerType.click();
+                waitFor(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getWorkerType() + "']"))), 30);
+                driver.findElement(By.xpath("//li[text()='" + data.getWorkerType() + "']")).click();
+                pendingWorkerType.sendKeys(Keys.TAB);
+            } else if (data.getScenario().contains("NON_WORKER")) {
+                nonWorkerType.click();
+                waitFor(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getWorkerType() + "']"))), 30);
+                driver.findElement(By.xpath("//li[text()='" + data.getWorkerType() + "']")).click();
+                nonWorkerType.sendKeys(Keys.TAB);
+                waitShortTime();
+            }
+
+            //waitFor(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[text()='" + data.getWorkerType() + "']"))), 30);
+            //assertThat(driver.findElement(By.xpath("//*[text()='" + data.getWorkerType() + "']")).getText().equals(data.getWorkerType())).isTrue();
+
             waitNormalTime();
 
             // Enter Last Name
@@ -556,4 +612,138 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             Assert.fail();
         }
     }
+
+    // Checking if Pending Workers grid is Displayed
+    public void checkPendingWorkerGridDisplayed() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(label_PendingWorkerGrid), 15);
+            assertThat(label_PendingWorkerGrid.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if Pending Workers grid is Displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Pending Workers grid is not Displayed due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // search pending worker created in previous step
+    public void searchPendingWorker() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(textBox_PersonNumber), 15);
+            textBox_PersonNumber.sendKeys(csvReader()[0]);
+            textBox_PersonNumber.sendKeys(Keys.ENTER);
+
+            reportWithScreenShot("Pending Worker person Number is Displayed in the grid");
+        } catch (Exception e) {
+            reportWithScreenShot("Pending Worker person Number is Displayed in the grid: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // select Pending worker from grid
+    public void selectPendingWorker() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(label_SelectPersonNumber), 30);
+            label_SelectPersonNumber.click();
+            waitShortTime();
+            waitFor(ExpectedConditions.visibilityOf(button_ActionsButton), 30);
+            button_ActionsButton.click();
+            reportWithScreenShot("User click on Actions Button");
+            waitFor(ExpectedConditions.visibilityOf(link_Convert), 30);
+            link_Convert.click();
+            reportWithScreenShot("User clicks on Convert link");
+        } catch (Exception e) {
+            reportWithScreenShot("User unable to click on actions and convert link due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // Checking if Pending Worker Identification Page is Displayed
+    public void checkPendingWorkerIdentificationPageDisplayed() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(label_ConvertPendingWorker), 15);
+            assertThat(label_ConvertPendingWorker.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if Pending Worker Identification Page is Displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Pending Worker Identification Page is not Displayed due to : " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // validate Identification Tab
+    public void validateIdentificationTab() {
+        try {
+            checkIdentificationTabAvailable();
+            clickNextButton();
+            reportWithScreenShot("Validate data on the identification form");
+        } catch (Exception e) {
+            reportWithScreenShot("Identification tab is not displayed due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // validate Person Information Tab
+    public void validatePersonInformationTab() {
+        try {
+            checkPersonInformationTabAvailable();
+            clickNextButton();
+            reportWithScreenShot("Review Person Information");
+        } catch (Exception e) {
+            reportWithScreenShot("Unable to Review Person Information due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // validate Person Profile Tab
+    public void validatePersonProfileTab() {
+        try {
+            waitUntilPageLoad();
+            clickNextButton();
+            reportWithScreenShot("Review Person Profile information");
+        } catch (Exception e) {
+            reportWithScreenShot("Unable to Review Person Profile Information due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // validate Employment Information Tab
+    public void validateEmploymentInformationTab() {
+        try {
+            checkEmploymentInformationTabAvailable();
+            clickNextButton();
+            reportWithScreenShot("Review Employment information");
+        } catch (Exception e) {
+            reportWithScreenShot("Unable to Review Employment Information Tab due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+
+    // validate Compensation Information Tab
+    public void validateCompensationInformationTab() {
+        try {
+            checkCompensationInformationTabAvailable();
+            clickNextButton();
+            reportWithScreenShot("Review Compensation and other information");
+        } catch (Exception e) {
+            reportWithScreenShot("Unable to Review Compensation and other Information Tab due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // validate if the Pending Worker is not Displayed
+    public void checkPendingWorkerDetailNotDisplayed() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(textBox_PersonNumber), 15);
+            textBox_PersonNumber.sendKeys(csvReader()[0]);
+            textBox_PersonNumber.sendKeys(Keys.ENTER);
+            waitShortTime();
+
+            reportWithScreenShot("Pending Worker person details is not Displayed in the grid");
+        } catch (Exception e) {
+            reportWithScreenShot("Issue in searching Pending Workers details due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+
 }

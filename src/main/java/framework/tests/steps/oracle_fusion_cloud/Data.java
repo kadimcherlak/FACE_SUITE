@@ -28,9 +28,16 @@ public class Data extends framework.core.models.Data {
     private String companyEntity;
     private String costCenter;
     private String country;
+    private String regionOfBirth;
+    private String townOfBirth;
     private String countryCode;
+    private String areaCode;
     private String county;
     private String dateOfBirth;
+    private String degreeMajor;
+    private String degreeName;
+    private String degreeSchool;
+    private String degreeYear;
     private String department;
     private String description;
     private String destinationLegalEmployer;
@@ -61,12 +68,15 @@ public class Data extends framework.core.models.Data {
     private String job;
     private String lastName;
     private String legalEmployer;
+    private String licenseName;
+    private String licenseNumber;
     private String location;
     private String locationContact;
     private String managerName;
     private String managerType;
     private String maritalStatus;
     private String name;
+    private String countryOfBirth;
     private String nationalID;
     private String nationalIDType;
     private String newlySeparatedVeteranDischargeDate;
@@ -86,6 +96,7 @@ public class Data extends framework.core.models.Data {
     private String relationship;
     private String routingNumber;
     private String salaryAmount;
+    private String correspondenceLanguage;
     private String salaryBasis;
     private String scenario;
     private String sequence;
@@ -98,6 +109,7 @@ public class Data extends framework.core.models.Data {
     private String workerType;
     private String workingAsManager;
     private String zipCode;
+    private String bloodType;
     private String employeeName;
     private String actionManageSalary;
     private String actionReasonManageSalary;
@@ -105,6 +117,20 @@ public class Data extends framework.core.models.Data {
     private String projectedEndDate;
     private String correctEmploymentAction;
     private String correctEmploymentActionReason;
+    private String contactType;
+    private String emergencyContact;
+    private String emergencyContactType;
+    private String terminationAction;
+    private String terminationReason;
+    private String revokeUserAccess;
+    private String recommendedForRehire;
+    private String community;
+    private String casteTribe;
+    private String height;
+    private String weight;
+    private String exServicePerson;
+    private String residentialStatus;
+    private String panNumber;
 
     // Alpha sorted list of getters
     // most of these items get loaded via bean loader, so normally setters not needed.
@@ -200,6 +226,31 @@ public class Data extends framework.core.models.Data {
         return country;
     }
 
+    public String getCorrespondenceLanguage() {
+        return correspondenceLanguage;
+    }
+
+    public String getContactType() {
+        return contactType;
+    }
+
+
+    public String getBloodType() {
+        return bloodType;
+    }
+
+    public String getRegionOfBirth() {
+        return regionOfBirth;
+    }
+
+    public String getCountryOfBirth() {
+        return countryOfBirth;
+    }
+
+    public String getTownOfBirth() {
+        return townOfBirth;
+    }
+
     public String getCountryCode() {
         return countryCode;
     }
@@ -210,6 +261,22 @@ public class Data extends framework.core.models.Data {
 
     public String getDateOfBirth() {
         return dateOfBirth;
+    }
+
+    public String getDegreeMajor() {
+        return degreeMajor;
+    }
+
+    public String getDegreeName() {
+        return degreeName;
+    }
+
+    public String getDegreeSchool() {
+        return degreeSchool;
+    }
+
+    public String getDegreeYear() {
+        return degreeYear;
     }
 
     public String getDepartment() {
@@ -350,6 +417,14 @@ public class Data extends framework.core.models.Data {
 
     public String getLegalEmployer() {
         return legalEmployer;
+    }
+
+    public String getLicenseName() {
+        return licenseName;
+    }
+
+    public String getLicenseNumber() {
+        return licenseNumber;
     }
 
     public String getLocation() {
@@ -575,4 +650,57 @@ public class Data extends framework.core.models.Data {
         this.correctEmploymentActionReason = correctEmploymentActionReason;
     }
 
+    public String getEmergencyContact() {
+        return emergencyContact;
+    }
+
+    public String getEmergencyContactType() {
+        return emergencyContactType;
+    }
+
+    public String getAreaCode() {
+        return areaCode;
+    }
+
+    public String getTerminationAction() {
+        return terminationAction;
+    }
+
+    public String getTerminationReason() {
+        return terminationReason;
+    }
+
+    public String getRevokeUserAccess() {
+        return revokeUserAccess;
+    }
+
+    public String getrecommendedForRehire() {
+        return recommendedForRehire;
+    }
+
+    public String getCommunity() {
+        return community;
+    }
+
+    public String getCasteTribe() {
+        return casteTribe;
+    }
+
+    public String getHeight() {
+        return height;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public String getExServicePerson() {
+        return exServicePerson;
+    }
+
+    public String getResidentialStatus() {
+        return residentialStatus;
+    }
+
+    public String getpanNumber() {   return panNumber;    }
 }

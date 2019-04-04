@@ -133,6 +133,10 @@ public class TalentAcquisitionNewHireSteps implements En {
             context.hireAnEmployee.clickCreateButton();
         });
 
+        Then("user clicks on Delete button", () -> {
+            context.personManagment.clickDeleteButton();
+        });
+
         Then("user enter Effective date : System Date and Element Name as Bilingual Indicator", () -> {
             context.personManagment.fillElementEntryInfo();
         });
@@ -173,6 +177,10 @@ public class TalentAcquisitionNewHireSteps implements En {
             context.personManagment.adpRowAdded();
         });
 
+        Then("Manage Element entries page should be displayed with ADP Auto & Home row deleted", () -> {
+            context.personManagment.adpRowDeleted();
+        });
+
         When("user clicks on Edit and select Correct option", () -> {
             context.personManagment.clickEditCorrect();
         });
@@ -185,6 +193,10 @@ public class TalentAcquisitionNewHireSteps implements En {
             context.personManagment.enterCorrectEmploymentMandatoryFields();
         });
 
+        When("user Enter all the Mandatory fields of Correct Name window and click Ok button", () -> {
+            context.personManagment.enterCorrectNameMandatoryFields();
+        });
+        
         Then("Projected End Date field Should be Editable", () -> {
             context.personManagment.checkProjectedEndDateEditable();
         });
@@ -204,6 +216,60 @@ public class TalentAcquisitionNewHireSteps implements En {
         When("Enter the seniority date under Legal Employer and under Enterprise", () -> {
             context.personManagment.enterHireDate();
         });
+        And("^user clicks on Delete option$", () -> {
+            context.personManagment.clickDeleteButton();
+        });
+        When("^user selects the element entry to be deleted$", () -> {
+            context.personManagment.selectElementEntry();
+        });
+
+        Then("Mange Person page should be displayed", () -> {
+       	 context.personManagment.checkManagePersonAvailable();
+       });
+       
+       Then("Correct Name page should be displayed", () -> {
+       	context.personManagment.checkCorrectNameWindowDisplayed();
+       });
+        Then("Pending Workers grid should be displayed", () -> {
+            context.hireAnEmployee.checkPendingWorkerGridDisplayed();
+        });
+
+        Then("user search Pending worker Person number generated from previous step", () -> {
+            context.hireAnEmployee.searchPendingWorker();
+        });
+
+        When("user select Pending worker and click Convert under Actions Menu", () -> {
+            context.hireAnEmployee.selectPendingWorker();
+        });
+
+        Then("Convert Pending Worker: Identification page should be displayed", () -> {
+            context.hireAnEmployee.checkPendingWorkerIdentificationPageDisplayed();
+        });
+
+        When("user validates details in Identification tab", () -> {
+            context.hireAnEmployee.validateIdentificationTab();
+        });
+
+        When("user validates details in Person Information tab", () -> {
+            context.hireAnEmployee.validatePersonInformationTab();
+        });
+
+        When("user validates details in Person Profile tab", () -> {
+            context.hireAnEmployee.validatePersonProfileTab();
+        });
+
+        When("user validates details in Employment Information tab", () -> {
+            context.hireAnEmployee.validateEmploymentInformationTab();
+        });
+
+        When("user validates details in Compensation and Other Information tab", () -> {
+            context.hireAnEmployee.validateCompensationInformationTab();
+        });
+
+        Then("user checks if the pending worker is not displayed in Pending Workers grid", () -> {
+            context.hireAnEmployee.checkPendingWorkerDetailNotDisplayed();
+        });
 
     }
+
 }

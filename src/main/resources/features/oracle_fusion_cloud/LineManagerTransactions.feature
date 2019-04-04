@@ -18,7 +18,7 @@ Feature: Line Manager Transaction and Approval
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                        | Test File Name | Test Sheet Name |
       | LINE_MANAGER_PERFORMS_CHANGE_MANAGER | TestData.xlsx  | Line_Manager    |
 
@@ -26,15 +26,15 @@ Feature: Line Manager Transaction and Approval
   Scenario Outline: Line Manager to approve request of employee's manager change
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
-#    When user clicks on Notifications bell icon
-#    And user clicks on Action Required Notification link
-#    Then notification details should be opened in new window with employee's manager change details
-#    When user clicks on Approve button
-#    Then The request should be approved and home page should be displayed
+    #    When user clicks on Notifications bell icon
+    #    And user clicks on Action Required Notification link
+    #    Then notification details should be opened in new window with employee's manager change details
+    #    When user clicks on Approve button
+    #    Then The request should be approved and home page should be displayed
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                                 | Test File Name | Test Sheet Name |
       | LINE_MANAGER1_APPROVES_CHANGE_MANAGER_REQUEST | TestData.xlsx  | Change_Manager  |
 
@@ -46,39 +46,38 @@ Feature: Line Manager Transaction and Approval
     And user clicks on New Person link in Navigator Pane
     And user clicks on My Team link under My Team section
     Then My Team page should be displayed
-#    And user clicks on the Actions icon of the Employee <EmpId>
-#    When user navigates to Personal and Employement
-#    And user clicks on Terminate option
-#    And user enter details in Terminate details tab
+    #    And user clicks on the Actions icon of the Employee <EmpId>
+    #    When user navigates to Personal and Employement
+    #    And user clicks on Terminate option
+    #    And user enter details in Terminate details tab
     And user clicks on Review button
-#    Then Review Terminate Work Relationship should be displayed
+    #    Then Review Terminate Work Relationship should be displayed
     When user clicks on Submit button
     Then The transaction should be saved properly and My Team page should be displayed
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                          | Test File Name | Test Sheet Name      |
       | LINEMANAGER_TERMINATE_DIRECT_REPORTEES | TestData.xlsx  | Termination_Approval |
-
 
   @PPS_APPROVES_TERMINATION
   Scenario Outline: Approve request of termination for Direct Reportee who is Regular Employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
     When user clicks on Navigator icon
-#    And user clicks on Worklist link under Tools section
-#    And user clicks on the Termination record of the Employee <EmpId>
-#    Then Termination for the employee page should be displayed in a secondary window
-#    And user clicks on Claim option
-#    And user clicks on the Termination record of the Employee <EmpId>
-#    Then Termination for the employee page should be displayed in a secondary window
-#    And user clicks on Approve option
-#    Then The Worklist: Notifications and Approvals page should be displayed
+    #    And user clicks on Worklist link under Tools section
+    #    And user clicks on the Termination record of the Employee <EmpId>
+    #    Then Termination for the employee page should be displayed in a secondary window
+    #    And user clicks on Claim option
+    #    And user clicks on the Termination record of the Employee <EmpId>
+    #    Then Termination for the employee page should be displayed in a secondary window
+    #    And user clicks on Approve option
+    #    Then The Worklist: Notifications and Approvals page should be displayed
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario            | Test File Name | Test Sheet Name      |
       | PPS_APPROVES_TERMINATION | TestData.xlsx  | Termination_Approval |
 
@@ -103,10 +102,9 @@ Feature: Line Manager Transaction and Approval
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                       | Test File Name | Test Sheet Name |
       | LINEMANAGER_CHANGE_OF_SALARY_ACTION | TestData.xlsx  | Line_Manager    |
-
 
   @TERMINATION
   Scenario Outline: Employee Termination
@@ -135,11 +133,9 @@ Feature: Line Manager Transaction and Approval
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-
-    Examples:
+    Examples: 
       | Test Scenario | Test File Name | Test Sheet Name |
       | TERMINATION   | TestData.xlsx  | Line_Manager    |
-
 
   @RETIREMENT
   Scenario Outline: Employee Retirement
@@ -167,7 +163,29 @@ Feature: Line Manager Transaction and Approval
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-
-    Examples:
+    Examples: 
       | Test Scenario | Test File Name | Test Sheet Name |
       | RETIREMENT    | TestData.xlsx  | Line_Manager    |
+
+  @QUICK_ACTION_TERMINATION
+  Scenario Outline: Employee Termination from Quick Action Menu
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user navigates to Quick Action menu
+    Then the Quick Action page should be displayed
+    And user selects the person name from the dropdown
+    And user clicks on Terminate link from the Quick Action menu
+    Then Terminate Work Relationship page should be displayed
+    And user enters all the termination details
+    And user add comments in the textarea for termination
+    When user clicks on Submit button in Termination Work Relationship page
+    Then the Quick Action page should be displayed
+    #And user selects the person name from the dropdown
+    #And user clicks on Terminate link from the Quick Action menu
+    #Then user should see the message selected work relationship was already terminated
+    And user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples: 
+      | Test Scenario            | Test File Name | Test Sheet Name |
+      | QUICK_ACTION_TERMINATION | TestData.xlsx  | Line_Manager    |
