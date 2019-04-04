@@ -2592,7 +2592,12 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
-
+    /*
+     * This method is to click tabs links on Manage Person page
+     *
+     * @author Sangameshwar Balur
+     *
+     * */
     public void taskLinkPage(String taskLinkPage) {
         waitShortTime();
         try {
@@ -2612,7 +2617,12 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-
+    /*
+     * This method is to click Edit option in Bio info page
+     *
+     * @author Sangameshwar Balur
+     *
+     * */
     public void clickEditButtonOfBioInfo() {
         try {
             button_EditBioInfo.click();
@@ -2624,7 +2634,12 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-
+    /*
+     * This method is to check Bio Info modal display
+     *
+     * @author Sangameshwar Balur
+     *
+     * */
     public void checkBioInfoModalDisplayed() {
 
         try {
@@ -2637,6 +2652,12 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
+    /*
+     * This method is to enter details in Biiographcal Info page
+     *
+     * @author Sangameshwar Balur
+     *
+     * */
     public void enterBiographicalInfo() {
         try {
             text_dateOfBirth.clear();
@@ -2667,7 +2688,12 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-
+    /*
+     * This method is to click button OK on BidInfo Modal
+     *
+     * @author Sangameshwar Balur
+     *
+     * */
     public void clickOKButtonOnBioInfoModal() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(btnOK), 30);
@@ -2681,6 +2707,12 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
+    /*
+     * This method is to click Submit button in Manage Person Page
+     *
+     * @author Sangameshwar Balur
+     *
+     * */
     public void clickSubmitButtonInManagePerson() {
 
         try {
@@ -2692,9 +2724,14 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             reportWithScreenShot("Error while clicking Submit button");
             Assert.fail();
         }
-
-
     }
+
+    /*
+     * This method is to check display of Warning Modal
+     *
+     * @author Sangameshwar Balur
+     *
+     * */
 
     public void checkWarningModal() {
         try {
@@ -2707,6 +2744,12 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
+    /*
+     * This method is to check display of Confimation Modal
+     *
+     * @author Sangameshwar Balur
+     *
+     * */
     public void checkConfirmationModal() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(confirmBtnOK), 30);
@@ -2717,6 +2760,13 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
+
+    /*
+     * This method is to click button OK on Confirmaiton modal
+     *
+     * @author Sangameshwar Balur
+     *
+     * */
 
     public void clickOKButtonOnConfirmationModal() {
 
@@ -2730,6 +2780,12 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
+    /*
+     * This method is to click link Contact in Manage person page
+     *
+     * @author Sangameshwar Balur
+     *
+     * */
     public void clickContactsLinkInManagePersonPage() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(link_ContactsInManagePersonPage), 30);
@@ -2741,6 +2797,13 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
+
+    /*
+     * This method is to select Update option from Edit menu.
+     *
+     * @author Sangameshwar Balur
+     *
+     * */
 
     public void clickEditOptionInPersonalRelationshipsPage(String optionToBeClicked) {
         waitNormalTime();
@@ -2758,6 +2821,12 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
+    /*
+     * This method is to select Contact type in emergency details
+     *
+     * @author Sangameshwar Balur
+     *
+     * */
     public void checkContactTypeModal(String modalName) {
         waitShortTime();
         try {
@@ -2771,6 +2840,12 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
+    /*
+     * This method is to enter details in Relationship Info
+     *
+     * @author Sangameshwar Balur
+     *
+     * */
     public void enterDetailsInRelationshipInformationModal() {
         try {
             comboBox_ContactType.click();
@@ -2797,6 +2872,14 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
+
+    /*
+     * This method is to click  Edit in relationship info
+     *
+     * @author Sangameshwar Balur
+     *
+     * */
+
     public void clickEditInPersonalInfo() {
 
         try {
@@ -2811,6 +2894,13 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
+    /*
+     * This method is to select Correct option from Edit menu.
+     *
+     * @author Sangameshwar Balur
+     *
+     * */
+
     public void selectCorrectFromEdit() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(button_CorrectName), 30);
@@ -2823,6 +2913,13 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
+
+    /*
+     * This method is to select Update Name in Relationship Info
+     *
+     * @author Sangameshwar Balur
+     *
+     * */
 
     public void updateNameRelationshipInfo() {
 
@@ -2845,6 +2942,13 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
 
     }
+
+    /*
+     * This method is to enter Emergency Phone number
+     *
+     * @author Sangameshwar Balur
+     *
+     * */
 
     public void addEmergencyPhoneNumber() {
         try {
@@ -2876,6 +2980,13 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
+    /*
+     * This method is to click Edit in Address Area
+     *
+     * @author Sangameshwar Balur
+     *
+     * */
+
     public void clickEditInAddressArea() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(button_EditAddress), 30);
@@ -2889,6 +3000,12 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
+    /*
+     * This method is to select Update option from Edit menu.
+     *
+     * @author Sangameshwar Balur
+     *
+     * */
     public void selectUpdateFromEditMenu() {
 
         try {
@@ -2903,6 +3020,11 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
+    /*
+     * This method is to select Update Address details
+     *
+     * @author Sangameshwar Balur
+     * */
     public void updateEmergencyAddressDetails() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(datePicker_updateAddressEffectiveStartDate), 30);
@@ -2931,6 +3053,11 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
+    /*
+     * This method is to update Emergency Address in Contacts
+     *
+     * @author Sangameshwar Balur
+     * */
 
     public void updateEmergencyAddress() {
         try {
@@ -2955,6 +3082,12 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     }
 
+    /*
+     * This method is to click Extra Information tab
+     *
+     * @author Sangameshwar Balur
+     * */
+
     public void clickLinkExtraInformation() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(link_ExtraInformationInManagePersonPage), 30);
@@ -2968,6 +3101,11 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
+    /*
+     * This method is to click Edit in Extran Info page
+     *
+     * @author Sangameshwar Balur
+     * */
     public void clickEditExtraInfo() {
         try {
             button_Edit.click();
@@ -2980,6 +3118,11 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
+    /*
+     * This method is to select Correct option from Edit menu.
+     *
+     * @author Sangameshwar Balur
+     * */
     public void selectCorrectFromEdit_ExtraInfo() {
 
         try {
@@ -2994,14 +3137,19 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
+    /*
+     * This method is to enter details in Extra Information page.
+     *
+     * @author Sangameshwar Balur
+     * */
     public void fillMiscellaneousInfo_ExtraInfo() {
 
-        try{
-            waitFor(ExpectedConditions.elementToBeClickable(comboBox_Comminity),15);
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(comboBox_Comminity), 15);
             comboBox_Comminity.click();
             String dataCommunity = data.getCommunity();
-            WebElement selectCommunity = driver.findElement(By.xpath("//li[text()='"+dataCommunity+"']"));
-            waitFor(ExpectedConditions.elementToBeClickable(selectCommunity),15);
+            WebElement selectCommunity = driver.findElement(By.xpath("//li[text()='" + dataCommunity + "']"));
+            waitFor(ExpectedConditions.elementToBeClickable(selectCommunity), 15);
             selectCommunity.click();
             checkBox_ExServicePerson.click();
             text_CasteTribe.clear();
@@ -3009,8 +3157,8 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             comboBox_ResidentialStatus.click();
             waitNormalTime();
             String resiValue = data.getResidentialStatus();
-            WebElement selectResiStatusValue = driver.findElement(By.xpath("//span[text()='"+resiValue+"']"));
-            waitFor(ExpectedConditions.elementToBeClickable(selectResiStatusValue),30);
+            WebElement selectResiStatusValue = driver.findElement(By.xpath("//span[text()='" + resiValue + "']"));
+            waitFor(ExpectedConditions.elementToBeClickable(selectResiStatusValue), 30);
             selectResiStatusValue.click();
             text_Height.clear();
             text_Height.sendKeys(data.getHeight());
@@ -3026,7 +3174,13 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
-   public void selectUpdateFromEditMenu_ExtraInfoPage() {
+    /*
+     * This method is to select Update option from Edit menu.
+     *
+     * @author Sangameshwar Balur
+     * */
+
+    public void selectUpdateFromEditMenu_ExtraInfoPage() {
 
         try {
             waitFor(ExpectedConditions.elementToBeClickable(button_UpdateExtraInfo), 30);
