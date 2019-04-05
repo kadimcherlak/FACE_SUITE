@@ -675,7 +675,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//label[text()='Enter local name']/following::button[@accesskey='K']")
     private WebElement button_OK_UpdateName;
 
-    @FindBy(xpath = "//label[text()='County']/following::span[text()='K']")
+    @FindBy(xpath = "//label[text()='County']/following::span/button[@accesskey='K']")
     private WebElement button_OK_UpdatAddress;
 
     @FindBy(xpath = "//label[text()='Effective Start Date']/following::span/button[@accesskey='K']")
@@ -3041,10 +3041,10 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             waitNormalTime();
             button_OK_CloseEditWindow.click();
             waitNormalTime();
-            if (button_OK_CloseEditWindow.isDisplayed()) {
-                button_OK_CloseEditWindow.click();
-                waitShortTime();
-            }
+//            if (button_OK_CloseEditWindow.isDisplayed()) {
+//                button_OK_CloseEditWindow.click();
+//                waitNormalTime();
+//            }
             reportWithScreenShot("User updated emergency address details");
 
         } catch (Exception e) {
@@ -3070,9 +3070,10 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             text_updateAddressModal_City.sendKeys(data.getCity());
             text_updateAddressModal_State.clear();
             text_updateAddressModal_State.sendKeys(data.getState());
+            waitNormalTime();
             text_updateAddressModal_County.clear();
             text_updateAddressModal_County.sendKeys(data.getCounty());
-            waitNormalTime();
+            text_updateAddressModal_County.sendKeys(Keys.TAB);
             reportWithScreenShot("User updates emergency contact address");
 
         } catch (Exception e) {
