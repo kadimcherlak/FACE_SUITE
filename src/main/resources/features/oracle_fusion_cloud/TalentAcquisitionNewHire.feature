@@ -576,14 +576,14 @@ Feature: New Hire and Related Activities
     And user clicks on New Person link in Navigator Pane
     And user clicks on Hire an Employee on right side of the page under Tasks pane
     Then new Hire an employee screen should be displayed
-    When user enter details in Identification tab
+    When user enter contingent worker details in Identification tab
     Then Matching Person Records should be displayed
     And user clicks on Select Person button
     Then Warning message should be displayed
-    When user clicks on OK button
+    When user clicks on OK button to create new new work relationship
     Then Identification tab should be displayed
-    When user enter details in Identification tab
-    And user enter details in Person information tab
+    When user clicks next button in identification tab
+    When user clicks next button in Person information tab
     And user enter details in Employment Information tab
     And user enter details in Compensation and Other Information tab
     Then Review page should be displayed in view only mode
@@ -596,4 +596,4 @@ Feature: New Hire and Related Activities
 
     Examples:
       | Test Scenario | Test File Name | Test Sheet Name    |
-      | NEW_HIRE      | TestData.xlsx  | Talent_Acquisition |
+      | CONVERT_CONTINGENT_WORKER_TO_EMPLOYEE | TestData.xlsx  | Talent_Acquisition |

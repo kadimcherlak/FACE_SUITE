@@ -174,15 +174,16 @@ Feature: Line Manager Transaction and Approval
     When user clicks Manage Work Relationship option from task icon menu
     Then Manange work relationship page is displayed
     And user clicks on Action button and select View Termination option
-    When user clicks on Reverse Termination option
-    Then confirmation popup box is displayed
+    When user clicks on Reverse Termination button
+    And user clicks on YES button in warning popup
     And user clicks on OK button
+    And user clicks on Done button
     And user clicks on Sign Out option
     Then Sign out should be successful
 
     Examples:
       | Test Scenario | Test File Name | Test Sheet Name |
-      | TERMINATION   | TestData.xlsx  | Line_Manager    |
+      | REVERSE_TERMINATION | TestData.xlsx  | Line_Manager    |
 
 
   @RETIREMENT

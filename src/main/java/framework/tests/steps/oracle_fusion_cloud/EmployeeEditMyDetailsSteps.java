@@ -335,6 +335,7 @@ public class EmployeeEditMyDetailsSteps implements En {
         And("^user enter value for Routing Account Holder$", () -> {
         });
         And("^user clicks on Done button$", () -> {
+            context.basePage.clickDoneButton();
         });
         Then("^Person Gallery page should be displayed$", () -> {
         });

@@ -278,6 +278,51 @@ public class TalentAcquisitionNewHireSteps implements En {
             context.hireAnEmployee.checkPendingWorkerDetailNotDisplayed();
         });
 
+        Then("user enter contingent worker details in Identification tab", () -> {
+            context.hireAnEmployee.fillContingentWorkerIdentificationTab();
+        });
+
+        Then("Matching Person Records should be displayed", () -> {
+            context.hireAnEmployee.matchingPersonRecordDisplayed();
+        });
+
+        Then("user clicks on Select Person button", () -> {
+            context.hireAnEmployee.clickSelectPersonButton();
+        });
+
+        Then("Warning message should be displayed", () -> {
+            context.hireAnEmployee.warningMessageDisplayed();
+        });
+
+        Then("Identification tab should be displayed", () -> {
+            context.hireAnEmployee.checkIdentificationTabAvailable();
+        });
+
+        Then("user clicks next button in identification tab", () -> {
+            context.hireAnEmployee.clickNextButton();
+        });
+
+        Then("user clicks next button in Person information tab", () -> {
+            context.hireAnEmployee.clickNextButton();
+        });
+
+        Then("user clicks next button in Employment Information tab", () -> {
+            context.hireAnEmployee.clickNextButton();
+        });
+
+        Then("user clicks next button in Compensation and Other Information tab", () -> {
+            context.hireAnEmployee.clickNextButton();
+        });
+
+        Then("user clicks on OK button in Warning popup", () -> {
+            context.hireAnEmployee.clickWarningOkButton();
+        });
+
+        Then("user clicks on OK button to create new new work relationship", () -> {
+            context.hireAnEmployee.clickOkBtn();
+        });
+
+
     }
 
 }
