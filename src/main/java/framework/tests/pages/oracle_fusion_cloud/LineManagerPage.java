@@ -605,6 +605,7 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
 
     public void clickActionAndTerminate() {
         try {
+        	waitFor(ExpectedConditions.elementToBeClickable(buttonActions), 30);
             buttonActions.click();
             waitFor(ExpectedConditions.visibilityOf(buttonTerminate), 60);
             buttonTerminate.click();
