@@ -106,7 +106,7 @@ Feature: Line Manager Transaction and Approval
       | Test Scenario                       | Test File Name | Test Sheet Name |
       | LINEMANAGER_CHANGE_OF_SALARY_ACTION | TestData.xlsx  | Line_Manager    |
 
-  @TERMINATION1
+  @TERMINATION
   Scenario Outline: Employee Termination
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
