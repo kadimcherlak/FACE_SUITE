@@ -631,7 +631,8 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
     public void clickActionAndViewTermination() {
         try {
             buttonActions.click();
-            waitFor(ExpectedConditions.visibilityOf(link_ViewTermination), 60);
+            waitShortTime();
+            waitFor(ExpectedConditions.visibilityOf(link_ViewTermination), 45);
             link_ViewTermination.click();
             reportWithScreenShot("User clicked on Action and View Termination link");
         } catch (Exception e) {

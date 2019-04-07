@@ -803,7 +803,8 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             // Enter Hire Date
             basicDetailsDate.clear();
             //   actions.doubleClick(basicDetailsDate).sendKeys(data.getHireDate());
-            String hireDate = getDynamicDate(60);
+            //   String hireDate = getDynamicDate(60);
+            String hireDate = "4/8/19";
             System.out.println(hireDate);
             actions.doubleClick(basicDetailsDate).sendKeys(hireDate);
 
@@ -846,13 +847,13 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitNormalTime();
 
             // Enter Last Name
-            waitFor(ExpectedConditions.elementToBeClickable(lastName), 5);
-            lastName.sendKeys(csvReader()[3]);
+            waitFor(ExpectedConditions.elementToBeClickable(lastName), 15);
+            lastName.sendKeys(csvReader()[1].trim().split(" ")[1]);
             lastName.sendKeys(Keys.TAB);
 
             // Enter First Name
-            waitFor(ExpectedConditions.elementToBeClickable(firstName), 5);
-            firstName.sendKeys(csvReader()[2]);
+            waitFor(ExpectedConditions.elementToBeClickable(firstName), 15);
+            firstName.sendKeys(csvReader()[1].trim().split(" ")[0]);
             firstName.sendKeys(Keys.TAB);
 
             // Select Gender
@@ -863,9 +864,9 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             driver.findElement(By.xpath("//li[text()='" + data.getGender() + "']")).click();
 
             // Select Date of Birth
-            waitFor(ExpectedConditions.elementToBeClickable(dateOfBirth), 15);
-            dateOfBirth.sendKeys(data.getDateOfBirth());
-            dateOfBirth.sendKeys(Keys.TAB);
+            // waitFor(ExpectedConditions.elementToBeClickable(dateOfBirth), 15);
+            //dateOfBirth.sendKeys(data.getDateOfBirth());
+            // dateOfBirth.sendKeys(Keys.TAB);
 
           /*  // Select Location Contact Required
             waitFor(ExpectedConditions.elementToBeClickable(locationContact), 15);
@@ -874,7 +875,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitShortTime();
 
             // Click to create new row
-            waitFor(ExpectedConditions.elementToBeClickable(addRow), 15);
+         /*   waitFor(ExpectedConditions.elementToBeClickable(addRow), 15);
             addRow.click();
 
             // Enter Country
@@ -894,7 +895,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
             // Enter National ID
             waitFor(ExpectedConditions.visibilityOf(nationalId), 15);
-            nationalId.sendKeys(data.getNationalID());
+            nationalId.sendKeys(data.getNationalID());*/
 
             // Goto next tab
             scrollToPageTop(driver);
