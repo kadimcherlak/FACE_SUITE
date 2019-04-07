@@ -119,7 +119,7 @@ Feature: Line Manager Transaction and Approval
     When user click on employee name link in search results
     And user click on Task Icon on the right side
     When user clicks Manage Work Relationship option from task icon menu
-    Then Manange work relationship page is displayed
+    Then Manage Work Relationship page is displayed
     And user clicks on Action button and select Terminate option
     Then user navigated to Termination Details page
     And user selects Termination Action
@@ -150,7 +150,7 @@ Feature: Line Manager Transaction and Approval
     When user click on employee name link in search results
     And user click on Task Icon on the right side
     When user clicks Manage Work Relationship option from task icon menu
-    Then Manange work relationship page is displayed
+   # Then Manage Work Relationship page is displayed
     And user clicks on Action button and select Terminate option
     Then user navigated to Termination Details page
     And user selects Termination Action
@@ -170,12 +170,12 @@ Feature: Line Manager Transaction and Approval
     When user click on employee name link in search results
     And user click on Task Icon on the right side
     When user clicks Manage Work Relationship option from task icon menu
-    Then Manange work relationship page is displayed
+    #Then Manage Work Relationship page is displayed
     And user clicks on Action button and select View Termination option
     When user clicks on Reverse Termination button
     And user clicks on YES button in warning popup
     And user clicks on OK button
-    And user clicks on Done button
+    #And user clicks on Done button
     And user clicks on Sign Out option
     Then Sign out should be successful
 
@@ -197,7 +197,7 @@ Feature: Line Manager Transaction and Approval
     When user click on employee name link in search results
     And user click on Task Icon on the right side
     When user clicks Manage Work Relationship option from task icon menu
-    Then Manange work relationship page is displayed
+    Then Manage Work Relationship page is displayed
     And user clicks on Action button and select Terminate option
     Then user navigated to Termination Details page
     And user selects Retirement Action
@@ -250,7 +250,7 @@ Feature: Line Manager Transaction and Approval
     When user click on employee name link in search results
     And user click on Task Icon on the right side
     When user clicks Manage Work Relationship option from task icon menu
-    #Then Manange work relationship page is displayed
+    #Then Manage Work Relationship page is displayed
     And user clicks on Action button and select Terminate option
     Then user navigated to Termination Details page
     And user selects Termination Action

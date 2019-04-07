@@ -41,7 +41,7 @@ Feature: New Hire and Related Activities
     When user click on employee name link in search results
     Then Person Management screen should be displayed
     And user clicks on Manage Work Relationship on right side of the page under Tasks pane
-    Then Manage Work Relationship screen should be displayed
+    Then Manage Work Relationship page is displayed
     When user click on Actions button and select Edit option
     Then Edit Work Relationship screen should be displayed
     And user select Ready to verify value from I-9 Status
@@ -173,7 +173,7 @@ Feature: New Hire and Related Activities
     When user click on employee name link in search results
     And user click on Task Icon on the right side
     When user clicks Manage Work Relationship option from task icon menu
-    Then Manange work relationship page is displayed
+    Then Manage Work Relationship page is displayed
     And user clicks on Action button and select Terminate option
     Then user navigated to Termination Details page
     And user selects Retirement Action

@@ -190,7 +190,7 @@ Feature: New Hire and Related Activities
     When user click on employee name link in search results
     Then Person Management screen should be displayed
     And user clicks on Manage Work Relationship on right side of the page under Tasks pane
-    Then Manage Work Relationship screen should be displayed
+    Then Manage Work Relationship page is displayed
     When user click on Actions button and select Edit option
     Then Edit Work Relationship screen should be displayed
     And user select Ready to verify value from I-9 Status
@@ -381,7 +381,6 @@ Feature: New Hire and Related Activities
       | Test Scenario          | Test File Name | Test Sheet Name    |
       | NEW_HIRE_QUICK_ACTIONS | TestData.xlsx  | Talent_Acquisition |
 
-
   @NEW_HIRE_PENDING_WORKER_QUICK_ACTIONS
   Scenario Outline: Create a New Pending Worker using Quick Actions and Responsive UI
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
@@ -547,7 +546,6 @@ Feature: New Hire and Related Activities
       | Test Scenario                            | Test File Name | Test Sheet Name    |
       | QUICK_CONVERT_PENDING_WORKER_TO_EMPLOYEE | TestData.xlsx  | Talent_Acquisition |
 
-
   @CONVERT_CONTINGENT_WORKER_TO_EMPLOYEE
   Scenario Outline: Convert a Contingent Worker to an Employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
@@ -561,7 +559,7 @@ Feature: New Hire and Related Activities
     When user click on employee name link in search results
     And user click on Task Icon on the right side
     When user clicks Manage Work Relationship option from task icon menu
-    Then Manange work relationship page is displayed
+    Then Manage Work Relationship page is displayed
     And user clicks on Action button and select Terminate option
     Then user navigated to Termination Details page
     And user selects Termination Action

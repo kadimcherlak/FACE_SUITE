@@ -103,9 +103,9 @@ public class LineManagerSteps implements En {
         Then("^user clicks (.*?) option from task icon menu$", (String linkName) -> {
             context.lineManager.clickLinkElementInTaskPane(linkName);
         });
-        Then("^Manange work relationship page is displayed$", () -> {
-            context.lineManager.manageWorkRelationShipPageDisplayed();
-        });
+        // Then("^Manange work relationship page is displayed$", () -> {
+        //   context.lineManager.manageWorkRelationShipPageDisplayed();
+        //});
 
         Then("user clicks on Action button and select View Termination option", () -> {
             context.lineManager.clickActionAndViewTermination();
