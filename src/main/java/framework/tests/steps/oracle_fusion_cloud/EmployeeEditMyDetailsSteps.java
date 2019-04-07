@@ -486,6 +486,10 @@ public class EmployeeEditMyDetailsSteps implements En {
             context.employeeEditMyDetails.fillUpdateEmpWindow_PersonMgmt();
         });
 
+        When("^user enters details in Correct Employment Window and click on Ok button$", () -> {
+            context.employeeEditMyDetails.fillCorrectEmpWindow_PersonMgmt();
+        });
+
         And("^user selects Assignment Status as (.*?)$", (String value) -> {
             context.employeeEditMyDetails.selectAssignmentStatus(value);
         });

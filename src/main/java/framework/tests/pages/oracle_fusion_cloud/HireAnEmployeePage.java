@@ -12,9 +12,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import java.util.Date;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
@@ -232,6 +232,10 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//button[@accesskey='K']")
     private WebElement button_OKWarning;
 
+
+    //raghav added 4/6
+    @FindBy(xpath = "//h1[contains(text(),': Job Change')]")
+    private WebElement jobChange;
 
     public HireAnEmployeePage(Context context) {
         super(context);
@@ -485,12 +489,15 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
         try {
             // Enter Business Unit
             waitFor(ExpectedConditions.elementToBeClickable(businessUnit), 15);
+            businessUnit.clear();
+            waitNormalTime();
             businessUnit.sendKeys(data.getBusinessUnit());
             businessUnit.sendKeys(Keys.ENTER);
             waitNormalTime();
 
             // Enter Job
             waitFor(ExpectedConditions.elementToBeClickable(job), 15);
+            job.clear();
             job.sendKeys(data.getJob());
             job.sendKeys(Keys.ENTER);
             waitNormalTime();
@@ -502,6 +509,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
             // Enter Department
             waitFor(ExpectedConditions.elementToBeClickable(department), 15);
+            department.clear();
             department.sendKeys(data.getDepartment());
             department.sendKeys(Keys.ENTER);
             waitNormalTime();
@@ -509,6 +517,8 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             // Enter Location
             try {
                 waitFor(ExpectedConditions.elementToBeClickable(location), 15);
+                location.clear();
+                waitShortTime();
                 location.sendKeys(data.getLocation());
                 waitShortTime();
             } catch (StaleElementReferenceException e) {
@@ -534,12 +544,14 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             //3/18 Adding additional logic for handling global scenario
             if (driver.findElements(By.xpath("//input[contains(@id,'ManagerName')]")).size() != 0) {
                 waitFor(ExpectedConditions.elementToBeClickable(managerName), 15);
+                managerName.clear();
                 managerName.sendKeys(data.getManagerName());
             } else {
                 waitFor(ExpectedConditions.elementToBeClickable(managerAddRow), 15);
                 managerAddRow.click();
 
                 waitFor(ExpectedConditions.elementToBeClickable(managerName), 15);
+                managerName.clear();
                 managerName.sendKeys(data.getManagerName());
 
                 waitFor(ExpectedConditions.elementToBeClickable(managerType), 15);
@@ -554,23 +566,27 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             birthday.sendKeys(data.getDateOfBirth());
 */
             // Clicking Add button to enter Payroll Details
-            waitShortTime();
-            clickCreateButton();
+            if (driver.findElements(By.xpath("//h1[contains(text(),' Change')]")).size() == 0) {
+                waitShortTime();
+                clickCreateButton();
 
-            // Select Payroll Details
-            waitFor(ExpectedConditions.elementToBeClickable(payroll), 15);
-            payroll.sendKeys(data.getPayroll());
-            waitNormalTime();
+                // Select Payroll Details
+                waitFor(ExpectedConditions.elementToBeClickable(payroll), 15);
+                payroll.clear();
+                payroll.sendKeys(data.getPayroll());
+                waitNormalTime();
 
-            // Goto next tab
-            scrollToPageTop(driver);
-            reportWithScreenShot("Summary of Employment Information tab");
-            clickNextButton(); // Next Button to go to next page
-            waitUntilPageLoad(); // wait until next tab loads
+                // Goto next tab
+                scrollToPageTop(driver);
+                reportWithScreenShot("Summary of Employment Information tab");
+                clickNextButton(); // Next Button to go to next page
+                waitUntilPageLoad(); // wait until next tab loads
 
-            // Check if next page loaded
-            waitFor(ExpectedConditions.elementToBeClickable(salaryBasis), 15);
-            assertThat(salaryBasis.isDisplayed()).isTrue();
+                // Check if next page loaded
+                waitFor(ExpectedConditions.elementToBeClickable(salaryBasis), 15);
+                assertThat(salaryBasis.isDisplayed()).isTrue();
+            }
+
         } catch (Exception e) {
             reportWithScreenShot(
                     "Error While Entering Value into Employement Information Tab due to:" + e.getMessage());

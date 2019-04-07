@@ -21,7 +21,7 @@ Feature: New Hire and Related Activities
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario | Test File Name | Test Sheet Name    |
       | NEW_HIRE      | TestData.xlsx  | Talent_Acquisition |
 
@@ -45,7 +45,7 @@ Feature: New Hire and Related Activities
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario       | Test File Name | Test Sheet Name    |
       | NEW_HIRE_NON_WORKER | TestData.xlsx  | Talent_Acquisition |
 
@@ -69,7 +69,7 @@ Feature: New Hire and Related Activities
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario           | Test File Name | Test Sheet Name    |
       | NEW_HIRE_PENDING_WORKER | TestData.xlsx  | Talent_Acquisition |
 
@@ -93,7 +93,7 @@ Feature: New Hire and Related Activities
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario              | Test File Name | Test Sheet Name    |
       | NEW_HIRE_CONTINGENT_WORKER | TestData.xlsx  | Talent_Acquisition |
 
@@ -122,7 +122,7 @@ Feature: New Hire and Related Activities
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario          | Test File Name | Test Sheet Name    |
       | CREATE_ELEMENT_ENTRIES | TestData.xlsx  | Talent_Acquisition |
 
@@ -149,7 +149,7 @@ Feature: New Hire and Related Activities
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario          | Test File Name | Test Sheet Name    |
       | UPDATE_ELEMENT_ENTRIES | TestData.xlsx  | Talent_Acquisition |
 
@@ -173,7 +173,7 @@ Feature: New Hire and Related Activities
     And user clicks on Sign Out option
     And Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario          | Test File Name | Test Sheet Name    |
       | DELETE_ELEMENT_ENTRIES | TestData.xlsx  | Talent_Acquisition |
 
@@ -201,7 +201,7 @@ Feature: New Hire and Related Activities
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario    | Test File Name | Test Sheet Name    |
       | UPDATE_I9_STATUS | TestData.xlsx  | Talent_Acquisition |
 
@@ -230,7 +230,7 @@ Feature: New Hire and Related Activities
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario          | Test File Name | Test Sheet Name    |
       | EDIT_PROJECTED_ENDDATE | TestData.xlsx  | Talent_Acquisition |
 
@@ -255,7 +255,7 @@ Feature: New Hire and Related Activities
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario       | Test File Name | Test Sheet Name    |
       | EDIT_SENIORITY_DATE | TestData.xlsx  | Talent_Acquisition |
 
@@ -285,7 +285,7 @@ Feature: New Hire and Related Activities
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                   | Test File Name | Test Sheet Name    |
       | UPDATE_PERSONAL_ASSIGNMENT_DATA | TestData.xlsx  | Talent_Acquisition |
 
@@ -311,7 +311,7 @@ Feature: New Hire and Related Activities
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario   | Test File Name | Test Sheet Name  |
       | UPLOAD_HDL_FILE | TestData.xlsx  | Employee_Details |
 
@@ -339,7 +339,7 @@ Feature: New Hire and Related Activities
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                  | Test File Name | Test Sheet Name    |
       | MANANGE_PERSON_NAME_CORRECTION | TestData.xlsx  | Talent_Acquisition |
 
@@ -378,7 +378,7 @@ Feature: New Hire and Related Activities
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario          | Test File Name | Test Sheet Name    |
       | NEW_HIRE_QUICK_ACTIONS | TestData.xlsx  | Talent_Acquisition |
 
@@ -417,7 +417,7 @@ Feature: New Hire and Related Activities
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                         | Test File Name | Test Sheet Name    |
       | NEW_HIRE_PENDING_WORKER_QUICK_ACTIONS | TestData.xlsx  | Talent_Acquisition |
 
@@ -456,7 +456,7 @@ Feature: New Hire and Related Activities
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                            | Test File Name | Test Sheet Name    |
       | NEW_HIRE_CONTINGENT_WORKER_QUICK_ACTIONS | TestData.xlsx  | Talent_Acquisition |
 
@@ -495,7 +495,7 @@ Feature: New Hire and Related Activities
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                     | Test File Name | Test Sheet Name    |
       | NEW_HIRE_NON_WORKER_QUICK_ACTIONS | TestData.xlsx  | Talent_Acquisition |
 
@@ -523,7 +523,7 @@ Feature: New Hire and Related Activities
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                      | Test File Name | Test Sheet Name    |
       | CONVERT_PENDING_WORKER_TO_EMPLOYEE | TestData.xlsx  | Talent_Acquisition |
 
@@ -543,7 +543,7 @@ Feature: New Hire and Related Activities
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                            | Test File Name | Test Sheet Name    |
       | QUICK_CONVERT_PENDING_WORKER_TO_EMPLOYEE | TestData.xlsx  | Talent_Acquisition |
 
@@ -593,7 +593,7 @@ Feature: New Hire and Related Activities
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                         | Test File Name | Test Sheet Name    |
       | CONVERT_CONTINGENT_WORKER_TO_EMPLOYEE | TestData.xlsx  | Talent_Acquisition |
 
@@ -642,6 +642,59 @@ Feature: New Hire and Related Activities
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                          | Test File Name | Test Sheet Name    |
       | CONVERT_NONWORKER_TO_CONTINGENT_WORKER | TestData.xlsx  | Talent_Acquisition |
+
+  @JOB_CHANGE
+  Scenario Outline: Perform Global Transfer for New Hire Employee
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button till person displayed
+    Then Employee name should be listed in search results
+    When user click on employee name link in search results
+    And user clicks on Edit button and select Update option
+    Then Update Employment new window should be displayed
+    When user enters details in Update Employment Window and click on Ok button
+    And user enter details in Employment Information tab
+    And user clicks on Review button in Management Employment page
+    And user clicks on Submit button in Review page
+    And user clicks Yes button on popup modal
+    And user clicks Ok button confirmation popup modal
+    And user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario | Test File Name | Test Sheet Name    |
+      | JOB_CHANGE    | TestData.xlsx  | Talent_Acquisition |
+
+
+  @CORRECT_INFORMATION
+  Scenario Outline: Perform Location Correction for New Hire Employee
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button till person displayed
+    Then Employee name should be listed in search results
+    When user click on employee name link in search results
+    And user clicks on Edit and select Correct option
+    Then Correct Employment page should be displayed
+    When user enters details in Correct Employment Window and click on Ok button
+    And user enter details in Employment Information tab
+    And user clicks on Review button in Management Employment page
+    And user clicks on Submit button in Review page
+    And user clicks Yes button on popup modal
+    And user clicks Ok button confirmation popup modal
+    And user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario       | Test File Name | Test Sheet Name    |
+      | CORRECT_INFORMATION | TestData.xlsx  | Talent_Acquisition |
