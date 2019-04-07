@@ -153,6 +153,15 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
     @FindBy(xpath = "//td[text()='Terminate']")
     private WebElement buttonTerminate;
 
+    @FindBy(xpath = "//td[text()='View Termination']")
+    private WebElement link_ViewTermination;
+
+    @FindBy(xpath = "//button[contains(.,'Reverse Termination')]")
+    private WebElement button_ReverseTermination;
+
+    @FindBy(xpath = "//div[text()='Warning']")
+    private WebElement popup_WarningText;
+
     @FindBy(xpath = "//a[contains(@id,'Action::drop')]")
     private WebElement terminationActionDropdown;
 
@@ -615,6 +624,46 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
 
         } catch (Exception e) {
             reportWithScreenShot("Error in clicking Action and termination link");
+            Assert.fail();
+        }
+    }
+
+    //Clicking View Termination link
+    public void clickActionAndViewTermination() {
+        try {
+            buttonActions.click();
+            waitShortTime();
+            waitFor(ExpectedConditions.visibilityOf(link_ViewTermination), 45);
+            link_ViewTermination.click();
+            reportWithScreenShot("User clicked on Action and View Termination link");
+        } catch (Exception e) {
+            reportWithScreenShot("Error in clicking Action and View termination link");
+            Assert.fail();
+        }
+    }
+
+    //Clicking Reverse Termination link
+    public void clickReverseTermination() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(button_ReverseTermination), 60);
+            button_ReverseTermination.click();
+            reportWithScreenShot("User clicked on Reverse Termination button");
+        } catch (Exception e) {
+            reportWithScreenShot("Error in clicking Reverse Termination Button");
+            Assert.fail();
+        }
+    }
+
+    //Clicking Yes in Warning Popup box
+    public void clickYesWarningPopup() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(popup_WarningText), 60);
+            Assertions.assertThat(popup_WarningText.isDisplayed()).isTrue();
+            waitFor(ExpectedConditions.visibilityOf(btnYes), 60);
+            btnYes.click();
+            reportWithScreenShot("User clicked on Reverse Termination button");
+        } catch (Exception e) {
+            reportWithScreenShot("Error in clicking Reverse Termination Button");
             Assert.fail();
         }
     }

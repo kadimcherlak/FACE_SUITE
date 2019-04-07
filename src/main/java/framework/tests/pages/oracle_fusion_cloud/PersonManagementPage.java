@@ -322,8 +322,8 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             clickSearch(); // Click Search Button
 
             // Check for Employee for max 60 seconds
-            elementsize = driver
-                    .findElements(By.xpath("//span[text()='" + csvReader()[0] + "']")).size();
+            elementsize = driver.findElements(By.xpath("//span[text()='" + csvReader()[0] + "']")).size();
+
             int counter = 0;
             while (elementsize == 0 && counter <= 20) {
                 elementsize = driver

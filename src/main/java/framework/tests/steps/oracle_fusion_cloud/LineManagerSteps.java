@@ -107,6 +107,20 @@ public class LineManagerSteps implements En {
             context.lineManager.manageWorkRelationShipPageDisplayed();
         });
 
+        Then("user clicks on Action button and select View Termination option", () -> {
+            context.lineManager.clickActionAndViewTermination();
+        });
+
+        Then("user clicks on Reverse Termination button", () -> {
+            context.lineManager.clickReverseTermination();
+        });
+
+
+        Then("user clicks on YES button in warning popup", () -> {
+            context.lineManager.clickYesWarningPopup();
+        });
+
+
         And("^user clicks on Action button and select Terminate option$", () -> {
             context.lineManager.clickActionAndTerminate();
 

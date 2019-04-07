@@ -20,10 +20,8 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -40,6 +38,9 @@ public class BasePage<T> extends WebPage {
 
     @FindBy(xpath = "(//button[text()='OK'])[1]")
     private WebElement okButton;
+
+    @FindBy(xpath = "//button[@accesskey='o']")
+    private WebElement button_Done;
 
     @FindBy(xpath = "//button[contains(@id,'okWarningDialog')]")
     private WebElement warningBtn;
@@ -157,6 +158,19 @@ public class BasePage<T> extends WebPage {
             waitShortTime();
         } catch (Exception e) {
             reportWithScreenShot("Error While clicking OK button due to:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // Click on Done Button
+    public void clickDoneButton() {
+        try {
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(button_Done), 15);
+            button_Done.click();
+            waitShortTime();
+        } catch (Exception e) {
+            reportWithScreenShot("Error While clicking Done button due to:" + e.getMessage());
             Assert.fail();
         }
     }
