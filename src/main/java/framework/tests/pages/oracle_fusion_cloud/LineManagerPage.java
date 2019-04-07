@@ -567,11 +567,11 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
      *
      * @author Rakesh Ghosal
      */
-    public void enterComments() {
+    public void enterComments(String comments) {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(addCommentsAndAttachments), 15);
             addCommentsAndAttachments.clear();
-            addCommentsAndAttachments.sendKeys("Changing the Manager for above reason");
+            addCommentsAndAttachments.sendKeys(comments);
             reportWithScreenShot("Entering comment for Change Manager transaction");
 
         } catch (Exception e) {
@@ -614,6 +614,7 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
 
     public void clickActionAndTerminate() {
         try {
+        	waitFor(ExpectedConditions.elementToBeClickable(buttonActions), 30);
             buttonActions.click();
             waitFor(ExpectedConditions.visibilityOf(buttonTerminate), 60);
             buttonTerminate.click();

@@ -100,7 +100,7 @@ public class BasePage<T> extends WebPage {
         Date date = new Date();
         return dateFormat.format(date);
     }
-
+    
     public String getDynamicDate(int days) {
         DateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
         Date date = new Date();
@@ -112,9 +112,9 @@ public class BasePage<T> extends WebPage {
             e.printStackTrace();
         } // parsed date and setting to calendar
 
-        calendar.add(Calendar.DATE, -days);  // number of days to add
-        String destDate = dateFormat.format(calendar.getTime());  // End date
-        return destDate;
+          calendar.add(Calendar.DATE, -days);  // number of days to add
+          String destDate = dateFormat.format(calendar.getTime());  // End date
+          return destDate;
     }
     
 
@@ -500,7 +500,7 @@ public class BasePage<T> extends WebPage {
         }
         return null;
     }
-    
+
  // Method to get Current Date
     public String getCurrentDateWithGivenFormat(String expectedDateFormat) {
         DateFormat dateFormat = new SimpleDateFormat(expectedDateFormat);
@@ -508,5 +508,45 @@ public class BasePage<T> extends WebPage {
         return dateFormat.format(date);
     }
 
+    public boolean checkTaskLinkPageDisplayed(String taskLinkPage) {
+        boolean status = false;
+        try {
+            WebElement checkTaskLinkPage = driver.findElement(By.xpath("//div[contains(@title,'" + taskLinkPage + "')]/h1"));
+            waitFor(ExpectedConditions.visibilityOf(checkTaskLinkPage));
+            checkTaskLinkPage.isDisplayed();
+            status = true;
+        } catch (Exception e) {
+            status = false;
+        }
+        return status;
+    }
+
+    public void createEmergencyContact(String optionToBeClicked) {
+        WebElement createContactType = driver.findElement(By.xpath("//div[contains(@id,'MAt2:0:SP1:Manag1:0:AT')]//span[text()='" + optionToBeClicked + "']"));
+        createContactType.click();
+    }
+    
+    /**
+     * This method will handle those link to be enabled for which xpath is composed on the fly
+     * @param xpath
+     * @return
+     * @author Rakesh
+     */
+    public boolean waitForDynamicXpathLinkToBeEnabled(String xpath) {
+        int counter = 0;
+        while (counter < 20) {
+            try {
+                waitFor(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(xpath))), 1);
+                return true;
+            } catch (Exception e) {
+                //System.out.println("Waiting for Change Manager Link to be enabled..");
+                waitShortTime();
+                counter++;
+            }
+        }
+        return false;
+    }
+    
+	
 }
 

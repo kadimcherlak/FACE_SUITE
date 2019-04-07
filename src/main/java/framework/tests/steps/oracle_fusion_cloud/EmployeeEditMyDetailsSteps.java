@@ -513,48 +513,137 @@ public class EmployeeEditMyDetailsSteps implements En {
         Then("user clicks on Document Records link under Personal Info", () -> {
             context.employeeEditMyDetails.clickDocumentRecordsLink();
         });
-        
+
         Then("from task menu user clicks on Manage Person option", () -> {
             context.employeeEditMyDetails.managePersonClick();
         });
-        
+
         Then("user clicks on Edit button and select Correct option for Home Address", () -> {
             context.employeeEditMyDetails.clickEditCorrectManagePerson();
         });
-        
+
         Then("update the address in correct address format and click on ok button", () -> {
             context.employeeEditMyDetails.correctAddressManagePerson();
         });
-        
+
         Then("validate the correct address is updated", () -> {
             context.employeeEditMyDetails.validateCorrectAddressDisplayed();
         });
-        
+
         Then("user clicks on Submit button in Person Management screen", () -> {
             context.employeeEditMyDetails.clickSubmitButtonInReviewPage();
             context.employeeEditMyDetails.clickYesOnPopup();
             context.employeeEditMyDetails.clickOKOnPopup();
         });
-        
+
         Then("user clicks on Edit button and select Update option for Home Address", () -> {
             context.employeeEditMyDetails.clickEditUpdateManagePerson();
         });
-        
+
         Then("enter the effective date", () -> {
             context.employeeEditMyDetails.enterEffectiveDate();
-            
-        });
-        
-        Then("user clicks on create address button and select the address type", () -> {
-            context.employeeEditMyDetails.clickCreateAddressButton();
-            
-        });
-        
-        Then("add secondary address details and click on ok button", () -> {
-            context.employeeEditMyDetails.correctAddressManagePerson();
-            
+
         });
 
+        Then("user clicks on create address button and select the address type", () -> {
+            context.employeeEditMyDetails.clickCreateAddressButton();
+
+        });
+
+        Then("add secondary address details and click on ok button", () -> {
+            context.employeeEditMyDetails.correctAddressManagePerson();
+
+        });
+        Then("^(.*?) page is displayed$", (String taskLinkPage) -> {
+            context.employeeEditMyDetails.taskLinkPage(taskLinkPage);
+        });
+
+        Then("^validate user is able to view the documents$", () -> {
+        });
+
+        And("^user clicks on Edit button in Manage Person page to edit Biographical Info$", () -> {
+            context.employeeEditMyDetails.clickEditButtonOfBioInfo();
+        });
+
+        Then("^persons Biographical Info modal displayed$", () -> {
+            context.employeeEditMyDetails.checkBioInfoModalDisplayed();
+        });
+
+        And("^user enters Biographical infomation from Manage Person page$", () -> {
+            context.employeeEditMyDetails.enterBiographicalInfo();
+        });
+
+        And("^user clicks OK button on Biographical Info modal$", () -> {
+            context.employeeEditMyDetails.clickOKButtonOnBioInfoModal();
+        });
+        When("^user clicks on Submit button in Manage Person$", () -> {
+            context.employeeEditMyDetails.clickSubmitButtonInManagePerson();
+        });
+        Then("^Warning modal is diplayed to confirm the request$", () -> {
+            context.employeeEditMyDetails.checkWarningModal();
+        });
+        Then("^user is displayed with confimation modal$", () -> {
+            context.employeeEditMyDetails.checkConfirmationModal();
+        });
+        And("^user clicks OK button on Confirmation modal$", () -> {
+            context.employeeEditMyDetails.clickOKButtonOnConfirmationModal();
+        });
+        And("^user clicks Contacts link on Manage Person page$", () -> {
+            context.employeeEditMyDetails.clickContactsLinkInManagePersonPage();
+        });
+        When("^user clicks on \"([^\"]*)\" option in Personal Relationships page$", (String optionToBeClicked) -> {
+            context.employeeEditMyDetails.clickEditOptionInPersonalRelationshipsPage(optionToBeClicked);
+        });
+        Then("^modal \"([^\"]*)\" is displayed$", (String modalName) -> {
+            context.employeeEditMyDetails.checkContactTypeModal(modalName);
+
+        });
+        And("^user enters details in Relationship Information modal$", () -> {
+            context.employeeEditMyDetails.enterDetailsInRelationshipInformationModal();
+        });
+        And("^user clicks OK button in contact creation modal$", () -> {
+            context.employeeEditMyDetails.clickOKButtonOnBioInfoModal();
+        });
+        And("^user clicks on Edit optoin in Personal Info section$", () -> {
+            context.employeeEditMyDetails.clickEditInPersonalInfo();
+        });
+        And("^user selects Correct option to update details in Personal Info$", () -> {
+            context.employeeEditMyDetails.selectCorrectFromEdit();
+        });
+        And("^user updates First name and Last name in Personal Info modal$", () -> {
+            context.employeeEditMyDetails.updateNameRelationshipInfo();
+        });
+        And("^user adds contact details in Phone section$", () -> {
+            context.employeeEditMyDetails.addEmergencyPhoneNumber();
+        });
+        And("^user clicks on Edit option in Address section$", () -> {
+            context.employeeEditMyDetails.clickEditInAddressArea();
+        });
+        And("^user selects Update option to update details in Address modal$", () -> {
+            context.employeeEditMyDetails.selectUpdateFromEditMenu();
+
+        });
+        And("^user updates address fields as need and click OK button$", () -> {
+            context.employeeEditMyDetails.updateEmergencyAddressDetails();
+        });
+        And("^user clicks Extra Information link on Manage Person page$", () -> {
+            context.employeeEditMyDetails.clickLinkExtraInformation();
+        });
+        And("^user clicks on Edit button to add Extra information$", () -> {
+            context.employeeEditMyDetails.clickEditExtraInfo();
+        });
+        And("^user selects Correct option from Edit menu$", () -> {
+            context.employeeEditMyDetails.selectCorrectFromEdit_ExtraInfo();
+        });
+        And("^user update all addition fields for Extra information$", () -> {
+            context.employeeEditMyDetails.fillMiscellaneousInfo_ExtraInfo();
+        });
+        And("^user selects Update option to update details in Extra Information page$", () -> {
+            context.employeeEditMyDetails.selectUpdateFromEditMenu_ExtraInfoPage();
+        });
+        And("^user selects Effective update date to update Extra Information and clicks OK button$", () -> {
+            context.employeeEditMyDetails.enterEffectiveDate();
+        });
     }
 
 }

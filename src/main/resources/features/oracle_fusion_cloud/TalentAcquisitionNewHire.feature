@@ -595,5 +595,5 @@ Feature: New Hire and Related Activities
     Then Sign out should be successful
 
     Examples:
-      | Test Scenario | Test File Name | Test Sheet Name    |
+      | Test Scenario                         | Test File Name | Test Sheet Name    |
       | CONVERT_CONTINGENT_WORKER_TO_EMPLOYEE | TestData.xlsx  | Talent_Acquisition |
