@@ -220,7 +220,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     private WebElement personMgmtCorrect;
 
     @FindBy(xpath = "//td[text() = 'Correct']")
-    private WebElement manageElementEntriesCorrect;
+    private WebElement personClickCorrect;
 
     @FindBy(xpath = "//div[text() = 'Correct Employment']")
     private WebElement correctEmploymentTitle;
@@ -530,8 +530,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
         try {
             waitNormalTime();
             reportWithScreenShot("Checking if ADP Auto & Home row is Displayed");
-            waitFor(ExpectedConditions.visibilityOf(adpRowDeleted), 15);
-            assertThat(adpRowDeleted.isDisplayed()).isFalse();
+            assertThat(driver.findElements(By.xpath("(//*[contains(text(),'Comp One Off Bonus Pay')])[1]")).isEmpty()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("ADP Auto & Home row is not deleted");
             Assert.fail();
@@ -637,7 +636,8 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             updateEmploymentEffectiveDate.clear();
 
             // Add Current Date + 1 as the senario runs before this test changes the date to current date +1 (Scenario name : Seniority date
-            updateEmploymentEffectiveDate.sendKeys(data.getEffectiveAsOfDate());
+            //updateEmploymentEffectiveDate.sendKeys(data.getEffectiveAsOfDate());
+            updateEmploymentEffectiveDate.sendKeys(getDynamicDate(5));
             updateEmploymentEffectiveDate.sendKeys(Keys.TAB);
             waitShortTime();
 
@@ -809,8 +809,8 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             } else {
                 waitFor(ExpectedConditions.elementToBeClickable(personMgmtEdit), 15);
                 personMgmtEdit.click();
-                waitFor(ExpectedConditions.elementToBeClickable(personMgmtCorrect), 15);
-                personMgmtCorrect.click();
+                waitFor(ExpectedConditions.elementToBeClickable(personClickCorrect), 15);
+                personClickCorrect.click();
             }
             reportWithScreenShot("Selected Correct Option after clicking on Edit");
         } catch (Exception e) {
@@ -961,7 +961,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             newHireDate=addDaysToDate(existingHireDate, 1, "mm/dd/yy");
             hireDate.sendKeys(newHireDate);
         } catch (Exception e) {
-        	System.out.println(e);
+            System.out.println(e.getMessage());
             reportWithScreenShot("Error while entering hire date");
             Assert.fail();
         }

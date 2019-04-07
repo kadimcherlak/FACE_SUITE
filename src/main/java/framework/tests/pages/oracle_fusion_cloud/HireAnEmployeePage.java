@@ -12,6 +12,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
+import java.util.Date;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
@@ -206,9 +208,34 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//td[text()='Convert']")
     private WebElement link_Convert;
 
+    //venkat added 4/02
+    @FindBy(xpath = "//td[text()='Quick Convert']")
+    private WebElement link_QuickConvert;
+
     //venkat added 3/31
     @FindBy(xpath = "//h1[contains(.,'Convert Pending Worker: Identification')]")
     private WebElement label_ConvertPendingWorker;
+
+    //venkat added 4/02
+    @FindBy(xpath = "//div[text()='Confirmation']")
+    private WebElement popup_Confirmation;
+
+    @FindBy(xpath = "//div[text()='Matching Person Records']")
+    private WebElement popup_matchingPersonRecords;
+
+    @FindBy(xpath = "//a[@title='Select Match']")
+    private WebElement icon_SelectPerson;
+
+    @FindBy(xpath = "(//div[text()='Warning'])[2]")
+    private WebElement popup_warning;
+
+    @FindBy(xpath = "//button[@accesskey='K']")
+    private WebElement button_OKWarning;
+
+
+    //raghav added 4/6
+    @FindBy(xpath = "//h1[contains(text(),': Job Change')]")
+    private WebElement jobChange;
 
     public HireAnEmployeePage(Context context) {
         super(context);
@@ -462,12 +489,15 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
         try {
             // Enter Business Unit
             waitFor(ExpectedConditions.elementToBeClickable(businessUnit), 15);
+            businessUnit.clear();
+            waitNormalTime();
             businessUnit.sendKeys(data.getBusinessUnit());
             businessUnit.sendKeys(Keys.ENTER);
             waitNormalTime();
 
             // Enter Job
             waitFor(ExpectedConditions.elementToBeClickable(job), 15);
+            job.clear();
             job.sendKeys(data.getJob());
             job.sendKeys(Keys.ENTER);
             waitNormalTime();
@@ -479,6 +509,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
             // Enter Department
             waitFor(ExpectedConditions.elementToBeClickable(department), 15);
+            department.clear();
             department.sendKeys(data.getDepartment());
             department.sendKeys(Keys.ENTER);
             waitNormalTime();
@@ -486,6 +517,8 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             // Enter Location
             try {
                 waitFor(ExpectedConditions.elementToBeClickable(location), 15);
+                location.clear();
+                waitShortTime();
                 location.sendKeys(data.getLocation());
                 waitShortTime();
             } catch (StaleElementReferenceException e) {
@@ -511,12 +544,14 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             //3/18 Adding additional logic for handling global scenario
             if (driver.findElements(By.xpath("//input[contains(@id,'ManagerName')]")).size() != 0) {
                 waitFor(ExpectedConditions.elementToBeClickable(managerName), 15);
+                managerName.clear();
                 managerName.sendKeys(data.getManagerName());
             } else {
                 waitFor(ExpectedConditions.elementToBeClickable(managerAddRow), 15);
                 managerAddRow.click();
 
                 waitFor(ExpectedConditions.elementToBeClickable(managerName), 15);
+                managerName.clear();
                 managerName.sendKeys(data.getManagerName());
 
                 waitFor(ExpectedConditions.elementToBeClickable(managerType), 15);
@@ -531,23 +566,27 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             birthday.sendKeys(data.getDateOfBirth());
 */
             // Clicking Add button to enter Payroll Details
-            waitShortTime();
-            clickCreateButton();
+            if (driver.findElements(By.xpath("//h1[contains(text(),' Change')]")).size() == 0) {
+                waitShortTime();
+                clickCreateButton();
 
-            // Select Payroll Details
-            waitFor(ExpectedConditions.elementToBeClickable(payroll), 15);
-            payroll.sendKeys(data.getPayroll());
-            waitNormalTime();
+                // Select Payroll Details
+                waitFor(ExpectedConditions.elementToBeClickable(payroll), 15);
+                payroll.clear();
+                payroll.sendKeys(data.getPayroll());
+                waitNormalTime();
 
-            // Goto next tab
-            scrollToPageTop(driver);
-            reportWithScreenShot("Summary of Employment Information tab");
-            clickNextButton(); // Next Button to go to next page
-            waitUntilPageLoad(); // wait until next tab loads
+                // Goto next tab
+                scrollToPageTop(driver);
+                reportWithScreenShot("Summary of Employment Information tab");
+                clickNextButton(); // Next Button to go to next page
+                waitUntilPageLoad(); // wait until next tab loads
 
-            // Check if next page loaded
-            waitFor(ExpectedConditions.elementToBeClickable(salaryBasis), 15);
-            assertThat(salaryBasis.isDisplayed()).isTrue();
+                // Check if next page loaded
+                waitFor(ExpectedConditions.elementToBeClickable(salaryBasis), 15);
+                assertThat(salaryBasis.isDisplayed()).isTrue();
+            }
+
         } catch (Exception e) {
             reportWithScreenShot(
                     "Error While Entering Value into Employement Information Tab due to:" + e.getMessage());
@@ -639,8 +678,8 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
         }
     }
 
-    // select Pending worker from grid
-    public void selectPendingWorker() {
+    // select Convert of Pending worker from grid
+    public void selectConvertPendingWorker() {
         try {
             waitFor(ExpectedConditions.visibilityOf(label_SelectPersonNumber), 30);
             label_SelectPersonNumber.click();
@@ -653,6 +692,37 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             reportWithScreenShot("User clicks on Convert link");
         } catch (Exception e) {
             reportWithScreenShot("User unable to click on actions and convert link due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // select Quick convert for Pending worker from grid
+    public void selectQuickConvertPendingWorker() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(label_SelectPersonNumber), 30);
+            label_SelectPersonNumber.click();
+            waitShortTime();
+            waitFor(ExpectedConditions.visibilityOf(button_ActionsButton), 30);
+            button_ActionsButton.click();
+            reportWithScreenShot("User click on Actions Button");
+            waitFor(ExpectedConditions.visibilityOf(link_QuickConvert), 30);
+            link_QuickConvert.click();
+            reportWithScreenShot("User clicks on Quick Convert link");
+        } catch (Exception e) {
+            reportWithScreenShot("User unable to click on actions and Quick convert link due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+
+    // Checking if confirmation popup is Displayed
+    public void confirmationPopupDisplay() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(popup_Confirmation), 45);
+            assertThat(popup_Confirmation.isDisplayed()).isTrue();
+            reportWithScreenShot("Checking if confirmation popup is Displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("confirmation popup is not Displayed due to: " + e.getMessage());
             Assert.fail();
         }
     }
@@ -741,6 +811,170 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             reportWithScreenShot("Pending Worker person details is not Displayed in the grid");
         } catch (Exception e) {
             reportWithScreenShot("Issue in searching Pending Workers details due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // User enter Contingent worker details in Identification tab
+    public void fillContingentWorkerIdentificationTab() {
+        try {
+            // Enter Hire Date
+            basicDetailsDate.clear();
+            //   actions.doubleClick(basicDetailsDate).sendKeys(data.getHireDate());
+            //   String hireDate = getDynamicDate(60);
+            Date date = new Date();
+            String hireDate = increaseDateFromCurrentDateByGivenDays(date, 4, "MM/dd/yyyy");
+            System.out.println(hireDate);
+            actions.doubleClick(basicDetailsDate).sendKeys(hireDate);
+
+            // Select Hire Action
+            basicDetailsAction.click();
+            waitFor(ExpectedConditions
+                    .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getHireAction() + "']"))), 5);
+            driver.findElement(By.xpath("//li[text()='" + data.getHireAction() + "']")).click();
+            basicDetailsAction.sendKeys(Keys.TAB);
+            waitNormalTime();
+
+            // Select Hire Reason
+            basicDetailsReason.click();
+            waitFor(ExpectedConditions
+                    .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getHireReason() + "']"))), 5);
+            driver.findElement(By.xpath("//li[text()='" + data.getHireReason() + "']")).click();
+            basicDetailsReason.sendKeys(Keys.TAB);
+
+            // Check Worker Type
+            actions.moveToElement(basicDetailsEmployer).click().sendKeys(data.getLegalEmployer()).sendKeys(Keys.ENTER).sendKeys(Keys.TAB).perform();
+            waitShortTime();
+
+            // Check Scenario and perform Action
+            if (data.getScenario().contains("PENDING_WORKER")) {
+                pendingWorkerType.click();
+                waitFor(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getWorkerType() + "']"))), 30);
+                driver.findElement(By.xpath("//li[text()='" + data.getWorkerType() + "']")).click();
+                pendingWorkerType.sendKeys(Keys.TAB);
+            } else if (data.getScenario().contains("NON_WORKER")) {
+                nonWorkerType.click();
+                waitFor(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getWorkerType() + "']"))), 30);
+                driver.findElement(By.xpath("//li[text()='" + data.getWorkerType() + "']")).click();
+                nonWorkerType.sendKeys(Keys.TAB);
+                waitShortTime();
+            }
+
+            //waitFor(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[text()='" + data.getWorkerType() + "']"))), 30);
+            //assertThat(driver.findElement(By.xpath("//*[text()='" + data.getWorkerType() + "']")).getText().equals(data.getWorkerType())).isTrue();
+
+            waitNormalTime();
+
+            // Enter Last Name
+            waitFor(ExpectedConditions.elementToBeClickable(lastName), 15);
+            lastName.sendKeys(csvReader()[1].trim().split(" ")[1]);
+            lastName.sendKeys(Keys.TAB);
+
+            // Enter First Name
+            waitFor(ExpectedConditions.elementToBeClickable(firstName), 15);
+            firstName.sendKeys(csvReader()[1].trim().split(" ")[0]);
+            firstName.sendKeys(Keys.TAB);
+
+            // Select Gender
+            waitFor(ExpectedConditions.elementToBeClickable(gender), 5);
+            gender.click();
+            waitFor(ExpectedConditions
+                    .elementToBeClickable(driver.findElement(By.xpath("//li[text()='" + data.getGender() + "']"))), 5);
+            driver.findElement(By.xpath("//li[text()='" + data.getGender() + "']")).click();
+
+            // Select Date of Birth
+            // waitFor(ExpectedConditions.elementToBeClickable(dateOfBirth), 15);
+            //dateOfBirth.sendKeys(data.getDateOfBirth());
+            // dateOfBirth.sendKeys(Keys.TAB);
+
+          /*  // Select Location Contact Required
+            waitFor(ExpectedConditions.elementToBeClickable(locationContact), 15);
+            locationContact.click();
+            locationContact.sendKeys(data.getLocationContact());*/
+            waitShortTime();
+
+            // Click to create new row
+         /*   waitFor(ExpectedConditions.elementToBeClickable(addRow), 15);
+            addRow.click();
+
+            // Enter Country
+            waitFor(ExpectedConditions.visibilityOf(country), 30);
+            country.clear();
+            country.sendKeys(data.getCountry());
+            waitNormalTime();
+            country.sendKeys(Keys.ENTER);
+            country.sendKeys(Keys.TAB);
+            waitNormalTime();
+            // Enter National ID type
+            clickNationalIdType.click();
+            waitFor(ExpectedConditions
+                    .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getNationalIDType() + "']"))), 15);
+            driver.findElement(By.xpath("//li[text()='" + data.getNationalIDType() + "']")).click();
+            clickNationalIdType.sendKeys(Keys.TAB);
+
+            // Enter National ID
+            waitFor(ExpectedConditions.visibilityOf(nationalId), 15);
+            nationalId.sendKeys(data.getNationalID());*/
+
+            // Goto next tab
+            scrollToPageTop(driver);
+            reportWithScreenShot("Summary of Identification tab");
+            clickNextButton(); // Next Button to go to next page
+
+        } catch (Exception e) {
+            reportWithScreenShot("Issue when entering details in identification tab due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // Check if the Matching person Record popup is Displayed
+    public void matchingPersonRecordDisplayed() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(popup_matchingPersonRecords), 30);
+            assertThat(popup_matchingPersonRecords.isDisplayed()).isTrue();
+            reportWithScreenShot("Check if the Matching person Record popup is Displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Matching person Record popup is not Displayed due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // User clicks on Select Person Button
+    public void clickSelectPersonButton() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(icon_SelectPerson), 15);
+            icon_SelectPerson.click();
+            waitShortTime();
+
+            reportWithScreenShot("Pending Worker person details is not Displayed in the grid");
+        } catch (Exception e) {
+            reportWithScreenShot("Issue in searching Pending Workers details due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // validate if the warning message is Displayed
+    public void warningMessageDisplayed() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(popup_warning), 30);
+            assertThat(popup_warning.isDisplayed()).isTrue();
+            reportWithScreenShot("Check if the Warning popup is Displayed");
+
+        } catch (Exception e) {
+            reportWithScreenShot("Warning pop up message not displayed due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // User clicks on ok Button
+    public void clickOkBtn() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_OKWarning), 15);
+            button_OKWarning.click();
+            waitShortTime();
+            reportWithScreenShot("After user click ok in warning popup window");
+        } catch (Exception e) {
+            reportWithScreenShot("Issue while user click ok in warning popup window due to: " + e.getMessage());
             Assert.fail();
         }
     }

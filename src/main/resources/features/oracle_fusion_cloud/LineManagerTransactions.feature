@@ -18,7 +18,7 @@ Feature: Line Manager Transaction and Approval
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                        | Test File Name | Test Sheet Name |
       | LINE_MANAGER_PERFORMS_CHANGE_MANAGER | TestData.xlsx  | Line_Manager    |
 
@@ -34,7 +34,7 @@ Feature: Line Manager Transaction and Approval
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                                 | Test File Name | Test Sheet Name |
       | LINE_MANAGER1_APPROVES_CHANGE_MANAGER_REQUEST | TestData.xlsx  | Change_Manager  |
 
@@ -57,7 +57,7 @@ Feature: Line Manager Transaction and Approval
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                          | Test File Name | Test Sheet Name      |
       | LINEMANAGER_TERMINATE_DIRECT_REPORTEES | TestData.xlsx  | Termination_Approval |
 
@@ -77,7 +77,7 @@ Feature: Line Manager Transaction and Approval
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario            | Test File Name | Test Sheet Name      |
       | PPS_APPROVES_TERMINATION | TestData.xlsx  | Termination_Approval |
 
@@ -102,7 +102,7 @@ Feature: Line Manager Transaction and Approval
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                       | Test File Name | Test Sheet Name |
       | LINEMANAGER_CHANGE_OF_SALARY_ACTION | TestData.xlsx  | Line_Manager    |
 
@@ -119,7 +119,7 @@ Feature: Line Manager Transaction and Approval
     When user click on employee name link in search results
     And user click on Task Icon on the right side
     When user clicks Manage Work Relationship option from task icon menu
-    Then Manange work relationship page is displayed
+    Then Manage Work Relationship page is displayed
     And user clicks on Action button and select Terminate option
     Then user navigated to Termination Details page
     And user selects Termination Action
@@ -133,9 +133,56 @@ Feature: Line Manager Transaction and Approval
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario | Test File Name | Test Sheet Name |
       | TERMINATION   | TestData.xlsx  | Line_Manager    |
+
+  @REVERSE_TERMINATION
+  Scenario Outline: Reversing a Termination
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button till person displayed
+    Then Employee name should be listed in search results
+    When user click on employee name link in search results
+    And user click on Task Icon on the right side
+    When user clicks Manage Work Relationship option from task icon menu
+   # Then Manage Work Relationship page is displayed
+    And user clicks on Action button and select Terminate option
+    Then user navigated to Termination Details page
+    And user selects Termination Action
+    And user selects Work Incident or Work Related Illness Reason
+    And user updates Termination date
+    And user selects Yes as Recommended for Rehire
+    And user clicks on Review button in termination page
+    Then user clicks on Submit button in termination review page
+    And user clicks Yes button on popup modal in termination review page
+    And user clicks Ok button confirmation popup modal in termination review page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button till person displayed
+    Then Employee name should be listed in search results
+    When user click on employee name link in search results
+    And user click on Task Icon on the right side
+    When user clicks Manage Work Relationship option from task icon menu
+    #Then Manage Work Relationship page is displayed
+    And user clicks on Action button and select View Termination option
+    When user clicks on Reverse Termination button
+    And user clicks on YES button in warning popup
+    And user clicks on OK button
+    #And user clicks on Done button
+    And user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario       | Test File Name | Test Sheet Name |
+      | REVERSE_TERMINATION | TestData.xlsx  | Line_Manager    |
+
 
   @RETIREMENT
   Scenario Outline: Employee Retirement
@@ -150,7 +197,7 @@ Feature: Line Manager Transaction and Approval
     When user click on employee name link in search results
     And user click on Task Icon on the right side
     When user clicks Manage Work Relationship option from task icon menu
-    Then Manange work relationship page is displayed
+    Then Manage Work Relationship page is displayed
     And user clicks on Action button and select Terminate option
     Then user navigated to Termination Details page
     And user selects Retirement Action
@@ -163,7 +210,7 @@ Feature: Line Manager Transaction and Approval
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario | Test File Name | Test Sheet Name |
       | RETIREMENT    | TestData.xlsx  | Line_Manager    |
 
@@ -186,6 +233,37 @@ Feature: Line Manager Transaction and Approval
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario            | Test File Name | Test Sheet Name |
       | QUICK_ACTION_TERMINATION | TestData.xlsx  | Line_Manager    |
+
+  @CONTINGENT_WORKER_TERMINATION
+  Scenario Outline: Contingent Worker Termination
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button till person displayed
+    Then Employee name should be listed in search results
+    When user click on employee name link in search results
+    And user click on Task Icon on the right side
+    When user clicks Manage Work Relationship option from task icon menu
+    #Then Manage Work Relationship page is displayed
+    And user clicks on Action button and select Terminate option
+    Then user navigated to Termination Details page
+    And user selects Termination Action
+    And user selects Work Incident or Work Related Illness Reason
+    And user updates Termination date
+    And user selects Yes as Recommended for Rehire
+    And user clicks on Review button in termination page
+    Then user clicks on Submit button in termination review page
+    And user clicks Yes button on popup modal in termination review page
+    And user clicks Ok button confirmation popup modal in termination review page
+    And user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario                 | Test File Name | Test Sheet Name |
+      | CONTINGENT_WORKER_TERMINATION | TestData.xlsx  | Line_Manager    |
