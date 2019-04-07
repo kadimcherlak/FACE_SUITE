@@ -14,6 +14,8 @@ import org.testng.Assert;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Date;
+
 public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
     private Context context;
@@ -804,7 +806,8 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             basicDetailsDate.clear();
             //   actions.doubleClick(basicDetailsDate).sendKeys(data.getHireDate());
             //   String hireDate = getDynamicDate(60);
-            String hireDate = "4/8/19";
+            Date date = new Date();
+            String hireDate = increaseDateFromCurrentDateByGivenDays(date, 4, "MM/dd/yyyy");
             System.out.println(hireDate);
             actions.doubleClick(basicDetailsDate).sendKeys(hireDate);
 
