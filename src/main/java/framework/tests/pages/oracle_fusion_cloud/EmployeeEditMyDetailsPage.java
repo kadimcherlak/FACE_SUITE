@@ -1,9 +1,7 @@
 package framework.tests.pages.oracle_fusion_cloud;
 
-import cucumber.api.java.es.E;
 import framework.tests.steps.oracle_fusion_cloud.Context;
 import framework.tests.steps.oracle_fusion_cloud.Data;
-import net.bytebuddy.asm.Advice;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -16,7 +14,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
 
 public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPage> {
 
@@ -454,14 +451,23 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//label[contains(@for,'actionsName')]/following::input[1]")
     private WebElement modalUpdateEmploymentAction;
 
+    @FindBy(xpath = "(//label[text()='Action'][1]/following::input[1])[2]")
+    private WebElement correctEmploymentAction;
+
     @FindBy(xpath = "//label[contains(@for,'actionReason')]/following::input[1]")
     private WebElement modalUpdateEmploymentActionReason;
+
+    @FindBy(xpath = "(//label[text()='Action Reason']/following::input[1])[2]")
+    private WebElement correctEmploymentActionReason;
 
     @FindBy(xpath = "//h1[contains(text(),'Edit Employment')]")
     private WebElement editEmploymentPage;
 
     @FindBy(xpath = "//button[@accesskey='K']")
     private WebElement btnOK;
+
+    @FindBy(xpath = "(//button[text()='OK'])[1]")
+    private WebElement correctButtonOK;
 
     @FindBy(xpath = "//label[text()='Assignment Status']//following::input[1]")
     private WebElement dropdownAssignmentStatus;
@@ -2157,6 +2163,33 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         } catch (Exception e) {
 
             reportWithScreenShot("Error While updating values in Update Employment Modal:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // User enter details in Update Employment Window
+    public void fillCorrectEmpWindow_PersonMgmt() {
+        try {
+            // Enter Action value
+            waitFor(ExpectedConditions.elementToBeClickable(correctEmploymentAction), 15);
+            correctEmploymentAction.click();
+            waitFor(ExpectedConditions
+                    .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getEmploymentAction() + "']"))), 5);
+            driver.findElement(By.xpath("//li[text()='" + data.getEmploymentAction() + "']")).click();
+            correctEmploymentAction.sendKeys(Keys.TAB);
+            waitNormalTime();
+
+
+            waitShortTime();
+            reportWithScreenShot("User updated the values in Correct Employment Modal");
+            // Click OK
+            correctButtonOK.click();
+            waitFor(ExpectedConditions.visibilityOf(editEmploymentPage), 30);
+            assertThat(editEmploymentPage.isDisplayed()).isTrue();
+            reportWithScreenShot("User clicked OK button on Correct Employment Modal");
+        } catch (Exception e) {
+
+            reportWithScreenShot("Error While updating values in Correct Employment Modal:" + e.getMessage());
             Assert.fail();
         }
     }

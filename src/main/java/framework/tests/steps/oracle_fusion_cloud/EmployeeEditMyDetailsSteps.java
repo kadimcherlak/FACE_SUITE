@@ -335,6 +335,7 @@ public class EmployeeEditMyDetailsSteps implements En {
         And("^user enter value for Routing Account Holder$", () -> {
         });
         And("^user clicks on Done button$", () -> {
+            context.basePage.clickDoneButton();
         });
         Then("^Person Gallery page should be displayed$", () -> {
         });
@@ -483,6 +484,10 @@ public class EmployeeEditMyDetailsSteps implements En {
 
         When("^user enters details in Update Employment Window and click on Ok button$", () -> {
             context.employeeEditMyDetails.fillUpdateEmpWindow_PersonMgmt();
+        });
+
+        When("^user enters details in Correct Employment Window and click on Ok button$", () -> {
+            context.employeeEditMyDetails.fillCorrectEmpWindow_PersonMgmt();
         });
 
         And("^user selects Assignment Status as (.*?)$", (String value) -> {
