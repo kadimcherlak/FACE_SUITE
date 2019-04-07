@@ -16,6 +16,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import com.fasterxml.jackson.databind.deser.std.DateDeserializers.CalendarDeserializer;
+
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -545,6 +547,31 @@ public class BasePage<T> extends WebPage {
             }
         }
         return false;
+    }
+    
+  
+    /**
+     * This method will increase the date by given days
+     * @param date
+     * @param noOfDays
+     * @param dateOfFormat
+     * @return
+     */
+    public String increaseDateFromCurrentDateByGivenDays(Date date,int noOfDays,String dateOfFormat) {
+    	
+    	try
+    	{
+    		Calendar calendar=Calendar.getInstance();
+    		calendar.setTime(date);
+    		calendar.add(Calendar.DATE, noOfDays);
+    		date=calendar.getTime();
+    		DateFormat df = new SimpleDateFormat(dateOfFormat);
+    		return (df.format(date));
+    	}catch(Exception e)
+    	{
+    		System.out.println("Exception occurred while increasing the date :"+e);
+    		return null;
+    	}
     }
     
 	
