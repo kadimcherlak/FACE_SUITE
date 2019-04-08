@@ -640,3 +640,30 @@ Feature: Perform Edit on Employee Information
     Examples:
       | Test Scenario                                    | Test File Name | Test Sheet Name  |
       | EMPLOYEE_CREATE_PROFILE_CONTENT_TYPE_INFORMATION | TestData.xlsx  | Employee_Details |
+
+
+  @CANCEL_WORK_RELATIONSHIP_OF_PENDING_WORKER
+  Scenario Outline: Cancel Work Relationship of Pending Worker
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button till person displayed
+    Then Employee name should be listed in search results
+    When user click on employee name link in search results
+    And user click on Task Icon on the right side
+    When user clicks Manage Work Relationship option from task icon menu
+    Then Manage Work Relationship page is displayed
+    And user clicks on Action button and selects Cancel Work Relationship
+    Then user clicks on Submit button in termination review page
+    And user clicks Yes button on popup modal
+    And user clicks Ok button confirmation popup modal
+    And user clicks on Sign Out option
+    Then Sign out should be successful
+
+
+    Examples:
+      | Test Scenario | Test File Name | Test Sheet Name |
+      | CANCEL_WORK_RELATIONSHIP_OF_PENDING_WORKER   | TestData.xlsx  | Employee_Details    |
