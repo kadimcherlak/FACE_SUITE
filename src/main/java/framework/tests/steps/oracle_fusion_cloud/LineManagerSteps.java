@@ -198,6 +198,9 @@ public class LineManagerSteps implements En {
         When("user should see the message selected work relationship was already terminated", () -> {
             context.lineManager.terminationPageDisplayed();
         });
+        And("^user clicks on Action button and selects Cancel Work Relationship$", () -> {
+            context.lineManager.clickActionAndCancelWorkRelation();
+        });
     }
 
 }

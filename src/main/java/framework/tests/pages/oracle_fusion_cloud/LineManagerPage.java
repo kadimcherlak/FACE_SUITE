@@ -153,6 +153,9 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
     @FindBy(xpath = "//td[text()='Terminate']")
     private WebElement buttonTerminate;
 
+    @FindBy(xpath = "//td[text()='Cancel Work Relationship']")
+    private WebElement comboBox_CancelWorkRelation;
+
     @FindBy(xpath = "//td[text()='View Termination']")
     private WebElement link_ViewTermination;
 
@@ -612,6 +615,12 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
         }
     }
 
+    /*
+     * This method is to click Action button and select Terminate.
+     *
+     * @author Sangameshwar Balur
+     * */
+
     public void clickActionAndTerminate() {
         try {
         	waitFor(ExpectedConditions.elementToBeClickable(buttonActions), 30);
@@ -627,6 +636,29 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
             Assert.fail();
         }
     }
+
+       /*
+     * This method is to click Action button and select Cancel Work Relationship.
+     *
+     * @author Sangameshwar Balur
+     * */
+
+    public void clickActionAndCancelWorkRelation() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(buttonActions), 30);
+            buttonActions.click();
+            waitFor(ExpectedConditions.visibilityOf(comboBox_CancelWorkRelation), 60);
+            comboBox_CancelWorkRelation.click();
+            waitFor(ExpectedConditions.visibilityOf(btnSubmit), 60);
+            Assertions.assertThat(btnSubmit.isDisplayed()).isTrue();
+            reportWithScreenShot("User clicked on Action and Relationship option");
+
+        } catch (Exception e) {
+            reportWithScreenShot("Error in clicking Action and Relationship option :"+e.getMessage());
+            Assert.fail();
+        }
+    }
+
 
     //Clicking View Termination link
     public void clickActionAndViewTermination() {
@@ -738,7 +770,7 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
 
     public void clickButtonSubmit() {
         try {
-            waitShortTime();
+            waitNormalTime();
             btnSubmit.click();
             waitShortTime();
             waitFor(ExpectedConditions.visibilityOf(btnYes), 60);
