@@ -2130,7 +2130,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             // Enter current date into effective date
             waitFor(ExpectedConditions.elementToBeClickable(modalUpdateEmploymentEffectiveDate), 15);
             modalUpdateEmploymentEffectiveDate.clear();
-            modalUpdateEmploymentEffectiveDate.sendKeys(data.getEffectiveAsOfDate());
+            modalUpdateEmploymentEffectiveDate.sendKeys(getDynamicDate(10));
             modalUpdateEmploymentEffectiveDate.sendKeys(Keys.TAB);
             waitShortTime();
 
@@ -2161,7 +2161,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             assertThat(editEmploymentPage.isDisplayed()).isTrue();
             reportWithScreenShot("User clicked OK button on Update Employment Modal");
         } catch (Exception e) {
-
             reportWithScreenShot("Error While updating values in Update Employment Modal:" + e.getMessage());
             Assert.fail();
         }
