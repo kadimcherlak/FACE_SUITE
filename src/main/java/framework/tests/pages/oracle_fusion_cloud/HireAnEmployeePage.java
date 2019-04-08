@@ -300,7 +300,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             // Enter Hire Date
             basicDetailsDate.clear();
             //   actions.doubleClick(basicDetailsDate).sendKeys(data.getHireDate());
-            String hireDate = getDynamicDate(60);
+            String hireDate = getDynamicDate("-", 60);
             System.out.println(hireDate);
             actions.doubleClick(basicDetailsDate).sendKeys(hireDate);
 
@@ -823,7 +823,8 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             //   actions.doubleClick(basicDetailsDate).sendKeys(data.getHireDate());
             //   String hireDate = getDynamicDate(60);
             Date date = new Date();
-            String hireDate = increaseDateFromCurrentDateByGivenDays(date, 4, "MM/dd/yyyy");
+            //String hireDate = increaseDateFromCurrentDateByGivenDays(date, 4, "MM/dd/yyyy");
+            String hireDate = getDynamicDate("+", 4);
             System.out.println(hireDate);
             actions.doubleClick(basicDetailsDate).sendKeys(hireDate);
 

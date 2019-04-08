@@ -16,8 +16,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import com.fasterxml.jackson.databind.deser.std.DateDeserializers.CalendarDeserializer;
-
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -102,8 +100,8 @@ public class BasePage<T> extends WebPage {
         Date date = new Date();
         return dateFormat.format(date);
     }
-    
-    public String getDynamicDate(int days) {
+
+    public String getDynamicDate(String type, int days) {
         DateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
         Date date = new Date();
         String date1 = dateFormat.format(date);
@@ -114,9 +112,12 @@ public class BasePage<T> extends WebPage {
             e.printStackTrace();
         } // parsed date and setting to calendar
 
-          calendar.add(Calendar.DATE, -days);  // number of days to add
-          String destDate = dateFormat.format(calendar.getTime());  // End date
-          return destDate;
+        if (type.equals("-")) {
+            calendar.add(Calendar.DATE, -days);  // number of days to subtract
+        } else if (type.equals("+")) {
+            calendar.add(Calendar.DATE, days);  // number of days to add
+        }
+        return dateFormat.format(calendar.getTime());  // End date;
     }
     
 
@@ -467,7 +468,7 @@ public class BasePage<T> extends WebPage {
     public void csvWriter(String personNumber, String personName) {
         try {
             CSVReadWrite csv = new CSVReadWrite((Context) context);
-            csv.write(personNumber, personName);
+            csv.write(personNumber.trim(), personName.trim());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -2130,7 +2130,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             // Enter current date into effective date
             waitFor(ExpectedConditions.elementToBeClickable(modalUpdateEmploymentEffectiveDate), 15);
             modalUpdateEmploymentEffectiveDate.clear();
-            modalUpdateEmploymentEffectiveDate.sendKeys(getDynamicDate(10));
+            modalUpdateEmploymentEffectiveDate.sendKeys(getDynamicDate("-", 10));
             modalUpdateEmploymentEffectiveDate.sendKeys(Keys.TAB);
             waitShortTime();
 
@@ -2893,7 +2893,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             selectDropDownValues.click();
             waitShortTime();
             datePicker_EffectiveStartDate.clear();
-            datePicker_EffectiveStartDate.sendKeys(getDynamicDate(1));
+            datePicker_EffectiveStartDate.sendKeys(getDynamicDate("-", 1));
             datePicker_EffectiveStartDate.sendKeys(Keys.TAB);
             waitShortTime();
             comboBox_Name.click();

@@ -315,7 +315,7 @@ Feature: New Hire and Related Activities
       | Test Scenario   | Test File Name | Test Sheet Name  |
       | UPLOAD_HDL_FILE | TestData.xlsx  | Employee_Details |
 
-  @MANANGE_PERSON_NAME_CORRECTION
+  @MANAGE_PERSON_NAME_CORRECTION
   Scenario Outline: Correct the First Name of a Person
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -341,7 +341,7 @@ Feature: New Hire and Related Activities
 
     Examples:
       | Test Scenario                  | Test File Name | Test Sheet Name    |
-      | MANANGE_PERSON_NAME_CORRECTION | TestData.xlsx  | Talent_Acquisition |
+      | MANAGE_PERSON_NAME_CORRECTION | TestData.xlsx  | Talent_Acquisition |
 
   @NEW_HIRE_QUICK_ACTIONS
   Scenario Outline: Create a New Hire using Quick Actions and Responsive UI
@@ -610,7 +610,7 @@ Feature: New Hire and Related Activities
     When user click on employee name link in search results
     And user click on Task Icon on the right side
     When user clicks Manage Work Relationship option from task icon menu
-    #Then Manange work relationship page is displayed
+    #Then Manage work relationship page is displayed
     And user clicks on Action button and select Terminate option
     Then user navigated to Termination Details page
     And user selects Termination Action

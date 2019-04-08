@@ -637,7 +637,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
             // Add Current Date + 1 as the senario runs before this test changes the date to current date +1 (Scenario name : Seniority date
             //updateEmploymentEffectiveDate.sendKeys(data.getEffectiveAsOfDate());
-            updateEmploymentEffectiveDate.sendKeys(getDynamicDate(5));
+            updateEmploymentEffectiveDate.sendKeys(getDynamicDate("-", 5));
             updateEmploymentEffectiveDate.sendKeys(Keys.TAB);
             waitShortTime();
 
