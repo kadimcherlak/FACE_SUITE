@@ -90,7 +90,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
     @FindBy(xpath = "//label[text()='Person Number']/following::td[1]")
     private WebElement personNo;
-    
+
     @FindBy(xpath = "//label[text()='Name']/following::td[1]")
     private WebElement personName;
 

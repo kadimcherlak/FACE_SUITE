@@ -236,10 +236,10 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
     @FindBy(xpath = "//span[text()='Review']")
     private WebElement reviewButton_ManageEmployment;
-    
+
     @FindBy(xpath = "(//label[text()='Hire Date']/following::input[1])[1]")
     private WebElement hireDate;
-    
+
     @FindBy(xpath = "(//label[text()='Hire Date'])[3]/following::span[1]")
     private WebElement enterpriseHireDate;
 
@@ -251,13 +251,13 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
     @FindBy(xpath = "//div[text()='Correct Name']")
     private WebElement textCorrectName;
-    
+
     @FindBy(xpath = "//label[text()='First Name' and contains(@class,'inputText_label-text')]/following::input[1]")
     private WebElement textFirstName;
-    
+
     @FindBy(xpath = "//h1[text()='National Identifiers']")
     private WebElement textNationalIdentifiers;
-    
+
     // Person Management Contructor
     public PersonManagementPage(Context context) {
         super(context);
@@ -849,6 +849,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             Assert.fail();
         }
     }
+
     /**
      * Enter the mandatory fields of Correct Employment Screen
      * Author: Koushik Kadimcherla
@@ -946,19 +947,19 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             Assert.fail();
         }
     }
-    
+
     /**
      * User changes hire date
      * Author: Rakesh Ghosal
      */
     public void enterHireDate() {
         try {
-        	String newHireDate;
-        	scrollToElement(hireDate);
+            String newHireDate;
+            scrollToElement(hireDate);
             waitFor(ExpectedConditions.elementToBeClickable(hireDate), 15);
-            String existingHireDate=enterpriseHireDate.getText().trim();
+            String existingHireDate = enterpriseHireDate.getText().trim();
             hireDate.clear();
-            newHireDate=addDaysToDate(existingHireDate, 1, "mm/dd/yy");
+            newHireDate = addDaysToDate(existingHireDate, 1, "mm/dd/yy");
             hireDate.sendKeys(newHireDate);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -998,21 +999,21 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             Assert.fail();
         }
     }
-    
+
     /**
      * Verify Manage Person page is available
      * Author: Koushik Kadimcherla
      */
-	public void checkManagePersonAvailable() {
-		   try {
-			   waitShortTime();
-	            reportWithScreenShot("Checking if Manage Person page  is Displayed");
-	            waitFor(ExpectedConditions.visibilityOf(textNationalIdentifiers), 15);
-	            assertThat(textNationalIdentifiers.isDisplayed()).isTrue();
-	        } catch (Exception e) {
-	            reportWithScreenShot("Manage Person page  not Displayed");
-	            Assert.fail();
-	        }
-		
-	}
+    public void checkManagePersonAvailable() {
+        try {
+            waitShortTime();
+            reportWithScreenShot("Checking if Manage Person page  is Displayed");
+            waitFor(ExpectedConditions.visibilityOf(textNationalIdentifiers), 15);
+            assertThat(textNationalIdentifiers.isDisplayed()).isTrue();
+        } catch (Exception e) {
+            reportWithScreenShot("Manage Person page  not Displayed");
+            Assert.fail();
+        }
+
+    }
 }

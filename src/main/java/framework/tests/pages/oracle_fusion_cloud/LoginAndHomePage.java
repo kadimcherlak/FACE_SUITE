@@ -87,7 +87,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
 
     @FindBy(xpath = "//img[contains(@title,'Quick Actions')]")
     private WebElement quickAction;
-    
+
     @FindBy(xpath = "//a[@title='Home'][contains(@id,'home')]")
     private WebElement homeIconForQuickAction;
 
@@ -315,10 +315,11 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             Assert.fail();
         }
     }
-    
-    
+
+
     /**
      * User clicks on quick action link
+     *
      * @author Rakesh
      */
     public void navigateToQuickAction() {

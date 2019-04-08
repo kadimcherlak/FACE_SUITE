@@ -3,6 +3,7 @@ package framework.tests.steps.oracle_fusion_cloud;
 import cucumber.api.java8.En;
 import org.apache.logging.log4j.Logger;
 
+import static org.junit.Assume.assumeTrue;
 
 public class CommonSteps implements En {
 
@@ -17,6 +18,10 @@ public class CommonSteps implements En {
             context.setExcelDataStore(testFileName, testSheetName);
             context.setData(testScenario);
             data = context.getData();
+            if (data.getScenarioRunFlag().equalsIgnoreCase("no")) {
+                assumeTrue("Skipping this Scenario as not part of execution", false);
+            }
+            context.setDriver();
             context.setPages(context);
             context.loginAndHome.getCurrentDate();
         });

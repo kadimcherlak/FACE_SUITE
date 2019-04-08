@@ -196,7 +196,7 @@ public class TalentAcquisitionNewHireSteps implements En {
         When("user Enter all the Mandatory fields of Correct Name window and click Ok button", () -> {
             context.personManagment.enterCorrectNameMandatoryFields();
         });
-        
+
         Then("Projected End Date field Should be Editable", () -> {
             context.personManagment.checkProjectedEndDateEditable();
         });
@@ -212,7 +212,7 @@ public class TalentAcquisitionNewHireSteps implements En {
         When("user click on Done button at the top", () -> {
             context.personManagment.clickDoneButton();
         });
-        
+
         When("Enter the seniority date under Legal Employer and under Enterprise", () -> {
             context.personManagment.enterHireDate();
         });
@@ -224,12 +224,12 @@ public class TalentAcquisitionNewHireSteps implements En {
         });
 
         Then("Mange Person page should be displayed", () -> {
-       	 context.personManagment.checkManagePersonAvailable();
-       });
-       
-       Then("Correct Name page should be displayed", () -> {
-       	context.personManagment.checkCorrectNameWindowDisplayed();
-       });
+            context.personManagment.checkManagePersonAvailable();
+        });
+
+        Then("Correct Name page should be displayed", () -> {
+            context.personManagment.checkCorrectNameWindowDisplayed();
+        });
         Then("Pending Workers grid should be displayed", () -> {
             context.hireAnEmployee.checkPendingWorkerGridDisplayed();
         });

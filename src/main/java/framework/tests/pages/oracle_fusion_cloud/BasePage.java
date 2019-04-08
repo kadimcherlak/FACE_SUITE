@@ -78,6 +78,12 @@ public class BasePage<T> extends WebPage {
         dropdown.selectByVisibleText(value);
     }
 
+    public static String toddMMyy(Date day) {
+        SimpleDateFormat formatter = new SimpleDateFormat("M/d/yyyy");
+        String date = formatter.format(day);
+        return date;
+    }
+
     public void waitUntilPageLoad() {
         try {
             new WebDriverWait(driver, 40).until((ExpectedCondition<Boolean>) wd ->
@@ -119,13 +125,6 @@ public class BasePage<T> extends WebPage {
             calendar.add(Calendar.DATE, days);  // number of days to add
         }
         return dateFormat.format(calendar.getTime());  // End date;
-    }
-    
-
-    public static String toddMMyy(Date day) {
-        SimpleDateFormat formatter = new SimpleDateFormat("M/d/yyyy");
-        String date = formatter.format(day);
-        return date;
     }
 
     // Method to get last two days Date
@@ -448,8 +447,8 @@ public class BasePage<T> extends WebPage {
     /**
      * This method will read data from csv
      *
-     * @author Raghavendran Ramasubramanian
      * @return
+     * @author Raghavendran Ramasubramanian
      */
     public HashMap<String, String> csvReader() {
         try {
@@ -506,7 +505,7 @@ public class BasePage<T> extends WebPage {
         return null;
     }
 
- // Method to get Current Date
+    // Method to get Current Date
     public String getCurrentDateWithGivenFormat(String expectedDateFormat) {
         DateFormat dateFormat = new SimpleDateFormat(expectedDateFormat);
         Date date = new Date();
@@ -530,9 +529,10 @@ public class BasePage<T> extends WebPage {
         WebElement createContactType = driver.findElement(By.xpath("//div[contains(@id,'MAt2:0:SP1:Manag1:0:AT')]//span[text()='" + optionToBeClicked + "']"));
         createContactType.click();
     }
-    
+
     /**
      * This method will handle those link to be enabled for which xpath is composed on the fly
+     *
      * @param xpath
      * @return
      * @author Rakesh
@@ -551,32 +551,31 @@ public class BasePage<T> extends WebPage {
         }
         return false;
     }
-    
-  
+
+
     /**
      * This method will increase the date by given days
+     *
      * @param date
      * @param noOfDays
      * @param dateOfFormat
      * @return
      */
-    public String increaseDateFromCurrentDateByGivenDays(Date date,int noOfDays,String dateOfFormat) {
-    	
-    	try
-    	{
-    		Calendar calendar=Calendar.getInstance();
-    		calendar.setTime(date);
-    		calendar.add(Calendar.DATE, noOfDays);
-    		date=calendar.getTime();
-    		DateFormat df = new SimpleDateFormat(dateOfFormat);
-    		return (df.format(date));
-    	}catch(Exception e)
-    	{
-    		System.out.println("Exception occurred while increasing the date :"+e);
-    		return null;
-    	}
+    public String increaseDateFromCurrentDateByGivenDays(Date date, int noOfDays, String dateOfFormat) {
+
+        try {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            calendar.add(Calendar.DATE, noOfDays);
+            date = calendar.getTime();
+            DateFormat df = new SimpleDateFormat(dateOfFormat);
+            return (df.format(date));
+        } catch (Exception e) {
+            System.out.println("Exception occurred while increasing the date :" + e);
+            return null;
+        }
     }
-    
-	
+
+
 }
 
