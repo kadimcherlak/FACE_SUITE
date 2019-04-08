@@ -12,6 +12,7 @@ public class testUtil {
         CSVReadWrite csv = new CSVReadWrite((Context) context);
         csv.write("test1", "test2");
 
-        System.out.println(csv.read()[0]);
+        System.out.println(csv.read().get("personNumber"));
+        System.out.println(csv.read().get("personName"));
     }
 }

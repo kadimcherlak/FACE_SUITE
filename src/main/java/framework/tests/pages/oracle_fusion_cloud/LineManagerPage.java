@@ -245,7 +245,7 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
     public void navigateToChangeManagerPage() {
         try {
             int counter = 0;
-            String personName = csvReader()[1];
+            String personName = csvReader().get("personName");
             waitFor(ExpectedConditions.elementToBeClickable(personSearchTextBox), 15);
             personSearchTextBox.clear();
             personSearchTextBox.sendKeys(personName.trim());

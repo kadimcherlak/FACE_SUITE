@@ -298,7 +298,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
         try {
             // Enter person number into keywords
             waitFor(ExpectedConditions.elementToBeClickable(keywords), 15);
-            keywords.sendKeys(csvReader()[0]);
+            keywords.sendKeys(csvReader().get("personNumber"));
 
             // Enter effective as of date
             waitFor(ExpectedConditions.elementToBeClickable(effectiveAsOfDate), 15);
@@ -323,11 +323,11 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
             // Check for Employee for max 60 seconds
             elementsize = driver
-                    .findElements(By.xpath("//span[text()='" + csvReader()[0] + "']")).size();
+                    .findElements(By.xpath("//span[text()='" + csvReader().get("personNumber") + "']")).size();
             int counter = 0;
             while (elementsize == 0 && counter <= 20) {
                 elementsize = driver
-                        .findElements(By.xpath("//span[text()='" + csvReader()[0] + "']")).size();
+                        .findElements(By.xpath("//span[text()='" + csvReader().get("personNumber") + "']")).size();
                 clickSearch();
                 waitShortTime();
                 counter++;
@@ -352,11 +352,11 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
             // Check for Employee for max 60 seconds
             elementsize = driver
-                    .findElements(By.xpath("//span[text()='" + csvReader()[0] + "']")).size();
+                    .findElements(By.xpath("//span[text()='" + csvReader().get("personNumber") + "']")).size();
             int counter = 0;
             while (elementsize >= 1 && counter <= 20) {
                 elementsize = driver
-                        .findElements(By.xpath("//span[text()='" + csvReader()[0] + "']")).size();
+                        .findElements(By.xpath("//span[text()='" + csvReader().get("personNumber") + "']")).size();
                 clickSearch();
                 waitShortTime();
                 counter++;

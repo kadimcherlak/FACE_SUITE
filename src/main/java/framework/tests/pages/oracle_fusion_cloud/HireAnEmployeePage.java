@@ -668,7 +668,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     public void searchPendingWorker() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(textBox_PersonNumber), 15);
-            textBox_PersonNumber.sendKeys(csvReader()[0]);
+            textBox_PersonNumber.sendKeys(csvReader().get("personNumber"));
             textBox_PersonNumber.sendKeys(Keys.ENTER);
 
             reportWithScreenShot("Pending Worker person Number is Displayed in the grid");
@@ -804,7 +804,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     public void checkPendingWorkerDetailNotDisplayed() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(textBox_PersonNumber), 15);
-            textBox_PersonNumber.sendKeys(csvReader()[0]);
+            textBox_PersonNumber.sendKeys(csvReader().get("personNumber"));
             textBox_PersonNumber.sendKeys(Keys.ENTER);
             waitShortTime();
 
@@ -868,12 +868,12 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
             // Enter Last Name
             waitFor(ExpectedConditions.elementToBeClickable(lastName), 15);
-            lastName.sendKeys(csvReader()[1].trim().split(" ")[1]);
+            lastName.sendKeys(csvReader().get("personName").trim().split(" ")[1]);
             lastName.sendKeys(Keys.TAB);
 
             // Enter First Name
             waitFor(ExpectedConditions.elementToBeClickable(firstName), 15);
-            firstName.sendKeys(csvReader()[1].trim().split(" ")[0]);
+            firstName.sendKeys(csvReader().get("personName").trim().split(" ")[0]);
             firstName.sendKeys(Keys.TAB);
 
             // Select Gender

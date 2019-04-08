@@ -1,8 +1,8 @@
 package framework.tests.pages.oracle_fusion_cloud;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import framework.tests.steps.oracle_fusion_cloud.Context;
+import framework.tests.steps.oracle_fusion_cloud.Data;
+import junit.framework.Assert;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -10,9 +10,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import framework.tests.steps.oracle_fusion_cloud.Context;
-import framework.tests.steps.oracle_fusion_cloud.Data;
-import junit.framework.Assert;
+import java.util.ArrayList;
+import java.util.List;
 
 public class QuickActionPage extends BasePage<QuickActionPage> {
 
@@ -89,7 +88,7 @@ public class QuickActionPage extends BasePage<QuickActionPage> {
 	public void selectPersonFromQuickActionDropdown() {
 
 		try {
-			String personName = csvReader()[1];
+			String personName = csvReader().get("personName");
 			String personXpathAfterSelection = "(//span[text()='Quick Actions'])[2]/following::a[2]/descendant::span[text()='"
 					+ personName + "']";
 			String personNameXpath = "(//a[text()='" + personName.trim() + "'])[1]";

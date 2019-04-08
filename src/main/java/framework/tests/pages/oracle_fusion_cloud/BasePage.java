@@ -22,6 +22,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -448,8 +449,9 @@ public class BasePage<T> extends WebPage {
      * This method will read data from csv
      *
      * @author Raghavendran Ramasubramanian
+     * @return
      */
-    public String[] csvReader() {
+    public HashMap<String, String> csvReader() {
         try {
             CSVReadWrite csv = new CSVReadWrite((Context) context);
             return csv.read();
