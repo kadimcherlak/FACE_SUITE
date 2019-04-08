@@ -608,3 +608,35 @@ Feature: Perform Edit on Employee Information
     Examples:
       | Test Scenario                  | Test File Name | Test Sheet Name  |
       | ENTER_STATUS_ASSIGNMENT_CHANGE | TestData.xlsx  | Employee_Details |
+
+
+  @EMPLOYEE_CREATE_PROFILE_CONTENT_TYPE_INFORMATION
+  Scenario Outline: Manage Talent Profile - Employee Create Profile Content Type Information
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button till person displayed
+    Then Employee name should be listed in search results
+    When user click on employee name link in search results
+    And user click on Task Icon on the right side
+    When user clicks Manage Talent Profile option from task icon menu
+    Then person talent profile page is displayed in Manage Talent page
+    And user clicks on Edit button in Manage Talent page
+    Then Area of Expertise section is displayed in Manage Talent page
+    And user clicks on Add Content and select Degrees Link
+    Then Degrees page should be displayed
+    And user enter Degree details
+    Then user clicks on Submit button in edit Skills and Qualifications page
+    When user clicks on Add Content and select Licenses and Certifications Link
+    Then Licenses and Certifications page should be displayed
+    And user enter Licenses and Certifications details
+    Then user clicks on Submit button in edit Skills and Qualifications page
+    When user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario                                    | Test File Name | Test Sheet Name  |
+      | EMPLOYEE_CREATE_PROFILE_CONTENT_TYPE_INFORMATION | TestData.xlsx  | Employee_Details |
