@@ -648,6 +648,16 @@ public class EmployeeEditMyDetailsSteps implements En {
         And("^user selects Effective update date to update Extra Information and clicks OK button$", () -> {
             context.employeeEditMyDetails.enterEffectiveDate();
         });
+        Then("^person talent profile page is displayed in Manage Talent page$", () -> {
+            context.employeeEditMyDetails.checkPersonalTalentPageDisplayed();
+
+        });
+        And("^user clicks on Edit button in Manage Talent page$", () -> {
+            context.employeeEditMyDetails.clickEditButtonInManageTalentProfilePage();
+        });
+        Then("^Area of Expertise section is displayed in Manage Talent page$", () -> {
+            context.employeeEditMyDetails.checkAreaOfExpertiseSection();
+        });
     }
 
 }

@@ -2650,6 +2650,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
+
     /*
      * This method is to click Edit option in Bio info page
      *
@@ -2667,6 +2668,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
+
     /*
      * This method is to check Bio Info modal display
      *
@@ -2721,6 +2723,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
+
     /*
      * This method is to click button OK on BidInfo Modal
      *
@@ -3224,6 +3227,44 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             reportWithScreenShot("User selected Update option to update Extra Information");
         } catch (Exception e) {
             reportWithScreenShot("Error while selecting Update option to Update extra information:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void checkPersonalTalentPageDisplayed() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(skillsAndQualificationsPage), 30);
+            assertThat(skillsAndQualificationsPage.isDisplayed()).isTrue();
+            reportWithScreenShot("Persons Skills and Qualification page is displayed");
+
+        } catch (Exception e) {
+            reportWithScreenShot("Error while displaying Persons Skills and Qualification page : " + e.getLocalizedMessage());
+            Assert.fail();
+
+        }
+    }
+
+    public void clickEditButtonInManageTalentProfilePage() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_EditBioInfo), 15);
+            button_EditBioInfo.click();
+            reportWithScreenShot("User clicks on Edit button in Skills and Qualifcation page under Talent profile page");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking Edit button in Skills and Qualification page : "+e.getMessage());
+            Assert.fail();
+        }
+
+    }
+
+    @FindBy(xpath = "//span[text()='Areas of Expertise']")
+    private WebElement label_AreaOfExpertise;
+
+    public void checkAreaOfExpertiseSection() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(label_AreaOfExpertise), 15);
+            reportWithScreenShot("Area of Expertise page is displayed on clicking Edit button in Skills and Qualifcation page under Talent profile page");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while displaying Area of Expertise : "+e.getMessage());
             Assert.fail();
         }
     }
