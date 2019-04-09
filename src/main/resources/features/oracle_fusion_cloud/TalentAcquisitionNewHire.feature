@@ -672,7 +672,6 @@ Feature: New Hire and Related Activities
       | Test Scenario | Test File Name | Test Sheet Name    |
       | JOB_CHANGE    | TestData.xlsx  | Talent_Acquisition |
 
-
   @CORRECT_INFORMATION
   Scenario Outline: Perform Location Correction for New Hire Employee
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
