@@ -70,8 +70,6 @@ public class Context extends framework.core.models.Context {
 
     @Before
     public void beforeScenario(Scenario scenario) {
-        driver = getWebDriver();
-        highLight = new HighLight(driver);
         logger.debug("Initialized driver at the context layer");
 
         setScenario(scenario);
@@ -91,6 +89,11 @@ public class Context extends framework.core.models.Context {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void setDriver() {
+        driver = getWebDriver();
+        highLight = new HighLight(driver);
     }
 
     @After

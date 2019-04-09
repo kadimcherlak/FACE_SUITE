@@ -245,7 +245,7 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
     public void navigateToChangeManagerPage() {
         try {
             int counter = 0;
-            String personName = csvReader()[1];
+            String personName = csvReader().get("personName");
             waitFor(ExpectedConditions.elementToBeClickable(personSearchTextBox), 15);
             personSearchTextBox.clear();
             personSearchTextBox.sendKeys(personName.trim());
@@ -623,7 +623,7 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
 
     public void clickActionAndTerminate() {
         try {
-        	waitFor(ExpectedConditions.elementToBeClickable(buttonActions), 30);
+            waitFor(ExpectedConditions.elementToBeClickable(buttonActions), 30);
             buttonActions.click();
             waitFor(ExpectedConditions.visibilityOf(buttonTerminate), 60);
             buttonTerminate.click();
@@ -637,7 +637,7 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
         }
     }
 
-       /*
+    /*
      * This method is to click Action button and select Cancel Work Relationship.
      *
      * @author Sangameshwar Balur
@@ -654,7 +654,7 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
             reportWithScreenShot("User clicked on Action and Relationship option");
 
         } catch (Exception e) {
-            reportWithScreenShot("Error in clicking Action and Relationship option :"+e.getMessage());
+            reportWithScreenShot("Error in clicking Action and Relationship option :" + e.getMessage());
             Assert.fail();
         }
     }

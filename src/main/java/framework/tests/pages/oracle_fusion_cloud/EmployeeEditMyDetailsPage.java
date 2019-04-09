@@ -738,6 +738,8 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//h1[text()='Extra Information']/following::td[text()='Update']")
     private WebElement button_UpdateExtraInfo;
+    @FindBy(xpath = "//span[text()='Areas of Expertise']")
+    private WebElement label_AreaOfExpertise;
 
     public EmployeeEditMyDetailsPage(Context context) {
         super(context);
@@ -818,7 +820,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-
 
     // User enter Emergency Contact details
     public void fillNewContactInfo() {
@@ -937,7 +938,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-
 
     // Click on submit button in Emergency Contacts page
     public void clickEmergencyContactSubmit() {
@@ -1085,6 +1085,8 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
+    // User click on More Information below My Details Page
+
     // User click on save and close button
     public void clickSaveAndClose() {
         try {
@@ -1098,8 +1100,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-
-    // User click on More Information below My Details Page
 
     /**
      * This method will click on the more information icon under my details page
@@ -1201,7 +1201,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
-
     // User click on Action and Edit button
     public void clickActionEdit() {
         try {
@@ -1235,7 +1234,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
-
     // User enter amount in Salary field
     public void setSalaryAmount() throws InterruptedException {
         Thread.sleep(2000);
@@ -1264,7 +1262,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-
 
     // user validating the Component tab is created on select Use Component is checked
     public void tabComponentsManageSalary() {
@@ -1310,6 +1307,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
+
+    //user clicks submit button on Manage salary review page
+
     // user clicking on continue button in manage salary page
     public void clickButtonContinueInManageSalary() {
 
@@ -1326,8 +1326,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     }
 
-
-    //user clicks submit button on Manage salary review page
+    //user clicks Yes button on Manage salary review page
 
     public void clickSubmitButtonInReviewPage() {
         try {
@@ -1342,8 +1341,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
-    //user clicks Yes button on Manage salary review page
-
     public void clickYesOnPopup() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(popButtonYes), 30);
@@ -1356,7 +1353,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-
 
     //user clicks Yes button on Manage salary review page
     public void clickOKOnPopup() {
@@ -1513,7 +1509,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     }
 
-
     /**
      * This method will enter value in the fileds of create personal payment
      * page
@@ -1653,7 +1648,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
-
     //Check for display of Import and Load Data Page Display
     public void checkImportAndLoadDataDisplayed() {
         try {
@@ -1666,7 +1660,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-
 
     //Check for display of Select File Page Display
     public void checkSelectFilePageDisplayed() {
@@ -1732,7 +1725,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
-
     //User checks if Process ID is generated and sets them back for validating if file is imported properly
     public void CheckProcessIdGeneration() {
         try {
@@ -1772,7 +1764,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
 
     }
-
 
     // Click on Refresh Button until File status is imported and loaded
     public void clickRefreshBtn1TillFileLoaded() {
@@ -1817,7 +1808,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
 
     }
-
 
     //User click person Management
     public void clickPersonManagementLink() {
@@ -1889,7 +1879,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-
 
     /**
      * This method will click on contact information link in contact information page
@@ -2130,7 +2119,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             // Enter current date into effective date
             waitFor(ExpectedConditions.elementToBeClickable(modalUpdateEmploymentEffectiveDate), 15);
             modalUpdateEmploymentEffectiveDate.clear();
-            modalUpdateEmploymentEffectiveDate.sendKeys(data.getEffectiveAsOfDate());
+            modalUpdateEmploymentEffectiveDate.sendKeys(getDynamicDate("-", 10));
             modalUpdateEmploymentEffectiveDate.sendKeys(Keys.TAB);
             waitShortTime();
 
@@ -2161,7 +2150,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             assertThat(editEmploymentPage.isDisplayed()).isTrue();
             reportWithScreenShot("User clicked OK button on Update Employment Modal");
         } catch (Exception e) {
-
             reportWithScreenShot("Error While updating values in Update Employment Modal:" + e.getMessage());
             Assert.fail();
         }
@@ -2280,7 +2268,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-
 
     /**
      * Validate First Name, Last Name, Ethnicity, Marital Status, Gender and Date of Birth is displayed
@@ -2439,6 +2426,8 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
+    // User click on Edit and Update button
+
     // User click on Manage Person under Task icon
     public void managePersonClick() {
         try {
@@ -2452,8 +2441,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-
-    // User click on Edit and Update button
 
     /**
      * User clicks on Edit Button and then click on Correct from the dropdown
@@ -2542,6 +2529,8 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
+    // User click on Edit and Update button
+
     /**
      * Validate the address is updated in Manage Person Screen
      *
@@ -2559,8 +2548,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-
-    // User click on Edit and Update button
 
     /**
      * User clicks on Edit Button and then click on Update from the dropdown
@@ -2744,6 +2731,13 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     }
 
     /*
+     * This method is to check display of Warning Modal
+     *
+     * @author Sangameshwar Balur
+     *
+     * */
+
+    /*
      * This method is to click Submit button in Manage Person Page
      *
      * @author Sangameshwar Balur
@@ -2762,13 +2756,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
-    /*
-     * This method is to check display of Warning Modal
-     *
-     * @author Sangameshwar Balur
-     *
-     * */
-
     public void checkWarningModal() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(popButtonYes), 30);
@@ -2779,6 +2766,13 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
+
+    /*
+     * This method is to click button OK on Confirmaiton modal
+     *
+     * @author Sangameshwar Balur
+     *
+     * */
 
     /*
      * This method is to check display of Confimation Modal
@@ -2797,13 +2791,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
-    /*
-     * This method is to click button OK on Confirmaiton modal
-     *
-     * @author Sangameshwar Balur
-     *
-     * */
-
     public void clickOKButtonOnConfirmationModal() {
 
         try {
@@ -2815,6 +2802,13 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
+
+    /*
+     * This method is to select Update option from Edit menu.
+     *
+     * @author Sangameshwar Balur
+     *
+     * */
 
     /*
      * This method is to click link Contact in Manage person page
@@ -2833,13 +2827,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-
-    /*
-     * This method is to select Update option from Edit menu.
-     *
-     * @author Sangameshwar Balur
-     *
-     * */
 
     public void clickEditOptionInPersonalRelationshipsPage(String optionToBeClicked) {
         waitNormalTime();
@@ -2876,6 +2863,14 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
+
+    /*
+     * This method is to click  Edit in relationship info
+     *
+     * @author Sangameshwar Balur
+     *
+     * */
+
     /*
      * This method is to enter details in Relationship Info
      *
@@ -2894,7 +2889,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             selectDropDownValues.click();
             waitShortTime();
             datePicker_EffectiveStartDate.clear();
-            datePicker_EffectiveStartDate.sendKeys(getDynamicDate(1));
+            datePicker_EffectiveStartDate.sendKeys(getDynamicDate("-", 1));
             datePicker_EffectiveStartDate.sendKeys(Keys.TAB);
             waitShortTime();
             comboBox_Name.click();
@@ -2908,9 +2903,8 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
-
     /*
-     * This method is to click  Edit in relationship info
+     * This method is to select Correct option from Edit menu.
      *
      * @author Sangameshwar Balur
      *
@@ -2931,7 +2925,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     }
 
     /*
-     * This method is to select Correct option from Edit menu.
+     * This method is to select Update Name in Relationship Info
      *
      * @author Sangameshwar Balur
      *
@@ -2951,7 +2945,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     }
 
     /*
-     * This method is to select Update Name in Relationship Info
+     * This method is to enter Emergency Phone number
      *
      * @author Sangameshwar Balur
      *
@@ -2980,7 +2974,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     }
 
     /*
-     * This method is to enter Emergency Phone number
+     * This method is to click Edit in Address Area
      *
      * @author Sangameshwar Balur
      *
@@ -3016,13 +3010,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
-    /*
-     * This method is to click Edit in Address Area
-     *
-     * @author Sangameshwar Balur
-     *
-     * */
-
     public void clickEditInAddressArea() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(button_EditAddress), 30);
@@ -3055,6 +3042,12 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
+
+    /*
+     * This method is to update Emergency Address in Contacts
+     *
+     * @author Sangameshwar Balur
+     * */
 
     /*
      * This method is to select Update Address details
@@ -3090,7 +3083,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     }
 
     /*
-     * This method is to update Emergency Address in Contacts
+     * This method is to click Extra Information tab
      *
      * @author Sangameshwar Balur
      * */
@@ -3118,12 +3111,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
 
     }
-
-    /*
-     * This method is to click Extra Information tab
-     *
-     * @author Sangameshwar Balur
-     * */
 
     public void clickLinkExtraInformation() {
         try {
@@ -3175,6 +3162,12 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     }
 
     /*
+     * This method is to select Update option from Edit menu.
+     *
+     * @author Sangameshwar Balur
+     * */
+
+    /*
      * This method is to enter details in Extra Information page.
      *
      * @author Sangameshwar Balur
@@ -3211,12 +3204,6 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
-    /*
-     * This method is to select Update option from Edit menu.
-     *
-     * @author Sangameshwar Balur
-     * */
-
     public void selectUpdateFromEditMenu_ExtraInfoPage() {
 
         try {
@@ -3250,21 +3237,18 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             button_EditBioInfo.click();
             reportWithScreenShot("User clicks on Edit button in Skills and Qualifcation page under Talent profile page");
         } catch (Exception e) {
-            reportWithScreenShot("Error while clicking Edit button in Skills and Qualification page : "+e.getMessage());
+            reportWithScreenShot("Error while clicking Edit button in Skills and Qualification page : " + e.getMessage());
             Assert.fail();
         }
 
     }
-
-    @FindBy(xpath = "//span[text()='Areas of Expertise']")
-    private WebElement label_AreaOfExpertise;
 
     public void checkAreaOfExpertiseSection() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(label_AreaOfExpertise), 15);
             reportWithScreenShot("Area of Expertise page is displayed on clicking Edit button in Skills and Qualifcation page under Talent profile page");
         } catch (Exception e) {
-            reportWithScreenShot("Error while displaying Area of Expertise : "+e.getMessage());
+            reportWithScreenShot("Error while displaying Area of Expertise : " + e.getMessage());
             Assert.fail();
         }
     }

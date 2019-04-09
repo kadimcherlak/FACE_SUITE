@@ -99,6 +99,7 @@ public class Data extends framework.core.models.Data {
     private String correspondenceLanguage;
     private String salaryBasis;
     private String scenario;
+    private String scenarioRunFlag;
     private String sequence;
     private String state;
     private String type;
@@ -554,6 +555,10 @@ public class Data extends framework.core.models.Data {
         return scenario;
     }
 
+    public String getScenarioRunFlag() {
+        return scenarioRunFlag;
+    }
+
     public String getSequence() {
         return sequence;
     }
@@ -702,5 +707,7 @@ public class Data extends framework.core.models.Data {
         return residentialStatus;
     }
 
-    public String getpanNumber() {   return panNumber;    }
+    public String getpanNumber() {
+        return panNumber;
+    }
 }
