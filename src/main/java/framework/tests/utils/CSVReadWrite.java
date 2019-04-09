@@ -11,6 +11,7 @@ import java.io.Reader;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
 
 public class CSVReadWrite {
 
@@ -22,16 +23,22 @@ public class CSVReadWrite {
         this.context = context;
     }
 
-    public String[] read() throws IOException {
+    public HashMap<String, String> read() throws IOException {
         Reader reader = Files.newBufferedReader(Paths.get(context.getPath() + File.separator + csvFile));
         CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build();
+
+        // Create a HashMap
+        HashMap<String, String> hmap = new HashMap<String, String>();
+
         String[] nextLine;
 
         // nextLine[] is an array of values from the line
         while ((nextLine = csvReader.readNext()) != null) {
-            value = nextLine;
+            //value = nextLine;
+            hmap.put("personNumber", nextLine[0]);
+            hmap.put("personName", nextLine[1]);
         }
-        return value;
+        return hmap;
     }
 
     public void write(String personNumber, String personName) throws IOException {

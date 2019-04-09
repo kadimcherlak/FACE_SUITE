@@ -172,8 +172,6 @@ public class EmployeeEditMyDetailsSteps implements En {
         });
 
 
-//----
-
         And("user click on Task Icon on the right side", () -> {
             context.employeeEditMyDetails.taskIconClick();
         });
@@ -296,7 +294,6 @@ public class EmployeeEditMyDetailsSteps implements En {
 
         When("Verify that the address format is valid", () -> {
             context.employeeEditMyDetails.verifyAddressFormat();
-            ;
         });
 
         When("Click on Cancel button", () -> {
@@ -306,108 +303,100 @@ public class EmployeeEditMyDetailsSteps implements En {
         When("Click Yes button", () -> {
             context.employeeEditMyDetails.clickYesButtonInPopUp();
         });
-        Then("^My Details page should be displayed$", () -> {
-        });
-        When("^user clicks on Actions \\(v\\) button$", () -> {
-        });
-        And("^user clicks on \\+ icon$", () -> {
-        });
-        And("^user clicks on \\+ icon under Bank Accounts$", () -> {
-        });
-        When("^user click on Sign Out option$", () -> {
-        });
-        When("^user clicks on More Information icon 'i'  under name icon$", () -> {
-        });
-        Then("^A pop up window with employee details should be displayed\\.$", () -> {
-        });
-        Then("^the values Absence,Payroll,Personal and Employment should be displayed$", () -> {
-        });
-        And("^user enter value for Name as \"([^\"]*)\"$", (String arg0) -> {
-        });
-        And("^user enter value from Organization Payment Method dropdown as \"([^\"]*)\"$", (String arg0) -> {
-        });
-        And("^user enter value for Account Number as \"([^\"]*)\"$", (String arg0) -> {
-        });
-        And("^user enter value from Account type as \"([^\"]*)\"$", (String arg0) -> {
-        });
-        And("^user enter value for Routing Number as \"([^\"]*)\"$", (String arg0) -> {
-        });
-        And("^user enter value for Routing Account Holder$", () -> {
-        });
+//        Then("^My Details page should be displayed$", () -> {
+//        });
+//        When("^user clicks on More Information icon 'i'  under name icon$", () -> {
+//        });
+//        Then("^A pop up window with employee details should be displayed\\.$", () -> {
+//        });
+//        Then("^the values Absence,Payroll,Personal and Employment should be displayed$", () -> {
+//        });
+//        And("^user enter value for Name as \"([^\"]*)\"$", (String arg0) -> {
+//        });
+//        And("^user enter value from Organization Payment Method dropdown as \"([^\"]*)\"$", (String arg0) -> {
+//        });
+//        And("^user enter value for Account Number as \"([^\"]*)\"$", (String arg0) -> {
+//        });
+//        And("^user enter value from Account type as \"([^\"]*)\"$", (String arg0) -> {
+//        });
+//        And("^user enter value for Routing Number as \"([^\"]*)\"$", (String arg0) -> {
+//        });
+//        And("^user enter value for Routing Account Holder$", () -> {
+//        });
         And("^user clicks on Done button$", () -> {
             context.basePage.clickDoneButton();
         });
-        Then("^Person Gallery page should be displayed$", () -> {
-        });
-        When("^user clicks on Edit\\(Pencil Symbol\\) in the Address section$", () -> {
-        });
-        When("^user clicks on 'Edit' button on top right side of the page$", () -> {
-        });
-        When("^user clicks on 'Contact Information' section$", () -> {
-        });
-        Then("^Personal address should be displayed$", () -> {
-        });
-        And("^user enter value for effective date when address becomes active$", () -> {
-        });
-        And("^user enter value for Address Line (\\d+)$", (Integer arg0) -> {
-        });
-        And("^user enter value for Zip Code$", () -> {
-        });
+//        Then("^Person Gallery page should be displayed$", () -> {
+//        });
+//        When("^user clicks on Edit\\(Pencil Symbol\\) in the Address section$", () -> {
+//        });
+//        When("^user clicks on 'Edit' button on top right side of the page$", () -> {
+//        });
+//        When("^user clicks on 'Contact Information' section$", () -> {
+//        });
+//        Then("^Personal address should be displayed$", () -> {
+//        });
+//        And("^user enter value for effective date when address becomes active$", () -> {
+//        });
+//        And("^user enter value for Address Line (\\d+)$", (Integer arg0) -> {
+//        });
+//        And("^user enter value for Zip Code$", () -> {
+//        });
         And("^user clicks on Save and Close button$", () -> {
             context.employeeEditMyDetails.clickSaveAndClose();
         });
-        When("^user clicks on \"([^\"]*)\" icon in the left side of the page which is available in Edit My Details page$", (String arg0) -> {
-        });
-        Then("^\"([^\"]*)\" page should be displayed$", (String arg0) -> {
-        });
-        And("^user clicks on Click on Edit Icon\\(Pencil icon\\)$", () -> {
-        });
-        Then("^Biographical Information page should be displayed in edit mode$", () -> {
-        });
-        And("^user enter value for Title$", () -> {
-        });
-        And("^user enter value for First Name$", () -> {
-        });
-        And("^user enter value for Last Name$", () -> {
-        });
-        When("^user clicks on Documents icon which is available in Edit My Details in the left hand side of the page$", () -> {
-        });
-        When("^user clicks on Edit\\(Pencil Symbol\\) in the License section$", () -> {
-        });
-        And("^user enters License number$", () -> {
-        });
-        And("^user clicks on Save button$", () -> {
-        });
-        Then("^License number is saved$", () -> {
-        });
-        When("^user clicks on Disability icon on the left panel$", () -> {
-        });
-        Then("^Disability Information page should be displayed$", () -> {
-        });
-        And("^user \\+ icon$", () -> {
-        });
-        Then("^Country Pop up should be displayed$", () -> {
-        });
-        And("^user selects United States from the dropdown and clicks on Continue button$", () -> {
-        });
-        And("^user selects Self-Disclosed Disability as \"([^\"]*)\"\\(Radio Button\\)$", (String arg0) -> {
-        });
-        And("^user enters effective start state$", () -> {
-        });
-        And("^user clicks on \"([^\"]*)\" Link$", (String arg0) -> {
-        });
-        Then("^Form CC-(\\d+): Voluntary Self-Identification for Disability page should be displayed$", (Integer arg0) -> {
-        });
-        When("^user clicks on print icon under Tools Option$", () -> {
-        });
-        Then("^Print Page should be Displayed and employee should be able to print the Page$", () -> {
-        });
-        When("^user clicks on download icon under Tools Option$", () -> {
-        });
-        Then("^user should able to Download Form CC-(\\d+)$", (Integer arg0) -> {
-        });
-        Then("^The disability information page should be displayed$", () -> {
-        });
+//        When("^user clicks on \"([^\"]*)\" icon in the left side of the page which is available in Edit My Details page$", (String arg0) -> {
+//        });
+//        Then("^\"([^\"]*)\" page should be displayed$", (String arg0) -> {
+//        });
+//        And("^user clicks on Click on Edit Icon\\(Pencil icon\\)$", () -> {
+//        });
+//        Then("^Biographical Information page should be displayed in edit mode$", () -> {
+//        });
+//        And("^user enter value for Title$", () -> {
+//        });
+//        And("^user enter value for First Name$", () -> {
+//        });
+//        And("^user enter value for Last Name$", () -> {
+//        });
+//        When("^user clicks on Documents icon which is available in Edit My Details in the left hand side of the page$", () -> {
+//        });
+//        When("^user clicks on Edit\\(Pencil Symbol\\) in the License section$", () -> {
+//        });
+//        And("^user enters License number$", () -> {
+//        });
+//        And("^user clicks on Save button$", () -> {
+//        });
+//        Then("^License number is saved$", () -> {
+//        });
+//        When("^user clicks on Disability icon on the left panel$", () -> {
+//        });
+//        Then("^Disability Information page should be displayed$", () -> {
+//        });
+//        And("^user \\+ icon$", () -> {
+//        });
+//        Then("^Country Pop up should be displayed$", () -> {
+//        });
+//        And("^user selects United States from the dropdown and clicks on Continue button$", () -> {
+//        });
+//        And("^user selects Self-Disclosed Disability as \"([^\"]*)\"\\(Radio Button\\)$", (String arg0) -> {
+//        });
+//        And("^user enters effective start state$", () -> {
+//        });
+//        And("^user clicks on \"([^\"]*)\" Link$", (String arg0) -> {
+//        });
+//        Then("^Form CC-(\\d+): Voluntary Self-Identification for Disability page should be displayed$", (Integer arg0) -> {
+//        });
+//        When("^user clicks on print icon under Tools Option$", () -> {
+//        });
+//        Then("^Print Page should be Displayed and employee should be able to print the Page$", () -> {
+//        });
+//        When("^user clicks on download icon under Tools Option$", () -> {
+//        });
+//        Then("^user should able to Download Form CC-(\\d+)$", (Integer arg0) -> {
+//        });
+//        Then("^The disability information page should be displayed$", () -> {
+//        });
 
         When("^user clicks on Personal Details link in Person Info page$", () -> {
             context.employeeEditMyDetails.clickPersonalDetailsLink();
@@ -657,6 +646,11 @@ public class EmployeeEditMyDetailsSteps implements En {
         });
         Then("^Area of Expertise section is displayed in Manage Talent page$", () -> {
             context.employeeEditMyDetails.checkAreaOfExpertiseSection();
+        });
+
+        Then("My Details page should be displayed", () -> {
+            // Write code here that turns the phrase above into concrete actions
+            System.out.println("Yet to implement");
         });
     }
 

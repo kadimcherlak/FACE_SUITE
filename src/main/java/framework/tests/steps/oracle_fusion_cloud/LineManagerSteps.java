@@ -162,41 +162,44 @@ public class LineManagerSteps implements En {
         And("^user clicks Ok button confirmation popup modal in termination review page$", () -> {
             context.lineManager.clickOKOnPopup();
         });
-        
+
         And("^user navigates to Quick Action menu$", () -> {
             context.loginAndHome.navigateToQuickAction();
         });
-        
+
         And("^the Quick Action page should be displayed$", () -> {
             context.quickActionPage.validateQuickActionPageDisplayed();
         });
-        
+
         And("^user selects the person name from the dropdown$", () -> {
             context.quickActionPage.selectPersonFromQuickActionDropdown();
         });
-        
+
         Then("user clicks on (.*?) link from the Quick Action menu", (String quickActionLinkMenu) -> {
-        	context.quickActionPage.clickQuickActionMenuLink(quickActionLinkMenu);
+            context.quickActionPage.clickQuickActionMenuLink(quickActionLinkMenu);
         });
-        
+
         Then("Terminate Work Relationship page should be displayed", () -> {
-        	context.quickActionPage.validateTerminateWorkRelationshipPageDisplayed();
+            context.quickActionPage.validateTerminateWorkRelationshipPageDisplayed();
         });
-        
+
         Then("user enters all the termination details", () -> {
-        	context.quickActionPage.enterTerminationDetails();
+            context.quickActionPage.enterTerminationDetails();
         });
-        
+
         Then("user add comments in the textarea for termination", () -> {
-        	context.lineManager.enterComments("Termination initiated for this employee");
+            context.lineManager.enterComments("Termination initiated for this employee");
         });
-        
+
         When("user clicks on Submit button in Termination Work Relationship page", () -> {
             context.lineManager.clickSubmitButton();
         });
-        
+
         When("user should see the message selected work relationship was already terminated", () -> {
             context.lineManager.terminationPageDisplayed();
+        });
+        And("^user clicks on Action button and selects Cancel Work Relationship$", () -> {
+            context.lineManager.clickActionAndCancelWorkRelation();
         });
     }
 
