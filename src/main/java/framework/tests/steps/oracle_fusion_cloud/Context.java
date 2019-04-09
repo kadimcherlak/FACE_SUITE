@@ -70,8 +70,6 @@ public class Context extends framework.core.models.Context {
 
     @Before
     public void beforeScenario(Scenario scenario) {
-        System.out.println(scenario.getSourceTagNames());
-        System.out.println(scenario.getId());
         logger.debug("Initialized driver at the context layer");
 
         setScenario(scenario);
