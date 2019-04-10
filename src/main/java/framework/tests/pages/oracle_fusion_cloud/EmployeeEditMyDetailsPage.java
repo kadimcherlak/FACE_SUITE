@@ -738,8 +738,13 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//h1[text()='Extra Information']/following::td[text()='Update']")
     private WebElement button_UpdateExtraInfo;
+    
     @FindBy(xpath = "//span[text()='Areas of Expertise']")
     private WebElement label_AreaOfExpertise;
+    
+    @FindBy(xpath = "(//label[text()='Bank Branch']//following::input[1])[2]")
+    private WebElement branchName;
+    
 
     public EmployeeEditMyDetailsPage(Context context) {
         super(context);
@@ -1565,9 +1570,12 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             AccountNumber.clear();
             AccountNumber.sendKeys(data.getAccountNumber());
             selectInputDropdownValue(AccountType, data.getAccountType());
-            waitFor(ExpectedConditions.elementToBeClickable(AccountHolder), 15);
-            AccountHolder.clear();
-            AccountHolder.sendKeys(data.getAccountHolder());
+            waitFor(ExpectedConditions.elementToBeClickable(branchName), 15);
+            branchName.clear();
+            branchName.sendKeys(data.getBranchName());
+            //waitFor(ExpectedConditions.elementToBeClickable(AccountHolder), 15);
+            //AccountHolder.clear();
+            //AccountHolder.sendKeys(data.getAccountHolder());
             waitFor(ExpectedConditions.elementToBeClickable(RoutingNumber), 15);
             RoutingNumber.clear();
             RoutingNumber.sendKeys(data.getRoutingNumber());
@@ -1590,8 +1598,8 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
      */
     public void clickSubmitButton() {
         try {
-            waitFor(ExpectedConditions.elementToBeClickable(submitButton), 15);
-            submitButton.click();
+            waitFor(ExpectedConditions.elementToBeClickable(button_Submit), 15);
+            button_Submit.click();
             reportWithScreenShot("Clicking submit button");
 
         } catch (Exception e) {
