@@ -626,6 +626,30 @@ Feature: Perform Edit on Employee Information
       | Test Scenario                              | Test File Name | Test Sheet Name  |
       | CANCEL_WORK_RELATIONSHIP_OF_PENDING_WORKER | TestData.xlsx  | Employee_Details |
 
+  @EMPLOYEE_CREATE_PROFILE_CONTENT_TYPE_INFORMATION_QUICK_ACTIONS
+  Scenario Outline: Employee Termination from Quick Action Menu
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user navigates to Quick Action menu
+    Then the Quick Action page should be displayed
+    And user clicks on Manage Talent Profile option from All Actions list
+    Then Person Profile tab is displayed
+    And search Person Profile with Location
+    Then Profile section is populated with Person profile links
+    And user clicks on first person name link from search result
+    Then Persons Skills and Qualifications page displayed
+    And user clicks on Edit button on top right side
+    And user clicks on Add Content and select Degrees Link
+    Then Degrees page should be displayed
+    And user enter Degree details
+    Then user clicks on Submit button in edit Skills and Qualifications page
+    When user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario                                                  | Test File Name | Test Sheet Name  |
+      | EMPLOYEE_CREATE_PROFILE_CONTENT_TYPE_INFORMATION_QUICK_ACTIONS | TestData.xlsx  | Employee_Details |
+
 #  @NEW_ADDRESS_ALTERNATIVE_WORK_LOCATION - Not in  Datasheet
 #  Scenario Outline: Employee add New Address of type Alternative Work Location
 #    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
