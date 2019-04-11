@@ -652,6 +652,14 @@ public class EmployeeEditMyDetailsSteps implements En {
             // Write code here that turns the phrase above into concrete actions
             System.out.println("Yet to implement");
         });
+        
+        Then("user clicks on Actions ICON Orange Chevron next to Employee Name", () -> {
+        	context.employeeEditMyDetails.clickMoreInformationLink();
+        });
+        
+        Then("click on Payroll Option and select Manage Personal Payment Methods", () -> {
+        	context.employeeEditMyDetails.clickManagePersonalPaymentMethodLink();
+        });
     }
 
 }
