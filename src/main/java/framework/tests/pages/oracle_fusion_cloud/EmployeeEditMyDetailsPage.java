@@ -684,6 +684,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//label[text()='County']/following::span/button[@accesskey='K']")
     private WebElement button_OK_UpdatAddress;
 
+    @FindBy(xpath = "//button[@accesskey='r']")
+    private WebElement button_Search;
+
     @FindBy(xpath = "//label[text()='Effective Start Date']/following::span/button[@accesskey='K']")
     private WebElement button_OK_UpdatAddressDate;
 
@@ -738,8 +741,24 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//h1[text()='Extra Information']/following::td[text()='Update']")
     private WebElement button_UpdateExtraInfo;
+
     @FindBy(xpath = "//span[text()='Areas of Expertise']")
     private WebElement label_AreaOfExpertise;
+
+    @FindBy(xpath = "//span[@class='title three-line-truncation' and text()='Manage Talent Profile']")
+    private WebElement link_ManageTalentProfile;
+
+    @FindBy(xpath = "//div[@class='x1lx']//a[text()='Person Profiles']")
+    private WebElement tab_PersonProfile;
+
+    @FindBy(xpath = "//label[text()='Location']/following::input[1]")
+    private WebElement text_searchPersonByLocation;
+
+    @FindBy(xpath = "//a[contains(@id,'r1:0:AP1:AT9:_ATp:t3:0:cl1')]")
+    private WebElement link_persnSearchResultLink;
+
+    @FindBy(xpath = "//div[text()='Skills and Qualifications']")
+    private WebElement lable_SkillsAndQualification;
 
     public EmployeeEditMyDetailsPage(Context context) {
         super(context);
@@ -3251,5 +3270,93 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             reportWithScreenShot("Error while displaying Area of Expertise : " + e.getMessage());
             Assert.fail();
         }
+    }
+
+    /* This method is to select Manage Talent option from Quick Actions
+     * @author : Sangameshwar Balur
+     * */
+    public void clickManageTalentProfileFromQA() {
+
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(link_ManageTalentProfile), 30);
+            link_ManageTalentProfile.click();
+            waitFor(ExpectedConditions.elementToBeClickable(tab_PersonProfile), 30);
+            assertThat(tab_PersonProfile.isDisplayed()).isTrue();
+            reportWithScreenShot("User selected Manage Talent Profile option");
+        } catch (Exception e) {
+
+            reportWithScreenShot("Error while selecting Manage Talent profile : " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    /* This method is to check Person profile displayed
+     * @author : Sangameshwar Balur
+     * */
+
+    public void checkPersonProfileTabDisplayed() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(tab_PersonProfile), 30);
+            assertThat(tab_PersonProfile.isDisplayed()).isTrue();
+            reportWithScreenShot("Person Profile tab displayed");
+        } catch (Exception e) {
+
+            reportWithScreenShot("Error while displaying Person Profile tab : " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+
+    /* This method is to search Persons with location
+     * @author : Sangameshwar Balur
+     * */
+    public void searchPersonWithLocation() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(text_searchPersonByLocation), 15);
+            text_searchPersonByLocation.sendKeys(data.getLocation());
+            text_searchPersonByLocation.sendKeys(Keys.TAB);
+            waitNormalTime();
+            button_Search.click();
+            waitFor(ExpectedConditions.elementToBeClickable(link_persnSearchResultLink), 15);
+            assertThat(link_persnSearchResultLink.isDisplayed()).isTrue();
+            reportWithScreenShot("User is searched for person with Location");
+
+        } catch (Exception e) {
+            reportWithScreenShot("Error in searching persons with Location : " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    /* This method is to check person search result
+     * @author : Sangameshwar Balur
+     * */
+    public void checkPersonSearchResult() {
+        try {
+            waitNormalTime();
+            assertThat(link_persnSearchResultLink.isDisplayed()).isTrue();
+            reportWithScreenShot("User is displayed with search result");
+
+        } catch (Exception e) {
+            reportWithScreenShot("Error in displaying person search result : " + e.getMessage());
+            Assert.fail();
+        }
+    }
+    /* This method is to click on first person name link
+     * @author : Sangameshwar Balur
+     * */
+
+    public void clickOnFirstPersonLink() {
+
+        try {
+            link_persnSearchResultLink.click();
+            waitNormalTime();
+            assertThat(lable_SkillsAndQualification.isDisplayed()).isTrue();
+            reportWithScreenShot("User clicked on first person name in search result");
+
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking on person name in search result : " + e.getMessage());
+            Assert.fail();
+        }
+
     }
 }

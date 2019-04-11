@@ -1,7 +1,7 @@
 @DemoSet4
 Feature: Employee edits Personal Information
 
-  @EMPLOYEE_UPDATE_A_PHOTO
+  @EMPLOYEE_UPLOADS_A_PHOTO
   Scenario Outline: Employee updating photo from personal information page
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
