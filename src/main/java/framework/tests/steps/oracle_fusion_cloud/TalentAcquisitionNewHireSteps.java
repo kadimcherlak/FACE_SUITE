@@ -282,6 +282,10 @@ public class TalentAcquisitionNewHireSteps implements En {
             context.hireAnEmployee.fillContingentWorkerIdentificationTab();
         });
 
+        Then("user enter terminated employee details in Identification tab", () -> {
+            context.hireAnEmployee.fillTerminatedEmpIdentificationTab();
+        });
+
         Then("Matching Person Records should be displayed", () -> {
             context.hireAnEmployee.matchingPersonRecordDisplayed();
         });

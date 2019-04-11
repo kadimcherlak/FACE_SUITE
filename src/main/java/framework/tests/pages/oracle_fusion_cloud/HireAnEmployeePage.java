@@ -928,6 +928,120 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
         }
     }
 
+
+    // User enter Terminated Employee details in Identification tab
+    public void fillTerminatedEmpIdentificationTab() {
+        try {
+            // Enter Hire Date
+            basicDetailsDate.clear();
+            //   actions.doubleClick(basicDetailsDate).sendKeys(data.getHireDate());
+            //   String hireDate = getDynamicDate(60);
+            Date date = new Date();
+            //String hireDate = increaseDateFromCurrentDateByGivenDays(date, 4, "MM/dd/yyyy");
+            String hireDate = getDynamicDate("+", 4);
+            System.out.println(hireDate);
+            actions.doubleClick(basicDetailsDate).sendKeys(hireDate);
+
+            // Select Hire Action
+            basicDetailsAction.click();
+            waitFor(ExpectedConditions
+                    .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getHireAction() + "']"))), 5);
+            driver.findElement(By.xpath("//li[text()='" + data.getHireAction() + "']")).click();
+            basicDetailsAction.sendKeys(Keys.TAB);
+            waitNormalTime();
+
+            // Select Hire Reason
+            basicDetailsReason.click();
+            waitFor(ExpectedConditions
+                    .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getHireReason() + "']"))), 5);
+            driver.findElement(By.xpath("//li[text()='" + data.getHireReason() + "']")).click();
+            basicDetailsReason.sendKeys(Keys.TAB);
+
+            // Check Worker Type
+            actions.moveToElement(basicDetailsEmployer).click().sendKeys(data.getLegalEmployer()).sendKeys(Keys.ENTER).sendKeys(Keys.TAB).perform();
+            waitShortTime();
+
+            // Check Scenario and perform Action
+            if (data.getScenario().contains("PENDING_WORKER")) {
+                pendingWorkerType.click();
+                waitFor(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getWorkerType() + "']"))), 30);
+                driver.findElement(By.xpath("//li[text()='" + data.getWorkerType() + "']")).click();
+                pendingWorkerType.sendKeys(Keys.TAB);
+            } else if (data.getScenario().contains("NON_WORKER")) {
+                nonWorkerType.click();
+                waitFor(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getWorkerType() + "']"))), 30);
+                driver.findElement(By.xpath("//li[text()='" + data.getWorkerType() + "']")).click();
+                nonWorkerType.sendKeys(Keys.TAB);
+                waitShortTime();
+            }
+
+            //waitFor(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[text()='" + data.getWorkerType() + "']"))), 30);
+            //assertThat(driver.findElement(By.xpath("//*[text()='" + data.getWorkerType() + "']")).getText().equals(data.getWorkerType())).isTrue();
+
+            waitNormalTime();
+
+            // Enter Last Name
+            waitFor(ExpectedConditions.elementToBeClickable(lastName), 15);
+            lastName.sendKeys(csvReader().get("personName").trim().split(" ")[1]);
+            lastName.sendKeys(Keys.TAB);
+
+            // Enter First Name
+            waitFor(ExpectedConditions.elementToBeClickable(firstName), 15);
+            firstName.sendKeys(csvReader().get("personName").trim().split(" ")[0]);
+            firstName.sendKeys(Keys.TAB);
+
+            // Select Gender
+            waitFor(ExpectedConditions.elementToBeClickable(gender), 5);
+            gender.click();
+            waitFor(ExpectedConditions
+                    .elementToBeClickable(driver.findElement(By.xpath("//li[text()='" + data.getGender() + "']"))), 5);
+            driver.findElement(By.xpath("//li[text()='" + data.getGender() + "']")).click();
+
+            // Select Date of Birth
+            // waitFor(ExpectedConditions.elementToBeClickable(dateOfBirth), 15);
+            //dateOfBirth.sendKeys(data.getDateOfBirth());
+            // dateOfBirth.sendKeys(Keys.TAB);
+
+          /*  // Select Location Contact Required
+            waitFor(ExpectedConditions.elementToBeClickable(locationContact), 15);
+            locationContact.click();
+            locationContact.sendKeys(data.getLocationContact());*/
+            waitShortTime();
+
+            // Click to create new row
+         /*   waitFor(ExpectedConditions.elementToBeClickable(addRow), 15);
+            addRow.click();
+
+            // Enter Country
+            waitFor(ExpectedConditions.visibilityOf(country), 30);
+            country.clear();
+            country.sendKeys(data.getCountry());
+            waitNormalTime();
+            country.sendKeys(Keys.ENTER);
+            country.sendKeys(Keys.TAB);
+            waitNormalTime();
+            // Enter National ID type
+            clickNationalIdType.click();
+            waitFor(ExpectedConditions
+                    .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getNationalIDType() + "']"))), 15);
+            driver.findElement(By.xpath("//li[text()='" + data.getNationalIDType() + "']")).click();
+            clickNationalIdType.sendKeys(Keys.TAB);
+
+            // Enter National ID
+            waitFor(ExpectedConditions.visibilityOf(nationalId), 15);
+            nationalId.sendKeys(data.getNationalID());*/
+
+            // Goto next tab
+            scrollToPageTop(driver);
+            reportWithScreenShot("Summary of Identification tab");
+            clickNextButton(); // Next Button to go to next page
+
+        } catch (Exception e) {
+            reportWithScreenShot("Issue when entering details in identification tab due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
     // Check if the Matching person Record popup is Displayed
     public void matchingPersonRecordDisplayed() {
         try {
