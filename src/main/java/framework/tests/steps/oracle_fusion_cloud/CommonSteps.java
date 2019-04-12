@@ -21,6 +21,7 @@ public class CommonSteps implements En {
             if (System.getProperty("tags").equals("") && data.getScenarioRunFlag().equalsIgnoreCase("no")) {
                 assumeTrue("Skipping this Scenario as not part of execution", false);
             }
+
             context.setDriver();
             context.setPages(context);
             context.loginAndHome.getCurrentDate();
