@@ -18,9 +18,10 @@ public class CommonSteps implements En {
             context.setExcelDataStore(testFileName, testSheetName);
             context.setData(testScenario);
             data = context.getData();
-            if (data.getScenarioRunFlag().equalsIgnoreCase("no")) {
+            if (System.getProperty("tags").equals("") && data.getScenarioRunFlag().equalsIgnoreCase("no")) {
                 assumeTrue("Skipping this Scenario as not part of execution", false);
             }
+
             context.setDriver();
             context.setPages(context);
             context.loginAndHome.getCurrentDate();
