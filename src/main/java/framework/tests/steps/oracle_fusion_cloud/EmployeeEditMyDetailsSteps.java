@@ -671,6 +671,14 @@ public class EmployeeEditMyDetailsSteps implements En {
         Then("^Persons Skills and Qualifications page displayed$", () -> {
             context.employeeEditMyDetails.checkSkillsAndQualificationsPageDisplayed();
         });
+
+        Then("user clicks on Actions ICON Orange Chevron next to Employee Name", () -> {
+        	context.employeeEditMyDetails.clickMoreInformationLink();
+        });
+
+        Then("click on Payroll Option and select Manage Personal Payment Methods", () -> {
+        	context.employeeEditMyDetails.clickManagePersonalPaymentMethodLink();
+        });
     }
 
 }

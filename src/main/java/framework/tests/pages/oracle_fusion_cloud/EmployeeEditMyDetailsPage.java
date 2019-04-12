@@ -745,6 +745,19 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//span[text()='Areas of Expertise']")
     private WebElement label_AreaOfExpertise;
 
+    @FindBy(xpath = "(//label[text()='Bank Branch']//following::input[1])[2]")
+    private WebElement branchName;
+
+    @FindBy(xpath = "//img[@title='More Information']")
+    private WebElement moreInformation;
+
+    @FindBy(xpath = "//a[@title='Payroll']")
+    private WebElement payrollLink;
+
+    @FindBy(xpath = "//a[@title='Manage Personal Payment Methods']")
+    private WebElement managePersonalPaymentMethodLink;
+
+
     @FindBy(xpath = "//span[@class='title three-line-truncation' and text()='Manage Talent Profile']")
     private WebElement link_ManageTalentProfile;
 
@@ -1584,9 +1597,12 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             AccountNumber.clear();
             AccountNumber.sendKeys(data.getAccountNumber());
             selectInputDropdownValue(AccountType, data.getAccountType());
-            waitFor(ExpectedConditions.elementToBeClickable(AccountHolder), 15);
-            AccountHolder.clear();
-            AccountHolder.sendKeys(data.getAccountHolder());
+            waitFor(ExpectedConditions.elementToBeClickable(branchName), 15);
+            branchName.clear();
+            branchName.sendKeys(data.getBranchName());
+            //waitFor(ExpectedConditions.elementToBeClickable(AccountHolder), 15);
+            //AccountHolder.clear();
+            //AccountHolder.sendKeys(data.getAccountHolder());
             waitFor(ExpectedConditions.elementToBeClickable(RoutingNumber), 15);
             RoutingNumber.clear();
             RoutingNumber.sendKeys(data.getRoutingNumber());
@@ -3359,4 +3375,34 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
 
     }
+
+    public void clickMoreInformationLink() {
+        try {
+            /*waitFor(ExpectedConditions.elementToBeClickable(moreInformation), 15);
+            moreInformation.click();*/
+        	JavascriptExecutor executor = (JavascriptExecutor)driver;
+        	executor.executeScript("arguments[0].click();", moreInformation);
+            reportWithScreenShot("Clicked on More Information Link");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking on More Information Link : " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void clickManagePersonalPaymentMethodLink() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(payrollLink), 15);
+            waitShortTime();
+            payrollLink.click();
+            waitFor(ExpectedConditions.elementToBeClickable(managePersonalPaymentMethodLink), 15);
+            waitShortTime();
+            managePersonalPaymentMethodLink.click();
+            reportWithScreenShot("Manage Personal Payment Method Link is clicked");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking on Manage Personal Payment Method Link : " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+
 }
