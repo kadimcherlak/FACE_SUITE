@@ -220,7 +220,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     private WebElement personMgmtCorrect;
 
     @FindBy(xpath = "//td[text() = 'Correct']")
-    private WebElement manageElementEntriesCorrect;
+    private WebElement personClickCorrect;
 
     @FindBy(xpath = "//div[text() = 'Correct Employment']")
     private WebElement correctEmploymentTitle;
@@ -236,10 +236,10 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
     @FindBy(xpath = "//span[text()='Review']")
     private WebElement reviewButton_ManageEmployment;
-    
+
     @FindBy(xpath = "(//label[text()='Hire Date']/following::input[1])[1]")
     private WebElement hireDate;
-    
+
     @FindBy(xpath = "(//label[text()='Hire Date'])[3]/following::span[1]")
     private WebElement enterpriseHireDate;
 
@@ -251,13 +251,13 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
     @FindBy(xpath = "//div[text()='Correct Name']")
     private WebElement textCorrectName;
-    
+
     @FindBy(xpath = "//label[text()='First Name' and contains(@class,'inputText_label-text')]/following::input[1]")
     private WebElement textFirstName;
-    
+
     @FindBy(xpath = "//h1[text()='National Identifiers']")
     private WebElement textNationalIdentifiers;
-    
+
     // Person Management Contructor
     public PersonManagementPage(Context context) {
         super(context);
@@ -298,7 +298,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
         try {
             // Enter person number into keywords
             waitFor(ExpectedConditions.elementToBeClickable(keywords), 15);
-            keywords.sendKeys(csvReader()[0]);
+            keywords.sendKeys(csvReader().get("personNumber"));
 
             // Enter effective as of date
             waitFor(ExpectedConditions.elementToBeClickable(effectiveAsOfDate), 15);
@@ -323,11 +323,11 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
             // Check for Employee for max 60 seconds
             elementsize = driver
-                    .findElements(By.xpath("//span[text()='" + csvReader()[0] + "']")).size();
+                    .findElements(By.xpath("//span[text()='" + csvReader().get("personNumber") + "']")).size();
             int counter = 0;
             while (elementsize == 0 && counter <= 20) {
                 elementsize = driver
-                        .findElements(By.xpath("//span[text()='" + csvReader()[0] + "']")).size();
+                        .findElements(By.xpath("//span[text()='" + csvReader().get("personNumber") + "']")).size();
                 clickSearch();
                 waitShortTime();
                 counter++;
@@ -352,11 +352,11 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
             // Check for Employee for max 60 seconds
             elementsize = driver
-                    .findElements(By.xpath("//span[text()='" + csvReader()[0] + "']")).size();
+                    .findElements(By.xpath("//span[text()='" + csvReader().get("personNumber") + "']")).size();
             int counter = 0;
             while (elementsize >= 1 && counter <= 20) {
                 elementsize = driver
-                        .findElements(By.xpath("//span[text()='" + csvReader()[0] + "']")).size();
+                        .findElements(By.xpath("//span[text()='" + csvReader().get("personNumber") + "']")).size();
                 clickSearch();
                 waitShortTime();
                 counter++;
@@ -530,8 +530,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
         try {
             waitNormalTime();
             reportWithScreenShot("Checking if ADP Auto & Home row is Displayed");
-            waitFor(ExpectedConditions.visibilityOf(adpRowDeleted), 15);
-            assertThat(adpRowDeleted.isDisplayed()).isFalse();
+            assertThat(driver.findElements(By.xpath("(//*[contains(text(),'Comp One Off Bonus Pay')])[1]")).isEmpty()).isTrue();
         } catch (Exception e) {
             reportWithScreenShot("ADP Auto & Home row is not deleted");
             Assert.fail();
@@ -637,7 +636,8 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             updateEmploymentEffectiveDate.clear();
 
             // Add Current Date + 1 as the senario runs before this test changes the date to current date +1 (Scenario name : Seniority date
-            updateEmploymentEffectiveDate.sendKeys(data.getEffectiveAsOfDate());
+            //updateEmploymentEffectiveDate.sendKeys(data.getEffectiveAsOfDate());
+            updateEmploymentEffectiveDate.sendKeys(getDynamicDate("-", 5));
             updateEmploymentEffectiveDate.sendKeys(Keys.TAB);
             waitShortTime();
 
@@ -809,8 +809,8 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             } else {
                 waitFor(ExpectedConditions.elementToBeClickable(personMgmtEdit), 15);
                 personMgmtEdit.click();
-                waitFor(ExpectedConditions.elementToBeClickable(personMgmtCorrect), 15);
-                personMgmtCorrect.click();
+                waitFor(ExpectedConditions.elementToBeClickable(personClickCorrect), 15);
+                personClickCorrect.click();
             }
             reportWithScreenShot("Selected Correct Option after clicking on Edit");
         } catch (Exception e) {
@@ -849,6 +849,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             Assert.fail();
         }
     }
+
     /**
      * Enter the mandatory fields of Correct Employment Screen
      * Author: Koushik Kadimcherla
@@ -946,22 +947,22 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             Assert.fail();
         }
     }
-    
+
     /**
      * User changes hire date
      * Author: Rakesh Ghosal
      */
     public void enterHireDate() {
         try {
-        	String newHireDate;
-        	scrollToElement(hireDate);
+            String newHireDate;
+            scrollToElement(hireDate);
             waitFor(ExpectedConditions.elementToBeClickable(hireDate), 15);
-            String existingHireDate=enterpriseHireDate.getText().trim();
+            String existingHireDate = enterpriseHireDate.getText().trim();
             hireDate.clear();
-            newHireDate=addDaysToDate(existingHireDate, 1, "mm/dd/yy");
+            newHireDate = addDaysToDate(existingHireDate, 1, "mm/dd/yy");
             hireDate.sendKeys(newHireDate);
         } catch (Exception e) {
-        	System.out.println(e);
+            System.out.println(e.getMessage());
             reportWithScreenShot("Error while entering hire date");
             Assert.fail();
         }
@@ -998,21 +999,21 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             Assert.fail();
         }
     }
-    
+
     /**
      * Verify Manage Person page is available
      * Author: Koushik Kadimcherla
      */
-	public void checkManagePersonAvailable() {
-		   try {
-			   waitShortTime();
-	            reportWithScreenShot("Checking if Manage Person page  is Displayed");
-	            waitFor(ExpectedConditions.visibilityOf(textNationalIdentifiers), 15);
-	            assertThat(textNationalIdentifiers.isDisplayed()).isTrue();
-	        } catch (Exception e) {
-	            reportWithScreenShot("Manage Person page  not Displayed");
-	            Assert.fail();
-	        }
-		
-	}
+    public void checkManagePersonAvailable() {
+        try {
+            waitShortTime();
+            reportWithScreenShot("Checking if Manage Person page  is Displayed");
+            waitFor(ExpectedConditions.visibilityOf(textNationalIdentifiers), 15);
+            assertThat(textNationalIdentifiers.isDisplayed()).isTrue();
+        } catch (Exception e) {
+            reportWithScreenShot("Manage Person page  not Displayed");
+            Assert.fail();
+        }
+
+    }
 }

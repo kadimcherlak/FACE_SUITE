@@ -98,14 +98,28 @@ public class LineManagerSteps implements En {
         });
 
         Then("user add comments in the textarea", () -> {
-            context.lineManager.enterComments();
+            context.lineManager.enterComments("Changing the Manager for above reason");
         });
         Then("^user clicks (.*?) option from task icon menu$", (String linkName) -> {
             context.lineManager.clickLinkElementInTaskPane(linkName);
         });
-        Then("^Manange work relationship page is displayed$", () -> {
-            context.lineManager.manageWorkRelationShipPageDisplayed();
+        // Then("^Manange work relationship page is displayed$", () -> {
+        //   context.lineManager.manageWorkRelationShipPageDisplayed();
+        //});
+
+        Then("user clicks on Action button and select View Termination option", () -> {
+            context.lineManager.clickActionAndViewTermination();
         });
+
+        Then("user clicks on Reverse Termination button", () -> {
+            context.lineManager.clickReverseTermination();
+        });
+
+
+        Then("user clicks on YES button in warning popup", () -> {
+            context.lineManager.clickYesWarningPopup();
+        });
+
 
         And("^user clicks on Action button and select Terminate option$", () -> {
             context.lineManager.clickActionAndTerminate();
@@ -147,6 +161,45 @@ public class LineManagerSteps implements En {
         });
         And("^user clicks Ok button confirmation popup modal in termination review page$", () -> {
             context.lineManager.clickOKOnPopup();
+        });
+
+        And("^user navigates to Quick Action menu$", () -> {
+            context.loginAndHome.navigateToQuickAction();
+        });
+
+        And("^the Quick Action page should be displayed$", () -> {
+            context.quickActionPage.validateQuickActionPageDisplayed();
+        });
+
+        And("^user selects the person name from the dropdown$", () -> {
+            context.quickActionPage.selectPersonFromQuickActionDropdown();
+        });
+
+        Then("user clicks on (.*?) link from the Quick Action menu", (String quickActionLinkMenu) -> {
+            context.quickActionPage.clickQuickActionMenuLink(quickActionLinkMenu);
+        });
+
+        Then("Terminate Work Relationship page should be displayed", () -> {
+            context.quickActionPage.validateTerminateWorkRelationshipPageDisplayed();
+        });
+
+        Then("user enters all the termination details", () -> {
+            context.quickActionPage.enterTerminationDetails();
+        });
+
+        Then("user add comments in the textarea for termination", () -> {
+            context.lineManager.enterComments("Termination initiated for this employee");
+        });
+
+        When("user clicks on Submit button in Termination Work Relationship page", () -> {
+            context.lineManager.clickSubmitButton();
+        });
+
+        When("user should see the message selected work relationship was already terminated", () -> {
+            context.lineManager.terminationPageDisplayed();
+        });
+        And("^user clicks on Action button and selects Cancel Work Relationship$", () -> {
+            context.lineManager.clickActionAndCancelWorkRelation();
         });
     }
 

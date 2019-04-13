@@ -153,6 +153,18 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
     @FindBy(xpath = "//td[text()='Terminate']")
     private WebElement buttonTerminate;
 
+    @FindBy(xpath = "//td[text()='Cancel Work Relationship']")
+    private WebElement comboBox_CancelWorkRelation;
+
+    @FindBy(xpath = "//td[text()='View Termination']")
+    private WebElement link_ViewTermination;
+
+    @FindBy(xpath = "//button[contains(.,'Reverse Termination')]")
+    private WebElement button_ReverseTermination;
+
+    @FindBy(xpath = "//div[text()='Warning']")
+    private WebElement popup_WarningText;
+
     @FindBy(xpath = "//a[contains(@id,'Action::drop')]")
     private WebElement terminationActionDropdown;
 
@@ -233,7 +245,7 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
     public void navigateToChangeManagerPage() {
         try {
             int counter = 0;
-            String personName = csvReader()[1];
+            String personName = csvReader().get("personName");
             waitFor(ExpectedConditions.elementToBeClickable(personSearchTextBox), 15);
             personSearchTextBox.clear();
             personSearchTextBox.sendKeys(personName.trim());
@@ -558,11 +570,11 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
      *
      * @author Rakesh Ghosal
      */
-    public void enterComments() {
+    public void enterComments(String comments) {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(addCommentsAndAttachments), 15);
             addCommentsAndAttachments.clear();
-            addCommentsAndAttachments.sendKeys("Changing the Manager for above reason");
+            addCommentsAndAttachments.sendKeys(comments);
             reportWithScreenShot("Entering comment for Change Manager transaction");
 
         } catch (Exception e) {
@@ -603,8 +615,15 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
         }
     }
 
+    /*
+     * This method is to click Action button and select Terminate.
+     *
+     * @author Sangameshwar Balur
+     * */
+
     public void clickActionAndTerminate() {
         try {
+            waitFor(ExpectedConditions.elementToBeClickable(buttonActions), 30);
             buttonActions.click();
             waitFor(ExpectedConditions.visibilityOf(buttonTerminate), 60);
             buttonTerminate.click();
@@ -614,6 +633,70 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
 
         } catch (Exception e) {
             reportWithScreenShot("Error in clicking Action and termination link");
+            Assert.fail();
+        }
+    }
+
+    /*
+     * This method is to click Action button and select Cancel Work Relationship.
+     *
+     * @author Sangameshwar Balur
+     * */
+
+    public void clickActionAndCancelWorkRelation() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(buttonActions), 30);
+            buttonActions.click();
+            waitFor(ExpectedConditions.visibilityOf(comboBox_CancelWorkRelation), 60);
+            comboBox_CancelWorkRelation.click();
+            waitFor(ExpectedConditions.visibilityOf(btnSubmit), 60);
+            Assertions.assertThat(btnSubmit.isDisplayed()).isTrue();
+            reportWithScreenShot("User clicked on Action and Relationship option");
+
+        } catch (Exception e) {
+            reportWithScreenShot("Error in clicking Action and Relationship option :" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+
+    //Clicking View Termination link
+    public void clickActionAndViewTermination() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(buttonActions), 30);
+            buttonActions.click();
+            waitShortTime();
+            waitFor(ExpectedConditions.visibilityOf(link_ViewTermination), 45);
+            link_ViewTermination.click();
+            reportWithScreenShot("User clicked on Action and View Termination link");
+        } catch (Exception e) {
+            reportWithScreenShot("Error in clicking Action and View termination link");
+            Assert.fail();
+        }
+    }
+
+    //Clicking Reverse Termination link
+    public void clickReverseTermination() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(button_ReverseTermination), 60);
+            button_ReverseTermination.click();
+            reportWithScreenShot("User clicked on Reverse Termination button");
+        } catch (Exception e) {
+            reportWithScreenShot("Error in clicking Reverse Termination Button");
+            Assert.fail();
+        }
+    }
+
+    //Clicking Yes in Warning Popup box
+    public void clickYesWarningPopup() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(popup_WarningText), 60);
+            Assertions.assertThat(popup_WarningText.isDisplayed()).isTrue();
+            waitFor(ExpectedConditions.visibilityOf(btnYes), 60);
+            btnYes.click();
+            reportWithScreenShot("User clicked on Reverse Termination button");
+        } catch (Exception e) {
+            reportWithScreenShot("Error in clicking Reverse Termination Button");
             Assert.fail();
         }
     }
@@ -687,7 +770,7 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
 
     public void clickButtonSubmit() {
         try {
-            waitShortTime();
+            waitNormalTime();
             btnSubmit.click();
             waitShortTime();
             waitFor(ExpectedConditions.visibilityOf(btnYes), 60);

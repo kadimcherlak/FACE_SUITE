@@ -172,8 +172,6 @@ public class EmployeeEditMyDetailsSteps implements En {
         });
 
 
-//----
-
         And("user click on Task Icon on the right side", () -> {
             context.employeeEditMyDetails.taskIconClick();
         });
@@ -296,7 +294,6 @@ public class EmployeeEditMyDetailsSteps implements En {
 
         When("Verify that the address format is valid", () -> {
             context.employeeEditMyDetails.verifyAddressFormat();
-            ;
         });
 
         When("Click on Cancel button", () -> {
@@ -306,107 +303,100 @@ public class EmployeeEditMyDetailsSteps implements En {
         When("Click Yes button", () -> {
             context.employeeEditMyDetails.clickYesButtonInPopUp();
         });
-        Then("^My Details page should be displayed$", () -> {
-        });
-        When("^user clicks on Actions \\(v\\) button$", () -> {
-        });
-        And("^user clicks on \\+ icon$", () -> {
-        });
-        And("^user clicks on \\+ icon under Bank Accounts$", () -> {
-        });
-        When("^user click on Sign Out option$", () -> {
-        });
-        When("^user clicks on More Information icon 'i'  under name icon$", () -> {
-        });
-        Then("^A pop up window with employee details should be displayed\\.$", () -> {
-        });
-        Then("^the values Absence,Payroll,Personal and Employment should be displayed$", () -> {
-        });
-        And("^user enter value for Name as \"([^\"]*)\"$", (String arg0) -> {
-        });
-        And("^user enter value from Organization Payment Method dropdown as \"([^\"]*)\"$", (String arg0) -> {
-        });
-        And("^user enter value for Account Number as \"([^\"]*)\"$", (String arg0) -> {
-        });
-        And("^user enter value from Account type as \"([^\"]*)\"$", (String arg0) -> {
-        });
-        And("^user enter value for Routing Number as \"([^\"]*)\"$", (String arg0) -> {
-        });
-        And("^user enter value for Routing Account Holder$", () -> {
-        });
+//        Then("^My Details page should be displayed$", () -> {
+//        });
+//        When("^user clicks on More Information icon 'i'  under name icon$", () -> {
+//        });
+//        Then("^A pop up window with employee details should be displayed\\.$", () -> {
+//        });
+//        Then("^the values Absence,Payroll,Personal and Employment should be displayed$", () -> {
+//        });
+//        And("^user enter value for Name as \"([^\"]*)\"$", (String arg0) -> {
+//        });
+//        And("^user enter value from Organization Payment Method dropdown as \"([^\"]*)\"$", (String arg0) -> {
+//        });
+//        And("^user enter value for Account Number as \"([^\"]*)\"$", (String arg0) -> {
+//        });
+//        And("^user enter value from Account type as \"([^\"]*)\"$", (String arg0) -> {
+//        });
+//        And("^user enter value for Routing Number as \"([^\"]*)\"$", (String arg0) -> {
+//        });
+//        And("^user enter value for Routing Account Holder$", () -> {
+//        });
         And("^user clicks on Done button$", () -> {
+            context.basePage.clickDoneButton();
         });
-        Then("^Person Gallery page should be displayed$", () -> {
-        });
-        When("^user clicks on Edit\\(Pencil Symbol\\) in the Address section$", () -> {
-        });
-        When("^user clicks on 'Edit' button on top right side of the page$", () -> {
-        });
-        When("^user clicks on 'Contact Information' section$", () -> {
-        });
-        Then("^Personal address should be displayed$", () -> {
-        });
-        And("^user enter value for effective date when address becomes active$", () -> {
-        });
-        And("^user enter value for Address Line (\\d+)$", (Integer arg0) -> {
-        });
-        And("^user enter value for Zip Code$", () -> {
-        });
+//        Then("^Person Gallery page should be displayed$", () -> {
+//        });
+//        When("^user clicks on Edit\\(Pencil Symbol\\) in the Address section$", () -> {
+//        });
+//        When("^user clicks on 'Edit' button on top right side of the page$", () -> {
+//        });
+//        When("^user clicks on 'Contact Information' section$", () -> {
+//        });
+//        Then("^Personal address should be displayed$", () -> {
+//        });
+//        And("^user enter value for effective date when address becomes active$", () -> {
+//        });
+//        And("^user enter value for Address Line (\\d+)$", (Integer arg0) -> {
+//        });
+//        And("^user enter value for Zip Code$", () -> {
+//        });
         And("^user clicks on Save and Close button$", () -> {
             context.employeeEditMyDetails.clickSaveAndClose();
         });
-        When("^user clicks on \"([^\"]*)\" icon in the left side of the page which is available in Edit My Details page$", (String arg0) -> {
-        });
-        Then("^\"([^\"]*)\" page should be displayed$", (String arg0) -> {
-        });
-        And("^user clicks on Click on Edit Icon\\(Pencil icon\\)$", () -> {
-        });
-        Then("^Biographical Information page should be displayed in edit mode$", () -> {
-        });
-        And("^user enter value for Title$", () -> {
-        });
-        And("^user enter value for First Name$", () -> {
-        });
-        And("^user enter value for Last Name$", () -> {
-        });
-        When("^user clicks on Documents icon which is available in Edit My Details in the left hand side of the page$", () -> {
-        });
-        When("^user clicks on Edit\\(Pencil Symbol\\) in the License section$", () -> {
-        });
-        And("^user enters License number$", () -> {
-        });
-        And("^user clicks on Save button$", () -> {
-        });
-        Then("^License number is saved$", () -> {
-        });
-        When("^user clicks on Disability icon on the left panel$", () -> {
-        });
-        Then("^Disability Information page should be displayed$", () -> {
-        });
-        And("^user \\+ icon$", () -> {
-        });
-        Then("^Country Pop up should be displayed$", () -> {
-        });
-        And("^user selects United States from the dropdown and clicks on Continue button$", () -> {
-        });
-        And("^user selects Self-Disclosed Disability as \"([^\"]*)\"\\(Radio Button\\)$", (String arg0) -> {
-        });
-        And("^user enters effective start state$", () -> {
-        });
-        And("^user clicks on \"([^\"]*)\" Link$", (String arg0) -> {
-        });
-        Then("^Form CC-(\\d+): Voluntary Self-Identification for Disability page should be displayed$", (Integer arg0) -> {
-        });
-        When("^user clicks on print icon under Tools Option$", () -> {
-        });
-        Then("^Print Page should be Displayed and employee should be able to print the Page$", () -> {
-        });
-        When("^user clicks on download icon under Tools Option$", () -> {
-        });
-        Then("^user should able to Download Form CC-(\\d+)$", (Integer arg0) -> {
-        });
-        Then("^The disability information page should be displayed$", () -> {
-        });
+//        When("^user clicks on \"([^\"]*)\" icon in the left side of the page which is available in Edit My Details page$", (String arg0) -> {
+//        });
+//        Then("^\"([^\"]*)\" page should be displayed$", (String arg0) -> {
+//        });
+//        And("^user clicks on Click on Edit Icon\\(Pencil icon\\)$", () -> {
+//        });
+//        Then("^Biographical Information page should be displayed in edit mode$", () -> {
+//        });
+//        And("^user enter value for Title$", () -> {
+//        });
+//        And("^user enter value for First Name$", () -> {
+//        });
+//        And("^user enter value for Last Name$", () -> {
+//        });
+//        When("^user clicks on Documents icon which is available in Edit My Details in the left hand side of the page$", () -> {
+//        });
+//        When("^user clicks on Edit\\(Pencil Symbol\\) in the License section$", () -> {
+//        });
+//        And("^user enters License number$", () -> {
+//        });
+//        And("^user clicks on Save button$", () -> {
+//        });
+//        Then("^License number is saved$", () -> {
+//        });
+//        When("^user clicks on Disability icon on the left panel$", () -> {
+//        });
+//        Then("^Disability Information page should be displayed$", () -> {
+//        });
+//        And("^user \\+ icon$", () -> {
+//        });
+//        Then("^Country Pop up should be displayed$", () -> {
+//        });
+//        And("^user selects United States from the dropdown and clicks on Continue button$", () -> {
+//        });
+//        And("^user selects Self-Disclosed Disability as \"([^\"]*)\"\\(Radio Button\\)$", (String arg0) -> {
+//        });
+//        And("^user enters effective start state$", () -> {
+//        });
+//        And("^user clicks on \"([^\"]*)\" Link$", (String arg0) -> {
+//        });
+//        Then("^Form CC-(\\d+): Voluntary Self-Identification for Disability page should be displayed$", (Integer arg0) -> {
+//        });
+//        When("^user clicks on print icon under Tools Option$", () -> {
+//        });
+//        Then("^Print Page should be Displayed and employee should be able to print the Page$", () -> {
+//        });
+//        When("^user clicks on download icon under Tools Option$", () -> {
+//        });
+//        Then("^user should able to Download Form CC-(\\d+)$", (Integer arg0) -> {
+//        });
+//        Then("^The disability information page should be displayed$", () -> {
+//        });
 
         When("^user clicks on Personal Details link in Person Info page$", () -> {
             context.employeeEditMyDetails.clickPersonalDetailsLink();
@@ -485,6 +475,10 @@ public class EmployeeEditMyDetailsSteps implements En {
             context.employeeEditMyDetails.fillUpdateEmpWindow_PersonMgmt();
         });
 
+        When("^user enters details in Correct Employment Window and click on Ok button$", () -> {
+            context.employeeEditMyDetails.fillCorrectEmpWindow_PersonMgmt();
+        });
+
         And("^user selects Assignment Status as (.*?)$", (String value) -> {
             context.employeeEditMyDetails.selectAssignmentStatus(value);
         });
@@ -512,48 +506,179 @@ public class EmployeeEditMyDetailsSteps implements En {
         Then("user clicks on Document Records link under Personal Info", () -> {
             context.employeeEditMyDetails.clickDocumentRecordsLink();
         });
-        
+
         Then("from task menu user clicks on Manage Person option", () -> {
             context.employeeEditMyDetails.managePersonClick();
         });
-        
+
         Then("user clicks on Edit button and select Correct option for Home Address", () -> {
             context.employeeEditMyDetails.clickEditCorrectManagePerson();
         });
-        
+
         Then("update the address in correct address format and click on ok button", () -> {
             context.employeeEditMyDetails.correctAddressManagePerson();
         });
-        
+
         Then("validate the correct address is updated", () -> {
             context.employeeEditMyDetails.validateCorrectAddressDisplayed();
         });
-        
+
         Then("user clicks on Submit button in Person Management screen", () -> {
             context.employeeEditMyDetails.clickSubmitButtonInReviewPage();
             context.employeeEditMyDetails.clickYesOnPopup();
             context.employeeEditMyDetails.clickOKOnPopup();
         });
-        
+
         Then("user clicks on Edit button and select Update option for Home Address", () -> {
             context.employeeEditMyDetails.clickEditUpdateManagePerson();
         });
-        
+
         Then("enter the effective date", () -> {
             context.employeeEditMyDetails.enterEffectiveDate();
-            
-        });
-        
-        Then("user clicks on create address button and select the address type", () -> {
-            context.employeeEditMyDetails.clickCreateAddressButton();
-            
-        });
-        
-        Then("add secondary address details and click on ok button", () -> {
-            context.employeeEditMyDetails.correctAddressManagePerson();
-            
+
         });
 
+        Then("user clicks on create address button and select the address type", () -> {
+            context.employeeEditMyDetails.clickCreateAddressButton();
+
+        });
+
+        Then("add secondary address details and click on ok button", () -> {
+            context.employeeEditMyDetails.correctAddressManagePerson();
+
+        });
+        Then("^(.*?) page is displayed$", (String taskLinkPage) -> {
+            context.employeeEditMyDetails.taskLinkPage(taskLinkPage);
+        });
+
+        Then("^validate user is able to view the documents$", () -> {
+        });
+
+        And("^user clicks on Edit button in Manage Person page to edit Biographical Info$", () -> {
+            context.employeeEditMyDetails.clickEditButtonOfBioInfo();
+        });
+
+        Then("^persons Biographical Info modal displayed$", () -> {
+            context.employeeEditMyDetails.checkBioInfoModalDisplayed();
+        });
+
+        And("^user enters Biographical infomation from Manage Person page$", () -> {
+            context.employeeEditMyDetails.enterBiographicalInfo();
+        });
+
+        And("^user clicks OK button on Biographical Info modal$", () -> {
+            context.employeeEditMyDetails.clickOKButtonOnBioInfoModal();
+        });
+        When("^user clicks on Submit button in Manage Person$", () -> {
+            context.employeeEditMyDetails.clickSubmitButtonInManagePerson();
+        });
+        Then("^Warning modal is diplayed to confirm the request$", () -> {
+            context.employeeEditMyDetails.checkWarningModal();
+        });
+        Then("^user is displayed with confimation modal$", () -> {
+            context.employeeEditMyDetails.checkConfirmationModal();
+        });
+        And("^user clicks OK button on Confirmation modal$", () -> {
+            context.employeeEditMyDetails.clickOKButtonOnConfirmationModal();
+        });
+        And("^user clicks Contacts link on Manage Person page$", () -> {
+            context.employeeEditMyDetails.clickContactsLinkInManagePersonPage();
+        });
+        When("^user clicks on \"([^\"]*)\" option in Personal Relationships page$", (String optionToBeClicked) -> {
+            context.employeeEditMyDetails.clickEditOptionInPersonalRelationshipsPage(optionToBeClicked);
+        });
+        Then("^modal \"([^\"]*)\" is displayed$", (String modalName) -> {
+            context.employeeEditMyDetails.checkContactTypeModal(modalName);
+
+        });
+        And("^user enters details in Relationship Information modal$", () -> {
+            context.employeeEditMyDetails.enterDetailsInRelationshipInformationModal();
+        });
+        And("^user clicks OK button in contact creation modal$", () -> {
+            context.employeeEditMyDetails.clickOKButtonOnBioInfoModal();
+        });
+        And("^user clicks on Edit optoin in Personal Info section$", () -> {
+            context.employeeEditMyDetails.clickEditInPersonalInfo();
+        });
+        And("^user selects Correct option to update details in Personal Info$", () -> {
+            context.employeeEditMyDetails.selectCorrectFromEdit();
+        });
+        And("^user updates First name and Last name in Personal Info modal$", () -> {
+            context.employeeEditMyDetails.updateNameRelationshipInfo();
+        });
+        And("^user adds contact details in Phone section$", () -> {
+            context.employeeEditMyDetails.addEmergencyPhoneNumber();
+        });
+        And("^user clicks on Edit option in Address section$", () -> {
+            context.employeeEditMyDetails.clickEditInAddressArea();
+        });
+        And("^user selects Update option to update details in Address modal$", () -> {
+            context.employeeEditMyDetails.selectUpdateFromEditMenu();
+
+        });
+        And("^user updates address fields as need and click OK button$", () -> {
+            context.employeeEditMyDetails.updateEmergencyAddressDetails();
+        });
+        And("^user clicks Extra Information link on Manage Person page$", () -> {
+            context.employeeEditMyDetails.clickLinkExtraInformation();
+        });
+        And("^user clicks on Edit button to add Extra information$", () -> {
+            context.employeeEditMyDetails.clickEditExtraInfo();
+        });
+        And("^user selects Correct option from Edit menu$", () -> {
+            context.employeeEditMyDetails.selectCorrectFromEdit_ExtraInfo();
+        });
+        And("^user update all addition fields for Extra information$", () -> {
+            context.employeeEditMyDetails.fillMiscellaneousInfo_ExtraInfo();
+        });
+        And("^user selects Update option to update details in Extra Information page$", () -> {
+            context.employeeEditMyDetails.selectUpdateFromEditMenu_ExtraInfoPage();
+        });
+        And("^user selects Effective update date to update Extra Information and clicks OK button$", () -> {
+            context.employeeEditMyDetails.enterEffectiveDate();
+        });
+        Then("^person talent profile page is displayed in Manage Talent page$", () -> {
+            context.employeeEditMyDetails.checkPersonalTalentPageDisplayed();
+
+        });
+        And("^user clicks on Edit button in Manage Talent page$", () -> {
+            context.employeeEditMyDetails.clickEditButtonInManageTalentProfilePage();
+        });
+        Then("^Area of Expertise section is displayed in Manage Talent page$", () -> {
+            context.employeeEditMyDetails.checkAreaOfExpertiseSection();
+        });
+
+        Then("My Details page should be displayed", () -> {
+            // Write code here that turns the phrase above into concrete actions
+            System.out.println("Yet to implement");
+        });
+        And("^user clicks on Manage Talent Profile option from All Actions list$", () -> {
+            context.employeeEditMyDetails.clickManageTalentProfileFromQA();
+        });
+        Then("^Person Profile tab is displayed$", () -> {
+            context.employeeEditMyDetails.checkPersonProfileTabDisplayed();
+        });
+        And("^search Person Profile with Location$", () -> {
+
+            context.employeeEditMyDetails.searchPersonWithLocation();
+        });
+        Then("^Profile section is populated with Person profile links$", () -> {
+            context.employeeEditMyDetails.checkPersonSearchResult();
+        });
+        And("^user clicks on first person name link from search result$", () -> {
+            context.employeeEditMyDetails.clickOnFirstPersonLink();
+        });
+        Then("^Persons Skills and Qualifications page displayed$", () -> {
+            context.employeeEditMyDetails.checkSkillsAndQualificationsPageDisplayed();
+        });
+
+        Then("user clicks on Actions ICON Orange Chevron next to Employee Name", () -> {
+        	context.employeeEditMyDetails.clickMoreInformationLink();
+        });
+
+        Then("click on Payroll Option and select Manage Personal Payment Methods", () -> {
+        	context.employeeEditMyDetails.clickManagePersonalPaymentMethodLink();
+        });
     }
 
 }

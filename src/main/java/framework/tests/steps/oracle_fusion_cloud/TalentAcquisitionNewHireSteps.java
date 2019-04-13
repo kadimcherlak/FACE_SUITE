@@ -196,7 +196,7 @@ public class TalentAcquisitionNewHireSteps implements En {
         When("user Enter all the Mandatory fields of Correct Name window and click Ok button", () -> {
             context.personManagment.enterCorrectNameMandatoryFields();
         });
-        
+
         Then("Projected End Date field Should be Editable", () -> {
             context.personManagment.checkProjectedEndDateEditable();
         });
@@ -212,7 +212,7 @@ public class TalentAcquisitionNewHireSteps implements En {
         When("user click on Done button at the top", () -> {
             context.personManagment.clickDoneButton();
         });
-        
+
         When("Enter the seniority date under Legal Employer and under Enterprise", () -> {
             context.personManagment.enterHireDate();
         });
@@ -224,11 +224,109 @@ public class TalentAcquisitionNewHireSteps implements En {
         });
 
         Then("Mange Person page should be displayed", () -> {
-       	 context.personManagment.checkManagePersonAvailable();
-       });
-       
-       Then("Correct Name page should be displayed", () -> {
-       	context.personManagment.checkCorrectNameWindowDisplayed();
-       });
+            context.personManagment.checkManagePersonAvailable();
+        });
+
+        Then("Correct Name page should be displayed", () -> {
+            context.personManagment.checkCorrectNameWindowDisplayed();
+        });
+        Then("Pending Workers grid should be displayed", () -> {
+            context.hireAnEmployee.checkPendingWorkerGridDisplayed();
+        });
+
+        Then("user search Pending worker Person number generated from previous step", () -> {
+            context.hireAnEmployee.searchPendingWorker();
+        });
+
+        When("user select Pending worker and click Convert under Actions Menu", () -> {
+            context.hireAnEmployee.selectConvertPendingWorker();
+        });
+        When("user select Pending worker and click Quick Convert under Actions Menu", () -> {
+            context.hireAnEmployee.selectQuickConvertPendingWorker();
+        });
+
+        When("confirmation popup box is displayed", () -> {
+            context.hireAnEmployee.confirmationPopupDisplay();
+        });
+
+
+        Then("Convert Pending Worker: Identification page should be displayed", () -> {
+            context.hireAnEmployee.checkPendingWorkerIdentificationPageDisplayed();
+        });
+
+        When("user validates details in Identification tab", () -> {
+            context.hireAnEmployee.validateIdentificationTab();
+        });
+
+        When("user validates details in Person Information tab", () -> {
+            context.hireAnEmployee.validatePersonInformationTab();
+        });
+
+        When("user validates details in Person Profile tab", () -> {
+            context.hireAnEmployee.validatePersonProfileTab();
+        });
+
+        When("user validates details in Employment Information tab", () -> {
+            context.hireAnEmployee.validateEmploymentInformationTab();
+        });
+
+        When("user validates details in Compensation and Other Information tab", () -> {
+            context.hireAnEmployee.validateCompensationInformationTab();
+        });
+
+        Then("user checks if the pending worker is not displayed in Pending Workers grid", () -> {
+            context.hireAnEmployee.checkPendingWorkerDetailNotDisplayed();
+        });
+
+        Then("user enter contingent worker details in Identification tab", () -> {
+            context.hireAnEmployee.fillContingentWorkerIdentificationTab();
+        });
+
+        Then("user enter terminated employee details in Identification tab", () -> {
+            context.hireAnEmployee.fillTerminatedEmpIdentificationTab();
+        });
+
+        Then("Matching Person Records should be displayed", () -> {
+            context.hireAnEmployee.matchingPersonRecordDisplayed();
+        });
+
+        Then("user clicks on Select Person button", () -> {
+            context.hireAnEmployee.clickSelectPersonButton();
+        });
+
+        Then("Warning message should be displayed", () -> {
+            context.hireAnEmployee.warningMessageDisplayed();
+        });
+
+        Then("Identification tab should be displayed", () -> {
+            context.hireAnEmployee.checkIdentificationTabAvailable();
+        });
+
+        Then("user clicks next button in identification tab", () -> {
+            context.hireAnEmployee.clickNextButton();
+        });
+
+        Then("user clicks next button in Person information tab", () -> {
+            context.hireAnEmployee.clickNextButton();
+        });
+
+        Then("user clicks next button in Employment Information tab", () -> {
+            context.hireAnEmployee.clickNextButton();
+        });
+
+        Then("user clicks next button in Compensation and Other Information tab", () -> {
+            context.hireAnEmployee.clickNextButton();
+        });
+
+        Then("user clicks on OK button in Warning popup", () -> {
+            context.hireAnEmployee.clickWarningOkButton();
+        });
+
+        Then("user clicks on OK button to create new new work relationship", () -> {
+            context.hireAnEmployee.clickOkBtn();
+        });
+
+
     }
+
 }

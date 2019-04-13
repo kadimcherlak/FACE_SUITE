@@ -54,7 +54,6 @@ Feature: New Hire to Terminate
       | Test Scenario          | Test File Name | Test Sheet Name    |
       | UPDATE_ELEMENT_ENTRIES | TestData.xlsx  | Talent_Acquisition |
 
-
   @EDIT_SENIORITY_DATE
   Scenario Outline: Update hire date in Manage Work Relationship screen
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
@@ -93,7 +92,7 @@ Feature: New Hire to Terminate
     When user click on employee name link in search results
     And user click on Task Icon on the right side
     When user clicks Manage Work Relationship option from task icon menu
-    Then Manange work relationship page is displayed
+    Then Manage Work Relationship page is displayed
     And user clicks on Action button and select Terminate option
     Then user navigated to Termination Details page
     And user selects Termination Action

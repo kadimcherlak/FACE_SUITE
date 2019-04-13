@@ -13,6 +13,8 @@ import framework.tests.pages.oracle_fusion_cloud.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.io.File;
 
@@ -27,6 +29,7 @@ public class Context extends framework.core.models.Context {
     public LineManagerPage lineManager;
     public PersonManagementPage personManagment;
     public ManageCalendarEventsPage manageCalendarEvents;
+    public QuickActionPage quickActionPage;
     public String scenarioName = null;
     private Logger logger = LogManager.getLogger(Context.class);
     private WebDriver driver;
@@ -69,8 +72,6 @@ public class Context extends framework.core.models.Context {
 
     @Before
     public void beforeScenario(Scenario scenario) {
-        driver = getWebDriver();
-        highLight = new HighLight(driver);
         logger.debug("Initialized driver at the context layer");
 
         setScenario(scenario);
@@ -90,6 +91,11 @@ public class Context extends framework.core.models.Context {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void setDriver() {
+        driver = getWebDriver();
+        highLight = new HighLight(driver);
     }
 
     @After
@@ -124,6 +130,7 @@ public class Context extends framework.core.models.Context {
         newPerson = new NewPersonPage(context);
         personManagment = new PersonManagementPage(context);
         manageCalendarEvents = new ManageCalendarEventsPage(context);
+        quickActionPage = new QuickActionPage(context);
     }
 
 }

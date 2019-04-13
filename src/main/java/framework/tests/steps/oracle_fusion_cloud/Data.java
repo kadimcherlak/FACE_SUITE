@@ -28,7 +28,10 @@ public class Data extends framework.core.models.Data {
     private String companyEntity;
     private String costCenter;
     private String country;
+    private String regionOfBirth;
+    private String townOfBirth;
     private String countryCode;
+    private String areaCode;
     private String county;
     private String dateOfBirth;
     private String degreeMajor;
@@ -73,6 +76,7 @@ public class Data extends framework.core.models.Data {
     private String managerType;
     private String maritalStatus;
     private String name;
+    private String countryOfBirth;
     private String nationalID;
     private String nationalIDType;
     private String newlySeparatedVeteranDischargeDate;
@@ -92,8 +96,10 @@ public class Data extends framework.core.models.Data {
     private String relationship;
     private String routingNumber;
     private String salaryAmount;
+    private String correspondenceLanguage;
     private String salaryBasis;
     private String scenario;
+    private String scenarioRunFlag;
     private String sequence;
     private String state;
     private String type;
@@ -104,6 +110,7 @@ public class Data extends framework.core.models.Data {
     private String workerType;
     private String workingAsManager;
     private String zipCode;
+    private String bloodType;
     private String employeeName;
     private String actionManageSalary;
     private String actionReasonManageSalary;
@@ -111,6 +118,21 @@ public class Data extends framework.core.models.Data {
     private String projectedEndDate;
     private String correctEmploymentAction;
     private String correctEmploymentActionReason;
+    private String contactType;
+    private String emergencyContact;
+    private String emergencyContactType;
+    private String terminationAction;
+    private String terminationReason;
+    private String revokeUserAccess;
+    private String recommendedForRehire;
+    private String community;
+    private String casteTribe;
+    private String height;
+    private String weight;
+    private String exServicePerson;
+    private String residentialStatus;
+    private String panNumber;
+    private String branchName;
 
     // Alpha sorted list of getters
     // most of these items get loaded via bean loader, so normally setters not needed.
@@ -204,6 +226,31 @@ public class Data extends framework.core.models.Data {
 
     public String getCountry() {
         return country;
+    }
+
+    public String getCorrespondenceLanguage() {
+        return correspondenceLanguage;
+    }
+
+    public String getContactType() {
+        return contactType;
+    }
+
+
+    public String getBloodType() {
+        return bloodType;
+    }
+
+    public String getRegionOfBirth() {
+        return regionOfBirth;
+    }
+
+    public String getCountryOfBirth() {
+        return countryOfBirth;
+    }
+
+    public String getTownOfBirth() {
+        return townOfBirth;
     }
 
     public String getCountryCode() {
@@ -509,6 +556,10 @@ public class Data extends framework.core.models.Data {
         return scenario;
     }
 
+    public String getScenarioRunFlag() {
+        return scenarioRunFlag;
+    }
+
     public String getSequence() {
         return sequence;
     }
@@ -605,4 +656,63 @@ public class Data extends framework.core.models.Data {
         this.correctEmploymentActionReason = correctEmploymentActionReason;
     }
 
+    public String getEmergencyContact() {
+        return emergencyContact;
+    }
+
+    public String getEmergencyContactType() {
+        return emergencyContactType;
+    }
+
+    public String getAreaCode() {
+        return areaCode;
+    }
+
+    public String getTerminationAction() {
+        return terminationAction;
+    }
+
+    public String getTerminationReason() {
+        return terminationReason;
+    }
+
+    public String getRevokeUserAccess() {
+        return revokeUserAccess;
+    }
+
+    public String getrecommendedForRehire() {
+        return recommendedForRehire;
+    }
+
+    public String getCommunity() {
+        return community;
+    }
+
+    public String getCasteTribe() {
+        return casteTribe;
+    }
+
+    public String getHeight() {
+        return height;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public String getExServicePerson() {
+        return exServicePerson;
+    }
+
+    public String getResidentialStatus() {
+        return residentialStatus;
+    }
+
+    public String getpanNumber() {
+        return panNumber;
+    }
+    
+    public String getBranchName() {
+        return branchName;
+    }
 }

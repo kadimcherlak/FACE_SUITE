@@ -88,6 +88,9 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     @FindBy(xpath = "//img[contains(@title,'Quick Actions')]")
     private WebElement quickAction;
 
+    @FindBy(xpath = "//a[@title='Home'][contains(@id,'home')]")
+    private WebElement homeIconForQuickAction;
+
 
     public LoginAndHomePage(Context context) {
         super(context);
@@ -273,7 +276,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
             waitFor(ExpectedConditions.elementToBeClickable(searchNotification), 15);
             searchNotification.clear();
             waitShortTime();
-            searchNotification.sendKeys(csvReader()[0]);
+            searchNotification.sendKeys(csvReader().get("personNumber"));
             waitNormalTime();
             searchNotification.sendKeys(Keys.ENTER);
             reportWithScreenShot("Checking if Search Value is Displayed");
@@ -288,19 +291,19 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
 
             // Check for Employee for max 60 seconds
             elementsize = driver
-                    .findElements(By.xpath("//a[contains(@id,':0:gl2') and contains(@title,'" + csvReader()[0] + "') and contains(@title,'Approved:')]")).size();
+                    .findElements(By.xpath("//a[contains(@id,':0:gl2') and contains(@title,'" + csvReader().get("personNumber") + "') and contains(@title,'Approved:')]")).size();
             int counter = 0;
             while (elementsize == 0 && counter <= 10) {
                 checkNotification();
                 elementsize = driver
-                        .findElements(By.xpath("//a[contains(@id,':0:gl2') and contains(@title,'" + csvReader()[0] + "') and contains(@title,'Approved:')]")).size();
+                        .findElements(By.xpath("//a[contains(@id,':0:gl2') and contains(@title,'" + csvReader().get("personNumber") + "') and contains(@title,'Approved:')]")).size();
                 waitShortTime();
                 counter++;
             }
 
             if (elementsize == 1) {
-                waitFor(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//a[contains(@id,':0:gl2') and contains(@title,'" + csvReader()[0] + "') and contains(@title,'Approved:')]"))), 15);
-                assertThat(driver.findElement(By.xpath("//a[contains(@id,':0:gl2') and contains(@title,'" + csvReader()[0] + "') and contains(@title,'Approved:')]")).isDisplayed()).isTrue();
+                waitFor(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//a[contains(@id,':0:gl2') and contains(@title,'" + csvReader().get("personNumber") + "') and contains(@title,'Approved:')]"))), 15);
+                assertThat(driver.findElement(By.xpath("//a[contains(@id,':0:gl2') and contains(@title,'" + csvReader().get("personNumber") + "') and contains(@title,'Approved:')]")).isDisplayed()).isTrue();
                 reportWithScreenShot("Termination/Retirement is present");
             } else if (elementsize == 0 || elementsize > 0) {
                 // Throw Exception if Person name now found after 60 seconds
@@ -309,6 +312,25 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
 
         } catch (Exception e) {
             reportWithScreenShot("Termination/Retirement is not present:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+
+    /**
+     * User clicks on quick action link
+     *
+     * @author Rakesh
+     */
+    public void navigateToQuickAction() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(homeIconForQuickAction), 15);
+            homeIconForQuickAction.click();
+            waitFor(ExpectedConditions.elementToBeClickable(quickAction), 15);
+            quickAction.click();
+            reportWithScreenShot("Clicked on the Quick Action Menu :");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking on quick action link:" + e.getMessage());
             Assert.fail();
         }
     }
