@@ -23,7 +23,8 @@ Feature: Perform Edit on Employee Information
     And new employee details are stored into csv
     When user clicks on Sign Out option
     Then Sign out should be successful
-    Examples:
+
+    Examples: 
       | Test Scenario      | Test File Name | Test Sheet Name  |
       | NEW_HIRE_USING_HDL | TestData.xlsx  | Employee_Details |
 
@@ -43,7 +44,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                | Test File Name | Test Sheet Name  |
       | ADD_NEW_ADDRESS_TYPE_DETAILS | TestData.xlsx  | Employee_Details |
 
@@ -64,7 +65,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                     | Test File Name | Test Sheet Name  |
       | ADD_NEW_EMERGENCY_CONTACT_DETAILS | TestData.xlsx  | Employee_Details |
 
@@ -92,7 +93,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                                 | Test File Name | Test Sheet Name  |
       | UPDATE_PERSONAL_PAYMENT_METHODS_EXPENSES_ONLY | TestData.xlsx  | Employee_Details |
 
@@ -111,7 +112,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario           | Test File Name | Test Sheet Name  |
       | VALIDATE_ADDRESS_FORMAT | TestData.xlsx  | Employee_Details |
 
@@ -129,13 +130,13 @@ Feature: Perform Edit on Employee Information
     And user clicks Update Photo link to upload photo
     Then Photo upload page should be displayed
     When user clicks on Choose File button to upload a photo
-#    Then user selected photo is uploaded to system
+    #    Then user selected photo is uploaded to system
     When user clicks on Save and Close button
     Then Personal Info page should be displayed
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario            | Test File Name | Test Sheet Name  |
       | EMPLOYEE_UPLOADS_A_PHOTO | TestData.xlsx  | Employee_Details |
 
@@ -165,7 +166,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                        | Test File Name | Test Sheet Name  |
       | ADD_SKILLS_AND_QUALIFICATION_DETAILS | TestData.xlsx  | Employee_Details |
 
@@ -192,7 +193,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                        | Test File Name | Test Sheet Name  |
       | CHANGE_SALARY_BASIS_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
 
@@ -211,11 +212,11 @@ Feature: Perform Edit on Employee Information
     Then from task menu user clicks on Manage Salary option
     And user clicks on Action button and select Edit option
     And user enters new Salary Amount under Current Salary section
-#    When user selects Use salary component checkbox
-#    Then Components tab is displayed in Manage Salary
-#    When user clicks on Add button in Components tab
-#    And user selects Promotion from Component dropdown
-#    And user enters amount in Amount field in Components tab
+    #    When user selects Use salary component checkbox
+    #    Then Components tab is displayed in Manage Salary
+    #    When user clicks on Add button in Components tab
+    #    And user selects Promotion from Component dropdown
+    #    And user enters amount in Amount field in Components tab
     And user clicks on Continue button in Manage Salary tab
     When user clicks on Submit button in Review page
     And user clicks Yes button on popup modal
@@ -223,7 +224,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                  | Test File Name | Test Sheet Name  |
       | UPDATE_SALARY_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
 
@@ -249,7 +250,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario               | Test File Name | Test Sheet Name  |
       | EDIT_SALARY_PROPOSAL_REASON | TestData.xlsx  | Employee_Details |
 
@@ -275,7 +276,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                    | Test File Name | Test Sheet Name  |
       | CHANGE_ASSIGNMENT_VIA_PRSN_MGMNT | TestData.xlsx  | Employee_Details |
 
@@ -301,7 +302,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario    | Test File Name | Test Sheet Name  |
       | ENTER_JOB_CHANGE | TestData.xlsx  | Employee_Details |
 
@@ -325,7 +326,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario      | Test File Name | Test Sheet Name  |
       | ADDRESS_CORRECTION | TestData.xlsx  | Employee_Details |
 
@@ -349,7 +350,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                | Test File Name | Test Sheet Name  |
       | MANAGE_PERSON_ADDRESS_UPDATE | TestData.xlsx  | Employee_Details |
 
@@ -373,7 +374,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                       | Test File Name | Test Sheet Name  |
       | MANAGE_PERSON_ADD_ALTERNATE_ADDRESS | TestData.xlsx  | Employee_Details |
 
@@ -409,7 +410,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                  | Test File Name | Test Sheet Name  |
       | ENTER_STATUS_ASSIGNMENT_CHANGE | TestData.xlsx  | Employee_Details |
 
@@ -440,7 +441,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                                    | Test File Name | Test Sheet Name  |
       | ADDING_EXISTING_EMPLOYEE_AS_AN_EMERGENCY_CONTACT | TestData.xlsx  | Employee_Details |
 
@@ -470,7 +471,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                                      | Test File Name | Test Sheet Name  |
       | CORRECT_PERSONAL_DESCRIPTIVE_FLEXFIELD_INFORMATION | TestData.xlsx  | Employee_Details |
 
@@ -506,7 +507,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                     | Test File Name | Test Sheet Name  |
       | MODIFY_EXISTING_EMERGENCY_CONTACT | TestData.xlsx  | Employee_Details |
 
@@ -535,7 +536,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario             | Test File Name | Test Sheet Name  |
       | ADD_EXTRA_INFORMATION_EIT | TestData.xlsx  | Employee_Details |
 
@@ -565,7 +566,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                | Test File Name | Test Sheet Name  |
       | MODIFY_EXTRA_INFORMATION_EIT | TestData.xlsx  | Employee_Details |
 
@@ -596,7 +597,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples:
+    Examples: 
       | Test Scenario                                    | Test File Name | Test Sheet Name  |
       | EMPLOYEE_CREATE_PROFILE_CONTENT_TYPE_INFORMATION | TestData.xlsx  | Employee_Details |
 
@@ -621,31 +622,162 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-
-    Examples:
+    Examples: 
       | Test Scenario                              | Test File Name | Test Sheet Name  |
       | CANCEL_WORK_RELATIONSHIP_OF_PENDING_WORKER | TestData.xlsx  | Employee_Details |
 
-#  @NEW_ADDRESS_ALTERNATIVE_WORK_LOCATION - Not in  Datasheet
-#  Scenario Outline: Employee add New Address of type Alternative Work Location
-#    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
-#    And user login to Oracle Applications Cloud web page
-#    When user clicks on Navigator icon
-#    And user clicks on Personal Information link under About me section
-#    Then Personal Info page should be displayed
-#    When user clicks on Contact Information section
-#    Then Contact Information page should be displayed
-#    When user clicks on Add icon in the Address section
-#    And user Enter Details in Address fields
-#    And user click on submit button in Contact Information page
-#    Then New Mailing address should be displayed
-#    When user clicks on Sign Out option
-#    Then Sign out should be successful
-#
-#    Examples:
-#      | Test Scenario                         | Test File Name | Test Sheet Name  |
-#      | NEW_ADDRESS_ALTERNATIVE_WORK_LOCATION | TestData.xlsx  | Employee_Details |
+  @EMPLOYEE_CREATE_PROFILE_CONTENT_TYPE_INFORMATION_QUICK_ACTIONS
+  Scenario Outline: Employee Termination from Quick Action Menu
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user navigates to Quick Action menu
+    Then the Quick Action page should be displayed
+    And user clicks on Manage Talent Profile option from All Actions list
+    Then Person Profile tab is displayed
+    And search Person Profile with Location
+    Then Profile section is populated with Person profile links
+    And user clicks on first person name link from search result
+    Then Persons Skills and Qualifications page displayed
+    And user clicks on Edit button on top right side
+    And user clicks on Add Content and select Degrees Link
+    Then Degrees page should be displayed
+    And user enter Degree details
+    Then user clicks on Submit button in edit Skills and Qualifications page
+    When user clicks on Sign Out option
+    Then Sign out should be successful
 
+    Examples: 
+      | Test Scenario                                                  | Test File Name | Test Sheet Name  |
+      | EMPLOYEE_CREATE_PROFILE_CONTENT_TYPE_INFORMATION_QUICK_ACTIONS | TestData.xlsx  | Employee_Details |
+
+  #  @NEW_ADDRESS_ALTERNATIVE_WORK_LOCATION - Not in  Datasheet
+  #  Scenario Outline: Employee add New Address of type Alternative Work Location
+  #    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+  #    And user login to Oracle Applications Cloud web page
+  #    When user clicks on Navigator icon
+  #    And user clicks on Personal Information link under About me section
+  #    Then Personal Info page should be displayed
+  #    When user clicks on Contact Information section
+  #    Then Contact Information page should be displayed
+  #    When user clicks on Add icon in the Address section
+  #    And user Enter Details in Address fields
+  #    And user click on submit button in Contact Information page
+  #    Then New Mailing address should be displayed
+  #    When user clicks on Sign Out option
+  #    Then Sign out should be successful
+  #
+  #    Examples:
+  #      | Test Scenario                         | Test File Name | Test Sheet Name  |
+  #      | NEW_ADDRESS_ALTERNATIVE_WORK_LOCATION | TestData.xlsx  | Employee_Details |
+  @CREATE_PAY_METHOD_WITH_EXISTING_BANK
+  Scenario Outline: Employee to update Create Pay Method with Existing Bank
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button till person displayed
+    Then Employee name should be listed in search results
+    When user click on employee name link in search results
+    And user click on Task Icon on the right side
+    When user clicks Manage Personal Payment Methods option from task icon menu
+    Then Person Management page is displayed
+    And user clicks on + icon
+    Then Personal Payment Method page should be displayed
+    And user enter value for Name,Payment Method and Percentage
+    And user clicks on + icon under Bank Accounts
+    Then Create Bank Account page should be displayed
+    And enter the bank account details
+    And user clicks on Submit button
+    Then Person Management page is displayed
+    When user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples: 
+      | Test Scenario                        | Test File Name | Test Sheet Name  |
+      | CREATE_PAY_METHOD_WITH_EXISTING_BANK | TestData.xlsx  | Employee_Details |
+
+  @CREATE_PAY_METHOD_WITH_EXISTING_BANK_QUICK_ACTION
+  Scenario Outline: Employee to update Create Pay Method with Existing Bank form Quick Action
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button till person displayed
+    Then Employee name should be listed in search results
+    And user clicks on Actions ICON Orange Chevron next to Employee Name
+    Then click on Payroll Option and select Manage Personal Payment Methods
+    And user clicks on + icon
+    Then Personal Payment Method page should be displayed
+    And user enter value for Name,Payment Method and Percentage
+    And user clicks on + icon under Bank Accounts
+    Then Create Bank Account page should be displayed
+    And enter the bank account details
+    And user clicks on Submit button
+    When user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples: 
+      | Test Scenario                                     | Test File Name | Test Sheet Name  |
+      | CREATE_PAY_METHOD_WITH_EXISTING_BANK_QUICK_ACTION | TestData.xlsx  | Employee_Details |
+
+  @CREATE_PAY_METHOD_WITH_NEW_BANK
+  Scenario Outline: Employee to update Create Pay Method with New Bank
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button till person displayed
+    Then Employee name should be listed in search results
+    When user click on employee name link in search results
+    And user click on Task Icon on the right side
+    When user clicks Manage Personal Payment Methods option from task icon menu
+    Then Person Management page is displayed
+    And user clicks on + icon
+    Then Personal Payment Method page should be displayed
+    And user enter value for Name,Payment Method and Percentage
+    And user clicks on + icon under Bank Accounts
+    Then Create Bank Account page should be displayed
+    And enter the bank account details
+    And user clicks on Submit button
+    Then Person Management page is displayed
+    When user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples: 
+      | Test Scenario                   | Test File Name | Test Sheet Name  |
+      | CREATE_PAY_METHOD_WITH_NEW_BANK | TestData.xlsx  | Employee_Details |
+
+  @CREATE_PAY_METHOD_WITH_NEW_BANK_QUICK_ACTION
+  Scenario Outline: Employee to update Create Pay Method with Existing Bank form Quick Action
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Person Management link in Navigator Pane
+    Then Person Management: Search screen should be displayed
+    And user enter the Person number generated from previous step in Person Number field
+    And user click on Search button till person displayed
+    Then Employee name should be listed in search results
+    And user clicks on Actions ICON Orange Chevron next to Employee Name
+    Then click on Payroll Option and select Manage Personal Payment Methods
+    And user clicks on + icon
+    Then Personal Payment Method page should be displayed
+    And user enter value for Name,Payment Method and Percentage
+    And user clicks on + icon under Bank Accounts
+    Then Create Bank Account page should be displayed
+    And enter the bank account details
+    And user clicks on Submit button
+    When user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples: 
+      | Test Scenario                                | Test File Name | Test Sheet Name  |
+      | CREATE_PAY_METHOD_WITH_NEW_BANK_QUICK_ACTION | TestData.xlsx  | Employee_Details |
 #  @ADD_EMERGENCY_CONTACT_DETAILS - Not in  Datasheet
 #  Scenario Outline: Employee add Emergency Contact details
 #    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>

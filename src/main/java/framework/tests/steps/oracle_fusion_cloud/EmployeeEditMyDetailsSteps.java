@@ -652,6 +652,33 @@ public class EmployeeEditMyDetailsSteps implements En {
             // Write code here that turns the phrase above into concrete actions
             System.out.println("Yet to implement");
         });
+        And("^user clicks on Manage Talent Profile option from All Actions list$", () -> {
+            context.employeeEditMyDetails.clickManageTalentProfileFromQA();
+        });
+        Then("^Person Profile tab is displayed$", () -> {
+            context.employeeEditMyDetails.checkPersonProfileTabDisplayed();
+        });
+        And("^search Person Profile with Location$", () -> {
+
+            context.employeeEditMyDetails.searchPersonWithLocation();
+        });
+        Then("^Profile section is populated with Person profile links$", () -> {
+            context.employeeEditMyDetails.checkPersonSearchResult();
+        });
+        And("^user clicks on first person name link from search result$", () -> {
+            context.employeeEditMyDetails.clickOnFirstPersonLink();
+        });
+        Then("^Persons Skills and Qualifications page displayed$", () -> {
+            context.employeeEditMyDetails.checkSkillsAndQualificationsPageDisplayed();
+        });
+
+        Then("user clicks on Actions ICON Orange Chevron next to Employee Name", () -> {
+        	context.employeeEditMyDetails.clickMoreInformationLink();
+        });
+
+        Then("click on Payroll Option and select Manage Personal Payment Methods", () -> {
+        	context.employeeEditMyDetails.clickManagePersonalPaymentMethodLink();
+        });
     }
 
 }

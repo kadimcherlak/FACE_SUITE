@@ -13,6 +13,8 @@ import framework.tests.pages.oracle_fusion_cloud.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.io.File;
 
@@ -70,8 +72,6 @@ public class Context extends framework.core.models.Context {
 
     @Before
     public void beforeScenario(Scenario scenario) {
-        System.out.println(scenario.getSourceTagNames());
-        System.out.println(scenario.getId());
         logger.debug("Initialized driver at the context layer");
 
         setScenario(scenario);
