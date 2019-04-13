@@ -1625,8 +1625,8 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
      */
     public void clickSubmitButton() {
         try {
-            waitFor(ExpectedConditions.elementToBeClickable(submitButton), 15);
-            submitButton.click();
+            waitFor(ExpectedConditions.elementToBeClickable(btnSubmit_ManageSalary), 15);
+            btnSubmit_ManageSalary.click();
             reportWithScreenShot("Clicking submit button");
 
         } catch (Exception e) {
@@ -3394,6 +3394,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             waitFor(ExpectedConditions.elementToBeClickable(payrollLink), 15);
             waitShortTime();
             payrollLink.click();
+            waitShortTime();
             waitFor(ExpectedConditions.elementToBeClickable(managePersonalPaymentMethodLink), 15);
             waitShortTime();
             managePersonalPaymentMethodLink.click();
