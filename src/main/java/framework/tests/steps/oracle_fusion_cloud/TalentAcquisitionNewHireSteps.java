@@ -90,6 +90,10 @@ public class TalentAcquisitionNewHireSteps implements En {
             context.personManagment.clickEditUpdate();
         });
 
+        When("user clicks on Edit button and select Update option in Manage Person", () -> {
+            context.personManagment.clickEditUpdateinManagePerson();
+        });
+        
         When("Edit Work Relationship screen should be displayed", () -> {
             context.personManagment.checkEditManageWorkRelationshipDisplayed();
         });
@@ -326,7 +330,9 @@ public class TalentAcquisitionNewHireSteps implements En {
             context.hireAnEmployee.clickOkBtn();
         });
 
-
+        When("user Enter all the Mandatory fields of Update Name window and click Ok button", () -> {
+            context.personManagment.enterUpdateNameMandatoryFields();
+        });
     }
 
 }
