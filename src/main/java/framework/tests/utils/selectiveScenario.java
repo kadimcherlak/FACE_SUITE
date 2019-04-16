@@ -16,7 +16,15 @@ public class selectiveScenario {
     @Test(alwaysRun = true, priority = 1)
     public void extractTags() throws Exception {
         if (System.getProperty("tags") == null || System.getProperty("tags").equals("")) {
-            File excel = new File("C:\\Users\\ragha\\IdeaProjects\\oracle_cloud_automation_suite\\src\\main\\resources\\testdata\\TestData.xlsx");
+
+            File excel = null;
+            if (System.getProperty("testFile").isEmpty()) {
+                excel = new File(System.getProperty("user.dir") + File.separator + "src/main/resources/testdata/TestData.xlsx");
+            } else {
+                excel = new File(System.getProperty("testFile"));
+            }
+
+
             FileInputStream fis = new FileInputStream(excel);
 
             XSSFWorkbook wb = new XSSFWorkbook(fis);
@@ -40,9 +48,15 @@ public class selectiveScenario {
                 }
             }
 
-            String finalTags = StringUtils.join(tags, ',');
-            System.out.println("Tags selected by Users for Execution are: " + finalTags);
-            System.setProperty("tags", finalTags);
+            if (tags.size() != 0) {
+                String finalTags = StringUtils.join(tags, ',');
+                System.out.println("Tags selected by Users for Execution are: " + finalTags);
+                System.setProperty("tags", finalTags);
+            } else {
+                System.out.println("Selective scenario execution requested but none of the scenario execution flag is set to value 'Yes'");
+                System.exit(1);
+            }
+
         } else {
             System.out.println("Selective scenario execution not requested");
         }
