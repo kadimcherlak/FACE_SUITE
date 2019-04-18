@@ -679,6 +679,14 @@ public class EmployeeEditMyDetailsSteps implements En {
         Then("click on Payroll Option and select Manage Personal Payment Methods", () -> {
         	context.employeeEditMyDetails.clickManagePersonalPaymentMethodLink();
         });
+        
+        Then("user selects update from Actions and then select Edit option", () -> {
+        	context.employeeEditMyDetails.clickActionUpdateAndEdit();
+        });
+        
+        Then("user clicks on Action button and select Edit option and deselect the Active tickbox and click on Save and Close button", () -> {
+        	context.employeeEditMyDetails.clickActionAndEditBankAccounts();
+        });
     }
 
 }
