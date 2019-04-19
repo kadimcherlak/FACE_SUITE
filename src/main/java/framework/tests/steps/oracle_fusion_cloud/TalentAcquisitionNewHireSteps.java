@@ -325,7 +325,13 @@ public class TalentAcquisitionNewHireSteps implements En {
         Then("user clicks on OK button to create new new work relationship", () -> {
             context.hireAnEmployee.clickOkBtn();
         });
+        Then("user clicks on Continue button for Hire", () -> {
+            context.hireAnEmployee.clickContinueButton();
+        });
 
+        Then("user enter details in When and Why section", () -> {
+            context.hireAnEmployee.clickContinueButton();
+        });
 
     }
 

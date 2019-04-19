@@ -137,6 +137,7 @@ Feature: Line Manager Transaction and Approval
       | Test Scenario                        | Test File Name | Test Sheet Name |
       | LINE_MANAGER_PERFORMS_CHANGE_MANAGER | TestData.xlsx  | Line_Manager    |
 
+
   @LINEMANAGER_CHANGE_OF_SALARY_ACTION
   Scenario Outline: Line Manager performs a Change of salary with Reason Change in Working Hours for employee moving to part-time hours
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
