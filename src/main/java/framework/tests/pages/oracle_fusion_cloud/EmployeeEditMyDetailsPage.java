@@ -772,16 +772,16 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//div[text()='Skills and Qualifications']")
     private WebElement lable_SkillsAndQualification;
-    
+
     @FindBy(xpath = "//a[text()='Actions']")
     private WebElement payMethodActionLink;
-    
+
     @FindBy(xpath = "//a[text()='Actions']/following::td[text()='Edit'][3]")
     private WebElement payMethodEditLink;
-    
+
     @FindBy(xpath = "//a[text()='Actions']/following::td[text()='Update'][2]")
     private WebElement payMethodUpdateLink;
-    
+
     @FindBy(xpath = "//label[text()='Active']/following::input[@type='checkbox']")
     private WebElement editBankCheckBox;
 
@@ -3416,25 +3416,23 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-    
- // User click on Action and Update and then Edit button
+
+    // User click on Action and Update and then Edit button
     public void clickActionUpdateAndEdit() {
         try {
-        	waitFor(ExpectedConditions.elementToBeClickable(payMethodActionLink), 60);
-        	payMethodActionLink.click();
-        	waitShortTime();
+            waitFor(ExpectedConditions.elementToBeClickable(payMethodActionLink), 60);
+            payMethodActionLink.click();
+            waitShortTime();
             waitFor(ExpectedConditions.elementToBeClickable(payMethodEditLink), 30);
             payMethodEditLink.click();
             waitShortTime();
             waitFor(ExpectedConditions.elementToBeClickable(payMethodUpdateLink), 30);
             payMethodUpdateLink.click();
-            try
-            {
-            waitFor(ExpectedConditions.elementToBeClickable(popButtonYes), 10);
-            popButtonYes.click();
-            }catch(Exception er)
-            {
-            	
+            try {
+                waitFor(ExpectedConditions.elementToBeClickable(popButtonYes), 10);
+                popButtonYes.click();
+            } catch (Exception er) {
+
             }
             reportWithScreenShot("User click on Action and Edit button and then Update link");
         } catch (Exception e) {
@@ -3442,18 +3440,18 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-    
- // User click on Action and then Edit button in Bank Account Option
+
+    // User click on Action and then Edit button in Bank Account Option
     public void clickActionAndEditBankAccounts() {
         try {
-        	waitFor(ExpectedConditions.elementToBeClickable(payMethodActionLink), 60);
-        	payMethodActionLink.click();
-        	waitShortTime();
+            waitFor(ExpectedConditions.elementToBeClickable(payMethodActionLink), 60);
+            payMethodActionLink.click();
+            waitShortTime();
             waitFor(ExpectedConditions.elementToBeClickable(linkActionEdit_ManageSalary), 30);
             linkActionEdit_ManageSalary.click();
             waitShortTime();
-            JavascriptExecutor executor = (JavascriptExecutor)driver;
-        	executor.executeScript("arguments[0].click();", editBankCheckBox);
+            JavascriptExecutor executor = (JavascriptExecutor) driver;
+            executor.executeScript("arguments[0].click();", editBankCheckBox);
             waitFor(ExpectedConditions.elementToBeClickable(saveclose_btn), 15);
             reportWithScreenShot("Deselecting active check box");
             saveclose_btn.click();

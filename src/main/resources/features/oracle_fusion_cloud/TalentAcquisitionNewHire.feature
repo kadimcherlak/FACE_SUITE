@@ -555,15 +555,15 @@ Feature: New Hire and Related Activities
 #      | Test Scenario          | Test File Name | Test Sheet Name    |
 #      | NEW_HIRE_QUICK_ACTIONS | TestData.xlsx  | Talent_Acquisition |
 #
-#  @NEW_HIRE_PENDING_WORKER_QUICK_ACTIONS  - Not in  Datasheet
-#  Scenario Outline: Create a New Pending Worker using Quick Actions and Responsive UI
-#    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
-#    And user login to Oracle Applications Cloud web page
-#    When user clicks on Quick Actions icon
-#    Then Quick Actions page should be displayed
-#    And user clicks on Add a Pending Worker under All Actions section
-#    Then user selects relevant actions on Add a Pending Worker page
-#    When user enter details in When and Why section
+  @NEW_HIRE_PENDING_WORKER_QUICK_ACTIONS
+  Scenario Outline: Create a New Pending Worker using Quick Actions and Responsive UI
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user navigates to Quick Action menu
+    Then the Quick Action page should be displayed
+    And user clicks on Add a Contingent Worker link from the Quick Action menu
+    Then user clicks on Continue button for Hire
+    When user enter details in When and Why section
 #    And user enter details in Communication Info section
 #    And user enter details in Addresses section
 #    And user enter details in Legislative Info section
@@ -589,10 +589,10 @@ Feature: New Hire and Related Activities
 #    And user search for the person newly created using Quick Actions
 #    When user clicks on Sign Out option
 #    Then Sign out should be successful
-#
-#    Examples:
-#      | Test Scenario                         | Test File Name | Test Sheet Name    |
-#      | NEW_HIRE_PENDING_WORKER_QUICK_ACTIONS | TestData.xlsx  | Talent_Acquisition |
+
+    Examples:
+      | Test Scenario                         | Test File Name | Test Sheet Name    |
+      | NEW_HIRE_PENDING_WORKER_QUICK_ACTIONS | TestData.xlsx  | Talent_Acquisition |
 #
 #  @NEW_HIRE_CONTINGENT_WORKER_QUICK_ACTIONS  - Not in  Datasheet
 #  Scenario Outline: Create a New Contingent Worker using Quick Actions and Responsive UI
@@ -672,7 +672,7 @@ Feature: New Hire and Related Activities
 #      | Test Scenario                     | Test File Name | Test Sheet Name    |
 #      | NEW_HIRE_NON_WORKER_QUICK_ACTIONS | TestData.xlsx  | Talent_Acquisition |
 
-@MANANGE_PERSON_NAME_UPDATE
+  @MANANGE_PERSON_NAME_UPDATE
   Scenario Outline: Update the First Name of a Person
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
     And user login to Oracle Applications Cloud web page
@@ -694,7 +694,7 @@ Feature: New Hire and Related Activities
     When user click on Done button at the top
     And user clicks on Sign Out option
     Then Sign out should be successful
-    
+
     Examples:
       | Test Scenario                  | Test File Name | Test Sheet Name    |
       | MANANGE_PERSON_NAME_CORRECTION | TestData.xlsx  | Talent_Acquisition |

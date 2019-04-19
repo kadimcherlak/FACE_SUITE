@@ -803,7 +803,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                   | Test File Name | Test Sheet Name  |
       | UPDATE_PAY_METHOD_WITH_NEW_BANK | TestData.xlsx  | Employee_Details |
 
@@ -828,7 +828,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                                | Test File Name | Test Sheet Name  |
       | UPDATE_PAY_METHOD_WITH_NEW_BANK_QUICK_ACTION | TestData.xlsx  | Employee_Details |
 #  @ADD_EMERGENCY_CONTACT_DETAILS - Not in  Datasheet

@@ -237,6 +237,9 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//h1[contains(text(),': Job Change')]")
     private WebElement jobChange;
 
+    @FindBy(xpath = "//span[text()='Continue']")
+    private WebElement button_Continue;
+
     public HireAnEmployeePage(Context context) {
         super(context);
         this.context = context;
@@ -1094,5 +1097,16 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
         }
     }
 
-
+    // User clicks on Continue Button for Quick Action all new hires
+    public void clickContinueButton() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_Continue), 15);
+            button_Continue.click();
+            waitShortTime();
+            reportWithScreenShot("User clicks on Continue Button");
+        } catch (Exception e) {
+            reportWithScreenShot("Issue while user click on Continue button due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
 }

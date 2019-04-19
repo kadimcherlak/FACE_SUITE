@@ -260,7 +260,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
     @FindBy(xpath = "//h1[text()='National Identifiers']")
     private WebElement textNationalIdentifiers;
-    
+
     @FindBy(xpath = "//label[text()='Effective Start Date']/following::input[1]")
     private WebElement textEffectiveStartDate;
 
@@ -1025,8 +1025,8 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
         }
 
     }
-    
- // User click on Edit and Update button in Manage Person Page
+
+    // User click on Edit and Update button in Manage Person Page
     public void clickEditUpdateinManagePerson() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(personMgmtEdit), 15);
@@ -1042,7 +1042,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             Assert.fail();
         }
     }
-    
+
     /**
      * Enter the mandatory fields of Update Name Screen
      * Author: Koushik Kadimcherla
