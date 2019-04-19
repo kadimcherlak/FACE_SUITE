@@ -2,6 +2,9 @@ name: Runner File
 threadCount: 1
 verbose: 3
 tests:
-  - name: Example
+  - name: selection
+    classes:
+      - name: framework.tests.utils.selectiveScenario
+  - name: runner
     classes:
       - name: framework.core.CucumberRunner

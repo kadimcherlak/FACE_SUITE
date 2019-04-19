@@ -137,6 +137,9 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//button[@accesskey='K' and contains(@id,'Manag1:0:AP1:ctb1') and contains(.,'O')]")
     private WebElement btnOK1;
 
+    @FindBy(xpath = "//button[@accesskey='K' and contains(@id,'Manag1:0:commandButton1') and contains(.,'O')]")
+    private WebElement btnOK2;
+    
     @FindBy(xpath = "//h1[contains(.,'Global Temporary Assignment: Employment Information')]")
     private WebElement employmentInfoPage;
 
@@ -258,6 +261,12 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//h1[text()='National Identifiers']")
     private WebElement textNationalIdentifiers;
 
+    @FindBy(xpath = "//label[text()='Effective Start Date']/following::input[1]")
+    private WebElement textEffectiveStartDate;
+
+    @FindBy(xpath = "(//td[text() = 'Update'])[4]")
+    private WebElement buttonManagePersonUpdate;
+    
     // Person Management Contructor
     public PersonManagementPage(Context context) {
         super(context);
@@ -1015,5 +1024,48 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             Assert.fail();
         }
 
+    }
+
+    // User click on Edit and Update button in Manage Person Page
+    public void clickEditUpdateinManagePerson() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(personMgmtEdit), 15);
+            personMgmtEdit.click();
+            waitShortTime();
+
+            waitFor(ExpectedConditions.elementToBeClickable(buttonManagePersonUpdate), 15);
+            buttonManagePersonUpdate.click();
+            waitShortTime();
+            btnOK.click();
+        } catch (Exception e) {
+            reportWithScreenShot("Error While user click on Edit and update button:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    /**
+     * Enter the mandatory fields of Update Name Screen
+     * Author: Koushik Kadimcherla
+     */
+    public void enterUpdateNameMandatoryFields() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(textEffectiveStartDate), 15);
+            assertThat(textEffectiveStartDate.isDisplayed()).isTrue();
+            textEffectiveStartDate.clear();
+            textEffectiveStartDate.sendKeys(getCurrentDate());
+            btnOK.click();
+            waitShortTime();
+            waitFor(ExpectedConditions.elementToBeClickable(textFirstName), 15);
+            textFirstName.clear();
+            textFirstName.sendKeys(data.getFirstName());
+            waitShortTime();
+            btnOK2.click();
+            reportWithScreenShot("User updated name");
+            waitNormalTime();
+        } catch (Exception e) {
+            reportWithScreenShot(
+                    "Error While user entering Mandatory Fields of Update Name Screen :" + e.getMessage());
+            Assert.fail();
+        }
     }
 }
