@@ -137,6 +137,29 @@ Feature: Line Manager Transaction and Approval
       | Test Scenario                        | Test File Name | Test Sheet Name |
       | LINE_MANAGER_PERFORMS_CHANGE_MANAGER | TestData.xlsx  | Line_Manager    |
 
+
+  @QUICK_ACTION_LINE_MANAGER_PERFORMS_CHANGE_MANAGER
+  Scenario Outline: Line Manager to Perform Change Manager transaction for direct reportees from Quick Actions
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user navigates to Quick Action menu
+    Then the Quick Action page should be displayed
+    And user selects the person name from the dropdown
+    And user clicks on Change Manager link from the Quick Action menu
+    When user clicks on Continue button for Change Manager
+    Then Change Manager page should be displayed
+    And user Select value for Change Manager Reason from dropdown
+    And user Select the value in Manager dropdown
+    And user add comments in the textarea
+    When user clicks on Submit button in Change Manager page
+    Then the Quick Action page should be displayed
+    And user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario                                     | Test File Name | Test Sheet Name |
+      | QUICK_ACTION_LINE_MANAGER_PERFORMS_CHANGE_MANAGER | TestData.xlsx  | Line_Manager    |
+
   @LINEMANAGER_CHANGE_OF_SALARY_ACTION
   Scenario Outline: Line Manager performs a Change of salary with Reason Change in Working Hours for employee moving to part-time hours
     Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>

@@ -35,6 +35,11 @@ public class LineManagerSteps implements En {
             ;
         });
 
+        When("user clicks on Continue button for Change Manager", () -> {
+            context.lineManager.clickContinueButtonInChangeManagerPage();
+            ;
+        });
+
         When("user Select value for Change Manager Reason from dropdown", () -> {
             context.lineManager.selectChangeManagerReason();
         });

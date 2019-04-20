@@ -633,44 +633,29 @@ Feature: New Hire and Related Activities
 #      | Test Scenario                            | Test File Name | Test Sheet Name    |
 #      | NEW_HIRE_CONTINGENT_WORKER_QUICK_ACTIONS | TestData.xlsx  | Talent_Acquisition |
 #
-#  @NEW_HIRE_NON_WORKER_QUICK_ACTIONS  - Not in  Datasheet
-#  Scenario Outline: Create a New Non Worker using Quick Actions and Responsive UI
-#    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
-#    And user login to Oracle Applications Cloud web page
-#    When user clicks on Quick Actions icon
-#    Then Quick Actions page should be displayed
-#    And user clicks on Add a Non Worker under All Actions section
-#    Then user selects relevant actions on Add a Non Worker page
-#    When user enter details in When and Why section
-#    And user enter details in Communication Info section
-#    And user enter details in Addresses section
-#    And user enter details in Legislative Info section
-#    And user enter details in Passport Info section
-#    And user enter details in Citizenship Info section
-#    And user enter details in Driver's Licenses section
-#    And user enter details in Visas and Permits section
-#    And user enter details in Family and Emergency Contacts section
-#    And user enter details in Employment Details section
-#    And user enter details in Managers section
-#    And user enter details in Contract Info section
-#    And user enter details in Work Relationship Info section
-#    And user enter details in Payroll Details section
-#    And user enter details in Salary section
-#    And user enter details in Compensation section
-#    And user enter details in Direct Reports section
-#    And user enter details in Comments and Attachments section
-#    When user clicks on submit button
-#    Then Quick Actions page should be displayed
-#    When user clicks on Navigator icon
-#    And user clicks on Person Management Link in Navigation pane
-#    Then Person Management: Search screen should be displayed
-#    And user search for the person newly created using Quick Actions
-#    When user clicks on Sign Out option
-#    Then Sign out should be successful
-#
-#    Examples:
-#      | Test Scenario                     | Test File Name | Test Sheet Name    |
-#      | NEW_HIRE_NON_WORKER_QUICK_ACTIONS | TestData.xlsx  | Talent_Acquisition |
+  @NEW_HIRE_NON_WORKER_QUICK_ACTIONS
+  Scenario Outline: Create a New Non Worker using Quick Actions and Responsive UI
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user navigates to Quick Action menu
+    Then the Quick Action page should be displayed
+    And user clicks on Add a Nonworker link from the Quick Action menu
+    Then new Hire an employee screen should be displayed
+    When user enter details in Identification tab
+    And user enter details in Person information tab
+    And user enter details in Employment Information tab
+    And user enter details in Compensation and Other Information tab
+    Then Review page should be displayed in view only mode
+    When user clicks on submit button
+    And clicks ok in the Warning and confirmation message displayed
+    Then Page should be submitted successfully
+    And new employee details are stored into csv
+    When user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario                     | Test File Name | Test Sheet Name    |
+      | NEW_HIRE_NON_WORKER_QUICK_ACTIONS | TestData.xlsx  | Talent_Acquisition |
 
   @MANANGE_PERSON_NAME_UPDATE
   Scenario Outline: Update the First Name of a Person
