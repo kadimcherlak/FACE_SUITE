@@ -195,6 +195,9 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
     @FindBy(xpath = "//img[@title='Search']")
     private WebElement searchImage;
 
+    @FindBy(xpath = "//span[text()='Continue']")
+    private WebElement button_Continue;
+
     public LineManagerPage(Context context) {
         super(context);
         this.context = context;
@@ -808,5 +811,20 @@ public class LineManagerPage extends BasePage<LineManagerPage> {
             }
         }
         return false;
+    }
+
+
+    public void clickContinueButtonInChangeManagerPage() {
+
+        try {
+
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(button_Continue), 15);
+            button_Continue.click();
+            reportWithScreenShot("Click on Continue Button");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking on Continue button" + e.getMessage());
+            Assert.fail();
+        }
     }
 }
