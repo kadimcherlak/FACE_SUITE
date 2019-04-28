@@ -331,12 +331,13 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             clickSearch(); // Click Search Button
 
             // Check for Employee for max 60 seconds
+            System.out.println("//span[text()='" + csvReader().get("personNumber").trim() + "']");
             elementsize = driver
-                    .findElements(By.xpath("//span[text()='" + csvReader().get("personNumber") + "']")).size();
+                    .findElements(By.xpath("//span[text()='" + csvReader().get("personNumber").trim() + "']")).size();
             int counter = 0;
             while (elementsize == 0 && counter <= 20) {
                 elementsize = driver
-                        .findElements(By.xpath("//span[text()='" + csvReader().get("personNumber") + "']")).size();
+                        .findElements(By.xpath("//span[text()='" + csvReader().get("personNumber").trim() + "']")).size();
                 clickSearch();
                 waitShortTime();
                 counter++;
