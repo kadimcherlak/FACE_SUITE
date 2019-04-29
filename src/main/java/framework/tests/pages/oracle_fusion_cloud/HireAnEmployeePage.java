@@ -48,7 +48,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "(//input[@class='x2h'])[2]")
     private WebElement basicDetailsReason;
 
-    @FindBy(xpath = "//label[text()='Legal Employer']/following::input[1]")
+    @FindBy(xpath = "(//label[text()='Legal Employer']/following::input[1])[1]")
     private WebElement basicDetailsEmployer;
 
     @FindBy(xpath = "//*[text()='Employee']")
@@ -103,6 +103,9 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//label[text()='ZIP Code']/following::input[1]")
     private WebElement zipCode;
 
+    @FindBy(xpath = "(//input[@class='x1xc'])[2]")
+    private WebElement dropDown_ZipCode;
+
     @FindBy(xpath = "//label[text()='City']/following::input[1]")
     private WebElement city;
 
@@ -121,19 +124,19 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//label[text()='Newly Separated Veteran Discharge Date']/following::input[1]")
     private WebElement newlySeparatedVeteranDischargeDate;
 
-    @FindBy(xpath = "//label[text()='Business Unit']/following::input[1]")
+    @FindBy(xpath = "(//label[text()='Business Unit']/following::input[1])[1]")
     private WebElement businessUnit;
 
-    @FindBy(xpath = "//label[text()='Job']/following::input[1]")
+    @FindBy(xpath = "(//label[text()='Job']/following::input[1])[1]")
     private WebElement job;
 
-    @FindBy(xpath = "//label[text()='Grade']/following::input[1]")
+    @FindBy(xpath = "(//label[text()='Grade']/following::input[1])[1]")
     private WebElement grade;
 
-    @FindBy(xpath = "//label[text()='Department']/following::input[1]")
+    @FindBy(xpath = "(//label[text()='Department']/following::input[1])[1]")
     private WebElement department;
 
-    @FindBy(xpath = "//label[text()='Location']/following::input[1]")
+    @FindBy(xpath = "(//label[text()='Location']/following::input[1])[1]")
     private WebElement location;
 
     @FindBy(xpath = "//label[text()='Assignment Category']/following::input[1]")
@@ -163,7 +166,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//label[text()='Salary Basis']/following::input[1]")
     private WebElement salaryBasis;
 
-    @FindBy(xpath = "//label[text()='Salary Amount']/following::input[1]")
+    @FindBy(xpath = "(//label[text()='Salary Amount']/following::input[1])[1]")
     private WebElement salaryAmount;
 
     @FindBy(xpath = "//label[@class='x1cd']")
@@ -239,6 +242,67 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
 
     @FindBy(xpath = "//span[text()='Continue']")
     private WebElement button_Continue;
+
+    @FindBy(xpath = "//label[contains(text(),'date?')]/following::input[1]")
+    private WebElement date_Hire;
+
+    //@FindBy(xpath = "(//label[text()='Legal Employer']/following::input[1])[1]")
+    //private WebElement dropDown_legalEmployer;
+
+    @FindBy(xpath = "//label[contains(text(),'Why are you')]/following::input[1]")
+    private WebElement dropDown_HireReason;
+
+    @FindBy(xpath = "//label[contains(text(),'Proposed Worker Type')]/following::input[1]")
+    private WebElement dropDown_ProposedWorkerType;
+
+    @FindBy(xpath = "//button[@title='Continue']")
+    private WebElement button_Hire_Continue;
+    @FindBy(xpath = "(//label[contains(text(),'Country')]/following::span[1])[1]")
+    private WebElement dropDown_Country;
+
+    @FindBy(xpath = "//label[contains(text(),'National ID Type')]/following::input[1]")
+    private WebElement dropDown_NationalIDType;
+
+    @FindBy(xpath = "//label[(text()='National ID')]/following::input[1]")
+    private WebElement textBox_NationalID;
+
+
+    @FindBy(xpath = "(//label[(text()='Type')]/following::input[1])[1]")
+    private WebElement dropDown_PhoneType;
+
+    @FindBy(xpath = "(//label[text()='Country']/following::span[1])[1]")
+    private WebElement dropDown_CountryCode;
+
+
+    @FindBy(xpath = "//label[text()='Number']//following::input[1]")
+    private WebElement textBox_PhoneNumber;
+
+    @FindBy(xpath = "(//label[(text()='Type')]/following::input[1])[2]")
+    private WebElement dropDown_EmailType;
+
+    @FindBy(xpath = "//label[text()='Email']//following::input[1]")
+    private WebElement textBox_Email;
+
+    @FindBy(xpath = "//label[contains(text(),'Marital Status')]/following::input[1]")
+    private WebElement dropDown_MaritalStatus;
+
+    @FindBy(xpath = "//label[(text()='Citizenship')]/following::input[1]")
+    private WebElement dropDown_Citizenship;
+
+    @FindBy(xpath = "//label[(text()='Citizenship Status')]/following::input[1]")
+    private WebElement dropDown_CitizenshipStatus;
+
+    @FindBy(xpath = "//label[text()='Payroll']/following::input[1]")
+    private WebElement dropDown_Payroll;
+
+    @FindBy(xpath = "//input[contains(@class,'x1xc')]")
+    private WebElement dropDown_SalaryBasis;
+
+    @FindBy(xpath = "//label[text()='Comments']//following::textarea[1]")
+    private WebElement dropDown_Comments;
+
+    @FindBy(xpath = "//label[text()='Type']/following::span[1]")
+    private WebElement addressType;
 
     public HireAnEmployeePage(Context context) {
         super(context);
@@ -1109,4 +1173,371 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             Assert.fail();
         }
     }
+
+    // User enter details in When why section
+    public void enterWhenWhySectionDetails() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(date_Hire), 15);
+            date_Hire.clear();
+            String hireDate = getDynamicDate("-", 60);
+            actions.doubleClick(date_Hire).sendKeys(hireDate);
+            checkAndUpdateLegalEmployerIfEmpty();
+            // Select Hire Reason
+            dropDown_HireReason.click();
+            waitFor(ExpectedConditions
+                    .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getHireReason() + "']"))), 5);
+            driver.findElement(By.xpath("//li[text()='" + data.getHireReason() + "']")).click();
+            dropDown_HireReason.sendKeys(Keys.TAB);
+            waitFor(ExpectedConditions.elementToBeClickable(button_Hire_Continue), 15);
+            button_Hire_Continue.click();
+            reportWithScreenShot("User enter details in When why section and clicks on Continue Button");
+        } catch (Exception e) {
+            reportWithScreenShot("Issue while user enter details in When why section due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // User enter details in Personal details section
+    public void enterPersonalSectionDetails() {
+        try {
+            waitNormalTime();
+
+            // Enter Last Name
+            waitFor(ExpectedConditions.elementToBeClickable(lastName), 5);
+            lastName.sendKeys(data.getLastName());
+            lastName.sendKeys(Keys.TAB);
+
+            // Enter First Name
+            waitFor(ExpectedConditions.elementToBeClickable(firstName), 5);
+            firstName.sendKeys(data.getFirstName());
+            firstName.sendKeys(Keys.TAB);
+
+            // Select Gender
+            waitFor(ExpectedConditions.elementToBeClickable(gender), 5);
+            gender.click();
+            waitFor(ExpectedConditions
+                    .elementToBeClickable(driver.findElement(By.xpath("//li[text()='" + data.getGender() + "']"))), 5);
+            driver.findElement(By.xpath("//li[text()='" + data.getGender() + "']")).click();
+
+            // Select Date of Birth
+            waitFor(ExpectedConditions.elementToBeClickable(dateOfBirth), 15);
+            dateOfBirth.sendKeys(data.getDateOfBirth());
+            dateOfBirth.sendKeys(Keys.TAB);
+            // Enter National ID type
+            dropDown_NationalIDType.click();
+            waitFor(ExpectedConditions
+                    .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getNationalIDType() + "']"))), 15);
+            driver.findElement(By.xpath("//li[text()='" + data.getNationalIDType() + "']")).click();
+            dropDown_NationalIDType.sendKeys(Keys.TAB);
+
+            // Enter National ID
+            waitFor(ExpectedConditions.visibilityOf(textBox_NationalID), 15);
+            textBox_NationalID.sendKeys(data.getNationalID());
+            waitFor(ExpectedConditions.elementToBeClickable(button_Hire_Continue), 15);
+            button_Hire_Continue.click();
+            reportWithScreenShot("User enter details in personal details section and clicks on Continue Button");
+        } catch (Exception e) {
+            reportWithScreenShot("Issue while user enter details in personal details section due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // User enter details in Communication Info section
+    public void enterCommunicationSectionDetails() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_Hire_Continue), 15);
+            button_Hire_Continue.click();
+            reportWithScreenShot("User clicks on Continue Button");
+        } catch (Exception e) {
+            reportWithScreenShot("Issue while user click on Continue button due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // User enter details in Addresses section
+    public void enterAddressesSectionDetails() {
+        try {
+            waitFor(ExpectedConditions.visibilityOf(dropDown_Country), 30);
+            dropDown_Country.clear();
+            dropDown_Country.sendKeys(data.getCountry());
+            waitNormalTime();
+            dropDown_Country.sendKeys(Keys.ENTER);
+            dropDown_Country.sendKeys(Keys.TAB);
+            waitFor(ExpectedConditions.visibilityOf(addressType), 30);
+            selectInputDropdownValue(addressType, data.getAltWorkLocationAddressType());
+
+            // Enter Address Line 1
+            waitFor(ExpectedConditions.elementToBeClickable(addressLine1), 15);
+            addressLine1.sendKeys(data.getAddressLine1());
+            addressLine1.sendKeys(Keys.TAB);
+
+            // Enter Address Line 2
+            waitFor(ExpectedConditions.elementToBeClickable(addressLine2), 15);
+            addressLine2.sendKeys(data.getAddressLine2());
+            addressLine2.sendKeys(Keys.TAB);
+
+            // Enter Zip Code
+            waitFor(ExpectedConditions.elementToBeClickable(dropDown_ZipCode), 15);
+            dropDown_ZipCode.sendKeys(data.getZipCode());
+            addressLine2.click();
+            waitNormalTime();
+            waitFor(ExpectedConditions.elementToBeClickable(button_Hire_Continue), 15);
+            button_Hire_Continue.click();
+
+            reportWithScreenShot("User enter details in Addresses details section and clicks on Continue Button");
+        } catch (Exception e) {
+            reportWithScreenShot("Issue while user enter details in Addresses details section due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // User enter details in legislative Info section
+    public void enterLegislativeInfoSectionDetails() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_Hire_Continue), 15);
+            button_Hire_Continue.click();
+            reportWithScreenShot("User clicks on Continue Button");
+        } catch (Exception e) {
+            reportWithScreenShot("Issue while user click on Continue button due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // User enter details in Passport Details section
+    public void enterPassportInfoSectionDetails() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_Hire_Continue), 15);
+            button_Hire_Continue.click();
+            waitShortTime();
+            reportWithScreenShot("User clicks on Continue Button");
+        } catch (Exception e) {
+            reportWithScreenShot("Issue while user click on Continue button due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // User enter details in Citizenship Info section
+    public void enterCitizenshipInfoSectionDetails() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_Hire_Continue), 15);
+            button_Hire_Continue.click();
+            waitShortTime();
+            reportWithScreenShot("User clicks on Continue Button");
+        } catch (Exception e) {
+            reportWithScreenShot("Issue while user click on Continue button due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // User enter details in Drivers Licenses section
+    public void enterDriversLicensesSectionDetails() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_Hire_Continue), 15);
+            button_Hire_Continue.click();
+            waitShortTime();
+            reportWithScreenShot("User clicks on Continue Button");
+        } catch (Exception e) {
+            reportWithScreenShot("Issue while user click on Continue button due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // User enter details in Visa permits section
+    public void enterVisasSectionDetails() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_Hire_Continue), 15);
+            button_Hire_Continue.click();
+            waitShortTime();
+            reportWithScreenShot("User clicks on Continue Button");
+        } catch (Exception e) {
+            reportWithScreenShot("Issue while user click on Continue button due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // User enter Family Emergency Contacts section
+    public void enterFamilyEmergencyContactsSectionDetails() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_Hire_Continue), 15);
+            button_Hire_Continue.click();
+            waitShortTime();
+            reportWithScreenShot("User clicks on Continue Button");
+        } catch (Exception e) {
+            reportWithScreenShot("Issue while user click on Continue button due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // User enter Employment Details section
+    public void enterEmploymentSectionDetails() {
+        try {
+            // Enter Business Unit
+            waitFor(ExpectedConditions.elementToBeClickable(businessUnit), 15);
+            businessUnit.clear();
+            waitNormalTime();
+            businessUnit.sendKeys(data.getBusinessUnit());
+            businessUnit.sendKeys(Keys.ENTER);
+            waitNormalTime();
+
+            // Enter Job
+            waitFor(ExpectedConditions.elementToBeClickable(job), 15);
+            job.clear();
+            job.sendKeys(data.getJob());
+            job.sendKeys(Keys.ENTER);
+            waitNormalTime();
+
+            // Enter Grade - Not required as of now as its autoloaded
+            /*waitFor(ExpectedConditions.elementToBeClickable(grade), 15);
+            grade.clear();
+            grade.sendKeys(data.getGrade());*/
+
+            // Enter Department
+            waitFor(ExpectedConditions.elementToBeClickable(department), 15);
+            department.clear();
+            department.sendKeys(data.getDepartment());
+            department.sendKeys(Keys.ENTER);
+            waitNormalTime();
+
+            // Enter Location
+            try {
+                waitFor(ExpectedConditions.elementToBeClickable(location), 15);
+                location.clear();
+                waitShortTime();
+                location.sendKeys(data.getLocation());
+                waitShortTime();
+            } catch (StaleElementReferenceException e) {
+                waitShortTime();
+                location.sendKeys(data.getLocation());
+            }
+            waitShortTime();
+            waitFor(ExpectedConditions.elementToBeClickable(button_Hire_Continue), 15);
+            button_Hire_Continue.click();
+            waitShortTime();
+            reportWithScreenShot("User enter details in Employment details section and clicks on Continue Button");
+        } catch (Exception e) {
+            reportWithScreenShot("Issue while user enter details in Employment details section due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // User enter Manager Details section
+    public void enterManagerSectionDetails() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_Hire_Continue), 15);
+            button_Hire_Continue.click();
+            waitShortTime();
+            reportWithScreenShot("User clicks on Continue Button");
+        } catch (Exception e) {
+            reportWithScreenShot("Issue while user click on Continue button due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // User clicks on Continue Button for Quick Action all new hires
+    public void enterContractInfoSectionDetails() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_Continue), 15);
+            button_Continue.click();
+            waitShortTime();
+            reportWithScreenShot("User clicks on Continue Button");
+        } catch (Exception e) {
+            reportWithScreenShot("Issue while user click on Continue button due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // User enter details in Work Relationship Info
+    public void enterWorkRelationshipInfoSectionDetails() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_Hire_Continue), 15);
+            button_Hire_Continue.click();
+            waitShortTime();
+            reportWithScreenShot("User clicks on Continue Button");
+        } catch (Exception e) {
+            reportWithScreenShot("Issue while user click on Continue button due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // User enter details in Payroll details section
+    public void enterPayrollSectionDetails() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(dropDown_Payroll), 15);
+            dropDown_Payroll.click();
+            waitFor(ExpectedConditions.elementToBeClickable(
+                    driver.findElement(By.xpath("//li[text()='" + data.getPayroll() + "']"))), 5);
+            driver.findElement(By.xpath("//li[text()='" + data.getPayroll() + "']")).click();
+            dropDown_Payroll.sendKeys(Keys.TAB);
+            waitFor(ExpectedConditions.elementToBeClickable(button_Hire_Continue), 15);
+            button_Hire_Continue.click();
+            waitShortTime();
+            reportWithScreenShot("User enter details in Payroll details section and clicks on Continue Button");
+        } catch (Exception e) {
+            reportWithScreenShot("Issue while user enter details in Payroll details section due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // User enter details in Salary section
+    public void enterSalarySectionDetails() {
+        try {
+            // Enter Salary Basis
+            waitFor(ExpectedConditions.elementToBeClickable(dropDown_SalaryBasis), 15);
+            dropDown_SalaryBasis.sendKeys(data.getSalaryBasis());
+
+            // Enter Salary Amount
+            waitFor(ExpectedConditions.elementToBeClickable(salaryAmount), 15);
+            salaryAmount.clear();
+            salaryAmount.sendKeys(data.getSalaryAmount());
+            waitShortTime();
+            waitFor(ExpectedConditions.elementToBeClickable(button_Hire_Continue), 15);
+            button_Hire_Continue.click();
+            waitShortTime();
+            reportWithScreenShot("User enter details in Salary section and clicks on Continue Button");
+        } catch (Exception e) {
+            reportWithScreenShot("Issue while user enter details in Salary section due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // User enter details in Compensation section
+    public void enterCompensationSectionDetails() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_Hire_Continue), 15);
+            button_Hire_Continue.click();
+            waitShortTime();
+            reportWithScreenShot("User clicks on Continue Button");
+        } catch (Exception e) {
+            reportWithScreenShot("Issue while user click on Continue button due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // User enter details in Direct Reports section
+    public void enterDirectReportsSectionDetails() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_Hire_Continue), 15);
+            button_Hire_Continue.click();
+            waitShortTime();
+            reportWithScreenShot("User clicks on Continue Button");
+        } catch (Exception e) {
+            reportWithScreenShot("Issue while user click on Continue button due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // User enter details in Comments section
+    public void enterCommentsAttachmentSectionDetails() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(dropDown_Comments), 15);
+            dropDown_Comments.sendKeys("Captured info for New hire");
+            waitShortTime();
+            reportWithScreenShot("User enter details in comments section and clicks on Continue Button");
+        } catch (Exception e) {
+            reportWithScreenShot("Issue while user enter comments due to: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+
 }

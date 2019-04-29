@@ -334,7 +334,79 @@ public class TalentAcquisitionNewHireSteps implements En {
         });
 
         Then("user enter details in When and Why section", () -> {
-            context.hireAnEmployee.clickContinueButton();
+            context.hireAnEmployee.enterWhenWhySectionDetails();
+        });
+
+        Then("user enter details in Personal Details section", () -> {
+            context.hireAnEmployee.enterPersonalSectionDetails();
+        });
+
+        Then("user enter details in Communication Info section", () -> {
+            context.hireAnEmployee.enterCommunicationSectionDetails();
+        });
+
+        Then("user enter details in Addresses section", () -> {
+            context.hireAnEmployee.enterAddressesSectionDetails();
+        });
+
+        Then("user enter details in Legislative Info section", () -> {
+            context.hireAnEmployee.enterLegislativeInfoSectionDetails();
+        });
+
+        Then("user enter details in Passport Info section", () -> {
+            context.hireAnEmployee.enterPassportInfoSectionDetails();
+        });
+
+        Then("user enter details in Citizenship Info section", () -> {
+            context.hireAnEmployee.enterCitizenshipInfoSectionDetails();
+        });
+
+        Then("user enter details in Driver's Licenses section", () -> {
+            context.hireAnEmployee.enterDriversLicensesSectionDetails();
+        });
+
+        Then("user enter details in Visas and Permits section", () -> {
+            context.hireAnEmployee.enterVisasSectionDetails();
+        });
+
+        Then("user enter details in Family and Emergency Contacts section", () -> {
+            context.hireAnEmployee.enterFamilyEmergencyContactsSectionDetails();
+        });
+
+        Then("user enter details in Employment Details section", () -> {
+            context.hireAnEmployee.enterEmploymentSectionDetails();
+        });
+
+        Then("user enter details in Managers section", () -> {
+            context.hireAnEmployee.enterManagerSectionDetails();
+        });
+
+        Then("user enter details in Contract Info section", () -> {
+            context.hireAnEmployee.enterContractInfoSectionDetails();
+        });
+
+        Then("user enter details in Work Relationship Info section", () -> {
+            context.hireAnEmployee.enterWorkRelationshipInfoSectionDetails();
+        });
+
+        Then("user enter details in Payroll Details section", () -> {
+            context.hireAnEmployee.enterPayrollSectionDetails();
+        });
+
+        Then("user enter details in Salary section", () -> {
+            context.hireAnEmployee.enterSalarySectionDetails();
+        });
+
+        Then("user enter details in Compensation section", () -> {
+            context.hireAnEmployee.enterCompensationSectionDetails();
+        });
+
+        Then("user enter details in Direct Reports section", () -> {
+            context.hireAnEmployee.enterDirectReportsSectionDetails();
+        });
+
+        Then("user enter details in Comments and Attachments section", () -> {
+            context.hireAnEmployee.enterCommentsAttachmentSectionDetails();
         });
 
         When("user Enter all the Mandatory fields of Update Name window and click Ok button", () -> {
