@@ -51,7 +51,7 @@ public class GenerateRunnerForSelectiveClass {
 		List<String> tags = new ArrayList<>();
 		try {
 
-			if (System.getProperty("runMode").equalsIgnoreCase("selective")) {
+			if (System.getProperty("runMode").equalsIgnoreCase("parallel")||System.getProperty("runMode").equalsIgnoreCase("sequence")) {
 				File excel = null;
 				if (System.getProperty("testFile").isEmpty()) {
 					excel = new File(System.getProperty("user.dir") + File.separator

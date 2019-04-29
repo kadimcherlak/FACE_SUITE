@@ -25,13 +25,16 @@ public class GenerateTestNGXmlFile {
 		try {
 
 			List<String> runnerClassName = new ArrayList<>();
-			
-			if(System.getProperty("runMode").equalsIgnoreCase("selective"))
-			{
-			runnerClassName = getRunnerClassName(System.getProperty("user.dir") + "\\src\\main\\java\\framework\\selective\\runner");
-			}
-			else
-			{
+
+			try {
+				if (System.getProperty("runMode").equalsIgnoreCase("parallel")
+						|| System.getProperty("runMode").equalsIgnoreCase("sequence")) {
+					runnerClassName = getRunnerClassName(
+							System.getProperty("user.dir") + "\\src\\main\\java\\framework\\selective\\runner");
+				} else {
+					runnerClassName = getRunnerClassName(System.getProperty("user.dir") + "\\src\\main\\java");
+				}
+			} catch (Exception e) {
 				runnerClassName = getRunnerClassName(System.getProperty("user.dir") + "\\src\\main\\java");
 			}
 
@@ -52,58 +55,53 @@ public class GenerateTestNGXmlFile {
 			Attr parallelMethod = document.createAttribute("parallel");
 			parallelMethod.setValue("tests");
 			root.setAttributeNode(parallelMethod);
-			
+
 			Attr threadCount = document.createAttribute("thread-count");
-			threadCount.setValue("4");
+			try {
+				if (System.getProperty("runMode").equalsIgnoreCase("sequence")) {
+					threadCount.setValue("1");
+				} else {
+					threadCount.setValue("2");
+				}
+
+			} catch (Exception e) {
+				threadCount.setValue("2");
+			}
 			root.setAttributeNode(threadCount);
 
-			/*Element test = document.createElement("test");
-			Attr testName = document.createAttribute("name");
-			testName.setValue("Oracle Fusion Tests");
-			test.setAttributeNode(testName);
-			root.appendChild(test);
-
-			Element classes = document.createElement("classes");
-			test.appendChild(classes);*/
-			
-			if(System.getProperty("runMode").equalsIgnoreCase("selective"))
-			{
-				for(int i=0;i<runnerClassName.size();i++)
-				{
+			if (System.getProperty("runMode").equalsIgnoreCase("parallel")||System.getProperty("runMode").equalsIgnoreCase("sequence")) {
+				for (int i = 0; i < runnerClassName.size(); i++) {
 					Element test = document.createElement("test");
 					Attr testName = document.createAttribute("name");
-					testName.setValue("Oracle Fusion Tests "+(i+1));
+					testName.setValue("Oracle Fusion Tests " + (i + 1));
 					test.setAttributeNode(testName);
 					root.appendChild(test);
 
 					Element classes = document.createElement("classes");
 					test.appendChild(classes);
-				Element runnerClass = document.createElement("class");
-				Attr runnerName = document.createAttribute("name");
-				runnerName.setValue("framework.selective.runner."+runnerClassName.get(i));
-				runnerClass.setAttributeNode(runnerName);
-				classes.appendChild(runnerClass);
-			}
-			}
-			else
-			{
+					Element runnerClass = document.createElement("class");
+					Attr runnerName = document.createAttribute("name");
+					runnerName.setValue("framework.selective.runner." + runnerClassName.get(i));
+					runnerClass.setAttributeNode(runnerName);
+					classes.appendChild(runnerClass);
+				}
+			} else {
 
-			for(int i=0;i<runnerClassName.size();i++)
-			{
-				Element test = document.createElement("test");
-				Attr testName = document.createAttribute("name");
-				testName.setValue("Oracle Fusion Tests "+(i+1));
-				test.setAttributeNode(testName);
-				root.appendChild(test);
+				for (int i = 0; i < runnerClassName.size(); i++) {
+					Element test = document.createElement("test");
+					Attr testName = document.createAttribute("name");
+					testName.setValue("Oracle Fusion Tests " + (i + 1));
+					test.setAttributeNode(testName);
+					root.appendChild(test);
 
-				Element classes = document.createElement("classes");
-				test.appendChild(classes);
-			Element runnerClass = document.createElement("class");
-			Attr runnerName = document.createAttribute("name");
-			runnerName.setValue(runnerClassName.get(i));
-			runnerClass.setAttributeNode(runnerName);
-			classes.appendChild(runnerClass);
-			}
+					Element classes = document.createElement("classes");
+					test.appendChild(classes);
+					Element runnerClass = document.createElement("class");
+					Attr runnerName = document.createAttribute("name");
+					runnerName.setValue(runnerClassName.get(i));
+					runnerClass.setAttributeNode(runnerName);
+					classes.appendChild(runnerClass);
+				}
 			}
 
 			// create the xml file
@@ -142,7 +140,8 @@ public class GenerateTestNGXmlFile {
 
 					if (listOfFiles[i].getName().endsWith(".java")) {
 						System.out.println("Runner Picked Up " + listOfFiles[i].getName());
-						runnerClassName.add(listOfFiles[i].getName().substring(0, listOfFiles[i].getName().indexOf(".java")));
+						runnerClassName
+								.add(listOfFiles[i].getName().substring(0, listOfFiles[i].getName().indexOf(".java")));
 					}
 
 				}
