@@ -46,7 +46,7 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//button[text()='Search']")
     private WebElement searchBtn;
 
-    @FindBy(xpath = "//img[@title='Actions']")
+    @FindBy(xpath = "(//img[@title='Actions'])[1]")
     private WebElement actionsBtn;
 
     @FindBy(xpath = "(//td[text()='Payroll'])[2]")
@@ -266,6 +266,9 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
 
     @FindBy(xpath = "(//td[text() = 'Update'])[4]")
     private WebElement buttonManagePersonUpdate;
+
+    @FindBy(xpath = "//label[text()='Name']/following::input[1]")
+    private WebElement personName;
     
     // Person Management Contructor
     public PersonManagementPage(Context context) {
@@ -345,6 +348,56 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             // Throw Exception if Person name now found after 60 seconds
             if (elementsize == 0) {
                 throw new Exception("Person number not found after 60 seconds");
+            }
+            reportWithScreenShot("User is on search result page");
+        } catch (Exception e) {
+            reportWithScreenShot("Error While checking search results of employee:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // Enter Value into Person Management: Search screen
+    public void searchPersonName() {
+        try {
+            // Enter person number into keywords
+            waitFor(ExpectedConditions.elementToBeClickable(personName), 15);
+            personName.sendKeys(csvReader().get("personName"));
+
+            // Enter effective as of date
+            waitFor(ExpectedConditions.elementToBeClickable(effectiveAsOfDate), 15);
+            effectiveAsOfDate.clear();
+
+            // Add Current Date + 1 as the senario runs before this test changes the date to current date +1 (Scenario name : Seniority date)
+            searchDate = addDaysToDate(getCurrentDate(), 0, "mm/dd/yyyy");
+
+            effectiveAsOfDate.sendKeys(searchDate);
+            waitShortTime();
+            reportWithScreenShot("Summary of Person Management: Search screen");
+        } catch (Exception e) {
+            reportWithScreenShot("Error While checking values in Person Management: Search screen:" + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    // After entering person number, click on Search Button until person
+    public void clickSearchTillPersonNameDisplayed() {
+        try {
+            clickSearch(); // Click Search Button
+            // Check for Employee for max 60 seconds
+            elementsize = driver
+                    .findElements(By.xpath("(//img[@title='Actions'])[1]")).size();
+            int counter = 0;
+            while (elementsize == 0 && counter <= 20) {
+                elementsize = driver
+                        .findElements(By.xpath("(//img[@title='Actions'])[1]")).size();
+                clickSearch();
+                waitShortTime();
+                counter++;
+            }
+
+            // Throw Exception if Person name now found after 60 seconds
+            if (elementsize == 0) {
+                throw new Exception("Person Name not found after 60 seconds");
             }
             reportWithScreenShot("User is on search result page");
         } catch (Exception e) {

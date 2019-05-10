@@ -21,7 +21,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     private Context context;
     private Data data;
     private Actions actions;
-    private int elementsize;
+    //private int elementsize;
 
     // Hire An Employee Page Elements
     @FindBy(xpath = "//h1[contains(text(),': Identification')]")
@@ -79,7 +79,8 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     @FindBy(xpath = "//img[@title='Add Row']")
     private WebElement addRow;
 
-    @FindBy(xpath = "(//input[@class='x10u'])[2]")
+    // @FindBy(xpath = "(//input[@class='x10u'])[2]"
+    @FindBy(xpath = "(//label[contains(text(),'Country')]/following::span[1])[1]")
     private WebElement country;
 
     @FindBy(xpath = "//input[@class='x2h' and contains(@id,'soc2::content') and contains(@aria-owns,'soc2::pop')]")
@@ -444,7 +445,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             // Enter Country
             waitFor(ExpectedConditions.visibilityOf(country), 30);
             country.clear();
-            country.sendKeys(data.getCountry());
+            //country.sendKeys(data.getCountry());
             waitNormalTime();
             country.sendKeys(Keys.ENTER);
             country.sendKeys(Keys.TAB);
@@ -1180,14 +1181,37 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitFor(ExpectedConditions.elementToBeClickable(date_Hire), 15);
             date_Hire.clear();
             String hireDate = getDynamicDate("-", 60);
-            actions.doubleClick(date_Hire).sendKeys(hireDate);
-            checkAndUpdateLegalEmployerIfEmpty();
+            //actions.doubleClick(date_Hire).sendKeys(hireDate);
+            date_Hire.sendKeys(hireDate);
+            waitFor(ExpectedConditions.elementToBeClickable(basicDetailsEmployer), 15);
+            basicDetailsEmployer.sendKeys(data.getLegalEmployer());
+            waitShortTime();
+            basicDetailsEmployer.sendKeys(Keys.TAB);
+
+            // Check Scenario and perform Action
+            if (data.getScenario().contains("PENDING_WORKER")) {
+                pendingWorkerType.click();
+                waitFor(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getWorkerType() + "']"))), 30);
+                driver.findElement(By.xpath("//li[text()='" + data.getWorkerType() + "']")).click();
+                pendingWorkerType.sendKeys(Keys.TAB);
+            } else if (data.getScenario().contains("NON_WORKER")) {
+                nonWorkerType.click();
+                waitFor(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getWorkerType() + "']"))), 30);
+                driver.findElement(By.xpath("//li[text()='" + data.getWorkerType() + "']")).click();
+                nonWorkerType.sendKeys(Keys.TAB);
+                waitShortTime();
+            }
+
+
+            //  checkAndUpdateLegalEmployerIfEmpty();
             // Select Hire Reason
+          /*  waitFor(ExpectedConditions.elementToBeClickable(dropDown_HireReason), 15);
             dropDown_HireReason.click();
             waitFor(ExpectedConditions
                     .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getHireReason() + "']"))), 5);
             driver.findElement(By.xpath("//li[text()='" + data.getHireReason() + "']")).click();
-            dropDown_HireReason.sendKeys(Keys.TAB);
+            dropDown_HireReason.sendKeys(Keys.TAB);*/
+
             waitFor(ExpectedConditions.elementToBeClickable(button_Hire_Continue), 15);
             button_Hire_Continue.click();
             reportWithScreenShot("User enter details in When why section and clicks on Continue Button");
@@ -1211,6 +1235,8 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
             waitFor(ExpectedConditions.elementToBeClickable(firstName), 5);
             firstName.sendKeys(data.getFirstName());
             firstName.sendKeys(Keys.TAB);
+
+            csvWriter("", data.getFirstName() + " " + data.getLastName());
 
             // Select Gender
             waitFor(ExpectedConditions.elementToBeClickable(gender), 5);
@@ -1245,7 +1271,7 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     // User enter details in Communication Info section
     public void enterCommunicationSectionDetails() {
         try {
-            waitFor(ExpectedConditions.elementToBeClickable(button_Hire_Continue), 15);
+            waitFor(ExpectedConditions.elementToBeClickable(button_Hire_Continue), 35);
             button_Hire_Continue.click();
             reportWithScreenShot("User clicks on Continue Button");
         } catch (Exception e) {
@@ -1257,12 +1283,29 @@ public class HireAnEmployeePage extends BasePage<HireAnEmployeePage> {
     // User enter details in Addresses section
     public void enterAddressesSectionDetails() {
         try {
-            waitFor(ExpectedConditions.visibilityOf(dropDown_Country), 30);
-            dropDown_Country.clear();
-            dropDown_Country.sendKeys(data.getCountry());
-            waitNormalTime();
-            dropDown_Country.sendKeys(Keys.ENTER);
-            dropDown_Country.sendKeys(Keys.TAB);
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.visibilityOf(country), 40);
+            waitShortTime();
+            //waitFor(ExpectedConditions.elementToBeClickable(country), 15);
+            country.click();
+            System.out.println("First click");
+            country.click();
+            System.out.println("2nd click");
+            waitShortTime();
+            // country.sendKeys("United States");
+            waitFor(ExpectedConditions
+                    .visibilityOf(driver.findElement(By.xpath("//li[text()='" + data.getCountry() + "']"))), 5);
+            driver.findElement(By.xpath("//li[text()='" + data.getCountry() + "']")).click();
+            // country.sendKeys(Keys.TAB);
+            //country.clear();
+            //System.out.println("After clearing");
+            // country.sendKeys(data.getCountry());
+            //System.out.println("After entering states");
+            // country.sendKeys(Keys.ARROW_DOWN);
+            //  country.sendKeys(Keys.ENTER);
+            waitShortTime();
+            //  dropDown_Country.sendKeys(Keys.ENTER);
+            // dropDown_Country.sendKeys(Keys.TAB);
             waitFor(ExpectedConditions.visibilityOf(addressType), 30);
             selectInputDropdownValue(addressType, data.getAltWorkLocationAddressType());
 

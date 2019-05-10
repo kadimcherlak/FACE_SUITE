@@ -412,6 +412,12 @@ public class TalentAcquisitionNewHireSteps implements En {
         When("user Enter all the Mandatory fields of Update Name window and click Ok button", () -> {
             context.personManagment.enterUpdateNameMandatoryFields();
         });
+
+        When("user search for the person newly created using Quick Actions", () -> {
+            context.personManagment.searchPersonName();
+            context.personManagment.clickSearchTillPersonNameDisplayed();
+
+        });
     }
 
 }

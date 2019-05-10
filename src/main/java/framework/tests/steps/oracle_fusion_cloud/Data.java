@@ -23,6 +23,8 @@ public class Data extends framework.core.models.Data {
     private String category;
     private String changeManagerReason;
     private String city;
+    private String citizenship;
+    private String citizenshipStatus;
     private String contactsEmergencyContactName;
     private String contactsRelationship;
     private String companyEntity;
@@ -84,6 +86,7 @@ public class Data extends framework.core.models.Data {
     private String organizationPaymentMethod;
     private String patternName;
     private String password;
+    // private String passportType;
     private String payroll;
     private String pearsonEmailRequired;
     private String payCheckDate;
@@ -206,6 +209,14 @@ public class Data extends framework.core.models.Data {
 
     public String getCity() {
         return city;
+    }
+
+    public String getCitizenship() {
+        return citizenship;
+    }
+
+    public String getCitizenshipStatus() {
+        return citizenshipStatus;
     }
 
     public String getContactsEmergencyContactName() {
@@ -486,6 +497,9 @@ public class Data extends framework.core.models.Data {
     public String getPassword() {
         return password;
     }
+    // public String getPasswordType() {
+    //     return passportType;
+    // }
 
     public String getPayroll() {
         return payroll;

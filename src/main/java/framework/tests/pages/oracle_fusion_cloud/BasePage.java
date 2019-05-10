@@ -220,6 +220,7 @@ public class BasePage<T> extends WebPage {
     }
 
 
+
     // Click on Confirm Button
     public void saveEmployeeDetails() {
         try {
@@ -474,6 +475,7 @@ public class BasePage<T> extends WebPage {
             e.printStackTrace();
         }
     }
+
 
     public String[] splitString(String value) {
         try {
