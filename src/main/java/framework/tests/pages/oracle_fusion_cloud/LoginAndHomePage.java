@@ -85,7 +85,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     @FindBy(xpath = "//input[contains(@id,'it1::content') and contains(@name,'pt1:_UISatr:0:it1')]")
     private WebElement searchNotification;
 
-    @FindBy(xpath = "//img[contains(@title,'Quick Actions')]")
+    @FindBy(xpath = "//*[contains(@title,'Quick Actions')]")
     private WebElement quickAction;
 
     @FindBy(xpath = "//a[@title='Home'][contains(@id,'home')]")

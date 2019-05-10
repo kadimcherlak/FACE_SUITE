@@ -475,6 +475,7 @@ public class BasePage<T> extends WebPage {
         }
     }
 
+
     public String[] splitString(String value) {
         try {
             return value.trim().split(",");
