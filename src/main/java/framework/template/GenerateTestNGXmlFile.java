@@ -61,11 +61,11 @@ public class GenerateTestNGXmlFile {
 				if (System.getProperty("runMode").equalsIgnoreCase("sequence")) {
 					threadCount.setValue("1");
 				} else {
-					threadCount.setValue("2");
+					threadCount.setValue("3");
 				}
 
 			} catch (Exception e) {
-				threadCount.setValue("2");
+				threadCount.setValue("3");
 			}
 			root.setAttributeNode(threadCount);
 
