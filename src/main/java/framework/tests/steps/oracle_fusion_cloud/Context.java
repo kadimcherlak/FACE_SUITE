@@ -103,9 +103,17 @@ public class Context extends framework.core.models.Context {
         logger.debug("Finishing Feature: {} - Scenario: {}", getFeatureFile(scenario.getId()), scenario.getName());
         logger.debug("STATUS: {}", scenario.getStatus());
         System.out.println(scenario.getStatus());
-        if (scenario.getStatus().toString().equalsIgnoreCase("FAILED")) {
+        driver.quit();
+        /*if (scenario.getStatus().toString().equalsIgnoreCase("FAILED")) {
             driver.quit();
         }
+        else
+        {
+        	if(scenario.getStatus().toString().equalsIgnoreCase("PASSED") && System.getProperty("runMode").equalsIgnoreCase("selective"))
+        	{
+        		driver.quit();
+        	}
+        }*/
     }
 
     private String getFeatureFile(String scenarioId) {

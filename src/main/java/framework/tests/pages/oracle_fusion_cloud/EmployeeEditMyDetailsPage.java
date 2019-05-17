@@ -3410,6 +3410,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             waitFor(ExpectedConditions.elementToBeClickable(managePersonalPaymentMethodLink), 15);
             waitShortTime();
             managePersonalPaymentMethodLink.click();
+            waitShortTime();
             reportWithScreenShot("Manage Personal Payment Method Link is clicked");
         } catch (Exception e) {
             reportWithScreenShot("Error while clicking on Manage Personal Payment Method Link : " + e.getMessage());
