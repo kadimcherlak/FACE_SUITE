@@ -31,6 +31,23 @@ public class GenerateRunnerForSelectiveClass {
 			chunk.set("tags", allTagToRun.get(i));
 			chunk.set("featuresDirectory",System.getProperty("featureDir"));
 			// chunk.set("favorite_color", "blue");
+			
+			File runnerPath=new File(System.getProperty("user.dir") + "//src//main//java//framework//selective//runner");
+			if (!runnerPath.exists()) {
+			    System.out.println("creating directory: " + runnerPath.getPath());
+			    boolean result = false;
+
+			    try{
+			    	runnerPath.mkdirs();
+			        result = true;
+			    } 
+			    catch(SecurityException se){
+			        //handle it
+			    }        
+			    if(result) {    
+			        System.out.println("DIR created");  
+			    }
+			
 
 			String outfilePath = System.getProperty("user.dir") + "//src//main//java//framework//selective//runner//" + runnerClassName
 					+ ".java";
@@ -42,6 +59,7 @@ public class GenerateRunnerForSelectiveClass {
 			out.flush();
 			out.close();
 			System.out.println("Generated Runner "+runnerClassName+" for tag :"+allTagToRun.get(i));
+		}
 		}
 
 	}

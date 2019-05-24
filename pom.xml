@@ -33,8 +33,8 @@
 		<maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
 		<generated.runner.directory>${project.basedir}/src/main/java</generated.runner.directory>
 		<generated.feature.directory>${project.build.directory}/parallel/features</generated.feature.directory>
-		<tags>@ABC</tags>
-		<runMode>selective</runMode>
+		<!-- <tags>@ABC</tags>
+		<runMode>selective</runMode> -->
 	</properties>
 
 	<build>
@@ -66,7 +66,7 @@
 						<!--<sourceRunnerTemplateFile>src/test/resources/cucable.template</sourceRunnerTemplateFile> -->
 
 						<!-- process all features in the given directory -->
-						<sourceFeatures>src/main/resources/features/demo</sourceFeatures>
+						<sourceFeatures>src/main/resources/features/${featureDir}</sourceFeatures>
 
 						<!-- process a specific feature file in the given directory -->
 						<!--<sourceFeatures>src/test/resources/features/testfeature/MyTest9.feature</sourceFeatures> -->
@@ -118,10 +118,10 @@
 						<!--<logLevel>minimal</logLevel> -->
 						<!--<logLevel>off</logLevel> -->
 
-						<systemPropertyVariables>
+						<!-- <systemPropertyVariables>
 							<tags>${tags}</tags>
 							<runMode>${runMode}</runMode>
-						</systemPropertyVariables>
+						</systemPropertyVariables> -->
 
 					</configuration>
 				</plugin>
