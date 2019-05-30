@@ -48,7 +48,7 @@ public class GenerateRunnerForSelectiveClass {
 			        System.out.println("DIR created");  
 			    }
 			
-
+			}
 			String outfilePath = System.getProperty("user.dir") + "//src//main//java//framework//selective//runner//" + runnerClassName
 					+ ".java";
 			File file = new File(outfilePath);
@@ -59,7 +59,7 @@ public class GenerateRunnerForSelectiveClass {
 			out.flush();
 			out.close();
 			System.out.println("Generated Runner "+runnerClassName+" for tag :"+allTagToRun.get(i));
-		}
+		
 		}
 
 	}
