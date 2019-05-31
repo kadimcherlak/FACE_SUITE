@@ -53,7 +53,7 @@ public class LoginAndHomePage extends BasePage<LoginAndHomePage> {
     //@FindBy(xpath = "//h1[contains(.,'My Details')]")
     //private WebElement empMyDetails;
 
-    @FindBy(xpath = "//h1[contains(.,'Personal Info')]")
+    @FindBy(xpath = "//h1[contains(.,'My Details')]")
     private WebElement personalInfo;
 
     @FindBy(xpath = "//h1[contains(.,'Edit My Details: Contact Information')]")

@@ -270,6 +270,30 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
     @FindBy(xpath = "//label[text()='Name']/following::input[1]")
     private WebElement personName;
     
+    @FindBy(xpath = "//span[text()='Directory']")
+    private WebElement directoryPage;
+    
+    @FindBy(xpath = "//span[text()='Directory']/following::input[1]")
+    private WebElement directorySearchBox;
+    
+    @FindBy(xpath = "//img[@title='Search']")
+    private WebElement directorySearchButton;
+    
+    @FindBy(xpath = "(//img[@title='View in Organization Chart'])[1]")
+    private WebElement viewOrganizationChart;
+    
+    @FindBy(xpath = "//button[text()='View Matrix Chart']")
+    private WebElement viewMatrixChartButton;
+    
+    @FindBy(xpath = "//tr[@class='p_AFSelected p_AFFocused xep']")
+    private WebElement directorySearchPersonName;
+    
+    private By allSearchResult=By.xpath("//table[@summary='Search Results']/tbody/child::tr");
+    
+    @FindBy(xpath = "//h1[text()='Directory']")
+    private WebElement searchResultPage;
+  
+    
     // Person Management Contructor
     public PersonManagementPage(Context context) {
         super(context);
@@ -1122,4 +1146,88 @@ public class PersonManagementPage extends BasePage<PersonManagementPage> {
             Assert.fail();
         }
     }
+    
+ // Validates Directory Page is Displayed
+    public void validateDirectoryPageDisplayed() {
+        try {
+            waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(directoryPage), 15);
+            reportWithScreenShot("Checking if Directory Page is Displayed");
+            assertThat(directoryPage.isDisplayed()).isTrue();
+        } catch (Exception e) {
+            reportWithScreenShot("Directory page is not Displayed");
+            Assert.fail();
+        }
+    }
+    
+ // Enter member name and click on search button
+    public void enterMemberNameAndClickOnSearchButton() {
+        try {
+        	
+        	String employeeName=data.getEmployeeName();
+        	waitFor(ExpectedConditions.elementToBeClickable(directorySearchBox), 15);
+        	directorySearchBox.clear();
+        	directorySearchBox.sendKeys(employeeName);
+        	waitFor(ExpectedConditions.elementToBeClickable(directorySearchButton), 15);
+        	directorySearchButton.click();
+        	reportWithScreenShot("Directory search is successful");
+        	
+        } catch (Exception e) {
+            reportWithScreenShot("Directory search is not successful");
+            Assert.fail();
+        }
+    }
+    
+ // Person name should be displayed
+    public void validatePersonNameDisplayed() {
+        try {
+        	
+        	waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(searchResultPage), 15);
+            if(driver.findElements(allSearchResult).size()==0)
+            {
+             reportWithScreenShot("Search member is not displayed");
+             Assert.fail();
+            }
+            else if(driver.findElements(allSearchResult).size()>0)
+            {
+            	reportWithScreenShot("Search member is displayed");
+            }
+        	
+        } catch (Exception e) {
+            reportWithScreenShot("Search member is not displayed");
+            Assert.fail();
+        }
+    }
+    
+ // Click on Organization Chart Option
+    public void clickOnOrganizationChart() {
+        try {
+        	
+        	waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(viewOrganizationChart), 15);
+            viewOrganizationChart.click();
+            reportWithScreenShot("Clicked on View Organization Chart");
+        	
+        } catch (Exception e) {
+            reportWithScreenShot("Click on View Organization Chart is not successful");
+            Assert.fail();
+        }
+    }
+    
+ // Click on Organization Chart Option
+    public void validateOrganizationChartDisplayed() {
+        try {
+        	
+        	waitUntilPageLoad();
+            waitFor(ExpectedConditions.elementToBeClickable(viewMatrixChartButton), 15);
+            reportWithScreenShot("Organization Chart is displayed");
+        	
+        } catch (Exception e) {
+            reportWithScreenShot("Organization Chart is not displayed");
+            Assert.fail();
+        }
+    }
+    
+    
 }

@@ -206,6 +206,10 @@ public class LineManagerSteps implements En {
         And("^user clicks on Action button and selects Cancel Work Relationship$", () -> {
             context.lineManager.clickActionAndCancelWorkRelation();
         });
+        
+        And("^user clicks on Review button in self resignation page$", () -> {
+            context.lineManager.clickReviewButton();
+        });
     }
 
 }
