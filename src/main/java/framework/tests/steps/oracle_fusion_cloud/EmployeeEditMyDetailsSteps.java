@@ -687,6 +687,38 @@ public class EmployeeEditMyDetailsSteps implements En {
         Then("user clicks on Action button and select Edit option and deselect the Active tickbox and click on Save and Close button", () -> {
             context.employeeEditMyDetails.clickActionAndEditBankAccounts();
         });
+        
+        Then("Validate Directory page should be displayed", () -> {
+            context.personManagment.validateDirectoryPageDisplayed();
+        });
+        
+        Then("enter the employee name and click on directory search button", () -> {
+            context.personManagment.enterMemberNameAndClickOnSearchButton();
+        });
+        
+        Then("the person name should be displayed in search result", () -> {
+            context.personManagment.validatePersonNameDisplayed();
+        });
+        
+        Then("click on the organization chart option beside the name", () -> {
+            context.personManagment.clickOnOrganizationChart();
+        });
+        
+        Then("the organization chart should be displayed", () -> {
+            context.personManagment.validateOrganizationChartDisplayed();
+        });
+        
+        Then("user clicks on Actions and select Submit Resignation link", () -> {
+            context.employeeEditMyDetails.clickOnActionAndClickSubmitResignation();
+        });
+        
+        Then("review resignation page should be displayed", () -> {
+            context.employeeEditMyDetails.checkResignationPageIsDisplayed();
+        });
+        
+        When("^user clicks on Submit button in Submit Resignation Link$", () -> {
+            context.employeeEditMyDetails.clickSubmitButtonInReviewPage();
+        });
     }
 
 }

@@ -884,6 +884,42 @@ Feature: Perform Edit on Employee Information
     Examples: 
       | Test Scenario                                     | Test File Name | Test Sheet Name  |
       | UPDATE_PAY_METHOD_WITH_EXISTING_BANK_QUICK_ACTION | TestData.xlsx  | Employee_Details |
+
+  @EMPLOYEE_SEARCH_FROM_DIRECTORY
+  Scenario Outline: Employee search an employee from directory and view Organization Chart
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Directory link under About me section
+    Then Validate Directory page should be displayed
+    And enter the employee name and click on directory search button
+    Then the person name should be displayed in search result
+    And click on the organization chart option beside the name
+    Then the organization chart should be displayed
+    When user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples: 
+      | Test Scenario                  | Test File Name | Test Sheet Name  |
+      | EMPLOYEE_SEARCH_FROM_DIRECTORY | TestData.xlsx  | Employee_Details |
+
+  @SELF_RESIGNATION
+  Scenario Outline: Employee performs self resignation
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    When user clicks on Navigator icon
+    And user clicks on Personal Information link under About me section
+    Then Personal Info page should be displayed
+    And user clicks on Actions and select Submit Resignation link
+    And user clicks on Review button in self resignation page
+    Then review resignation page should be displayed
+    And user clicks on Submit button in Submit Resignation Link
+    And user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples: 
+      | Test Scenario    | Test File Name | Test Sheet Name  |
+      | SELF_RESIGNATION | TestData.xlsx  | Employee_Details |
 #  @ADD_EMERGENCY_CONTACT_DETAILS - Not in  Datasheet
 #  Scenario Outline: Employee add Emergency Contact details
 #    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>

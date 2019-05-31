@@ -472,7 +472,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//label[text()='Assignment Status']//following::input[1]")
     private WebElement dropdownAssignmentStatus;
 
-    @FindBy(xpath = "//span[text()='Review']")
+    @FindBy(xpath = "//*[text()='Review']")
     private WebElement btnReview;
 
     @FindBy(xpath = "//label[text()='Work Phone']/following::a[1]")
@@ -784,6 +784,19 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//label[text()='Active']/following::input[@type='checkbox']")
     private WebElement editBankCheckBox;
+    
+    @FindBy(xpath = "//img[@title='Related Links']")
+    private WebElement personalInformationActionLink;
+    
+    @FindBy(xpath = "//a[text()='Submit Resignation']")
+    private WebElement submitResignationLink;
+    
+    @FindBy(xpath = "//*[text()='Worker Comments']/following::textarea[1]")
+    private WebElement workerComments;
+    
+    @FindBy(xpath = "//h1[contains(text(),'Review Resignation')]")
+    private WebElement reviewResignationPageIndicator;
+    
 
     public EmployeeEditMyDetailsPage(Context context) {
         super(context);
@@ -3464,7 +3477,33 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
     
+ // User click on Action and then Edit button in Bank Account Option
+    public void clickOnActionAndClickSubmitResignation() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(personalInformationActionLink), 60);
+            personalInformationActionLink.click();
+            waitShortTime();
+            waitFor(ExpectedConditions.elementToBeClickable(submitResignationLink), 30);
+            submitResignationLink.click();
+            waitShortTime();
+            reportWithScreenShot("User clicks on Action link and click on submit resignation link");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while User clicks on Action link and click on submit resignation link:" + e.getMessage());
+            Assert.fail();
+        }
+    }
     
+    
+    public void checkResignationPageIsDisplayed() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(reviewResignationPageIndicator), 30);
+            assertThat(reviewResignationPageIndicator.isDisplayed()).isTrue();
+            reportWithScreenShot("Review resignation page is displayed");
+        } catch (Exception e) {
+            reportWithScreenShot("Review resignation page is not displayed : " + e.getMessage());
+            Assert.fail();
+        }
+    }
 
 
 }
