@@ -313,7 +313,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     private WebElement editButton;
 
     // @FindBy(xpath = "//h1[contains(text(),'Edit My Details: Contact Information')]")
-    @FindBy(xpath = "//h1[contains(.,'Contact Information')]")
+    @FindBy(xpath = "//h1[contains(.,'Contact Info')]")
     private WebElement contactInformationPageIndicator;
 
     @FindBy(xpath = "//h1[contains(.,'Family and Emergency Contacts')]")
@@ -784,19 +784,19 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//label[text()='Active']/following::input[@type='checkbox']")
     private WebElement editBankCheckBox;
-    
+
     @FindBy(xpath = "//img[@title='Related Links']")
     private WebElement personalInformationActionLink;
-    
+
     @FindBy(xpath = "//a[text()='Submit Resignation']")
     private WebElement submitResignationLink;
-    
+
     @FindBy(xpath = "//*[text()='Worker Comments']/following::textarea[1]")
     private WebElement workerComments;
-    
+
     @FindBy(xpath = "//h1[contains(text(),'Review Resignation')]")
     private WebElement reviewResignationPageIndicator;
-    
+
 
     public EmployeeEditMyDetailsPage(Context context) {
         super(context);
@@ -3405,8 +3405,8 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         try {
             /*waitFor(ExpectedConditions.elementToBeClickable(moreInformation), 15);
             moreInformation.click();*/
-        	JavascriptExecutor executor = (JavascriptExecutor)driver;
-        	executor.executeScript("arguments[0].click();", moreInformation);
+            JavascriptExecutor executor = (JavascriptExecutor) driver;
+            executor.executeScript("arguments[0].click();", moreInformation);
             reportWithScreenShot("Clicked on More Information Link");
         } catch (Exception e) {
             reportWithScreenShot("Error while clicking on More Information Link : " + e.getMessage());
@@ -3476,8 +3476,8 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-    
- // User click on Action and then Edit button in Bank Account Option
+
+    // User click on Action and then Edit button in Bank Account Option
     public void clickOnActionAndClickSubmitResignation() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(personalInformationActionLink), 60);
@@ -3492,8 +3492,8 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
     }
-    
-    
+
+
     public void checkResignationPageIsDisplayed() {
         try {
             waitFor(ExpectedConditions.elementToBeClickable(reviewResignationPageIndicator), 30);
@@ -3505,5 +3505,101 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
+    @FindBy(xpath = "//a[@id='pt1:_UIShome']")
+    private WebElement icon_Home;
 
+    @FindBy(xpath = "//div[@filmstrip='Me']")
+    private WebElement link_ME;
+
+    @FindBy(xpath = "//a[text()='Personal Information']")
+    private WebElement link_PersonalInformation;
+
+    @FindBy(xpath = "//h1[text()='My Details']")
+    private WebElement page_MyDetails;
+
+    @FindBy(xpath = "//span[contains(@id,':phoneType1:')]")
+    private WebElement input_PhoneType;
+
+    @FindBy(xpath = "//span[contains(@id,'phoneType')]/a")
+    private WebElement dropdown_PhoneType;
+
+    @FindBy(xpath = "//input[contains(@id,':countryNameId')]")
+    private WebElement text_CountryType;
+
+    public void clickOnHomeIcon() {
+         try {
+            waitFor(ExpectedConditions.elementToBeClickable(icon_Home), 30);
+            icon_Home.click();
+            assertThat(link_ME.isDisplayed()).isTrue();
+            reportWithScreenShot("User clicked on Home icon");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking Home icon: " + e.getMessage());
+            Assert.fail();
+        }
+
+    }
+
+    public void clickLinkME() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(link_ME), 30);
+            link_ME.click();
+            assertThat(link_PersonalInformation.isDisplayed()).isTrue();
+            reportWithScreenShot("User clicked on ME icon");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking ME icon: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void clickLinkPersonalInformation() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(link_PersonalInformation), 30);
+            link_PersonalInformation.click();
+            waitFor(ExpectedConditions.elementToBeClickable(page_MyDetails), 30);
+            assertThat(page_MyDetails.isDisplayed()).isTrue();
+            reportWithScreenShot("User clicked on Personal Information  icon");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while clicking Personal Information: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void checkMyDetailsPage() {
+
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(page_MyDetails), 30);
+            assertThat(page_MyDetails.isDisplayed()).isTrue();
+            reportWithScreenShot("Users my details page displayed ");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while displaying my details page: " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+    public void updateUserPhoneTypeAndNumber() {
+
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(contactInformationPageIndicator), 30);
+            assertThat(contactInformationPageIndicator.isDisplayed()).isTrue();
+            dropdown_PhoneType.click();
+            driver.findElement(By.xpath("//ul[contains(@id,':phoneType1::pop')]/li[text()='Home Phone']")).click();
+            text_CountryType.clear();
+            text_CountryType.sendKeys(data.getCountryCode());
+//            text_CountryType.sendKeys(Keys.TAB);
+            waitShortTime();
+            text_emergencyAreaCode.clear();
+            text_emergencyAreaCode.sendKeys(data.getAreaCode());
+            text_emergencyAreaCode.sendKeys(Keys.TAB);
+            waitShortTime();
+            text_emergencyPhoneNumber.clear();
+            text_emergencyPhoneNumber.sendKeys(data.getPhoneNumber());
+            text_emergencyPhoneNumber.sendKeys(Keys.TAB);
+            waitShortTime();
+            reportWithScreenShot("Users updates his phone number");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while update phone type: " + e.getMessage());
+            Assert.fail();
+        }
+
+    }
 }

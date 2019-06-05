@@ -24,7 +24,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario      | Test File Name | Test Sheet Name  |
       | NEW_HIRE_USING_HDL | TestData.xlsx  | Employee_Details |
 
@@ -44,7 +44,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                | Test File Name | Test Sheet Name  |
       | ADD_NEW_ADDRESS_TYPE_DETAILS | TestData.xlsx  | Employee_Details |
 
@@ -65,7 +65,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                     | Test File Name | Test Sheet Name  |
       | ADD_NEW_EMERGENCY_CONTACT_DETAILS | TestData.xlsx  | Employee_Details |
 
@@ -93,7 +93,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                                 | Test File Name | Test Sheet Name  |
       | UPDATE_PERSONAL_PAYMENT_METHODS_EXPENSES_ONLY | TestData.xlsx  | Employee_Details |
 
@@ -112,7 +112,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario           | Test File Name | Test Sheet Name  |
       | VALIDATE_ADDRESS_FORMAT | TestData.xlsx  | Employee_Details |
 
@@ -136,7 +136,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario            | Test File Name | Test Sheet Name  |
       | EMPLOYEE_UPLOADS_A_PHOTO | TestData.xlsx  | Employee_Details |
 
@@ -166,7 +166,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                        | Test File Name | Test Sheet Name  |
       | ADD_SKILLS_AND_QUALIFICATION_DETAILS | TestData.xlsx  | Employee_Details |
 
@@ -193,7 +193,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                        | Test File Name | Test Sheet Name  |
       | CHANGE_SALARY_BASIS_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
 
@@ -224,7 +224,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                  | Test File Name | Test Sheet Name  |
       | UPDATE_SALARY_FOR_EXISTING_EMP | TestData.xlsx  | Employee_Details |
 
@@ -250,7 +250,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario               | Test File Name | Test Sheet Name  |
       | EDIT_SALARY_PROPOSAL_REASON | TestData.xlsx  | Employee_Details |
 
@@ -276,7 +276,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                    | Test File Name | Test Sheet Name  |
       | CHANGE_ASSIGNMENT_VIA_PRSN_MGMNT | TestData.xlsx  | Employee_Details |
 
@@ -302,7 +302,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario    | Test File Name | Test Sheet Name  |
       | ENTER_JOB_CHANGE | TestData.xlsx  | Employee_Details |
 
@@ -326,7 +326,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario      | Test File Name | Test Sheet Name  |
       | ADDRESS_CORRECTION | TestData.xlsx  | Employee_Details |
 
@@ -350,7 +350,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                | Test File Name | Test Sheet Name  |
       | MANAGE_PERSON_ADDRESS_UPDATE | TestData.xlsx  | Employee_Details |
 
@@ -374,7 +374,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                       | Test File Name | Test Sheet Name  |
       | MANAGE_PERSON_ADD_ALTERNATE_ADDRESS | TestData.xlsx  | Employee_Details |
 
@@ -410,7 +410,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                  | Test File Name | Test Sheet Name  |
       | ENTER_STATUS_ASSIGNMENT_CHANGE | TestData.xlsx  | Employee_Details |
 
@@ -441,7 +441,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                                    | Test File Name | Test Sheet Name  |
       | ADDING_EXISTING_EMPLOYEE_AS_AN_EMERGENCY_CONTACT | TestData.xlsx  | Employee_Details |
 
@@ -471,7 +471,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                                      | Test File Name | Test Sheet Name  |
       | CORRECT_PERSONAL_DESCRIPTIVE_FLEXFIELD_INFORMATION | TestData.xlsx  | Employee_Details |
 
@@ -507,7 +507,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                     | Test File Name | Test Sheet Name  |
       | MODIFY_EXISTING_EMERGENCY_CONTACT | TestData.xlsx  | Employee_Details |
 
@@ -536,7 +536,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario             | Test File Name | Test Sheet Name  |
       | ADD_EXTRA_INFORMATION_EIT | TestData.xlsx  | Employee_Details |
 
@@ -566,7 +566,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                | Test File Name | Test Sheet Name  |
       | MODIFY_EXTRA_INFORMATION_EIT | TestData.xlsx  | Employee_Details |
 
@@ -597,7 +597,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                                    | Test File Name | Test Sheet Name  |
       | EMPLOYEE_CREATE_PROFILE_CONTENT_TYPE_INFORMATION | TestData.xlsx  | Employee_Details |
 
@@ -622,7 +622,7 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                              | Test File Name | Test Sheet Name  |
       | CANCEL_WORK_RELATIONSHIP_OF_PENDING_WORKER | TestData.xlsx  | Employee_Details |
 
@@ -646,7 +646,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                                                  | Test File Name | Test Sheet Name  |
       | EMPLOYEE_CREATE_PROFILE_CONTENT_TYPE_INFORMATION_QUICK_ACTIONS | TestData.xlsx  | Employee_Details |
 
@@ -694,7 +694,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                        | Test File Name | Test Sheet Name  |
       | CREATE_PAY_METHOD_WITH_EXISTING_BANK | TestData.xlsx  | Employee_Details |
 
@@ -720,7 +720,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                                     | Test File Name | Test Sheet Name  |
       | CREATE_PAY_METHOD_WITH_EXISTING_BANK_QUICK_ACTION | TestData.xlsx  | Employee_Details |
 
@@ -749,7 +749,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                   | Test File Name | Test Sheet Name  |
       | CREATE_PAY_METHOD_WITH_NEW_BANK | TestData.xlsx  | Employee_Details |
 
@@ -775,7 +775,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                                | Test File Name | Test Sheet Name  |
       | CREATE_PAY_METHOD_WITH_NEW_BANK_QUICK_ACTION | TestData.xlsx  | Employee_Details |
 
@@ -803,7 +803,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                   | Test File Name | Test Sheet Name  |
       | UPDATE_PAY_METHOD_WITH_NEW_BANK | TestData.xlsx  | Employee_Details |
 
@@ -828,7 +828,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                                | Test File Name | Test Sheet Name  |
       | UPDATE_PAY_METHOD_WITH_NEW_BANK_QUICK_ACTION | TestData.xlsx  | Employee_Details |
 
@@ -856,7 +856,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                        | Test File Name | Test Sheet Name  |
       | UPDATE_PAY_METHOD_WITH_EXISTING_BANK | TestData.xlsx  | Employee_Details |
 
@@ -881,7 +881,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                                     | Test File Name | Test Sheet Name  |
       | UPDATE_PAY_METHOD_WITH_EXISTING_BANK_QUICK_ACTION | TestData.xlsx  | Employee_Details |
 
@@ -899,7 +899,7 @@ Feature: Perform Edit on Employee Information
     When user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario                  | Test File Name | Test Sheet Name  |
       | EMPLOYEE_SEARCH_FROM_DIRECTORY | TestData.xlsx  | Employee_Details |
 
@@ -917,9 +917,28 @@ Feature: Perform Edit on Employee Information
     And user clicks on Sign Out option
     Then Sign out should be successful
 
-    Examples: 
+    Examples:
       | Test Scenario    | Test File Name | Test Sheet Name  |
       | SELF_RESIGNATION | TestData.xlsx  | Employee_Details |
+
+  @EDIT_PHONE
+  Scenario Outline: Employee edit phone number
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    And user clicks on Home link after login
+    Then user clicks on Me link on user home page
+    And user clicks on Personal Information link on user home page
+    Then My Details page of logged in user is displayed
+    And user clicks on Edit button on top right side
+    Then Contact Information page should be displayed
+    And user updates Phone type and number
+    And user clicks on Save and Close button
+    And user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario | Test File Name | Test Sheet Name  |
+      | EDIT_PHONE    | TestData.xlsx  | Employee_Details |
 #  @ADD_EMERGENCY_CONTACT_DETAILS - Not in  Datasheet
 #  Scenario Outline: Employee add Emergency Contact details
 #    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
