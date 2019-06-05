@@ -673,11 +673,11 @@ public class EmployeeEditMyDetailsSteps implements En {
         });
 
         Then("user clicks on Actions ICON Orange Chevron next to Employee Name", () -> {
-        	context.employeeEditMyDetails.clickMoreInformationLink();
+            context.employeeEditMyDetails.clickMoreInformationLink();
         });
 
         Then("click on Payroll Option and select Manage Personal Payment Methods", () -> {
-        	context.employeeEditMyDetails.clickManagePersonalPaymentMethodLink();
+            context.employeeEditMyDetails.clickManagePersonalPaymentMethodLink();
         });
 
         Then("user selects update from Actions and then select Edit option", () -> {
@@ -687,37 +687,52 @@ public class EmployeeEditMyDetailsSteps implements En {
         Then("user clicks on Action button and select Edit option and deselect the Active tickbox and click on Save and Close button", () -> {
             context.employeeEditMyDetails.clickActionAndEditBankAccounts();
         });
-        
+
         Then("Validate Directory page should be displayed", () -> {
             context.personManagment.validateDirectoryPageDisplayed();
         });
-        
+
         Then("enter the employee name and click on directory search button", () -> {
             context.personManagment.enterMemberNameAndClickOnSearchButton();
         });
-        
+
         Then("the person name should be displayed in search result", () -> {
             context.personManagment.validatePersonNameDisplayed();
         });
-        
+
         Then("click on the organization chart option beside the name", () -> {
             context.personManagment.clickOnOrganizationChart();
         });
-        
+
         Then("the organization chart should be displayed", () -> {
             context.personManagment.validateOrganizationChartDisplayed();
         });
-        
+
         Then("user clicks on Actions and select Submit Resignation link", () -> {
             context.employeeEditMyDetails.clickOnActionAndClickSubmitResignation();
         });
-        
+
         Then("review resignation page should be displayed", () -> {
             context.employeeEditMyDetails.checkResignationPageIsDisplayed();
         });
-        
+
         When("^user clicks on Submit button in Submit Resignation Link$", () -> {
             context.employeeEditMyDetails.clickSubmitButtonInReviewPage();
+        });
+        And("^user clicks on Home link after login$", () -> {
+            context.employeeEditMyDetails.clickOnHomeIcon();
+        });
+        Then("^user clicks on Me link on user home page$", () -> {
+            context.employeeEditMyDetails.clickLinkME();
+        });
+        And("^user clicks on Personal Information link on user home page$", () -> {
+            context.employeeEditMyDetails.clickLinkPersonalInformation();
+        });
+        Then("^My Details page of logged in user is displayed$", () -> {
+            context.employeeEditMyDetails.checkMyDetailsPage();
+        });
+        And("^user updates Phone type and number$", () -> {
+            context.employeeEditMyDetails.updateUserPhoneTypeAndNumber();
         });
     }
 
