@@ -959,6 +959,25 @@ Feature: Perform Edit on Employee Information
       | Test Scenario       | Test File Name | Test Sheet Name  |
       | UPDATE_HOME_ADDRESS | TestData.xlsx  | Employee_Details |
 
+  @UPDATE_MARITAL_STATUS
+  Scenario Outline: Employee edit phone number
+    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
+    And user login to Oracle Applications Cloud web page
+    And user clicks on Home link after login
+    Then user clicks on Me link on user home page
+    And user clicks on Personal Information link on user home page
+    Then My Details page of logged in user is displayed
+    And user clicks on Edit button on top right side
+    Then Contact Information page should be displayed
+    And user updates Marital status
+    And user clicks on Save and Close button
+    And user clicks on Sign Out option
+    Then Sign out should be successful
+
+    Examples:
+      | Test Scenario         | Test File Name | Test Sheet Name  |
+      | UPDATE_MARITAL_STATUS | TestData.xlsx  | Employee_Details |
+
 #  @ADD_EMERGENCY_CONTACT_DETAILS - Not in  Datasheet
 #  Scenario Outline: Employee add Emergency Contact details
 #    Given user runs <Test Scenario> from <Test File Name> under <Test Sheet Name>
