@@ -797,6 +797,29 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//h1[contains(text(),'Review Resignation')]")
     private WebElement reviewResignationPageIndicator;
 
+    @FindBy(xpath = "//a[@id='pt1:_UIShome']")
+    private WebElement icon_Home;
+
+    @FindBy(xpath = "//div[@filmstrip='Me']")
+    private WebElement link_ME;
+
+    @FindBy(xpath = "//a[text()='Personal Information']")
+    private WebElement link_PersonalInformation;
+
+    @FindBy(xpath = "//h1[text()='My Details']")
+    private WebElement page_MyDetails;
+
+    @FindBy(xpath = "//span[contains(@id,':phoneType1:')]")
+    private WebElement input_PhoneType;
+
+    @FindBy(xpath = "//span[contains(@id,'phoneType')]/a")
+    private WebElement dropdown_PhoneType;
+
+    @FindBy(xpath = "//input[contains(@id,':countryNameId')]")
+    private WebElement text_CountryType;
+
+    @FindBy(xpath = "//label[text()='Postal Code']/following::input[1]")
+    private WebElement text_PostalCode;
 
     public EmployeeEditMyDetailsPage(Context context) {
         super(context);
@@ -3505,29 +3528,8 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
-    @FindBy(xpath = "//a[@id='pt1:_UIShome']")
-    private WebElement icon_Home;
-
-    @FindBy(xpath = "//div[@filmstrip='Me']")
-    private WebElement link_ME;
-
-    @FindBy(xpath = "//a[text()='Personal Information']")
-    private WebElement link_PersonalInformation;
-
-    @FindBy(xpath = "//h1[text()='My Details']")
-    private WebElement page_MyDetails;
-
-    @FindBy(xpath = "//span[contains(@id,':phoneType1:')]")
-    private WebElement input_PhoneType;
-
-    @FindBy(xpath = "//span[contains(@id,'phoneType')]/a")
-    private WebElement dropdown_PhoneType;
-
-    @FindBy(xpath = "//input[contains(@id,':countryNameId')]")
-    private WebElement text_CountryType;
-
     public void clickOnHomeIcon() {
-         try {
+        try {
             waitFor(ExpectedConditions.elementToBeClickable(icon_Home), 30);
             icon_Home.click();
             assertThat(link_ME.isDisplayed()).isTrue();
@@ -3601,5 +3603,27 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             Assert.fail();
         }
 
+    }
+
+    public void updateHomeAddress() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_Edit), 30);
+            button_Edit.click();
+            waitShortTime();
+            datePicker_EffectiveStartDate.clear();
+            datePicker_EffectiveStartDate.sendKeys(getLastTwoDaysDate());
+            text_updateAddressModal_AddressLine1.clear();
+            text_updateAddressModal_AddressLine1.sendKeys(data.getAddressLine1());
+            text_updateAddressModal_City.clear();
+            text_updateAddressModal_City.sendKeys(data.getCity());
+            text_updateAddressModal_State.clear();
+            text_updateAddressModal_State.sendKeys(data.getState());
+            text_PostalCode.clear();
+            text_PostalCode.sendKeys(data.getZipCode());
+            reportWithScreenShot("Users updates his home address");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while updating home address : " + e.getMessage());
+            Assert.fail();
+        }
     }
 }
