@@ -690,6 +690,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//label[text()='Effective Start Date']/following::span/button[@accesskey='K']")
     private WebElement button_OK_UpdatAddressDate;
 
+    @FindBy(xpath = "//label[text()='Marital Status']//following::input[3]")
+    private WebElement text_effectiveDate;
+
     @FindBy(xpath = "//label[text()='Home Address']/following::span[text()='K']")
     private WebElement button_OK_CloseEditWindow;
 
@@ -820,6 +823,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//label[text()='Postal Code']/following::input[1]")
     private WebElement text_PostalCode;
+
+    @FindBy(xpath = "//div[text()='Biographical Info']")
+    private WebElement link_BiographicalInfo;
 
     public EmployeeEditMyDetailsPage(Context context) {
         super(context);
@@ -3623,6 +3629,28 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             reportWithScreenShot("Users updates his home address");
         } catch (Exception e) {
             reportWithScreenShot("Error while updating home address : " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+
+    public void updateMaritalStatus() {
+        try {
+            link_BiographicalInfo.click();
+            waitFor(ExpectedConditions.elementToBeClickable(button_Edit), 30);
+            button_Edit.click();
+            waitShortTime();
+            datePicker_EffectiveStartDate.clear();
+            datePicker_EffectiveStartDate.sendKeys(getCurrentDate());
+            maritalStatusReadOnly.click();
+            waitShortTime();
+            driver.findElement(By.xpath("//ul/li[text()='Married']")).click();
+            waitLongTime();
+            text_effectiveDate.clear();
+            text_effectiveDate.sendKeys(getCurrentDate());
+            reportWithScreenShot("Marital status updated: ");
+        } catch (Exception e) {
+            reportWithScreenShot("Error While updating marital status: " + e.getMessage());
             Assert.fail();
         }
     }

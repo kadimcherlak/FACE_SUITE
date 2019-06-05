@@ -69,5 +69,6 @@ public class ManageCalendarEventsSteps implements En {
         When("user clicks on Home button", () -> {
             context.manageCalendarEvents.clickHomeButton();
         });
+
     }
 }
