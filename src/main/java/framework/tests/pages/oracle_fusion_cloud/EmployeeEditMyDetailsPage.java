@@ -25,6 +25,13 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     // Edit My Details Page Elements
 
+
+    @FindBy(xpath = "(//img[@alt='Add'])[2]")
+    private WebElement button_AddAddress;
+
+    @FindBy(xpath = "(//label[text()='Type']//following::input[1])[2]")
+    private WebElement dropdown_AddressType;
+
     @FindBy(xpath = "//button[contains(.,'Edit')]")
     private WebElement myDetailsEdit;
 
@@ -364,6 +371,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
     @FindBy(xpath = "//label[text()='Country']/following::span[1]")
     private WebElement country;
 
+    @FindBy(xpath = "(//label[text()='Country']/following::input[1])[1]")
+    private WebElement text_Country;
+
     @FindBy(xpath = "//a[@accesskey='C']")
     private WebElement cancelBtn;
 
@@ -621,12 +631,25 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//label[text()='Address Line 1']/following::input[1]")
     private WebElement text_updateAddressModal_AddressLine1;
+
+    @FindBy(xpath = "(//label[text()='Address Line 1']/following::input[1])[1]")
+    private WebElement text_AddressLine1;
+
     @FindBy(xpath = "//label[text()='ZIP Code']/following::input[1]")
     private WebElement text_updateAddressModal_ZipCode;
+
     @FindBy(xpath = "//label[text()='City']/following::input[1]")
     private WebElement text_updateAddressModal_City;
+
+    @FindBy(xpath = "(//label[text()='City']/following::input[1])[1]")
+    private WebElement text_City;
+
     @FindBy(xpath = "//label[text()='State']/following::input[1]")
     private WebElement text_updateAddressModal_State;
+
+    @FindBy(xpath = "(//label[text()='State']/following::input[1])[1]")
+    private WebElement text_State;
+
     @FindBy(xpath = "//label[text()='County']/following::input[1]")
     private WebElement text_updateAddressModal_County;
 
@@ -653,6 +676,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//label[text()='Effective Start Date']/following::input[1]")
     private WebElement datePicker_EffectiveStartDate;
+
+    @FindBy(xpath = "(//label[text()='Effective Start Date']/following::input[1])[1]")
+    private WebElement text_EffectiveStarteDate;
 
     @FindBy(xpath = "//label[text()='Effective Start Date']/following::td[1]/input[1]")
     private WebElement datePicker_updateAddressEffectiveStartDate;
@@ -823,6 +849,9 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
 
     @FindBy(xpath = "//label[text()='Postal Code']/following::input[1]")
     private WebElement text_PostalCode;
+
+    @FindBy(xpath = "(//label[text()='Postal Code']/following::input[1])[1]")
+    private WebElement text_EnterPostalCode;
 
     @FindBy(xpath = "//div[text()='Biographical Info']")
     private WebElement link_BiographicalInfo;
@@ -3633,6 +3662,37 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
         }
     }
 
+    public void addNewAddress() {
+        try {
+            waitFor(ExpectedConditions.elementToBeClickable(button_Edit), 30);
+            button_AddAddress.click();
+            waitShortTime();
+            dropdown_AddressType.click();
+            waitShortTime();
+            driver.findElement(By.xpath("//li[text()='" + data.getAltWorkLocationAddressType() + "']")).click();
+            text_EffectiveStarteDate.clear();
+            text_EffectiveStarteDate.sendKeys(getCurrentDate());
+            text_EffectiveStarteDate.sendKeys(Keys.TAB);
+            waitShortTime();
+            text_Country.clear();
+            text_Country.sendKeys(data.getCountry());
+            waitShortTime();
+            text_AddressLine1.clear();
+            text_AddressLine1.sendKeys(data.getAddressLine1());
+            text_City.clear();
+            text_City.sendKeys(data.getCity());
+            text_State.clear();
+            text_State.sendKeys(data.getState());
+            text_EnterPostalCode.clear();
+            text_EnterPostalCode.sendKeys(data.getZipCode());
+            waitShortTime();           reportWithScreenShot("Users updates his home address");
+        } catch (Exception e) {
+            reportWithScreenShot("Error while updating home address : " + e.getMessage());
+            Assert.fail();
+        }
+    }
+
+
 
     public void updateMaritalStatus() {
         try {
@@ -3644,7 +3704,7 @@ public class EmployeeEditMyDetailsPage extends BasePage<EmployeeEditMyDetailsPag
             datePicker_EffectiveStartDate.sendKeys(getCurrentDate());
             maritalStatusReadOnly.click();
             waitShortTime();
-            driver.findElement(By.xpath("//ul/li[text()='Married']")).click();
+            driver.findElement(By.xpath("//li[text()='" + data.getMaritalStatus() + "']")).click();
             waitLongTime();
             text_effectiveDate.clear();
             text_effectiveDate.sendKeys(getCurrentDate());

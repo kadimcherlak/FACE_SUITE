@@ -741,6 +741,9 @@ public class EmployeeEditMyDetailsSteps implements En {
         And("^user updates Marital status$", () -> {
             context.employeeEditMyDetails.updateMaritalStatus();
         });
+        And("^user adds new address type$", () -> {
+            context.employeeEditMyDetails.addNewAddress();
+        });
     }
 
 }
